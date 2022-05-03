@@ -1,0 +1,16 @@
+<%= tailwind_form_with(model: contact, id: dom_id(contact)) do |form| %>
+  <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: title, subtitle: "Please add contact." %>
+    <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
+    <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
+    <%= form.text_field :email, "Email", autocomplete: "off" %>
+      <%= form.text_field :phone, "Phone", autocomplete: "off" %>
+    <div class="flex items-center justify-between">
+    </div>
+    <div class="flex justify-end">
+      <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
+      <%= form.submit "Save", class: "btn-blue" %>
+    </div>
+  </main>
+<% end %>

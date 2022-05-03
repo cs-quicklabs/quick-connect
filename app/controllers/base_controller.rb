@@ -1,0 +1,16 @@
+class BaseController < ApplicationController
+  before_action :set_user, only: %i[ index show edit update destroy create new contacts]
+  before_action :authenticate_user!
+  before_action :authenticate_account!
+  after_action :verify_authorized
+  include Pagy::Backend
+
+  def authenticate_account!
+    raise Pundit::NotAuthorizedError unless current_user.account == Current.account
+  end
+
+
+  def set_user
+    @user=current_user
+  end
+end
