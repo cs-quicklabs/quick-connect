@@ -1,0 +1,10 @@
+  <%= tailwind_form_with(model: relative, id: dom_id(relative), url: account_relatives_path) do |form| %>
+  <div class="space-y-6">
+    <%= render "shared/form_messages", resource: relative, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Relatives", subtitle: "You can define various relatives of your family." %>
+    <%= form.text_field :name, "Add New Relative", autocomplete: "off" %>
+    <div class="flex justify-end">
+      <%= form.submit "Save", class: "btn-blue" %>
+    </div>
+  </div>
+<% end %>

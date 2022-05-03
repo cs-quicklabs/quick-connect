@@ -1,0 +1,30 @@
+<aside class="px-2 py-6 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
+  <nav class="space-y-1" id="menu">
+
+
+<a href=<%= account_relatives_path %> class="<%= current_page?(account_relatives_path ) ? "selected" : "unselected" %>">
+  <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+  </svg>      <span class="truncate">
+    Relatives
+  </span>
+</a>
+
+<a href=<%= account_labels_path %> class="<%= current_page?(account_labels_path) ? "selected" : "unselected" %>">
+  <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z" />
+  </svg>
+  <span class="truncate">
+   Labels
+  </span>
+</a>
+      <a href=<%= billing_path %> class="<%= current_page?(billing_path) ? "selected" : "unselected" %>">
+        <svg xmlns="http://www.w3.org/2000/svg" class="svg-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="truncate">
+          Billing
+        </span>
+      </a>
+</nav>
+</aside>
