@@ -20,6 +20,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "calls", force: :cascade do |t|
+    t.text "body"
+    t.bigint "contact_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_calls_on_contact_id"
+    t.index ["user_id"], name: "index_calls_on_user_id"
+  end
+
   create_table "contacts", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "first_name", default: "", null: false
@@ -194,6 +204,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
+  add_foreign_key "calls", "contacts"
+  add_foreign_key "calls", "users"
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "users"
   add_foreign_key "labels", "accounts"
