@@ -1,0 +1,14 @@
+contact:
+  first_name: Contact
+  last_name: Contact
+  email: contact@gmail.com
+  account: hansika
+  user: regular
+
+one:
+  first_name: Contact
+  last_name: Contact1
+  email: contact1@gmail.com
+  account: hansika
+  user: regular
+  

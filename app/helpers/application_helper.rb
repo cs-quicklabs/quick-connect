@@ -80,6 +80,7 @@ module ApplicationHelper
     out.html_safe
   end
 
+
   def edit_button(path)
     out = link_to "Edit", path, class: "btn-inline-edit"
 

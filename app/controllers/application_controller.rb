@@ -1,40 +1,38 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
+  before_action :authenticate_user!
 
-    after_action :verify_authorized, only: [:home]
-    before_action :configure_permitted_parameters, if: :devise_controller?
+  after_action :verify_authorized, only: [:home]
   
     include Pagy::Backend
     include Pundit::Authorization
   
-    #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-    #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-    #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-    #rescue_from Pundit::NotDefinedError, with: :record_not_found
-    #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-    #rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+    rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+    rescue_from Pundit::NotDefinedError, with: :record_not_found
+    rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+    rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   
     LIMIT = 30
   
     before_action :set_redirect_path, unless: :user_signed_in?
     etag {
       if Rails.env == "production" or Rails.env == "staging"
-        heroku_version
+        deployment_version
       else
-        "screener"
+        current_user.permission
       end
     }
     def script_name
       "/#{current_user.account.id}"
     end
   
-  
     fragment_cache_key do
-      "screener"
+      current_user.permission
     end
   
-    def heroku_version
-      ENV["HEROKU_RELEASE_VERSION"] if Rails.env == "production" or Rails.env == "staging"
+    def deployment_version
+      ENV["LATEST_GITHUB_COMMIT"] if Rails.env == "production" or Rails.env == "staging"
     end
   
     def render_partial(partial, collection:, cached: true)

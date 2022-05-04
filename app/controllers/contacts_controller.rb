@@ -26,10 +26,10 @@ class ContactsController < BaseController
       authorize :contact
   
       respond_to do |format|
-        if @contact.update(contact_params, @user)
-          format.html { redirect_to contact_path(@contact), notice: "contact was successfully updated." }
+        if @contact.update(contact_params)
+          format.html { redirect_to contact_path(@contact), notice: "Contact was successfully updated." }
         else
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contact/forms/form", locals: { contact: @contact }) }
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact"  }) }
         end
       end
     end
@@ -41,7 +41,7 @@ class ContactsController < BaseController
       respond_to do |format|
         
         if @contact.errors.empty?
-          format.html { redirect_to contact_path(@contact), notice: "contact was successfully created." }
+          format.html { redirect_to contact_path(@contact), notice: "Contact was successfully created." }
         else
           format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact" }) }
         end
@@ -57,10 +57,10 @@ class ContactsController < BaseController
       authorize :contact
   
       respond_to do |format|
-        if Destroycontact.call(@contact).result
-          format.turbo_stream { redirect_to deactivated_contact_path, status: 303, notice: "contact has been deleted." }
+        if @contact.destroy
+          format.turbo_stream { redirect_to contacts_path, status: 303, notice: "Contact was removed successfully." }
         else
-          format.turbo_stream { redirect_to deactivated_contact_path, status: 303, alert: "Failed to delete contact." }
+          format.turbo_stream { redirect_to contacts_path, status: 303, alert: "Failed to remove contact." }
         end
       end
     end
