@@ -8,5 +8,6 @@ class Contact < ApplicationRecord
     validates_presence_of :first_name, :last_name, :email, :phone
     validates_uniqueness_of :phone
     has_many :notes, dependent: :destroy
+    has_many :phone_calls, dependent: :destroy
   end
   
