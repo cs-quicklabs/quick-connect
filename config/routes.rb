@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :user
     resources :profile do
       resources :notes, module: "profile"
+      resources :phone_calls, module: "profile"
     end
   resources :timeline
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
