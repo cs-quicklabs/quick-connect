@@ -1,8 +1,10 @@
 class ContactPolicy < ApplicationPolicy
     def update?
+      record.archived==false
+    end
+    def unarchive_contact?
       true
     end
-  
     def create?
       true
     end
@@ -27,11 +29,11 @@ class ContactPolicy < ApplicationPolicy
       true
     end
   
-    def preferences?
+    def archive_contact?
       true
     end
   
-    def update_password?
+    def unarchive_contact?
       true
     end
   

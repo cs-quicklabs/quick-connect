@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_06_133439) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,16 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "calls", force: :cascade do |t|
-    t.text "body"
-    t.bigint "contact_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_calls_on_contact_id"
-    t.index ["user_id"], name: "index_calls_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -42,6 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "archived", default: false
+    t.date "archived_on"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["user_id"], name: "index_contacts_on_user_id"
@@ -52,9 +44,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.bigint "label_id", null: false
   end
 
-  create_table "contacts_relatives", id: false, force: :cascade do |t|
+  create_table "contacts_relations", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
-    t.bigint "relative_id", null: false
+    t.bigint "relation_id", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -174,6 +166,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
 
+  create_table "relations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_relations_on_account_id"
+  end
+
   create_table "relatives", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
@@ -204,8 +204,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
-  add_foreign_key "calls", "contacts"
-  add_foreign_key "calls", "users"
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "users"
   add_foreign_key "labels", "accounts"
@@ -217,6 +215,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_04_133438) do
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "phone_calls", "contacts"
   add_foreign_key "phone_calls", "users"
+  add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "users", "accounts"
   add_foreign_key "users", "users"

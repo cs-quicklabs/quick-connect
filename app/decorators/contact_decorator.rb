@@ -18,7 +18,9 @@ class ContactDecorator < Draper::Decorator
     def name
       display_name
     end
-  
+    def display_archived_on
+      "#{contact.archived_on.to_formatted_s(:long)}"
+    end
     def display_job_title
       job.nil? ? "" : "#{job.name}"
     end

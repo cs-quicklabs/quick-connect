@@ -9,5 +9,10 @@ class Contact < ApplicationRecord
     validates_uniqueness_of :phone
     has_many :notes, dependent: :destroy
     has_many :phone_calls, dependent: :destroy
+    has_and_belongs_to_many :labels
+    has_and_belongs_to_many :relations
+    scope :archived, -> { where(archived: true) }
+    scope :active, -> { where(archived: false) }
+    scope :available, -> { where(archived: false) }
   end
   

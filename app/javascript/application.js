@@ -6,4 +6,5 @@ import 'trix'
 import '@rails/actiontext'
 import '@rails/activestorage'
 import '@tailwindcss/line-clamp'
-import '@tailwindcss/forms'
+import '@tailwindcss/forms'import "controllers"
+import "@hotwired/turbo-rails"

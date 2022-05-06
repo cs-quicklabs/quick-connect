@@ -1,43 +1,5 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-white">
-  <body class="h-full overflow-hidden">
-  ```
--->
 <div class="h-full flex">
-  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-  <div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
-    <!--
-      Off-canvas menu overlay, show/hide based on off-canvas menu state.
-
-      Entering: "transition-opacity ease-linear duration-300"
-        From: "opacity-0"
-        To: "opacity-100"
-      Leaving: "transition-opacity ease-linear duration-300"
-        From: "opacity-100"
-        To: "opacity-0"
-    -->
-  <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
-    <div class="flex-1 relative z-0 flex overflow-hidden">
-      <aside class="hidden xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96 border-r border-gray-200 h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll  overscroll-contain ">
+      <aside class=" xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96 border-r border-gray-200 h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll  overscroll-contain ">
         <div class="px-6 pt-6 pb-4">
         <div class="flex items-center justify-between">
           <h2 class="text-lg font-medium text-gray-900">Contacts</h2>
@@ -78,5 +40,4 @@
         </nav>
       </aside>
     </div>
-  </div>
 </div>

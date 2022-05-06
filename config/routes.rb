@@ -32,11 +32,16 @@ Rails.application.routes.draw do
   put ":id/permission", to: "user#update_permission", as: "set_permission"
 
   namespace :account do
-    resources :relatives, except: [:new, :show]
+    resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
   end
   namespace :purchase do
     resources :checkouts
+  end
+  scope "archive" do
+    get "/contacts", to: "contacts#archived", as: "archived_contacts"
+    get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
+    get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
   end
   get "account/billing", to: "account/billing#index", as: "billing"
 end

@@ -1,5 +1,5 @@
-<%= turbo_frame_tag dom_id(@relative) do %>
-  <%= form_with(model: @relative, id: dom_id(@relative), url: account_relative_path(@relative)) do |form| %>
+<%= turbo_frame_tag dom_id(@relation) do %>
+  <%= form_with(model: @relation, id: dom_id(@relation), url: account_relation_path(@relation)) do |form| %>
     <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
       <% messages.each do |message| %>
         <p class="mt-2 text-sm text-red-600"><%= message %></p>
