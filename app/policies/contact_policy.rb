@@ -1,6 +1,6 @@
 class ContactPolicy < ApplicationPolicy
     def update?
-      record.archived==false
+     return true if record.archived==false
     end
     def unarchive_contact?
       true

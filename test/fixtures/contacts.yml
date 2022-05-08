@@ -3,12 +3,16 @@ contact:
   last_name: Contact
   email: contact@gmail.com
   account: hansika
+  phone: 999999998
   user: regular
+  archived: false
 
 one:
   first_name: Contact
   last_name: Contact1
   email: contact1@gmail.com
+  phone: 999999999
   account: hansika
   user: regular
+  archived: false
   

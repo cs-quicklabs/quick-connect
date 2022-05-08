@@ -71,9 +71,12 @@ class ContactsTest < ApplicationSystemTestCase
   test "can edit a contact" do
     visit page_url
     find(id: dom_id(@contact)).click
-    within "##{dom_id(@contact)}" do
-      click_on "Edit"
+    within "#contact-header" do
+      click_on "View Profile"
     end
+    within "#profile-header" do
+    click_on "Edit"
+  end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_first_name", with: "contact"
     fill_in "contact_last_name", with: "contact1"
@@ -85,9 +88,12 @@ class ContactsTest < ApplicationSystemTestCase
   test "can not edit a contact with invalid phone" do
     visit page_url
     find(id: dom_id(@contact)).click
-    within "##{dom_id(@contact)}" do
-      click_on "Edit"
+    within "#contact-header" do
+      click_on "View Profile"
     end
+    within "#profile-header" do
+    click_on "Edit"
+  end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_phone", with: "phone"
     click_on "Save"

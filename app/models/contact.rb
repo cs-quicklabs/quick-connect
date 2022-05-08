@@ -14,5 +14,8 @@ class Contact < ApplicationRecord
     scope :archived, -> { where(archived: true) }
     scope :active, -> { where(archived: false) }
     scope :available, -> { where(archived: false) }
+    validates :phone,:presence => true,
+                 :numericality => true,
+                 :length => { :minimum => 10, :maximum => 15 }
   end
   
