@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_054336) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -54,6 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_054336) do
     t.string "action_for_context"
     t.integer "trackable_id"
     t.string "trackable_type"
+    t.integer "eventable_id"
+    t.string "eventable_type"
   end
 
   create_table "labels", force: :cascade do |t|

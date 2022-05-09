@@ -11,11 +11,11 @@
         <div>
           <p class="text-sm text-gray-500">
            <%= event.user.decorate.display_name %>
-            added a new task  for
+            added a new phone call 
             <% if event.trackable.nil? %>
               which does not exist anymore.
               <% else %>
-             <a href="<%= profile_tasks_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%=event.eventable.decorate.display_name%></a>  
+             <a href="<%= profile_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">Phone Call</a>  
             <% end %>
           </p>
         </div>

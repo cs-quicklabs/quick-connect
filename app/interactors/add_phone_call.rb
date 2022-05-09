@@ -24,8 +24,7 @@ class AddPhoneCall < Patterns::Service
     end
   
     def add_event
-      @event=Event.create(user: actor, action: "called", action_for_context: "added a phone call for contact", trackable: phone_call)
-      @event.save!
+      contact.events.create(user: actor, action: "called", action_for_context: "added a phone call for contact", trackable: phone_call)
     end
   
     attr_reader  :phone_call, :actor, :contact

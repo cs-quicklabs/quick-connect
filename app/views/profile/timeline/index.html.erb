@@ -1,4 +1,5 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+  <%= render partial: "profile/title", locals: { contact: @contact } %>
   <main class="pb-8">
     <div class="px-4 sm:px-6">
       <!-- Main 3 column grid -->
@@ -6,16 +7,16 @@
         <!-- Left column -->
         <div class="grid grid-cols-1 gap-4 lg:col-span-2" data-controller="infinite-scroll">
           <section aria-labelledby="participants_section">
-            <h2 class="sr-only" id="section-1-title">Employee Feedbacks</h2>
+            <h2 class="sr-only" id="section-1-title">Timeline</h2>
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Employee Timeline" %></p>
+                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Contact Timeline" %></p>
                 </div>
                 <ul data-infinite-scroll-target="entries">
            
                   <% @events.each do |event| %>
-                    <%= render partial: "timeline/activity", locals: { event: event } %>
+                    <%= render partial: "profile/timeline/activity", locals: { event: event } %>
                   <% end %>
              
                 </ul>
