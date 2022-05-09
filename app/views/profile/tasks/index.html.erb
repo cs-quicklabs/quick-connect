@@ -11,7 +11,7 @@
             <div class="overflow-hidden bg-white" >
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " tasks" %> <%= "(" + @tasks.count.to_s + " tasks)" %></p>
+                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Tasks" %> <%= "(" + @tasks.count.to_s + " tasks)" %></p>
                 </div>
                 <ul class="space-y-6" id="tasks" data-infinite-scroll-target="entries">
                   <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
