@@ -26,4 +26,12 @@ import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
 
 import NavSearchController from "./nav_search_controller.js"
+import StimulusReflex from 'stimulus_reflex'
+import consumer from '../channels/consumer'
+import controller from '../controllers/application_controller'
+import CableReady from 'cable_ready'
 application.register("nav-search", NavSearchController)
+application.consumer = consumer
+StimulusReflex.initialize(application, { controller, isolate: true })
+CableReady.initialize({ consumer })
+

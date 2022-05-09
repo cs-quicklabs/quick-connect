@@ -103,15 +103,18 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "div#error_explanation", text: "Phone is too short (minimum is 10 characters)"
   end
 
-  test "can delete contact" do
+  test "can archive contact" do
     visit page_url
     find(id: dom_id(@contact)).click
-    within "##{dom_id(@contact)}" do
-      page.accept_confirm do
-        click_on "Delete"
-      end
-    end
+    within "#contact-header" do
+    click_on "View Profile"
+  end
+  within "#profile-header" do
+  page.accept_confirm do
+    click_on "Archive"
+  end
+end
     take_screenshot
-    assert_selector "p.notice", text: "Contact was removed successfully."
+    assert_selector "p.notice", text: "Contact has been archived."
   end
 end

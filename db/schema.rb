@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_06_133439) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_05_135531) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,21 +32,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_133439) do
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "archived", default: false
-    t.date "archived_on"
+    t.bigint "relation_id"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
+    t.index ["relation_id"], name: "index_contacts_on_relation_id"
     t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "contacts_labels", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
     t.bigint "label_id", null: false
-  end
-
-  create_table "contacts_relations", id: false, force: :cascade do |t|
-    t.bigint "contact_id", null: false
-    t.bigint "relation_id", null: false
   end
 
   create_table "events", force: :cascade do |t|
@@ -205,6 +200,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_06_133439) do
   end
 
   add_foreign_key "contacts", "accounts"
+  add_foreign_key "contacts", "relations"
   add_foreign_key "contacts", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"

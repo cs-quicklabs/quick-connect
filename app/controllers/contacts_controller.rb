@@ -15,17 +15,17 @@ class ContactsController < BaseController
     end
   
     def edit
-      authorize :contact
+      authorize @contact
     end
   
     def update
-      authorize :contact
+      authorize @contact
   
       respond_to do |format|
-        if @contact.update(contact_params, @user)
+        if @contact.update(contact_params)
           format.html { redirect_to contact_path(@contact), notice: "Contact was successfully updated." }
         else
-          format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contact/forms/form", locals: { contact: @contact }) }
+          format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title:"Edit Contact" }) }
         end
       end
     end

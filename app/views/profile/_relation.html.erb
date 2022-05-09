@@ -1,4 +1,4 @@
- <% relations.uniq.each do |relation| %>
+<% unless relation.nil? %>
   <span class="inline-flex items-center px-3 py-0.5 mr-4  rounded-full text-sm font-medium bg-gray-100 text-gray-800" >
     <%= relation.name.titleize %>
     <button id="remove" data-reflex="click->ContactRelation#remove" data-relation-id=<%= relation.id %> data-contact-id=<%= contact.id %> type="button" class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-gray-400 hover:bg-gray-200 hover:text-gray-400 focus:outline-none focus:bg-gray-400 focus:text-white">

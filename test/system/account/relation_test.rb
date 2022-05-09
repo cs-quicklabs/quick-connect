@@ -106,7 +106,7 @@ class RelationsTest < ApplicationSystemTestCase
 
   test "can not delete a relation which is being used" do
     visit page_url
-    relation = relations(:father)
+    relation = relations(:mother)
     assert_selector "li", text: relation.name
     page.accept_confirm do
       find("li", text: relation.name).click_on("Delete")
