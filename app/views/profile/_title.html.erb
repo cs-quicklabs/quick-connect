@@ -13,10 +13,10 @@
             </svg>
           </button>
           <div  x-show="openlabels"
-          @click.away="openlabels = false" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          @click.away="openlabels = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <% if @labels.empty? %>
               <div class="py-1" role="none">
-                <p @click="openlabels = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
+                <p @click="openlabels = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
                 <a href=<%= account_labels_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
               <% else %>
                 <div class="py-1" role="none">
