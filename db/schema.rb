@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_05_135531) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_09_054336) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -33,6 +33,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_135531) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "relation_id"
+    t.boolean "archived", default: false
+    t.date "archived_on"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -177,6 +179,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_135531) do
     t.index ["account_id"], name: "index_relatives_on_account_id"
   end
 
+  create_table "tasks", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "contact_id"
+    t.bigint "user_id"
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_tasks_on_contact_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -213,6 +227,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_05_135531) do
   add_foreign_key "phone_calls", "users"
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
+  add_foreign_key "tasks", "contacts"
+  add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"
   add_foreign_key "users", "users"
 end

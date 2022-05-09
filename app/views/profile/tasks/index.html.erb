@@ -5,16 +5,16 @@
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
         <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2" id="phone_calls" data-controller="infinite-scroll">
+        <div class="grid grid-cols-1 gap-4 lg:col-span-2" id="project_tasks" data-controller="infinite-scroll">
           <section aria-labelledby="participants_section">
-            <h2 class="sr-only" id="section-1-title">Phone Calls</h2>
+            <h2 class="sr-only" id="section-1-title">tasks</h2>
             <div class="overflow-hidden bg-white" >
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Phone Calls" %> <%= "(" + @phone_calls.count.to_s + " phone calls)" %></p>
+                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " tasks" %> <%= "(" + @tasks.count.to_s + " tasks)" %></p>
                 </div>
-                <ul class="space-y-6" id="phone_calls" data-infinite-scroll-target="entries">
-                  <%= render partial: "phone_call", collection: @phone_calls, as: :phone_call, cached: true %>
+                <ul class="space-y-6" id="tasks" data-infinite-scroll-target="entries">
+                  <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
                 </ul>
               </div>
             </div>
@@ -24,13 +24,13 @@
           </section>
         </div>
         <!-- Right column -->
-        <% if policy([@contact, PhoneCall]).create? %>
+        <% if policy([@contact, @task]).create? %>
           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
             <section aria-labelledby="add-participant-section">
-              <h2 class="sr-only" id="section-2-title">Add New Phone Call</h2>
+              <h2 class="sr-only" id="section-2-title">Add New task</h2>
               <div class="overflow-hidden bg-white">
                 <div class="px-4">
-                  <%= render partial: "form", locals: { phone_call: @phone_call } %>
+                  <%= render partial: "form", locals: { task: @task } %>
                 </div>
               </div>
             </section>

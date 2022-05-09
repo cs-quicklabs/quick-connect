@@ -1,7 +1,7 @@
-<%= turbo_frame_tag dom_id(@phone_call) do %>
-  <%= form_with(model: @phone_call, id: dom_id(@phone_call), url: profile_phone_call_path(@contact, @phone_call)) do |form| %>
+<%= turbo_frame_tag dom_id(@task) do %>
+  <%= form_with(model: @task, id: dom_id(@task), url: profile_task_path(@contact, @task)) do |form| %>
     <main class="w-full mx-auto space-y-2">
-      <%= render "shared/form_messages", resource: @phone_call, message: local_assigns[:message] %>
+      <%= render "shared/form_messages", resource: @task, message: local_assigns[:message] %>
       <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
         <%= "Edit Phone Call" %>
       </label>

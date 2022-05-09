@@ -7,11 +7,11 @@ class Contact::PhoneCallPolicy < Contact::BaseContactPolicy
         true
     end
     def edit?
-        note=record
-        note.user_id == user.id
+        phone_call=record
+        phone_call.user_id == user.id
     end
     def destroy?
-        note=record
-        note.user_id == user.id
+        phone_call=record
+        phone_call.user_id == user.id
     end
 end

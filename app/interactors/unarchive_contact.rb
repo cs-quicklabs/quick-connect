@@ -23,7 +23,7 @@ class UnarchiveContact < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "unarchived", action_for_context: "unarchived contact", trackable: contact)
+   Event.create(user: actor, action: "unarchived", action_for_context: "unarchived contact", trackable: contact)
   end
 
   attr_reader :contact, :actor

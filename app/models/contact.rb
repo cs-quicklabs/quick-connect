@@ -17,6 +17,7 @@ class Contact < ApplicationRecord
     validates :phone,:presence => true,
                  :numericality => true,
                  :length => { :minimum => 10, :maximum => 15 }
-     belongs_to :relation , optional: true         
+     belongs_to :relation , optional: true     
+     has_many :tasks, dependent: :destroy
   end
   

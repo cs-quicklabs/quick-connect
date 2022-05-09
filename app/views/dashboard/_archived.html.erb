@@ -9,13 +9,10 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-500">You 
-            added new contact
-             <% if event.trackable.nil? %>
-              which does not exist anymore.
-              <% else %>
-               <a href="<%= profile_path(event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>  
-          <% end %>
+          <p class="text-sm text-gray-500">
+           <%= event.user.decorate.display_name %>
+            archived contact
+            <a href="<%= profile_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">

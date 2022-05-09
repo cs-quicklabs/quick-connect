@@ -1,16 +1,17 @@
-<%= form_with(model: phone_call, id: dom_id(phone_call), url: profile_phone_calls_path) do |form| %>
+<%= tailwind_form_with(model: task, id: dom_id(task), url: profile_tasks_path) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
-    <%= render "shared/form_messages", resource: phone_call, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a project which can help you remember important things. " %>
-    <%= form.text_area :body, class: "resize-y form-text-field h-24" %>
+    <%= render "shared/form_messages", resource: task, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Add New Task", subtitle: "A task can be added to a contact which can help you remember important things. " %>
         <%= form.text_field :title, "Title", autocomplete: "off" %>
       <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">
         Due Date
       </label>
+        <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+    </div>
     <div class="flex justify-end">
-      <%= form.submit "Add Phone Call", class: "btn-blue" %>
+      <%= form.submit "Add Task", class: "btn-blue" %>
     </div>
   </main>
 <% end %>
