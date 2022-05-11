@@ -19,8 +19,9 @@ Rails.application.routes.draw do
       collection do
         get :form
       end
+      resources :timeline,  module: "profile"
     end
-  resources :timeline
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :contacts
   get "search/contacts", to: "search#contacts"

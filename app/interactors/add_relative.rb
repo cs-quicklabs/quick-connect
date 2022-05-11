@@ -14,9 +14,9 @@ class AddRelative < Patterns::Service
 
      
       rescue
-        contact
+        relative
       end
-      contact
+      relative
     end
   
     private
@@ -26,7 +26,7 @@ class AddRelative < Patterns::Service
     end
   
     def add_event
-      @contact.events.create(user: actor, action: "relative", action_for_context: "added a relation to contact", trackable: relative)
+      @contact.events.create(user: actor, action: "relation", action_for_context: "added a relation to contact", trackable: relative)
     end
   
   

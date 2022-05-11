@@ -27,8 +27,7 @@ class AddTask < Patterns::Service
     end
   
     def add_event
-      @event=Event.create(user: actor, action: "task", action_for_context: "added a task for contact", trackable: task)
-      @event.save!
+      contact.events.create(user: actor, action: "task", action_for_context: "added a task for contact", trackable: task)
     end
   
     attr_reader  :task, :actor, :contact

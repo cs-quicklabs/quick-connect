@@ -27,8 +27,7 @@ class CreateContact < Patterns::Service
   end
 
   def add_event
-    @event=Event.create(user: actor, action: "created", action_for_context: "added a contact", trackable: contact)
-    @event.save!
+    contact.events.create(user: actor, action: "created", action_for_context: "added a contact", trackable: contact)
   end
 
 

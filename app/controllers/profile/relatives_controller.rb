@@ -1,5 +1,5 @@
 class Profile::RelativesController < Profile::BaseController
-    before_action :set_relative, vely: %i[ show edit update destroy] 
+    before_action :set_relative, only: %i[show edit update destroy] 
     
       def index
         authorize [@contact, Relative]
@@ -31,7 +31,7 @@ class Profile::RelativesController < Profile::BaseController
           if @relative.update(relative_params)
             format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "profile/relatives/relative", locals: { relative: @relative }) }
           else
-            format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "profile/relatives/edit", locals: { relative: @relative }) }
+            format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "profile/relatives/edit", locals: { relative: @relative, relatives: @relatives }) }
           end
         end
       end
@@ -39,34 +39,29 @@ class Profile::RelativesController < Profile::BaseController
       def create
         authorize [@contact, Relative]
         @relative = AddRelative.call(relative_params, current_user, @contact).result
-        binding.irb
         respond_to do |format|
           if @relative.persisted?
             format.turbo_stream {
               render turbo_stream: turbo_stream.prepend(:relatives, partial: "profile/relatives/relative", locals: { relative: @relative }) +
-                                   turbo_stream.replace(Relative.new, partial: "profile/relatives/form", locals: { relative: Relative.new })
+                                   turbo_stream.replace(Relative.new, partial: "profile/relatives/search", locals: { relative: Relative.new })
             }
           else
-            format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "profile/relatives/form", locals: { relative: @relative }) }
+            format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "profile/relatives/form", locals: { relative: @relative, relatives: @relatives }) }
           end
         end
       end
 
-      def form
-        authorize @contact, Relative
-        @relative=Contact.find(params[:id])
-      end
-    
-      private
-    
-      def set_relative
-        @relative= Relative.where(first_contact_id: params[:id]) 
-      end
+
+  private
+
     
     
       def relative_params
         params.require(:relative).permit(:first_contact_id,:relation_id, :contact_id)
       end
-    
+          
+      def set_relative
+        @relative = Relative.find(params[:id])
       end
+ end
       
