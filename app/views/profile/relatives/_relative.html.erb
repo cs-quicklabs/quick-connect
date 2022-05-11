@@ -1,0 +1,27 @@
+  <li>
+<%= turbo_frame_tag dom_id(relative) do %>
+    <div class="flex mt-6 space-x-3">
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+      <div>
+        <div class="text-sm">
+          <%= relative.contact.decorate.display_name %>
+        </div>
+        <div class="mt-1 text-sm text-gray-700">
+          <p class="whitespace-pre-wrap"> <%= relative.relation.decorate.display_name %></p>
+        </div>
+        <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_created_at(relative) %></span>
+          <% if policy(@contact).edit? %>
+            <%= edit_button(edit_profile_relative_path(@contact, relative)) %>
+          <% end %>
+          <% if policy(@contact).destroy? %>
+            <%= delete_button(profile_relative_path(@contact, relative)) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+  </li>

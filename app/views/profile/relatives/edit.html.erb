@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(@relation) do %>
+  <%= tailwind_form_with(model: @relation, id: dom_id(@relation), url: profile_relation_path(@contact, @relation)) do |form| %>
+    <main class="w-full mx-auto space-y-2">
+      <%= render "shared/form_messages", resource: @relation, message: local_assigns[:message] %>
+      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+        <%= "Edit relation" %>
+      </label>
+      <%= form.text_field :title, "Title", autocomplete: "off" %>
+      <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
+      <div class="flex justify-end">
+        <%= form.submit "Edit Relation", class: "btn-blue" %>
+      </div>
+    </main>
+  <% end %>
+<% end %>
