@@ -178,6 +178,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "first_contact_id"
+    t.integer "relation_id"
+    t.integer "contact_id"
     t.index ["account_id"], name: "index_relatives_on_account_id"
   end
 

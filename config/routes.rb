@@ -15,12 +15,17 @@ Rails.application.routes.draw do
       resources :notes, module: "profile"
       resources :phone_calls, module: "profile"
       resources :tasks, module: "profile"
+      resources :relatives, module: "profile"
+      collection do
+        get :form
+      end
       resources :timeline,  module: "profile"
     end
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :contacts
   get "search/contacts", to: "search#contacts"
+  get "search/contact", to: "search#contact"
   root :to => "dashboard#index"
   resources :dashboard 
   resources :sections
