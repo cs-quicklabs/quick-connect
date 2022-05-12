@@ -21,8 +21,8 @@
 <% if policy([@contact, Relative]).create? %>
     <!-- Right column -->
     <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
-      <section aria-labelledby="add-participant-section" >
-      <%= render partial: "search", locals: { relatives: @relatives, relative:@relative }, cached: true %>
+      <section aria-labelledby="add-participant-section" id="search" >
+      <%= render partial: "search", locals: { relatives: @relatives, relative:@relative, relation:@relation, contact:@contact }, cached: true %>
     </section>
     </div>
  <% end %> 

@@ -48,15 +48,10 @@
         </div>
       </div>
       <main class="lg:col-span-2 xl:col-span-2 overflow-y-auto  h-[calc(100vh-6.0rem)] top-16 max-content px-2 py-2   overscroll-contain border-r min-h-full">
-        <div class="h-full relative" style="min-height: 12rem">
-                        <ul data-infinite-scroll-target="entries">
-           
-                  <% @events.each do |event| %>
-                    <%= render partial: "activity", locals: { event: event } %>
-                  <% end %>
-             
-                </ul>
-                
+        <div class="h-full relative" style="min-height: 12rem" data-controller="infinite-scroll">
+            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+                <% end %>
         </div>
       </main>
     </div>

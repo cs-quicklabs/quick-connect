@@ -4,6 +4,7 @@ class Profile::RelativesController < Profile::BaseController
       def index
         authorize [@contact, Relative]
         @relative=Relative.new
+        @relation=''
         @relatives=Relative.includes(:contact).where(first_contact_id: @contact.id) 
       end
     
@@ -29,7 +30,7 @@ class Profile::RelativesController < Profile::BaseController
     
         respond_to do |format|
           if @relative.update(relative_params)
-            format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "profile/relatives/relative", locals: { relative: @relative }) }
+            format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "profile/relatives/relative", locals: { relative: @relative, contact:@contact }) }
           else
             format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "profile/relatives/edit", locals: { relative: @relative, relatives: @relatives }) }
           end
@@ -39,11 +40,12 @@ class Profile::RelativesController < Profile::BaseController
       def create
         authorize [@contact, Relative]
         @relative = AddRelative.call(relative_params, current_user, @contact).result
+        @relation=''
         respond_to do |format|
           if @relative.persisted?
             format.turbo_stream {
-              render turbo_stream: turbo_stream.prepend(:relatives, partial: "profile/relatives/relative", locals: { relative: @relative }) +
-                                   turbo_stream.replace(Relative.new, partial: "profile/relatives/search", locals: { relative: Relative.new })
+              render turbo_stream: turbo_stream.prepend(:relatives, partial: "profile/relatives/relative", locals: { relative: @relative, contact:@contact }) +
+                                   turbo_stream.replace(Relative.new, partial: "profile/relatives/search", locals: { relative: Relative.new, relation:@relation, contact:@contact })
             }
           else
             format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "profile/relatives/form", locals: { relative: @relative, relatives: @relatives }) }

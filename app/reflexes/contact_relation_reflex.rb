@@ -16,14 +16,14 @@ class ContactRelationReflex < ApplicationReflex
 
   def add
 relative=Relative.new
-   id= element.dataset["contact-id"]
- 
+   contact = Contact.find(element.dataset["contact-id"])
+   profile=Contact.find(element.dataset["profile-id"])
    form = ActionView::Helpers::FormBuilder.new(
       :relative, relative, view_context, {}
     )
-   html = render(partial: "profile/relatives/form", locals: {form: form,  contact_id: id})
+   html = render(partial: "profile/relatives/search", locals: {form: form,  relation: contact,relative: relative,contact:profile})
  
-   morph "#contact_id", "<div id='contact_id'>#{html}</div>"
+   morph "#search", "<div id='contact_id'>#{html}</div>"
   end
 
   private

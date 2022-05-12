@@ -8,7 +8,7 @@ class ProfileController < BaseController
 
   def show
     authorize @contact
-  
+  redirect_to profile_about_index_path(@contact)
   end
 
 

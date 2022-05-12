@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       resources :phone_calls, module: "profile"
       resources :tasks, module: "profile"
       resources :relatives, module: "profile"
+      resources :about, module: "profile"
       collection do
         get :form
       end
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
   root :to => "dashboard#index"
   resources :dashboard 
   resources :sections
-
+  get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
     get "/password", to: "user#password", as: "setting_password"
@@ -37,7 +38,7 @@ Rails.application.routes.draw do
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "set_permission"
-
+  get :events, controller: :dashboard
   namespace :account do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]

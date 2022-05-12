@@ -1,4 +1,4 @@
-<li>
+    <li>
   <div class="relative pb-6">
     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
     <div class="relative flex space-x-3">
@@ -9,12 +9,12 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-500">
-            added a new note  
+          <p class="text-sm text-gray-500">you
+            added a new relation  for
             <% if event.trackable.nil? %>
               which does not exist anymore.
               <% else %>
-             <a href="<%= profile_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">New Note</a>  
+             <a href="<%= profile_relatives_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%=event.eventable.decorate.display_name%></a>  
             <% end %>
           </p>
         </div>

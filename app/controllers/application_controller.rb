@@ -14,14 +14,14 @@ class ApplicationController < ActionController::Base
     #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
     #rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   
-    LIMIT = 30
+
   
     before_action :set_redirect_path, unless: :user_signed_in?
     etag {
       if Rails.env == "production" or Rails.env == "staging"
         heroku_version
       else
-        "screener"
+        "development"
       end
     }
     def script_name
@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   
   
     fragment_cache_key do
-      "screener"
+      "development"
     end
   
     def heroku_version

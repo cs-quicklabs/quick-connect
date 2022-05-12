@@ -1,11 +1,11 @@
 class ContactsController < BaseController
     include Pagy::Backend
   
-    before_action :set_contact, only: %i[ show edit update destroy archive_contact unarchive_contact ]
+    before_action :set_contact, only: %i[ show edit update destroy profile archive_contact unarchive_contact ]
   
     def index
       authorize :contact
-      @contacts = Contact.for_current_account.active.order(:first_name)
+      @contacts = Contact.for_current_account.active.order(:first_name) 
     end
   
     def new
@@ -46,7 +46,12 @@ class ContactsController < BaseController
   
     def show
       authorize @contact
-       @contacts = Contact.for_current_account.active.order(:first_name) 
+
+    end
+
+    def profile
+      authorize @contact
+
     end
   
     def destroy

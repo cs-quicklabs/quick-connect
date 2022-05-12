@@ -7,12 +7,13 @@
         <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
       </div>
        <div class=" ml-4">
-        <a href="<%= profile_path(relative.contact.id) %>" class="truncate hover:text-gray-600 hover:underline">
-        <div class="text-sm font-medium text-gray-900">
-          <%= relative.contact.decorate.display_name %>
-          </div>
-          </a>
+               <div class="text-sm font-medium text-gray-900">
+        <a href="<%= profile_about_index_path(relative.contact.id) %>" class="truncate hover:text-gray-600 hover:underline">
 
+          <%= relative.contact.decorate.display_name %>
+       
+          </a>
+   </div>
           </div>
        
 

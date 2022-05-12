@@ -11,7 +11,7 @@
                     <h1 class="text-2xl font-bold text-gray-900 truncate">Ricardo Cooper</h1>
                   </div>
                   <div class="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                   <a type="button" href="<%=profile_path(contact.id)%>" class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                   <a type="button" href="/<%= contact.account.id%>/profile/<%= contact.id %>" class="inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                       <!-- Heroicon name: solid/mail -->
                         <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
                           <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
@@ -41,7 +41,7 @@
                 <h1 class="text-2xl font-bold text-gray-900 truncate"><%=contact.decorate.display_name%></h1>
               </div>
             </div>
-          </div>
+      
 
           <!-- Tabs -->
           <div class="mt-6 sm:mt-2 2xl:mt-5">
@@ -75,5 +75,6 @@
             <h2 class="text-sm font-medium text-gray-500">Family</h2>
             <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
 
-            <%= render partial: "contacts/family", collection: @contacts, as: :contact, cached: false %>
+            <%= render partial: "contacts/family", collection: contacts, as: :contact, cached: false %>
             </div>
+    </div>
