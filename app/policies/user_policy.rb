@@ -8,7 +8,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def index?
-  true
+    true
   end
 
   def show?
@@ -30,6 +30,4 @@ class UserPolicy < ApplicationPolicy
   def update_password?
     true
   end
-
-
 end

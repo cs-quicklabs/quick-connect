@@ -1,0 +1,52 @@
+<h2 class="sr-only" id="section-2-title">Add New Relation</h2>
+<div class="bg-white">
+  <div class="px-4">
+<%= tailwind_form_with(model: relative, id: dom_id(relative), url: "/#{current_user.account.id}/contact/#{contact.id}/relatives") do |form| %>
+      <div class="space-y-6 px-4 pt-6  mx-auto">
+        <%= render "shared/form_header", title: "Add New Relation", subtitle: "" %>
+   <% if relation.blank? %>
+      <main class="max-w-lg   mx-auto space-y-2 lg:pb-2 z-10">
+        <div class="flex justify-center w-full max-w-sm lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%= Current.account.id %>/search/contact?contact=<%= contact.id %>">
+            <div class="w-full max-w-sm lg:max-w-sm">
+              <label for="contact" class="block text-sm font-medium text-gray-700">Search to add new Relation</label>
+              <div class="mt-1" >
+                  <input type="search"   name="search" id="search-contacts" class="form-text-field" data-nav-search-target="input"  >
+              </div>
+              <div class="relative" >
+                <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-0 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <ul data-nav-search-target="results">
+                    </ul>
+                </div>
+                </div>
+                <div class="relative" >
+                  <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <ul data-nav-search-target="results">
+                    </ul>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </main>
+       <% else %> 
+      <div id="" class="">
+       <%= render partial: "form", locals: { relation: relation } %>
+ 
+      </div>
+         <div class="">
+              <%= form.hidden_field :first_contact_id, value: contact.id %>
+             <label for="relation" class="block  text-sm font-medium text-gray-700">
+                 Select Relation
+             </label>
+             <%= form.collection_select("relation_id", Relation.order(:name), :id, :name, { :prompt => "Select Relation" }, :class => "form-text-field mt-1") %>
+           </div>  
+             <div class="flex justify-end ">
+                <%= form.submit "Add Relation", class: "btn-blue" %>
+            </div>
+                  <% end %>
+    </div>
+  
+   
+    <% end %>   
+  </div>
+</div>
+          

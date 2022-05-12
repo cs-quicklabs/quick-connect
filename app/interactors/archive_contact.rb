@@ -8,7 +8,6 @@ class ArchiveContact < Patterns::Service
     archive
     add_event
     begin
-
     rescue
       contact
     end

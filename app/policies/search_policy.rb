@@ -1,5 +1,4 @@
 class SearchPolicy < Struct.new(:user, :search)
-
   def contacts?
     true
   end
@@ -7,5 +6,4 @@ class SearchPolicy < Struct.new(:user, :search)
   def contact?
     true
   end
-
 end

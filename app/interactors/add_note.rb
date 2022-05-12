@@ -6,9 +6,7 @@ class AddNote < Patterns::Service
   end
 
   def call
-
     begin
-
       add_note
       add_event
     rescue
@@ -30,5 +28,5 @@ class AddNote < Patterns::Service
     contact.events.create(user: actor, action: "noted", action_for_context: "added a note for contact", trackable: note)
   end
 
-  attr_reader  :note, :actor, :contact
+  attr_reader :note, :actor, :contact
 end

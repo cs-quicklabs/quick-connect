@@ -10,8 +10,6 @@ class UserController < BaseController
     @users = User.all.order(:first_name).order(created_at: :desc)
   end
 
-
-
   def update_permission
     authorize @user
     redirect_to user_index_path, notice: "User was updated successfully" if @user.update(permission)

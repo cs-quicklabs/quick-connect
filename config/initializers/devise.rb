@@ -1,4 +1,3 @@
-
 class TurboFailureApp < Devise::FailureApp
   def respond
     if request_format == :turbo_stream
@@ -12,8 +11,6 @@ class TurboFailureApp < Devise::FailureApp
     %w(html turbo_stream */*).include? request_format.to_s
   end
 end
-
-
 
 # frozen_string_literal: true
 

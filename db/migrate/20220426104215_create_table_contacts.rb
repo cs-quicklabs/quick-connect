@@ -1,7 +1,7 @@
 class CreateTableContacts < ActiveRecord::Migration[7.0]
   def change
     create_table :contacts do |t|
-      t.string :email,null: false, default: ""
+      t.string :email, null: false, default: ""
       t.string :first_name, null: false, default: ""
       t.string :last_name, null: false, default: ""
       t.string :phone, null: false, default: ""

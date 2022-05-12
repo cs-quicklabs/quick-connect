@@ -1,0 +1,27 @@
+  <li>
+<%= turbo_frame_tag dom_id(task) do %>
+    <div class="flex mt-6 space-x-3">
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+      <div>
+        <div class="text-sm">
+          <%= task.title.titleize %>
+        </div>
+        <div class="mt-1 text-sm text-gray-700">
+          <p class="whitespace-pre-wrap"><%= task.body.upcase_first %></p>
+        </div>
+        <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_created_at(task) %></span>
+          <% if policy(@contact).edit? %>
+            <%= edit_button(edit_contact_task_path(@contact, task)) %>
+          <% end %>
+          <% if policy(@contact).destroy? %>
+            <%= delete_button(contact_task_path(@contact, task)) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+  </li>

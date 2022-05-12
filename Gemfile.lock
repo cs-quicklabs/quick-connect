@@ -306,6 +306,7 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufo (0.13.0)
     rufus-scheduler (3.8.1)
       fugit (~> 1.1, >= 1.1.6)
     sassc (2.4.0)
@@ -435,6 +436,7 @@ DEPENDENCIES
   rails-patterns
   redis (~> 4.0)
   rexml
+  rufo
   sassc-rails (~> 2.1)
   selenium-webdriver
   sidekiq

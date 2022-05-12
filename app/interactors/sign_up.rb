@@ -7,7 +7,6 @@ class SignUp < Patterns::Service
   def call
     register
     begin
-     
     rescue
       user
     end
@@ -21,6 +20,7 @@ class SignUp < Patterns::Service
       create_account
       create_user
     end
+
     def set_stripe_subscription_trial
       time = 14.days.from_now
       user.set_payment_processor :fake_processor, allow_fake: true
@@ -29,11 +29,9 @@ class SignUp < Patterns::Service
   end
 
   def create_account
-    account.name=user.first_name+" "+user.last_name
+    account.name = user.first_name + " " + user.last_name
     account.save!
   end
-
-
 
   def create_user
     ActsAsTenant.with_tenant(account) do

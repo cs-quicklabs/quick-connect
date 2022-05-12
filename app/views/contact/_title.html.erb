@@ -1,0 +1,84 @@
+  <% contact = contact.decorate %>
+<div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="contact-header">
+  <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
+    <h1 class="text-3xl font-bold leading-tight text-gray-900">
+      <%= contact.display_name %>
+    </h1>
+      <div class="flex">
+        <div class="relative inline-block  text-left" x-data="{openlabels: false}" @keydown.window.escape="openlabels = false" >
+          <button id="add" @click="openlabels = !openlabels" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            <!-- Heroicon name: solid/plus -->
+            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+            </svg>
+          </button>
+          <div  x-show="openlabels"
+          @click.away="openlabels = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <% if @labels.empty? %>
+              <div class="py-1" role="none">
+                <p @click="openlabels = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
+                <a href=<%= account_labels_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+              <% else %>
+                <div class="py-1" role="none">
+                  <% @labels.each do |label| %>
+                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                    <a @click="openlabels = false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+    
+        <div id="contact-labels" class="ml-2">
+          <%= render partial: "contact/labels", locals: { contact: contact, labels: contact.labels } %>
+        </div>
+     </div>
+      <div class="flex mt-4 sm:mt-0 sm:ml-4">
+    <% if policy(contact).update? %>
+    <div class=" flex justify-end" id="contact-relation" >
+          <%= render partial: "contact/relation", locals: { contact: @contact, relation: @contact.relation } %>
+        </div>
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="relative inline-block mr-4  text-left" x-data="{open: false}" @keydown.window.escape="open = false" >
+          <div>
+            <button @click="open = !open" type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+             Select Relation
+              <!-- Heroicon name: solid/chevron-down -->
+              <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <div  x-show="open"
+               @click.away="open = false" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <% if @relations.empty? %>
+              <div class="py-1" role="none">
+                <p @click="opentags = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
+                <a href=<%= account_relations_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
+              <% else %>
+                <div class="py-1" role="none">
+                  <% @relations.each do |relation| %>
+                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                    <a @click="open = false"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactRelation#change" data-contact-id=<%= contact.id %> data-relation-id=<%= relation.id %> ><%= relation.name.upcase_first %></a>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div>
+          <%= link_to "Edit", edit_contact_path(contact), class: " btn-normal" %>
+          </div>
+                <% if !contact.archived %>
+            <div>
+            <% end %>
+              <%= confirm_button(archive_contact_path(contact), "Archive", "Are you sure?", "ml-4 btn-normal") %>
+            </div>
+          <% else %>
+            <div>
+              <%= confirm_button(unarchive_contact_path(contact), "Restore", "Are you sure?", "ml-4 btn-normal") %>
+            </div>
+          <% end %>
+        </div>
+    </div>
+  <%= render partial: "contact/tabs", locals: { contact: contact } %>

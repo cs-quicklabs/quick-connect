@@ -75,8 +75,8 @@ class ContactsTest < ApplicationSystemTestCase
       click_on "View Profile"
     end
     within "#profile-header" do
-    click_on "Edit"
-  end
+      click_on "Edit"
+    end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_first_name", with: "contact"
     fill_in "contact_last_name", with: "contact1"
@@ -92,8 +92,8 @@ class ContactsTest < ApplicationSystemTestCase
       click_on "View Profile"
     end
     within "#profile-header" do
-    click_on "Edit"
-  end
+      click_on "Edit"
+    end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_phone", with: "phone"
     click_on "Save"
@@ -107,13 +107,13 @@ class ContactsTest < ApplicationSystemTestCase
     visit page_url
     find(id: dom_id(@contact)).click
     within "#contact-header" do
-    click_on "View Profile"
-  end
-  within "#profile-header" do
-  page.accept_confirm do
-    click_on "Archive"
-  end
-end
+      click_on "View Profile"
+    end
+    within "#profile-header" do
+      page.accept_confirm do
+        click_on "Archive"
+      end
+    end
     take_screenshot
     assert_selector "p.notice", text: "Contact has been archived."
   end

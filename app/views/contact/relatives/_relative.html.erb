@@ -1,0 +1,36 @@
+   <li>
+ <%= turbo_frame_tag dom_id(relative) do %>
+
+
+  <div class="flex items-center">
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+       <div class=" ml-4">
+               <div class="text-sm font-medium text-gray-900">
+        <a href="<%= contact_about_index_path(relative.contact.id) %>" class="truncate hover:text-gray-600 hover:underline">
+
+          <%= relative.contact.decorate.display_name %>
+       
+          </a>
+   </div>
+          </div>
+       
+
+ <div class=" ml-4 text-sm font-medium text-gray-900">
+          <p class="whitespace-pre-wrap"> <%= relative.relation.decorate.display_name %></p>
+ </div>
+
+        <div class=" ml-4 space-x-2 text-sm flexs">
+          <% if policy(@contact).edit? %>
+            <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
+          <% end %>
+          <% if policy(@contact).destroy? %>
+            <%= delete_button(contact_relative_path(@contact, relative)) %>
+          <% end %>
+        </div>
+    </div>
+   
+
+ <% end %>
+ </li>

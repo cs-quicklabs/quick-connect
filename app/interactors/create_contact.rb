@@ -7,11 +7,9 @@ class CreateContact < Patterns::Service
   end
 
   def call
-
     begin
       create_contact
       add_event
-   
     rescue
       contact
     end
@@ -21,7 +19,7 @@ class CreateContact < Patterns::Service
   private
 
   def create_contact
-    contact.user=actor
+    contact.user = actor
     contact.account = actor.account
     contact.save!
   end
@@ -29,7 +27,6 @@ class CreateContact < Patterns::Service
   def add_event
     contact.events.create(user: actor, action: "created", action_for_context: "added a contact", trackable: contact)
   end
-
 
   attr_reader :contact, :actor
 end

@@ -14,7 +14,7 @@
             <% if event.trackable.nil? %>
               which does not exist anymore.
               <% else %>
-             <a href="<%= profile_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%=event.eventable.decorate.display_name%></a>  
+             <a href="<%= contact_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>  
             <% end %>
           </p>
         </div>

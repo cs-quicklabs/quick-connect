@@ -12,7 +12,7 @@
           <p class="text-sm text-gray-500">
            <%= event.user.decorate.display_name %>
             archived contact
-            <a href="<%= profile_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
+            <a href="<%= contact_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">

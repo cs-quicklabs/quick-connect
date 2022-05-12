@@ -1,9 +1,8 @@
 class RelationDecorator < Draper::Decorator
-    delegate_all
-    decorates_association :user
+  delegate_all
+  decorates_association :user
 
-    def display_name
-      "#{name}".titleize  
-    end
+  def display_name
+    "#{name}".titleize
   end
-  
+end

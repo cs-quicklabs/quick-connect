@@ -1,7 +1,5 @@
 class Contact::TimelinePolicy < Contact::BaseContactPolicy
-
-    def index?
-        true
-    end
-   
+  def index?
+    true
+  end
 end

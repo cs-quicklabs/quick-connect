@@ -29,38 +29,39 @@ gem "jbuilder", "~> 2.7"
 gem "jsbundling-rails", "1.0.0"
 gem "cssbundling-rails", "1.0.0"
 # Use Redis adapter to run Action Cable in production
- gem "redis", "~> 4.0"
+gem "redis", "~> 4.0"
 gem "sprockets-rails", "3.4.2"
-gem "acts_as_tenant"	
-	gem "aws-sdk-s3", "~> 1.87"		
-	gem "draper"		
-	gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"		
-	gem "newrelic_rpm"		
-  	gem "pagy"		
-	gem "rails-patterns"		
-	gem "wicked_pdf"		
-	gem "wkhtmltopdf-binary"		
-	# Windows does not include zoneinfo files, so bundle the tzinfo-data gem		
-	gem "pg_search"		
-gem "devise", github: "heartcombo/devise", branch: "main"		
-	gem "devise-pwned_password"	
-  gem "sidekiq"	
-	gem "sidekiq-scheduler"		
-	gem "sinatra", ">= 1.3.0", require: nil
-  gem "byebug", platforms: %i[mri mingw x64_mingw]		
-	gem "launchy"		
-	gem "letter_opener"		
-	gem "letter_opener_web"		
-	gem "rexml"
-  gem "listen", "~> 3.3"	
-  gem "spring"
-	gem "rack-mini-profiler", "~> 2.0"
+gem "acts_as_tenant"
+gem "aws-sdk-s3", "~> 1.87"
+gem "draper"
+gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
+gem "newrelic_rpm"
+gem "pagy"
+gem "rails-patterns"
+gem "wicked_pdf"
+gem "wkhtmltopdf-binary"
+gem "rufo"
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "pg_search"
+gem "devise", github: "heartcombo/devise", branch: "main"
+gem "devise-pwned_password"
+gem "sidekiq"
+gem "sidekiq-scheduler"
+gem "sinatra", ">= 1.3.0", require: nil
+gem "byebug", platforms: %i[mri mingw x64_mingw]
+gem "launchy"
+gem "letter_opener"
+gem "letter_opener_web"
+gem "rexml"
+gem "listen", "~> 3.3"
+gem "spring"
+gem "rack-mini-profiler", "~> 2.0"
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-gem 'pay', '~> 3.0'
+gem "pay", "~> 3.0"
 
 # To use Stripe, also include:
-gem 'stripe', '>= 5.0', '< 6.0'
+gem "stripe", ">= 5.0", "< 6.0"
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.4", require: false
 

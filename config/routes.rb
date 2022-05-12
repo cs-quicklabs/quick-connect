@@ -11,24 +11,23 @@ Rails.application.routes.draw do
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
-    resources :profile do
-      resources :notes, module: "profile"
-      resources :phone_calls, module: "profile"
-      resources :tasks, module: "profile"
-      resources :relatives, module: "profile"
-      resources :about, module: "profile"
-      collection do
-        get :form
-      end
-      resources :timeline,  module: "profile"
+  resources :contacts do
+    resources :notes, module: "contact"
+    resources :phone_calls, module: "contact"
+    resources :tasks, module: "contact"
+    resources :relatives, module: "contact"
+    resources :about, module: "contact"
+    collection do
+      get :form
     end
-  
+    resources :timeline, module: "contact"
+  end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :contacts
   get "search/contacts", to: "search#contacts"
   get "search/contact", to: "search#contact"
   root :to => "dashboard#index"
-  resources :dashboard 
+  resources :dashboard
   resources :sections
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do

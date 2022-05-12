@@ -2,7 +2,7 @@ class CreateUserForm
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  attr_accessor :first_name, :last_name, :email,  :actor, :account
+  attr_accessor :first_name, :last_name, :email, :actor, :account
 
   validates_presence_of :first_name, :last_name, :email
 
@@ -16,9 +16,8 @@ class CreateUserForm
     self.last_name = params[:last_name]
     self.email = params[:email]
 
-
     if valid?
-      CreateUser.call(params, actor,account, invite).result
+      CreateUser.call(params, actor, account, invite).result
     else
       false
     end

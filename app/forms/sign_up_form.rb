@@ -2,9 +2,9 @@ class SignUpForm
   include ActiveModel::Model
   include ActiveModel::Validations
 
-  attr_accessor :first_name, :last_name, :email,  :password, :password_confirmation, :account, :user
+  attr_accessor :first_name, :last_name, :email, :password, :password_confirmation, :account, :user
 
-  validates_presence_of :first_name, :last_name, :email,  :password, :password_confirmation
+  validates_presence_of :first_name, :last_name, :email, :password, :password_confirmation
   validates :password, not_pwned: true
   validates_length_of :password, minimum: 6
   validate :validate_children
