@@ -6,7 +6,9 @@ class Contact::BaseController < BaseController
   include Pagy::Backend
 
   private
+
   LIMIT = 10
+
   def set_contact
     @contact ||= Contact.find_by_id(params[:contact_id])
   end

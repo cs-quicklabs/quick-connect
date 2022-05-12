@@ -13,8 +13,8 @@
             added a new note  
             <% if event.trackable.nil? %>
               which does not exist anymore.
-              <% else %>
-             <a href="<%= contact_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">New Note</a>  
+            <% else %>
+              <a href="<%= contact_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">New Note</a>
             <% end %>
           </p>
         </div>

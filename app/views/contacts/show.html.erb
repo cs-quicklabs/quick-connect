@@ -1,62 +1,60 @@
 <div class="h-full flex">
-      <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
-        <!-- Breadcrumb -->
-        <nav class="flex items-start px-4 py-3 sm:px-6 lg:px-8 xl:hidden" aria-label="Breadcrumb">
-          <a href="#" class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
-            <!-- Heroicon name: solid/chevron-left -->
-            <svg class="-ml-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-            </svg>
-            <span>Contacts</span>
-          </a>
-        </nav>
-
-        <article class="h-full">
-          <!-- contact header -->
-          <div id="contact">
-           <%= render partial: "contacts/contact", locals: { contact: @contact } %>
-          </div>
-        </article>
-      </main>
-      <aside class="hidden xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96 border-r border-gray-200 h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain ">
-        <div class="px-6 pt-6 pb-4 h-full">
-        <div class="flex items-center justify-between">
-          <h2 class="text-lg font-medium text-gray-900">Contacts</h2>
-          <p class="mt-1 text-sm text-gray-600">
+  <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
+    <!-- Breadcrumb -->
+    <nav class="flex items-start px-4 py-3 sm:px-6 lg:px-8 xl:hidden" aria-label="Breadcrumb">
+      <a href="#" class="inline-flex items-center space-x-3 text-sm font-medium text-gray-900">
+        <!-- Heroicon name: solid/chevron-left -->
+        <svg class="-ml-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+        </svg>
+        <span>Contacts</span>
+      </a>
+    </nav>
+    <article class="h-full">
+      <!-- contact header -->
+      <div id="contact">
+        <%= render partial: "contacts/contact", locals: { contact: @contact } %>
+      </div>
+    </article>
+  </main>
+  <aside class="hidden xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96 border-r border-gray-200 h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain ">
+    <div class="px-6 pt-6 pb-4 h-full">
+      <div class="flex items-center justify-between">
+        <h2 class="text-lg font-medium text-gray-900">Contacts</h2>
+        <p class="mt-1 text-sm text-gray-600">
           <%= link_to "Add Contact", new_contact_path, class: "btn-blue" %>
-          </p>
+        </p>
+      </div>
+      <div class="py-6 flex space-x-4">
+        <div class="flex-1 min-w-0"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%= Current.account.id %>/search/contacts" >
+          <label for="search" class="sr-only">Search</label>
+          <div class="relative rounded-md shadow-sm" >
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <!-- Heroicon name: solid/search -->
+              <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+              </svg>
+            </div>
+            <input type="search" name="search" id="search" class="block w-full  pl-10 sm:text-sm py-2 border shadow-sm  rounded-md" placeholder="Search" data-nav-search-target="input">
           </div>
-           
-          <div class="py-6 flex space-x-4">
-            <div class="flex-1 min-w-0"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%= Current.account.id %>/search/contacts" >
-              <label for="search" class="sr-only">Search</label>
-              <div class="relative rounded-md shadow-sm" >
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <!-- Heroicon name: solid/search -->
-                  <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                  </svg>
-                </div>
-                <input type="search" name="search" id="search" class="block w-full  pl-10 sm:text-sm py-2 border shadow-sm  rounded-md" placeholder="Search" data-nav-search-target="input">
-                 </div>
-                  <div class="relative">
-                  <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                    <ul data-nav-search-target="results">
-                    </ul>
-                  </div>
-            </div>
-            </div>
-        </div>
-        <!-- Directory list -->
-        <nav class="flex-1 min-h-0 overflow-y-auto" aria-label="Directory">
           <div class="relative">
-            <div class=" top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500">
+            <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <ul data-nav-search-target="results">
+              </ul>
             </div>
-            <ul role="list" class="relative z-0 divide-y divide-gray-200">
-              <%= render partial: "contacts/contact", collection: @contacts, as: :contact, cached: false %>
-            </ul>
           </div>
-        </nav>
-      </aside>
-    </div>
+        </div>
+      </div>
+      <!-- Directory list -->
+      <nav class="flex-1 min-h-0 overflow-y-auto" aria-label="Directory">
+        <div class="relative">
+          <div class=" top-0 border-t border-b border-gray-200 bg-gray-50 px-6 py-1 text-sm font-medium text-gray-500">
+          </div>
+          <ul role="list" class="relative z-0 divide-y divide-gray-200">
+            <%= render partial: "contacts/contact", collection: @contacts, as: :contact, cached: false %>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+  </div>
 </div>

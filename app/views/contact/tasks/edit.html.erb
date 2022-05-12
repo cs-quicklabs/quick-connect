@@ -7,12 +7,12 @@
       </label>
       <%= form.text_field :title, "Title", autocomplete: "off" %>
       <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
-    <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        Due Date
-      </label>
+      <div>
+        <label for="date" class="block text-sm font-medium text-gray-700">
+          Due Date
+        </label>
         <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
-    </div>
+      </div>
       <div class="flex justify-end">
         <%= form.submit "Edit Task", class: "btn-blue" %>
       </div>

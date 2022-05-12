@@ -14,20 +14,18 @@
                   <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Contact Timeline" %></p>
                 </div>
                 <div class="h-full relative" style="min-height: 12rem" data-controller="infinite-scroll">
-                        <ul data-infinite-scroll-target="entries">
-           
-                  <% @events.each do |event| %>
-                    <%= render partial: "contact/timeline/activity", locals: { event: event } %>
-                  <% end %>
-             
-                </ul>
+                  <ul data-infinite-scroll-target="entries">
+                    <% @events.each do |event| %>
+                      <%= render partial: "contact/timeline/activity", locals: { event: event } %>
+                    <% end %>
+                  </ul>
                   <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
-           <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                    <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                  </div>
+                </div>
+              </section>
             </div>
+          </div>
         </div>
-          </section>
-        </div>
-      </div>
-    </div>
-  </main>
-</main>
+      </main>
+    </main>

@@ -1,31 +1,31 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
   <%= render partial: "contact/title", locals: { contact: @contact } %>
- <main class="min-h-screen">
- <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
-  <!-- Left column -->
-     <div class="grid grid-cols-1 gap-4 lg:col-span-2" >
-          <section aria-labelledby="participants_section">
-            <h2 class="sr-only" id="section-1-title">Relations</h2>
-      <div class="overflow-hidden bg-white">
-        <div class="p-4">
-                <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Relations" %></p>
-                </div>
-           <ul class="space-y-6" id="relatives" data-infinite-scroll-target="entries">
-             <%= render partial: "relative", collection: @relatives, as: :relative, cached: true %>
-            </ul>
+  <main class="min-h-screen">
+    <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
+      <!-- Left column -->
+      <div class="grid grid-cols-1 gap-4 lg:col-span-2" >
+        <section aria-labelledby="participants_section">
+          <h2 class="sr-only" id="section-1-title">Relations</h2>
+          <div class="overflow-hidden bg-white">
+            <div class="p-4">
+              <div class="flex flex-wrap">
+                <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Relations" %></p>
+              </div>
+              <ul class="space-y-6" id="relatives" data-infinite-scroll-target="entries">
+                <%= render partial: "relative", collection: @relatives, as: :relative, cached: true %>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </div>
+      <% if policy([@contact, Relative]).create? %>
+        <!-- Right column -->
+        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
+          <section aria-labelledby="add-participant-section" id="search" >
+            <%= render partial: "search", locals: { relatives: @relatives, relative: @relative, relation: @relation, contact: @contact }, cached: true %>
+          </section>
         </div>
-        </div>
-    </section>
-  </div>
-<% if policy([@contact, Relative]).create? %>
-    <!-- Right column -->
-    <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
-      <section aria-labelledby="add-participant-section" id="search" >
-      <%= render partial: "search", locals: { relatives: @relatives, relative: @relative, relation: @relation, contact: @contact }, cached: true %>
-    </section>
+      <% end %>
     </div>
- <% end %> 
-  </div>
-</main>
+  </main>
 </main>

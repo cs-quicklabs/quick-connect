@@ -11,11 +11,11 @@
         <div>
           <p class="text-sm text-gray-500">You 
             added new contact
-             <% if event.trackable.nil? %>
+            <% if event.trackable.nil? %>
               which does not exist anymore.
-              <% else %>
-               <a href="<%= contact_path(event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>  
-          <% end %>
+            <% else %>
+              <a href="<%= contact_path(event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>
+            <% end %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">

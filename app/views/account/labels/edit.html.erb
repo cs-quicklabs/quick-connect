@@ -1,4 +1,3 @@
-
 <%= turbo_frame_tag dom_id(@label) do %>
   <%= form_with(model: @label, id: dom_id(@label), url: account_label_path(@label)) do |form| %>
     <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
@@ -7,13 +6,13 @@
       <% end %>
     <% end %>
     <div class="flex  pt-2 ">
-        <div class="w-full">
-          <label for="name" class="block  text-sm font-medium text-gray-700">
-            Label
-          </label>
-          <%= form.text_field :name, class: "form-text-field", autocomplete: "off", class: "form-text-field" %><br>
-        </div>
-        </div>
+      <div class="w-full">
+        <label for="name" class="block  text-sm font-medium text-gray-700">
+          Label
+        </label>
+        <%= form.text_field :name, class: "form-text-field", autocomplete: "off", class: "form-text-field" %><br>
+      </div>
+    </div>
     <!-- Hack ends here -->
     <div class="flex ">
       <label for="label_color" class="text-sm">Appearance</label>
@@ -41,17 +40,17 @@
           Green
         </span>
       </div>
-        <div class="flex items-center ml-4 text-sm">
+      <div class="flex items-center ml-4 text-sm">
         <input type="radio" name="label[color]" value="blue" class="w-4 h-4 text-blue-600 border-blue-400 cursor-pointer focus:ring-blue-500" aria-labelledby="pricing-plans-0-label" aria-describedby="pricing-plans-0-description-0 pricing-plans-0-description-1">
         <span class="ml-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-100 text-blue-800">
           Blue
         </span>
-       </div>
-       </div>
-        <div class="flex justify-end mr-6 ">
-          <%= form.submit "Save", class: "btn-blue  " %>
-        </div>
       </div>
     </div>
-  <% end %>
+    <div class="flex justify-end mr-6 ">
+      <%= form.submit "Save", class: "btn-blue  " %>
+    </div>
+  </div>
+</div>
+<% end %>
 <% end %>

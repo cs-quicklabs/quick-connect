@@ -13,8 +13,8 @@
             added a new phone call 
             <% if event.trackable.nil? %>
               which does not exist anymore.
-              <% else %>
-             <a href="<%= contact_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">Phone Call</a>  
+            <% else %>
+              <a href="<%= contact_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">Phone Call</a>
             <% end %>
           </p>
         </div>

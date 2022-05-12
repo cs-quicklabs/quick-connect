@@ -13,8 +13,8 @@
             added a new task  
             <% if event.trackable.nil? %>
               which does not exist anymore.
-              <% else %>
-             <a href="<%= contact_tasks_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.title.titleize %></a>  
+            <% else %>
+              <a href="<%= contact_tasks_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.title.titleize %></a>
             <% end %>
           </p>
         </div>

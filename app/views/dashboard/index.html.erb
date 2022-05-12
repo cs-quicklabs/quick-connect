@@ -36,7 +36,7 @@
     <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
       <div class=" lg:block lg:col-span-1 xl:col-span-1 h-[calc(100vh-6.0rem)] top-16 max-content  overflow-y-scroll px-2 py-2  overscroll-contain ">
         <div class="h-full relative" style="min-height: 12rem">
-            <section aria-labelledby="add-participant-section">
+          <section aria-labelledby="add-participant-section">
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
@@ -49,9 +49,9 @@
       </div>
       <main class="lg:col-span-2 xl:col-span-2 overflow-y-auto  h-[calc(100vh-6.0rem)] top-16 max-content px-2 py-2   overscroll-contain border-r min-h-full">
         <div class="h-full relative" style="min-height: 12rem" data-controller="infinite-scroll">
-            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-                <% end %>
+          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+          <% end %>
         </div>
       </main>
     </div>
