@@ -2,13 +2,13 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit::Authorization
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
-  rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  #rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  #rescue_from Pundit::NotDefinedError, with: :record_not_found
+  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  #rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+  #rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
 
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {

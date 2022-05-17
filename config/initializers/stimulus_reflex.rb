@@ -29,7 +29,7 @@ StimulusReflex.configure do |config|
   # eg. Logger.new(RAILS_ROOT + "/log/reflex.log")
 
   # config.logger = Rails.logger
-
+  config.on_failed_sanity_checks = :warn
   # Customize server-side Reflex logging format, with optional colorization:
   # Available tokens: session_id, session_id_full, reflex_info, operation, reflex_id, reflex_id_full, mode, selector, operation_counter, connection_id, connection_id_full, timestamp
   # Available colors: red, green, yellow, blue, magenta, cyan, white
@@ -46,4 +46,5 @@ StimulusReflex.configure do |config|
 
   # config.middleware.use FirstRackMiddleware
   # config.middleware.use SecondRackMiddleware
+  config.middleware.use AccountMiddleware
 end

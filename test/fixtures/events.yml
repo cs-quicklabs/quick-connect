@@ -6,7 +6,7 @@ one:
   trackable_type: Contact
   trackable: one
   action_for_context: archived
-
+  account: hansika
 
 two:
   user: regular
@@ -16,7 +16,7 @@ two:
   trackable_type: Contact
   trackable: one
   action_for_context: unarchived Contact
-
+  account: hansika
 
 three:
   user: regular
@@ -26,7 +26,7 @@ three:
   trackable_type: Task
   trackable: one
   action_for_context: added new task for contact
-
+  account: hansika
 
 four:
   user: regular
@@ -36,6 +36,7 @@ four:
   trackable_type: Note
   trackable: one
   action_for_context: added a note for contact
+  account: hansika
 
 five:
   user: regular
@@ -45,7 +46,7 @@ five:
   trackable_type: PhoneCall
   trackable: one
   action_for_context: added a call for
-
+  account: hansika
 
 six:
   user: regular
@@ -55,7 +56,7 @@ six:
   trackable_type: Relative
   trackable: one
   action_for_context: added a relation to contact
-
+  account: hansika
 
 seven:
   user: regular
@@ -65,5 +66,5 @@ seven:
   trackable_type: Note
   trackable: none
   action_for_context: added a note for Contact
-
+  account: hansika
 
