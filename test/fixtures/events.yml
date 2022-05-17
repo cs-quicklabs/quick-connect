@@ -1,0 +1,69 @@
+one:
+  user: regular
+  action: archived
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Contact
+  trackable: one
+  action_for_context: archived
+
+
+two:
+  user: regular
+  action: unarchived
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Contact
+  trackable: one
+  action_for_context: unarchived Contact
+
+
+three:
+  user: regular
+  action: task
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Task
+  trackable: one
+  action_for_context: added new task for contact
+
+
+four:
+  user: regular
+  action: noted
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Note
+  trackable: one
+  action_for_context: added a note for contact
+
+five:
+  user: regular
+  action: called
+  eventable_type: Contact
+  eventable: one
+  trackable_type: PhoneCall
+  trackable: one
+  action_for_context: added a call for
+
+
+six:
+  user: regular
+  action: relation
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Relative
+  trackable: one
+  action_for_context: added a relation to contact
+
+
+seven:
+  user: regular
+  action: noted
+  eventable_type: Contact
+  eventable: one
+  trackable_type: Note
+  trackable: none
+  action_for_context: added a note for Contact
+
+
