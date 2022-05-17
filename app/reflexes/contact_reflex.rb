@@ -1,6 +1,5 @@
 class ContactReflex < ApplicationReflex
   def show
-    binding.irb
     contact = Contact.find(element.dataset["contact-id"])
     contacts = Contact.for_current_account.active.order(:first_name)
     relatives = Relative.includes(:contact, :relation).where(first_contact_id: contact.id)

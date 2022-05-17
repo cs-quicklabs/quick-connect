@@ -33,7 +33,6 @@ class ContactsTest < ApplicationSystemTestCase
   test "can show contact detail page" do
     visit page_url
     find(id: dom_id(@contact)).click
-    binding.irb
     within "#contact-header" do
       assert_text "View Profile"
       assert_text "Message"
@@ -71,8 +70,8 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "can edit a contact" do
     visit page_url
-    find(id: dom_id(@contact)).click
     binding.irb
+    find(id: dom_id(@contact)).click
     within "#contact-header" do
       click_on "View Profile"
     end

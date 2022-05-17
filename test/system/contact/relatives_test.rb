@@ -30,7 +30,6 @@ class ContactRelativesTest < ApplicationSystemTestCase
     visit page_url
     relation = relations(:father).name
     fill_in "search-contacts", with: "Co"
-    binding.irb
     find("#add-contact").click
     assert_selector "#contact-contacts", text: "Select Contact Contact1's relation"
     select relation from "#relative_relation_id"
