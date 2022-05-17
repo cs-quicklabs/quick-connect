@@ -32,9 +32,9 @@ class Contact::NotesController < Contact::BaseController
 
     respond_to do |format|
       if @note.update(note_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, partial: "Contact/notes/note", locals: { note: @note }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, partial: "contact/notes/note", locals: { note: @note }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, template: "Contact/notes/edit", locals: { note: @note }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, template: "contact/notes/edit", locals: { note: @note }) }
       end
     end
   end
@@ -46,11 +46,11 @@ class Contact::NotesController < Contact::BaseController
     respond_to do |format|
       if @note.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:notes, partial: "Contact/notes/note", locals: { note: @note }) +
-                               turbo_stream.replace(Note.new, partial: "Contact/notes/form", locals: { note: Note.new })
+          render turbo_stream: turbo_stream.prepend(:notes, partial: "contact/notes/note", locals: { note: @note }) +
+                               turbo_stream.replace(Note.new, partial: "contact/notes/form", locals: { note: Note.new })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Note.new, partial: "notes/form", locals: { note: @note }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Note.new, partial: "contact/notes/form", locals: { note: @note }) }
       end
     end
   end

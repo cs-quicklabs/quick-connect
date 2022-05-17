@@ -1,10 +1,14 @@
 class Contact::PhoneCallPolicy < Contact::BaseContactPolicy
   def index?
-    true
+    phone_call = record.second
+    return false if phone_call.contact.archived?
+    phone_call.user == user
   end
 
   def create?
-    true
+    phone_call = record.second
+    return false if phone_call.contact.archived?
+    phone_call.user == user
   end
 
   def edit?

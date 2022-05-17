@@ -1,27 +1,24 @@
-  
-<li>
-  <%= turbo_frame_tag dom_id(task) do %>
-    <div class="flex mt-6 space-x-3">
-      <div class="flex-shrink-0">
-        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+<tr id="<%= dom_id(task)%>">
+  <td class="table-cell">
+    <%= check_box_tag "completed", nil, task.completed, data: { reflex: "click->TaskReflex#toggle_contact_task", id: task.id }, class: "w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
+  </td>
+  <td class="table-cell">
+    <div class="text-sm">
+      <a href="<%= contact_task_path(task.contact, task)%>" class="block hover:underline" target="_top">
+        <%= task.title.titleize %>
       </div>
-      <div>
-        <div class="text-sm">
-          <%= task.title.titleize %>
-        </div>
-        <div class="mt-1 text-sm text-gray-700">
-          <p class="whitespace-pre-wrap"><%= task.body.upcase_first %></p>
-        </div>
-        <div class="mt-2 space-x-2 text-sm">
-          <span class="font-medium text-gray-500"><%= display_created_at(task) %></span>
-          <% if policy(@contact).edit? %>
-            <%= edit_button(edit_contact_task_path(@contact, task)) %>
-          <% end %>
-          <% if policy(@contact).destroy? %>
-            <%= delete_button(contact_task_path(@contact, task)) %>
-          <% end %>
-        </div>
+    </td>
+    <td class="table-cell">
+      <div class="mt-2 space-x-2 text-sm">
+        <span class="font-medium text-gray-500"><%= display_date(task.due_date) %></span>
+      </td>
+      <td class="table-cell">
+        <% if policy([task.contact, task]).edit? %>
+          <%= edit_button(edit_contact_task_path(task.contact, task)) %>
+        <% end %>
+        <% if policy([task.contact, task]).destroy? %>
+          <%= delete_button(contact_task_path(task.contact, task)) %>
+        <% end %>
       </div>
-    </div>
-  <% end %>
-</li>
+    </td>
+  </tr>

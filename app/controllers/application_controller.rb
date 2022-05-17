@@ -1,9 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_user!
-
-  after_action :verify_authorized, only: [:home]
-  before_action :configure_permitted_parameters, if: :devise_controller?
-
   include Pagy::Backend
   include Pundit::Authorization
 
@@ -13,6 +8,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+  rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
 
   before_action :set_redirect_path, unless: :user_signed_in?
   etag {

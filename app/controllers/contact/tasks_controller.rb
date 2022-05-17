@@ -5,7 +5,7 @@ class Contact::TasksController < Contact::BaseController
     authorize [@contact, Task]
     @task = Task.new
     @pagy, @tasks = pagy_nil_safe(params, @contact.tasks.order(created_at: :desc), items: LIMIT)
-    render_partial("tasks/task", collection: @tasks) if stale?(@tasks)
+    render_partial("contact/tasks/task", collection: @tasks) if stale?(@tasks)
   end
 
   def destroy
@@ -31,9 +31,9 @@ class Contact::TasksController < Contact::BaseController
 
     respond_to do |format|
       if @task.update(task_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, partial: "Contact/tasks/task", locals: { task: @task }) }
+        format.html { redirect_to contact_tasks_path(@contact), notice: "Task was successfully updated." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, template: "Contact/tasks/edit", locals: { task: @task }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, template: "contact/tasks/edit", locals: { task: @task }) }
       end
     end
   end
@@ -45,11 +45,11 @@ class Contact::TasksController < Contact::BaseController
     respond_to do |format|
       if @task.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:tasks, partial: "Contact/tasks/task", locals: { task: @task }) +
-                               turbo_stream.replace(Task.new, partial: "Contact/tasks/form", locals: { task: Task.new })
+          render turbo_stream: turbo_stream.prepend(:tasks, partial: "contact/tasks/task", locals: { task: @task }) +
+                               turbo_stream.replace(Task.new, partial: "contact/tasks/form", locals: { task: Task.new })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Task.new, partial: "Contact/tasks/form", locals: { task: @task }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Task.new, partial: "contact/tasks/form", locals: { task: @task }) }
       end
     end
   end

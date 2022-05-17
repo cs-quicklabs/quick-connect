@@ -5,14 +5,14 @@ class ContactRelationReflex < ApplicationReflex
     contact = Contact.find(element.dataset["contact-id"])
     contact.update(relation_id: element.dataset["relation-id"])
     contact.save
-    morph "#contact-relation", render(partial: "profile/relation", locals: { contact: contact, relation: contact.relation })
+    morph "#contact-relation", render(partial: "contact/relation", locals: { contact: contact, relation: contact.relation })
   end
 
   def remove
     contact = Contact.find(element.dataset["contact-id"])
     contact.update(relation_id: nil)
     contact.save!
-    morph "#contact-relation", render(partial: "profile/relation", locals: { contact: contact, relation: contact.relation })
+    morph "#contact-relation", render(partial: "contact/relation", locals: { contact: contact, relation: contact.relation })
   end
 
   def add
@@ -22,7 +22,7 @@ class ContactRelationReflex < ApplicationReflex
     form = ActionView::Helpers::FormBuilder.new(
       :relative, relative, view_context, {}
     )
-    html = render(partial: "profile/relatives/search", locals: { form: form, relation: contact, relative: relative, contact: profile })
+    html = render(partial: "contact/relatives/search", locals: { form: form, relation: contact, relative: relative, contact: profile })
 
     morph "#search", "<div id='contact_id'>#{html}</div>"
   end

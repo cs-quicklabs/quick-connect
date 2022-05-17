@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_04_133005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -32,9 +32,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "relation_id"
     t.boolean "archived", default: false
     t.date "archived_on"
+    t.bigint "relation_id"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -56,6 +56,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
     t.string "trackable_type"
     t.integer "eventable_id"
     t.string "eventable_type"
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_events_on_account_id"
   end
 
   create_table "labels", force: :cascade do |t|
@@ -192,6 +194,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "completed", default: false
     t.index ["contact_id"], name: "index_tasks_on_contact_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -212,6 +215,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "account_id"
+    t.boolean "email_enabled", default: true
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -221,6 +225,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_09_100416) do
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "relations"
   add_foreign_key "contacts", "users"
+  add_foreign_key "events", "accounts"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
   add_foreign_key "notes", "users"

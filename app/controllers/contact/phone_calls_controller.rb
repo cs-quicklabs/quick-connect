@@ -15,7 +15,7 @@ class Contact::PhoneCallsController < Contact::BaseController
     @phone_call.destroy
     Event.where(trackable: @phone).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@call) }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@phone_call) }
     end
   end
 
@@ -31,10 +31,10 @@ class Contact::PhoneCallsController < Contact::BaseController
     authorize [@contact, @phone_call]
 
     respond_to do |format|
-      if @call.update(phone_call_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, partial: "Contact/phone_calls/phone_call", locals: { phone_call: @phone_call }) }
+      if @phone_call.update(phone_call_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, partial: "contact/phone_calls/phone_call", locals: { phone_call: @phone_call }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, template: "Contact/phone_calls/edit", locals: { phone_call: @phone_call }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, template: "contact/phone_calls/edit", locals: { phone_call: @phone_call }) }
       end
     end
   end
@@ -46,11 +46,11 @@ class Contact::PhoneCallsController < Contact::BaseController
     respond_to do |format|
       if @phone_call.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:phone_calls, partial: "Contact/phone_calls/phone_call", locals: { phone_call: @phone_call }) +
-                               turbo_stream.replace(PhoneCall.new, partial: "Contact/phone_calls/form", locals: { phone_call: PhoneCall.new })
+          render turbo_stream: turbo_stream.prepend(:phone_calls, partial: "contact/phone_calls/phone_call", locals: { phone_call: @phone_call }) +
+                               turbo_stream.replace(PhoneCall.new, partial: "contact/phone_calls/form", locals: { phone_call: PhoneCall.new })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Call.new, partial: "phone_calls/form", locals: { phone_call: @phone_call }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(PhoneCall.new, partial: "contact/phone_calls/form", locals: { phone_call: @phone_call }) }
       end
     end
   end

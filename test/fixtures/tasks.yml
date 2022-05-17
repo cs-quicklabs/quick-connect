@@ -1,68 +1,70 @@
 one:
   title: Some Random Task
   due_date: 2021-03-31
+  completed: false
   user: regular
   contact: one
 
 two:
   title: Some Random Second Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 three:
   title: Some Random Third Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 four:
   title: Some Random Fourth Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 five:
   title: Some Random Five Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 six:
   title: Some Random Six Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 seven:
   title: Some Random Seven Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 eight:
   title: Some Random Eight Task
   due_date: 2021-03-31
+  completed: false
   user: regular
   contact: one
 
 nine:
   title: Some Random Nine Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 ten:
   title: Some Random Ten Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
@@ -76,20 +78,20 @@ eleven:
 tweleve:
   title: Some Random Tweleve Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 thirteen:
   title: Some Random Thirteen Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one
 
 fourteen:
   title: Some Random Fourteen Task
   due_date: 2021-03-31
-
+  completed: false
   user: regular
   contact: one

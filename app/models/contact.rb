@@ -9,8 +9,6 @@ class Contact < ApplicationRecord
   validates_uniqueness_of :phone
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
-  has_and_belongs_to_many :labels
-  has_and_belongs_to_many :relations
   scope :archived, -> { where(archived: true) }
   scope :active, -> { where(archived: false) }
   scope :available, -> { where(archived: false) }
@@ -19,7 +17,8 @@ class Contact < ApplicationRecord
                     :length => { :minimum => 10, :maximum => 15 }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
-  has_many :relatives, as: :first_contact, dependent: :destroy
-  has_many :relatives, as: :contact, dependent: :destroy
+  has_many :relatives
+  has_many :relations, through: :relatives
   has_many :events, as: :eventable, dependent: :destroy
+  has_and_belongs_to_many :labels, dependent: :destroy
 end

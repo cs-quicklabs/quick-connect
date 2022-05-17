@@ -1,7 +1,7 @@
   <%= tailwind_form_with(model: relation, id: dom_id(relation), url: account_relations_path) do |form| %>
   <div class="space-y-6">
     <%= render "shared/form_messages", resource: relation, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Relations", subtitle: "You can define various relations of your family." %>
+    <%= render "shared/form_header", title: "Relations", subtitle: "Please define relations which can be assigned to people" %>
     <%= form.text_field :name, "Add New Relation", autocomplete: "off" %>
     <div class="flex justify-end">
       <%= form.submit "Save", class: "btn-blue" %>

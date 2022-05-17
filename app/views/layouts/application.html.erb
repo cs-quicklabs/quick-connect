@@ -2,28 +2,27 @@
 <html>
   <head>
     <title>Kutumb</title>
- <%= csrf_meta_tags %>
+    <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= action_cable_meta_tag %>
-        <% if user_signed_in? %>
+    <% if user_signed_in? %>
       <meta name="current-account", content="<%= Current.account.id %>">
     <% end %>
+    <meta name="turbo-cache-control" content="no-cache">
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
-        <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-           <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
-
   </head>
-
   <body>
-   <%= render "shared/navbar" %>
-   <div class="mt-12">
-    <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
-    <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
-  </div>
-    <main class="   ">
-    
+    <%= render "shared/navbar" %>
+    <div class="py-6">
+      <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
+      <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
+    </div>
+    <main  >
       <%= yield %>
+      <div id="modal"></div>
     </main>
   </body>
 </html>

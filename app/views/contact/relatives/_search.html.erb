@@ -1,12 +1,12 @@
 <h2 class="sr-only" id="section-2-title">Add New Relation</h2>
 <div class="bg-white">
   <div class="px-4">
-    <%= tailwind_form_with(model: relative, id: dom_id(relative), url: "/#{current_user.account.id}/contact/#{contact.id}/relatives") do |form| %>
+    <%= tailwind_form_with(model: relative, id: dom_id(relative), url: "/#{current_user.account.id}/contacts/#{contact.id}/relatives") do |form| %>
       <div class="space-y-6 px-4 pt-6  mx-auto">
         <%= render "shared/form_header", title: "Add New Relation", subtitle: "" %>
         <% if relation.blank? %>
           <main class="max-w-lg   mx-auto space-y-2 lg:pb-2 z-10">
-            <div class="flex justify-center w-full max-w-sm lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="<%= Current.account.id %>/search/contact?contact=<%= contact.id %>">
+            <div class="flex justify-center w-full max-w-sm lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contact?profile=<%= contact.id %>">
               <div class="w-full max-w-sm lg:max-w-sm">
                 <label for="contact" class="block text-sm font-medium text-gray-700">Search to add new Relation</label>
                 <div class="mt-1" >

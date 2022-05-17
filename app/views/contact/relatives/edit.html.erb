@@ -1,12 +1,12 @@
 <%= turbo_frame_tag dom_id(@relative) do %>
   <%= tailwind_form_with(model: @relative, id: dom_id(@relative), url: contact_relative_path(@contact, @relative)) do |form| %>
-    <main class="w-full mx-auto space-y-2">
+    <main class="w-full mx-auto space-y-2 px-4">
       <%= render "shared/form_messages", resource: @relative, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+      <label for="name" class="block mt-4 ml-1 text-sm font-medium text-gray-700">
         <%= "Edit #{@relative.contact.decorate.display_name}'s Relation" %>
       </label>
       <%= form.collection_select("relation_id", Relation.order(:name), :id, :name, { :prompt => "Select Relation" }, :class => "form-text-field mt-1") %>
-      <div class="flex justify-end">
+      <div class="flex justify-end py-3">
         <%= form.submit "Edit Relative", class: "btn-blue" %>
       </div>
     </main>

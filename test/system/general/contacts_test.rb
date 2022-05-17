@@ -20,7 +20,7 @@ class ContactsTest < ApplicationSystemTestCase
   test "can show index if logged in" do
     visit page_url
     take_screenshot
-    assert_selector "h2", text: "Contacts"
+    assert_selector "h1", text: "Contacts"
     assert_text "Add Contact"
   end
 
@@ -33,6 +33,7 @@ class ContactsTest < ApplicationSystemTestCase
   test "can show contact detail page" do
     visit page_url
     find(id: dom_id(@contact)).click
+    binding.irb
     within "#contact-header" do
       assert_text "View Profile"
       assert_text "Message"

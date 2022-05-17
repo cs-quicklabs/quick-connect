@@ -16,4 +16,8 @@ class Contact::TaskPolicy < Contact::BaseContactPolicy
     task = record
     task.user_id == user.id
   end
+
+  def show?
+    true
+  end
 end

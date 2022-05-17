@@ -11,8 +11,8 @@
     "@tailwindcss/line-clamp": "0.3.0",
     "esbuild": "^0.14.7",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
-    "stimulus_reflex": "3.5.0-pre8",
-    "trix": "^1.3.1"
+    "trix": "^1.3.1",
+    "stimulus_reflex": "stimulusreflex/stimulus_reflex#master"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",

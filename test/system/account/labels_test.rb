@@ -17,6 +17,13 @@ class LabelsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Labels"
   end
 
+  test "should have left menu with  Labels selected" do
+    visit page_url
+    within "#menu" do
+      assert_selector ".selected", text: "Labels"
+    end
+  end
+
   test "redirect to login if not logged in" do
     sign_out @user
     visit page_url
@@ -39,20 +46,17 @@ class LabelsTest < ApplicationSystemTestCase
     assert_selector "div#error_explanation", text: "Name can't be blank"
     take_screenshot
   end
+  test "can not add a duplicate people tag" do
+    visit page_url
+    fill_in "Add New Label", with: labels(:one).name
+    click_on "Save"
+    take_screenshot
+    assert_text "Name has already been taken"
+  end
 
   test "can visit edit page" do
     visit edit_account_label_url(labels(:one), script_name: "/#{@account.id}")
-    page.assert_selector(:xpath, "/html/body/main/turbo-frame/form/div")
-  end
-
-  test "can delete a ticket label" do
-    visit page_url
-    label = labels(:two)
-    assert_selector "li", text: label.name
-    page.accept_confirm do
-      find("li", text: label.name).click_on("Delete")
-    end
-    assert_no_selector "li", text: label.name
+    page.assert_selector(:xpath, "/html/body/main/turbo-frame/form/li/div")
   end
 
   test "can edit label" do
@@ -67,15 +71,28 @@ class LabelsTest < ApplicationSystemTestCase
     assert_selector "li", text: "Edited Name"
   end
 
-  test "should have nav bar" do
+  test "can delete a ticket label" do
     visit page_url
-    assert_selector "#menubar", count: 1
+    label = labels(:two)
+    assert_selector "li", text: label.name
+    page.accept_confirm do
+      find("li", text: label.name).click_on("Delete")
+    end
+    assert_no_selector "li", text: label.name
   end
 
-  test "should have left menu with  Labels selected" do
+  test "can not edit people tag with existing name" do
     visit page_url
-    within "#menu" do
-      assert_selector ".selected", text: "Labels"
+    label = labels(:one)
+    engg = labels(:two)
+    assert_selector "li", text: label.name
+    find("li", text: label.name).click_on("Edit")
+    within "turbo-frame#label_#{label.id}" do
+      fill_in "label_name", with: engg.name
+      choose(option: "blue")
+      click_on "Save"
+      take_screenshot
+      assert_text "Name has already been taken"
     end
   end
 end

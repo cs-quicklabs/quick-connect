@@ -1,21 +1,19 @@
-<%= turbo_frame_tag dom_id(@task) do %>
-  <%= tailwind_form_with(model: @task, id: dom_id(@task), url: contact_task_path(@contact, @task)) do |form| %>
-    <main class="w-full mx-auto space-y-2">
-      <%= render "shared/form_messages", resource: @task, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
-        <%= "Edit Task" %>
+<%= tailwind_form_with(model: @task, id: dom_id(@task), url: contact_task_path(@contact, @task)) do |form| %>
+  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: @task, message: local_assigns[:message] %>
+    <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+      <%= "Edit Task" %>
+    </label>
+    <%= form.text_field :title, "Title", autocomplete: "off" %>
+    <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
+    <div>
+      <label for="date" class="block text-sm font-medium text-gray-700">
+        Due Date
       </label>
-      <%= form.text_field :title, "Title", autocomplete: "off" %>
-      <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
-      <div>
-        <label for="date" class="block text-sm font-medium text-gray-700">
-          Due Date
-        </label>
-        <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
-      </div>
-      <div class="flex justify-end">
-        <%= form.submit "Edit Task", class: "btn-blue" %>
-      </div>
-    </main>
-  <% end %>
+      <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+    </div>
+    <div class="flex justify-end">
+      <%= form.submit "Edit Task", class: "btn-blue" %>
+    </div>
+  </main>
 <% end %>

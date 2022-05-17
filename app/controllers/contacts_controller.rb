@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ show edit update destroy profile archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
 
   def index
     authorize :contact
@@ -25,26 +25,21 @@ class ContactsController < BaseController
       if @contact.update(contact_params)
         format.html { redirect_to contact_path(@contact), notice: "Contact was successfully updated." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
       end
     end
   end
 
   def create
     authorize :contact
-
     @contact = CreateContact.call(contact_params, @user).result
     respond_to do |format|
       if @contact.errors.empty?
-        format.html { redirect_to contact_path(@contact), notice: "Contact was successfully created." }
+        format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please add contact" }) }
       end
     end
-  end
-
-  def show
-    authorize @contact
   end
 
   def profile
@@ -53,7 +48,6 @@ class ContactsController < BaseController
 
   def destroy
     authorize :contact
-
     respond_to do |format|
       if DestroyContact.call(@contact).result
         format.turbo_stream { redirect_to deactivated_contact_path, status: 303, notice: "contact has been deleted." }
@@ -81,7 +75,7 @@ class ContactsController < BaseController
     authorize @contact, :unarchive_contact?
 
     UnarchiveContact.call(@contact, current_user)
-    redirect_to profile_path(@contact), notice: "Contact has been restored."
+    redirect_to contact_about_index_path(@contact), notice: "Contact has been restored."
   end
 
   private

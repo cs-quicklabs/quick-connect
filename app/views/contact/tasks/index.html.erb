@@ -1,25 +1,40 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
   <%= render partial: "contact/title", locals: { contact: @contact } %>
   <main class="pb-8">
-    <div class="px-4 sm:px-6">
+    <div class="">
       <!-- Main 3 column grid -->
-      <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
+      <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
         <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2" id="project_tasks" data-controller="infinite-scroll">
+        <div class="grid grid-cols-1 lg:col-span-2" id="project_tasks" data-controller="infinite-scroll">
           <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">tasks</h2>
             <div class="overflow-hidden bg-white" >
-              <div class="p-4">
-                <div class="flex flex-wrap">
-                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Tasks" %> <%= "(" + @tasks.count.to_s + " tasks)" %></p>
+              <div class="">
+                <table class="table">
+                  <thead class="bg-gray-50">
+                    <tr>
+                      <th scope="col" class="table-head">
+                        Done
+                      </th>
+                      <th scope="col" class="table-head">
+                        Task
+                      </th>
+                      <th scope="col" class="table-head">
+                        Due Date
+                      </th>
+                      <th scope="col" class="table-head">
+                        Action
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody class="table-body" id="tasks" data-infinite-scroll-target="entries">
+                    <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
+                  </tbody>
+                </table>
+                <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+                  <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
                 </div>
-                <ul class="space-y-6" id="tasks" data-infinite-scroll-target="entries">
-                  <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
-                </ul>
               </div>
-            </div>
-            <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
-              <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
             </div>
           </section>
         </div>

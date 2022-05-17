@@ -80,4 +80,7 @@
         <% end %>
       </div>
     </div>
+    <% if !@event.blank? %>
+      <p class="px-6 -mt-2 text-sm font-medium text-gray-500 truncate"> <%= @event.action.titleize %> on <%= display_created_at(@event)%> and last phone call was on <%= display_created_at(@call)%></p>
+    <% end %>
     <%= render partial: "contact/tabs", locals: { contact: contact } %>

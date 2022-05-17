@@ -31,9 +31,9 @@ class Contact::RelativesController < Contact::BaseController
 
     respond_to do |format|
       if @relative.update(relative_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "Contact/relatives/relative", locals: { relative: @relative, contact: @contact }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "contact/relatives/relative", locals: { relative: @relative, contact: @contact }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "Contact/relatives/edit", locals: { relative: @relative, relatives: @relatives }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "contact/relatives/edit", locals: { relative: @relative, relatives: @relatives }) }
       end
     end
   end
@@ -45,11 +45,11 @@ class Contact::RelativesController < Contact::BaseController
     respond_to do |format|
       if @relative.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:relatives, partial: "Contact/relatives/relative", locals: { relative: @relative, contact: @contact }) +
-                               turbo_stream.replace(Relative.new, partial: "Contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact })
+          render turbo_stream: turbo_stream.prepend(:relatives, partial: "contact/relatives/relative", locals: { relative: @relative, contact: @contact }) +
+                               turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "Contact/relatives/form", locals: { relative: @relative, relatives: @relatives }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "contact/relatives/form", locals: { relative: @relative, relatives: @relatives }) }
       end
     end
   end

@@ -1,59 +1,36 @@
-<!--
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  const colors = require('tailwindcss/colors')
-  
-  module.exports = {
-    // ...
-    theme: {
-      extend: {
-        colors: {
-          rose: colors.rose,
-        },
-      },
-    },
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<!--
-  This example requires updating your template:
-
-  ```
-  <html class="h-full bg-gray-100">
-  <body class="h-full">
-  ```
--->
-<div class="min-h-full">
-  <div class="py-10">
-    <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
-      <div class=" lg:block lg:col-span-1 xl:col-span-1 h-[calc(100vh-6.0rem)] top-16 max-content  overflow-y-scroll px-2 py-2  overscroll-contain ">
-        <div class="h-full relative" style="min-height: 12rem">
-          <section aria-labelledby="add-participant-section">
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+  <main class="">
+    <div class="px-4 sm:px-6 ">
+      <!-- Main 3 column grid -->
+      <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
+        <!-- Left column -->
+        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+          <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Upcoming Activities" %></p>
+                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Upcoming Activities</p>
                 </div>
               </div>
             </div>
           </section>
         </div>
-      </div>
-      <main class="lg:col-span-2 xl:col-span-2 overflow-y-auto  h-[calc(100vh-6.0rem)] top-16 max-content px-2 py-2   overscroll-contain border-r min-h-full">
-        <div class="h-full relative" style="min-height: 12rem" data-controller="infinite-scroll">
-          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-          <% end %>
+        <!-- Right column -->
+        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+          <section aria-labelledby="add-participant-section">
+            <div class="overflow-hidden bg-white h-full">
+              <div class="px-4 sm:px-6 ml-2">
+                <div class="flex flex-wrap pt-4">
+                  <p class="pb-4 mt-4 ml-1 text-sm font-medium text-gray-900 truncate">Recent Activities</p>
+                </div>
+                <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+                <% end %>
+              </div>
+            </div>
+          </section>
         </div>
-      </main>
+      </div>
     </div>
-  </div>
-</div>
+  </main>
+</main>

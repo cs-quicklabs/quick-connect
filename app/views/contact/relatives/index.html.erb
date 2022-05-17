@@ -9,23 +9,24 @@
           <div class="overflow-hidden bg-white">
             <div class="p-4">
               <div class="flex flex-wrap">
-                <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Relations" %></p>
+                <p class=" mt-1 text-sm font-medium text-gray-900 truncate">Relations<%= "(" + @relatives.count.to_s + ")" %></p>
               </div>
-              <ul class="space-y-6" id="relatives" data-infinite-scroll-target="entries">
-                <%= render partial: "relative", collection: @relatives, as: :relative, cached: true %>
-              </ul>
+              <div class="mt-1 ">
+                <ul class=" " id="relatives" data-infinite-scroll-target="entries">
+                  <%= render partial: "relative", collection: @relatives, as: :relative, cached: true %>
+                </ul>
+              </div>
             </div>
-          </div>
-        </section>
-      </div>
-      <% if policy([@contact, Relative]).create? %>
-        <!-- Right column -->
-        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
-          <section aria-labelledby="add-participant-section" id="search" >
-            <%= render partial: "search", locals: { relatives: @relatives, relative: @relative, relation: @relation, contact: @contact }, cached: true %>
           </section>
         </div>
-      <% end %>
-    </div>
+        <% if policy([@contact, Relative]).create? %>
+          <!-- Right column -->
+          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
+            <section aria-labelledby="add-participant-section" id="search" >
+              <%= render partial: "search", locals: { relatives: @relatives, relative: @relative, relation: @relation, contact: @contact }, cached: true %>
+            </section>
+          </div>
+        <% end %>
+      </div>
+    </main>
   </main>
-</main>

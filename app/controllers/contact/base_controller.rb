@@ -3,6 +3,7 @@ class Contact::BaseController < BaseController
   after_action :verify_authorized
   before_action :set_labels, only: %i[index]
   before_action :set_relations, only: %i[index]
+  before_action :set_event, only: %i[index]
   include Pagy::Backend
 
   private
@@ -19,5 +20,10 @@ class Contact::BaseController < BaseController
 
   def set_relations
     @relations ||= Relation.all.order(:name)
+  end
+
+  def set_event
+    @event = @contact.events.order(created_at: :desc).first
+    @call = @contact.phone_calls.order(created_at: :desc).first
   end
 end

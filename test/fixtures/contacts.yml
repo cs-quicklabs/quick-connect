@@ -6,8 +6,8 @@ contact:
   phone: 0999999998
   user: regular
   archived: false
-
-
+  relation: mother
+  
 one:
   first_name: Contact
   last_name: Contact1
@@ -17,3 +17,11 @@ one:
   user: regular
   archived: false
   
+archived:
+  first_name: Contact
+  last_name: archived
+  email: contact1@gmail.com
+  phone: 0999999998
+  account: hansika
+  user: regular
+  archived: true

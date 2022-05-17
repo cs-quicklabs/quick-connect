@@ -1,7 +1,7 @@
 <%= form_with(model: phone_call, id: dom_id(phone_call), url: contact_phone_calls_path) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: phone_call, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a project which can help you remember important things. " %>
+    <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a contact which can help you remember important calls. " %>
     <%= form.text_area :body, class: "resize-y form-text-field h-24" %>
     <div class="flex justify-end">
       <%= form.submit "Add Phone Call", class: "btn-blue" %>

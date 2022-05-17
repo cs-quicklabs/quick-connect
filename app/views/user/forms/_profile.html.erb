@@ -2,10 +2,9 @@
   <div>
     <div class="space-y-6">
       <%= render "shared/form_messages", resource: user, message: local_assigns[:message] %>
-      <%= render "shared/form_header", title: "contact Settings", subtitle: "Please fill in your personal information." %>
+      <%= render "shared/form_header", title: "Profile Settings", subtitle: "Please fill in your personal information." %>
       <%= form.text_field :first_name, "First Name" %>
       <%= form.text_field :last_name, "Last Name" %>
-      <%= form.text_field :email, "Email" %>
       <div class="flex justify-end">
         <%= form.submit "Save", class: "btn-blue" %>
       </div>

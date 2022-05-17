@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   ACTIONS = ["created", "task", "unarchived", "event", "noted", "called", "archived", "relation"].freeze
-
+  acts_as_tenant :account
   belongs_to :user
   belongs_to :trackable, polymorphic: true
   belongs_to :eventable, polymorphic: true

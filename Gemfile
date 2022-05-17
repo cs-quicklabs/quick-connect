@@ -19,7 +19,7 @@ gem "pg", "1.2.3"
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
-gem "stimulus_reflex"
+gem "stimulus_reflex", github: "stimulusreflex/stimulus_reflex", branch: "master"
 gem "hiredis"
 gem "valid_url"
 gem "image_processing", "~> 1.12"
@@ -97,7 +97,6 @@ group :test do
   gem "webdrivers"
 end
 
-gem "tailwindcss-rails", "~> 2.0"
 
 gem "hotwire-rails", "~> 0.1.3"
 

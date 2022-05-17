@@ -32,9 +32,9 @@ class Contact::CallsController < Contact::BaseController
 
     respond_to do |format|
       if @call.update(call_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@call, partial: "Contact/calls/call", locals: { call: @call }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@call, partial: "contact/calls/call", locals: { call: @call }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@call, template: "Contact/calls/edit", locals: { call: @call }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@call, template: "contact/calls/edit", locals: { call: @call }) }
       end
     end
   end
@@ -46,8 +46,8 @@ class Contact::CallsController < Contact::BaseController
     respond_to do |format|
       if @call.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:calls, partial: "Contact/calls/call", locals: { call: @call }) +
-                               turbo_stream.replace(Call.new, partial: "Contact/calls/form", locals: { call: Call.new })
+          render turbo_stream: turbo_stream.prepend(:calls, partial: "contact/calls/call", locals: { call: @call }) +
+                               turbo_stream.replace(Call.new, partial: "contact/calls/form", locals: { call: Call.new })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Call.new, partial: "calls/form", locals: { call: @call }) }
