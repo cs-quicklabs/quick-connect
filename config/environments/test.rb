@@ -4,7 +4,7 @@ require "active_support/core_ext/integer/time"
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
-
+Rails.application.config.action_cable.allowed_request_origins = "*"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
@@ -15,12 +15,13 @@ Rails.application.configure do
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
+
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
     "Cache-Control" => "public, max-age=#{1.hour.to_i}",
   }
-
+  config.hosts.clear
   # Show full error reports and disable caching.
   config.consider_all_requests_local = true
   config.action_controller.perform_caching = true
@@ -59,5 +60,4 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
   config.assets.compile = true
   config.action_mailer.default_url_options = { host: "127.0.0.1" }
-  config.log_level = :warn
 end

@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  get "search/contacts", to: "search#contacts"
-  get "search/contact", to: "search#contact"
+  get "/search/contacts", to: "search#contacts"
+  get "/search/contact", to: "search#contact"
   root :to => "dashboard#index"
   resources :dashboard
   resources :sections

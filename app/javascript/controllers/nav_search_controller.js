@@ -216,7 +216,7 @@ export default class extends Controller {
 
         if (!this.hasUrlValue) return
 
-        const headers = { 'X-Requested-With': 'XMLHttpRequest' }
+        const headers = { 'X-Requested-With': 'XMLHttpRequest', "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Origin" : "http://127.0.0.1" }
         const url = new URL(
             '/' + this.current_account + this.urlValue,
             window.location.href
@@ -227,7 +227,7 @@ export default class extends Controller {
 
         this.element.dispatchEvent(new CustomEvent('loadstart'))
 
-        fetch(url.toString(), { headers })
+        await fetch(url.toString(), { headers,mode: 'cors', credentials: 'include', method : "GET", cache: 'no-cache' })
             .then(response => response.text())
             .then(html => {
                 this.resultsTarget.innerHTML = html

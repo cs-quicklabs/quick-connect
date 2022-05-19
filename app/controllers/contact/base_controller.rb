@@ -4,6 +4,7 @@ class Contact::BaseController < BaseController
   before_action :set_labels, only: %i[index]
   before_action :set_relations, only: %i[index]
   before_action :set_event, only: %i[index]
+
   include Pagy::Backend
 
   private

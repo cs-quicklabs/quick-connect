@@ -20,8 +20,10 @@ class UserController < BaseController
     respond_to do |format|
       if @user.update(user_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { message: "User was updated successfully", user: @user }) }
+        format.json { render json: @user, status: 200, message: "User was updated successfully" }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { user: @user }) }
+        format.json { render json: @user.errors, status: 400 }
       end
     end
   end
@@ -31,8 +33,10 @@ class UserController < BaseController
     respond_to do |format|
       if @form.submit(change_password_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/password", locals: { message: "Password was updated successfully", user: @user }) }
+        format.json { render json: @user, status: 200, message: "password was updated successfully" }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/password", locals: { user: @user }) }
+        format.json { render json: @user.errors, status: 400 }
       end
     end
   end
@@ -44,10 +48,18 @@ class UserController < BaseController
 
   def profile
     authorize @user
+    respond_to do |format|
+      format.json { render json: @user, status: 200 }
+      format.html { render :profile }
+    end
   end
 
   def password
     authorize @user
+    respond_to do |format|
+      format.json { render json: @user, status: 200 }
+      format.html { render :password }
+    end
   end
 
   private

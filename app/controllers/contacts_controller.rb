@@ -5,7 +5,11 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
-    @contacts = Contact.for_current_account.active.order(:first_name)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
+    respond_to do |format|
+      format.html { render_partial("contacts/contact", collection: @contacts) if stale?(@contacts) }
+      format.json { render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }, status: 200 }
+    end
   end
 
   def new
