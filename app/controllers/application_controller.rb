@@ -1,84 +1,14 @@
 class ApplicationController < ActionController::Base
-  include Pagy::Backend
-  include Pundit::Authorization
-  respond_to :html, :json
-  # protect_from_forgery with: :null_session
-  # skip_before_action :verify_authenticity_token, if: :json_request?
+  include Pundit
 
-  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  # rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  # rescue_from ActionController::InvalidAuthenticityToken do
-  #   invalid_auth_token if json_request?
-  # end
-  # rescue_from Pundit::NotDefinedError, with: :record_not_found
-  # rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-  # rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
-  # rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
 
-  # before_action :set_redirect_path, unless: :user_signed_in?
-  before_action :set_current_user do
-    set_current_user if user_signed_in?
-  end
-
-  etag {
-    if Rails.env == "production" or Rails.env == "staging"
-      heroku_version
-    else
-      "development"
-    end
-  }
-
-  def script_name
-    "/#{current_user.account.id}"
-  end
-
-  fragment_cache_key do
-    "development"
-  end
-
-  def heroku_version
-    ENV["HEROKU_RELEASE_VERSION"] if Rails.env == "production" or Rails.env == "staging"
-  end
-
-  def render_partial(partial, collection:, cached: true)
-    respond_to do |format|
-      format.html
-      format.json {
-        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
-                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
-      }
-    end
-  end
-
-  def json_request?
-    request.format.json?
-  end
-
-  # Use api_user Devise scope for JSON access
-  def authenticate_user!(*args)
-    super and return unless args.blank?
-    json_request? ? authenticate_api_user! : super
-  end
-
-  def invalid_auth_token
-    respond_to do |format|
-      format.html {
-        redirect_to sign_in_path,
-                    error: "Login invalid or expired"
-      }
-      format.json { head 401 }
-    end
-  end
-
-  def set_current_user
-    if json_request?
-      @current_user ||= warden.authenticate(scope: :api_user)
-    else
-      binding.irb
-      current_user = warden.user
-    end
-  end
+  before_action :set_redirect_path, unless: :user_signed_in?
 
   def set_redirect_path
     @redirect_path = request.path
@@ -104,6 +34,22 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  etag {
+    if Rails.env == "production" or Rails.env == "staging"
+      deployment_version
+    else
+      current_user.permission
+    end
+  }
+
+  fragment_cache_key do
+    current_user.permission
+  end
+
+  def deployment_version
+    ENV["LATEST_GITHUB_COMMIT"] if Rails.env == "production" or Rails.env == "staging"
+  end
+
   def after_sign_in_path_for(resource)
     if params[:redirect_to].present?
       store_location_for(resource, params[:redirect_to])
@@ -123,24 +69,49 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in_root_path(resource)
-    root_path(script_name: script_name)
+    landing_path
   end
 
   def record_not_found
     user_not_authorized
   end
 
+  def invalid_token
+    sign_out(current_user) if current_user
+    redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
+  end
+
   def landing_path
-    root_path(script_name: script_name)
+    expired_subscription = SubscriptionManager.new(current_user.account.owner).template == "expired"
+    if expired_subscription
+      current_user.account.expired = true
+      current_user.account.save!
+      return expired_path(script_name: script_name)
+    end
+
+    if current_user.admin?
+      home_path(script_name: script_name)
+    elsif current_user.lead?
+      employee_schedules_path(current_user, script_name: script_name)
+    elsif current_user.member?
+      employee_schedules_path(current_user, script_name: script_name)
+    else
+      root_path(script_name: "")
+    end
   end
 
   def script_name
     "/#{current_user.account.id}"
   end
 
-  def invalid_token
-    sign_out(current_user) if current_user
-    redirect_to new_user_session_path, alert: "Your session has expired. Please login again."
+  def render_partial(partial, collection:, cached: true)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+    end
   end
 
   def render_timeline(partial, collection:, cached: true)
@@ -151,11 +122,5 @@ class ApplicationController < ActionController::Base
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
-  end
-
-  def pagy_nil_safe(params, collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
-    return pagy, collection
   end
 end

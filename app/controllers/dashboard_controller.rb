@@ -1,5 +1,6 @@
 class DashboardController < BaseController
   def index
+    binding.irb
     authorize :dashboard
   end
 

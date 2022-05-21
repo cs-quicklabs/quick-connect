@@ -1,7 +1,8 @@
 class BaseController < ApplicationController
-  before_action :set_user, only: %i[ index show edit update destroy create new contacts events ]
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
+  before_action :authenticate_account!
   after_action :verify_authorized
+
   include Pagy::Backend
 
   def authenticate_account!
@@ -9,8 +10,4 @@ class BaseController < ApplicationController
   end
 
   LIMIT = 10
-
-  def set_user
-    @user = current_user
-  end
 end
