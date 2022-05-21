@@ -28,7 +28,20 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '498b7ba19c099dc3a695ef83222cfe26c19a1f1a5b21ce1a523639f89b19bfdf56e55e1bf1be043884bc81dc7fd82fb0e4eb41a5e9e1bf1cb316f6fa89f0bee1'
+  #config.secret_key = "498b7ba19c099dc3a695ef83222cfe26c19a1f1a5b21ce1a523639f89b19bfdf56e55e1bf1be043884bc81dc7fd82fb0e4eb41a5e9e1bf1cb316f6fa89f0bee1"
+  config.jwt do |jwt|
+    jwt.secret = ENV["DEVISE_JWT_SECRET_KEY"]
+    jwt.dispatch_requests = [
+      ["POST", %r{^/api/login$}],
+      ["POST", %r{^/api/login.json$}],
+    ]
+    jwt.revocation_requests = [
+      ["DELETE", %r{^/api/logout$}],
+      ["DELETE", %r{^/api/logout.json$}],
+    ]
+    jwt.expiration_time = 1.day.to_i
+    jwt.request_formats = { api_user: [:json] }
+  end
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -111,7 +124,7 @@ Devise.setup do |config|
   # Notice that if you are skipping storage for all authentication paths, you
   # may want to disable generating routes to Devise's sessions controller by
   # passing skip: :sessions to `devise_for` in your config/routes.rb
-  config.skip_session_storage = [:http_auth]
+  config.skip_session_storage = [:params_auth, :http_auth]
 
   # By default, Devise cleans up the CSRF token on authentication to
   # avoid CSRF token fixation attacks. This means that, when using AJAX
@@ -344,6 +357,7 @@ Devise.setup do |config|
     manager.failure_app = TurboFailureApp
     #manager.intercept_401 = false
     #manager.default_strategies(scope: :user).unshift :some_external_strategy
+
   end
 
   # ==> Mountable engine configurations
@@ -372,4 +386,5 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
 end

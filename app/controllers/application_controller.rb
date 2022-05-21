@@ -2,17 +2,25 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
   include Pundit::Authorization
   respond_to :html, :json
-  protect_from_forgery with: :null_session
+  # protect_from_forgery with: :null_session
+  # skip_before_action :verify_authenticity_token, if: :json_request?
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
-  rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
+  # rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  # rescue_from ActionController::InvalidAuthenticityToken, with: :invalid_token
+  # rescue_from ActionController::InvalidAuthenticityToken do
+  #   invalid_auth_token if json_request?
+  # end
+  # rescue_from Pundit::NotDefinedError, with: :record_not_found
+  # rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  # rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+  # rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
 
-  before_action :set_redirect_path, unless: :user_signed_in?
+  # before_action :set_redirect_path, unless: :user_signed_in?
+  before_action :set_current_user do
+    set_current_user if user_signed_in?
+  end
+
   etag {
     if Rails.env == "production" or Rails.env == "staging"
       heroku_version
@@ -40,6 +48,35 @@ class ApplicationController < ActionController::Base
         render json: { entries: render_to_string(partial: partial, formats: [:html], collection: collection, cached: cached),
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
+    end
+  end
+
+  def json_request?
+    request.format.json?
+  end
+
+  # Use api_user Devise scope for JSON access
+  def authenticate_user!(*args)
+    super and return unless args.blank?
+    json_request? ? authenticate_api_user! : super
+  end
+
+  def invalid_auth_token
+    respond_to do |format|
+      format.html {
+        redirect_to sign_in_path,
+                    error: "Login invalid or expired"
+      }
+      format.json { head 401 }
+    end
+  end
+
+  def set_current_user
+    if json_request?
+      @current_user ||= warden.authenticate(scope: :api_user)
+    else
+      binding.irb
+      current_user = warden.user
     end
   end
 
