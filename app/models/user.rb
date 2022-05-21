@@ -10,4 +10,10 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
   has_many :events, dependent: :destroy
+
+  before_create :add_jti
+
+  def add_jti
+    self.jti ||= SecureRandom.uuid
+  end
 end
