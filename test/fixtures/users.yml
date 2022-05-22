@@ -4,6 +4,7 @@ regular:
   email: hansika.kalra171@gmail.com
   account: hansika
   confirmed_at: 2021-03-18
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
 
 actor:
   first_name: Rachita
@@ -12,3 +13,9 @@ actor:
   account: hansika
   confirmed_at: 2021-03-18
   
+unconfirmed:
+  first_name: Aashish
+  last_name: C. Dhawan (Member)
+  email: unconfirmed@crownstack.com
+  account: hansika
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
