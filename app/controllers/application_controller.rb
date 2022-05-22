@@ -17,8 +17,8 @@ class ApplicationController < ActionController::Base
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
 
-  before_action :set_redirect_path, unless: :user_signed_in?
   before_action :set_current_user, if: :json_request?
+  before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {
     if Rails.env == "production" or Rails.env == "staging"
@@ -153,7 +153,7 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    @current_user ||= warden.authenticate(scope: :api_user)
+    current_user ||= warden.authenticate(scope: :api_user)
   end
 
   def token_verification
