@@ -1,4 +1,6 @@
 class SignUp < Patterns::Service
+  require "securerandom"
+
   def initialize(user)
     @account = Account.new
     @user = user
@@ -36,6 +38,7 @@ class SignUp < Patterns::Service
   def create_user
     ActsAsTenant.with_tenant(account) do
       user.account = account
+      user.jti ||= SecureRandom.uuid
       user.save!
     end
   end

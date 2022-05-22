@@ -11,11 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
       show_errors
     else
       set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-
-      respond_to do |format|
-        format.json { render json: { success: true, data: resource, status: 200, message: "You have signed up successfully. However, we could not sign you in because your account is not yet activated." } }
-        format.html { render :new }
-      end
+      redirect_to new_user_registration_path
     end
   end
 
