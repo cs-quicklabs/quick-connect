@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
     end
+    resources :dashboard
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"
