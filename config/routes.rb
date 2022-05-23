@@ -66,6 +66,7 @@ Rails.application.routes.draw do
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
     end
+    resources :user
     scope "/settings" do
       get "/profile", to: "user#profile", as: "user_profile"
       get "/password", to: "user#password", as: "setting_password"
