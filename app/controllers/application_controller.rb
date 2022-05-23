@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, unless: :json_request?
 
   skip_before_action :verify_authenticity_token, if: :json_request?
-  before_action :set_current_user, if: :json_request?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
@@ -17,7 +16,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
-
+  before_action :set_current_user, if: :json_request?
   before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {
@@ -153,7 +152,7 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    @current_user ||= warden.authenticate(scope: :api_user)
+    current_user ||= warden.authenticate(scope: :api_user)
   end
 
   def token_verification
