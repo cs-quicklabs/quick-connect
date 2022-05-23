@@ -2,7 +2,6 @@ class UserController < BaseController
   before_action :set_user, only: [:update_password, :update, :profile, :password]
   before_action :find_user, only: [:update_permission, :destroy]
   before_action :build_form, only: [:update_password, :password]
-  respond_to :html, :json
 
   def index
     authorize :User
