@@ -7,6 +7,7 @@ class AccountMiddleware
     _, account_id, request_path = env["REQUEST_PATH"].split("/", 3)
 
     if account_id =~ /\d+/
+      binding.irb
       if account = Account.find_by(id: account_id)
         Current.account = account
         ActsAsTenant.current_tenant = account
