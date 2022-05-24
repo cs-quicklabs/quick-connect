@@ -1,6 +1,6 @@
 class Api::ContactsController < Api::BaseController
   include Pagy::Backend
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy show archive_contact unarchive_contact ]
   respond_to :json
 
   def index
@@ -45,8 +45,9 @@ class Api::ContactsController < Api::BaseController
     end
   end
 
-  def profile
+  def show
     authorize @contact
+    render json: { success: true, data: @contact, message: "Contact was successfully retrieved." }
   end
 
   def destroy
@@ -88,6 +89,6 @@ class Api::ContactsController < Api::BaseController
   end
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :birthday, :address, :about)
+    params.require(:api_contact).permit(:first_name, :last_name, :email, :phone)
   end
 end
