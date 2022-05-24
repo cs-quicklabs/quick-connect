@@ -1,5 +1,4 @@
 class Api::UserController < Api::BaseController
-  protect_from_forgery with: :null_session
   before_action :find_user, only: [:update_permission, :destroy]
   before_action :build_form, only: [:update_password, :password]
   respond_to :json

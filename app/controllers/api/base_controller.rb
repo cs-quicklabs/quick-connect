@@ -1,4 +1,4 @@
-class Api::BaseController < ApplicationController
+class Api::BaseController < BaseController
   before_action :verify_authenticity_token
   before_action :set_user, if: :json_request?
   before_action :authenticate_account!

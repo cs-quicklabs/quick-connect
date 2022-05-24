@@ -1,6 +1,6 @@
 class Api::ContactsController < Api::BaseController
   include Pagy::Backend
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy show archive_contact unarchive_contact ]
   respond_to :json
 
   def index
@@ -23,12 +23,11 @@ class Api::ContactsController < Api::BaseController
 
   def update
     authorize @contact
-
     respond_to do |format|
       if @contact.update(contact_params)
         format.json { render json: { success: true, data: @contact, message: "Contact was successfully updated." } }
       else
-        format.json { render json: { success: false, data: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact", message: "" } } }
+        format.json { render json: { success: false, data: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact.", message: "" } } }
       end
     end
   end
@@ -40,13 +39,14 @@ class Api::ContactsController < Api::BaseController
       if @contact.errors.empty?
         format.json { render json: { success: true, data: @contact, message: "Contact was successfully created." } }
       else
-        format.json { render json: { success: false, data: { contact: @contact, title: "Add Contact", subtitle: "Please add contact", message: "" } } }
+        format.json { render json: { success: false, data: { title: "Add Contact", subtitle: "Please add contact.", message: @contact.errors } } }
       end
     end
   end
 
-  def profile
+  def show
     authorize @contact
+    render json: { success: true, data: @contact, message: "Contact was successfully retrieved." }
   end
 
   def destroy
@@ -88,6 +88,6 @@ class Api::ContactsController < Api::BaseController
   end
 
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :birthday, :address, :about)
+    params.require(:api_contact).permit(:first_name, :last_name, :email, :phone, :birthday, :address, :about)
   end
 end

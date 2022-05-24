@@ -18,7 +18,6 @@ class RegistrationsController < Devise::RegistrationsController
   def show_errors
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace("sign_up_form", partial: "devise/registrations/form", locals: { resource: @form }) }
-      format.json { render json: { message: @form.errors, success: false, status: 400 } }
     end
   end
 
