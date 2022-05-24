@@ -6,9 +6,7 @@ class Api::ContactsController < Api::BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, @user.contacts.for_current_account.active.order(:first_name), items: LIMIT)
-    respond_to do |format|
-      format.json { render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." } }
-    end
+    render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
   def new
@@ -23,24 +21,20 @@ class Api::ContactsController < Api::BaseController
 
   def update
     authorize @contact
-    respond_to do |format|
-      if @contact.update(contact_params)
-        format.json { render json: { success: true, data: @contact, message: "Contact was successfully updated." } }
-      else
-        format.json { render json: { success: false, data: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact.", message: @contact.errors } } }
-      end
+    if @contact.update(contact_params)
+      render json: { success: true, data: @contact, message: "Contact was successfully updated." }
+    else
+      render json: { success: false, data: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact.", message: @contact.errors } }
     end
   end
 
   def create
     authorize :contact
     @contact = CreateContact.call(contact_params, @user).result
-    respond_to do |format|
-      if @contact.errors.empty?
-        format.json { render json: { success: true, data: @contact, message: "Contact was successfully created." } }
-      else
-        format.json { render json: { success: false, data: { title: "Add Contact", subtitle: "Please add contact.", message: @contact.errors } } }
-      end
+    if @contact.errors.empty?
+      render json: { success: true, data: @contact, message: "Contact was successfully created." }
+    else
+      render json: { success: false, data: { title: "Add Contact", subtitle: "Please add contact.", message: @contact.errors } }
     end
   end
 
