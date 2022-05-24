@@ -74,6 +74,11 @@ Rails.application.routes.draw do
       get "/preferences", to: "user#preferences", as: "user_preferences"
     end
     resources :dashboard
+    scope "archive" do
+      get "/contacts", to: "contacts#archived", as: "archived_contacts"
+      get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
+      get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
+    end
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"
