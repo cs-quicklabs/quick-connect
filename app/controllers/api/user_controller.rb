@@ -5,38 +5,31 @@ class Api::UserController < Api::BaseController
 
   def update
     authorize @user
-    respond_to do |format|
-      if @user.update(user_params)
-        format.json { render json: { data: @user, sucesss: true, message: "User was updated successfully" } }
-      else
-        format.json { render json: { sucesss: false, message: @user.errors, data: @user } }
-      end
+    if @user.update(user_params)
+      render json: { data: @user, sucesss: true, message: "User was updated successfully" }
+    else
+      render json: { sucesss: false, message: @user.errors, data: @user }
     end
   end
 
   def update_password
     authorize @user
-    respond_to do |format|
-      if @form.submit(change_password_params)
-        format.json { render json: { data: @user, sucesss: true, message: "password was updated successfully" } }
-      else
-        format.json { render json: { sucesss: false, message: @user.errors, data: @user } }
-      end
+    if @form.submit(change_password_params)
+      render json: { data: @user, sucesss: true, message: "password was updated successfully" }
+    else
+      render json: { sucesss: false, message: @form.errors, data: @user }
     end
   end
 
   def profile
     authorize @user
-    respond_to do |format|
-      format.json { render json: { data: @user, sucesss: true, message: "" } }
-    end
+    render json: { data: @user, sucesss: true, message: "" }
   end
 
   def password
     authorize @user
-    respond_to do |format|
-      format.json { render json: { data: @user, sucesss: true, message: "" } }
-    end
+
+    render json: { data: @user, sucesss: true, message: "" }
   end
 
   private

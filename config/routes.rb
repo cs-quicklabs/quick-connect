@@ -73,6 +73,7 @@ Rails.application.routes.draw do
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
     end
+    get "/search/contacts", to: "search#contacts"
     resources :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
