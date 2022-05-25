@@ -91,7 +91,8 @@ Rails.application.routes.draw do
       resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"
-
+      resources :labels, module: "contact", only: [:index, :update, :destroy]
+      resources :relations, module: "contact", only: [:index, :update, :destroy]
       resources :timeline, module: "contact"
     end
   end
