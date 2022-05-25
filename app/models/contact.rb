@@ -20,5 +20,6 @@ class Contact < ApplicationRecord
   has_many :relatives
   has_many :relations, through: :relatives
   has_many :events, as: :eventable, dependent: :destroy
+
   has_and_belongs_to_many :labels, dependent: :destroy
 end

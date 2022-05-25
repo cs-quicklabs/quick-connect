@@ -88,11 +88,10 @@ Rails.application.routes.draw do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"
       resources :tasks, module: "contact"
+      resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"
-      collection do
-        get :form
-      end
+
       resources :timeline, module: "contact"
     end
   end
