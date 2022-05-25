@@ -80,6 +80,10 @@ Rails.application.routes.draw do
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
       get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
     end
+    namespace :account do
+      resources :relations, except: [:show]
+      resources :labels, except: [:show]
+    end
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"

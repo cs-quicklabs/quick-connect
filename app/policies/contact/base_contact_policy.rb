@@ -22,4 +22,8 @@ class Contact::BaseContactPolicy < ApplicationPolicy
   def show?
     true
   end
+
+  def new?
+    true
+  end
 end

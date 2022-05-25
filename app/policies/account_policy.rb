@@ -30,4 +30,8 @@ class AccountPolicy < Struct.new(:user, :account)
   def billings?
     true
   end
+
+  def new?
+    true
+  end
 end
