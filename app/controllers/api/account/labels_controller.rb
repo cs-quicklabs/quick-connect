@@ -1,0 +1,66 @@
+class Api::Account::LabelsController < Api::Account::BaseController
+  before_action :set_label, only: %i[ show edit update destroy ]
+
+  def index
+    authorize :account
+
+    @labels = Label.for_current_account.order(:name).order(created_at: :desc)
+    render json: { success: true, data: @labels, message: "Labels were loaded successfully." }
+  end
+
+  def edit
+    authorize :account
+    render json: { success: true, data: @label, message: "" }
+  end
+
+  def new
+    authorize :account
+    @label = Label.new
+    render json: { success: true, data: @label, message: "" }
+  end
+
+  def create
+    authorize :account
+
+    @label = Label.new(label_params)
+
+    respond_to do |format|
+      if @label.save
+        format.json { render json: { success: true, data: @label, message: "Label was created successfully." } }
+      else
+        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages } }
+      end
+    end
+  end
+
+  def update
+    authorize :account
+
+    respond_to do |format|
+      if @label.update(label_params)
+        format.json { render json: { success: true, data: @label, message: "Label was updated successfully." } }
+      else
+        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages } }
+      end
+    end
+  end
+
+  def destroy
+    authorize :account
+
+    @label.destroy
+    respond_to do |format|
+      format.json { render json: { success: true, data: @label, message: "Label was deleted successfully." } }
+    end
+  end
+
+  private
+
+  def set_label
+    @label ||= Label.find(params[:id])
+  end
+
+  def label_params
+    params.require(:api_label).permit(:account_id, :color, :name)
+  end
+end
