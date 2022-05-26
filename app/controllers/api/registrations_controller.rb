@@ -1,5 +1,6 @@
-class RegistrationsController < Devise::RegistrationsController
+class Api::RegistrationsController < Devise::RegistrationsController
   before_action :build_form
+  respond_to :json
 
   def new
     super
@@ -10,9 +11,14 @@ class RegistrationsController < Devise::RegistrationsController
     if resource.nil? or !resource.persisted?
       show_errors
     else
-      set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
-      redirect_to new_user_registration_path
+      respond_to do |format|
+        format.json { render json: { success: true, data: resource, message: "You have signed up successfully. However, we could not sign you in because your account is not yet activated." } }
+      end
     end
+  end
+
+  def build_form
+    @form ||= SignUpForm.new
   end
 
   def show_errors
@@ -26,9 +32,5 @@ class RegistrationsController < Devise::RegistrationsController
 
   def registration_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
-  end
-
-  def build_form
-    @form ||= SignUpForm.new
   end
 end

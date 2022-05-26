@@ -51,4 +51,39 @@ Rails.application.routes.draw do
     get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
   end
   get "account/billing", to: "account/billing#index", as: "billing"
+
+  # API namespace, for JSON requests at /api/sign_[in|out]
+  namespace :api do
+    devise_for :users, defaults: { format: :json },
+                       class_name: "ApiUser",
+                       skip: [:invitations, :password,
+                              :unlocks],
+                       path: "",
+                       path_names: { sign_in: "login",
+                                     sign_out: "logout" }
+    devise_scope :user do
+      get "login", to: "devise/sessions#new"
+      delete "logout", to: "devise/sessions#destroy"
+      post "/users", to: "registrations#create", as: :new_user_registration
+    end
+    resources :user
+    scope "/settings" do
+      get "/profile", to: "user#profile", as: "user_profile"
+      get "/password", to: "user#password", as: "setting_password"
+      patch "/password", to: "user#update_password", as: "change_password"
+      get "/preferences", to: "user#preferences", as: "user_preferences"
+    end
+    resources :dashboard
+    resources :contacts do
+      resources :notes, module: "contact"
+      resources :phone_calls, module: "contact"
+      resources :tasks, module: "contact"
+      resources :relatives, module: "contact"
+      resources :about, module: "contact"
+      collection do
+        get :form
+      end
+      resources :timeline, module: "contact"
+    end
+  end
 end

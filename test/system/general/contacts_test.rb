@@ -70,7 +70,6 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "can edit a contact" do
     visit page_url
-    binding.irb
     find(id: dom_id(@contact)).click
     within "#contact-header" do
       click_on "View Profile"
