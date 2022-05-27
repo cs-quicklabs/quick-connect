@@ -32,9 +32,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
     t.bigint "account_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "relation_id"
     t.boolean "archived", default: false
     t.date "archived_on"
+    t.bigint "relation_id"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -60,12 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
     t.index ["account_id"], name: "index_events_on_account_id"
   end
 
-  create_table "jwt_denylist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.datetime "exp", precision: nil, null: false
-    t.index ["jti"], name: "index_jwt_denylist_on_jti"
-  end
-
   create_table "labels", force: :cascade do |t|
     t.string "name"
     t.string "color", default: "", null: false
@@ -86,8 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
   end
 
   create_table "pay_charges", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "subscription_id"
+    t.bigint "customer_id", null: false
+    t.bigint "subscription_id"
     t.string "processor_id", null: false
     t.integer "amount", null: false
     t.string "currency"
@@ -103,7 +97,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
 
   create_table "pay_customers", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -117,7 +111,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
 
   create_table "pay_merchants", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
@@ -128,7 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
   end
 
   create_table "pay_payment_methods", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "processor_id", null: false
     t.boolean "default"
     t.string "type"
@@ -139,7 +133,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
   end
 
   create_table "pay_subscriptions", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "name", null: false
     t.string "processor_id", null: false
     t.string "processor_plan", null: false
