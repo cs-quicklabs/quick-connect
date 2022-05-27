@@ -68,8 +68,8 @@ export default class extends Controller {
 
     select(target) {
         for (const el of this.resultsTarget.querySelectorAll(
-                '[aria-selected="true"]'
-            )) {
+            '[aria-selected="true"]'
+        )) {
             el.removeAttribute('aria-selected')
             el.classList.remove('bg-gray-100')
         }
@@ -196,8 +196,8 @@ export default class extends Controller {
     identifyOptions() {
         let id = 0
         for (const el of this.resultsTarget.querySelectorAll(
-                '[role="option"]:not([id])'
-            )) {
+            '[role="option"]:not([id])'
+        )) {
             el.id = `${this.resultsTarget.id}-option-${id++}`
         }
     }
@@ -207,7 +207,7 @@ export default class extends Controller {
         this.resultsTarget.innerHTML = null
     }
 
-    fetchResults() {
+    async fetchResults() {
         const query = this.inputTarget.value.trim()
         if (!query || query.length < this.minLengthValue) {
             this.hideAndRemoveOptions()
@@ -216,7 +216,7 @@ export default class extends Controller {
 
         if (!this.hasUrlValue) return
 
-        const headers = { 'X-Requested-With': 'XMLHttpRequest', "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Origin" : "http://127.0.0.1" }
+        const headers = { 'X-Requested-With': 'XMLHttpRequest', "Access-Control-Allow-Origin": "*" }
         const url = new URL(
             '/' + this.current_account + this.urlValue,
             window.location.href
@@ -227,7 +227,7 @@ export default class extends Controller {
 
         this.element.dispatchEvent(new CustomEvent('loadstart'))
 
-        await fetch(url.toString(), { headers,mode: 'cors', credentials: 'include', method : "GET", cache: 'no-cache' })
+        await fetch(url.toString(), { headers, mode: 'cors', credentials: 'include', method: "GET", cache: 'no-cache' })
             .then(response => response.text())
             .then(html => {
                 this.resultsTarget.innerHTML = html
@@ -268,6 +268,6 @@ export default class extends Controller {
 
     extractTextValue = el =>
         el.hasAttribute('data-autocomplete-label') ?
-        el.getAttribute('data-autocomplete-label') :
-        el.textContent.trim()
+            el.getAttribute('data-autocomplete-label') :
+            el.textContent.trim()
 }
