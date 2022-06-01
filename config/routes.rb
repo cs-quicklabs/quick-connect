@@ -73,16 +73,26 @@ Rails.application.routes.draw do
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
     end
+    get "/search/contacts", to: "search#contacts"
     resources :dashboard
+    scope "archive" do
+      get "/contacts", to: "contacts#archived", as: "archived_contacts"
+      get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
+      get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
+    end
+    namespace :account do
+      resources :relations, except: [:show]
+      resources :labels, except: [:show]
+    end
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"
       resources :tasks, module: "contact"
+      resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"
-      collection do
-        get :form
-      end
+      resources :labels, module: "contact", only: [:index, :update, :destroy]
+      resources :relations, module: "contact", only: [:index, :update, :destroy]
       resources :timeline, module: "contact"
     end
   end

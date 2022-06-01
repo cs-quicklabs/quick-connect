@@ -6,42 +6,37 @@ class Api::ContactsController < Api::BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, @user.contacts.for_current_account.active.order(:first_name), items: LIMIT)
-    respond_to do |format|
-      format.json { render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." } }
-    end
+    render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
   def new
     authorize :contact
 
     @contact = Contact.new
+    render json: { success: true, data: @contact, message: "" }
   end
 
   def edit
     authorize @contact
+    render json: { success: true, data: @contact, message: "" }
   end
 
   def update
     authorize @contact
-
-    respond_to do |format|
-      if @contact.update(contact_params)
-        format.json { render json: { success: true, data: @contact, message: "Contact was successfully updated." } }
-      else
-        format.json { render json: { success: false, data: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact", message: "" } } }
-      end
+    if @contact.update(contact_params)
+      render json: { success: true, data: @contact, message: "Contact was successfully updated." }
+    else
+      render json: { success: false, data: @contact, message: @contact.errors }
     end
   end
 
   def create
     authorize :contact
     @contact = CreateContact.call(contact_params, @user).result
-    respond_to do |format|
-      if @contact.errors.empty?
-        format.json { render json: { success: true, data: @contact, message: "Contact was successfully created." } }
-      else
-        format.json { render json: { success: false, data: { contact: @contact, title: "Add Contact", subtitle: "Please add contact", message: "" } } }
-      end
+    if @contact.errors.empty?
+      render json: { success: true, data: @contact, message: "Contact was successfully created." }
+    else
+      render json: { success: false, data: @contact, message: @contact.errors }
     end
   end
 
@@ -52,12 +47,10 @@ class Api::ContactsController < Api::BaseController
 
   def destroy
     authorize :contact
-    respond_to do |format|
-      if DestroyContact.call(@contact).result
-        format.turbo_stream { redirect_to deactivated_contact_path, status: 303, notice: "contact has been deleted." }
-      else
-        format.turbo_stream { redirect_to deactivated_contact_path, status: 303, alert: "Failed to delete contact." }
-      end
+    if DestroyContact.call(@contact).result
+      render json: { success: true, data: {}, message: "contact has been deleted." }
+    else
+      render json: { success: false, data: @contact, message: "Failed to delete contact." }
     end
   end
 
@@ -65,21 +58,21 @@ class Api::ContactsController < Api::BaseController
     authorize :contact, :index?
 
     @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
-    render_partial("contacts/archived_contact", collection: @contacts, cached: true) if stale?(@contacts)
+    render json: { success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
   end
 
   def archive_contact
     authorize @contact, :update?
-
+    @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
     ArchiveContact.call(@contact, current_user)
-    redirect_to archived_contacts_path, notice: "Contact has been archived."
+    render json: { success: true, data: @contacts, message: "Contact has been archived." }
   end
 
   def unarchive_contact
     authorize @contact, :unarchive_contact?
 
     UnarchiveContact.call(@contact, current_user)
-    redirect_to contact_about_index_path(@contact), notice: "Contact has been restored."
+    render json: { success: true, data: @contact, message: "Contact has been restored." }
   end
 
   private

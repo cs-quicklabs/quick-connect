@@ -8,13 +8,11 @@ class Contact::TaskPolicy < Contact::BaseContactPolicy
   end
 
   def edit?
-    task = record
-    task.user_id == user.id
+    true
   end
 
   def destroy?
-    task = record
-    task.user_id == user.id
+    true
   end
 
   def show?

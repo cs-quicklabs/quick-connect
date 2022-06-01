@@ -4,6 +4,6 @@ class Event < ApplicationRecord
   belongs_to :user
   belongs_to :trackable, polymorphic: true
   belongs_to :eventable, polymorphic: true
-  validates_presence_of :trackable, :user
+  validates_presence_of :trackable, :user, :action, :eventable
   validates :action, inclusion: { in: ACTIONS }
 end
