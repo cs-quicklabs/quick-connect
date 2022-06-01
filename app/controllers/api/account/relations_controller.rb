@@ -1,14 +1,21 @@
-class Account::RelationsController < Account::BaseController
+class Api::Account::RelationsController < Api::Account::BaseController
   before_action :set_relation, only: %i[ show edit update destroy ]
 
   def index
     authorize :account
     @relations = Relation.all.order(:name).order(created_at: :desc)
-    @relation = Relation.new
+    render json: { success: true, data: @relations, message: "Relations were successfully retrieved." }
   end
 
   def edit
     authorize :account
+    render json: { success: true, data: @relation, message: "" }
+  end
+
+  def new
+    authorize :account
+    @relation = Relation.new
+    render json: { success: true, data: @relation, message: "" }
   end
 
   def create
@@ -17,12 +24,9 @@ class Account::RelationsController < Account::BaseController
     @relation = Relation.new(relation_params)
     respond_to do |format|
       if @relation.save
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:relations, partial: "account/relations/relation", locals: { relation: @relation }) +
-                               turbo_stream.replace(Relation.new, partial: "account/relations/form", locals: { relation: Relation.new, message: "Relation was created successfully." })
-        }
+        format.json { render json: { success: true, data: @relation, message: "Relation was successfully created." } }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Relation.new, partial: "account/relations/form", locals: { relation: @relation }) }
+        format.json { render json: { success: false, data: @relation, message: @relation.errors } }
       end
     end
   end
@@ -32,9 +36,9 @@ class Account::RelationsController < Account::BaseController
 
     respond_to do |format|
       if @relation.update(relation_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, partial: "account/relations/relation", locals: { relation: @relation, messages: nil }) }
+        format.json { render json: { success: true, data: @relation, message: "Relation was successfully updated." } }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, template: "account/relations/edit", locals: { relation: @relation, messages: @relation.errors.full_messages }) }
+        format.json { render json: { success: false, data: @relation, message: @relation.errors } }
       end
     end
   end
@@ -44,7 +48,7 @@ class Account::RelationsController < Account::BaseController
 
     @relation.destroy
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@relation) }
+      format.json { render json: { success: true, data: {}, message: "Relation was successfully deleted." } }
     end
   end
 
@@ -55,6 +59,6 @@ class Account::RelationsController < Account::BaseController
   end
 
   def relation_params
-    params.require(:relation).permit(:name, :account_id)
+    params.require(:api_relation).permit(:name, :account_id)
   end
 end

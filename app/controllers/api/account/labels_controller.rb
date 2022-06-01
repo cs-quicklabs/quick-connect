@@ -16,6 +16,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
 
   def edit
     authorize :account
+    render json: { success: true, data: @label, message: "" }
   end
 
   def create
