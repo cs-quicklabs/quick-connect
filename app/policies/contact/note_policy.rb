@@ -1,23 +1,17 @@
 class Contact::NotePolicy < Contact::BaseContactPolicy
   def index?
-    note = record.second
-    return false if note.contact.archived?
-    note.user == user
+    true
   end
 
   def create?
-    note = record.second
-    return false if note.contact.archived?
-    note.user == user
+    true
   end
 
   def edit?
-    note = record
-    note.user == user
+    true
   end
 
   def destroy?
-    note = record
-    note.user == user
+    true
   end
 end
