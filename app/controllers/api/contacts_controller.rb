@@ -13,6 +13,7 @@ class Api::ContactsController < Api::BaseController
     authorize :contact
 
     @contact = Contact.new
+    render json: { success: true, data: @contact, message: "" }
   end
 
   def edit
