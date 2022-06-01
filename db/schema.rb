@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_20_030115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -18,6 +18,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id", null: false
+    t.bigint "journal_id", null: false
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["journal_id"], name: "index_comments_on_journal_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -58,6 +69,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
     t.string "eventable_type"
     t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_events_on_account_id"
+  end
+
+  create_table "journals", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
   create_table "jwt_denylist", force: :cascade do |t|
@@ -230,10 +250,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_04_133007) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
+  add_foreign_key "comments", "journals"
+  add_foreign_key "comments", "users"
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "relations"
   add_foreign_key "contacts", "users"
   add_foreign_key "events", "accounts"
+  add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
   add_foreign_key "notes", "users"

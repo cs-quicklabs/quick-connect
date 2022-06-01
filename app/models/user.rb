@@ -11,6 +11,7 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
   has_many :events, dependent: :destroy
+  has_many :Journals
 
   before_create :add_jti
 
