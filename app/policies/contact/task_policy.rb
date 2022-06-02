@@ -18,4 +18,8 @@ class Contact::TaskPolicy < Contact::BaseContactPolicy
   def show?
     true
   end
+
+  def status?
+    true
+  end
 end

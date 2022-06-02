@@ -53,6 +53,13 @@ class Api::Contact::TasksController < Api::Contact::BaseController
     end
   end
 
+  def status
+    authorize [@contact, Task]
+    @task = Task.find(params["task_id"])
+    @task.update(completed: !@task.completed)
+    render json: { success: true, data: @task, message: "Task was successfully updated." }
+  end
+
   private
 
   def set_task
