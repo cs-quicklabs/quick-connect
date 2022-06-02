@@ -8,9 +8,9 @@ class AddRelative < Patterns::Service
   end
 
   def call
-    add_relative
-    add_event
     begin
+      add_relative
+      add_event
     rescue
       relative
     end
