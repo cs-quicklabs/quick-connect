@@ -5,7 +5,7 @@ class Contact::RelativesController < Contact::BaseController
     authorize [@contact, Relative]
     @relative = Relative.new
     @relation = ""
-    @relatives = Relative.includes(:contact).where(first_contact_id: @contact.id)
+    @relatives = Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id)
   end
 
   def destroy

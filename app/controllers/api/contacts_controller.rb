@@ -50,7 +50,7 @@ class Api::ContactsController < Api::BaseController
     if DestroyContact.call(@contact).result
       render json: { success: true, data: {}, message: "contact has been deleted." }
     else
-      render json: { success: false, data: @contact, message: "Failed to delete contact." }
+      render json: { success: false, data: {}, message: "Failed to delete contact." }
     end
   end
 
