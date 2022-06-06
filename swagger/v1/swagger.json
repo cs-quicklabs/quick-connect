@@ -1,0 +1,259 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "components": {
+    "schemas": {
+      "api_user": {
+        "type": "object",
+        "items": {
+          "first_name": {
+            "type": "string"
+          },
+          "last_name": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "password_confirmation": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "paths": {
+    },
+    "servers": [
+      {
+        "url": "http://{defaultHost}",
+        "variables": {
+          "defaultHost": {
+            "default": "127.0.0.1:3000/"
+          }
+        }
+      }
+    ]
+  },
+  "paths": {
+    "/api/users": {
+      "post": {
+        "summary": "create registration",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_user": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    },
+                    "password_confirmation": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts/form": {
+      "get": {
+        "summary": "form contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "summary": "list contacts",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts/new": {
+      "get": {
+        "summary": "new contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts/{id}/edit": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "edit contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "show contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "patch": {
+        "summary": "update contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "put": {
+        "summary": "update contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/contacts/profile/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "profile contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/archive/contacts": {
+      "get": {
+        "summary": "archived contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/archive/contact/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "archive_contact contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/archive/contact/{id}/restore": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "unarchive_contact contact",
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    }
+  }
+}
