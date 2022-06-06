@@ -59,7 +59,7 @@ Rails.application.routes.draw do
   namespace :api do
     devise_for :users, defaults: { format: :json },
                        class_name: "ApiUser",
-                       skip: [:invitations, :password,
+                       skip: [:invitations,
                               :unlocks],
                        path: "",
                        path_names: { sign_in: "login",

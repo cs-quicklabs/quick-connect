@@ -4,7 +4,14 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
   end
 
   def create
-    super
+    self.resource = resource_class.send_confirmation_instructions(resource_params)
+    yield resource if block_given?
+
+    if successfully_sent?(resource)
+      render json: { success: true, data: resource, message: "You will receive an email with instructions for how to confirm your email address in a few minutes." }
+    else
+      render json: { message: resource.errors, success: false }
+    end
   end
 
   def show

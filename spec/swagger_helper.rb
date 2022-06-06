@@ -21,19 +21,17 @@ RSpec.configure do |config|
         title: "API V1",
         version: "v1",
       },
-     
-        paths: {},
-        servers: [
-          {
-            url: "http://{defaultHost}",
-            variables: {
-              defaultHost: {
-                default: "127.0.0.1:3000/",
-              },
+      paths: {},
+      servers: [
+        {
+          url: "http://{defaultHost}",
+          variables: {
+            defaultHost: {
+              default: "127.0.0.1:3000/",
             },
           },
-        ],
-      },
+        },
+      ],
     },
   }
 
