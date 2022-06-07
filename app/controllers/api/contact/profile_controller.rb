@@ -1,11 +1,11 @@
-class Api::Contact::ProfileController < Api::contact::BaseController
+class Api::Contact::ProfileController < Api::Contact::BaseController
   before_action :set_labels, only: %i[index]
   before_action :set_relations, only: %i[index]
   before_action :set_event, only: %i[index]
   include Pagy::Backend
 
   def index
-    authorise @contact, :profile?
+    authorize @contact, :profile?
     render json: { success: true, data: { contact: @contact, labels: @labels, relations: @relations, event: @event, call: @call }, message: "Contact profile" }
   end
 
