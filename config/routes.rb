@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => "/api-docs"
+  mount Rswag::Api::Engine => "/api-docs"
+
   require "sidekiq/web"
   require "sidekiq-scheduler/web"
 
@@ -56,7 +59,7 @@ Rails.application.routes.draw do
   namespace :api do
     devise_for :users, defaults: { format: :json },
                        class_name: "ApiUser",
-                       skip: [:invitations, :password,
+                       skip: [:invitations,
                               :unlocks],
                        path: "",
                        path_names: { sign_in: "login",
