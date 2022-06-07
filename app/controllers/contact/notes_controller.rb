@@ -62,6 +62,6 @@ class Contact::NotesController < Contact::BaseController
   end
 
   def note_params
-    params.require(:note).permit(:body)
+    params.require(:note).permit(:title, :body)
   end
 end
