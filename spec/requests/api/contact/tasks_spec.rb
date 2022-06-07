@@ -1,35 +1,19 @@
 require "swagger_helper"
 
-RSpec.describe "api/contacts", type: :request do
-  path "/{account_id}/api/archive/contacts" do
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    get("archived contact") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path "/{account_id}/api/archive/contact/{id}" do
+RSpec.describe "api/contact/tasks", type: :request do
+  path "/{account_id}/api/contacts/{contact_id}/tasks/{task_id}/status" do
     # You'll want to customize the parameter types...
-    parameter name: "id", in: :path, type: :string, description: "id"
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    get("archive_contact contact") do
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "task_id", in: :path, type: :string, description: "task_id"
+
+    get("change task status") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
       response(200, "successful") do
-        let(:id) { "123" }
+        let(:contact_id) { "123" }
+        let(:task_id) { "123" }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -43,109 +27,17 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/{account_id}/api/archive/contact/{id}/restore" do
+  path "/{account_id}/api/contacts/{contact_id}/tasks" do
     # You'll want to customize the parameter types...
-    parameter name: "id", in: :path, type: :string, description: "id"
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    get("unarchive_contact contact") do
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+
+    get("list tasks") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
       response(200, "successful") do
-        let(:id) { "123" }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path "/{account_id}/api/contacts" do
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    get("list contacts") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-
-    post("create contact") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      parameter name: :api_contact, in: :body, schema: {
-                  type: :'object',
-                  properties: { "api_contact": { type: :object, properties: {
-                    "first_name": { type: :string },
-                    "last_name": { type: :string },
-                    "phone": { type: :string },
-                    "email": { type: :string },
-                  } } },
-                }
-      response(200, "successful") do
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path "/{account_id}/api/contacts/{id}/edit" do
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    # You'll want to customize the parameter types...
-    parameter name: "id", in: :path, type: :string, description: "id"
-
-    get("edit contact") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-
-      response(200, "successful") do
-        let(:id) { "123" }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-
-  path "/{account_id}/api/contacts/{id}" do
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    # You'll want to customize the parameter types...
-    parameter name: "id", in: :path, type: :string, description: "id"
-
-    get("show contact") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        let(:id) { "123" }
+        let(:contact_id) { "123" }
 
         after do |example|
           example.metadata[:response][:content] = {
@@ -158,20 +50,71 @@ RSpec.describe "api/contacts", type: :request do
       end
     end
 
-    patch("update contact") do
+    post("create task") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
-      parameter name: :api_contact, in: :body, schema: {
+      parameter name: :api_task, in: :body, schema: {
         type: :'object',
-        properties: { "api_contact": { type: :object, properties: {
-          "first_name": { type: :string },
-          "last_name": { type: :string },
-          "phone": { type: :string },
-          "email": { type: :string },
+        properties: { "api_task": { type: :object, properties: {
+          "title": { type: :string },
+          "body": { type: :string },
+          "due_date": { type: :string, format: :date },
         } } },
       }
       response(200, "successful") do
+        let(:contact_id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
+  end
+
+  path "/{account_id}/api/contacts/{contact_id}/tasks/{id}/edit" do
+    # You'll want to customize the parameter types...
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "id", in: :path, type: :string, description: "id"
+
+    get("edit task") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
+      response(200, "successful") do
+        let(:contact_id) { "123" }
+        let(:id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
+  end
+
+  path "/{account_id}/api/contacts/{contact_id}/tasks/{id}" do
+    # You'll want to customize the parameter types...
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "id", in: :path, type: :string, description: "id"
+
+    get("show task") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
+      response(200, "successful") do
+        let(:contact_id) { "123" }
         let(:id) { "123" }
 
         after do |example|
@@ -185,11 +128,38 @@ RSpec.describe "api/contacts", type: :request do
       end
     end
 
-    delete("delete contact") do
+    patch("update task") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
+      parameter name: :api_task, in: :body, schema: {
+        type: :'object',
+        properties: { "api_task": { type: :object, properties: {
+          "title": { type: :string },
+          "body": { type: :string },
+          "due_date": { type: :string, format: :date },
+        } } },
+      }
+      response(200, "successful") do
+        let(:contact_id) { "123" }
+        let(:id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
+    delete("delete task") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
       response(200, "successful") do
+        let(:contact_id) { "123" }
         let(:id) { "123" }
 
         after do |example|

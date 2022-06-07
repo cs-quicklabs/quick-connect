@@ -23,7 +23,7 @@ class Api::UserController < Api::BaseController
 
   def profile
     authorize @user
-    render json: { data: @user, sucesss: true, message: "" }
+    render json: { sucesss: true, data: @user, message: "user profile" }
   end
 
   def password
