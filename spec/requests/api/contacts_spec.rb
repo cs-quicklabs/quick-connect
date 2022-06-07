@@ -4,11 +4,10 @@ RSpec.describe "api/contacts", type: :request do
   path "/{account_id}/api/archive/contacts" do
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("archived contact") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
       response(200, "successful") do
-        security [Bearer: {}]
-        produces "application/json"
-        consumes "application/json"
-
         after do |example|
           example.metadata[:response][:content] = {
             "application/json" => {
