@@ -25,5 +25,6 @@ module Kutumb
     config.autoload_paths << "#{Rails.root}/lib"
     config.autoload_paths << "#{Rails.root}/interactors"
     config.autoload_paths << "#{Rails.root}/presenters"
+    config.swagger_dry_run = false
   end
 end

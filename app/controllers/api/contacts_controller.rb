@@ -9,13 +9,6 @@ class Api::ContactsController < Api::BaseController
     render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
-  def new
-    authorize :contact
-
-    @contact = Contact.new
-    render json: { success: true, data: @contact, message: "" }
-  end
-
   def edit
     authorize @contact
     render json: { success: true, data: @contact, message: "" }
@@ -43,15 +36,6 @@ class Api::ContactsController < Api::BaseController
   def show
     authorize @contact
     render json: { success: true, data: @contact, message: "Contact was successfully retrieved." }
-  end
-
-  def destroy
-    authorize :contact
-    if DestroyContact.call(@contact).result
-      render json: { success: true, data: {}, message: "contact has been deleted." }
-    else
-      render json: { success: false, data: {}, message: "Failed to delete contact." }
-    end
   end
 
   def archived

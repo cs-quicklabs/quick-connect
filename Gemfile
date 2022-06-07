@@ -74,10 +74,14 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
+gem 'rswag-api'
+gem 'rswag-ui'
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
+  gem 'rspec-rails'
+  gem 'rswag-specs'
 end
 
 group :development do
