@@ -32,6 +32,7 @@ RSpec.describe "api/contact/notes", type: :request do
       parameter name: :api_note, in: :body, schema: {
         type: :'object',
         properties: { "api_note": { type: :object, properties: {
+          "title": { type: :string },
           "body": { type: :string },
         } } },
       }
@@ -89,6 +90,7 @@ RSpec.describe "api/contact/notes", type: :request do
       parameter name: :api_note, in: :body, schema: {
         type: :'object',
         properties: { "api_note": { type: :object, properties: {
+          "title": { type: :string },
           "body": { type: :string },
         } } },
       }

@@ -56,6 +56,6 @@ class Api::Contact::NotesController < Api::Contact::BaseController
   end
 
   def note_params
-    params.require(:api_note).permit(:body)
+    params.require(:api_note).permit(:title, :body)
   end
 end
