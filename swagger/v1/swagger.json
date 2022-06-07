@@ -4,6 +4,14 @@
     "title": "API V1",
     "version": "v1"
   },
+  "securityDefinitions": {
+    "Bearer": {
+      "description": "...",
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
   "paths": {
     "/api/confirmation": {
       "get": {
@@ -53,6 +61,336 @@
               }
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/archive/contacts": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "archived contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/archive/contact/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "archive_contact contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/archive/contact/{id}/restore": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        },
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "unarchive_contact contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list contacts",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{id}/edit": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "edit contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "show contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "patch": {
+        "summary": "update contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "phone": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
         ],
         "responses": {
           "200": {
@@ -170,27 +508,37 @@
         }
       }
     },
-    "/contacts/form": {
-      "get": {
-        "summary": "form contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/contacts": {
-      "get": {
-        "summary": "list contacts",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      },
+    "/api/login": {
       "post": {
-        "summary": "create contact",
+        "summary": "create session",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_user": {
+                  "type": "object",
+                  "properties": {
+                    "email": {
+                      "type": "string"
+                    },
+                    "password": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"
@@ -198,138 +546,9 @@
         }
       }
     },
-    "/contacts/new": {
-      "get": {
-        "summary": "new contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/contacts/{id}/edit": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "description": "id",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "edit contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/contacts/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "description": "id",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "show contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      },
-      "patch": {
-        "summary": "update contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      },
-      "put": {
-        "summary": "update contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      },
+    "/api/logout": {
       "delete": {
-        "summary": "delete contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/contacts/profile/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "description": "id",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "profile contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/archive/contacts": {
-      "get": {
-        "summary": "archived contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/archive/contact/{id}": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "description": "id",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "archive_contact contact",
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      }
-    },
-    "/archive/contact/{id}/restore": {
-      "parameters": [
-        {
-          "name": "id",
-          "in": "path",
-          "type": "string",
-          "description": "id",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "unarchive_contact contact",
+        "summary": "delete session",
         "responses": {
           "200": {
             "description": "successful"

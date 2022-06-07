@@ -1,11 +1,14 @@
 require "swagger_helper"
 
 RSpec.describe "api/contacts", type: :request do
-  path "/api/archive/contacts" do
+  path "/{account_id}/api/archive/contacts" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("archived contact") do
-      consumes "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      response(200, "successful") do
+        security [Bearer: {}]
+        produces "application/json"
+        consumes "application/json"
+
         after do |example|
           example.metadata[:response][:content] = {
             "application/json" => {
@@ -18,14 +21,15 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/api/archive/contact/{id}" do
+  path "/{account_id}/api/archive/contact/{id}" do
     # You'll want to customize the parameter types...
     parameter name: "id", in: :path, type: :string, description: "id"
-
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("archive_contact contact") do
+      security [Bearer: {}]
+      produces "application/json"
       consumes "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
@@ -40,14 +44,15 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/api/archive/contact/{id}/restore" do
+  path "/{account_id}/api/archive/contact/{id}/restore" do
     # You'll want to customize the parameter types...
     parameter name: "id", in: :path, type: :string, description: "id"
-
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("unarchive_contact contact") do
+      security [Bearer: {}]
+      produces "application/json"
       consumes "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
@@ -62,11 +67,13 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/api/contacts" do
+  path "/{account_id}/api/contacts" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("list contacts") do
+      security [Bearer: {}]
+      produces "application/json"
       consumes "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {
             "application/json" => {
@@ -79,9 +86,19 @@ RSpec.describe "api/contacts", type: :request do
     end
 
     post("create contact") do
+      security [Bearer: {}]
+      produces "application/json"
       consumes "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      parameter name: :api_contact, in: :body, schema: {
+                  type: :'object',
+                  properties: { "api_contact": { type: :object, properties: {
+                    "first_name": { type: :string },
+                    "last_name": { type: :string },
+                    "phone": { type: :string },
+                    "email": { type: :string },
+                  } } },
+                }
+      response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {
             "application/json" => {
@@ -94,14 +111,17 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/api/contacts/{id}/edit" do
+  path "/{account_id}/api/contacts/{id}/edit" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     # You'll want to customize the parameter types...
     parameter name: "id", in: :path, type: :string, description: "id"
 
     get("edit contact") do
+      security [Bearer: {}]
       produces "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      consumes "application/json"
+
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
@@ -116,14 +136,16 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/api/contacts/{id}" do
+  path "/{account_id}/api/contacts/{id}" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     # You'll want to customize the parameter types...
     parameter name: "id", in: :path, type: :string, description: "id"
 
     get("show contact") do
+      security [Bearer: {}]
       produces "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      consumes "application/json"
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
@@ -138,9 +160,19 @@ RSpec.describe "api/contacts", type: :request do
     end
 
     patch("update contact") do
+      security [Bearer: {}]
       produces "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      consumes "application/json"
+      parameter name: :api_contact, in: :body, schema: {
+        type: :'object',
+        properties: { "api_contact": { type: :object, properties: {
+          "first_name": { type: :string },
+          "last_name": { type: :string },
+          "phone": { type: :string },
+          "email": { type: :string },
+        } } },
+      }
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
@@ -154,10 +186,11 @@ RSpec.describe "api/contacts", type: :request do
       end
     end
 
-    put("update contact") do
+    delete("delete contact") do
+      security [Bearer: {}]
       produces "application/json"
-      produces "application/json",
-               response(200, "successful") do
+      consumes "application/json"
+      response(200, "successful") do
         let(:id) { "123" }
 
         after do |example|
