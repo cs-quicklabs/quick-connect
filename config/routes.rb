@@ -87,7 +87,9 @@ Rails.application.routes.draw do
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"
-      resources :tasks, module: "contact"
+      resources :tasks, module: "contact" do
+        get "status", to: "tasks#status", as: "status"
+      end
       resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"
