@@ -3,4 +3,5 @@ class Journal < ApplicationRecord
   validates_presence_of :title, :body
   has_many :comments, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
+  has_rich_text :body
 end
