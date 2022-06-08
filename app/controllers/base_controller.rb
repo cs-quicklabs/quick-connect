@@ -9,7 +9,7 @@ class BaseController < ApplicationController
     raise Pundit::NotAuthorizedError unless current_user.account == Current.account
   end
 
-  LIMIT = 10
+  LIMIT = 20
 
   def set_user
     @user = current_user

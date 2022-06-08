@@ -3,7 +3,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def index
     authorize [@contact, Relative]
-    @relatives = Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id)
+    @relatives = Relative.includes(:contact).where("first_contact_id=?", @contact.id)
     render json: { success: true, data: @relatives.as_json(:include => [:contact, :first_contact]), message: "Contact relatives" }
   end
 

@@ -1,20 +1,24 @@
 one:
+  title: Title
   body: This is some note one
   user: regular
   contact: one
 
 
 two:
+  title: Title
   body: This is some note two
   user: regular
   contact: one
 
 three:
+  title: Title
   body: This is some note three
   user: regular
   contact: one
 
 four:
+  title: Title
   body: This is some note four
   user: regular
   contact: one

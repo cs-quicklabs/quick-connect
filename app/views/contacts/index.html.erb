@@ -3,9 +3,9 @@
     <!-- Main 3 column grid -->
     <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
       <!-- Left column -->
-      <div class="grid grid-cols-1 col-span-1 border-r border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+      <div class="grid grid-cols-1 col-span-1 border-r border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full" >
         <section aria-labelledby="add-participant-section">
-          <div class="overflow-hidden bg-white h-full">
+          <div class="overflow-hidden bg-white h-full"  >
             <div class="px-4 sm:px-6">
               <div class="flex items-center justify-between py-8">
                 <div class="flex flex-wrap items-baseline">
@@ -37,16 +37,20 @@
                 </div>
               </div>
             </div>
-            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
+            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory" data-controller="infinite-scroll" >
               <div class="relative h-full">
-                <ul role="list" class="relative z-0 divide-y divide-gray-200">
-                  <%= render partial: "contacts/contact", collection: @contacts, as: :contact, cached: false %>
+                <ul role="list" class="relative z-0 divide-y divide-gray-200" id="contacts" data-infinite-scroll-target="entries">
+                  <%= render partial: "contacts/contact", collection: @contacts, as: :contact, cached: true %>
                 </ul>
               </div>
+            <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+              <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+            </div>
             </nav>
-          </div>
+   
         </div>
       </section>
+      </div>
       <!-- Right column -->
       <div class="grid grid-cols-1 lg:col-span-2">
         <section aria-labelledby="participants_section">
