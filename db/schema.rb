@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_20_030116) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_20_030118) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -230,6 +230,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_030116) do
     t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
 
+  create_table "ratings", force: :cascade do |t|
+    t.integer "rating", default: 1, null: false
+    t.bigint "user_id"
+    t.date "date", default: "2022-06-09", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "relations", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
@@ -247,6 +256,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_030116) do
     t.integer "relation_id"
     t.integer "contact_id"
     t.index ["account_id"], name: "index_relatives_on_account_id"
+  end
+
+  create_table "release_notes", force: :cascade do |t|
+    t.string "title"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_release_notes_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -305,8 +322,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_030116) do
   add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
   add_foreign_key "phone_calls", "contacts"
   add_foreign_key "phone_calls", "users"
+  add_foreign_key "ratings", "users"
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
+  add_foreign_key "release_notes", "users"
   add_foreign_key "tasks", "contacts"
   add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"

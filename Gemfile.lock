@@ -199,6 +199,8 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.1)
+    jquery-ui-rails (6.0.1)
+      railties (>= 3.2.16)
     jsbundling-rails (1.0.0)
       railties (>= 6.0.0)
     jwt (2.3.0)
@@ -431,6 +433,7 @@ DEPENDENCIES
   image_processing (~> 1.12)
   importmap-rails
   jbuilder (~> 2.7)
+  jquery-ui-rails
   jsbundling-rails (= 1.0.0)
   launchy
   letter_opener

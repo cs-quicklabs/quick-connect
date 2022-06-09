@@ -1,18 +1,20 @@
-<li class="py-3 flex border-b border-gray-200"  >
-   <div class="ml-3 w-full">
+<li class="py-3 flex  border-gray-200 border-b"  >
+   <div class="w-full">
       <a href="<%= journal_path(journal)%>" class="block hover:underline" target="_top">
         <p class="text-sm font-medium text-gray-900">  <%= journal.title.titleize %></p>
         </a>   
-  
-   <p class="flex items-center mt-1 text-sm text-gray-500"> <%=journal.body%></p>
+  <div class=" mt-1 text-sm font-normal text-gray-500 line-clamp-2"><%=journal.body%></div>
       
-     <div class=" w-full">
-        <span class="flex items-center mt-1 text-sm text-gray-500"><%= display_created_at(journal) %></span>
-        </div>
+     <div class=" w-full  flex">
+        <span class="inline-flex items-center mt-1 text-sm text-gray-500"><%= display_created_at(journal) %></span>
+
+        <span class=" inline-flex flex  font-normal align-right mt-1 text-sm text-gray-500">,  <%= journal.comments.count>0? journal.comments.count : "no" %> comments</span>
    </div>
+
+      </div>
+    
  <div class="flex align-right">
       <div class="px-6 py-3 whitespace-nowrap  text-sm font-medium">
- 
         <% if policy(journal).edit? %>
           <%= edit_button(edit_journal_path(journal)) %>
         <% end %>
@@ -20,7 +22,4 @@
           <%= delete_button(journal_path(journal)) %>
         <% end %>
       </div>
-      </div>
-    
-
   </li>

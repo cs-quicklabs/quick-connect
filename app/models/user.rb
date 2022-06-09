@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :Journals
+  has_many :ratings, dependent: :destroy
 
   before_create :add_jti
 

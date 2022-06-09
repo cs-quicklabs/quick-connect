@@ -1,28 +1,40 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
   <main class="">
-    <div class="px-4 sm:px-6 ">
-              <div class="flex items-center justify-between py-8">
+    <div class=" ">
+            <div class="grid items-start grid-cols-1  lg:grid-cols-3 lg:gap-4 ">
+        <!-- Left column -->
+        <div class="grid grid-cols-1 gap-2 lg:col-span-2" data-contoller="infinite-scroll">
+              <div class="flex items-center justify-between  py-6 px-6">
                 <div class="flex flex-wrap items-baseline">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">Journals</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @journals.count.to_s %>)</p>
                 </div>
-                <div class="flex mt-4 sm:mt-0 sm:ml-4">
+                <div class="flex ">
                   <%= link_to "Add Journal", new_journal_path, class: "btn-blue" %>
                 </div>
                 </div>
-
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2" data-contoller="infinite-scroll">
           <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white">
-              <div class="p-4">
-                  <ul class="" id="journals" data-infinite-scroll-target="entries">
+              <div class="">
+                  <ul class=" px-6 " id="journals" data-infinite-scroll-target="entries">
                   <%= render partial: "journal", collection: @journals, as: :journal, cached: true %>
                 </ul>
               </div>
             </div>
-                    <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+                    <div class="flex justify-end invisible" data-infinite-scroll-target="pagination">
               <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
             </div>
+          </section>
+        </div>
+                <div class="grid grid-cols-1 gap-2 xl:border-l xl:border-gray-200 overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+          <section aria-labelledby="add-participant-section h-full" id="calender">
+            <div class="overflow-hidden bg-white " id="ratings"> 
+  <%= render "journals/ratings/form",  {user:@user, rating: @rating}%>
+   <% if !@ratings_by_month.blank? %>
+    <%= render "journals/ratings/calender", {ratings_by_month:@ratings_by_month}%>
+    <% end %>
+            </div>
+           
           </section>
         </div>
       </div>

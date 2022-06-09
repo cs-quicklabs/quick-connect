@@ -1,9 +1,13 @@
 class JournalsController < BaseController
-  before_action :set_tournal, only: %i[ show edit update destroy ]
+  before_action :set_journal, only: %i[ show edit update destroy ]
+  require "date"
 
   def index
     authorize Journal
-
+    @rating = @current_user.ratings.where("DATE(created_at) = ?", Date.today).first || ""
+    if !@rating.blank?
+      @ratings_by_month = @current_user.ratings.where("date <= ? and date > ?", @rating.date + 1, @rating.date - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
+    end
     @pagy, @journals = pagy_nil_safe(params, Journal.order(created_at: :desc), items: LIMIT)
     render_partial("journals/journal", collection: @journals) if stale?(@journals)
   end
@@ -14,7 +18,7 @@ class JournalsController < BaseController
     @journal.destroy
     Event.where(trackable: @journal).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.turbo_stream { redirect_to journals_path, notice: "Journal was successfully removed." }
+      format.html { redirect_to journals_path, notice: "Journal was successfully removed.", status: :see_other }
     end
   end
 
@@ -30,7 +34,6 @@ class JournalsController < BaseController
   def show
     authorize @journal
     @comment = Comment.new
-    @comments = @journal.comments.order(created_at: :desc)
   end
 
   def update
@@ -59,7 +62,7 @@ class JournalsController < BaseController
 
   private
 
-  def set_tournal
+  def set_journal
     @journal = Journal.find(params["id"])
   end
 

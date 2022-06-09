@@ -1,9 +1,6 @@
 <div id="add">
     <div class="px-4 py-6 bg-gray-50 sm:px-6">
       <div class="flex space-x-3">
-        <div class="flex-shrink-0">
-          <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
-        </div>
         <div class="flex-1 min-w-0">
           <%= form_with model: comment, url: comments_path, method: :post do |form| %>
             <%= render "shared/form_messages", resource: comment, message: local_assigns[:message] %>
