@@ -11,8 +11,8 @@
               <div class="w-full  justify-end">
               <div class="text-right  whitespace-nowrap  text-sm font-medium">
              <% if policy(comment).edit? %>
-                <%= edit_button(edit_comment_path(comment)) %>
-              <%= delete_button(comment_path(comment)) %>
+                <%= edit_button(edit_journal_comment_path(comment)) %>
+              <%= delete_button(journal_comment_path(comment)) %>
               <% end %>
               </div>
            </div>

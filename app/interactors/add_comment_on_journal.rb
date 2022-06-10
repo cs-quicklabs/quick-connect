@@ -19,6 +19,7 @@ class AddCommentOnJournal < Patterns::Service
 
   def add_comment
     comment.journal = journal
+    comment.user = actor
     comment.save!
   end
 

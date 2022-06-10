@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   end
   resources :journals
   resources :release_notes
-  resources :comments
+  resources :journal_comments
   post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
@@ -90,6 +90,9 @@ Rails.application.routes.draw do
       resources :relations, except: [:show]
       resources :labels, except: [:show]
     end
+    resources :journals
+    resources :release_notes
+    resources :journal_comments
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"

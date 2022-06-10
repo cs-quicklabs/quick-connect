@@ -22,4 +22,8 @@ class JournalPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def comment?
+    true
+  end
 end

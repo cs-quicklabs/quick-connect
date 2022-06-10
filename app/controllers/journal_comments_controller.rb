@@ -1,9 +1,9 @@
-class CommentsController < BaseController
+class JournalCommentsController < BaseController
   before_action :set_comment, only: %i[ update destroy edit ]
   before_action :set_journal, only: %i[ create ]
 
   def create
-    authorize Comment
+    authorize @journal, :comment?
 
     @comment = AddCommentOnJournal.call(comment_params, @journal, @user).result
     respond_to do |format|
@@ -45,7 +45,7 @@ class CommentsController < BaseController
   private
 
   def comment_params
-    params.require(:comment).permit(:title, :user_id, :journal_id)
+    params.require(:comment).permit(:title, :journal_id)
   end
 
   def set_comment

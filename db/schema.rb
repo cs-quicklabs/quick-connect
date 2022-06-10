@@ -110,10 +110,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_030118) do
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
-<<<<<<< HEAD
-    t.text "body"
-=======
->>>>>>> release
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -308,11 +304,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_20_030118) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
-<<<<<<< HEAD
-=======
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
->>>>>>> release
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "accounts"

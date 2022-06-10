@@ -6,7 +6,7 @@
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
         <div class="flex-1 min-w-0">
-          <%= form_with model: @comment, url: comment_path(@comment), method: :patch do |form| %>
+          <%= form_with model: @comment, url: journal_comment_path(@comment), method: :patch do |form| %>
             <%= render "shared/form_messages", resource: @comment, message: local_assigns[:message] %>
             <%= form.hidden_field :"user_id", :value => current_user.id %>
             <%= form.hidden_field :"journal_id", :value => @comment.journal.id %>
