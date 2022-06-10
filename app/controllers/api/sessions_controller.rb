@@ -26,13 +26,22 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    cookies.delete :logged_in_cookie
-    render json: { success: true, message: "Logged out successfully." }
+    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name))
+    yield if block_given?
+    respond_to_on_destroy
   end
 
   private
 
   def current_token
     request.env["warden-jwt_auth.token"]
+  end
+
+  def respond_to_on_destroy
+    # We actually need to hardcode this as Rails default responder doesn't
+    # support returning empty response on GET request
+    respond_to do |format|
+      format.json { render json: { success: true, message: "Logged out successfully." } }
+    end
   end
 end
