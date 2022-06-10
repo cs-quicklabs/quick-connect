@@ -1,8 +1,4 @@
 class Api::PasswordsController < Devise::PasswordsController
-  def new
-    super
-  end
-
   def create
     self.resource = resource_class.send_reset_password_instructions(resource_params)
     yield resource if block_given?
@@ -14,21 +10,20 @@ class Api::PasswordsController < Devise::PasswordsController
     end
   end
 
-  def show
-    self.resource = resource_class.confirm_by_token(params[:confirmation_token])
-    respond_to do |format|
-      if resource.errors.empty?
-        format.json { render json: { success: true, data: resource, message: "Your account has been confirmed." } }
+  def update
+    self.resource = resource_class.reset_password_by_token(resource_params)
+    yield resource if block_given?
+
+    if resource.errors.empty?
+      if resource.active_for_authentication?
+        render json: { suceess: true, message: "Password has been reset successfully." }
       else
-        format.json { render json: { message: resource.errors, success: false } }
+        render json: { suceess: true, message: "Password has been reset successfully but You have to confirm your email address before continuing. " }
       end
+    else
+      render json: { suceess: false, message: resource.errors }
     end
   end
 
   private
-
-  def after_confirmation_path_for(resource_name, resource)
-    sign_in(resource) # In case you want to sign in the user
-    your_new_after_confirmation_path
-  end
 end

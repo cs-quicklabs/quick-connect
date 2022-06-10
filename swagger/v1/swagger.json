@@ -1988,9 +1988,30 @@
         }
       }
     },
-    "/api/logout": {
+    "/{account_id}/api/logout": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
       "delete": {
         "summary": "delete session",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"

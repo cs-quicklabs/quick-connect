@@ -25,6 +25,11 @@ class Api::SessionsController < Devise::SessionsController
     end
   end
 
+  def destroy
+    cookies.delete :logged_in_cookie
+    render json: { success: true, message: "Logged out successfully." }
+  end
+
   private
 
   def current_token
