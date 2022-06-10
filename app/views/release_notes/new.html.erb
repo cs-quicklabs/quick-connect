@@ -1,0 +1,3 @@
+<%= turbo_frame_tag "release_note", target: "_top" do %>
+  <%= render partial: "form", locals: { release_note: @release_note, title: "Add New Release Note", subtitle: "Please add release note" } %>
+<% end %>

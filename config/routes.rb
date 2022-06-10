@@ -25,7 +25,10 @@ Rails.application.routes.draw do
     end
     resources :timeline, module: "contact"
   end
-
+  resources :journals
+  resources :release_notes
+  resources :comments
+  post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
