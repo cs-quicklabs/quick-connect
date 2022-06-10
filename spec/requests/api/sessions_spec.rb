@@ -25,8 +25,12 @@ RSpec.describe "api/sessions", type: :request do
     end
   end
 
-  path "/api/logout" do
+  path "/{account_id}/api/logout" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
     delete("delete session") do
+      produces "application/json"
+      consumes "application/json"
+      security [Bearer: {}]
       response(200, "successful") do
         after do |example|
           example.metadata[:response][:content] = {
