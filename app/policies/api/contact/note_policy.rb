@@ -1,11 +1,10 @@
 class Api::Contact::NotePolicy < Api::Contact::BaseContactPolicy
   def index?
-    return true if record.second.user == user
-    return false if record.second.archived?
+    true
   end
 
   def update?
-    index?
+    true
   end
 
   def create?
@@ -13,18 +12,18 @@ class Api::Contact::NotePolicy < Api::Contact::BaseContactPolicy
   end
 
   def destroy?
-    index?
+    true
   end
 
   def edit?
-    index?
+    true
   end
 
   def show?
-    index?
+    true
   end
 
   def new?
-    index?
+    true
   end
 end
