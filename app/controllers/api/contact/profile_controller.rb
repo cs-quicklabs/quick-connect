@@ -5,7 +5,7 @@ class Api::Contact::ProfileController < Api::Contact::BaseController
   include Pagy::Backend
 
   def index
-    authorize @contact, :profile?
+    authorize [:api, @contact, :profile]
     render json: { success: true, data: { contact: @contact, labels: @labels, relations: @relations, event: @event, call: @call }, message: "Contact profile" }
   end
 

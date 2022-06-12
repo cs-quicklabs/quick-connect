@@ -23,7 +23,6 @@ gem "stimulus_reflex", "= 3.5.0.pre8"
 gem "hiredis"
 gem "valid_url"
 gem "image_processing", "~> 1.12"
-gem "pundit"
 gem "devise-jwt"
   gem 'jquery-ui-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]

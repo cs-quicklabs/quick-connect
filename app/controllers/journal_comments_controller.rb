@@ -9,11 +9,11 @@ class JournalCommentsController < BaseController
     respond_to do |format|
       if @comment.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.append(:comments, partial: "comments/comment", locals: { comment: @comment }) +
-                               turbo_stream.replace(:add, partial: "comments/add", locals: { journal: @journal, comment: Comment.new })
+          render turbo_stream: turbo_stream.append(:comments, partial: "journal_comments/comment", locals: { comment: @comment }) +
+                               turbo_stream.replace(:add, partial: "journal_comments/comment", locals: { journal: @journal, comment: Comment.new })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(:add, partial: "comments/add", locals: { journal: @journal, comment: @comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(:add, partial: "journal_comments/comment", locals: { journal: @journal, comment: @comment }) }
       end
     end
   end
@@ -27,9 +27,9 @@ class JournalCommentsController < BaseController
 
     respond_to do |format|
       if @comment.update(comment_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "comments/comment", locals: { comment: @comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, partial: "journal_comments/comment", locals: { comment: @comment }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, template: "comments/edit", locals: { comment: @comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@comment, template: "journal_comments/edit", locals: { comment: @comment }) }
       end
     end
   end
