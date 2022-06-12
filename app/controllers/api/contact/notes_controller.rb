@@ -52,7 +52,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
   private
 
   def set_note
-    @note = Note.includes(:contact).find(params["id"])
+    @note = Note.find(params["id"])
   end
 
   def note_params
