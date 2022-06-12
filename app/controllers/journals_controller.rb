@@ -4,10 +4,8 @@ class JournalsController < BaseController
 
   def index
     authorize Journal
-    @rating = @current_user.ratings.where("DATE(created_at) = ?", Date.today).first || ""
-    if !@rating.blank?
-      @ratings_by_month = @current_user.ratings.where("date <= ? and date > ?", @rating.date + 1, @rating.date - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
-    end
+    @rating = @current_user.ratings.where("DATE(date) = ?", Date.today).first || ""
+    @ratings_by_month = @current_user.ratings.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
     @pagy, @journals = pagy_nil_safe(params, Journal.order(created_at: :desc), items: LIMIT)
     render_partial("journals/journal", collection: @journals) if stale?(@journals)
   end
@@ -51,6 +49,7 @@ class JournalsController < BaseController
     authorize Journal
 
     @journal = AddJournal.call(journal_params, current_user).result
+
     respond_to do |format|
       if @journal.errors.empty?
         format.html { redirect_to journals_path, notice: "Journal was successfully created." }

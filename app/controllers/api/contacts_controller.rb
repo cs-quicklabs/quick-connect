@@ -4,56 +4,55 @@ class Api::ContactsController < Api::BaseController
   respond_to :json
 
   def index
-    authorize :contact
-    @pagy, @contacts = pagy_nil_safe(params, @user.contacts.for_current_account.active.order(:first_name), items: LIMIT)
+    authorize [:api, :contact]
+    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
     render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
   def edit
-    authorize @contact
+    authorize [:api, @contact]
     render json: { success: true, data: @contact, message: "" }
   end
 
   def update
-    authorize @contact
+    authorize [:api, @contact]
     if @contact.update(contact_params)
       render json: { success: true, data: @contact, message: "Contact was successfully updated." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors }
+      render json: { success: false, data: @contact, message: @contact.errors.full_messages }
     end
   end
 
   def create
-    authorize :contact
+    authorize [:api, :contact]
     @contact = CreateContact.call(contact_params, @user).result
     if @contact.errors.empty?
       render json: { success: true, data: @contact, message: "Contact was successfully created." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors }
+      render json: { success: false, data: @contact, message: @contact.errors.full_messages }
     end
   end
 
   def show
-    authorize @contact
+    authorize [:api, @contact]
     render json: { success: true, data: @contact, message: "Contact was successfully retrieved." }
   end
 
   def archived
-    authorize :contact, :index?
+    authorize [:api, @contact]
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.archived.order(archived_on: :desc), items: LIMIT)
     render json: { success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
   end
 
   def archive_contact
-    authorize @contact, :update?
-    @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
+    authorize [:api, @contact]
     ArchiveContact.call(@contact, current_user)
     render json: { success: true, data: @contacts, message: "Contact has been archived." }
   end
 
   def unarchive_contact
-    authorize @contact, :unarchive_contact?
+    authorize [:api, @contact]
 
     UnarchiveContact.call(@contact, current_user)
     render json: { success: true, data: @contact, message: "Contact has been restored." }

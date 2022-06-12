@@ -3,31 +3,35 @@ class Api::JournalCommentsController < Api::BaseController
   before_action :set_journal, only: %i[ create ]
 
   def create
-    @comment = AddCommentOnJournal.call(comment_params, @journal, @user).result
+    authorize [:api, @journal]
+    @comment = AddCommentOnJournal.call(comment_params, @journal, @api_user).result
     respond_to do |format|
       if @comment.persisted?
         format.json { render json: { suceess: true, comment: @comment, message: "" } }
       else
-        format.turbo_stream { render json: { suceess: false, comment: @comment, message: @comment.errors.full_messages.join(", ") } }
+        format.json { render json: { suceess: false, comment: @comment, message: @comment.errors.full_messages } }
       end
     end
   end
 
   def edit
+    authorize [:api, @comment]
     render json: { suceess: true, comment: @comment, message: "" }
   end
 
   def update
+    authorize [:api, @comment]
     respond_to do |format|
       if @comment.update(comment_params)
         format.json { render json: { suceess: true, data: @comment, message: "Comment was successfully updated" } }
       else
-        format.json { render json: { suceess: false, data: @comment, message: @comment.errors.full_messages.join(", ") } }
+        format.json { render json: { suceess: false, data: @comment, message: @comment.errors.full_messages } }
       end
     end
   end
 
   def destroy
+    authorize [:api, @comment]
     @comment.destroy
     respond_to do |format|
       format.json { render json: { suceess: true, data: @comment, message: "Comment was successfully deleted" } }

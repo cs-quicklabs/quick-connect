@@ -23,7 +23,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
   def show_errors
     respond_to do |format|
-      format.json { render json: { message: @form.errors, success: false, data: {} } }
+      format.json { render json: { message: @form.errors.full_messages, success: false, data: {} } }
     end
   end
 

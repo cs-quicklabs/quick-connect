@@ -1,6 +1,6 @@
 class Api::SearchController < Api::BaseController
   def contacts
-    authorize :search
+    authorize [:api, :search]
 
     like_keyword = "%#{params[:q]}%".split(/\s+/)
 

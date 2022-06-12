@@ -93,6 +93,7 @@ Rails.application.routes.draw do
     resources :journals
     resources :release_notes
     resources :journal_comments
+    resources :ratings, only: [:create, :index]
     resources :contacts do
       resources :notes, module: "contact"
       resources :phone_calls, module: "contact"

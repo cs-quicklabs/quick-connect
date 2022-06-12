@@ -28,6 +28,7 @@
       <p><%= @journal.body %></p>
     </div>
   <% end %>
+
  <section aria-labelledby="notes-title">
     <div class="pb-24 bg-white sm:rounded-lg overflow">
       <div class="divide-y divide-gray-200">
@@ -36,11 +37,13 @@
         </div>
         <div class="px-4 py-6 sm:px-6">
           <ul class="space-y-4" id="comments">
-            <%= render partial: "comments/comment", collection: @journal.comments.order(created_at: :asc), as: :comment, cached: true %>
+            <%= render partial: "journal_comments/comment", collection: @journal.comments.order(created_at: :asc), as: :comment, cached: true %>
           </ul>
         </div>
       </div>
-        <%= render partial: "comments/add", locals: { journal: @journal, comment: @comment } %>
+         <% if policy(@journal).comment? %>
+        <%= render partial: "journal_comments/add", locals: { journal: @journal, comment: @comment } %>
+        <% end %>
     </div>
   </section>
 </main>
