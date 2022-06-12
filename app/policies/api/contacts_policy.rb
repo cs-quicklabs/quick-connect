@@ -1,4 +1,4 @@
-class Api::ContactsPolicy < Struct.new(:api_user, :contacts)
+class Api::ContactsPolicy < Struct.new(:user, :contacts)
   def unarchive_contact?
     true
   end
