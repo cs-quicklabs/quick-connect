@@ -43,7 +43,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
   def create
     authorize [:api, @contact, Task]
 
-    @task = AddTask.call(task_params, @user, @contact).result
+    @task = AddTask.call(task_params, @api_user, @contact).result
     respond_to do |format|
       if @task.persisted?
         format.json { render json: { success: true, data: @task, message: "Task was successfully created." } }
