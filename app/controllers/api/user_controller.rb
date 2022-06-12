@@ -4,30 +4,30 @@ class Api::UserController < Api::BaseController
   respond_to :json
 
   def update
-    authorize @user
+    authorize [:api, @user]
     if @user.update(user_params)
       render json: { data: @user, sucesss: true, message: "User was updated successfully" }
     else
-      render json: { sucesss: false, message: @user.errors, data: @user }
+      render json: { sucesss: false, message: @user.errors.full_messages, data: @user }
     end
   end
 
   def update_password
-    authorize @user
+    authorize [:api, @user]
     if @form.submit(change_password_params)
       render json: { data: @user, sucesss: true, message: "password was updated successfully" }
     else
-      render json: { sucesss: false, message: @form.errors, data: @user }
+      render json: { sucesss: false, message: @form.errors.full_messages, data: @user }
     end
   end
 
   def profile
-    authorize @user
+    authorize [:api, @user]
     render json: { sucesss: true, data: @user, message: "user profile" }
   end
 
   def password
-    authorize @user
+    authorize [:api, @user]
 
     render json: { data: @user, sucesss: true, message: "" }
   end

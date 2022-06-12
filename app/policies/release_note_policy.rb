@@ -1,6 +1,6 @@
 class ReleaseNotePolicy < ApplicationPolicy
   def update?
-    return true
+    return true if record.user == user
   end
 
   def new?
@@ -20,6 +20,10 @@ class ReleaseNotePolicy < ApplicationPolicy
   end
 
   def destroy?
-    true
+    return true if record.user == user
+  end
+
+  def edit?
+    return true if record.user == user
   end
 end

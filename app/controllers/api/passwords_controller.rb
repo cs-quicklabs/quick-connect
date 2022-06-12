@@ -6,7 +6,7 @@ class Api::PasswordsController < Devise::PasswordsController
     if successfully_sent?(resource)
       respond_with({ json: { suceess: true, message: "Password reset instructions have been sent to your email address." } }, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
-      respond_with({ json: { suceess: false, message: resource.errors } })
+      respond_with({ json: { suceess: false, message: resource.errors.full_messages } })
     end
   end
 
@@ -21,7 +21,7 @@ class Api::PasswordsController < Devise::PasswordsController
         render json: { suceess: true, message: "Password has been reset successfully but You have to confirm your email address before continuing. " }
       end
     else
-      render json: { suceess: false, message: resource.errors }
+      render json: { suceess: false, message: resource.errors.full_messages }
     end
   end
 

@@ -12,7 +12,9 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :journals
-  has_many :ratings, dependent: :destroy
+
+  has_many :ratings, class_name: "Rating", foreign_key: "user_id"
+
 
   before_create :add_jti
 

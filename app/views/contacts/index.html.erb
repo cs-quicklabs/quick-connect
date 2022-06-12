@@ -1,23 +1,23 @@
 <main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
   <main class="">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
+    <div class="grid items-start grid-cols-1  lg:grid-cols-3 lg:gap-4">
       <!-- Left column -->
-      <div class="grid grid-cols-1 col-span-1 border-r border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
-        <section aria-labelledby="add-participant-section">
-          <div class="overflow-hidden bg-white h-full">
-            <div class="px-4 sm:px-6">
-              <div class="flex items-center justify-between py-8">
-                <div class="flex flex-wrap items-baseline">
+      <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+        <section aria-labelledby="add-participant-section h-full">
+          <div class="overflow-hidden bg-white">
+            <div class="px-4 sm:px-6 py-6">
+              <div class="flex items-center justify-between ">
+                <div class="flex flex-wrap items-baseline ">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">Contacts</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @contacts.count.to_s %>)</p>
                 </div>
-                <div class="flex mt-4 sm:mt-0 sm:ml-4">
-                  <%= link_to "Add Contact", new_contact_path, class: "btn-blue" %>
+                <div class="flex sm:mt-0 sm:ml-4 ">
+                  <%= link_to "Add Contact", new_contact_path, class: "btn-blue " %>
                 </div>
               </div>
-              <div class="py-4 flex space-x-4">
-                <div class="flex-1 min-w-0"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contacts" >
+              <div class=" flex space-x-4 pt-6">
+                <div class="flex-1 min-w-0 "  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contacts" >
                   <label for="search" class="sr-only">Search</label>
                   <div class="relative rounded-md shadow-sm" >
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -37,10 +37,10 @@
                 </div>
               </div>
             </div>
-            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
-              <div class="relative h-full">
+            <nav class="flex-1  min-h-full  overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
+              <div class="relative h-full px-6 ">
                 <ul role="list" class="relative z-0 divide-y divide-gray-200">
-                  <%= render partial: "contacts/contact", collection: @contacts, as: :contact, cached: false %>
+                  <%= render partial: "contact", collection: @contacts, as: :contact, cached: false %>
                 </ul>
               </div>
             </nav>
