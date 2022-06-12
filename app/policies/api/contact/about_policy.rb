@@ -1,4 +1,4 @@
-class Contact::AboutPolicy < Contact::BaseContactPolicy
+class Api::Contact::AboutPolicy < Api::Contact::BaseContactPolicy
   def index?
     true
   end

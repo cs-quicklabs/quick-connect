@@ -25,7 +25,7 @@ class Api::ContactsController < Api::BaseController
 
   def create
     authorize [:api, :contact]
-    @contact = CreateContact.call(contact_params, @user).result
+    @contact = CreateContact.call(contact_params, @api_user).result
     if @contact.errors.empty?
       render json: { success: true, data: @contact, message: "Contact was successfully created." }
     else

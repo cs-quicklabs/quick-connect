@@ -1,2 +1,2 @@
-class Contact::TimelinePolicy < Contact::BaseContactPolicy
+class Api::Contact::TimelinePolicy < Api::Contact::BaseContactPolicy
 end

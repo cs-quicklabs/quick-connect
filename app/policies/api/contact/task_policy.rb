@@ -1,2 +1,2 @@
-class Contact::TaskPolicy < Contact::BaseContactPolicy
+class Api::Contact::TaskPolicy < Api::Contact::BaseContactPolicy
 end

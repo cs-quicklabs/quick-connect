@@ -4,38 +4,38 @@ class Api::UserController < Api::BaseController
   respond_to :json
 
   def update
-    authorize [:api, @user]
-    if @user.update(user_params)
-      render json: { data: @user, sucesss: true, message: "User was updated successfully" }
+    authorize [:api, @api_user]
+    if @api_user.update(user_params)
+      render json: { data: @api_user, sucesss: true, message: "User was updated successfully" }
     else
-      render json: { sucesss: false, message: @user.errors.full_messages, data: @user }
+      render json: { sucesss: false, message: @api_user.errors.full_messages, data: @api_user }
     end
   end
 
   def update_password
-    authorize [:api, @user]
+    authorize [:api, @api_user]
     if @form.submit(change_password_params)
-      render json: { data: @user, sucesss: true, message: "password was updated successfully" }
+      render json: { data: @api_user, sucesss: true, message: "password was updated successfully" }
     else
-      render json: { sucesss: false, message: @form.errors.full_messages, data: @user }
+      render json: { sucesss: false, message: @form.errors.full_messages, data: @api_user }
     end
   end
 
   def profile
-    authorize [:api, @user]
-    render json: { sucesss: true, data: @user, message: "user profile" }
+    authorize [:api, @api_user]
+    render json: { sucesss: true, data: @api_user, message: "user profile" }
   end
 
   def password
-    authorize [:api, @user]
+    authorize [:api, @api_user]
 
-    render json: { data: @user, sucesss: true, message: "" }
+    render json: { data: @api_user, sucesss: true, message: "" }
   end
 
   private
 
   def find_user
-    @user ||= User.find(params[:id])
+    @api_user ||= User.find(params[:id])
   end
 
   def user_params
@@ -47,6 +47,6 @@ class Api::UserController < Api::BaseController
   end
 
   def build_form
-    @form ||= ChangePasswordForm.new(@user)
+    @form ||= ChangePasswordForm.new(@api_user)
   end
 end

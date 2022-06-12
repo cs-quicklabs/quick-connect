@@ -39,7 +39,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   def create
     authorize [:api, @contact, PhoneCall]
 
-    @phone_call = AddPhoneCall.call(phone_call_params, @user, @contact).result
+    @phone_call = AddPhoneCall.call(phone_call_params, @api_user, @contact).result
     respond_to do |format|
       if @phone_call.persisted?
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully created." } }

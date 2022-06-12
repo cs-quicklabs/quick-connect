@@ -1,2 +1,2 @@
-class Contact::RelativePolicy < Contact::BaseContactPolicy
+class Api::Contact::RelativePolicy < Api::Contact::BaseContactPolicy
 end
