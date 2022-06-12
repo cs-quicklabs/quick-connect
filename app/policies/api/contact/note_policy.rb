@@ -1,19 +1,10 @@
 class Api::Contact::NotePolicy < Api::Contact::BaseContactPolicy
   def index?
-<<<<<<< HEAD
-    return true if record.second.user == user
-    return false if record.second.archived?
-  end
-
-  def update?
-    index?
-=======
     true
   end
 
   def update?
     true
->>>>>>> 7d20d69 (issue fixed)
   end
 
   def create?
@@ -21,21 +12,6 @@ class Api::Contact::NotePolicy < Api::Contact::BaseContactPolicy
   end
 
   def destroy?
-<<<<<<< HEAD
-    index?
-  end
-
-  def edit?
-    index?
-  end
-
-  def show?
-    index?
-  end
-
-  def new?
-    index?
-=======
     true
   end
 
@@ -49,6 +25,5 @@ class Api::Contact::NotePolicy < Api::Contact::BaseContactPolicy
 
   def new?
     true
->>>>>>> 7d20d69 (issue fixed)
   end
 end
