@@ -1,2 +1,2 @@
-class Contact::PhoneCallPolicy < Contact::BaseContactPolicy
+class Api::Contact::PhoneCallPolicy < Api::Contact::BaseContactPolicy
 end
