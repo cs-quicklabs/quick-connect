@@ -39,7 +39,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
   def create
     authorize [:api, @contact, Note]
 
-    @note = AddNote.call(note_params, @user, @contact).result
+    @note = AddNote.call(note_params, @api_user, @contact).result
     respond_to do |format|
       if @note.persisted?
         format.json { render json: { success: true, data: @note, message: "Note was successfully created." } }
