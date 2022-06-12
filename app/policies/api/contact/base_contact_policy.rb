@@ -9,7 +9,7 @@ class Api::Contact::BaseContactPolicy < ApplicationPolicy
   end
 
   def create?
-    index?
+    true
   end
 
   def destroy?
