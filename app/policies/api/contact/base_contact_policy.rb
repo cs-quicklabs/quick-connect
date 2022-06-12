@@ -1,7 +1,7 @@
-class Api::Contact::BaseContactPolicy < Api::BaseApiPolicy
+class Api::Contact::BaseContactPolicy < ApplicationPolicy
   def index?
-    return false if record.second.archived?
     return true if record.second.user == user
+    return false if record.second.archived?
   end
 
   def update?
