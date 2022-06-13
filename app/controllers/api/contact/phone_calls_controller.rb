@@ -31,7 +31,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
       if @phone_call.update(phone_call_params)
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages } }
+        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages.first } }
       end
     end
   end
@@ -44,7 +44,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
       if @phone_call.persisted?
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully created." } }
       else
-        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages } }
+        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages.first } }
       end
     end
   end

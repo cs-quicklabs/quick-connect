@@ -10,7 +10,7 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
     if successfully_sent?(resource)
       render json: { success: true, data: resource, message: "You will receive an email with instructions for how to confirm your email address in a few minutes." }
     else
-      render json: { message: resource.errors.full_messages, success: false }
+      render json: { message: resource.errors.full_messages.first, success: false }
     end
   end
 
@@ -20,7 +20,7 @@ class Api::ConfirmationsController < Devise::ConfirmationsController
       if resource.errors.empty?
         format.json { render json: { success: true, data: resource, message: "Your account has been confirmed." } }
       else
-        format.json { render json: { message: resource.errors.full_messages, success: false } }
+        format.json { render json: { message: resource.errors.full_messages.first, success: false } }
       end
     end
   end
