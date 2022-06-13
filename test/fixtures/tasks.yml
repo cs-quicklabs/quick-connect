@@ -82,16 +82,3 @@ tweleve:
   user: regular
   contact: one
 
-thirteen:
-  title: Some Random Thirteen Task
-  due_date: 2021-03-31
-  completed: false
-  user: regular
-  contact: one
-
-fourteen:
-  title: Some Random Fourteen Task
-  due_date: 2021-03-31
-  completed: false
-  user: regular
-  contact: one

@@ -34,21 +34,11 @@ class UsersTest < ApplicationSystemTestCase
     visit page_url
     fill_in "First Name", with: ""
     fill_in "Last Name", with: ""
-    fill_in "Email", with: ""
     click_on "Save"
     take_screenshot
     assert_text "Email can't be blank"
     assert_text "First name can't be blank"
     assert_text "Last name can't be blank"
-  end
-
-  test "can not edit user with duplicate email" do
-    visit page_url
-    fill_in "Email", with: ""
-    fill_in "Email", with: users(:actor).email
-    click_on "Save"
-    take_screenshot
-    assert_text "Email has already been taken"
   end
 
   test "can not update password with pawned password" do

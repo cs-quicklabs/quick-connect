@@ -6,7 +6,9 @@ class ContactsController < BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
-    render_partial("contacts/contact", collection: @contacts) if stale?(@contacts)
+
+    render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
+
   end
 
   def new

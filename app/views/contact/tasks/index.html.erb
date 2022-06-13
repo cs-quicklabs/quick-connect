@@ -5,7 +5,7 @@
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
         <!-- Left column -->
-        <div class="grid grid-cols-1 lg:col-span-2" id="project_tasks" data-controller="infinite-scroll">
+        <div class="grid grid-cols-1 lg:col-span-2" id="project_tasks"  data-controller="infinite-scroll" >
           <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">tasks</h2>
             <div class="overflow-hidden bg-white" >
@@ -31,11 +31,12 @@
                     <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
                   </tbody>
                 </table>
-                <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+
+            </div>
+                            <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
                   <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
                 </div>
               </div>
-            </div>
           </section>
         </div>
         <!-- Right column -->

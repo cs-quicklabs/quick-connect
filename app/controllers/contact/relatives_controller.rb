@@ -5,7 +5,8 @@ class Contact::RelativesController < Contact::BaseController
     authorize [@contact, Relative]
     @relative = Relative.new
     @relation = ""
-    @relatives = Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id)
+    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=?", @contact.id), items: LIMIT)
+    render_partial("contact/relatives/relative", collection: @relatives) if stale?(@relatives)
   end
 
   def destroy
