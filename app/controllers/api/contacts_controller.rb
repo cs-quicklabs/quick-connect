@@ -19,7 +19,7 @@ class Api::ContactsController < Api::BaseController
     if @contact.update(contact_params)
       render json: { success: true, data: @contact, message: "Contact was successfully updated." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors.full_messages }
+      render json: { success: false, data: @contact, message: @contact.errors.full_messages.first }
     end
   end
 
@@ -29,7 +29,7 @@ class Api::ContactsController < Api::BaseController
     if @contact.errors.empty?
       render json: { success: true, data: @contact, message: "Contact was successfully created." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors.full_messages }
+      render json: { success: false, data: @contact, message: @contact.errors.full_messages.first }
     end
   end
 

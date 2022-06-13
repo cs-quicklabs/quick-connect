@@ -36,7 +36,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
       if @relative.update(relative_params)
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages.first } }
       end
     end
   end
@@ -49,7 +49,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
       if @relative.persisted?
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully created." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages.first } }
       end
     end
   end

@@ -9,7 +9,7 @@ class Api::JournalCommentsController < Api::BaseController
       if @comment.persisted?
         format.json { render json: { suceess: true, comment: @comment, message: "" } }
       else
-        format.json { render json: { suceess: false, comment: @comment, message: @comment.errors.full_messages } }
+        format.json { render json: { suceess: false, comment: @comment, message: @comment.errors.full_messages.first } }
       end
     end
   end
@@ -25,7 +25,7 @@ class Api::JournalCommentsController < Api::BaseController
       if @comment.update(comment_params)
         format.json { render json: { suceess: true, data: @comment, message: "Comment was successfully updated" } }
       else
-        format.json { render json: { suceess: false, data: @comment, message: @comment.errors.full_messages } }
+        format.json { render json: { suceess: false, data: @comment, message: @comment.errors.full_messages.first } }
       end
     end
   end

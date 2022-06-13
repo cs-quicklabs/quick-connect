@@ -32,7 +32,7 @@ class Api::JournalsController < Api::BaseController
       if @journal.update(journal_params)
         format.json { render json: { suceess: true, data: @journal, message: "Journal was successfully updated." } }
       else
-        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages } }
+        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages.first } }
       end
     end
   end
@@ -44,7 +44,7 @@ class Api::JournalsController < Api::BaseController
       if @journal.errors.empty?
         format.json { render json: { suceess: true, data: @journal, message: "Journal was successfully created." } }
       else
-        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages } }
+        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages.first } }
       end
     end
   end
