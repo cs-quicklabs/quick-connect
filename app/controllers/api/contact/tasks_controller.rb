@@ -35,7 +35,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
       if @task.update(task_params)
         format.json { render json: { success: true, data: @task, message: "Task was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @task, message: @task.errors.full_messages } }
+        format.json { render json: { success: false, data: @task, message: @task.errors.full_messages.first } }
       end
     end
   end
@@ -48,7 +48,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
       if @task.persisted?
         format.json { render json: { success: true, data: @task, message: "Task was successfully created." } }
       else
-        format.json { render json: { success: false, data: @task, message: @task.errors.full_messages } }
+        format.json { render json: { success: false, data: @task, message: @task.errors.full_messages.first } }
       end
     end
   end

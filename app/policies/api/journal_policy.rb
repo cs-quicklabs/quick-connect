@@ -1,6 +1,6 @@
 class Api::JournalPolicy < Api::BaseApiPolicy
   def update?
-    return true if record.last.user == user
+    return true if record.last.user = user
   end
 
   def new?
@@ -24,10 +24,10 @@ class Api::JournalPolicy < Api::BaseApiPolicy
   end
 
   def comment?
-    return true if record.last.user == user
+    return true if record.last.user = user
   end
 
   def edit?
-    return true if record.last.user == user
+    return true if record.last.user = user
   end
 end

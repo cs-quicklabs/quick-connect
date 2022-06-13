@@ -3,6 +3,7 @@
     <!-- Main 3 column grid -->
     <div class="grid items-start grid-cols-1  lg:grid-cols-3 lg:gap-4">
       <!-- Left column -->
+
       <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
         <section aria-labelledby="add-participant-section h-full">
           <div class="overflow-hidden bg-white">
@@ -37,16 +38,23 @@
                 </div>
               </div>
             </div>
+
+            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory" data-controller="infinite-scroll" >
+              <div class="relative h-full">
             <nav class="flex-1  min-h-full  overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
               <div class="relative h-full px-6 ">
                 <ul role="list" class="relative z-0 divide-y divide-gray-200">
                   <%= render partial: "contact", collection: @contacts, as: :contact, cached: false %>
                 </ul>
               </div>
+            <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+              <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+            </div>
             </nav>
-          </div>
+   
         </div>
       </section>
+      </div>
       <!-- Right column -->
       <div class="grid grid-cols-1 lg:col-span-2">
         <section aria-labelledby="participants_section">

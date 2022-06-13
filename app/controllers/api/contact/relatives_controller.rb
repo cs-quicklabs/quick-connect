@@ -2,8 +2,9 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   before_action :set_relative, only: %i[show edit update destroy]
 
   def index
-    authorize [:api, @contact, Relative]
-    @relatives = Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id)
+    authorize [@contact, Relative]
+    @relatives = Relative.includes(:contact).where("first_contact_id=?", @contact.id)
+
     render json: { success: true, data: @relatives.as_json(:include => [:contact, :first_contact]), message: "Contact relatives" }
   end
 
@@ -35,7 +36,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
       if @relative.update(relative_params)
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages.first } }
       end
     end
   end
@@ -48,7 +49,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
       if @relative.persisted?
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully created." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages.first } }
       end
     end
   end

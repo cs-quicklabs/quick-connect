@@ -16,7 +16,7 @@ class Api::RatingsController < Api::BaseController
     if @rating.save
       render json: { suceess: true, data: @rating, message: "Rating was successfully created" }
     else
-      render json: { suceess: false, data: @rating, message: @rating.errors.full_messages }
+      render json: { suceess: false, data: @rating, message: @rating.errors.full_messages.first }
     end
   end
 

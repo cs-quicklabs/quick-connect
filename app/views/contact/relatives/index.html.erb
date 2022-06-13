@@ -3,7 +3,7 @@
   <main class="min-h-screen">
     <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
       <!-- Left column -->
-      <div class="grid grid-cols-1 gap-4 lg:col-span-2" >
+      <div class="grid grid-cols-1 gap-4 lg:col-span-2"  data-controller="infinite-scroll">
         <section aria-labelledby="participants_section">
           <h2 class="sr-only" id="section-1-title">Relations</h2>
           <div class="overflow-hidden bg-white">
@@ -17,6 +17,10 @@
                 </ul>
               </div>
             </div>
+                                   <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+                  <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                </div>
+              </div>
           </section>
         </div>
         <% if policy([@contact, Relative]).create? %>

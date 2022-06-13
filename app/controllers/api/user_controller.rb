@@ -8,7 +8,7 @@ class Api::UserController < Api::BaseController
     if @api_user.update(user_params)
       render json: { data: @api_user, sucesss: true, message: "User was updated successfully" }
     else
-      render json: { sucesss: false, message: @api_user.errors.full_messages, data: @api_user }
+      render json: { sucesss: false, message: @api_user.errors.full_messages.first, data: @api_user }
     end
   end
 
@@ -17,7 +17,7 @@ class Api::UserController < Api::BaseController
     if @form.submit(change_password_params)
       render json: { data: @api_user, sucesss: true, message: "password was updated successfully" }
     else
-      render json: { sucesss: false, message: @form.errors.full_messages, data: @api_user }
+      render json: { sucesss: false, message: @form.errors.full_messages.first, data: @api_user }
     end
   end
 

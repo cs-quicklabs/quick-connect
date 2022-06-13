@@ -21,7 +21,7 @@ class ContactRelativesTest < ApplicationSystemTestCase
   end
 
   test "can not visit index if not logged in" do
-    sign_out @contact
+    sign_out @user
     visit page_url
     assert_selector "h1", text: "Sign in to your account"
   end
@@ -30,38 +30,40 @@ class ContactRelativesTest < ApplicationSystemTestCase
     visit page_url
     relation = relations(:father).name
     fill_in "search-contacts", with: "Co"
-    find("#add-contact").click
+    find("#add-relation").click
     assert_selector "#contact-contacts", text: "Select Contact Contact1's relation"
-    select relation from "#relative_relation_id"
+    select relation, from: "#relative_relation_id"
     click_on "Add Relation"
-    within "#relations" do
+    within "#relatives" do
       assert_text "Contact Contact1"
       assert_text relation
     end
   end
   test "can edit a relation" do
     visit page_url
-    relation = @contact.relatives.first
-    mother = relations(:mother).name
-    assert_text relation.contact.decorate.display_name
-    find("tr", id: dom_id(relation)).click_link("Edit")
-    take_screenshot
-    select relation from "#relative_relation_id"
-    click_on "Edit Relation"
-    take_screenshot
-    assert_no_text "Edit Relation"
-    assert_selector "p.notice", text: "Relation was successfully updated."
-    assert_selector "li##{dom_id(relation)}", text: "Mother"
+    relation = Relative.includes(:contact).where("first_contact_id=?", @contact.id).first
+    within "#relatives" do
+      assert_text relation.contact.decorate.display_name
+      find(id: dom_id(relation)).click_link("Edit")
+      take_screenshot
+      select relations(:mother).name, from: "relative_relation_id"
+      click_on "Edit Relation"
+      take_screenshot
+      assert_no_text "Edit Relation"
+      assert_selector "##{dom_id(relation)}", text: "Mother"
+    end
   end
 
   test "can delete a relation" do
     visit page_url
-    relative = @contact.relatives.first
-    assert_text relative.contact.decorate.display_name
-    page.accept_confirm do
-      find("turbo-frame", id: dom_id(relative)).click_link("Delete")
+    relative = Relative.includes(:contact).where("first_contact_id=?", @contact.id).first
+    within "#relatives" do
+      assert_text relative.contact.decorate.display_name
+      page.accept_confirm do
+        find("turbo-frame", id: dom_id(relative)).click_link("Delete")
+      end
+      assert_no_text relative.contact.decorate.display_name
     end
-    assert_no_text relative.contact.decorate.display_name
     take_screenshot
   end
 end
