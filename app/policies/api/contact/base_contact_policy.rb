@@ -1,29 +1,30 @@
 class Api::Contact::BaseContactPolicy < ApplicationPolicy
   def index?
+    return false if record.second.archived?
     true
   end
 
   def update?
-    true
+    index?
   end
 
   def create?
-    true
+    index?
   end
 
   def destroy?
-    true
+    index?
   end
 
   def edit?
-    true
+    index?
   end
 
   def show?
-    true
+    index?
   end
 
   def new?
-    true
+    index?
   end
 end
