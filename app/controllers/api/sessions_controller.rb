@@ -1,5 +1,6 @@
 class Api::SessionsController < Devise::SessionsController
   skip_before_action :verify_signed_out_user
+  prepend_before_action :allow_params_authentication!, only: :create
   respond_to :json
   # POST /api/login
   def create
@@ -9,10 +10,11 @@ class Api::SessionsController < Devise::SessionsController
              json: { message: "JSON requests only." } and return
     end
     # auth_options should have `scope: :api_user`
-    resource = warden.authenticate!(auth_options)
-    if resource.blank?
-      render status: 401,
-             json: { success: false, message: "Access denied." } and return
+    @api_user = User.find_by(email: params[:api_user][:email].downcase)
+    if @api_user && @api_user.valid_password?(params[:api_user][:password])
+      resource = warden.authenticate!(auth_options)
+    else
+      render json: { success: false, message: "Access denied." } and return
     end
     sign_in(resource_name, resource)
     #respond_with resource, location: after_sign_in_path_for(resource) do |format|
