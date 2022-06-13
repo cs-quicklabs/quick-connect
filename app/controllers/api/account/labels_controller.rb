@@ -28,7 +28,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
       if @label.save
         format.json { render json: { success: true, data: @label, message: "Label was successfully created." } }
       else
-        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages.first.first } }
+        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages.first } }
       end
     end
   end
@@ -40,7 +40,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
       if @label.update(label_params)
         format.json { render json: { success: true, data: @label, message: "Label was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages.first.first } }
+        format.json { render json: { success: false, data: @label, message: @label.errors.full_messages.first } }
       end
     end
   end
