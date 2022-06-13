@@ -28,7 +28,6 @@ class Api::JournalPolicy < Api::BaseApiPolicy
   end
 
   def edit?
-    binding.irb
     return true if record.last.user == user
   end
 end
