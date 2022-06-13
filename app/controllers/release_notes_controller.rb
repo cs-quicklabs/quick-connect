@@ -32,6 +32,7 @@ class ReleaseNotesController < BaseController
   def update
     authorize @release_note
     respond_to do |format|
+      @release_note = UpdateReleaseNote.call(@release_note, release_note_params, params[:draft].nil?).result
       if @release_note.update(release_note_params)
         format.html { redirect_to release_notes_path, notice: "Release Note was successfully updated." }
       else
@@ -42,8 +43,7 @@ class ReleaseNotesController < BaseController
 
   def create
     authorize ReleaseNote
-
-    @release_note = AddReleaseNote.call(release_note_params, current_user).result
+    @release_note = AddReleaseNote.call(release_note_params, current_user, params[:draft].nil?).result
     respond_to do |format|
       if @release_note.errors.empty?
         format.html { redirect_to release_notes_path, notice: "Release Note was successfully created." }

@@ -2,8 +2,9 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   before_action :set_relative, only: %i[show edit update destroy]
 
   def index
-    authorize [:api, @contact, Relative]
-    @relatives = Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id)
+    authorize [@contact, Relative]
+    @relatives = Relative.includes(:contact).where("first_contact_id=?", @contact.id)
+
     render json: { success: true, data: @relatives.as_json(:include => [:contact, :first_contact]), message: "Contact relatives" }
   end
 
