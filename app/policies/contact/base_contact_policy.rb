@@ -1,29 +1,30 @@
 class Contact::BaseContactPolicy < ApplicationPolicy
   def index?
-    true
+    return false if record.first.archived?
+    return true if record.first.user == user
   end
 
   def update?
-    true
+    index?
   end
 
   def create?
-    true
+    index?
   end
 
   def destroy?
-    true
+    index?
   end
 
   def edit?
-    true
+    index?
   end
 
   def show?
-    true
+    index?
   end
 
   def new?
-    true
+    index?
   end
 end

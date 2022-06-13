@@ -1,6 +1,6 @@
 class Api::Contact::TimelineController < Api::Contact::BaseController
   def index
-    authorize [@contact, Timeline]
+    authorize [:api, @contact, :timeline]
     collection = @contact.events.order(created_at: :desc)
     @pagy, events_collection = pagy_nil_safe(params, collection.includes(:eventable, :user), items: LIMIT)
     @events = events_collection.decorate

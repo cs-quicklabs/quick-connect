@@ -2,7 +2,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   before_action :set_phone_call, only: %i[ show edit update destroy ]
 
   def index
-    authorize [@contact, PhoneCall]
+    authorize [:api, @contact, PhoneCall]
 
     @phone_call = PhoneCall.new
     @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(created_at: :desc), items: LIMIT)
@@ -10,7 +10,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   end
 
   def destroy
-    authorize [@contact, @phone_call]
+    authorize [:api, @contact, @phone_call]
 
     @phone_call.destroy
     Event.where(trackable: @phone).touch_all #fixes cache issues in activity
@@ -20,31 +20,31 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   end
 
   def edit
-    authorize [@contact, @phone_call]
+    authorize [:api, @contact, @phone_call]
     render json: { success: true, data: @phone_call, message: "" }
   end
 
   def update
-    authorize [@contact, @phone_call]
+    authorize [:api, @contact, @phone_call]
 
     respond_to do |format|
       if @phone_call.update(phone_call_params)
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors } }
+        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages } }
       end
     end
   end
 
   def create
-    authorize [@contact, PhoneCall]
+    authorize [:api, @contact, PhoneCall]
 
-    @phone_call = AddPhoneCall.call(phone_call_params, @user, @contact).result
+    @phone_call = AddPhoneCall.call(phone_call_params, @api_user, @contact).result
     respond_to do |format|
       if @phone_call.persisted?
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully created." } }
       else
-        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors } }
+        format.json { render json: { success: false, data: @phone_call, message: @phone_call.errors.full_messages } }
       end
     end
   end

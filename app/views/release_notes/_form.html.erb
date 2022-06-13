@@ -1,0 +1,17 @@
+<%= tailwind_form_with(model: release_note, id: dom_id(release_note)) do |form| %>
+  <main class="max-w-3xl px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: release_note, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: title, subtitle: subtitle %>
+    <%= form.text_field :title, "Title", autocomplete: "off" %>
+       <%= form.rich_text_area :body, "Release Note" %>
+
+    <div class="flex justify-end">
+     <%= form.submit "Save As Draft", :name => "draft", class: "btn-normal" %>
+            <%= form.submit "Submit Report", class: "btn-blue", data: {
+                                               controller: "confirmation",
+                                               "confirmation-message-value": "Are you sure you want to submit it? You won't be able to edit it after this.",
+                                               action: "confirmation#confirm",
+                                             } %>
+    </div>
+  </main>
+<% end %>

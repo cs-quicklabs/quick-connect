@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
+  include Pundit
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from Pundit::NotDefinedError, with: :record_not_found
+
   include Pagy::Backend
-  include Pundit::Authorization
   respond_to :html, :json
   protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?

@@ -1,7 +1,7 @@
 class Api::DashboardController < Api::BaseController
   def index
-    authorize :dashboard, :index?
-    @events = @user.events.includes(:eventable, :trackable).order(created_at: :desc).limit(50).decorate
+    authorize [:api, :dashboard]
+    @events = @api_user.events.includes(:eventable, :trackable).order(created_at: :desc).limit(50).decorate
     render json: { success: true, data: @events.as_json(:include => [:eventable, :trackable]), message: "Events were successfully retrieved." }
   end
 end

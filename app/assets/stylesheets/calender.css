@@ -1,0 +1,46 @@
+#ratings .calendar {
+  border-collapse: collapse;
+  width: 100%;
+}
+#ratings .calendar td, #ratings .calendar th {
+  font-family: "Lucida Grande", arial, helvetica, sans-serif;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #999;
+}
+#ratings .calendar th {
+  background: #ddd;
+  color: #666;
+  text-align: center;
+  width: 14.2857142857%;
+}
+#ratings .calendar td {
+  background: #fff;
+  color: #777;
+  text-align: center;
+  vertical-align: top;
+  font-size: 19px;
+}
+#ratings .calendar .notmonth, #ratings .calendar .notmonth a {
+  color: #ccc;
+}
+#ratings .calendar .today  {
+  background-color: #d7f2ff;
+}
+#ratings .calendar .rating  {
+  background-color: #d7f2ff;
+}
+#ratings #month {
+  margin: 0;
+  padding-bottom: 10px;
+  text-align: center;
+}
+#ratings #month a {
+  text-decoration: none;
+  padding: 0 10px;
+  color: #999;
+}
+#ratings ul {
+  font-size: 11px;
+  padding-left: 20px;
+}

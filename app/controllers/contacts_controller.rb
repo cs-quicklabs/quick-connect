@@ -6,7 +6,9 @@ class ContactsController < BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
+
     render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
+
   end
 
   def new
@@ -61,7 +63,7 @@ class ContactsController < BaseController
   def archived
     authorize :contact, :index?
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.archived.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/archived_contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 

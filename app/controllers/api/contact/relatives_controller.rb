@@ -4,11 +4,12 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   def index
     authorize [@contact, Relative]
     @relatives = Relative.includes(:contact).where("first_contact_id=?", @contact.id)
+
     render json: { success: true, data: @relatives.as_json(:include => [:contact, :first_contact]), message: "Contact relatives" }
   end
 
   def destroy
-    authorize [@contact, @relative]
+    authorize [:api, @contact, @relative]
 
     @relative.destroy
     Event.where(trackable: @relative).touch_all #fixes cache issues in activity
@@ -18,37 +19,37 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   end
 
   def new
-    authorize [@contact, Relative]
+    authorize [:api, @contact, Relative]
     @contact = Contact.find(params[:contact_id])
     render json: { success: true, data: @contact, message: "" }
   end
 
   def edit
-    authorize [@contact, @relative]
+    authorize [:api, @contact, @relative]
     render json: { success: true, data: @relative, message: "" }
   end
 
   def update
-    authorize [@contact, @relative]
+    authorize [:api, @contact, @relative]
 
     respond_to do |format|
       if @relative.update(relative_params)
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
       end
     end
   end
 
   def create
-    authorize [@contact, Relative]
+    authorize [:api, @contact, Relative]
     @relative = AddRelative.call(relative_params, current_user, @contact).result
     @relation = ""
     respond_to do |format|
       if @relative.persisted?
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully created." } }
       else
-        format.json { render json: { success: false, data: @relative, message: @relative.errors } }
+        format.json { render json: { success: false, data: @relative, message: @relative.errors.full_messages } }
       end
     end
   end
