@@ -1,6 +1,6 @@
 class UserController < BaseController
-  before_action :set_user, only: [:update_password, :update, :profile, :password, :preferences]
-  before_action :find_user, only: [:update_permission, :destroy]
+  before_action :set_user, only: [:update_password, :update, :profile, :password, :preferences, :destroy, :reset]
+  before_action :find_user, only: [:update_permission]
   before_action :build_form, only: [:update_password, :password]
 
   def index
@@ -57,6 +57,28 @@ class UserController < BaseController
 
   def preferences
     authorize @user
+  end
+
+  def reset
+    authorize @user
+    respond_to do |format|
+      if ResetUser.call(@user).result
+        format.html { redirect_to user_profile_path, notice: "Your account has been reset." }
+      else
+        format.html { redirect_to user_profile_path, notice: "Failed to reset your account." }
+      end
+    end
+  end
+
+  def destroy
+    authorize @user
+    respond_to do |format|
+      if DestroyUser.call(@user).result
+        format.html { redirect_to new_user_session_path, notice: "User has been deleted." }
+      else
+        format.html { redirect_to user_profile_path, notice: "Failed to delete user." }
+      end
+    end
   end
 
   private

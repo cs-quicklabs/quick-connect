@@ -17,7 +17,7 @@ class Contact < ApplicationRecord
                     :length => { :minimum => 10, :maximum => 15 }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
-  has_many :relatives
+  has_many :relatives, dependent: :destroy
   has_many :relations, through: :relatives
   has_many :events, as: :eventable, dependent: :destroy
 

@@ -5,7 +5,7 @@ class Api::ContactsController < Api::BaseController
 
   def index
     authorize [:api, :contact]
-    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.active.order(:first_name), items: LIMIT)
     render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
@@ -41,7 +41,7 @@ class Api::ContactsController < Api::BaseController
   def archived
     authorize [:api, @contact]
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.archived.order(archived_on: :desc), items: LIMIT)
     render json: { success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
   end
 

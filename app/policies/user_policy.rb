@@ -30,4 +30,12 @@ class UserPolicy < ApplicationPolicy
   def update_password?
     true
   end
+
+  def reset?
+    true
+  end
+
+  def destroy?
+    true
+  end
 end

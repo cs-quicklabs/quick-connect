@@ -1,0 +1,26 @@
+<div class="bg-white shadow sm:rounded-lg mt-8 bg-gray-100 mb-4">
+  <div class="px-4 py-8 sm:p-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-800">Reset Account</h3>
+    <div class="sm:flex sm:items-start sm:justify-between">
+        <div class="mt-2  text-sm text-gray-600">
+          <p>Do you wish to reset your account? This will remove all your contacts, and all of the data associated with them. Your account will not be deleted.</p>
+        </div>
+      <div class="mt-6 sm:mt-0 sm:ml-4 sm:flex-shrink-0 sm:flex  ">
+          <%= confirm_button(reset_user_path, "Reset account", "Are you sure you want to reset your account", "btn-blue whitespace-nowrap mt-6") %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- This example requires Tailwind CSS v2.0+ -->
+<div class="bg-white shadow sm:rounded-lg mt-8 bg-red-100">
+  <div class="px-4 py-5 sm:p-6">
+    <h3 class="text-lg leading-6 font-medium text-gray-800">Delete your account</h3>
+    <div class="mt-2  text-sm text-gray-600">
+      <p>Once you delete your account, you will lose all data associated with it.</p>
+    </div>
+    <div class="mt-5">
+        <%= confirm_button(destroy_user_path, "Delete account", "Are you sure you want to delete your account", "btn-normal") %>
+    </div>
+  </div>
+</div>
