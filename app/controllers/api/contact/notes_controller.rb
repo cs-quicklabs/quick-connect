@@ -31,7 +31,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
       if @note.update(note_params)
         format.json { render json: { success: true, data: @note, message: "Note was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @note, message: @note.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @note.errors.full_messages.first } }
       end
     end
   end
@@ -44,7 +44,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
       if @note.persisted?
         format.json { render json: { success: true, data: @note, message: "Note was successfully created." } }
       else
-        format.json { render json: { success: false, data: @note, message: @note.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @note.errors.full_messages.first } }
       end
     end
   end

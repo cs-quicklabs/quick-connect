@@ -78,6 +78,7 @@ Rails.application.routes.draw do
       get "/password", to: "user#password", as: "setting_password"
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
+      patch "/permission", to: "user#update_permission", as: "change_permission"
     end
     get "/search/contacts", to: "search#contacts"
     resources :dashboard
@@ -90,6 +91,7 @@ Rails.application.routes.draw do
       resources :relations, except: [:show]
       resources :labels, except: [:show]
     end
+
     resources :journals
     resources :release_notes
     resources :journal_comments

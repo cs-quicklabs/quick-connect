@@ -1,5 +1,5 @@
 class UserController < BaseController
-  before_action :set_user, only: [:update_password, :update, :profile, :password]
+  before_action :set_user, only: [:update_password, :update, :profile, :password, :preferences]
   before_action :find_user, only: [:update_permission, :destroy]
   before_action :build_form, only: [:update_password, :password]
 
@@ -19,10 +19,8 @@ class UserController < BaseController
     respond_to do |format|
       if @user.update(user_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { message: "User was updated successfully", user: @user }) }
-        format.json { render json: @user, status: 200, message: "User was updated successfully" }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/profile", locals: { user: @user }) }
-        format.json { render json: @user.errors, status: 400 }
       end
     end
   end
@@ -32,10 +30,8 @@ class UserController < BaseController
     respond_to do |format|
       if @form.submit(change_password_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/password", locals: { message: "Password was updated successfully", user: @user }) }
-        format.json { render json: @user, status: 200, message: "password was updated successfully" }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user/forms/password", locals: { user: @user }) }
-        format.json { render json: @user.errors, status: 400 }
       end
     end
   end
@@ -48,7 +44,6 @@ class UserController < BaseController
   def profile
     authorize @user
     respond_to do |format|
-      format.json { render json: @user, status: 200 }
       format.html { render :profile }
     end
   end
@@ -56,9 +51,12 @@ class UserController < BaseController
   def password
     authorize @user
     respond_to do |format|
-      format.json { render json: @user, status: 200 }
       format.html { render :password }
     end
+  end
+
+  def preferences
+    authorize @user
   end
 
   private
@@ -69,18 +67,6 @@ class UserController < BaseController
 
   def find_user
     @user ||= User.find(params[:id])
-  end
-
-  def permission
-    params.require(:user).permit(:permission)
-  end
-
-  def user_params
-    params.require(:user).permit(:first_name, :last_name, :email)
-  end
-
-  def change_password_params
-    params.require(:user).permit(:original_password, :new_password, :new_password_confirmation)
   end
 
   def build_form

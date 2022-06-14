@@ -14,9 +14,9 @@ class Api::RatingsController < Api::BaseController
     @rating.date = Date.today
     @rating.user = @api_user
     if @rating.save
-      render json: { suceess: true, data: @rating, message: "Rating was successfully created" }
+      render json: { success: true, data: @rating, message: "Rating was successfully created" }
     else
-      render json: { suceess: false, data: @rating, message: @rating.errors.full_messages.first }
+      render json: { success: false, message: @rating.errors.full_messages.first }
     end
   end
 

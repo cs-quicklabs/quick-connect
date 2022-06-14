@@ -4,12 +4,12 @@ class Api::ReleaseNotesController < Api::BaseController
   def index
     authorize [:api, :release_note]
     @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.published.order(created_at: :desc), items: LIMIT)
-    render json: { suceess: true, data: @release_notes, message: " Release Notes were successfully retrived" }
+    render json: { success: true, data: @release_notes, message: " Release Notes were successfully retrived" }
   end
 
   def show
     authorize [:api, @release_note]
-    render json: { suceess: true, data: @release_note, message: " Release Note was successfully retrived" }
+    render json: { success: true, data: @release_note, message: " Release Note was successfully retrived" }
   end
 
   private
