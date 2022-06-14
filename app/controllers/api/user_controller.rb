@@ -1,5 +1,4 @@
 class Api::UserController < Api::BaseController
-  before_action :find_user, only: [:update_permission, :destroy]
   before_action :build_form, only: [:update_password, :password]
   respond_to :json
 
@@ -41,6 +40,28 @@ class Api::UserController < Api::BaseController
   def preferences
     authorize [:api, @api_user]
     render json: { success: true, data: @api_user, message: "" }
+  end
+
+  def reset
+    authorize [:api, @api_user]
+    respond_to do |format|
+      if ResetUser.call(@api_user).result
+        format.json { render json: { success: true, message: "User was reset successfully" } }
+      else
+        format.json { render json: { success: false, message: "Failed to reset user" } }
+      end
+    end
+  end
+
+  def destroy
+    authorize [:api, @api_user]
+    respond_to do |format|
+      if DestroyUser.call(@api_user).result
+        format.json { render json: { success: true, message: "User has been deleted successfully." } }
+      else
+        format.json { render json: { success: false, message: "Failed to delete user" } }
+      end
+    end
   end
 
   private

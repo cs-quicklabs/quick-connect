@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :confirmable, :timeoutable, timeout_in: 5.days
   scope :available, -> { all_users }
   scope :for_current_account, -> { where(account: Current.account) }
+  enum permission: [:member, :admin]
   belongs_to :account
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
@@ -15,7 +16,9 @@ class User < ApplicationRecord
   has_many :release_notes, dependent: :destroy
   has_many :ratings, class_name: "Rating", foreign_key: "user_id"
   has_many :events
-
+  has_many :notes, dependent: :destroy
+  has_many :phone_calls, dependent: :destroy
+  has_many :tasks, dependent: :destroy
   before_create :add_jti
 
   def add_jti

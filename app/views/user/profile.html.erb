@@ -5,6 +5,11 @@
       <%= turbo_frame_tag "contact_form" do %>
         <%= render "user/forms/profile", user: @user %>
       <% end %>
+      <!-- This example requires Tailwind CSS v2.0+ -->
+
+        <%= render "reset", user: @user %>
+
     </main>
+    
   </div>
 </main>
