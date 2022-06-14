@@ -11,7 +11,7 @@ class Api::ContactsController < Api::BaseController
 
   def edit
     authorize [:api, @contact]
-    render json: { success: true, data: @contact, message: "" }
+    render json: { success: true, message: "" }
   end
 
   def update
@@ -19,7 +19,7 @@ class Api::ContactsController < Api::BaseController
     if @contact.update(contact_params)
       render json: { success: true, data: @contact, message: "Contact was successfully updated." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors.full_messages.first }
+      render json: { success: false, message: @contact.errors.full_messages.first }
     end
   end
 
@@ -29,7 +29,7 @@ class Api::ContactsController < Api::BaseController
     if @contact.errors.empty?
       render json: { success: true, data: @contact, message: "Contact was successfully created." }
     else
-      render json: { success: false, data: @contact, message: @contact.errors.full_messages.first }
+      render json: { success: false, message: @contact.errors.full_messages.first }
     end
   end
 

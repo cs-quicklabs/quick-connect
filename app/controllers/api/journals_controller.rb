@@ -12,27 +12,27 @@ class Api::JournalsController < Api::BaseController
     @journal.destroy
     Event.where(trackable: @journal).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { suceess: true, data: {}, message: "Journal was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Journal was successfully destroyed." } }
     end
   end
 
   def edit
     authorize [:api, @journal]
-    render json: { suceess: true, data: @journal, message: "" }
+    render json: { success: true, data: @journal, message: "" }
   end
 
   def show
     authorize [:api, @journal]
-    render json: { suceess: true, data: @journal.as_json(:include => [:comments, :body]), message: "" }
+    render json: { success: true, data: @journal.as_json(:include => [:comments, :body]), message: "" }
   end
 
   def update
     authorize [:api, @journal]
     respond_to do |format|
       if @journal.update(journal_params)
-        format.json { render json: { suceess: true, data: @journal, message: "Journal was successfully updated." } }
+        format.json { render json: { success: true, data: @journal, message: "Journal was successfully updated." } }
       else
-        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @journal.errors.full_messages.first } }
       end
     end
   end
@@ -42,9 +42,9 @@ class Api::JournalsController < Api::BaseController
     @journal = AddJournal.call(journal_params, @api_user).result
     respond_to do |format|
       if @journal.errors.empty?
-        format.json { render json: { suceess: true, data: @journal, message: "Journal was successfully created." } }
+        format.json { render json: { success: true, data: @journal, message: "Journal was successfully created." } }
       else
-        format.json { render json: { suceess: false, data: @journal, message: @journal.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @journal.errors.full_messages.first } }
       end
     end
   end

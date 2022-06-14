@@ -7,25 +7,25 @@ class Api::JournalCommentsController < Api::BaseController
     @comment = AddCommentOnJournal.call(comment_params, @journal, @api_user).result
     respond_to do |format|
       if @comment.persisted?
-        format.json { render json: { suceess: true, comment: @comment, message: "" } }
+        format.json { render json: { success: true, data: @comment, message: "" } }
       else
-        format.json { render json: { suceess: false, comment: @comment, message: @comment.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @comment.errors.full_messages.first } }
       end
     end
   end
 
   def edit
     authorize [:api, @comment]
-    render json: { suceess: true, comment: @comment, message: "" }
+    render json: { success: true, comment: @comment, message: "" }
   end
 
   def update
     authorize [:api, @comment]
     respond_to do |format|
       if @comment.update(comment_params)
-        format.json { render json: { suceess: true, data: @comment, message: "Comment was successfully updated" } }
+        format.json { render json: { success: true, data: @comment, message: "Comment was successfully updated" } }
       else
-        format.json { render json: { suceess: false, data: @comment, message: @comment.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @comment.errors.full_messages.first } }
       end
     end
   end
@@ -34,7 +34,7 @@ class Api::JournalCommentsController < Api::BaseController
     authorize [:api, @comment]
     @comment.destroy
     respond_to do |format|
-      format.json { render json: { suceess: true, data: @comment, message: "Comment was successfully deleted" } }
+      format.json { render json: { success: true, data: @comment, message: "Comment was successfully deleted" } }
     end
   end
 

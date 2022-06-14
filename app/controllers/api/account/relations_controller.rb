@@ -26,7 +26,7 @@ class Api::Account::RelationsController < Api::Account::BaseController
       if @relation.save
         format.json { render json: { success: true, data: @relation, message: "Relation was successfully created." } }
       else
-        format.json { render json: { success: false, data: @relation, message: @relation.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @relation.errors.full_messages.first } }
       end
     end
   end
@@ -38,7 +38,7 @@ class Api::Account::RelationsController < Api::Account::BaseController
       if @relation.update(relation_params)
         format.json { render json: { success: true, data: @relation, message: "Relation was successfully updated." } }
       else
-        format.json { render json: { success: false, data: @relation, message: @relation.errors.full_messages.first } }
+        format.json { render json: { success: false, message: @relation.errors.full_messages.first } }
       end
     end
   end
