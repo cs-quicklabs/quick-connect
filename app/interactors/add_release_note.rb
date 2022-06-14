@@ -8,6 +8,7 @@ class AddReleaseNote < Patterns::Service
   def call
     begin
       add_release_note
+
       add_event
     rescue
       release_note
@@ -25,7 +26,7 @@ class AddReleaseNote < Patterns::Service
   end
 
   def add_event
-    Event.create(user: actor, action: "release_note", action_for_context: "added a release note for contact", trackable: release_note)
+    actor.events.create(user: actor, action: "release_note", action_for_context: "added a release note for contact", trackable: release_note) if published
   end
 
   attr_reader :release_note, :actor, :published
