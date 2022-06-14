@@ -10,11 +10,10 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
-  has_many :events, dependent: :destroy
+  has_many :events, as: :eventable, dependent: :destroy
   has_many :journals
-
+  has_many :release_notes, dependent: :destroy
   has_many :ratings, class_name: "Rating", foreign_key: "user_id"
-
 
   before_create :add_jti
 
