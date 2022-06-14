@@ -108,7 +108,6 @@ Rails.application.routes.draw do
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end
-      resources :conversations, module: "contact"
       resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"
