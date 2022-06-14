@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :journals
   has_many :release_notes, dependent: :destroy
   has_many :ratings, class_name: "Rating", foreign_key: "user_id"
+  has_many :events
 
   before_create :add_jti
 
