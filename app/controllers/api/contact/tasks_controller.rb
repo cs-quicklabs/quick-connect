@@ -14,7 +14,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
     @task.destroy
     Event.where(trackable: @task).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Task was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Task was successfully deleted." } }
     end
   end
 

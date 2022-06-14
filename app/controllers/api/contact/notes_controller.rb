@@ -15,7 +15,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
     @note.destroy
     Event.where(trackable: @note).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Note was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Note was successfully deleted." } }
     end
   end
 

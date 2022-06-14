@@ -14,7 +14,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
     @relative.destroy
     Event.where(trackable: @relative).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Relative was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Relative was successfully deleted." } }
     end
   end
 

@@ -12,7 +12,7 @@ class Api::JournalsController < Api::BaseController
     @journal.destroy
     Event.where(trackable: @journal).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Journal was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Journal was successfully deleted." } }
     end
   end
 

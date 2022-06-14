@@ -15,7 +15,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
     @phone_call.destroy
     Event.where(trackable: @phone).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Phone call was successfully destroyed." } }
+      format.json { render json: { success: true, data: {}, message: "Phone call was successfully deleted." } }
     end
   end
 
