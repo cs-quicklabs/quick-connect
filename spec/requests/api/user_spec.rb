@@ -111,5 +111,41 @@ RSpec.describe "api/user", type: :request do
         end
       end
     end
+    path "/{account_id}/api/reset" do
+      parameter name: "account_id", in: :path, type: :string, description: "account_id"
+      get("preferences user") do
+        security [Bearer: {}]
+        produces "application/json"
+        consumes "application/json"
+        response(200, "successful") do
+          after do |example|
+            example.metadata[:response][:content] = {
+              "application/json" => {
+                example: JSON.parse(response.body, symbolize_names: true),
+              },
+            }
+          end
+          run_test!
+        end
+      end
+    end
+    path "/{account_id}/api/destroy" do
+      parameter name: "account_id", in: :path, type: :string, description: "account_id"
+      get("preferences user") do
+        security [Bearer: {}]
+        produces "application/json"
+        consumes "application/json"
+        response(200, "successful") do
+          after do |example|
+            example.metadata[:response][:content] = {
+              "application/json" => {
+                example: JSON.parse(response.body, symbolize_names: true),
+              },
+            }
+          end
+          run_test!
+        end
+      end
+    end
   end
 end

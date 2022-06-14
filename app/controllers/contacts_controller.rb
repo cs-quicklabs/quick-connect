@@ -5,10 +5,9 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
-    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.active.order(:first_name), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, @current_user.contacts.for_current_account.active.order(:first_name), items: LIMIT)
 
     render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
-
   end
 
   def new
@@ -49,21 +48,10 @@ class ContactsController < BaseController
     authorize @contact
   end
 
-  def destroy
-    authorize :contact
-    respond_to do |format|
-      if DestroyContact.call(@contact).result
-        format.turbo_stream { redirect_to deactivated_contact_path, status: 303, notice: "contact has been deleted." }
-      else
-        format.turbo_stream { redirect_to deactivated_contact_path, status: 303, alert: "Failed to delete contact." }
-      end
-    end
-  end
-
   def archived
     authorize :contact, :index?
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.for_current_account.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, @current_user.contacts.archived.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/archived_contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 

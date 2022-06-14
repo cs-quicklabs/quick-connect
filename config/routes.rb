@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
+  get "/reset" => "user#reset", as: "reset_user"
+  get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
     resources :notes, module: "contact"
     resources :phone_calls, module: "contact"
@@ -73,6 +75,8 @@ Rails.application.routes.draw do
       post "/users", to: "registrations#create", as: :new_user_registration
     end
     resources :user
+    get "/reset" => "user#reset", as: "reset_user"
+    get "/destroy" => "user#destroy", as: "destroy_user"
     scope "/settings" do
       get "/profile", to: "user#profile", as: "user_profile"
       get "/password", to: "user#password", as: "setting_password"

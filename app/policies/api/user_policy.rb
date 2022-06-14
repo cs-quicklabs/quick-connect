@@ -34,4 +34,12 @@ class Api::UserPolicy < Api::BaseApiPolicy
   def update_permission?
     true
   end
+
+  def reset?
+    true
+  end
+
+  def destroy?
+    true
+  end
 end
