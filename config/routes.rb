@@ -96,7 +96,6 @@ Rails.application.routes.draw do
     namespace :account do
       resources :relations, except: [:show]
       resources :labels, except: [:show]
-      resources :fields, except: [:show]
     end
 
     resources :journals
