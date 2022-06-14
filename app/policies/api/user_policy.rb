@@ -30,4 +30,8 @@ class Api::UserPolicy < Api::BaseApiPolicy
   def update_password?
     true
   end
+
+  def update_permission?
+    true
+  end
 end
