@@ -2,25 +2,19 @@ class Api::Account::LabelsController < Api::Account::BaseController
   before_action :set_label, only: %i[ show edit update destroy ]
 
   def index
-    authorize :account
+    authorize [:api, :account]
 
     @labels = Label.for_current_account.order(:name).order(created_at: :desc)
     render json: { success: true, data: @labels, message: "Labels were successfully retrieved." }
   end
 
-  def new
-    authorize :account
-    @label = Label.new
-    render json: { success: true, data: @label, message: "" }
-  end
-
   def edit
-    authorize :account
+    authorize [:api, :account]
     render json: { success: true, data: @label, message: "" }
   end
 
   def create
-    authorize :account
+    authorize [:api, :account]
 
     @label = Label.new(label_params)
 
@@ -34,7 +28,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
   end
 
   def update
-    authorize :account
+    authorize [:api, :account]
 
     respond_to do |format|
       if @label.update(label_params)
@@ -46,7 +40,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
   end
 
   def destroy
-    authorize :account
+    authorize [:api, :account]
 
     @label.destroy
     respond_to do |format|
@@ -61,6 +55,6 @@ class Api::Account::LabelsController < Api::Account::BaseController
   end
 
   def label_params
-    params.require(:api_label).permit(:account_id, :color, :name)
+    params.require(:api_label).permit(:color, :name)
   end
 end

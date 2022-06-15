@@ -13,7 +13,7 @@ class Contact::ConversationsController < Contact::BaseController
     authorize [@contact, @conversation]
 
     @conversation.destroy
-    Event.where(trackable: @phone).touch_all #fixes cache issues in activity
+    Event.where(trackable: @conversation).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@conversation) }
     end
@@ -62,6 +62,6 @@ class Contact::ConversationsController < Contact::BaseController
   end
 
   def conversation_params
-    params.require(:conversation).permit(:body)
+    params.require(:conversation).permit(:body, :date, :field_id)
   end
 end

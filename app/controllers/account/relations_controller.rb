@@ -55,6 +55,6 @@ class Account::RelationsController < Account::BaseController
   end
 
   def relation_params
-    params.require(:relation).permit(:name, :account_id)
+    params.require(:relation).permit(:name)
   end
 end

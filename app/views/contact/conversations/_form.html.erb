@@ -1,0 +1,22 @@
+<%= tailwind_form_with(model: conversation, id: dom_id(conversation), url: contact_conversations_path) do |form| %>
+  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: conversation, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Add New Conversation", subtitle: "A Conversation can be added to a contact which can help you remember important calls. " %>
+   <div>
+    <label for="date" class="block text-sm font-medium text-gray-700">
+        Select Date
+      </label>
+      <%= form.date_field :date, class: "form-text-field ", value: Date.today.to_formatted_s(:db) %>
+      </div>
+      <div>
+     <label for="date" class="block text-sm font-medium text-gray-700">
+      How did you communicate
+      </label>
+      <%= form.collection_select("field_id", Field.order(:name), :id,:name,  { :prompt => "Select Contact Field Type" }, :class => "form-text-field mt-1")  %>
+    </div>
+     <%= form.text_area :body, "Conversation", class: "form-text-field h-24" %>
+    <div class="flex justify-end">
+      <%= form.submit "Add Conversation", class: "btn-blue" %>
+    </div>
+  </main>
+<% end %>

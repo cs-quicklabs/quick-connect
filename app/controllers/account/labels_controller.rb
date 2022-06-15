@@ -57,6 +57,6 @@ class Account::LabelsController < Account::BaseController
   end
 
   def label_params
-    params.require(:label).permit(:account_id, :color, :name, :user_id)
+    params.require(:label).permit(:color, :name)
   end
 end
