@@ -59,9 +59,13 @@ class ApplicationController < ActionController::Base
 
   def show_referenced_alert(exception)
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace("modal", partial: "shared/modal", locals: { title: "Unable to Delete Record", message: "This record has been associated with other records in system therefore deleting this might result in unexpected behavior. If you want to delete this please make sure all assosications have been removed first.", main_button_visible: false })
-      }
+      if http_request?
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace("modal", partial: "shared/modal", locals: { title: "Unable to Delete Record", message: "This record has been associated with other records in system therefore deleting this might result in unexpected behavior. If you want to delete this please make sure all assosications have been removed first.", main_button_visible: false })
+        }
+      else
+        format.json { render json: { success: false, message: "This record has been associated with other records in system therefore deleting this might result in unexpected behavior. If you want to delete this please make sure all assosications have been removed first." } }
+      end
     end
   end
 
