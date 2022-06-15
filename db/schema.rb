@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044858) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -94,6 +94,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044858) do
     t.bigint "label_id", null: false
   end
 
+  create_table "conversations", force: :cascade do |t|
+    t.text "body"
+    t.bigint "contact_id"
+    t.bigint "user_id"
+    t.bigint "field_id"
+    t.date "date", default: -> { "CURRENT_DATE" }, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_conversations_on_contact_id"
+    t.index ["field_id"], name: "index_conversations_on_field_id"
+    t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.string "action"
@@ -106,6 +119,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044858) do
     t.string "eventable_type"
     t.bigint "account_id", null: false
     t.index ["account_id"], name: "index_events_on_account_id"
+  end
+
+  create_table "fields", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "user_id", null: false
+    t.string "name", null: false
+    t.string "protocol"
+    t.string "icon"
+    t.boolean "type", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_fields_on_account_id"
+    t.index ["user_id"], name: "index_fields_on_user_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -324,7 +350,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044858) do
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "relations"
   add_foreign_key "contacts", "users"
+  add_foreign_key "conversations", "contacts"
+  add_foreign_key "conversations", "fields"
+  add_foreign_key "conversations", "users"
   add_foreign_key "events", "accounts"
+  add_foreign_key "fields", "accounts"
+  add_foreign_key "fields", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
