@@ -6,7 +6,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
 
     @conversation = Conversation.new
     @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(created_at: :desc), items: LIMIT)
-    render json: { success: true, data: @conversations, message: "Conversations fetched successfully" }
+    render json: { success: true, data: @conversations.as_json(:include => :field), message: "Conversations fetched successfully" }
   end
 
   def destroy

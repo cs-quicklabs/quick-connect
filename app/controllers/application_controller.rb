@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken,
-  with: :token_verification
+              with: :token_verification
   rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
@@ -136,6 +136,10 @@ class ApplicationController < ActionController::Base
 
   def json_request?
     request.format.json?
+  end
+
+  def http_request?
+    !request.format.json?
   end
 
   # Use api_user Devise scope for JSON access
