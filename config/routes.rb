@@ -25,7 +25,6 @@ Rails.application.routes.draw do
     collection do
       get :form
     end
-    resources :conversations, module: "contact"
     resources :timeline, module: "contact"
   end
   resources :journals
@@ -50,7 +49,6 @@ Rails.application.routes.draw do
   namespace :account do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
-    resources :fields, except: [:show]
   end
   namespace :purchase do
     resources :checkouts
@@ -96,7 +94,6 @@ Rails.application.routes.draw do
     namespace :account do
       resources :relations, except: [:show]
       resources :labels, except: [:show]
-      resources :fields, except: [:show]
     end
 
     resources :journals
@@ -109,7 +106,6 @@ Rails.application.routes.draw do
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end
-      resources :conversations, module: "contact"
       resources :profile, module: "contact"
       resources :relatives, module: "contact"
       resources :about, module: "contact"

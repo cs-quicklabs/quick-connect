@@ -14,7 +14,8 @@ class Contact < ApplicationRecord
   scope :available, -> { where(archived: false) }
   validates :phone, :presence => true,
                     :numericality => true,
-                    :length => { :minimum => 10, :maximum => 15 }
+                    :length => { :minimum => 10, :maximum => 12 }
+  validates :email, :presence => true, format: { with: URI::MailTo::EMAIL_REGEXP }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
