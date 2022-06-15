@@ -1,5 +1,6 @@
 class Api::SessionsController < Devise::SessionsController
   skip_before_action :verify_signed_out_user
+  prepend_before_action :allow_params_authentication!, only: :create
 
   respond_to :json
   # POST /api/login
