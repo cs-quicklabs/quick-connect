@@ -795,26 +795,6 @@
           "required": true
         }
       ],
-      "get": {
-        "summary": "show conversation",
-        "security": [
-          {
-            "Bearer": {
-            }
-          }
-        ],
-        "produces": [
-          "application/json"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "responses": {
-          "200": {
-            "description": "successful"
-          }
-        }
-      },
       "patch": {
         "summary": "update conversation",
         "security": [
