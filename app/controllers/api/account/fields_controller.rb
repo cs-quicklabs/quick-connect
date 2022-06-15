@@ -14,7 +14,7 @@ class Api::Account::FieldsController < Api::Account::BaseController
   end
 
   def create
-    authorize :account
+    authorize [:api, :account]
 
     @field = Field.new(field_params)
 
@@ -28,7 +28,7 @@ class Api::Account::FieldsController < Api::Account::BaseController
   end
 
   def update
-    authorize :account
+    authorize [:api, :account]
 
     respond_to do |format|
       if @field.update(field_params)
@@ -40,15 +40,10 @@ class Api::Account::FieldsController < Api::Account::BaseController
   end
 
   def destroy
-    authorize :account
-
+    authorize [:api, :account]
     @field.destroy
     respond_to do |format|
-      if @field.destroyed?
-        format.json { render json: { success: true, data: {}, message: "Contact Field Type was successfully deleted." } }
-      else
-        format.json { render json: { success: false, message: @field.errors.full_messages.first } }
-      end
+      format.json { render json: { success: true, data: {}, message: "Contact Field Type was successfully deleted." } }
     end
   end
 
