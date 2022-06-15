@@ -44,7 +44,11 @@ class Api::Account::FieldsController < Api::Account::BaseController
 
     @field.destroy
     respond_to do |format|
-      format.json { render json: { success: true, data: {}, message: "Contact Field Type was successfully deleted." } }
+      if @field.destroyed?
+        format.json { render json: { success: true, data: {}, message: "Contact Field Type was successfully deleted." } }
+      else
+        format.json { render json: { success: false, message: @field.errors.full_messages.first } }
+      end
     end
   end
 

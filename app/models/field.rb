@@ -3,5 +3,5 @@ class Field < ApplicationRecord
   validates_presence_of :name, :case_sensitive => false
   validates_uniqueness_to_tenant :name, :case_sensitive => false
   scope :for_current_account, -> { where(account: Current.account) }
-  has_many :conversations, dependent: :destroy
+  has_many :conversations, dependent: :restrict_with_exception
 end
