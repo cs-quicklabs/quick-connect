@@ -18,7 +18,7 @@ class JournalsController < BaseController
     @journal.destroy
     Event.where(trackable: @journal).touch_all #fixes cache issues in activity
     respond_to do |format|
-      format.html { redirect_to journals_path, notice: "Journal was successfully removed.", status: :see_other }
+      format.html { redirect_to journals_path, notice: "Journal was successfully deleted.", status: :see_other }
     end
   end
 

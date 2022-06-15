@@ -13,7 +13,7 @@ class Contact::PhoneCallsController < Contact::BaseController
     authorize [@contact, @phone_call]
 
     @phone_call.destroy
-    Event.where(trackable: @phone).touch_all #fixes cache issues in activity
+    Event.where(trackable: @phone_call).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@phone_call) }
     end

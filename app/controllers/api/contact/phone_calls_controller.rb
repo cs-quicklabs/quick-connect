@@ -13,7 +13,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
     authorize [:api, @contact, @phone_call]
 
     @phone_call.destroy
-    Event.where(trackable: @phone).touch_all #fixes cache issues in activity
+    Event.where(trackable: @phone_call).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Phone call was successfully deleted." } }
     end

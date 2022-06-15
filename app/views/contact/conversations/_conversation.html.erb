@@ -1,0 +1,28 @@
+  <li>
+<%= turbo_frame_tag dom_id(conversation) do %>
+    <div class="flex mt-6 space-x-3">
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+      <div>
+        <div class="text-sm">
+          <a href="#" class="font-medium text-gray-900"><%= conversation.user.decorate.display_name %> </a>
+          <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-xs font-medium bg-gray-200 text-gray-800"><%= conversation.field.name.upcase_first%></span>
+        </div>
+        <div class="mt-1 text-sm text-gray-700 ">
+          <p class="whitespace-pre-wrap"><%= conversation.body.upcase_first %></p>
+        </div>
+        <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_date(conversation.date) %></span>
+          <% if policy([@contact, conversation]).edit? %>
+            <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
+          <% end %>
+          <% if policy([@contact, conversation]).destroy? %>
+            <%= delete_button(contact_conversation_path(@contact, conversation)) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+  </li>

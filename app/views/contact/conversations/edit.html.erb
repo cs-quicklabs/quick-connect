@@ -1,0 +1,26 @@
+<%= turbo_frame_tag dom_id(@conversation) do %>
+  <%= tailwind_form_with(model: @conversation, id: dom_id(@conversation), url: contact_conversation_path(@contact, @conversation)) do |form| %>
+    <main class="w-full mx-auto space-y-2">
+      <%= render "shared/form_messages", resource: @conversation, message: local_assigns[:message] %>
+      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+        <%= "Edit Conversation" %>
+      </label>
+       <div>
+    <label for="date" class="block text-sm font-medium text-gray-700">
+        Select Date
+      </label>
+      <%= form.date_field :date, class: "form-text-field ", value: Date.today.to_formatted_s(:db) %>
+      </div>
+      <div>
+     <label for="date" class="block text-sm font-medium text-gray-700">
+      How did you communicate
+      </label>
+      <%= form.collection_select("field_id", Field.order(:name), :id,:name,  { :prompt => "Select Contact Field Type" }, :class => "form-text-field mt-1")  %>
+    </div>
+      <%= form.text_area :body, "Conversation", class: "resize-y form-text-field h-24" %>
+      <div class="flex justify-end">
+        <%= form.submit "Edit Conversation", class: "btn-blue" %>
+      </div>
+    </main>
+  <% end %>
+<% end %>

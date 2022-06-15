@@ -12,7 +12,7 @@ class ReleaseNotesController < BaseController
     authorize @release_note
     @release_note.destroy
     respond_to do |format|
-      format.html { redirect_to release_notes_path, notice: "Release Note was successfully removed.", status: :see_other }
+      format.html { redirect_to release_notes_path, notice: "Release Note was successfully deleted.", status: :see_other }
     end
   end
 

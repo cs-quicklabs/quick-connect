@@ -3,7 +3,7 @@ class Account::RelationsController < Account::BaseController
 
   def index
     authorize :account
-    @relations = Relation.all.order(:name).order(created_at: :desc)
+    @relations = Relation.for_current_account.order(:name).order(created_at: :desc)
     @relation = Relation.new
   end
 
@@ -55,6 +55,6 @@ class Account::RelationsController < Account::BaseController
   end
 
   def relation_params
-    params.require(:relation).permit(:name, :account_id)
+    params.require(:relation).permit(:name)
   end
 end
