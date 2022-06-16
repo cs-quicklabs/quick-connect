@@ -45,20 +45,12 @@ class SignUpForm
   def promote_errors(child)
     child.errors.each do |error|
       errors.errors.append(error) if error.attribute == :email and email_error_non_exisisting?
-      errors.errors.append(error) if error.attribute == :Password and password_error_non_exisisting?
     end
   end
 
   def email_error_non_exisisting?
     errors.errors.each do |error|
       return false if error.attribute == :email
-    end
-    true
-  end
-
-  def password_error_non_exisisting?
-    errors.errors.each do |error|
-      return false if error.attribute == :Password
     end
     true
   end
