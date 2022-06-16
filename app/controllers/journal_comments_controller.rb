@@ -4,13 +4,12 @@ class JournalCommentsController < BaseController
 
   def create
     authorize @journal, :comment?
-
-    @comment = AddCommentOnJournal.call(comment_params, @journal, @user).result
+    @comment = AddCommentOnJournal.call(comment_params, @journal, @current_user).result
     respond_to do |format|
       if @comment.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.append(:comments, partial: "journal_comments/comment", locals: { comment: @comment }) +
-                               turbo_stream.replace(:add, partial: "journal_comments/comment", locals: { journal: @journal, comment: Comment.new })
+                               turbo_stream.replace(:add, partial: "journal_comments/add", locals: { journal: @journal, comment: Comment.new })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(:add, partial: "journal_comments/comment", locals: { journal: @journal, comment: @comment }) }
