@@ -96,6 +96,6 @@ class UserController < BaseController
   end
 
   def change_password_params
-    params.require(:api_user).permit(:original_password, :new_password, :new_password_confirmation)
+    params.require(:user).permit(:original_password, :new_password, :new_password_confirmation)
   end
 end
