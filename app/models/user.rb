@@ -9,7 +9,7 @@ class User < ApplicationRecord
   enum permission: [:member, :admin]
   belongs_to :account
   validates :email, uniqueness: true
-  validates_presence_of :first_name, :last_name, :email
+  validates_presence_of :first_name, :last_name, :email, :password, :password_confirmation
   has_many :contacts, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
   has_many :journals
