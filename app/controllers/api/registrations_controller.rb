@@ -8,6 +8,7 @@ class Api::RegistrationsController < Devise::RegistrationsController
 
   def create
     resource = @form.submit(registration_params)
+
     if resource.nil? or !resource.persisted?
       show_errors
     else

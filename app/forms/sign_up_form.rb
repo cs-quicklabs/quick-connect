@@ -7,6 +7,7 @@ class SignUpForm
   validates_presence_of :first_name, :last_name, :email, :password, :password_confirmation
   validates :password, not_pwned: true
   validates_length_of :password, minimum: 6
+  validates_confirmation_of :password
   validate :validate_children
 
   def initialize(*)
