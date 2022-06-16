@@ -1,20 +1,20 @@
 <%= turbo_frame_tag dom_id(comment) do %>
   <li class="py-1  w-full">
     <div class=" w-full ">
-          <p class="whitespace-pre-wrap text-sm "><%= auto_link_urls_in_text(comment.title.upcase_first) %></p>
-  </div>
-            <div class="flex  align-right space-x-2">
-              <div class=" mt-2 whitespace-nowrap  text-sm ">
-             <span class="text-gray-500 text-sm"><%= display_created_at(comment) %></span>
-             </div>
-             </div>
-              <div class="w-full  justify-end">
-              <div class="text-right  whitespace-nowrap  text-sm font-medium">
-             <% if policy(comment).edit? %>
-                <%= edit_button(edit_journal_comment_path(comment)) %>
-              <%= delete_button(journal_comment_path(comment)) %>
-              <% end %>
-              </div>
-           </div>
+      <p class="whitespace-pre-wrap text-sm "><%= auto_link_urls_in_text(comment.title.upcase_first) %></p>
+    </div>
+    <div class="flex  align-right space-x-2">
+      <div class=" mt-2 whitespace-nowrap  text-sm ">
+        <span class="text-gray-500 text-sm"><%= display_created_at(comment) %></span>
+      </div>
+    </div>
+    <div class="w-full  justify-end">
+      <div class="text-right  whitespace-nowrap  text-sm font-medium">
+        <% if policy(comment).edit? %>
+          <%= edit_button(edit_journal_comment_path(comment)) %>
+          <%= delete_button(journal_comment_path(comment)) %>
+        <% end %>
+      </div>
+    </div>
   </li>
 <% end %>

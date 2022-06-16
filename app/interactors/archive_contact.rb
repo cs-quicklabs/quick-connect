@@ -5,9 +5,9 @@ class ArchiveContact < Patterns::Service
   end
 
   def call
-    archive
-    add_event
     begin
+      archive
+      add_event
     rescue
       contact
     end
