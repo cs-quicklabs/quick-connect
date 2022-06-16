@@ -14,10 +14,10 @@ class Api::SessionsController < Devise::SessionsController
     # auth_options should have `scope: :api_user`
     @api_user = User.find_by(email: params[:api_user][:email].downcase)
 
-    if !@api_user.active_for_authentication?
-      render json: { success: false, message: "You have to confirm your email address before continuing." } and return
-    end
     if @api_user && @api_user.valid_password?(params[:api_user][:password])
+      if !@api_user.active_for_authentication?
+        render json: { success: false, message: "You have to confirm your email address before continuing." } and return
+      end
       resource = warden.authenticate!(auth_options)
     else
       render json: { success: false, message: "Email or password is incorrect" } and return
