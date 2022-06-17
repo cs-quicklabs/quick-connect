@@ -15,7 +15,7 @@ class Api::SessionsController < Devise::SessionsController
     @api_user = User.find_by(email: params[:api_user][:email].downcase)
 
     if @api_user && @api_user.valid_password?(params[:api_user][:password])
-      if !@api_user.active_for_authentication?
+      if !@api_user.confirmed?
         render json: { success: false, message: "You have to confirm your email address before continuing." } and return
       end
       resource = warden.authenticate!(auth_options)
@@ -27,7 +27,7 @@ class Api::SessionsController < Devise::SessionsController
     respond_with resource do |format|
       format.json {
         render json: { success: true,
-                       data: { jwt: current_token, user: resource.as_json(only: [:id, :email]) },
+                       data: { jwt: current_token, user: resource.as_json(only: [:account_id, :email]) },
                        message: "Authentication successful" }
       }
     end

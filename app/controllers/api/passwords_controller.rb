@@ -15,7 +15,7 @@ class Api::PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     if resource.errors.empty?
-      if resource.active_for_authentication?
+      if resource.confirmed?
         render json: { success: true, message: "Password has been reset successfully." }
       else
         render json: { success: true, message: "Password has been reset successfully but You have to confirm your email address before continuing. " }
