@@ -27,7 +27,7 @@ class Api::SessionsController < Devise::SessionsController
     respond_with resource do |format|
       format.json {
         render json: { success: true,
-                       data: { jwt: current_token, user: resource.as_json(only: [:id, :email]) },
+                       data: { jwt: current_token, user: resource.as_json(only: [:account_id, :email]) },
                        message: "Authentication successful" }
       }
     end
