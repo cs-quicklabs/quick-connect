@@ -5,7 +5,7 @@ class SignUpForm
   attr_accessor :first_name, :last_name, :email, :password, :password_confirmation, :account, :user
 
   validates_presence_of :first_name, :last_name, :email, :password, :password_confirmation
-  validates :password, not_pwned: true
+  validates :password, not_pwned: false
   validates_length_of :password, minimum: 6
   validates_confirmation_of :password
   validate :validate_children
