@@ -13,10 +13,9 @@
       </a>
     </p>
   </div>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
- <%= render "devise/shared/error_messages", resource: resource %>
-   <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
       <div class="px-4 py-8 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
         <div>
           <label for="email" class="block text-sm font-medium text-gray-700">
@@ -30,8 +29,9 @@
           <label for="password" class="block text-sm font-medium text-gray-700">
             Password
           </label>
-          <div class="mt-1">
+          <div class="mt-1 flex">
             <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            <i class="far fa-eye"  id="togglePassword" style="margin-left:-30px; margin-top:10px" ></i>
           </div>
         </div>
         <% if devise_mapping.rememberable? %>
@@ -63,3 +63,18 @@
         <% end %>
       <% end %>
     </div>
+    <script>
+      const togglePassword = document.querySelector('#togglePassword');
+       const password = document.querySelector('#user_password');
+      
+      
+       togglePassword.addEventListener('click', function (e) {
+      
+         // toggle the type attribute
+         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+         password.setAttribute('type', type);
+      
+         // toggle the eye slash icon
+         this.classList.toggle('fa-eye-slash');
+      });
+    </script>

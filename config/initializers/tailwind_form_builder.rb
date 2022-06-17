@@ -49,7 +49,7 @@ class TailwindFormBuilder < ActionView::Helpers::FormBuilder
     merged_opts = default_opts.merge(opts)
     @template.content_tag :div do
       label(method, title, class: "block text-sm font-medium text-gray-700") +
-      (@template.content_tag :div, class: "mt-1" do
+      (@template.content_tag :div, class: "mt-1 flex" do
         super(method, merged_opts)
       end)
     end
