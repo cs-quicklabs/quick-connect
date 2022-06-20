@@ -98,4 +98,8 @@ class UserController < BaseController
   def change_password_params
     params.require(:user).permit(:original_password, :new_password, :new_password_confirmation)
   end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name)
+  end
 end
