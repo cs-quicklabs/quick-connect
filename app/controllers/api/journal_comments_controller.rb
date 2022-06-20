@@ -7,7 +7,7 @@ class Api::JournalCommentsController < Api::BaseController
     @comment = AddCommentOnJournal.call(comment_params, @journal, @api_user).result
     respond_to do |format|
       if @comment.persisted?
-        format.json { render json: { success: true, data: @comment, message: "" } }
+        format.json { render json: { success: true, data: @comment, message: "Comments successfully retrieved" } }
       else
         format.json { render json: { success: false, message: @comment.errors.full_messages.first } }
       end
