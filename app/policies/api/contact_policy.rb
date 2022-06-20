@@ -34,4 +34,8 @@ class Api::ContactPolicy < Api::BaseApiPolicy
   def edit?
     return true if !record.last.archived
   end
+
+  def archived?
+    true
+  end
 end

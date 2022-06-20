@@ -39,7 +39,7 @@ class Api::ContactsController < Api::BaseController
   end
 
   def archived
-    authorize [:api, @contact]
+    authorize [:api, :contact]
 
     @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.archived.order(archived_on: :desc), items: LIMIT)
     render json: { success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
