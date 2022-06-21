@@ -12,7 +12,7 @@ class Api::CommentPolicy < Api::BaseApiPolicy
   end
 
   def create?
-    return true
+    return true if record.last.user = user
   end
 
   def index?
