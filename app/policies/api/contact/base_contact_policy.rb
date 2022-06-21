@@ -5,7 +5,7 @@ class Api::Contact::BaseContactPolicy < ApplicationPolicy
   end
 
   def update?
-    index?
+    edit?
   end
 
   def create?
@@ -21,7 +21,7 @@ class Api::Contact::BaseContactPolicy < ApplicationPolicy
   end
 
   def show?
-    index?
+    edit?
   end
 
   def new?
