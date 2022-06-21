@@ -9,6 +9,10 @@ class User < ApplicationRecord
   enum permission: [:member, :admin]
   belongs_to :account
   validates :email, uniqueness: true
+  validates :first_name, format: { with: /\A[a-zA-Z]+\z/,
+                                   message: " allows only letters" }
+  validates :last_name, format: { with: /\A[a-zA-Z]+\z/,
+                                  message: " allows only letters" }
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
@@ -20,6 +24,7 @@ class User < ApplicationRecord
   has_many :phone_calls, dependent: :destroy
   has_many :tasks, dependent: :destroy
   before_create :add_jti
+  has_many :comments
 
   def add_jti
     self.jti ||= SecureRandom.uuid
