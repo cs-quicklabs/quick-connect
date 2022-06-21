@@ -1,6 +1,6 @@
 class Api::CommentPolicy < Api::BaseApiPolicy
   def edit?
-    return true if record.last.user = user
+    return true
   end
 
   def update?

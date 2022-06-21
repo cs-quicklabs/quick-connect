@@ -21,6 +21,7 @@ class Api::JournalCommentsController < Api::BaseController
 
   def update
     authorize [:api, @comment]
+
     respond_to do |format|
       if @comment.update(comment_params)
         format.json { render json: { success: true, data: @comment, message: "Comment was successfully updated" } }
