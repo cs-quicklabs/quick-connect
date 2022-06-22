@@ -1,15 +1,15 @@
-<%= turbo_frame_tag "sign_up_form", target: "_top" do %>
+  <%= turbo_frame_tag "sign_up_form", target: "_top" do %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md",  data-controller="toggle">
+    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md  ",  data-controller="toggle">
       <%= render "devise/shared/error_messages", resource: resource %>
       <div class="px-4 py-8 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
-        <div class=flex>
+        <div class="flex">
           <div>
             <label for="first_name" class="block text-sm font-medium text-gray-700">
               First Name
             </label>
             <div class="mt-1">
-              <%= f.text_field :first_name, autofocus: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_field :first_name, autofocus: true,autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
             </div>
           </div>
           <div class="ml-2">
@@ -17,7 +17,7 @@
               Last Name
             </label>
             <div class="mt-1">
-              <%= f.text_field :last_name, autofocus: true, class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "off",class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
             Email Address
           </label>
           <div class="mt-1">
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
         </div>
         <div>
@@ -34,52 +34,57 @@
             Password
           </label>
           <em>(6 characters minimum)</em>
-          <div class="mt-1 material_icons col-md-6 flex" data-controller="password-toggle">
-            <%= f.password_field :password, autocomplete: "password",  class: " inline-flex appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            <i class="far fa-eye fa-eye-slash"  id="togglePassword" style="margin-left:-30px; margin-top:10px" ></i>
+          <div class="mt-1 flex w-full" >
+            <div class="mt-1 flex-auto w-full" >
+              <%= f.password_field :password, autocomplete: "off",  class: " appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            </div>
+            <i class="far fa-eye fa-eye-slash "  id="togglePassword" style="margin-left:-30px; margin-top:10px" ></i>
           </div>
         </div>
         <div>
           <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
             Password Confirmation
           </label>
-          <div class="mt-1">
-            <div class="mt-1 material_icons col-md-6 flex" data-controller="password-toggle">
-              <%= f.password_field :password_confirmation, autocomplete: "password_confirmation", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-              <i class="far fa-eye fa-eye-slash"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:10px" ></i>
+          <div class="mt-1 flex w-full" >
+            <div class="mt-1 flex-auto w-full" >
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
             </div>
+            <i class="far fa-eye fa-eye-slash"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:10px" ></i>
           </div>
-          <div class="actions mt-6">
-            <%= f.submit "Sign up", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-          </div>
-        <% end %>
-        <div class="text-sm text-center pt-4 ">
-          <a href="<%= new_session_path(resource_name) %>" class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
-            Log in
-          </a>
+        </div>
+        <div class="actions mt-6">
+          <%= f.submit "Sign up", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
       <% end %>
-      <script>
-        const togglePassword = document.querySelector('#togglePassword');
-         const password = document.querySelector('#user_password');
-         const password_confirmation = document.querySelector('#user_password_confirmation');
-          const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
-        
-         togglePassword.addEventListener('click', function (e) {
-        
-           // toggle the type attribute
-           const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-           password.setAttribute('type', type);
-        
-           // toggle the eye slash icon
-           this.classList.remove('fa-eye-slash');
-        });
-         togglePasswordConfirmation.addEventListener('click', function (e) {
-        
-           // toggle the type attribute
-            const password_confirmation_type = password_confirmation.getAttribute('type') === 'password' ? 'text' : 'password';
-            password_confirmation.setAttribute('type', password_confirmation_type);
-           // toggle the eye slash icon
-           this.classList.remove('fa-eye-slash');
-        });
-      </script>
+      <div class="text-sm text-center pt-4 ">
+        <a href="<%= new_session_path(resource_name) %>" class="font-medium text-indigo-600 hover:text-indigo-500 hover:underline">
+          Log in
+        </a>
+      </div>
+    </div>
+  </div>
+<% end %>
+<script>
+  const togglePassword = document.querySelector('#togglePassword');
+   const password = document.querySelector('#user_password');
+   const password_confirmation = document.querySelector('#user_password_confirmation');
+    const togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
+  
+   togglePassword.addEventListener('click', function (e) {
+  
+     // toggle the type attribute
+     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+     password.setAttribute('type', type);
+  
+     // toggle the eye slash icon
+     this.classList.remove('fa-eye-slash');
+  });
+   togglePasswordConfirmation.addEventListener('click', function (e) {
+  
+     // toggle the type attribute
+      const password_confirmation_type = password_confirmation.getAttribute('type') === 'password' ? 'text' : 'password';
+      password_confirmation.setAttribute('type', password_confirmation_type);
+     // toggle the eye slash icon
+     this.classList.remove('fa-eye-slash');
+  });
+</script>
