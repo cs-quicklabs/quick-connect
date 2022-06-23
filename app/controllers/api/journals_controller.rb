@@ -23,7 +23,7 @@ class Api::JournalsController < Api::BaseController
 
   def show
     authorize [:api, @journal]
-    render json: { success: true, data: @journal.as_json(:include => [:comments, :body]), message: "" }
+    render json: { success: true, data: @journal.as_json(:include => [:comments]), message: "" }
   end
 
   def update
