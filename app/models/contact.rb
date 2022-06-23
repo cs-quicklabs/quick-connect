@@ -14,7 +14,7 @@ class Contact < ApplicationRecord
   scope :available, -> { where(archived: false) }
   validates :first_name, format: { with: /\A[a-zA-Z ]+\z/,
                                    message: " allows only letters" }
-  validates :last_name, format: { with: /\A[a-zA-Z]+\z/,
+  validates :last_name, format: { with: /\A[a-zA-Z ]+\z/,
                                   message: " allows only letters" }
   validates :phone, :presence => true,
                     :numericality => true,

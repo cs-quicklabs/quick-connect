@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :email, uniqueness: true
   validates :first_name, format: { with: /\A[a-zA-Z ]+\z/,
                                    message: " allows only letters" }
-  validates :last_name, format: { with: /\A[a-zA-Z]+\z/,
+  validates :last_name, format: { with: /\A[a-zA-Z ]+\z/,
                                   message: " allows only letters" }
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy

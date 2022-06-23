@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044861) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,7 +123,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
 
   create_table "fields", force: :cascade do |t|
     t.bigint "account_id", null: false
-    t.bigint "user_id", null: false
     t.string "name", null: false
     t.string "protocol"
     t.string "icon"
@@ -131,7 +130,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_fields_on_account_id"
-    t.index ["user_id"], name: "index_fields_on_user_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -139,6 +137,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "body"
     t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
@@ -355,7 +354,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044860) do
   add_foreign_key "conversations", "users"
   add_foreign_key "events", "accounts"
   add_foreign_key "fields", "accounts"
-  add_foreign_key "fields", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
