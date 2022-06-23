@@ -8,7 +8,6 @@ class AddCommentOnJournal < Patterns::Service
   def call
     begin
       add_comment
-      add_event
     rescue
       comment
     end

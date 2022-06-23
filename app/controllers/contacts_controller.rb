@@ -25,7 +25,7 @@ class ContactsController < BaseController
 
     respond_to do |format|
       if @contact.update(contact_params)
-        format.html { redirect_to contact_path(@contact), notice: "Contact was successfully updated." }
+        format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
       end
