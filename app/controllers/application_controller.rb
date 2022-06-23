@@ -25,7 +25,7 @@ class ApplicationController < ActionController::Base
 
   etag {
     if Rails.env == "production" or Rails.env == "staging"
-      heroku_version
+      deployment_version
     else
       "development"
     end
@@ -39,8 +39,8 @@ class ApplicationController < ActionController::Base
     "development"
   end
 
-  def heroku_version
-    ENV["HEROKU_RELEASE_VERSION"] if Rails.env == "production" or Rails.env == "staging"
+  def deployment_version
+    ENV["LATEST_GITHUB_COMMIT"] if Rails.env == "production" or Rails.env == "staging"
   end
 
   def render_partial(partial, collection:, cached: true)

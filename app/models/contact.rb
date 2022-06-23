@@ -12,7 +12,7 @@ class Contact < ApplicationRecord
   scope :archived, -> { where(archived: true) }
   scope :active, -> { where(archived: false) }
   scope :available, -> { where(archived: false) }
-  validates :first_name, format: { with: /\A[a-zA-Z]+\z/,
+  validates :first_name, format: { with: /\A[a-zA-Z ]+\z/,
                                    message: " allows only letters" }
   validates :last_name, format: { with: /\A[a-zA-Z]+\z/,
                                   message: " allows only letters" }

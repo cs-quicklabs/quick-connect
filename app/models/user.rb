@@ -9,7 +9,7 @@ class User < ApplicationRecord
   enum permission: [:member, :admin]
   belongs_to :account
   validates :email, uniqueness: true
-  validates :first_name, format: { with: /\A[a-zA-Z]+\z/,
+  validates :first_name, format: { with: /\A[a-zA-Z ]+\z/,
                                    message: " allows only letters" }
   validates :last_name, format: { with: /\A[a-zA-Z]+\z/,
                                   message: " allows only letters" }
