@@ -17,7 +17,7 @@
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
     </div>
     <% if policy(@release_note).destroy? %>
-      <%= styled_delete_button(release_note_path(@release_note), "btn-normal bg-red-600 text-white ml-4") %>
+      <%= styled_delete_button(release_note_path(@release_note), "btn-normal bg-red-600 text-white ml-3") %>
     <% end %>
     <% if policy(@release_note).edit? %>
       <%= link_to "Edit", edit_release_note_path(@release_note), class: "btn-blue ml-3" %>
