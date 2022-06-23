@@ -1,8 +1,10 @@
 <%= turbo_frame_tag dom_id(@note) do %>
   <%= tailwind_form_with(model: @note, id: dom_id(@note), url: contact_note_path(@contact, @note)) do |form| %>
-    <main class="w-full mx-auto space-y-2">
+    <main class="w-full mx-auto space-y-2 py-6">
       <%= render "shared/form_messages", resource: @note, message: local_assigns[:message] %>
-      <%= render "shared/form_header", title: "Add New Note", subtitle: "A note can be added to a contact which can help you remember important things. " %>
+      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+        <%= "Edit Note" %>
+      </label>
       <%= form.text_field :title,  autocomplete: "off"%>
       <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
       <div class="flex justify-end">

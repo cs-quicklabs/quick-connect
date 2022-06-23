@@ -14,10 +14,10 @@
       </td>
       <td class="table-cell">
         <% if policy([task.contact, task]).edit? %>
-          <%= edit_button(edit_contact_task_path(task.contact, task)) %>
+          <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
         <% end %>
         <% if policy([task.contact, task]).destroy? %>
-          <%= delete_button(contact_task_path(task.contact, task)) %>
+          <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
         <% end %>
       </div>
     </td>

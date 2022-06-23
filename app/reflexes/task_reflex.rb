@@ -1,4 +1,6 @@
 class TaskReflex < ApplicationReflex
+  delegate :current_user, to: :connection
+
   def toggle_task
     task = Task.find(element.dataset[:id])
     task.update(completed: !task.completed)
