@@ -36,7 +36,7 @@ class Account::LabelsController < Account::BaseController
       if @label.update(label_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@label, partial: "account/labels/label", locals: { label: @label, message: nil }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@label, template: "account/labels/edit", locals: { label: @label, messages: @label.errors }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@label, template: "account/labels/edit", locals: { label: @label, messages: @label.errors.full_messages }) }
       end
     end
   end

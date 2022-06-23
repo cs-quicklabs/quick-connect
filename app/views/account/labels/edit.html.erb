@@ -3,8 +3,8 @@
     <div class="mt-2 text-sm text-red-700">
       <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
         <ul class="pl-1 space-y-1 pt-1">
-          <% messages.each do |message| %>
-            <li><%= message.message %></li>
+          <% messages.each do |key, message| %>
+            <li><%= key %><%= message %></li>
           <% end %>
         </ul>
       <% end %>
