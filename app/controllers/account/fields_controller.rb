@@ -36,7 +36,7 @@ class Account::FieldsController < Account::BaseController
       if @field.update(field_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@field, partial: "account/fields/field", locals: { field: @field, message: nil }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@field, template: "account/fields/edit", locals: { field: @field, messages: @field.errors }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@field, template: "account/fields/edit", locals: { field: @field, messages: @field.errors.full_messages }) }
       end
     end
   end

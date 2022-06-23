@@ -33,7 +33,7 @@ class Account::RelationsController < Account::BaseController
       if @relation.update(relation_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, partial: "account/relations/relation", locals: { relation: @relation, messages: nil }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, template: "account/relations/edit", locals: { relation: @relation, messages: @relation.errors }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, template: "account/relations/edit", locals: { relation: @relation, messages: @relation.errors.full_messages }) }
       end
     end
   end
