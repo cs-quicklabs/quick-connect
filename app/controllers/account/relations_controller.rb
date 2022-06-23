@@ -29,12 +29,11 @@ class Account::RelationsController < Account::BaseController
 
   def update
     authorize :account
-
     respond_to do |format|
       if @relation.update(relation_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, partial: "account/relations/relation", locals: { relation: @relation, messages: nil }) }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, template: "account/relations/edit", locals: { relation: @relation, messages: @relation.errors.full_messages }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@relation, template: "account/relations/edit", locals: { relation: @relation, messages: @relation.errors }) }
       end
     end
   end
