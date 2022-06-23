@@ -23,7 +23,7 @@
   </div>
   <% cache @journal do %>
     <div class="text-sm text-gray-700 sm:px-6 lg:px-8">
-      <p><%= @journal.body %></p>
+      <p class="whitespace-pre-wrap"><%= @journal.body %></p>
     </div>
   <% end %>
   <section aria-labelledby="notes-title">

@@ -4,7 +4,7 @@ class Api::JournalsController < Api::BaseController
   def index
     authorize [:api, Journal]
     @pagy, @journals = pagy_nil_safe(params, @api_user.journals.order(created_at: :desc), items: LIMIT)
-    render json: { success: true, data: @journals.as_json(:include => [:comments, :body]), message: "Journals were successfully retrieved" }
+    render json: { success: true, data: @journals.as_json(:include => [:comments]), message: "Journals were successfully retrieved" }
   end
 
   def destroy
