@@ -1,6 +1,9 @@
 class Api::Contact::TaskPolicy < Api::Contact::BaseContactPolicy
-  def status?
-    return false if record.second.archived?
-    true
+  def edit?
+    return true if !record.third.completed
+  end
+
+  def update?
+    edit?
   end
 end
