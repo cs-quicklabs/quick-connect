@@ -6,9 +6,7 @@
         <%= @release_note.title.upcase_first %>
       </h3>
       <div class="flex mt-4 space-x-3">
-
         <div>
-
           <div class="mt-1 space-x-2 text-sm">
             <span class="font-medium text-gray-500"> Created at <%= display_created_at(@release_note) %></span>
           </div>
@@ -18,12 +16,11 @@
     <div class="flex mt-4 sm:mt-0 sm:ml-4">
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
     </div>
-     <% if policy(@release_note).destroy? %>
-      <%= styled_delete_button(release_note_path(@release_note), "btn-normal ml-2") %>
-     <% end %>
+    <% if policy(@release_note).destroy? %>
+      <%= styled_delete_button(release_note_path(@release_note), "btn-normal bg-red-600 text-white ml-3") %>
+    <% end %>
     <% if policy(@release_note).edit? %>
-        
-            <%= link_to "Edit", edit_release_note_path(@release_note), class: "btn-blue ml-3" %>
+      <%= link_to "Edit", edit_release_note_path(@release_note), class: "btn-blue ml-3" %>
     <% end %>
   </div>
   <% cache @release_note do %>
@@ -67,11 +64,9 @@
                 data-release-note-id="<%= @release_note.id %>" 
                 class="font-medium text-blue-800 cursor-pointer whitespace-nowrap hover:text-blue-600">Publish</button>
             </p>
-             </div>
-                </div>
-    </div>
-          <% end %>
-       
-   
+          </div>
+        </div>
+      </div>
+    <% end %>
   <% end %>
 </main>

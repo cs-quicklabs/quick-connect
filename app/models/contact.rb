@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
   scope :for_current_account, -> { where(account: Current.account) }
   belongs_to :user
   belongs_to :account
-  validates_presence_of :first_name, :last_name, :email, :phone
+  validates_presence_of :first_name, :last_name, :phone
   validates_uniqueness_of :phone
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
@@ -19,7 +19,7 @@ class Contact < ApplicationRecord
   validates :phone, :presence => true,
                     :numericality => true,
                     :length => { :minimum => 10, :maximum => 12 }
-  validates :email, :presence => true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
