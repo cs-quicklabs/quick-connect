@@ -1,4 +1,4 @@
-class Api::AccountPolicy < Struct.new(:api_user, :account)
+class Api::AccountPolicy < Struct.new(:user, :account)
   def index?
     true
   end
