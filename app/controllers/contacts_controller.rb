@@ -69,6 +69,18 @@ class ContactsController < BaseController
     redirect_to contact_about_index_path(@contact), notice: "Contact has been restored."
   end
 
+  def destroy
+    authorize @contact, :destroy?
+
+    respond_to do |format|
+      if DestroyContact.call(@contact).result
+        format.html { redirect_to archived_contacts_path, status: :see_other, notice: "Contact has been deleted." }
+      else
+        format.html { redirect_to archived_contacts_path, status: :see_other, alert: "Failed to delete contact." }
+      end
+    end
+  end
+
   private
 
   def set_contact

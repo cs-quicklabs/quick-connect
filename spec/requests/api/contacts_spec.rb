@@ -184,5 +184,23 @@ RSpec.describe "api/contacts", type: :request do
         run_test!
       end
     end
+
+    delete("delete contact") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
+      response(200, "successful") do
+        let(:id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
   end
 end

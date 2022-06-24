@@ -58,6 +58,15 @@ class Api::ContactsController < Api::BaseController
     render json: { success: true, data: @contact, message: "Contact has been restored." }
   end
 
+  def destroy
+    authorize [:api, @contact]
+    if DestroyContact.call(@contact).result
+      render json: { success: true, message: "Contact has been deleted." }
+    else
+      render json: { success: true, message: "Failed to delete contact." }
+    end
+  end
+
   private
 
   def set_contact

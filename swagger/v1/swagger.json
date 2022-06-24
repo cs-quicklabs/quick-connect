@@ -2167,6 +2167,26 @@
             "description": "successful"
           }
         }
+      },
+      "delete": {
+        "summary": "delete contact",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
       }
     },
     "/{account_id}/api/dashboard": {

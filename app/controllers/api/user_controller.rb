@@ -14,7 +14,7 @@ class Api::UserController < Api::BaseController
   def update_password
     authorize [:api, @api_user]
     if @form.submit(change_password_params)
-      render json: { data: @api_user, success: true, message: "password was updated successfully" }
+      render json: { data: @api_user, success: true, message: "Password was updated successfully" }
     else
       render json: { success: false, message: @form.errors.full_messages.first }
     end
@@ -34,7 +34,7 @@ class Api::UserController < Api::BaseController
   def update_permission
     authorize [:api, @api_user]
     @api_user.update(email_enabled: !@api_user.email_enabled)
-    render json: { data: @api_user, success: true, message: " Enable email notifications successfully updated" }
+    render json: { data: @api_user, success: true, message: "Enable email notifications successfully updated" }
   end
 
   def preferences
