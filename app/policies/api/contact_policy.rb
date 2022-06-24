@@ -24,7 +24,7 @@ class Api::ContactPolicy < Api::BaseApiPolicy
   end
 
   def destroy?
-    false
+    true
   end
 
   def archive_contact?

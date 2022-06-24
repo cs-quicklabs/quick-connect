@@ -64,17 +64,24 @@
       <% end %>
     </div>
     <script>
-      const togglePassword = document.querySelector('#togglePassword');
-       const password = document.querySelector('#user_password');
+      var togglePassword = document.querySelector('#togglePassword');
+       var password = document.querySelector('#user_password');
       
       
        togglePassword.addEventListener('click', function (e) {
       
          // toggle the type attribute
-         const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+         if (password.getAttribute('type') === 'password')
+           {
+        var type = 'text'
+        this.classList.remove('fa-eye-slash');
+           }
+           else
+           {
+        var type = 'password'
+         this.classList.add('fa-eye-slash');
+           }
          password.setAttribute('type', type);
       
-         // toggle the eye slash icon
-         this.classList.remove('fa-eye-slash');
       });
     </script>

@@ -30,7 +30,7 @@ class ContactPolicy < ApplicationPolicy
   end
 
   def destroy?
-    false
+    true
   end
 
   def archive_contact?

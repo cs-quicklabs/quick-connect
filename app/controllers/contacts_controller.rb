@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact, destroy ]
 
   def index
     authorize :contact
@@ -67,6 +67,18 @@ class ContactsController < BaseController
 
     UnarchiveContact.call(@contact, current_user)
     redirect_to contact_about_index_path(@contact), notice: "Contact has been restored."
+  end
+
+  def destroy
+    authorize @contact, :destroy?
+
+    respond_to do |format|
+      if DestroyContact.call(@contact).result
+        format.html { redirect_to archived_contacts_path, status: :see_other, notice: "Contact has been deleted." }
+      else
+        format.html { redirect_to archived_contacts_path, status: :see_other, alert: "Failed to delete contact." }
+      end
+    end
   end
 
   private

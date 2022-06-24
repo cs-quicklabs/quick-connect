@@ -34,4 +34,8 @@ class Api::ContactsPolicy < Struct.new(:user, :contacts)
   def unarchive_contact?
     true
   end
+
+  def destroy?
+    true
+  end
 end
