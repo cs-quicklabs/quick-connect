@@ -88,7 +88,7 @@ class UserController < BaseController
   end
 
   def find_user
-    @user ||= User.find(params[:id])
+    @user ||= User.find(params[:id]).decorate
   end
 
   def build_form
