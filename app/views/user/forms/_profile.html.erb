@@ -3,8 +3,8 @@
     <div class="space-y-6 pb-4">
       <%= render "shared/form_messages", resource: user, message: local_assigns[:message] %>
       <%= render "shared/form_header", title: "Profile Settings", subtitle: "Please fill in your personal information." %>
-      <%= form.text_field :first_name, "First Name" %>
-      <%= form.text_field :last_name, "Last Name" %>
+      <%= form.text_field :first_name,"First Name", :value => (form.object.first_name ? form.object.first_name.titlecase : '')   %>
+      <%= form.text_field :last_name, "Last Name", :value => (form.object.last_name ? form.object.last_name.titlecase : '') %>
       <div class="flex justify-end">
         <%= form.submit "Save", class: "btn-blue" %>
       </div>
