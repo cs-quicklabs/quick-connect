@@ -8,7 +8,7 @@ class Api::CommentPolicy < Api::BaseApiPolicy
   end
 
   def destroy?
-    edit?
+    true
   end
 
   def create?

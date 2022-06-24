@@ -1,6 +1,6 @@
 class Api::JournalPolicy < Api::BaseApiPolicy
   def update?
-    return true if record.last.user = user
+    return true
   end
 
   def new?
