@@ -4,13 +4,13 @@ class DestroyContact < Patterns::Service
   end
 
   def call
-    delete_events
-    delete_notes
-    delete_tasks
-    delete_relatives
-    delete_conversations
-    contact.destroy
     begin
+      delete_events
+      delete_notes
+      delete_tasks
+      delete_relatives
+      delete_conversations
+      contact.destroy
     rescue Exception => e
       return false
     end
