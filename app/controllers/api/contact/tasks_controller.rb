@@ -20,12 +20,12 @@ class Api::Contact::TasksController < Api::Contact::BaseController
 
   def edit
     authorize [:api, @contact, @task]
-    render json: { success: true, data: @task, message: "" }
+    render json: { success: true, data: @task, message: "Edit Task" }
   end
 
   def show
     authorize [:api, @contact, @task]
-    render json: { success: true, data: @task, message: "" }
+    render json: { success: true, data: @task, message: "Show Task" }
   end
 
   def update

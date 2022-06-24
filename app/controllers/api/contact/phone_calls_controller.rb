@@ -21,7 +21,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
   def edit
     authorize [:api, @contact, @phone_call]
-    render json: { success: true, data: @phone_call, message: "" }
+    render json: { success: true, data: @phone_call, message: "Edit Phone Call" }
   end
 
   def update

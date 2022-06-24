@@ -16,7 +16,7 @@ class Api::JournalCommentsController < Api::BaseController
 
   def edit
     authorize [:api, @comment]
-    render json: { success: true, comment: @comment, message: "" }
+    render json: { success: true, comment: @comment, message: "Edit Journal Comment" }
   end
 
   def update

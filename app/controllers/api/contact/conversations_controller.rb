@@ -21,7 +21,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
 
   def edit
     authorize [:api, @contact, @conversation]
-    render json: { success: true, data: @conversation, message: "Conversation fetched successfully" }
+    render json: { success: true, data: @conversation, message: "Edit Conversation" }
   end
 
   def update
