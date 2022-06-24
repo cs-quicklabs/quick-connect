@@ -24,7 +24,7 @@ class AddConversation < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "conversation", action_for_context: "added a conversation for contact", trackable: conversation)
+    contact.events.create(user: actor, action: "conversation", action_for_context: "added a conversation for", trackable: conversation)
   end
 
   attr_reader :conversation, :actor, :contact

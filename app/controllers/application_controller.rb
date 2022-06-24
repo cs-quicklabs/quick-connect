@@ -94,7 +94,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_not_authorized
-    redirect_to(request.referrer || landing_path)
+    if http_request?
+      redirect_to(request.referrer || landing_path)
+    else
+      render json: { success: false, message: "Not Allowed" }
+    end
   end
 
   def signed_in_root_path(resource)
@@ -102,7 +106,11 @@ class ApplicationController < ActionController::Base
   end
 
   def record_not_found
-    user_not_authorized
+    if http_request?
+      user_not_authorized
+    else
+      render json: { success: false, message: "Record Not Found" }
+    end
   end
 
   def landing_path

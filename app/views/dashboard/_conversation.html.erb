@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500">
             you
-            added a Conversation  for
+            <%=event.action_for_context%>
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>

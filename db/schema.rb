@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044863) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044864) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -105,6 +105,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044863) do
     t.index ["contact_id"], name: "index_conversations_on_contact_id"
     t.index ["field_id"], name: "index_conversations_on_field_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
+  end
+
+  create_table "debts", force: :cascade do |t|
+    t.string "title"
+    t.string "amount"
+    t.boolean "owed_by", default: true
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_debts_on_contact_id"
+    t.index ["user_id"], name: "index_debts_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -352,6 +365,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044863) do
   add_foreign_key "conversations", "contacts"
   add_foreign_key "conversations", "fields"
   add_foreign_key "conversations", "users"
+  add_foreign_key "debts", "contacts"
+  add_foreign_key "debts", "users"
   add_foreign_key "events", "accounts"
   add_foreign_key "fields", "accounts"
   add_foreign_key "journals", "users"

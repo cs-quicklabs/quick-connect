@@ -9,9 +9,13 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-500">You 
-            added new contact
-          <%= event.eventable.decorate.display_name %>
+          <p class="text-sm text-gray-500">
+            added  <%=event.action%>
+            <% if event.trackable.nil? %>
+              which does not exist anymore.
+            <% else %>
+              <a href="<%= contact_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">Phone Call</a>
+            <% end %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
