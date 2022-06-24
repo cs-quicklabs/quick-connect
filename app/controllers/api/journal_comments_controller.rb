@@ -35,7 +35,7 @@ class Api::JournalCommentsController < Api::BaseController
     authorize [:api, @comment]
     @comment.destroy
     respond_to do |format|
-      format.json { render json: { success: true, data: @comment, message: "Comment was successfully deleted" } }
+      format.json { render json: { success: true, message: "Comment was successfully deleted" } }
     end
   end
 

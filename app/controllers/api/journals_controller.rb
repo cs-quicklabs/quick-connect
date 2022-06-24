@@ -18,7 +18,7 @@ class Api::JournalsController < Api::BaseController
 
   def edit
     authorize [:api, @journal]
-    render json: { success: true, data: @journal, message: "" }
+    render json: { success: true, data: @journal, message: "Edit journal" }
   end
 
   def show
