@@ -21,7 +21,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
 
   def edit
     authorize [:api, @contact, @note]
-    render json: { success: true, data: @note, message: "Note edit" }
+    render json: { success: true, data: @note, message: " Edit Note" }
   end
 
   def update

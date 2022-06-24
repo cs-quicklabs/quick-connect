@@ -39,7 +39,7 @@ class Api::UserController < Api::BaseController
 
   def preferences
     authorize [:api, @api_user]
-    render json: { success: true, data: @api_user, message: "" }
+    render json: { success: true, data: @api_user, message: "Show preferences" }
   end
 
   def reset
