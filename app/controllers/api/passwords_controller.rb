@@ -1,12 +1,14 @@
 class Api::PasswordsController < Devise::PasswordsController
-  def create
-    self.resource = resource_class.send_reset_password_instructions(resource_params)
-    yield resource if block_given?
+  protect_from_forgery with: :null_session
 
-    if successfully_sent?(resource)
+  def create
+    api_user = User.find_by(email: params[:api_user][:email])
+    if api_user
+      api_user.generate_password_token!
+      UserMailer.reset_password(api_user).deliver_now
       respond_with({ json: { success: true, message: "Password reset instructions have been sent to your email address." } }, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
-      respond_with({ json: { success: false, message: resource.errors.full_messages.first } }, location: after_sending_reset_password_instructions_path_for(resource_name))
+      respond_with({ json: { success: false, message: "Email  does not exist" } }, location: after_sending_reset_password_instructions_path_for(resource_name))
     end
   end
 
