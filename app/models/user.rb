@@ -29,4 +29,11 @@ class User < ApplicationRecord
   def add_jti
     self.jti ||= SecureRandom.uuid
   end
+
+  def generate_password_token!
+    begin
+      self.reset_password_token = SecureRandom.urlsafe_base64
+    end while User.exists?(reset_password_token: self.reset_password_token)
+    save!
+  end
 end
