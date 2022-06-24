@@ -2,11 +2,10 @@ class Api::PasswordsController < Devise::PasswordsController
   protect_from_forgery with: :null_session
 
   def create
-    binding.irb
-    user = User.find_by(email: params[:api_user][:email])
-    if user
-      user.generate_password_token!
-      UserMailer.reset_password(user).deliver_now
+    api_user = User.find_by(email: params[:api_user][:email])
+    if api_user
+      api_user.generate_password_token!
+      UserMailer.reset_password(api_user).deliver_now
       respond_with({ json: { success: true, message: "Password reset instructions have been sent to your email address." } }, location: after_sending_reset_password_instructions_path_for(resource_name))
     else
       respond_with({ json: { success: false, message: "Email  does not exist" } }, location: after_sending_reset_password_instructions_path_for(resource_name))
