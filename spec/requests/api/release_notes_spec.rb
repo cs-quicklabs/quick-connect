@@ -1,8 +1,9 @@
 require "swagger_helper"
 
 RSpec.describe "api/release_notes", type: :request do
-  path "/{account_id}/api/release_notes" do
+  path "/{account_id}/api/release_notes?page={page}" do
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
     get("list release_notes") do
       security [Bearer: {}]
       produces "application/json"

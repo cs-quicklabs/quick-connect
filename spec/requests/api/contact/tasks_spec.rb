@@ -27,10 +27,11 @@ RSpec.describe "api/contact/tasks", type: :request do
     end
   end
 
-  path "/{account_id}/api/contacts/{contact_id}/tasks" do
+  path "/{account_id}/api/contacts/{contact_id}/tasks?page={page}" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
 
     get("list tasks") do
       security [Bearer: {}]

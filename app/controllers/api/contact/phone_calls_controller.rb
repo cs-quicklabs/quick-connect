@@ -6,7 +6,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
     @phone_call = PhoneCall.new
     @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(created_at: :desc), items: LIMIT)
-    render json: { success: true, data: @phone_calls, message: "Contact phone calls" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @phone_calls, message: "Contact phone calls" }
   end
 
   def destroy

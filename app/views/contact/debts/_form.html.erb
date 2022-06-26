@@ -1,0 +1,23 @@
+<%= tailwind_form_with(model: debt, id: dom_id(debt), url: contact_debts_path) do |form| %>
+  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: debt, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Add New Debt", subtitle: "A debt can be added to a contact which can help you remember important things. " %>
+    <%= form.text_field :title, "Title", autocomplete: "off" %>
+    <%= form.text_field :amount, "Amount", class: "form-text-field" %>
+    <div class="w-full ">
+      <label for="owned_by" class="block text-sm font-medium text-gray-700">
+        Owned by
+      </label>
+      <%= form.select :permission, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
+    </div>
+    <div>
+      <label for="date" class="block text-sm font-medium text-gray-700">
+        Due Date
+      </label>
+      <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+    </div>
+    <div class="flex justify-end">
+      <%= form.submit "Add Debt", class: "btn-blue" %>
+    </div>
+  </main>
+<% end %>

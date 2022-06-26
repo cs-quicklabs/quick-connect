@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500">
             you
-            archived contact
+            <%=event.action_for_context%>
             <a href="<%= contact_about_index_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
           </p>
         </div>
