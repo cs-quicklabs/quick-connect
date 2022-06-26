@@ -24,6 +24,11 @@ RSpec.describe "api/contact/debts", type: :request do
         run_test!
       end
     end
+  end
+  path "/{account_id}/api/contacts/{contact_id}/debts" do
+    # You'll want to customize the parameter types...
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
 
     post("create debt") do
       security [Bearer: {}]
