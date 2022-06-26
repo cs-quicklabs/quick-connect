@@ -1,8 +1,9 @@
 require "swagger_helper"
 
 RSpec.describe "api/contacts", type: :request do
-  path "/{account_id}/api/archive/contacts" do
+  path "/{account_id}/api/archive/contacts?page={page}" do
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
     get("archived contact") do
       security [Bearer: {}]
       produces "application/json"
@@ -24,7 +25,7 @@ RSpec.describe "api/contacts", type: :request do
     # You'll want to customize the parameter types...
     parameter name: "id", in: :path, type: :string, description: "id"
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    get("archive_contact contact") do
+    get("archive contact") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
@@ -66,8 +67,9 @@ RSpec.describe "api/contacts", type: :request do
     end
   end
 
-  path "/{account_id}/api/contacts" do
+  path "/{account_id}/api/contacts?page={page}" do
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
     get("list contacts") do
       security [Bearer: {}]
       produces "application/json"

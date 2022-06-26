@@ -9,12 +9,13 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-         <p class="text-sm text-gray-500">You 
-            added a new note  for
+          <p class="text-sm text-gray-500">
+            you
+            <%=event.action_for_context%>
             <% if event.trackable.nil? %>
               which does not exist anymore.
-              <% else %>
-             <a href="<%= contact_notes_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>  
+            <% else %>
+              <a href="<%= contact_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>
             <% end %>
           </p>
         </div>

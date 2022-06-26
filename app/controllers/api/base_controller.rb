@@ -20,4 +20,15 @@ class Api::BaseController < ApplicationController
   def json_request?
     request.format.json?
   end
+
+  def pagination_meta(object) {
+    current_page: object[:page],
+    next_page: object[:next],
+    prev_page: object[:prev],
+    total_pages: object[:pages],
+    total_count: object[:count],
+    prev_url: object[:prev_url],
+    next_url: object[:next_url],
+    page_url: object[:page_url],
+  }   end
 end

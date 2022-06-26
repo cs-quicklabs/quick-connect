@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       get :form
     end
+    resources :debts, module: "contact"
     resources :conversations, module: "contact"
     resources :timeline, module: "contact"
   end
@@ -109,6 +110,7 @@ Rails.application.routes.draw do
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end
+      resources :debts, module: "contact"
       resources :conversations, module: "contact"
       resources :profile, module: "contact"
       resources :relatives, module: "contact"

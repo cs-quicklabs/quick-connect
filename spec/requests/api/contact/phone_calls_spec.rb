@@ -1,10 +1,11 @@
 require "swagger_helper"
 
 RSpec.describe "api/contact/phone_calls", type: :request do
-  path "/{account_id}/api/contacts/{contact_id}/phone_calls" do
+  path "/{account_id}/api/contacts/{contact_id}/phone_calls?page={page}" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
 
     get("list phone_calls") do
       security [Bearer: {}]

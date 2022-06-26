@@ -1,0 +1,27 @@
+<tr id="<%= dom_id debt %>">
+  <td class="table-cell w-full">
+    <div class="text-sm">
+      <a href="<%= contact_debt_path(debt.contact, debt)%>" class="block hover:underline" target="_top">
+        <%= debt.title.titleize %>
+      </div>
+    </td>
+    <td class="table-cell w-full">
+      <div class="text-sm">
+        <a href="<%= contact_debt_path(debt.contact, debt)%>" class="block hover:underline" target="_top">
+          <%= debt.amount.titleize %>
+        </div>
+      </td>
+      <td class="table-cell whitespace-nowrap">
+        <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_date(debt.due_date) %></span>
+        </td>
+        <td class="table-cell whitespace-nowrap">
+          <% if policy([debt.contact, debt]).edit? %>
+            <%= edit_button(edit_contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
+          <% end %>
+          <% if policy([debt.contact, debt]).destroy? %>
+            <%= delete_button(contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
+          <% end %>
+        </div>
+      </td>
+    </tr>

@@ -8,11 +8,11 @@
         <%= task.title.titleize %>
       </div>
     </td>
-    <td class="table-cell">
+    <td class="table-cell whitespace-nowrap">
       <div class="mt-2 space-x-2 text-sm">
         <span class="font-medium text-gray-500"><%= display_date(task.due_date) %></span>
       </td>
-      <td class="table-cell">
+      <td class="table-cell whitespace-nowrap">
         <% if policy([task.contact, task]).edit? %>
           <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
         <% end %>

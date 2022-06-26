@@ -5,30 +5,30 @@
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
         <!-- Left column -->
-        <div class="grid grid-cols-1 lg:col-span-2" id="project_tasks"  data-controller="infinite-scroll" >
+        <div class="grid grid-cols-1 lg:col-span-2" id="project_debts"  data-controller="infinite-scroll" >
           <section aria-labelledby="participants_section">
-            <h2 class="sr-only" id="section-1-title">tasks</h2>
+            <h2 class="sr-only" id="section-1-title">debts</h2>
             <div class="overflow-hidden bg-white" >
               <div class="">
                 <table class="table">
                   <thead class="bg-gray-50">
                     <tr>
                       <th scope="col" class="table-head">
-                        Done
-                      </th>
-                      <th scope="col" class="table-head w-full">
-                        Task
+                        Debt
                       </th>
                       <th scope="col" class="table-head">
-                        Due Date
+                        Amount
+                      </th>
+                      <th scope="col" class="table-head">
+                        Date
                       </th>
                       <th scope="col" class="table-head">
                         Action
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="table-body" id="tasks" data-infinite-scroll-target="entries">
-                    <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
+                  <tbody class="table-body" id="debts" data-infinite-scroll-target="entries">
+                    <%= render partial: "debt", collection: @debts, as: :debt, cached: true %>
                   </tbody>
                 </table>
               </div>
@@ -39,13 +39,13 @@
           </section>
         </div>
         <!-- Right column -->
-        <% if policy([@contact, @task]).create? %>
+        <% if policy([@contact, @debt]).create? %>
           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
             <section aria-labelledby="add-participant-section">
-              <h2 class="sr-only" id="section-2-title">Add New task</h2>
+              <h2 class="sr-only" id="section-2-title">Add New debt</h2>
               <div class="overflow-hidden bg-white">
                 <div class="px-4">
-                  <%= render partial: "form", locals: { task: @task } %>
+                  <%= render partial: "form", locals: { debt: @debt } %>
                 </div>
               </div>
             </section>
