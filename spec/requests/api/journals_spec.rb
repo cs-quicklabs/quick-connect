@@ -20,6 +20,9 @@ RSpec.describe "api/journals", type: :request do
         run_test!
       end
     end
+  end
+  path "/{account_id}/api/journals" do
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
 
     post("create journal") do
       security [Bearer: {}]
