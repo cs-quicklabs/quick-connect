@@ -57,7 +57,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
     authorize [:api, @contact, Debt]
     @debt = Debt.find(params["debt_id"])
     @debt.update(completed: !@debt.completed)
-    render json: { success: true, data: @debt, message: "Debt was successfully updated." }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @debt, message: "Debt was successfully updated." }
   end
 
   private

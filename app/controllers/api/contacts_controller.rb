@@ -6,7 +6,7 @@ class Api::ContactsController < Api::BaseController
   def index
     authorize [:api, :contact]
     @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.active.order(:first_name), items: LIMIT)
-    render json: { success: true, data: @contacts, message: "Contacts were successfully retrieved." }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 
   def edit
@@ -40,9 +40,9 @@ class Api::ContactsController < Api::BaseController
 
   def archived
     authorize [:api, :contact]
-
     @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.archived.order(archived_on: :desc), items: LIMIT)
-    render json: { success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
+
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Archived contacts were successfully retrieved." }
   end
 
   def archive_contact

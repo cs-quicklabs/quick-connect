@@ -642,7 +642,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/conversations": {
+    "/{account_id}/api/contacts/{contact_id}/conversations?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -656,6 +656,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -862,7 +869,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/debts": {
+    "/{account_id}/api/contacts/{contact_id}/debts?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -876,6 +883,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -1084,7 +1098,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/notes": {
+    "/{account_id}/api/contacts/{contact_id}/notes?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -1098,6 +1112,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -1296,7 +1317,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/phone_calls": {
+    "/{account_id}/api/contacts/{contact_id}/phone_calls?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -1310,6 +1331,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -1540,7 +1568,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/relatives": {
+    "/{account_id}/api/contacts/{contact_id}/relatives?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -1554,6 +1582,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -1803,7 +1838,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/tasks": {
+    "/{account_id}/api/contacts/{contact_id}/tasks?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -1817,6 +1852,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -2043,7 +2085,7 @@
         }
       }
     },
-    "/{account_id}/api/contacts/{contact_id}/timeline": {
+    "/{account_id}/api/contacts/{contact_id}/timeline?page={page}": {
       "parameters": [
         {
           "name": "account_id",
@@ -2057,6 +2099,13 @@
           "in": "path",
           "type": "string",
           "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -2081,13 +2130,20 @@
         }
       }
     },
-    "/{account_id}/api/archive/contacts": {
+    "/{account_id}/api/archive/contacts?page={page}": {
       "parameters": [
         {
           "name": "account_id",
           "in": "path",
           "type": "string",
           "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -2130,7 +2186,7 @@
         }
       ],
       "get": {
-        "summary": "archive_contact contact",
+        "summary": "archive contact",
         "security": [
           {
             "Bearer": {
@@ -2188,13 +2244,20 @@
         }
       }
     },
-    "/{account_id}/api/contacts": {
+    "/{account_id}/api/contacts?page={page}": {
       "parameters": [
         {
           "name": "account_id",
           "in": "path",
           "type": "string",
           "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -2613,13 +2676,20 @@
         }
       }
     },
-    "/{account_id}/api/journals": {
+    "/{account_id}/api/journals?page={page}": {
       "parameters": [
         {
           "name": "account_id",
           "in": "path",
           "type": "string",
           "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
@@ -3003,13 +3073,20 @@
         }
       }
     },
-    "/{account_id}/api/release_notes": {
+    "/{account_id}/api/release_notes?page={page}": {
       "parameters": [
         {
           "name": "account_id",
           "in": "path",
           "type": "string",
           "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
           "required": true
         }
       ],
