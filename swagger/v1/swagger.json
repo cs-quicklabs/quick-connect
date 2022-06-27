@@ -685,7 +685,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/conversations": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create conversation",
         "security": [
@@ -912,7 +930,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/debts": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create debt",
         "security": [
@@ -1141,7 +1177,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/notes": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create note",
         "security": [
@@ -1360,7 +1414,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/phone_calls": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create phone_call",
         "security": [
@@ -1611,7 +1683,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/relatives": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create relative",
         "security": [
@@ -1881,7 +1971,25 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/tasks": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create task",
         "security": [
@@ -2280,7 +2388,18 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create contact",
         "security": [
@@ -2712,7 +2831,18 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/journals": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
       "post": {
         "summary": "create journal",
         "security": [
