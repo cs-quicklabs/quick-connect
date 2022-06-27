@@ -983,7 +983,7 @@
                       "type": "string",
                       "example": [
                         "contact",
-                        "you"
+                        "user"
                       ]
                     },
                     "due_date": {
@@ -1106,7 +1106,7 @@
                       "type": "string",
                       "example": [
                         "contact",
-                        "you"
+                        "user"
                       ]
                     },
                     "due_date": {

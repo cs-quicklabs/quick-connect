@@ -39,7 +39,7 @@ RSpec.describe "api/contact/debts", type: :request do
         properties: { "api_debt": { type: :object, properties: {
           "title": { type: :string },
           "amount": { type: :string },
-          "owed_by": { type: :string, :example => [:contact, :you] },
+          "owed_by": { type: :string, :example => [:contact, :user] },
           "due_date": { type: :string, format: :date },
         } } },
       }
@@ -99,7 +99,7 @@ RSpec.describe "api/contact/debts", type: :request do
         properties: { "api_debt": { type: :object, properties: {
           "title": { type: :string },
           "amount": { type: :string },
-          "owed_by": { type: :string, :example => [:contact, :you] },
+          "owed_by": { type: :string, :example => [:contact, :user] },
           "due_date": { type: :string, format: :date },
         } } },
       }
