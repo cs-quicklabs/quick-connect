@@ -12,8 +12,8 @@ class Contact::RelativesController < Contact::BaseController
   def destroy
     authorize [@contact, @relative]
 
-    @relative.destroy
-    Event.where(trackable: @relative).touch_all #fixes cache issues in activity
+    @relative = DestroyRelative.call(@contact, current_user, @relative).result
+
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@relative) }
     end
@@ -23,15 +23,12 @@ class Contact::RelativesController < Contact::BaseController
     authorize [@contact, @relative]
   end
 
-  def show
-    authorize [@contact, @relative]
-  end
-
   def update
     authorize [@contact, @relative]
 
     respond_to do |format|
       if @relative.update(relative_params)
+        Event.where(trackable: @relative).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, partial: "contact/relatives/relative", locals: { relative: @relative, contact: @contact }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@relative, template: "contact/relatives/edit", locals: { relative: @relative, relatives: @relatives }) }
@@ -42,7 +39,7 @@ class Contact::RelativesController < Contact::BaseController
   def create
     authorize [@contact, Relative]
     @relative = AddRelative.call(relative_params, current_user, @contact).result
-    @relation = ""
+    @relation = Contact.find(relative_params[:contact_id])
     respond_to do |format|
       if @relative.persisted?
         format.turbo_stream {
@@ -50,7 +47,7 @@ class Contact::RelativesController < Contact::BaseController
                                turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(relative.new, partial: "contact/relatives/form", locals: { relative: @relative, relatives: @relatives }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: @relative, relation: @relation, contact: @contact }) }
       end
     end
   end

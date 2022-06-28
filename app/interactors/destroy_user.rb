@@ -11,6 +11,7 @@ class DestroyUser < Patterns::Service
     transfer_ratings
     delete_events
     user.destroy
+    add_event
     begin
     rescue Exception => e
       return false
@@ -42,7 +43,7 @@ class DestroyUser < Patterns::Service
   end
 
   def add_event
-    Event.create(user: actor, action: "deleted", action_for_context: "deleted a user", trackable: contact, action_context: "user deleted")
+    Event.create(user: user, action: "deleted", action_for_context: "deleted a user")
   end
 
   attr_reader :user, :transferred_to

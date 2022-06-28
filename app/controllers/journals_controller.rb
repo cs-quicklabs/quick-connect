@@ -14,9 +14,7 @@ class JournalsController < BaseController
 
   def destroy
     authorize @journal
-
-    @journal.destroy
-    Event.where(trackable: @journal).touch_all #fixes cache issues in activity
+    @journal = DestroyJournal.call(current_user, @journal).result
     respond_to do |format|
       format.html { redirect_to journals_path, notice: "Journal was successfully deleted.", status: :see_other }
     end
@@ -40,6 +38,7 @@ class JournalsController < BaseController
     authorize @journal
     respond_to do |format|
       if @journal.update(journal_params)
+        Event.where(trackable: @journal).touch_all
         format.html { redirect_to journals_path, notice: "Journal was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@journal, partial: "journals/form", locals: { journal: @journal, title: "Edit Journal", subtitle: "Please update existing journal" }) }

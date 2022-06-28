@@ -12,7 +12,7 @@ class Contact::BaseController < BaseController
   LIMIT = 20
 
   def set_contact
-    @contact ||= Contact.find_by_id(params[:contact_id])
+    @contact = Contact.find(params[:contact_id])
   end
 
   def set_labels

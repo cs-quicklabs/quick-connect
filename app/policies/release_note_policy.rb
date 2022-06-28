@@ -21,7 +21,7 @@ class ReleaseNotePolicy < ApplicationPolicy
   end
 
   def destroy?
-    return true if record.user = user
+    edit?
   end
 
   def edit?

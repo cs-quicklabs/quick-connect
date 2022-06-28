@@ -10,8 +10,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @relative]
 
-    @relative.destroy
-    Event.where(trackable: @relative).touch_all #fixes cache issues in activity
+    @relative = DestroyRelative.call(@contact, @api_user, @relative).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Relative was successfully deleted." } }
     end
@@ -27,6 +26,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
     respond_to do |format|
       if @relative.update(relative_params)
+        Event.where(trackable: @relative).touch_all
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully updated." } }
       else
         format.json { render json: { success: false, message: @relative.errors.full_messages.first } }

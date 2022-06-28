@@ -12,8 +12,7 @@ class Contact::PhoneCallsController < Contact::BaseController
   def destroy
     authorize [@contact, @phone_call]
 
-    @phone_call.destroy
-    Event.where(trackable: @phone_call).touch_all #fixes cache issues in activity
+    @phone_call = DestroyPhoneCall.call(@contact, current_user, @phone_call).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@phone_call) }
     end
@@ -32,6 +31,7 @@ class Contact::PhoneCallsController < Contact::BaseController
 
     respond_to do |format|
       if @phone_call.update(phone_call_params)
+        Event.where(trackable: @phone_call).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, partial: "contact/phone_calls/phone_call", locals: { phone_call: @phone_call }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@phone_call, template: "contact/phone_calls/edit", locals: { phone_call: @phone_call }) }

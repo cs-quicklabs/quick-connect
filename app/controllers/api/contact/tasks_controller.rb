@@ -11,8 +11,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @task]
 
-    @task.destroy
-    Event.where(trackable: @task).touch_all #fixes cache issues in activity
+    @task = DestroyTask.call(@contact, @api_user, @task).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Task was successfully deleted." } }
     end
@@ -33,6 +32,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
 
     respond_to do |format|
       if @task.update(task_params)
+        Event.where(trackable: @task).touch_all
         format.json { render json: { success: true, data: @task, message: "Task was successfully updated." } }
       else
         format.json { render json: { success: false, message: @task.errors.full_messages.first } }

@@ -25,6 +25,7 @@ class ContactsController < BaseController
 
     respond_to do |format|
       if @contact.update(contact_params)
+        Event.where(eventable: @contact).or(Event.where(trackable: @contact)).touch_all
         format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
@@ -73,7 +74,7 @@ class ContactsController < BaseController
     authorize @contact, :destroy?
 
     respond_to do |format|
-      if DestroyContact.call(@contact).result
+      if DestroyContact.call(current_user, @contact).result
         format.html { redirect_to archived_contacts_path, status: :see_other, notice: "Contact has been deleted." }
       else
         format.html { redirect_to archived_contacts_path, status: :see_other, alert: "Failed to delete contact." }

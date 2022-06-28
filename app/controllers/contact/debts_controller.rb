@@ -11,8 +11,7 @@ class Contact::DebtsController < Contact::BaseController
   def destroy
     authorize [@contact, @debt]
 
-    @debt.destroy
-    Event.where(trackable: @debt).touch_all #fixes cache issues in activity
+    @debt = DestroyDebt.call(@contact, current_user, @debt).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@debt) }
     end
@@ -27,6 +26,7 @@ class Contact::DebtsController < Contact::BaseController
 
     respond_to do |format|
       if @debt.update(debt_params)
+        Event.where(trackable: @debts).touch_all
         format.html { redirect_to contact_debts_path(@contact), notice: "Debt was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@debt, template: "contact/debts/edit", locals: { debt: @debt }) }

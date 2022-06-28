@@ -5,9 +5,9 @@ class AddJournal < Patterns::Service
   end
 
   def call
+    add_journal
+    add_event
     begin
-      add_journal
-      add_event
     rescue
       journal
     end
@@ -23,7 +23,7 @@ class AddJournal < Patterns::Service
   end
 
   def add_event
-    actor.events.create(user: actor, action: "journal", action_for_context: "added a journal", trackable: journal, action_context: "added a journal")
+    Events.create(user: actor, action: "journal", action_for_context: "added a journal", trackable: journal)
   end
 
   attr_reader :journal, :actor
