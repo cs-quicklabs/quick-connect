@@ -3,6 +3,7 @@
   <div class="px-4">
     <%= tailwind_form_with(model: relative, id: dom_id(relative), url: "/#{current_user.account.id}/contacts/#{contact.id}/relatives") do |form| %>
       <div class="space-y-6 px-4 pt-6  mx-auto">
+        <%= render "shared/form_messages", resource: relative, message: local_assigns[:message] %>
         <%= render "shared/form_header", title: "Add New Relation", subtitle: "" %>
         <% if relation.blank? %>
           <main class="max-w-lg   mx-auto space-y-2 lg:pb-2 z-10">
@@ -28,8 +29,11 @@
             </div>
           </main>
         <% else %>
-          <div id="" class="">
-            <%= render partial: "form", locals: { relation: relation } %>
+          <div id="contact_id">
+            <input id="contact_id" name="relative[contact_id]" type="hidden" value="<%= relation.id %>" >
+            <label  class="block  text-sm font-medium text-gray-700">
+              Select  <%= relation.decorate.display_name %>'s relation
+            </label>
           </div>
           <div class="">
             <%= form.hidden_field :first_contact_id, value: contact.id %>
