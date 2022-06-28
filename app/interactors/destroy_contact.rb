@@ -5,14 +5,16 @@ class DestroyContact < Patterns::Service
   end
 
   def call
-    delete_events
+
+    begin
+        delete_events
     delete_notes
     delete_tasks
     delete_relatives
     delete_conversations
     contact.destroy
     add_event
-    begin
+
     rescue Exception => e
       return false
     end
@@ -41,10 +43,12 @@ class DestroyContact < Patterns::Service
     contact.events.delete_all
   end
 
+
   def add_event
     @event = Event.create(user: actor, action: "deleted", action_for_context: "deleted a contact")
     @event.save!
   end
 
   attr_reader :contact, :actor
+
 end
