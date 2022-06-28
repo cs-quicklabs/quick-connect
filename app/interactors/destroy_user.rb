@@ -41,5 +41,9 @@ class DestroyUser < Patterns::Service
     Event.where(trackable_id: user.id).delete_all
   end
 
+  def add_event
+    Event.create(user: actor, action: "deleted", action_for_context: "deleted a user", trackable: contact, action_context: "user deleted")
+  end
+
   attr_reader :user, :transferred_to
 end

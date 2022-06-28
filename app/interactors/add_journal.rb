@@ -23,7 +23,7 @@ class AddJournal < Patterns::Service
   end
 
   def add_event
-    actor.events.create(user: actor, action: "journal", action_for_context: "added a journal", trackable: journal)
+    actor.events.create(user: actor, action: "journal", action_for_context: "added a journal", trackable: journal, action_context: "added a journal")
   end
 
   attr_reader :journal, :actor

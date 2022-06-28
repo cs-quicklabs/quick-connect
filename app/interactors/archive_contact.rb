@@ -44,7 +44,7 @@ class ArchiveContact < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "archived", action_for_context: "archived contact", trackable: contact)
+    contact.events.create(user: actor, action: "archived", action_for_context: "archived contact", trackable: contact, action_context: "archived")
   end
 
   attr_reader :contact, :actor

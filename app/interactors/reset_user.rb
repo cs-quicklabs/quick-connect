@@ -40,5 +40,9 @@ class ResetUser < Patterns::Service
     Event.where(trackable_id: user.id).delete_all
   end
 
+  def add_event
+    user.events.create(user: actor, action: "reset", action_for_context: "your account was reset", trackable: contact, action_context: "")
+  end
+
   attr_reader :user, :transferred_to
 end
