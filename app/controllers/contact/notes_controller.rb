@@ -10,7 +10,7 @@ class Contact::NotesController < Contact::BaseController
 
   def destroy
     authorize [@contact, @note]
-    @note = DestroyNote.call(@contact, current_user, @note).result
+    @note = DestroyContactDetail.call(@contact, current_user, @note).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@note) }
     end

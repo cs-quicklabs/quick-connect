@@ -12,7 +12,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @note]
 
-    @note = DestroyNote.call(@contact, @api_user, @note).result
+    @note = DestroyContactDetail.call(@contact, @api_user, @note).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Note was successfully deleted." } }
     end

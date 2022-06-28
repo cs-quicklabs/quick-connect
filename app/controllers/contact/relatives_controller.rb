@@ -12,7 +12,7 @@ class Contact::RelativesController < Contact::BaseController
   def destroy
     authorize [@contact, @relative]
 
-    @relative = DestroyRelative.call(@contact, current_user, @relative).result
+    @relative = DestroyContactDetail.call(@contact, current_user, @relative).result
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@relative) }

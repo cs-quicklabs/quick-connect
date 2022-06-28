@@ -11,7 +11,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @debt]
 
-    @debt = DestroyDebt.call(@contact, @api_user, @debt).result
+    @debt = DestroyContactDetail.call(@contact, @api_user, @debt).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Debt was successfully deleted." } }
     end
