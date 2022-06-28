@@ -26,7 +26,7 @@ class AddReleaseNote < Patterns::Service
   end
 
   def add_event
-    actor.events.create(user: actor, action: "release_note", action_for_context: "added a release note", trackable: release_note) if published
+    actor.events.create(user: actor, action: "release_note", action_for_context: "added a release note", trackable: release_note, action_context: "added a release note") if published
   end
 
   attr_reader :release_note, :actor, :published
