@@ -11,7 +11,6 @@ class DestroyContact < Patterns::Service
       delete_relatives
       delete_conversations
       contact.destroy
-      add_event
     rescue Exception => e
       return false
     end
@@ -38,10 +37,6 @@ class DestroyContact < Patterns::Service
 
   def delete_events
     contact.events.delete_all
-  end
-
-  def add_event
-    Event.create(user: actor, action: "deleted", action_for_context: "deleted a contact", trackable: contact, action_context: "contact deleted")
   end
 
   attr_reader :contact
