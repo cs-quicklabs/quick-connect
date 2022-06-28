@@ -12,8 +12,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @phone_call]
 
-    @phone_call.destroy
-    Event.where(trackable: @phone_call).touch_all #fixes cache issues in activity
+    @phone_call = DestroyPhoneCall.call(@contact, @api_user, @phone_call).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Phone call was successfully deleted." } }
     end
@@ -29,6 +28,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
     respond_to do |format|
       if @phone_call.update(phone_call_params)
+        Event.where(trackable: @phone_call).touch_all
         format.json { render json: { success: true, data: @phone_call, message: "Phone call was successfully updated." } }
       else
         format.json { render json: { success: false, message: @phone_call.errors.full_messages.first } }

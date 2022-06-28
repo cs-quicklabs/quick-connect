@@ -9,8 +9,7 @@ class Api::JournalsController < Api::BaseController
 
   def destroy
     authorize [:api, @journal]
-    @journal.destroy
-    Event.where(trackable: @journal).touch_all #fixes cache issues in activity
+    @journal = DestroyJournal.call(current_user, @journal).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Journal was successfully deleted." } }
     end
@@ -29,6 +28,7 @@ class Api::JournalsController < Api::BaseController
   def update
     authorize [:api, @journal]
     respond_to do |format|
+      Event.where(trackable: @journal).touch_all
       if @journal.update(journal_params)
         format.json { render json: { success: true, data: @journal, message: "Journal was successfully updated." } }
       else

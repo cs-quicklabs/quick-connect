@@ -5,12 +5,13 @@ class ResetUser < Patterns::Service
   end
 
   def call
-    transfer_contacts
-    transfer_journals
-    transfer_comments
-    transfer_ratings
-    delete_events
     begin
+      transfer_contacts
+      transfer_journals
+      transfer_comments
+      transfer_ratings
+      delete_events
+      add_event
     rescue Exception => e
       return false
     end
@@ -38,6 +39,11 @@ class ResetUser < Patterns::Service
   def delete_events
     Event.where(user_id: user.id).delete_all
     Event.where(trackable_id: user.id).delete_all
+  end
+
+
+  def add_event
+    user.events.create(user: user, action: "reset", action_for_context: "your account was reset")
   end
 
   attr_reader :user, :transferred_to

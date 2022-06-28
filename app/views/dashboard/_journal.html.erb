@@ -10,25 +10,13 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-            <% if event.eventable_type == "User" %>
-              You
-              <%=event.action_for_context%>
-              <% if event.trackable.nil? %>
-                which does not exists anymore 
-              <% else %>
-                titled
-                <a href="<%= journal_path(event.eventable, event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= highlight_hashtag(event.trackable.title.upcase_first) %></a>
-              <% end %>
+            You
+            <%=event.action_for_context%>
+            <% if event.trackable.nil? %>
+              which does not exists anymore 
             <% else %>
-              You added a new Journal
-              <% if event.trackable.nil? %>
-                which does not exists anymore 
-              <% else %>
-                titled
-                <a href="<%= project_journal_path(event.eventable, event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= highlight_hashtag(event.trackable.title.upcase_first) %></a>
-              <% end %>
-              for
-              <a href="<%= project_journal_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>
+              titled
+              <a href="<%= journal_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= highlight_hashtag(event.trackable.title.upcase_first) %></a>
             <% end %>
           </p>
         </div>
