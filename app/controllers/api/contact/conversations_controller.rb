@@ -12,7 +12,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @conversation]
 
-    @conversation = DestroyConversation.call(@contact, @api_user, @conversation).result
+    @conversation = DestroyContactDetail.call(@contact, @api_user, @conversation).result
     respond_to do |format|
       format.json { render json: { success: true, data: @conversation, message: "Conversation deleted successfully" } }
     end

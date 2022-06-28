@@ -12,7 +12,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @phone_call]
 
-    @phone_call = DestroyPhoneCall.call(@contact, @api_user, @phone_call).result
+    @phone_call = DestroyContactDetail.call(@contact, @api_user, @phone_call).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Phone call was successfully deleted." } }
     end

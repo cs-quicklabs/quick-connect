@@ -11,7 +11,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @task]
 
-    @task = DestroyTask.call(@contact, @api_user, @task).result
+    @task = DestroyContactDetail.call(@contact, @api_user, @task).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Task was successfully deleted." } }
     end

@@ -12,7 +12,7 @@ class Contact::PhoneCallsController < Contact::BaseController
   def destroy
     authorize [@contact, @phone_call]
 
-    @phone_call = DestroyPhoneCall.call(@contact, current_user, @phone_call).result
+    @phone_call = DestroyContactDetail.call(@contact, current_user, @phone_call).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@phone_call) }
     end

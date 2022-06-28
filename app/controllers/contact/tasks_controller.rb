@@ -10,7 +10,7 @@ class Contact::TasksController < Contact::BaseController
 
   def destroy
     authorize [@contact, @task]
-
+    @task = DestroyContactDetail(@contact, current_user, @task)
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
     end

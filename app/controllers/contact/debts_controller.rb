@@ -11,7 +11,7 @@ class Contact::DebtsController < Contact::BaseController
   def destroy
     authorize [@contact, @debt]
 
-    @debt = DestroyDebt.call(@contact, current_user, @debt).result
+    @debt = DestroyContactDetail.call(@contact, current_user, @debt).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@debt) }
     end

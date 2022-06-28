@@ -10,7 +10,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @relative]
 
-    @relative = DestroyRelative.call(@contact, @api_user, @relative).result
+    @relative = DestroyContactDetail.call(@contact, @api_user, @relative).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Relative was successfully deleted." } }
     end

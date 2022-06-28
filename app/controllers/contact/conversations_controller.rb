@@ -11,7 +11,7 @@ class Contact::ConversationsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @conversation]
-    @conversation = DestroyConversation.call(@contact, current_user, @conversation).result
+    @conversation = DestroyContactDetail.call(@contact, current_user, @conversation).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@conversation) }
     end
