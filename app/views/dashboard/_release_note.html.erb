@@ -15,7 +15,6 @@
             <% if event.trackable.nil? %>
               which does not exists anymore 
             <% else %>
-              titled
               <a href="<%= release_note_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= highlight_hashtag(event.trackable.title.upcase_first) %></a>
             <% end %>
           </p>

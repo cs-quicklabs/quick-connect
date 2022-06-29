@@ -17,17 +17,18 @@ Rails.application.routes.draw do
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
-    resources :notes, module: "contact"
-    resources :phone_calls, module: "contact"
-    resources :tasks, module: "contact"
-    resources :relatives, module: "contact"
+    resources :notes, module: "contact", except: [:show]
+    resources :phone_calls, module: "contact", except: [:show]
+    resources :tasks, module: "contact", only: [:index]
+    resources :relatives, module: "contact", except: [:show]
     resources :about, module: "contact"
     collection do
       get :form
     end
-    resources :debts, module: "contact"
-    resources :conversations, module: "contact"
-    resources :timeline, module: "contact"
+    resources :gifts, module: "contact", except: [:show]
+    resources :debts, module: "contact", except: [:show]
+    resources :conversations, module: "contact", except: [:show]
+    resources :timeline, module: "contact", only: [:index]
   end
   resources :journals
   resources :release_notes
@@ -105,19 +106,20 @@ Rails.application.routes.draw do
     resources :journal_comments
     resources :ratings, only: [:create, :index]
     resources :contacts do
-      resources :notes, module: "contact"
-      resources :phone_calls, module: "contact"
+      resources :notes, module: "contact", except: [:show]
+      resources :phone_calls, module: "contact", except: [:show]
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end
-      resources :debts, module: "contact"
-      resources :conversations, module: "contact"
-      resources :profile, module: "contact"
-      resources :relatives, module: "contact"
-      resources :about, module: "contact"
+      resources :gifts, module: "contact", except: [:show]
+      resources :debts, module: "contact", except: [:show]
+      resources :conversations, module: "contact", except: [:show]
+      resources :profile, module: "contact", only: [:index]
+      resources :relatives, module: "contact", except: [:show]
+      resources :about, module: "contact", only: [:index]
       resources :labels, module: "contact", only: [:index, :update, :destroy]
       resources :relations, module: "contact", only: [:index, :update, :destroy]
-      resources :timeline, module: "contact"
+      resources :timeline, module: "contact", only: [:index]
     end
   end
 end

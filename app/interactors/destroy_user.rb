@@ -5,15 +5,17 @@ class DestroyUser < Patterns::Service
   end
 
   def call
- 
+
     begin
-       transfer_contacts
-    transfer_journals
-    transfer_comments
-    transfer_ratings
-    delete_events
-        add_event
-    user.destroy
+      transfer_contacts
+      transfer_journals
+      transfer_comments
+      transfer_ratings
+      delete_events
+      add_event
+      user.destroy
+      add_event
+
     rescue Exception => e
       return false
     end
@@ -42,7 +44,6 @@ class DestroyUser < Patterns::Service
     Event.where(user_id: user.id).delete_all
     Event.where(trackable_id: user.id).delete_all
   end
-
 
   def add_event
     Event.create(action: "deleted", action_for_context: "deleted a user")
