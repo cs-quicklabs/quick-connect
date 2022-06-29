@@ -1,14 +1,15 @@
 <%= turbo_frame_tag dom_id(@gift) do %>
-  <%= tailwind_form_with(model: @gift, id: dom_id(@gift), url: contact_gift_path(@contact, @gift)) do |form| %>
-    <main class="w-full mx-auto space-y-2 py-6">
-      <%= render "shared/form_messages", resource: @gift, message: local_assigns[:message] %>
- <%= form.text_field :name, "Name", autocomplete: "off" %>
-    <%= form.text_area :body, "Description", class: "form-text-field" %>
-    <div class="w-full ">
-      <label for="status" class="block text-sm font-medium text-gray-700">
+<%= tailwind_form_with(model: @gift, id: dom_id(@gift), url: contact_gift_path(@contact, @gift)) do |form| %>
+  <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
+    <%= render "shared/form_messages", resource: @gift, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Edit Gift", subtitle: "A gift can be added to a contact which can help you remember important things. "%>
+    <%= form.text_field :name, "Name", autocomplete: "off" %>
+    <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
+    <div>
+     <label for="status" class="block text-sm font-medium text-gray-700">
         Status
       </label>
-      <div class="block max-w-lg space-x-8 mt-2">
+          <div class="block max-w-lg space-x-8 mt-2">
       <div class="inline-flex space-x-2">
          <%= form.radio_button :status, 'recieved', class: "mt-1 " %>
        <%= form.label :status_recieved, 'Recieved', class:" text-sm font-medium text-gray-700"  %>
@@ -18,16 +19,18 @@
       <%= form.label :status_given, 'Given' , class:" text-sm font-medium text-gray-700" %>
       </div>
    </div>
-    </div>
+   </div>
     <div>
+    
       <label for="date" class="block text-sm font-medium text-gray-700">
-        Date
+         Date
       </label>
-      <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+      <%= form.date_field :date, class: "form-text-field mt-1" %>
     </div>
-      <div class="flex justify-end">
-        <%= form.submit "Edit Gift", class: "btn-blue" %>
-      </div>
-    </main>
-  <% end %>
+    <div class="flex justify-end">
+      <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
+      <%= form.submit "Edit Gift", class: "btn-blue" %>
+    </div>
+  </main>
+<% end %>
 <% end %>
