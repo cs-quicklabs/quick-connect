@@ -24,7 +24,7 @@ class AddDebt < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "debt", action_for_context: "added a debt for", trackable: debt)
+    contact.events.create(user: actor, action: "debt", action_for_context: "added a debt for", trackable: debt, action_context: "added debt")
   end
 
   attr_reader :debt, :actor, :contact

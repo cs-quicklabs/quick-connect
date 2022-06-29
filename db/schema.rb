@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044864) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -131,6 +131,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044864) do
     t.integer "eventable_id"
     t.string "eventable_type"
     t.bigint "account_id", null: false
+    t.string "action_context"
     t.index ["account_id"], name: "index_events_on_account_id"
   end
 
@@ -143,6 +144,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044864) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_fields_on_account_id"
+  end
+
+  create_table "gifts", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.boolean "status", default: true
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_gifts_on_contact_id"
+    t.index ["user_id"], name: "index_gifts_on_user_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -369,6 +383,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044864) do
   add_foreign_key "debts", "users"
   add_foreign_key "events", "accounts"
   add_foreign_key "fields", "accounts"
+  add_foreign_key "gifts", "contacts"
+  add_foreign_key "gifts", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
