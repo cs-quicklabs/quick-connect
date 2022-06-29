@@ -6,9 +6,9 @@
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
     <div class="w-full ">
       <label for="owned_by" class="block text-sm font-medium text-gray-700">
-        Owned by
+        Owed by
       </label>
-      <%= form.select :permission, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
+      <%= form.select :owed_by, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
     </div>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">

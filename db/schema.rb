@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044866) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -110,7 +110,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
   create_table "debts", force: :cascade do |t|
     t.string "title"
     t.string "amount"
-    t.boolean "owed_by", default: true
+    t.string "owed_by", default: "user", null: false
     t.bigint "user_id"
     t.bigint "contact_id"
     t.datetime "due_date"

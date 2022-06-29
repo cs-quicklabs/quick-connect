@@ -4,6 +4,15 @@
       <%= debt.title.titleize %>
     </div>
   </td>
+    <td class="table-cell w-full">
+    <div class="text-sm">
+      <% if debt.owed_by==='contact' %>
+      <%= debt.contact.decorate.display_name %>
+      <% else %>
+      <span class="font-medium text-gray-500">  You</span>
+      <% end %>
+    </div>
+  </td>
   <td class="table-cell w-full">
     <div class="text-sm">
       <a href="<%= contact_debt_path(debt.contact, debt)%>" class="block hover:underline" target="_top">
