@@ -10,10 +10,9 @@ class DestroyContactDetail < Patterns::Service
       destroy_detail
       update_event
     rescue
-      note
+      detail
     end
-
-    note
+    detail
   end
 
   private
