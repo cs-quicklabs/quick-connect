@@ -10,9 +10,7 @@ class Contact::TasksController < Contact::BaseController
 
   def destroy
     authorize [@contact, @task]
-
-    @task.destroy
-    Event.where(trackable: @task).touch_all #fixes cache issues in activity
+    @task = DestroyContactDetail.call(@contact, current_user, @task)
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
     end
@@ -31,6 +29,7 @@ class Contact::TasksController < Contact::BaseController
 
     respond_to do |format|
       if @task.update(task_params)
+        Event.where(trackable: @task).touch_all
         format.html { redirect_to contact_tasks_path(@contact), notice: "Task was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, template: "contact/tasks/edit", locals: { task: @task }) }

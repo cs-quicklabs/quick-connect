@@ -11,8 +11,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @debt]
 
-    @debt.destroy
-    Event.where(trackable: @debt).touch_all #fixes cache issues in activity
+    @debt = DestroyContactDetail.call(@contact, @api_user, @debt).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Debt was successfully deleted." } }
     end
@@ -33,6 +32,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
 
     respond_to do |format|
       if @debt.update(debt_params)
+        Event.where(trackable: @debts).touch_all
         format.json { render json: { success: true, data: @debt, message: "Debt was successfully updated." } }
       else
         format.json { render json: { success: false, message: @debt.errors.full_messages.first } }

@@ -1,5 +1,6 @@
 class DestroyContact < Patterns::Service
-  def initialize(contact)
+  def initialize(actor, contact)
+    @actor = actor
     @contact = contact
   end
 
@@ -40,10 +41,13 @@ class DestroyContact < Patterns::Service
     contact.events.delete_all
   end
 
+
   def add_event
     @event = Event.create(user: actor, action: "deleted", action_for_context: "deleted a contact")
     @event.save!
   end
 
-  attr_reader :contact
+
+  attr_reader :contact, :actor
+
 end

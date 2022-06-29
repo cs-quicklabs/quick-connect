@@ -17,6 +17,7 @@ class Api::ContactsController < Api::BaseController
   def update
     authorize [:api, @contact]
     if @contact.update(contact_params)
+      Event.where(eventable: @contact).or(Event.where(trackable: @contact)).touch_all
       render json: { success: true, data: @contact, message: "Contact was successfully updated." }
     else
       render json: { success: false, message: @contact.errors.full_messages.first }
@@ -60,7 +61,7 @@ class Api::ContactsController < Api::BaseController
 
   def destroy
     authorize [:api, @contact]
-    if DestroyContact.call(@contact).result
+    if DestroyContact.call(current_user, @contact).result
       render json: { success: true, message: "Contact has been deleted." }
     else
       render json: { success: true, message: "Failed to delete contact." }

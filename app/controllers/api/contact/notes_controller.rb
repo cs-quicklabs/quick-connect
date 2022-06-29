@@ -12,8 +12,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @note]
 
-    @note.destroy
-    Event.where(trackable: @note).touch_all #fixes cache issues in activity
+    @note = DestroyContactDetail.call(@contact, @api_user, @note).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Note was successfully deleted." } }
     end
@@ -29,6 +28,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
 
     respond_to do |format|
       if @note.update(note_params)
+        Event.where(trackable: @note).touch_all
         format.json { render json: { success: true, data: @note, message: "Note was successfully updated." } }
       else
         format.json { render json: { success: false, message: @note.errors.full_messages.first } }

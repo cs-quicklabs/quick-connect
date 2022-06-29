@@ -10,9 +10,7 @@ class Contact::NotesController < Contact::BaseController
 
   def destroy
     authorize [@contact, @note]
-
-    @note.destroy
-    Event.where(trackable: @note).touch_all #fixes cache issues in activity
+    @note = DestroyContactDetail.call(@contact, current_user, @note).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@note) }
     end
@@ -31,6 +29,7 @@ class Contact::NotesController < Contact::BaseController
 
     respond_to do |format|
       if @note.update(note_params)
+        Event.where(trackable: @note).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, partial: "contact/notes/note", locals: { note: @note }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@note, template: "contact/notes/edit", locals: { note: @note }) }

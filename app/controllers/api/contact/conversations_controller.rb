@@ -12,8 +12,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @conversation]
 
-    @conversation.destroy
-    Event.where(trackable: @conversation).touch_all #fixes cache issues in activity
+    @conversation = DestroyContactDetail.call(@contact, @api_user, @conversation).result
     respond_to do |format|
       format.json { render json: { success: true, data: @conversation, message: "Conversation deleted successfully" } }
     end
@@ -29,6 +28,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
 
     respond_to do |format|
       if @conversation.update(conversation_params)
+        Event.where(trackable: @conversation).touch_all
         format.json { render json: { success: true, data: @conversation, message: "Conversation updated successfully" } }
       else
         format.json { render json: { success: false, message: @conversation.errors.full_messages.first } }

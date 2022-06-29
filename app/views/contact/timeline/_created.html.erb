@@ -10,13 +10,7 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-            You
-            <%=event.action_for_context%>
-            <% if event.trackable.nil? %>
-              which does not exists anymore 
-            <% else %>
-              <a href="<%= release_note_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= highlight_hashtag(event.trackable.title.upcase_first) %></a>
-            <% end %>
+            <%=event.action_context%>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">

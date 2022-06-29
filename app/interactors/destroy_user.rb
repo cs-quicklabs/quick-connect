@@ -5,6 +5,7 @@ class DestroyUser < Patterns::Service
   end
 
   def call
+
     begin
       transfer_contacts
       transfer_journals
@@ -14,6 +15,7 @@ class DestroyUser < Patterns::Service
       add_event
       user.destroy
       add_event
+
     rescue Exception => e
       return false
     end

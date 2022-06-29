@@ -11,9 +11,7 @@ class Contact::ConversationsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @conversation]
-
-    @conversation.destroy
-    Event.where(trackable: @conversation).touch_all #fixes cache issues in activity
+    @conversation = DestroyContactDetail.call(@contact, current_user, @conversation).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@conversation) }
     end
@@ -32,6 +30,7 @@ class Contact::ConversationsController < Contact::BaseController
 
     respond_to do |format|
       if @conversation.update(conversation_params)
+        Event.where(trackable: @conversation).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@conversation, partial: "contact/conversations/conversation", locals: { conversation: @conversation }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@conversation, template: "contact/conversations/edit", locals: { conversation: @conversation }) }
