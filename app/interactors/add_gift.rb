@@ -24,7 +24,7 @@ class AddGift < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "gift", action_for_context: "added a gift for", trackable: gift, action_context: "Added gift")
+    contact.events.create(user: actor, action: "gifted", action_for_context: "added a gift for", trackable: gift, action_context: "Added gift")
   end
 
   attr_reader :gift, :actor, :contact
