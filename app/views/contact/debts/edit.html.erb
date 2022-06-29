@@ -3,7 +3,13 @@
     <%= render "shared/form_messages", resource: @debt, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Edit Debt", subtitle: "A debt can be added to a contact which can help you remember important things. "%>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
-    <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
+    <%= form.text_field :amount, "amount", class: "form-text-field" %>
+    <div>
+      <label for="owned_by" class="block text-sm font-medium text-gray-700">
+        Owed by
+      </label>
+      <%= form.select :owed_by, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
+    </div>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">
         Due Date
