@@ -1,13 +1,22 @@
+<style>
+    .show-read-more .more-text{
+        display: none;
+    }
+</style>
 <tr id="<%= dom_id gift %>">
-  <td class="table-cell w-full">
+  <td class="table-cell ">
     <div class="text-sm">
       <%= gift.name %>
     </div>
   </td>
   <td class="table-cell w-full">
     <div class="text-sm">
-      <a href="<%= contact_gift_path(gift.contact, gift)%>" class="block hover:underline" target="_top">
-        <%= gift.body %>
+       <p ><span class="line-clamp-2 "> <%= gift.body %></span>
+        <span class="more" style="display: none;">  <%= gift.body %></span>
+   <% if gift.body.length>150%>
+         <span class="show-more-button" data-more-<%=gift.id%>="0">Read More</span>
+         <% end %>
+              </p>
       </div>
     </td>
      <td class="table-cell whitespace-nowrap">
@@ -28,3 +37,33 @@
       </div>
     </td>
   </tr>
+  <script>
+ document.querySelector('.show-more-button').addEventListener('click', function() {
+    
+	// If text is shown less, then show complete
+  for (let i = 1; i < 13; i++) {
+	if(this.getAttribute('data-more-'+i) == 0) {
+		this.setAttribute('data-more-'+i, 1);
+		this.style.display = 'block';
+		this.innerHTML = 'Read Less';
+
+		this.previousElementSibling.style.display = 'none';
+		this.previousElementSibling.previousElementSibling.style.display = 'inline';
+    break;
+	}
+
+	// If text is shown complete, then show less
+	else if(this.getAttribute('data-more-'+i) == 1) {
+ 
+		this.setAttribute('data-more-'+i, 0);
+		this.style.display = 'inline';
+		this.innerHTML = 'Read More';
+
+		this.previousElementSibling.style.display = 'inline';
+		this.previousElementSibling.previousElementSibling.style.display = 'none';
+    break;
+	}	
+  }
+});
+  </script>
+
