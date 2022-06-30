@@ -94,6 +94,7 @@ GEM
       request_store (>= 1.0.5)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
+    attribute_normalizer (1.2.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.587.0)
     aws-sdk-core (3.131.0)
@@ -446,6 +447,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts_as_tenant
+  attribute_normalizer
   aws-sdk-s3 (~> 1.87)
   bootsnap (>= 1.4.4)
   byebug

@@ -5,6 +5,7 @@ class Label < ApplicationRecord
   validates_uniqueness_to_tenant :name, :case_sensitive => false
   scope :for_current_account, -> { where(account: Current.account) }
   has_and_belongs_to_many :contacts, touch: true
+  normalize_attribute :name, :with => :strip
 
   protected
 

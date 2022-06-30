@@ -21,6 +21,7 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   before_create :add_jti
   has_many :comments
+  normalize_attribute :first_name, :last_name, :email, :with => :strip
 
   def add_jti
     self.jti ||= SecureRandom.uuid
