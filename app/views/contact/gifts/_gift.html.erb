@@ -6,17 +6,23 @@
 <tr id="<%= dom_id gift %>">
   <td class="table-cell ">
     <div class="text-sm">
-      <%= gift.name %>
+      <%= gift.name.upcase_first %>
     </div>
   </td>
   <td class="table-cell w-full">
     <div class="text-sm">
-       <p ><span class="line-clamp-2 "> <%= gift.body %></span>
-        <span class="more" style="display: none;">  <%= gift.body %></span>
-   <% if gift.body.length>150%>
-         <span class="show-more-button" data-more-<%=gift.id%>="0">Read More</span>
-         <% end %>
-              </p>
+   <p
+   x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
+   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
+   >
+    <span x-text="isCollapsed ? originalContent : content"><%= gift.body.upcase_first%></span>
+ 
+    <button
+      @click="isCollapsed = !isCollapsed"
+      x-show="originalContent.length > maxLength"
+      x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+    ></button>
+</p>
       </div>
     </td>
      <td class="table-cell whitespace-nowrap">
@@ -37,33 +43,5 @@
       </div>
     </td>
   </tr>
-  <script>
- document.querySelector('.show-more-button').addEventListener('click', function() {
-    
-	// If text is shown less, then show complete
-  for (let i = 1; i < 13; i++) {
-	if(this.getAttribute('data-more-'+i) == 0) {
-		this.setAttribute('data-more-'+i, 1);
-		this.style.display = 'block';
-		this.innerHTML = 'Read Less';
 
-		this.previousElementSibling.style.display = 'none';
-		this.previousElementSibling.previousElementSibling.style.display = 'inline';
-    break;
-	}
-
-	// If text is shown complete, then show less
-	else if(this.getAttribute('data-more-'+i) == 1) {
- 
-		this.setAttribute('data-more-'+i, 0);
-		this.style.display = 'inline';
-		this.innerHTML = 'Read More';
-
-		this.previousElementSibling.style.display = 'inline';
-		this.previousElementSibling.previousElementSibling.style.display = 'none';
-    break;
-	}	
-  }
-});
-  </script>
 

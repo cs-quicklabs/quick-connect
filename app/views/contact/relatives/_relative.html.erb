@@ -9,7 +9,7 @@
           <div>
             <a href="<%= contact_about_index_path(relative.contact_id)%>" class="block hover:underline col-span-3">
               <p class="text-sm font-medium text-gray-900"><%=relative.contact.decorate.display_name%></p>
-              <p class="flex items-center mt-1 text-sm text-gray-500"><%= relative.relation.decorate.display_name%></p>
+              <p class="flex items-center mt-1 text-sm text-gray-500 whitespace-nowrap"><%= relative.relation.decorate.display_name%></p>
             </a>
           </div>
         </div>
