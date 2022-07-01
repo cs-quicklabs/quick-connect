@@ -1,7 +1,19 @@
 <tr id="<%= dom_id debt %>">
   <td class="table-cell w-full">
     <div class="text-sm">
-      <%= debt.title.titleize %>
+      
+         <p
+   x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
+   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
+   >
+    <span x-text="isCollapsed ? originalContent : content"><%= debt.title.titleize %></span>
+ 
+    <button
+      @click="isCollapsed = !isCollapsed"
+      x-show="originalContent.length > maxLength"
+      x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+    ></button>
+</p>
     </div>
   </td>
     <td class="table-cell w-full">
@@ -15,8 +27,19 @@
   </td>
   <td class="table-cell w-full">
     <div class="text-sm">
-      <a href="<%= contact_debt_path(debt.contact, debt)%>" class="block hover:underline" target="_top">
-        <%= debt.amount.titleize %>
+         <p
+   x-data="{ isCollapsed: false, maxLength: 50, originalContent: '', content: '' }"
+   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
+   >
+    <span x-text="isCollapsed ? originalContent : content">  <%= debt.amount.titleize %></span>
+ 
+    <button
+      @click="isCollapsed = !isCollapsed"
+      x-show="originalContent.length > maxLength"
+      x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+    ></button>
+</p>
+      
       </div>
     </td>
     <td class="table-cell whitespace-nowrap">
