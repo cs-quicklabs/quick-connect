@@ -38,7 +38,6 @@ class Contact::TasksController < Contact::BaseController
   end
 
   def create
-    binding.irb
     authorize [@contact, Task]
 
     @task = AddTask.call(task_params, current_user, @contact).result
