@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(@gift) do %>
+
 <%= tailwind_form_with(model: @gift, id: dom_id(@gift), url: contact_gift_path(@contact, @gift)) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: @gift, message: local_assigns[:message] %>
@@ -32,5 +32,4 @@
       <%= form.submit "Edit Gift", class: "btn-blue" %>
     </div>
   </main>
-<% end %>
 <% end %>

@@ -6,7 +6,7 @@
    x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-    <span x-text="isCollapsed ? originalContent : content"><%= debt.title.titleize %></span>
+    <span x-text="isCollapsed ? originalContent : content"><%= debt.title.upcase_first %></span>
  
     <button
       @click="isCollapsed = !isCollapsed"
@@ -17,7 +17,7 @@
     </div>
   </td>
     <td class="table-cell w-full">
-    <div class="text-sm">
+    <div class="text-sm  whitespace-nowrap">
       <% if debt.owed_by==='contact' %>
       <%= debt.contact.decorate.display_name %>
       <% else %>
@@ -31,7 +31,7 @@
    x-data="{ isCollapsed: false, maxLength: 50, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-    <span x-text="isCollapsed ? originalContent : content">  <%= debt.amount.titleize %></span>
+    <span x-text="isCollapsed ? originalContent : content">  <%= debt.amount.upcase_first %></span>
  
     <button
       @click="isCollapsed = !isCollapsed"

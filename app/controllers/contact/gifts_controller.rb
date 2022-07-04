@@ -27,6 +27,7 @@ class Contact::GiftsController < Contact::BaseController
 
     respond_to do |format|
       if @gift.update(gift_params)
+        Event.where(trackable: @debts).touch_all
         format.html { redirect_to contact_gifts_path(@contact), notice: "Gift was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@gift, template: "contact/gifts/edit", locals: { gift: @gift }) }
