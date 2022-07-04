@@ -36,16 +36,15 @@ class UsersTest < ApplicationSystemTestCase
     fill_in "Last Name", with: ""
     click_on "Save"
     take_screenshot
-    assert_text "Email can't be blank"
     assert_text "First name can't be blank"
     assert_text "Last name can't be blank"
   end
 
   test "can not update password with pawned password" do
     visit setting_password_url(script_name: "/#{@account.id}")
-    fill_in "Old Password", with: "random123"
-    fill_in "New Password", with: "Home@123"
-    fill_in "Confirm New Password", with: "Home@123"
+    fill_in "user_original_password", with: "random123"
+    fill_in "user_new_password", with: "Home@123"
+    fill_in "user_new_password_confirmation", with: "Home@123"
     click_on "Save"
     sleep(1)
     take_screenshot
