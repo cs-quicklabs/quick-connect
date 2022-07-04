@@ -23,7 +23,8 @@ RSpec.describe "api/contact/gifts", type: :request do
         run_test!
       end
     end
-
+  end
+  path "/{account_id}/api/contacts/{contact_id}/gifts" do
     post("create gift") do
       produces "application/json"
       consumes "application/json"
