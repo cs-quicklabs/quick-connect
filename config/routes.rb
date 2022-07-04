@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
-    resources :tasks, module: "contact", only: [:index]
+    resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
     resources :about, module: "contact"
     collection do

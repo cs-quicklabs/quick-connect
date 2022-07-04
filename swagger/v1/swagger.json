@@ -1171,7 +1171,9 @@
             "description": "successful"
           }
         }
-      },
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/gifts": {
       "post": {
         "summary": "create gift",
         "produces": [
