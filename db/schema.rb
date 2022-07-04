@@ -149,7 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
   create_table "gifts", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.boolean "status", default: true
+    t.string "status", default: true
     t.bigint "user_id"
     t.bigint "contact_id"
     t.datetime "date"

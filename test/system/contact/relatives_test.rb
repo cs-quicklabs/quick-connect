@@ -25,6 +25,15 @@ class ContactRelativesTest < ApplicationSystemTestCase
     visit page_url
     assert_selector "h1", text: "Sign in to your account"
   end
+  test "can not add an empty relation" do
+    visit page_url
+    fill_in "search-contacts", with: "Co"
+    find("#add-relation").click
+    assert_selector "#contact-contacts", text: "Select Contact Contact1's relation"
+    click_on "Add Relation"
+    assert_selector "div#error_explanation", text: "Relation can't be blank"
+    take_screenshot
+  end
 
   test "can add relation" do
     visit page_url
