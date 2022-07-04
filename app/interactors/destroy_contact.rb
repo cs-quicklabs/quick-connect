@@ -13,8 +13,8 @@ class DestroyContact < Patterns::Service
       delete_conversations
       delete_debts
       delete_gifts
-      contact.destroy
       add_event
+      contact.destroy
     rescue Exception => e
       return false
     end

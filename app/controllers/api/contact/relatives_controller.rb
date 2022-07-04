@@ -36,7 +36,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def create
     authorize [:api, @contact, Relative]
-    @relative = AddRelative.call(relative_params, current_user, @contact).result
+    @relative = AddRelative.call(relative_params, @api_user, @contact).result
     @relation = ""
     respond_to do |format|
       if @relative.persisted?

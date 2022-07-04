@@ -48,20 +48,20 @@ class Api::ContactsController < Api::BaseController
 
   def archive_contact
     authorize [:api, @contact]
-    ArchiveContact.call(@contact, current_user)
+    ArchiveContact.call(@contact, @api_user)
     render json: { success: true, data: @contacts, message: "Contact has been archived." }
   end
 
   def unarchive_contact
     authorize [:api, @contact]
 
-    UnarchiveContact.call(@contact, current_user)
+    UnarchiveContact.call(@contact, @api_user)
     render json: { success: true, data: @contact, message: "Contact has been restored." }
   end
 
   def destroy
     authorize [:api, @contact]
-    if DestroyContact.call(current_user, @contact).result
+    if DestroyContact.call(@api_user, @contact).result
       render json: { success: true, message: "Contact has been deleted." }
     else
       render json: { success: true, message: "Failed to delete contact." }

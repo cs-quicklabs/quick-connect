@@ -54,7 +54,7 @@ class RelationsTest < ApplicationSystemTestCase
 
   test "can delete a relation" do
     visit page_url
-    relation = relations(:father)
+    relation = relations(:sister)
 
     assert_selector "li", text: relation.name
     page.accept_confirm do
