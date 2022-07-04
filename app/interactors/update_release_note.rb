@@ -1,6 +1,5 @@
 class UpdateReleaseNote < Patterns::Service
   def initialize(release_note, params, published)
-    binding.irb
     @release_note = release_note
     @params = params
     @published = published

@@ -7,7 +7,7 @@
 
     <div class="flex justify-end">
      <%= form.submit "Save As Draft", :name => "draft", class: "btn-normal" %>
-            <%= form.submit "Submit Report", class: "btn-blue", data: {
+            <%= form.submit "Submit Release Note", class: "btn-blue", data: {
                                                controller: "confirmation",
                                                "confirmation-message-value": "Are you sure you want to submit it? You won't be able to edit it after this.",
                                                action: "confirmation#confirm",
