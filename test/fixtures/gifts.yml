@@ -1,0 +1,16 @@
+one:
+  name: Testing one 
+  body: Rs 1
+  date: 2021-02-01
+  status: recieved
+  user: regular
+  contact: one
+
+two:
+  name: Testing two
+  body: Rs 2
+  date: 2021-02-01
+  status: given
+  user: regular
+  contact: one
+
