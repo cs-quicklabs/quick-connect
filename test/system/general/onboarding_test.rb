@@ -30,7 +30,7 @@ class OnboardingTest < ApplicationSystemTestCase
     visit link
     fill_in "user_password", with: "password"
     fill_in "user_password_confirmation", with: "password"
-    click_on "Change my password"
+    click_on "Change My Password"
     assert_selector "p.notice", text: "Your password has been changed successfully."
     take_screenshot
   end
@@ -44,7 +44,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_password_confirmation", with: "Awesome@2021!"
     assert_emails 1 do
       within "#sign_up_form" do
-        click_on "Sign up"
+        click_on "Sign Up"
       end
       sleep(4.0)
     end
@@ -87,7 +87,7 @@ class OnboardingTest < ApplicationSystemTestCase
     click_on "Didn't receive email confirmation instructions?"
     fill_in "user_email", with: users(:unconfirmed).email
     assert_emails 1 do
-      click_on "Resend confirmation instructions"
+      click_on "Resend Confirmation Instructions"
       sleep(0.5)
     end
     take_screenshot

@@ -5,7 +5,7 @@
   <td class="table-cell w-full">
     <div class="text-sm">
       <a href="<%= contact_task_path(task.contact, task)%>" class="block hover:underline" target="_top">
-        <%= task.title.titleize %>
+        <%= task.title.upcase_first %>
       </div>
     </td>
     <td class="table-cell whitespace-nowrap">

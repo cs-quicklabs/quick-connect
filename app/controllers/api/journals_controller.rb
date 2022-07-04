@@ -9,7 +9,7 @@ class Api::JournalsController < Api::BaseController
 
   def destroy
     authorize [:api, @journal]
-    @journal = DestroyJournal.call(current_user, @journal).result
+    @journal = DestroyJournal.call(@api_user, @journal).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Journal was successfully deleted." } }
     end

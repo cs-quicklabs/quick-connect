@@ -52,7 +52,7 @@ Rails.application.routes.draw do
   namespace :account do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
-    resources :fields, except: [:show]
+    resources :fields, except: [:show, :new]
   end
   namespace :purchase do
     resources :checkouts
@@ -96,9 +96,9 @@ Rails.application.routes.draw do
       get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
     end
     namespace :account do
-      resources :relations, except: [:show]
-      resources :labels, except: [:show]
-      resources :fields, except: [:show]
+      resources :relations, except: [:show, :new]
+      resources :labels, except: [:show, :new]
+      resources :fields, except: [:show, :new]
     end
 
     resources :journals
