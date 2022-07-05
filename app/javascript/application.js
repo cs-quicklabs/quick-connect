@@ -8,3 +8,4 @@ import '@tailwindcss/line-clamp'
 import '@tailwindcss/forms'
 import "./channels"
 import "@rails/actioncable"
+
