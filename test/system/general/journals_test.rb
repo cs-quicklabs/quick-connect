@@ -32,7 +32,7 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can show journal detail page" do
     visit page_url
-    find(id: dom_id(@journal)).click
+    find(id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       assert_text "Edit"
       assert_text "Delete"
@@ -55,7 +55,6 @@ class JournalsTest < ApplicationSystemTestCase
     within "#rating" do
       find("li", id: "add-rating-awesome").click
     end
-
     assert_selector "p", text: "Your day was awesome!"
   end
 
@@ -71,7 +70,7 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can edit a journal" do
     visit page_url
-    find(id: dom_id(@journal)).click
+    find(id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       click_on "Edit"
     end
@@ -84,7 +83,7 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can not edit a journal with invalid name" do
     visit page_url
-    find(id: dom_id(@journal)).click
+    find(id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       click_on "Edit"
     end
@@ -96,7 +95,7 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can delete journal" do
     visit page_url
-    find(id: dom_id(@journal)).click
+    find(id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       page.accept_confirm do
         click_on "Delete"
