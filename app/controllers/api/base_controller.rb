@@ -5,7 +5,7 @@ class Api::BaseController < ApplicationController
   before_action :set_user, if: :json_request?
   before_action :authenticate_account!
   include Pagy::Backend
-  LIMIT = 20
+  LIMIT = 10
 
   def authenticate_account!
     raise Pundit::NotAuthorizedError unless Current.account
