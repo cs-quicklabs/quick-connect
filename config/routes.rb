@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
   root :to => "dashboard#index"
-  resources :dashboard
+  get "/dashboard", to: "dashboard#index", as: "dashboard"
   resources :sections
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do

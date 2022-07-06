@@ -23,7 +23,7 @@
         <% if user_signed_in? %>
           <div class="hidden sm:block sm:ml-6 pl-4">
             <div class="flex space-x-6">
-              <a href=<%= dashboard_index_path %> class= "<%= current_page?(dashboard_index_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
+              <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Dashboard</a>
               <a href=<%= sections_path %> class= "<%= current_page?(sections_path) ? "nav-selected" : "nav-unselected" %>">Multi-Section</a>
               <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected" : "nav-unselected" %>">Contacts</a>
               <a href=<%= journals_path %> class= "<%= current_page?(journals_path) ? "nav-selected" : "nav-unselected" %>">Journals</a>
