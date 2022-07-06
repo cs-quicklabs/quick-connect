@@ -1,10 +1,10 @@
-<main class="relative z-0 flex-1  focus:outline-none">
+<main class="relative z-0 flex-1 overflow-y-hidden focus:outline-none">
   <main class="">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-3 overflow-y-clip">
+    <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
       <!-- Left column -->
 
-      <div class="grid grid-cols-1 col-span-1 border-r  border-gray-200 overflow-y-auto  max-content top-16 overscroll-contain py-6">
+      <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full py-6">
         <section aria-labelledby="add-participant-section h-full">
           <div class="overflow-hidden bg-white">
             <div class="px-4 sm:px-6 py-6">
@@ -38,7 +38,9 @@
                 </div>
               </div>
             </div>
-        </div>
+
+            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory" data-controller="infinite-scroll" >
+              <div class="relative h-full">
             <nav class="flex-1  min-h-full  overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
               <div class="relative h-full px-6 ">
                 <ul role="list" class="relative z-0 divide-y divide-gray-200">
@@ -52,16 +54,16 @@
    
         </div>
       </section>
-    </div>
+      </div>
       <!-- Right column -->
-      <div class="grid grid-cols-1 lg:col-span-2 h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
-        <section aria-labelledby="participants_section" class="h-full">
+      <div class="grid grid-cols-1 lg:col-span-2">
+        <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white">
             <div class="">
             </div>
-            <article class=" ">
+            <article class=" h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
               <!-- contact header -->
-              <div id="profile" class="">
+              <div id="profile" class="h-full">
               </div>
             </article>
           </div>
