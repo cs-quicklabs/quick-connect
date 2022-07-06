@@ -39,3 +39,27 @@ en:
       date_before: "must be before %{date}"
       date_before_or_equal_to: "must be before or equal to %{date}"
       date_equal_to: "must be equal to %{date}"
+
+en:
+  activerecord:
+    attributes:
+      note:
+        body:
+          one:  Description
+      conversation:
+        body:
+          one:   Conversation
+      phone_call:
+        body:
+          one: Phone call description
+      task:
+        body:
+          one: Description
+      gift:
+        body:
+          one: Description
+      contact:
+        phone:
+          one: Phone number
+        email:
+          one: E-mail
