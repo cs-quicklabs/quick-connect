@@ -103,7 +103,7 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in_root_path(resource)
-    root_path(script_name: script_name)
+    landing_path
   end
 
   def record_not_found
@@ -115,7 +115,7 @@ class ApplicationController < ActionController::Base
   end
 
   def landing_path
-    root_path(script_name: script_name)
+    dashboard_path(script_name: script_name)
   end
 
   def script_name

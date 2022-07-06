@@ -6,7 +6,7 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :account
   validates_presence_of :first_name, :last_name, :phone
-  validates_uniqueness_of :phone
+  validates_uniqueness_of :phone, scope: :account
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
