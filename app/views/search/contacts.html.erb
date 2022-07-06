@@ -1,6 +1,6 @@
 <% @contacts.each do |contact| %>
 
-    <li role="option" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="show" data-reflex="click->Contact#show" data-contact-id="<%= contact.id %>">
+    <li role="option" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="show" data-reflex="click->Contact#show" data-contact-id="<%= contact.id %>">
       <%= contact.decorate.display_name %>
     </li>
 
