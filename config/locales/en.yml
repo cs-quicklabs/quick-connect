@@ -65,3 +65,12 @@ en:
           one: Phone number
         email:
           one: E-mail
+      relation:
+        name:
+          one: Relation name
+      label:
+        name:
+          one: Label name
+      field:
+        name:
+          one: Field type
