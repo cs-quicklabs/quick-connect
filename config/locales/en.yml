@@ -49,6 +49,8 @@ en:
       conversation:
         body:
           one:   Conversation
+        field:
+          one: Contact field type  
       phone_call:
         body:
           one: Phone call description
