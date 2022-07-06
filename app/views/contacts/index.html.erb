@@ -38,12 +38,9 @@
                 </div>
               </div>
             </div>
-
-            <nav class="flex-1 min-h-full overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory" data-controller="infinite-scroll" >
-              <div class="relative h-full">
-            <nav class="flex-1  min-h-full  overflow-y-auto h-screen  max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
-              <div class="relative h-full px-6 ">
-                <ul role="list" class="relative z-0 divide-y divide-gray-200">
+            <nav class="flex-1  min-h-full  overflow-y-auto   max-content  overflow-y-scroll  overscroll-contain" aria-label="Directory">
+              <div class="relative h-full px-6 py-2">
+                <ul role="list" class="relative z-0 divide-y divide-gray-200 ">
                   <%= render partial: "contact", collection: @contacts, as: :contact, cached: false %>
                 </ul>
               </div>
