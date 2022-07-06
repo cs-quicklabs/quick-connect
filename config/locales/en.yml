@@ -49,6 +49,8 @@ en:
       conversation:
         body:
           one:   Conversation
+        field:
+          one: Contact field type  
       phone_call:
         body:
           one: Phone call description
@@ -63,3 +65,18 @@ en:
           one: Phone number
         email:
           one: E-mail
+      relation:
+        name:
+          one: Relation name
+      label:
+        name:
+          one: Label name
+      field:
+        name:
+          one: Field type
+      journal:
+        body:
+          one: Description
+      release_note:
+        body:
+          one: Description
