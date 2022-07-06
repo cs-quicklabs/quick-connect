@@ -74,3 +74,9 @@ en:
       field:
         name:
           one: Field type
+      journal:
+        body:
+          one: Description
+      release_note:
+        body:
+          one: Description
