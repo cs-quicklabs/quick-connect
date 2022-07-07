@@ -32,7 +32,7 @@ class DestroyContact < Patterns::Service
   end
 
   def delete_relatives
-    contact.relatives.delete_all
+    Relative.where("first_contact_id=?", @contact.id).delete_all
   end
 
   def delete_conversations
