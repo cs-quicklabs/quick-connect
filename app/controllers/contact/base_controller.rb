@@ -16,11 +16,11 @@ class Contact::BaseController < BaseController
   end
 
   def set_labels
-    @labels ||= Label.all.order(:name)
+    @labels ||= Label.for_current_account.order(:name)
   end
 
   def set_relations
-    @relations ||= Relation.all.order(:name)
+    @relations ||= Relation.for_current_account.order(:name)
   end
 
   def set_event
