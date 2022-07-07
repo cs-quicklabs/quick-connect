@@ -19,7 +19,7 @@ class Contact < ApplicationRecord
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
-  has_many :relations, through: :relatives
+  has_many :relations, through: :relatives, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :debts, dependent: :destroy
