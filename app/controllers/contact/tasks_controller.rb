@@ -12,7 +12,7 @@ class Contact::TasksController < Contact::BaseController
     authorize [@contact, @task]
     @task = DestroyContactDetail.call(@contact, current_user, @task)
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@task) }
+      format.html { redirect_to contact_tasks_path, status: :see_other }
     end
   end
 

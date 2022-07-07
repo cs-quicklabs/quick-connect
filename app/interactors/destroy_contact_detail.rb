@@ -23,7 +23,7 @@ class DestroyContactDetail < Patterns::Service
 
   def update_event
     Event.where(trackable: detail).touch_all
-    @contact.events.create(user: actor, action: "deleted", action_for_context: "deleted a" + detail + "for", action_context: "Deleted" + detail)
+    @contact.events.create(user: actor, action: "deleted", action_for_context: "deleted a " + detail.class.name.downcase + "for", action_context: "Deleted " + detail.class.name.downcase)
   end
 
   attr_reader :detail, :contact, :actor
