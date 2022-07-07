@@ -17,18 +17,22 @@
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em><br />
           <% end %>
-          <div class="flex">
-            <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            <i class="far fa-eye fa-eye-slash"  id="togglePassword" style="margin-left:-30px; margin-top:10px" ></i>
+            <div class="mt-1 flex w-full"  x-data="{ show: true }">
+            <div class="mt-1 flex-auto w-full" >
+               <input :type="show ? 'password' : 'text'" name="user[password]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+            </div>
+            <i :class="show ? 'far fa-eye fa-eye-slash' : 'far fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <div>
           <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
             Confirm New Password
           </label>
-          <div class="flex">
-            <%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
-            <i class="far fa-eye fa-eye-slash"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:10px" ></i>
+         <div class="mt-1 flex w-full"   x-data="{ show_confirmation: true }">
+            <div class="mt-1 flex-auto w-full" >
+              <input :type="show_confirmation? 'password' : 'text'" name="user[password_confirmation]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+            </div>
+            <i :class="show_confirmation ? 'far fa-eye fa-eye-slash' : 'far fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <div>
@@ -46,41 +50,4 @@
     </div>
   <% end %>
 </div>
-<script>
-  var togglePassword = document.querySelector('#togglePassword');
-   var password = document.querySelector('#user_password');
-   var password_confirmation = document.querySelector('#user_password_confirmation');
-    var togglePasswordConfirmation = document.querySelector('#togglePasswordConfirmation');
-  
-   togglePassword.addEventListener('click', function (e) {
-  
-     // toggle the type attribute
-    if (password.getAttribute('type') === 'password')
-           {
-        var type = 'text'
-        this.classList.remove('fa-eye-slash');
-           }
-           else
-           {
-        var type = 'password'
-         this.classList.add('fa-eye-slash');
-           }
-     password.setAttribute('type', type);
-  
-  });
-   togglePasswordConfirmation.addEventListener('click', function (e) {
-  
-      if (password_confirmation.getAttribute('type') === 'password')
-     {
-        var password_confirmation_type = 'text'
-        this.classList.remove('fa-eye-slash');
-     }
-     else
-     {
-        var password_confirmation_type = 'password'
-         this.classList.add('fa-eye-slash');
-     }
-  
-      password_confirmation.setAttribute('type', password_confirmation_type);
-  });
-</script>
+
