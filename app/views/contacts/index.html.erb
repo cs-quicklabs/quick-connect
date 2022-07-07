@@ -1,10 +1,10 @@
-<main class="relative z-0 flex-1 overflow-hidden focus:outline-none">
+<main class="relative z-0 flex-1 overflow-hidden focus:outline-none h-screen">
   <main class="">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
+    <div class="grid items-start grid-cols-1  lg:grid-cols-3 overflow-hidden">
       <!-- Left column -->
 
-      <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200 pb-6  ">
+      <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  ">
         <section aria-labelledby="add-participant-section h-full">
           <div class="overflow-hidden bg-white">
             <div class="px-4 sm:px-6 py-6">
@@ -38,7 +38,6 @@
                 </div>
               </div>
             </div>
-           <div class="pb-12 mb-6">
             <nav class="flex-1 overflow-y-auto  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory">
               <div class="relative px-6 h-full ">
                 <ul role="list" class="relative z-0 divide-y divide-gray-200  ">
@@ -49,8 +48,6 @@
               <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
             </div>
             </nav>
-   
-        </div>
       </div>
       </section>
       </div>
