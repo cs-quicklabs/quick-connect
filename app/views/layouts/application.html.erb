@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= action_cable_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% if user_signed_in? %>
       <meta name="current-account", content="<%= Current.account.id %>">
     <% end %>
@@ -18,12 +18,14 @@
     <script src="https://kit.fontawesome.com/db0a2349c3.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <body>
-    <% if user_signed_in? %>
+    <div class="pb-8">
       <%= render "shared/navbar" %>
-      <% end %>
+    </div>
+       <div id="modal"></div>
+    <div class="pt-4">
       <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
       <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
+    </div>
     <main  >
       <%= yield %>
     </main>
