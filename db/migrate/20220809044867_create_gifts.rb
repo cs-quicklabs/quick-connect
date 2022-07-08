@@ -3,7 +3,7 @@ class CreateGifts < ActiveRecord::Migration[7.0]
     create_table :gifts do |t|
       t.string :name
       t.text :body
-      t.string :status, default: "recieved"
+      t.string :status, default: "received"
       t.references :user, foreign_key: true
       t.references :contact, foreign_key: true
       t.datetime :date
