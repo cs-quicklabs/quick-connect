@@ -10,13 +10,13 @@
             <h2 class="sr-only" id="section-1-title">gifts</h2>
             <div class="overflow-hidden bg-white" >
               <div class="">
-                <table class="table">
+                <table class="table table-fixed" style="table-layout:fixed;">
                   <thead class="bg-gray-50">
                    <tr>
                       <th scope="col" class="table-head">
                         Name
                       </th>
-                         <th scope="col" class="table-head w-full">
+                         <th scope="col" class="table-head">
                         body
                       </th>
                        <th scope="col" class="table-head">
@@ -30,7 +30,7 @@
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="table-body" id="gifts" data-infinite-scroll-target="entries">
+                  <tbody class="table-body " id="gifts" data-infinite-scroll-target="entries">
                     <%= render partial: "gift", collection: @gifts, as: :gift, cached: true %>
                   </tbody>
                 </table>

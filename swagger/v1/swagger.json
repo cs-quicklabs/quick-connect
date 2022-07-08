@@ -1853,6 +1853,172 @@
         }
       }
     },
+    "/{account_id}/api/contacts/{contact_id}/label/{label_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "label_id",
+          "in": "path",
+          "type": "string",
+          "description": "label_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/remove_label": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/relation/{relation_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "relation_id",
+          "in": "path",
+          "type": "string",
+          "description": "relation_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/remove_relation": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/{account_id}/api/contacts/{contact_id}/relatives?page={page}": {
       "parameters": [
         {
@@ -3506,6 +3672,51 @@
           "in": "path",
           "type": "string",
           "description": "search keyword",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contacts search",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/search/relative": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "q",
+          "in": "path",
+          "type": "string",
+          "description": "search keyword",
+          "required": true
+        },
+        {
+          "name": "profile",
+          "in": "path",
+          "type": "string",
+          "description": "contact for which relative is to be added",
           "required": true
         }
       ],

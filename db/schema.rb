@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -149,7 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
   create_table "gifts", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.string "status", default: true
+    t.string "status", default: "true"
     t.bigint "user_id"
     t.bigint "contact_id"
     t.datetime "date"
@@ -165,6 +165,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "body"
+    t.integer "account_id"
     t.index ["user_id"], name: "index_journals_on_user_id"
   end
 
@@ -299,6 +300,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044865) do
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "account_id"
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 

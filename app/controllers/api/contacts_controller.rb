@@ -5,7 +5,7 @@ class Api::ContactsController < Api::BaseController
 
   def index
     authorize [:api, :contact]
-    @pagy, @contacts = pagy_nil_safe(params, @api_user.contacts.active.order(:first_name), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Contacts were successfully retrieved." }
   end
 

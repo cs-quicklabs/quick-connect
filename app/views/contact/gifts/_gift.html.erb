@@ -9,13 +9,13 @@
       <%= gift.name.upcase_first %>
     </div>
   </td>
-  <td class="table-cell w-full">
+  <td class="table-cell w-full max-w-sm ">
     <div class="text-sm">
    <p
    x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-    <span x-text="isCollapsed ? originalContent : content"><%= gift.body.upcase_first%></span>
+    <span x-text="isCollapsed ? originalContent : content"><%= highlight_hashtag(gift.body.upcase_first)%></span>
  
     <button
       @click="isCollapsed = !isCollapsed"

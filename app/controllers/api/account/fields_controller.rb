@@ -4,7 +4,7 @@ class Api::Account::FieldsController < Api::Account::BaseController
   def index
     authorize [:api, :account]
 
-    @fields = Field.for_current_account.order(:name).order(created_at: :desc)
+    @fields = Field.all.order(:name).order(created_at: :desc)
     render json: { success: true, data: @fields, message: "Fields were successfully retrieved." }
   end
 

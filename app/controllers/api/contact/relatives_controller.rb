@@ -3,7 +3,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, Relative]
-    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=?", @contact.id), items: LIMIT)
+    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @relatives.as_json(:include => [:contact, :first_contact]), message: "Contact relatives" }
   end
 

@@ -3,8 +3,8 @@ class Api::RatingsController < Api::BaseController
 
   def index
     authorize [:api, Rating]
-    @rating = @api_user.ratings.where("DATE(created_at) = ?", Date.today).first || ""
-    @ratings_by_month = @api_user.ratings.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }.map { |month, rating| [month, rating.group_by(&:date)] }
+    @rating = Rating.all.where("DATE(created_at) = ?", Date.today).first || ""
+    @ratings_by_month = Rating.all.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }.map { |month, rating| [month, rating.group_by(&:date)] }
     render json: { success: true, data: { ratings_by_month: @ratings_by_month, rating: @rating }, message: "Ratings were successfully retrieved" }
   end
 

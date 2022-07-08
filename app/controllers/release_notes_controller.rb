@@ -4,7 +4,7 @@ class ReleaseNotesController < BaseController
   def index
     authorize ReleaseNote
 
-    @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.order(created_at: :desc), items: LIMIT)
+    @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.all.order(created_at: :desc), items: LIMIT)
     render_partial("release_notes/release_note", collection: @release_notes) if stale?(@release_notes)
   end
 

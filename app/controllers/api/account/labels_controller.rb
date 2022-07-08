@@ -4,7 +4,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
   def index
     authorize [:api, :account]
 
-    @labels = Label.for_current_account.order(:name).order(created_at: :desc)
+    @labels = Label.all.order(:name).order(created_at: :desc)
     render json: { success: true, data: @labels, message: "Labels were successfully retrieved." }
   end
 
