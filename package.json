@@ -9,14 +9,15 @@
     "@rails/actiontext": "^7.0.0",
     "@tailwindcss/forms": "0.4.0",
     "@tailwindcss/line-clamp": "0.3.0",
-    "@tailwindcss/typography": "^0.5.3",
+    "autoprefixer": "^10.4.7",
     "esbuild": "^0.14.7",
+    "postcss": "^8.4.14",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre8",
     "trix": "^1.3.1"
   },
   "peerDependencies": {
-    "tailwindcss": "^2.0.2"
+    "tailwindcss": "^3.1.5"
   },
   "peerDependenciesMeta": {
     "@tailwindcss/plugin": {
@@ -35,7 +36,10 @@
   },
   "engines": {
     "node": "16.12.0",
-    "npm": "8.13.2",
-    "yarn": "1.22.19"
+    "npm": "8.1.0",
+    "yarn": "1.22.11"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.3"
   }
 }
