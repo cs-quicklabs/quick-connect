@@ -7,7 +7,7 @@ class JournalsController < BaseController
 
     @rating = Rating.all.where("DATE(date) = ?", Date.today).first || ""
     @ratings_by_month = Rating.all.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
-    @pagy, @journals = pagy_nil_safe(params, journal.all.order(created_at: :desc), items: LIMIT)
+    @pagy, @journals = pagy_nil_safe(params, Journal.all.order(created_at: :desc), items: LIMIT)
 
     render_partial("journals/journal", collection: @journals) if stale?(@journals)
   end

@@ -21,7 +21,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: regular.email
 
     assert_emails 1 do
-      click_on "Send me reset password instructions"
+      click_on "Send Me Reset Password Instructions"
       sleep(0.5)
     end
     assert_selector "p.notice", text: "You will receive an email with instructions on how to reset your password in a few minutes."
@@ -63,7 +63,7 @@ class OnboardingTest < ApplicationSystemTestCase
   test "user can not signup with invalid params" do
     visit new_user_registration_path
     within "#sign_up_form" do
-      click_on "Sign up"
+      click_on "Sign Up"
     end
     assert_selector "div#error_explanation", text: "First name can't be blank"
     assert_selector "div#error_explanation", text: "Last name can't be blank"
@@ -77,7 +77,7 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_registration_path
     fill_in "user_email", with: users(:regular).email
     within "#sign_up_form" do
-      click_on "Sign up"
+      click_on "Sign Up"
     end
     assert_selector "div#error_explanation", text: "Email has already been taken"
   end
