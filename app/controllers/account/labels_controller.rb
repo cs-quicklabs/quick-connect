@@ -4,7 +4,7 @@ class Account::LabelsController < Account::BaseController
   def index
     authorize :account
 
-    @labels = Label.for_current_account.order(:name).order(created_at: :desc)
+    @labels = Label.all.order(:name).order(created_at: :desc)
     @label = Label.new
   end
 

@@ -33,7 +33,7 @@ RSpec.describe "api/contact/gifts", type: :request do
         properties: { "api_gift": { type: :object, properties: {
           "name": { type: :string },
           "body": { type: :string },
-          "status": { type: :string, :example => [:given, :recieved] },
+          "status": { type: :string, :example => [:given, :received] },
           "date": { type: :string, format: :date },
         } } },
       }
@@ -92,7 +92,7 @@ RSpec.describe "api/contact/gifts", type: :request do
         properties: { "api_gift": { type: :object, properties: {
           "name": { type: :string },
           "body": { type: :string },
-          "status": { type: :string, :example => [:given, :recieved] },
+          "status": { type: :string, :example => [:given, :received] },
           "date": { type: :string, format: :date },
         } } },
       }

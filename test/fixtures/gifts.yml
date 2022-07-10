@@ -2,7 +2,7 @@ one:
   name: Testing one 
   body: Rs 1
   date: 2021-02-01
-  status: recieved
+  status: received
   user: regular
   contact: one
 

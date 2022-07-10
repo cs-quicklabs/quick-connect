@@ -18,7 +18,7 @@ class ArchiveContact < Patterns::Service
 
   def archive
     contact.archived = true
-    contact.archived_on = DateTime.now.utc
+    contact.archived_on = Date.today
     contact.save!
   end
 

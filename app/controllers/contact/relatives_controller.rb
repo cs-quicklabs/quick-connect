@@ -5,7 +5,7 @@ class Contact::RelativesController < Contact::BaseController
     authorize [@contact, Relative]
     @relative = Relative.new
     @relation = ""
-    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=?", @contact.id), items: LIMIT)
+    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id), items: LIMIT)
     render_partial("contact/relatives/relative", collection: @relatives) if stale?(@relatives)
   end
 
@@ -44,7 +44,7 @@ class Contact::RelativesController < Contact::BaseController
       if @relative.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:relatives, partial: "contact/relatives/relative", locals: { relative: @relative, contact: @contact }) +
-                               turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact })
+                               turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact, relation: "" })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: @relative, relation: @relation, contact: @contact }) }

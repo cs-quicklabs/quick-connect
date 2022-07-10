@@ -29,7 +29,7 @@ class ContactGiftsTest < ApplicationSystemTestCase
   test "can add gift" do
     visit page_url
     fill_in "gift_name", with: "Gift Title"
-    choose(option: "recieved")
+    choose(option: "received")
     fill_in "gift_body", with: "Rs 5"
     fill_in "gift_date", with: Date.today
     click_on "Add Gift"

@@ -1,7 +1,7 @@
 class Contact < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  scope :available, -> { all_contacts }
+  acts_as_tenant :account
   scope :for_current_account, -> { where(account: Current.account) }
   belongs_to :user
   belongs_to :account
@@ -10,7 +10,6 @@ class Contact < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
-  scope :active, -> { where(archived: false) }
   scope :available, -> { where(archived: false) }
   validates :phone, :presence => true,
                     :numericality => true,

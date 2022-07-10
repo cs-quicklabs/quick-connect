@@ -89,6 +89,7 @@ Rails.application.routes.draw do
       patch "/permission", to: "user#update_permission", as: "change_permission"
     end
     get "/search/contacts", to: "search#contacts"
+    get "/search/relative", to: "search#relative"
     resources :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
@@ -115,10 +116,12 @@ Rails.application.routes.draw do
       resources :debts, module: "contact", except: [:show]
       resources :conversations, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
+      get "/label/:id", to: "contact/profile#label"
+      get "/remove_label/:id", to: "contact/profile#remove_label"
+      get "/relation/:id", to: "contact/profile#relation"
+      get "/remove_relation", to: "contact/profile#remove_relation"
       resources :relatives, module: "contact", except: [:show]
       resources :about, module: "contact", only: [:index]
-      resources :labels, module: "contact", only: [:index, :update, :destroy]
-      resources :relations, module: "contact", only: [:index, :update, :destroy]
       resources :timeline, module: "contact", only: [:index]
     end
   end

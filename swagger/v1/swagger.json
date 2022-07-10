@@ -27,8 +27,7 @@
         "summary": "list fields",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -47,8 +46,7 @@
         "summary": "create field",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -110,8 +108,7 @@
         "summary": "edit field",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -148,8 +145,7 @@
         "summary": "update field",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -193,8 +189,7 @@
         "summary": "delete field",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -224,8 +219,7 @@
         "summary": "list labels",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -244,8 +238,7 @@
         "summary": "create label",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -304,8 +297,7 @@
         "summary": "edit label",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -342,8 +334,7 @@
         "summary": "update label",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -384,8 +375,7 @@
         "summary": "delete label",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -415,8 +405,7 @@
         "summary": "list relations",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -435,8 +424,7 @@
         "summary": "create relation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -492,8 +480,7 @@
         "summary": "edit relation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -530,8 +517,7 @@
         "summary": "update relation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -569,8 +555,7 @@
         "summary": "delete relation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -670,8 +655,7 @@
         "summary": "list conversations",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -708,8 +692,7 @@
         "summary": "create conversation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -779,8 +762,7 @@
         "summary": "edit conversation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -824,8 +806,7 @@
         "summary": "update conversation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -870,8 +851,7 @@
         "summary": "delete conversation",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -915,8 +895,7 @@
         "summary": "list debts",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -953,8 +932,7 @@
         "summary": "create debt",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1031,8 +1009,7 @@
         "summary": "edit debt",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1076,8 +1053,7 @@
         "summary": "update debt",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1202,7 +1178,7 @@
                       "type": "string",
                       "example": [
                         "given",
-                        "recieved"
+                        "received"
                       ]
                     },
                     "date": {
@@ -1313,7 +1289,7 @@
                       "type": "string",
                       "example": [
                         "given",
-                        "recieved"
+                        "received"
                       ]
                     },
                     "date": {
@@ -1375,8 +1351,7 @@
         "summary": "list notes",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1413,8 +1388,7 @@
         "summary": "create note",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1480,8 +1454,7 @@
         "summary": "edit note",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1525,8 +1498,7 @@
         "summary": "update note",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1567,8 +1539,7 @@
         "summary": "delete note",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1612,8 +1583,7 @@
         "summary": "list phone_calls",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1650,8 +1620,7 @@
         "summary": "create phone_call",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1714,8 +1683,7 @@
         "summary": "edit phone_call",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1759,8 +1727,7 @@
         "summary": "update phone_call",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1798,8 +1765,7 @@
         "summary": "delete phone_call",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1836,8 +1802,169 @@
         "summary": "contact profile",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/label/{label_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "label_id",
+          "in": "path",
+          "type": "string",
+          "description": "label_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {}
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/remove_label": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {}
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/relation/{relation_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "relation_id",
+          "in": "path",
+          "type": "string",
+          "description": "relation_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {}
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/remove_relation": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contact profile",
+        "security": [
+          {
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1881,8 +2008,7 @@
         "summary": "list relatives",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1919,8 +2045,7 @@
         "summary": "create relative",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -1989,8 +2114,7 @@
         "summary": "edit relative",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2034,8 +2158,7 @@
         "summary": "update relative",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2079,8 +2202,7 @@
         "summary": "delete relative",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2124,8 +2246,7 @@
         "summary": "change task status",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2169,8 +2290,7 @@
         "summary": "list tasks",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2207,8 +2327,7 @@
         "summary": "create task",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2278,8 +2397,7 @@
         "summary": "edit task",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2323,8 +2441,7 @@
         "summary": "show task",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2343,8 +2460,7 @@
         "summary": "update task",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2389,8 +2505,7 @@
         "summary": "delete task",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2434,8 +2549,7 @@
         "summary": "list timelines",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2472,8 +2586,7 @@
         "summary": "archived contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2510,8 +2623,7 @@
         "summary": "archive contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2548,8 +2660,7 @@
         "summary": "unarchive_contact contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2586,8 +2697,7 @@
         "summary": "list contacts",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2617,8 +2727,7 @@
         "summary": "create contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2683,8 +2792,7 @@
         "summary": "edit contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2721,8 +2829,7 @@
         "summary": "show contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2741,8 +2848,7 @@
         "summary": "update contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2789,8 +2895,7 @@
         "summary": "delete contact",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2820,8 +2925,7 @@
         "summary": "list dashboards",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2851,8 +2955,7 @@
         "summary": "create journal_comment",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2911,8 +3014,7 @@
         "summary": "edit journal_comment",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2949,8 +3051,7 @@
         "summary": "update journal_comment",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -2991,8 +3092,7 @@
         "summary": "delete journal_comment",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3029,8 +3129,7 @@
         "summary": "list journals",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3060,8 +3159,7 @@
         "summary": "create journal",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3120,8 +3218,7 @@
         "summary": "edit journal",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3158,8 +3255,7 @@
         "summary": "show journal",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3178,8 +3274,7 @@
         "summary": "update journal",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3220,8 +3315,7 @@
         "summary": "delete journal",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3313,8 +3407,7 @@
         "summary": "list ratings",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3333,8 +3426,7 @@
         "summary": "create rating",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3437,8 +3529,7 @@
         "summary": "list release_notes",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3475,8 +3566,7 @@
         "summary": "show release_notes",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3513,8 +3603,51 @@
         "summary": "contacts search",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/search/relative": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "q",
+          "in": "path",
+          "type": "string",
+          "description": "search keyword",
+          "required": true
+        },
+        {
+          "name": "profile",
+          "in": "path",
+          "type": "string",
+          "description": "contact for which relative is to be added",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "contacts search",
+        "security": [
+          {
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3588,8 +3721,7 @@
         ],
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "responses": {
@@ -3613,8 +3745,7 @@
         "summary": "update user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3666,8 +3797,7 @@
         "summary": "profile user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3697,8 +3827,7 @@
         "summary": "update password user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3753,8 +3882,7 @@
         "summary": "update email notification user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3784,8 +3912,7 @@
         "summary": "preferences user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3815,8 +3942,7 @@
         "summary": "preferences user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [
@@ -3846,8 +3972,7 @@
         "summary": "preferences user",
         "security": [
           {
-            "Bearer": {
-            }
+            "Bearer": {}
           }
         ],
         "produces": [

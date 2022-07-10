@@ -5,9 +5,9 @@ class JournalsController < BaseController
   def index
     authorize Journal
 
-    @rating = @current_user.ratings.where("DATE(date) = ?", Date.today).first || ""
-    @ratings_by_month = @current_user.ratings.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
-    @pagy, @journals = pagy_nil_safe(params, @current_user.journals.order(created_at: :desc), items: LIMIT)
+    @rating = Rating.all.where("DATE(date) = ?", Date.today).first || ""
+    @ratings_by_month = Rating.all.where("date <= ? and date > ?", Date.today, Date.today - 6.months).order(date: :desc).group_by { |r| r.date.beginning_of_month }
+    @pagy, @journals = pagy_nil_safe(params, journal.all.order(created_at: :desc), items: LIMIT)
 
     render_partial("journals/journal", collection: @journals) if stale?(@journals)
   end

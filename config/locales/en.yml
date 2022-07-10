@@ -80,3 +80,8 @@ en:
       release_note:
         body:
           one: Description
+      relative:
+        first_contact: 
+          one: Relative
+        contact: 
+          one: Relative

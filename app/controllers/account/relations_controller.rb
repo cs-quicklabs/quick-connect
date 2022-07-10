@@ -3,7 +3,7 @@ class Account::RelationsController < Account::BaseController
 
   def index
     authorize :account
-    @relations = Relation.for_current_account.order(:name).order(created_at: :desc)
+    @relations = Relation.all.order(:name).order(created_at: :desc)
     @relation = Relation.new
   end
 

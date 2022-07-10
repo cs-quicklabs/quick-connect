@@ -4,7 +4,7 @@ class Account::FieldsController < Account::BaseController
   def index
     authorize :account
 
-    @fields = Field.for_current_account.order(:name).order(created_at: :desc)
+    @fields = Field.all.order(:name).order(created_at: :desc)
     @field = Field.new
   end
 
