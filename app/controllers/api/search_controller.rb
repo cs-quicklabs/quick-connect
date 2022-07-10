@@ -21,6 +21,6 @@ class Api::SearchController < Api::BaseController
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
       .limit(4).order(:first_name) - @contact
 
-    render layout: false
+    render json: { success: true, data: @contacts, message: "" }
   end
 end
