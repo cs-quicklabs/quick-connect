@@ -9,18 +9,30 @@
     "@rails/actiontext": "^7.0.0",
     "@tailwindcss/forms": "0.4.0",
     "@tailwindcss/line-clamp": "0.3.0",
+    "@tailwindcss/typography": "^0.5.3",
     "esbuild": "^0.14.7",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre8",
     "trix": "^1.3.1"
+  },
+  "peerDependenciesMeta": {
+    "@tailwindcss/plugin": {
+      "autoinstall": true
+    },
+    "@tailwindcss/colors": {
+      "autoinstall": false
+    },
+    "@tailwindcss/defaultTheme": {
+      "autoinstall": false
+    }
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
   "engines": {
-    "node": "16.12.0",
-    "npm": "7.6.0",
-    "yarn": "1.22.19"
+    "node": "12.16.2",
+    "npm": "8.13.2",
+    "yarn": "1.22.11"
   }
 }
