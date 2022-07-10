@@ -3,7 +3,7 @@ class Api::SearchPolicy < Struct.new(:user, :search)
     true
   end
 
-  def contact?
+  def relative?
     true
   end
 end
