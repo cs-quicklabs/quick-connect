@@ -1,6 +1,6 @@
 module.exports = {
   mode: 'jit',
-    plugins: [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp'), require('tailwindcss/colors')],
+    plugins: [require('@tailwindcss/forms')],
     content: [
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
