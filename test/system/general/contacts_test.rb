@@ -32,7 +32,8 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "can show contact detail page" do
     visit page_url
-    find(id: dom_id(@contact)).click
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
       assert_text "View Profile"
       assert_text "Message"
@@ -62,19 +63,19 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Add New Contact"
     assert_selector "div#error_explanation", text: "First name can't be blank"
     assert_selector "div#error_explanation", text: "Last name can't be blank"
-    assert_selector "div#error_explanation", text: "Email can't be blank"
-    assert_selector "div#error_explanation", text: "Phone can't be blank"
-    assert_selector "div#error_explanation", text: "Phone is not a number"
-    assert_selector "div#error_explanation", text: "Phone is too short (minimum is 10 characters)"
+    assert_selector "div#error_explanation", text: "Phone number can't be blank"
+    assert_selector "div#error_explanation", text: "Phone number is not a number"
+    assert_selector "div#error_explanation", text: "Phone number is too short (minimum is 10 characters)"
   end
 
   test "can edit a contact" do
     visit page_url
-    find(id: dom_id(@contact)).click
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
       click_on "View Profile"
     end
-    within "#profile-header" do
+    within "#contact-header" do
       click_on "Edit"
     end
     assert_selector "h1", text: "Edit Contact"
@@ -87,11 +88,12 @@ class ContactsTest < ApplicationSystemTestCase
 
   test "can not edit a contact with invalid phone" do
     visit page_url
-    find(id: dom_id(@contact)).click
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
       click_on "View Profile"
     end
-    within "#profile-header" do
+    within "#contact-header" do
       click_on "Edit"
     end
     assert_selector "h1", text: "Edit Contact"
@@ -99,17 +101,68 @@ class ContactsTest < ApplicationSystemTestCase
     click_on "Save"
     take_screenshot
     assert_selector "h1", text: "Edit Contact"
-    assert_selector "div#error_explanation", text: "Phone is not a number"
-    assert_selector "div#error_explanation", text: "Phone is too short (minimum is 10 characters)"
+    assert_selector "div#error_explanation", text: "Phone number is not a number"
+    assert_selector "div#error_explanation", text: "Phone number is too short (minimum is 10 characters)"
+  end
+
+  test "can add label" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    within "#contact-header" do
+      click_on "View Profile"
+    end
+    within "#contact-header" do
+      click_on "add"
+    end
+    take_screenshot
+
+    click_on Label.first.name
+    assert_selector "span", text: Label.first.name
+    take_screenshot
+    find("div", id: "contact-labels").click_button("remove")
+    assert_no_selector "span", text: Label.first.name
+    take_screenshot
+  end
+
+  test "can add relation" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    within "#contact-header" do
+      click_on "View Profile"
+    end
+    within "#contact-header" do
+      click_on "menu-button"
+    end
+    click_on Relation.first.name
+    assert_selector "span", text: @contact.relation.name
+    take_screenshot
+  end
+
+  test "can remove relation" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    within "#contact-header" do
+      click_on "View Profile"
+    end
+    within "#contact-header" do
+      find("div", id: "contact-relation").click_button("remove")
+    end
+
+    assert_no_selector "span", text: Relation.first.name
+    take_screenshot
   end
 
   test "can archive contact" do
     visit page_url
-    find(id: dom_id(@contact)).click
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
       click_on "View Profile"
     end
-    within "#profile-header" do
+    within "#contact-header" do
       page.accept_confirm do
         click_on "Archive"
       end
