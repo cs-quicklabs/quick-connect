@@ -1,3 +1,7 @@
+
+const plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
+const colors = require('tailwindcss/colors')
 module.exports = {
   content: [
     './app/helpers/**/*.rb',
@@ -16,7 +20,7 @@ module.exports = {
     },
   },
   plugins: [
-   [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp')],
+   [require('@tailwindcss/forms'), require('@tailwindcss/line-clamp'), require('@tailwindcss/defaultTheme'), require('@tailwindcss/colors')],
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/typography'),
   ]
