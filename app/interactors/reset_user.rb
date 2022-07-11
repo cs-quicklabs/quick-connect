@@ -1,7 +1,6 @@
 class ResetUser < Patterns::Service
   def initialize(user)
     @user = user
-    @transferred_to = Preference.transfer_data_to_admin(user.account)
   end
 
   def call
@@ -40,5 +39,5 @@ class ResetUser < Patterns::Service
     user.events.create(user: user, action: "reset", action_for_context: "your account was reset")
   end
 
-  attr_reader :user, :transferred_to
+  attr_reader :user
 end

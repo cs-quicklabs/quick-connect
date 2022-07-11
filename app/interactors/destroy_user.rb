@@ -1,7 +1,6 @@
 class DestroyUser < Patterns::Service
   def initialize(user)
     @user = user
-    @transferred_to = Preference.transfer_data_to_admin(user.account)
   end
 
   def call
