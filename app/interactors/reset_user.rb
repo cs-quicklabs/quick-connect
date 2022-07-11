@@ -4,12 +4,12 @@ class ResetUser < Patterns::Service
   end
 
   def call
+    transfer_contacts
+    transfer_journals
+    transfer_ratings
+    delete_events
+    add_event
     begin
-      transfer_contacts
-      transfer_journals
-      transfer_ratings
-      delete_events
-      add_event
     rescue Exception => e
       return false
     end
