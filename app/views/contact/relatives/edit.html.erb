@@ -6,7 +6,7 @@
       <label for="name" class="block mt-4 ml-1 text-sm font-medium text-gray-700">
         <%= "Edit #{@relative.contact.decorate.display_name}'s Relation" %>
       </label>
-      <%= form.collection_select("relation_id", Relation.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-1") %>
+      <%= form.collection_select("relation_id", Relation.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-2") %>
       <div class="flex justify-end py-3">
         <%= form.submit "Edit Relation", class: "btn-blue" %>
       </div>

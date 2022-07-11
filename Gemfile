@@ -20,7 +20,6 @@ gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
 gem "stimulus-rails"
 gem "stimulus_reflex", "= 3.5.0.pre8"
-
 gem "hiredis"
 gem "valid_url"
 gem "image_processing", "~> 1.12"
