@@ -5,7 +5,6 @@ class DestroyUser < Patterns::Service
   end
 
   def call
-
     begin
       transfer_contacts
       transfer_journals
@@ -15,7 +14,6 @@ class DestroyUser < Patterns::Service
       add_event
       user.destroy
       add_event
-
     rescue Exception => e
       return false
     end
@@ -25,19 +23,19 @@ class DestroyUser < Patterns::Service
   private
 
   def transfer_contacts
-    Contact.where(user: user).update_all(user_id: transferred_to.id, account_id: transferred_to.id)
+    Contact.where(user: user).delete_all
   end
 
   def transfer_journals
-    Journal.where(user: user).update_all(user_id: transferred_to.id)
+    Journal.where(user: user).delete_all
   end
 
   def transfer_comments
-    Comment.where(user: user).update_all(user_id: transferred_to.id)
+    Comment.where(user: user).updat_all
   end
 
   def transfer_ratings
-    Rating.where(user: user).update_all(user_id: transferred_to.id)
+    Rating.where(user: user).delete_all
   end
 
   def delete_events
