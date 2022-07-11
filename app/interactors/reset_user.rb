@@ -4,12 +4,12 @@ class ResetUser < Patterns::Service
   end
 
   def call
-    transfer_journals
-    transfer_ratings
-    delete_events
-    transfer_contacts
-    add_event
     begin
+      delete_journals
+      delete_ratings
+      delete_events
+      delete_contacts
+      add_event
     rescue Exception => e
       return false
     end
@@ -18,15 +18,15 @@ class ResetUser < Patterns::Service
 
   private
 
-  def transfer_contacts
+  def delete_contacts
     Contact.where(user: user).delete_all
   end
 
-  def transfer_journals
+  def delete_journals
     Journal.where(user: user).delete_all
   end
 
-  def transfer_ratings
+  def delete_ratings
     Rating.where(user: user).delete_all
   end
 
