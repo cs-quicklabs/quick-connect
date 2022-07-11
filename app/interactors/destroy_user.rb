@@ -5,10 +5,10 @@ class DestroyUser < Patterns::Service
 
   def call
     begin
-      transfer_contacts
-      transfer_journals
-      transfer_ratings
+      delete_journals
+      delete_ratings
       delete_events
+      delete_contacts
       add_event
       user.destroy
       add_event
@@ -20,15 +20,15 @@ class DestroyUser < Patterns::Service
 
   private
 
-  def transfer_contacts
+  def delete_contacts
     Contact.where(user: user).delete_all
   end
 
-  def transfer_journals
+  def delete_journals
     Journal.where(user: user).delete_all
   end
 
-  def transfer_ratings
+  def delete_ratings
     Rating.where(user: user).delete_all
   end
 

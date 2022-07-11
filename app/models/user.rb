@@ -21,6 +21,9 @@ class User < ApplicationRecord
   has_many :tasks, dependent: :destroy
   before_create :add_jti
   has_many :comments
+  has_many :debts, dependent: :destroy
+  has_many :conversations, dependent: :destroy
+  has_many :gifts, dependent: :destroy
   normalize_attribute :first_name, :last_name, :email, :with => :strip
 
   def add_jti
