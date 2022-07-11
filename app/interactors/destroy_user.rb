@@ -8,7 +8,6 @@ class DestroyUser < Patterns::Service
     begin
       transfer_contacts
       transfer_journals
-      transfer_comments
       transfer_ratings
       delete_events
       add_event
@@ -30,10 +29,6 @@ class DestroyUser < Patterns::Service
     Journal.where(user: user).delete_all
   end
 
-  def transfer_comments
-    Comment.where(user: user).updat_all
-  end
-
   def transfer_ratings
     Rating.where(user: user).delete_all
   end
@@ -47,5 +42,5 @@ class DestroyUser < Patterns::Service
     Event.create(action: "deleted", action_for_context: "deleted a user")
   end
 
-  attr_reader :user, :transferred_to
+  attr_reader :user
 end
