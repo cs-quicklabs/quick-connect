@@ -8,7 +8,6 @@ class ResetUser < Patterns::Service
     begin
       transfer_contacts
       transfer_journals
-      transfer_comments
       transfer_ratings
       delete_events
       add_event
@@ -26,10 +25,6 @@ class ResetUser < Patterns::Service
 
   def transfer_journals
     Journal.where(user: user).delete_all
-  end
-
-  def transfer_comments
-    Comment.where(user: user).delete_all
   end
 
   def transfer_ratings
