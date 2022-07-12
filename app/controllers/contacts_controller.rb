@@ -5,8 +5,8 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
-    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    fresh_when @contacts
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: 1)
+    render_partial("contacts/contact", collection: @contacts) if stale?(@contacs)
   end
 
   def new
