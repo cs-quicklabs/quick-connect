@@ -3,10 +3,14 @@
     <%= render "shared/form_messages", resource: field, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Contact Field Type", subtitle: "You can define custom field which can be applied on contacts." %>
     <%= form.text_field :name, "Field Type", autocomplete: "off", class: "form-text-field" %>
-    <%= form.text_field :protocol, "Protocol (optional)", autocomplete: "off", class: "form-text-field" %>
-    <p class="mt-2 text-xs text-gray-500" id="question-explanation"> Each new contact field type can be clickable. If a protocol si set, we will use it to trigger the action that is set. </p>
-    <%= form.text_field :icon, "Icon (optional)", autocomplete: "off", class: "form-text-field" %>
-    <p class="mt-2 text-xs text-gray-500" id="question-explanation"> you can associate an icon with this contact field type. You need to add a reference to a font awesome icon. </p>
+    <div>
+      <%= form.text_field :protocol, "Protocol (optional)", autocomplete: "off", class: "form-text-field" %>
+      <p class="mt-2 text-xs text-gray-500" id="question-explanation"> Each new contact field type can be clickable. If a protocol si set, we will use it to trigger the action that is set. </p>
+    </div>
+    <div>
+      <%= form.text_field :icon, "Icon (optional)", autocomplete: "off", class: "form-text-field" %>
+      <p class="mt-2 text-xs text-gray-500" id="question-explanation"> you can associate an icon with this contact field type. You need to add a reference to a font awesome icon. </p>
+    </div>
     <!-- Hack ends here -->
     <div class="flex justify-end">
       <%= form.submit "Save", class: "btn-blue" %>
