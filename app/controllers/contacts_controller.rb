@@ -5,7 +5,7 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
-    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: 1)
     fresh_when @contacts
   end
 

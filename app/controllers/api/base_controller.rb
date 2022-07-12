@@ -11,6 +11,12 @@ class Api::BaseController < ApplicationController
     raise Pundit::NotAuthorizedError unless Current.account
   end
 
+  def pagy_nil_safe(params, collection, vars = {})
+    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
+    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection
+  end
+
   private
 
   def set_user
