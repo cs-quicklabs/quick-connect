@@ -3,25 +3,25 @@ class ApplicationController < ActionController::Base
 
   include Pagy::Backend
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from Pundit::NotDefinedError, with: :record_not_found
 
-  respond_to :html, :json
-  protect_from_forgery with: :null_session
-  protect_from_forgery with: :exception, unless: :json_request?
+  #respond_to :html
+  #protect_from_forgery with: :null_session
+  #protect_from_forgery with: :exception, unless: :json_request?
 
-  skip_before_action :verify_authenticity_token, if: :json_request?
+  #skip_before_action :verify_authenticity_token, if: :json_request?
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken,
-              with: :token_verification
-  rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
-  rescue_from Pundit::NotDefinedError, with: :record_not_found
-  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
-  rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
-  rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
-  rescue_from Pagy::OverflowError, with: :record_not_found
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  #rescue_from ActionController::InvalidAuthenticityToken,
+  # with: :token_verification
+  #rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
+  #rescue_from Pundit::NotDefinedError, with: :record_not_found
+  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  #rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
+  #rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
+  #rescue_from Pagy::OverflowError, with: :record_not_found
   before_action :set_current_user, if: :json_request?
   before_action :set_redirect_path, unless: :user_signed_in?
 
@@ -136,12 +136,6 @@ class ApplicationController < ActionController::Base
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
-  end
-
-  def pagy_nil_safe(params, collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
-    return pagy, collection
   end
 
   private
