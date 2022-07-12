@@ -5,6 +5,6 @@ class DashboardController < BaseController
 
   def events
     authorize :dashboard, :index?
-    @events = Event.all.includes(:eventable, :trackable).order(created_at: :desc).limit(50).decorate
+    @events = Event.all.includes(:eventable, :trackable).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
   end
 end

@@ -4,7 +4,6 @@
     <h1 class="text-3xl font-bold leading-tight text-gray-900">
       <%= contact.display_name %>
     </h1>
-
     <div class="flex">
       <div class="relative inline-block  text-left" x-data="{openlabels: false}" @keydown.window.escape="openlabels = false" >
         <button id="add" @click="openlabels = !openlabels" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -34,7 +33,6 @@
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact.labels } %>
       </div>
     </div>
-
     <div class="flex mt-4 sm:mt-0 sm:ml-4">
       <% if policy(contact).edit? %>
         <div class=" flex justify-end" id="contact-relation" >
@@ -82,12 +80,13 @@
         <% end %>
       </div>
     </div>
-    <% if !@event.blank? %>
-      <p class="px-6 -mt-2 text-sm font-medium text-gray-500 truncate"> <%= @event.action.titleize %> on <%= display_created_at(@event)%> 
-    
-    <% end %>
-     <% if !@call.blank? %>
-      and last phone call was on <%= display_created_at(@call)%>
-     <% end %>
-      </p>
+    <div class="pb-4">
+      <% if !@event.blank? %>
+        <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate"> <%= @event.action.titleize %> on <%= display_created_at(@event)%> and
+        </p>
+      <% end %>
+      <% if !@call.blank? %>
+        <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">last phone call was on <%= display_created_at(@call)%></p>
+      <% end %>
+    </div>
     <%= render partial: "contact/tabs", locals: { contact: contact } %>
