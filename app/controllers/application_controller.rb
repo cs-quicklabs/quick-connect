@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from Pundit::NotDefinedError, with: :record_not_found
 
-  respond_to :html, :json
+  respond_to :html
   protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
 
@@ -136,12 +136,6 @@ class ApplicationController < ActionController::Base
                        pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
       }
     end
-  end
-
-  def pagy_nil_safe(params, collection, vars = {})
-    pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
-    return pagy, collection
   end
 
   private

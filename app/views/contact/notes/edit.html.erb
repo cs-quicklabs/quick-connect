@@ -2,7 +2,7 @@
   <%= tailwind_form_with(model: @note, id: dom_id(@note), url: contact_note_path(@contact, @note)) do |form| %>
     <main class="w-full mx-auto space-y-2 py-6">
       <%= render "shared/form_messages", resource: @note, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
+      <label for="name" class="block mt-1 text-sm font-bold text-gray-700">
         <%= "Edit Note" %>
       </label>
       <%= form.text_field :title,  autocomplete: "off"%>

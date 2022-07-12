@@ -5,18 +5,18 @@
       <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
         <%= "Edit Conversation" %>
       </label>
-       <div>
-    <label for="date" class="block text-sm font-medium text-gray-700">
-        Select Date
-      </label>
-      <%= form.date_field :date, class: "form-text-field ", value: Date.today.to_formatted_s(:db) %>
+      <div>
+        <label for="date" class="block text-sm font-medium text-gray-700">
+          Select Date
+        </label>
+        <%= form.date_field :date, class: "form-text-field ", value: Date.today.to_formatted_s(:db) %>
       </div>
       <div>
-     <label for="date" class="block text-sm font-medium text-gray-700">
-      How did you communicate
-      </label>
-      <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id,:display_name,  { :prompt => "Select Contact Field Type" }, :class => "form-text-field mt-2")  %>
-    </div>
+        <label for="date" class="block text-sm font-medium text-gray-700">
+          How did you communicate
+        </label>
+        <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id,:display_name,  { :prompt => "Select Contact Field Type" }, :class => "form-text-field mt-1")  %>
+      </div>
       <%= form.text_area :body, "Conversation", class: "resize-y form-text-field h-24" %>
       <div class="flex justify-end">
         <%= form.submit "Edit Conversation", class: "btn-blue" %>

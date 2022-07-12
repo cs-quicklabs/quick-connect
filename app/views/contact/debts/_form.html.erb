@@ -8,13 +8,13 @@
       <label for="owned_by" class="block text-sm font-medium text-gray-700">
         Owed by
       </label>
-      <%= form.select :owed_by, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-2" %>
+      <%= form.select :owed_by, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
     </div>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">
         Due Date
       </label>
-      <%= form.date_field :due_date, class: "form-text-field mt-2", value: Date.today.to_formatted_s(:db) %>
+      <%= form.date_field :due_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
     <div class="flex justify-end">
       <%= form.submit "Add Debt", class: "btn-blue" %>

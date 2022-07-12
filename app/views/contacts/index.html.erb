@@ -3,9 +3,8 @@
     <!-- Main 3 column grid -->
     <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
       <!-- Left column -->
-
       <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  "   >
-         <section aria-labelledby="participants_section">
+        <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white">
             <div class="px-4 sm:px-6 py-6">
               <div class="flex items-center justify-between ">
@@ -38,33 +37,31 @@
                 </div>
               </div>
             </div>
-          <% if @contacts.count>0%>
-            <nav class="flex-1 overflow-y-auto  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll">
-              <div class="relative px-6 h-max pb-12" >
-                <ul role="list" class="relative z-0 divide-y divide-gray-200  "  data-infinite-scroll-target="entries">
-                  <%= render partial: "contact", collection: @contacts, cached: false %>
-                </ul>
-           
-            <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
-              <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
-            </div>
-               </div>
-            <% else %>
-<div class="w-full text-center sm:rounded-lg place-content-center">
-  <div class="px-4 py-5 sm:p-6">
-    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
-      No result found
-    </h3>
-    <div class="mt-2 text-sm text-center text-gray-500">
-      <p>We have not found any result. Please add contacts.</p>
-    </div>
-  </div>
-</div>
- </nav>
-             <% end %>
-
-      </div>
-      </section>
+            <% if @contacts.count>0%>
+              <nav class="flex-1 overflow-y-auto  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll">
+                <div class="relative px-6 h-max pb-12" >
+                  <ul role="list" class="relative z-0 divide-y divide-gray-200  "  data-infinite-scroll-target="entries">
+                    <%= render partial: "contact", collection: @contacts, cached: false %>
+                  </ul>
+                  <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
+                    <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="w-full text-center sm:rounded-lg place-content-center">
+                  <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                      No result found
+                    </h3>
+                    <div class="mt-2 text-sm text-center text-gray-500">
+                      <p>We have not found any result. Please add contacts.</p>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            <% end %>
+          </div>
+        </section>
       </div>
       <!-- Right column -->
       <div class="grid grid-cols-1 lg:col-span-2">
