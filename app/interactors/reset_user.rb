@@ -47,11 +47,11 @@ class ResetUser < Patterns::Service
   end
 
   def delete_relations
-    Relation.where("account_id=? AND 'default'=?", user.account.id, "true").destroy_all
+    Relation.where("account_id=? AND 'default'=?", user.account.id, "false").destroy_all
   end
 
   def delete_fields
-    Field.where("account_id=? AND 'default'=?", user.account.id, "true").destroy_all
+    Field.where("account_id=? AND 'default'=?", user.account.id, "false").destroy_all
   end
 
   attr_reader :user
