@@ -81,12 +81,15 @@
       </div>
     </div>
     <div class="pb-4">
-      <% if !@event.blank? %>
-        <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate"> <%= @event.action.titleize %> on <%= display_created_at(@event)%> and
+      <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
+        <% if !@event.blank? %>
+          <%= @event.action.titleize %> on <%= display_created_at(@event)%> and
+        <% else %>
+          <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate"> and
+          <% end %>
+          <% if !@call.blank? %>
+            last phone call was on <%= display_created_at(@call)%>
+          <% end %>
         </p>
-      <% end %>
-      <% if !@call.blank? %>
-        <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">last phone call was on <%= display_created_at(@call)%></p>
-      <% end %>
-    </div>
-    <%= render partial: "contact/tabs", locals: { contact: contact } %>
+      </div>
+      <%= render partial: "contact/tabs", locals: { contact: contact } %>

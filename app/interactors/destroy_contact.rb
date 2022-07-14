@@ -7,13 +7,13 @@ class DestroyContact < Patterns::Service
   def call
     begin
       delete_events
+      add_event
       delete_notes
       delete_tasks
       delete_relatives
       delete_conversations
       delete_debts
       delete_gifts
-      add_event
       contact.destroy
     rescue Exception => e
       return false
@@ -32,7 +32,7 @@ class DestroyContact < Patterns::Service
   end
 
   def delete_relatives
-    Relative.where("first_contact_id=?", @contact.id).delete_all
+    Relative.where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id).delete_all
   end
 
   def delete_conversations

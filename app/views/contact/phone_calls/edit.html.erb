@@ -5,6 +5,12 @@
       <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
         <%= "Edit Phone Call" %>
       </label>
+      <div>
+        <label for="date" class="block text-sm font-medium text-gray-700">
+          Select Date
+        </label>
+        <%= form.date_field :date, class: "form-text-field mt-1 " %>
+      </div>
       <%= form.text_area :body, class: "resize-y form-text-field h-24" %>
       <div class="flex justify-end">
         <%= form.submit "Edit Phone Call", class: "btn-blue" %>

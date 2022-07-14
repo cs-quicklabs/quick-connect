@@ -5,7 +5,7 @@ class Contact::PhoneCallsController < Contact::BaseController
     authorize [@contact, PhoneCall]
 
     @phone_call = PhoneCall.new
-    @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(created_at: :desc), items: LIMIT)
+    @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(date: :desc), items: LIMIT)
     render_partial("phone_calls/call", collection: @phone_calls) if stale?(@phone_calls)
   end
 
@@ -62,6 +62,6 @@ class Contact::PhoneCallsController < Contact::BaseController
   end
 
   def phone_call_params
-    params.require(:phone_call).permit(:body)
+    params.require(:phone_call).permit(:body, :date)
   end
 end

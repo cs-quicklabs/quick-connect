@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -143,6 +143,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
     t.boolean "type", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "default", default: false, null: false
     t.index ["account_id"], name: "index_fields_on_account_id"
   end
 
@@ -279,6 +280,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.date "date", default: -> { "CURRENT_DATE" }, null: false
     t.index ["contact_id"], name: "index_phone_calls_on_contact_id"
     t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
@@ -309,6 +311,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "type", default: false, null: false
+    t.boolean "default", default: false, null: false
     t.index ["account_id"], name: "index_relations_on_account_id"
   end
 
@@ -330,6 +334,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044868) do
     t.datetime "updated_at", null: false
     t.boolean "published", default: false
     t.index ["user_id"], name: "index_release_notes_on_user_id"
+  end
+
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
   create_table "tasks", force: :cascade do |t|

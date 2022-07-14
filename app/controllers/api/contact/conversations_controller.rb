@@ -5,7 +5,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
     authorize [:api, @contact, Conversation]
 
     @conversation = Conversation.new
-    @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(created_at: :desc), items: LIMIT)
+    @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(date: :desc), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @conversations.as_json(:include => :field), message: "Conversations fetched successfully" }
   end
 

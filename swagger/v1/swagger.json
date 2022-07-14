@@ -1670,6 +1670,10 @@
                 "api_phone_call": {
                   "type": "object",
                   "properties": {
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    },
                     "body": {
                       "type": "string"
                     }
@@ -1779,6 +1783,10 @@
                 "api_phone_call": {
                   "type": "object",
                   "properties": {
+                    "date": {
+                      "type": "string",
+                      "format": "date"
+                    },
                     "body": {
                       "type": "string"
                     }
