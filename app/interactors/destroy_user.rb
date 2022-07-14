@@ -44,11 +44,11 @@ class DestroyUser < Patterns::Service
   end
 
   def delete_relations
-    Relation.where("account_id=? AND 'default'=?", user.account.id, "false").destroy_all
+    Relation.where(account: user.account).destroy_all
   end
 
   def delete_fields
-    Field.where("account_id=? AND 'default'=?", user.account.id, "false").destroy_all
+    Field.where(account: user.account).destroy_all
   end
 
   def add_event
