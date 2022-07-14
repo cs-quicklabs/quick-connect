@@ -14,7 +14,7 @@ class User < ApplicationRecord
   has_many :events, as: :eventable, dependent: :destroy
   has_many :journals, dependent: :destroy
   has_many :release_notes, dependent: :destroy
-  has_many :ratings, class_name: "Rating", foreign_key: "user_id"
+  has_many :ratings, class_name: "Rating", foreign_key: "user_id", dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
