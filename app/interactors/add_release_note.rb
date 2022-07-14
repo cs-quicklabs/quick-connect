@@ -8,7 +8,6 @@ class AddReleaseNote < Patterns::Service
   def call
     begin
       add_release_note
-
       add_event
     rescue
       release_note

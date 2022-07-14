@@ -5,11 +5,14 @@ class ResetUser < Patterns::Service
 
   def call
     begin
-      delete_journals
-      delete_ratings
       delete_events
-      delete_contacts
       add_event
+      delete_journals
+      delete_labels
+      delete_fields
+      delete_relations
+      delete_ratings
+      delete_contacts
     rescue Exception => e
       return false
     end
@@ -36,7 +39,19 @@ class ResetUser < Patterns::Service
   end
 
   def add_event
-    user.events.create(user: user, action: "reset", action_for_context: "your account was reset")
+    user.events.create(user: user, action: "reset", action_for_context: " ")
+  end
+
+  def delete_labels
+    Label.where(user: user).delete_all
+  end
+
+  def delete_relations
+    Relation.where("user_id=? AND type=?", user.id, "t").delete_all
+  end
+
+  def delete_fields
+    Field.where("user_id=? AND type=?", user.id, "t").delete_all
   end
 
   attr_reader :user

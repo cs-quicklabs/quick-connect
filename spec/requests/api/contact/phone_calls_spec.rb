@@ -37,6 +37,7 @@ RSpec.describe "api/contact/phone_calls", type: :request do
       parameter name: :api_phone_call, in: :body, schema: {
         type: :'object',
         properties: { "api_phone_call": { type: :object, properties: {
+          "date": { type: :string, format: :date },
           "body": { type: :string },
         } } },
       }
@@ -91,6 +92,7 @@ RSpec.describe "api/contact/phone_calls", type: :request do
       parameter name: :api_phone_call, in: :body, schema: {
                   type: :'object',
                   properties: { "api_phone_call": { type: :object, properties: {
+                    "date": { type: :string, format: :date },
                     "body": { type: :string },
                   } } },
                 }

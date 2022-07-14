@@ -2,6 +2,12 @@
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: phone_call, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a contact which can help you remember important calls. " %>
+    <div>
+      <label for="date" class="block text-sm font-medium text-gray-700">
+        Select Date
+      </label>
+      <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+    </div>
     <%= form.text_area :body, "Description", class: "resize-y form-text-field h-24" %>
     <div class="flex justify-end">
       <%= form.submit "Add Phone Call", class: "btn-blue" %>

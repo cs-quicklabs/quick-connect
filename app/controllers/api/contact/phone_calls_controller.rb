@@ -5,7 +5,7 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
     authorize [:api, @contact, PhoneCall]
 
     @phone_call = PhoneCall.new
-    @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(created_at: :desc), items: LIMIT)
+    @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(date: :desc), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @phone_calls, message: "Contact phone calls" }
   end
 
@@ -56,6 +56,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   end
 
   def phone_call_params
-    params.require(:api_phone_call).permit(:body)
+    params.require(:api_phone_call).permit(:body, :date)
   end
 end

@@ -5,13 +5,15 @@ class DestroyUser < Patterns::Service
 
   def call
     begin
-      delete_journals
-      delete_ratings
       delete_events
+      add_event
+      delete_journals
+      delete_labels
+      delete_fields
+      delete_relations
+      delete_ratings
       delete_contacts
-      add_event
       user.destroy
-      add_event
     rescue Exception => e
       return false
     end
@@ -35,6 +37,18 @@ class DestroyUser < Patterns::Service
   def delete_events
     Event.where(user_id: user.id).delete_all
     Event.where(trackable_id: user.id).delete_all
+  end
+
+  def delete_labels
+    Label.where(user: user).delete_all
+  end
+
+  def delete_relations
+    Relation.where("user_id=? AND type=?", user.id, "t").delete_all
+  end
+
+  def delete_fields
+    Field.where("user_id=? AND type=?", user.id, "t").delete_all
   end
 
   def add_event
