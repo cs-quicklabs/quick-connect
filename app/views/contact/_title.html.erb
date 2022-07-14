@@ -82,14 +82,13 @@
     </div>
     <div class="pb-4">
       <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
-        <% if !@event.blank? %>
-          <%= @event.action.titleize %> on <%= display_created_at(@event)%> and
-        <% else %>
-          <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate"> and
-          <% end %>
-          <% if !@call.blank? %>
-            last phone call was on <%= display_created_at(@call)%>
-          <% end %>
-        </p>
-      </div>
-      <%= render partial: "contact/tabs", locals: { contact: contact } %>
+        <% if !@event.blank? &&  !@call.blank? %>
+          <%= @event.action.upcase_first %> on <%= display_created_at(@event)%> and  last phone call was on <%= display_created_at(@call)%>
+        <% elsif !@event.blank? %>
+          <%= @event.action.upcase_first %> on <%= display_created_at(@event)%>
+        <% elsif !@call.blank? %>
+          Last phone call was on <%= display_created_at(@call)%>
+        <% end %>
+      </p>
+    </div>
+    <%= render partial: "contact/tabs", locals: { contact: contact } %>
