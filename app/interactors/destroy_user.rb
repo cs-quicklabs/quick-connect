@@ -40,15 +40,15 @@ class DestroyUser < Patterns::Service
   end
 
   def delete_labels
-    Label.where(user: user).delete_all
+    Label.where(account: user.account).delete_all
   end
 
   def delete_relations
-    Relation.where("user_id=? AND type=?", user.id, "t").delete_all
+    Relation.where("account_id=? AND 'default'=?", user.account.id, "true").delete_all
   end
 
   def delete_fields
-    Field.where("user_id=? AND type=?", user.id, "t").delete_all
+    Field.where("account_id=? AND 'default'=?", user.account.id, "true").delete_all
   end
 
   def add_event

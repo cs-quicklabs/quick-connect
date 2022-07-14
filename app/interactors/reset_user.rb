@@ -7,12 +7,12 @@ class ResetUser < Patterns::Service
     begin
       delete_events
       add_event
+      delete_contacts
       delete_journals
       delete_labels
       delete_fields
       delete_relations
       delete_ratings
-      delete_contacts
     rescue Exception => e
       return false
     end
@@ -43,15 +43,15 @@ class ResetUser < Patterns::Service
   end
 
   def delete_labels
-    Label.where(user: user).delete_all
+    Label.where(account_id: user.account.id).delete_all
   end
 
   def delete_relations
-    Relation.where("user_id=? AND type=?", user.id, "t").delete_all
+    Relation.where("account_id=? AND 'default'=?", user.account.id, "true").delete_all
   end
 
   def delete_fields
-    Field.where("user_id=? AND type=?", user.id, "t").delete_all
+    Field.where("account_id=? AND 'default'=?", user.account.id, "true").delete_all
   end
 
   attr_reader :user
