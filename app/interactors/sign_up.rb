@@ -7,8 +7,8 @@ class SignUp < Patterns::Service
   end
 
   def call
-    register
     begin
+        register
     rescue
       user
     end
