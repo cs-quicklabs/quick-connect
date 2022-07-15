@@ -3,4 +3,6 @@ class Task < ApplicationRecord
   validates_presence_of :title, :due_date
   belongs_to :contact
   normalize_attribute :title, :body, :with => :strip
+  validates :title,
+            :length => { :maximum => 22 }
 end

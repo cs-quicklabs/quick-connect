@@ -39,6 +39,7 @@ RSpec.describe "api/contact/phone_calls", type: :request do
         properties: { "api_phone_call": { type: :object, properties: {
           "date": { type: :string, format: :date },
           "body": { type: :string },
+          "status": { type: :string, :example => [:you, :contact] },
         } } },
       }
       response(200, "successful") do
@@ -94,6 +95,7 @@ RSpec.describe "api/contact/phone_calls", type: :request do
                   properties: { "api_phone_call": { type: :object, properties: {
                     "date": { type: :string, format: :date },
                     "body": { type: :string },
+                    "status": { type: :string, :example => [:you, :contact] },
                   } } },
                 }
       response(200, "successful") do

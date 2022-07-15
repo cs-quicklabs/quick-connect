@@ -1,4 +1,3 @@
-  
 <li>
   <%= turbo_frame_tag dom_id(phone_call) do %>
     <div class="flex mt-6 space-x-3">
@@ -8,6 +7,7 @@
       <div>
         <div class="text-sm">
           <a href="#" class="font-medium text-gray-900"><%= phone_call.user.decorate.display_name %></a>
+          <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-xs font-medium bg-<%=phone_call.decorate.display_status_color%>-400 text-<%=phone_call.decorate.display_status_color%>-800"> <%= phone_call.decorate.display_status %></span>
         </div>
         <div class="mt-1 text-sm text-gray-700">
           <p class="whitespace-pre-wrap"><%= phone_call.body.upcase_first %></p>

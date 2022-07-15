@@ -62,6 +62,6 @@ class Contact::PhoneCallsController < Contact::BaseController
   end
 
   def phone_call_params
-    params.require(:phone_call).permit(:body, :date)
+    params.require(:phone_call).permit(:body, :date, :status)
   end
 end

@@ -8,7 +8,7 @@ class SignUp < Patterns::Service
 
   def call
     begin
-        register
+      register
     rescue
       user
     end
@@ -48,7 +48,7 @@ class SignUp < Patterns::Service
                      { name: "LinkedIn", icon: "fa-brands fa-linkedin", protocol: "", default: "TRUE" }])
       Relation.create!([{ name: "significant other", default: "TRUE" }, { name: "spouse/wife", default: "TRUE" }, { name: "date", default: "TRUE" }, { name: "lover", default: "TRUE" }, { name: "is in love with", default: "TRUE" },
                         { name: "secret lover", default: "TRUE" }, { name: "ex-partner/ex-girlfriend", default: "TRUE" }, { name: "ex-spouse/ex-wife", default: "TRUE" }, { name: "friend", default: "TRUE" }, { name: "parent/mother", default: "TRUE" },
-                        { name: "child/daughter", default: "TRUE" }, { name: "sibling/sister", default: "TRUE" }, { name: "grandparent/grandmother", default: "TRUE" }, { name: "grandchild/granddaughter", default: "TRUE" }, { name: "uncle/aunt", default: "TRUE" }, { name: "nephew/niece", default: "TRUE" }, { name: "couson", default: "TRUE" },
+                        { name: "child/daughter", default: "TRUE" }, { name: "sibling/sister", default: "TRUE" }, { name: "grandparent/grandmother", default: "TRUE" }, { name: "grandchild/granddaughter", default: "TRUE" }, { name: "uncle/aunt", default: "TRUE" }, { name: "nephew/niece", default: "TRUE" }, { name: "cousin", default: "TRUE" },
                         { name: "godparent/godfather", default: "TRUE" }, { name: "godchild/goddaughter", default: "TRUE" }, { name: "step-parent/stepmother", default: "TRUE" }, { name: "stepchild/stepdaughter", default: "TRUE" },
                         { name: "best friend", default: "TRUE" }, { name: "colleague", default: "TRUE" }, { name: "boss", default: "TRUE" }, { name: "subordinate", default: "TRUE" }, { name: "mentor", default: "TRUE" }, { name: "protégé", default: "TRUE" }])
     end

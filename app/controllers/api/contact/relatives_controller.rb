@@ -16,6 +16,12 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
     end
   end
 
+  def new
+    authorize [:api, @contact, Relative]
+    @contact = Contact.find(params[:relative_id])
+    render json: { success: true, data: @contact, relations: Relation.all.order(:name), message: "New relative" }
+  end
+
   def edit
     authorize [:api, @contact, @relative]
     render json: { success: true, data: @relative, message: "Edit Relative" }
