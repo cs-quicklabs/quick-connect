@@ -4,11 +4,20 @@
     <%= render "shared/form_header", title: "Edit Debt", subtitle: "Edit debt "%>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
-    <div>
+    <div class="w-full ">
       <label for="owned_by" class="block text-sm font-medium text-gray-700">
         Owed by
       </label>
-      <%= form.select :owed_by, [[@contact.decorate.display_name, "contact"], ["You", "user"]], {}, :class => "form-text-field mt-1" %>
+      <div class="block max-w-lg space-x-8 mt-1">
+        <div class="inline-flex space-x-2">
+          <%= form.radio_button :owed_by, 'you', class: "mt-1 ", :checked => true %>
+          <%= form.label :owed_by_you, 'You', class:" text-sm font-medium text-gray-700"  %>
+        </div>
+        <div class="inline-flex space-x-2 pl-4 ">
+          <%= form.radio_button :owed_by, 'contact', class: " mt-1" %>
+          <%= form.label :owed_by_contact, @contact.decorate.display_name , class:" text-sm font-medium text-gray-700" %>
+        </div>
+      </div>
     </div>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">
