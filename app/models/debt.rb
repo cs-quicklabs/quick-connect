@@ -5,4 +5,6 @@ class Debt < ApplicationRecord
   normalize_attribute :title, :amount, :with => :strip
   validates :amount, format: { with: /\A[ 0-9*#-.+ ]+\z/,
                                message: "Allows only numbers" }
+  validates :title,
+            :length => { :maximum => 22 }
 end

@@ -1676,6 +1676,13 @@
                     },
                     "body": {
                       "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": [
+                        "you",
+                        "contact"
+                      ]
                     }
                   }
                 }
@@ -1789,6 +1796,13 @@
                     },
                     "body": {
                       "type": "string"
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": [
+                        "you",
+                        "contact"
+                      ]
                     }
                   }
                 }
@@ -2134,6 +2148,51 @@
               }
             }
           }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/relatives/new?relative_id={relative_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "relative_id",
+          "in": "path",
+          "type": "string",
+          "description": "relative_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "add relative",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
         ],
         "responses": {
           "200": {

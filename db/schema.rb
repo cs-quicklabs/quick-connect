@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -140,7 +140,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
     t.string "name", null: false
     t.string "protocol"
     t.string "icon"
-    t.boolean "type", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "default", default: false, null: false
@@ -185,15 +184,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
     t.index ["account_id"], name: "index_labels_on_account_id"
   end
 
-  create_table "notes", force: :cascade do |t|
+  create_table "notes", id: false, force: :cascade do |t|
     t.text "body"
     t.bigint "contact_id"
-    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "title", default: ""
+    t.bigint "user_id"
     t.index ["contact_id"], name: "index_notes_on_contact_id"
-    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "pay_charges", force: :cascade do |t|
@@ -281,6 +279,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
+    t.string "status", default: "contact", null: false
     t.index ["contact_id"], name: "index_phone_calls_on_contact_id"
     t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
@@ -311,7 +310,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
     t.bigint "account_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "type", default: false, null: false
     t.boolean "default", default: false, null: false
     t.index ["account_id"], name: "index_relations_on_account_id"
   end
@@ -403,7 +401,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044870) do
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "notes", "contacts"
-  add_foreign_key "notes", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"

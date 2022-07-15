@@ -56,6 +56,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   end
 
   def phone_call_params
-    params.require(:api_phone_call).permit(:body, :date)
+    params.require(:api_phone_call).permit(:body, :date, :status)
   end
 end
