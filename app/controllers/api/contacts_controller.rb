@@ -36,7 +36,7 @@ class Api::ContactsController < Api::BaseController
 
   def show
     authorize [:api, @contact]
-    render json: { success: true, data: @contact, message: "Contact was successfully retrieved." }
+    render json: { success: true, data: @contact, relaives: Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id), message: "Contact was successfully retrieved." }
   end
 
   def archived
