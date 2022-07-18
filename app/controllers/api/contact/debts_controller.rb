@@ -5,7 +5,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
     authorize [:api, @contact, Debt]
     @debt = Debt.new
     @pagy, @debts = pagy_nil_safe(params, @contact.debts.order(created_at: :desc), items: LIMIT)
-    render json: { success: true, data: @debts, message: "Contact debts" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @debts, message: "Contact debts" }
   end
 
   def destroy
