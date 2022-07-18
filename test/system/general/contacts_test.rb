@@ -170,4 +170,22 @@ class ContactsTest < ApplicationSystemTestCase
     take_screenshot
     assert_selector "p.notice", text: "Contact has been archived."
   end
+  test "can activate an contact" do
+    visit archived_contacts_url(script_name: "/#{@account.id}")
+    user = users(:inactive)
+    click_on "#{user.first_name} #{user.last_name}"
+    within "#contact-header" do
+      page.accept_confirm do
+        click_on "Activate"
+      end
+    end
+    take_screenshot
+    assert_selector "p.notice", text: "Contact has been restored."
+  end
+
+  test "can see archived users and restore" do
+    visit archived_contacts_url(script_name: "/#{@account.id}")
+    page.first(:link, "Restore").click
+    assert_selector "p.notice", text: "Contact has been restored."
+  end
 end

@@ -29,8 +29,8 @@ class ContactDebtsTest < ApplicationSystemTestCase
   test "can add debt" do
     visit page_url
     fill_in "debt_title", with: "Debt Title"
-    select @contact.decorate.display_name, from: "debt_owed_by"
-    fill_in "debt_amount", with: "Rs 5"
+    choose(option: "contact")
+    fill_in "debt_amount", with: "5"
     fill_in "debt_due_date", with: Date.today
     click_on "Add Debt"
     assert_selector "tbody#debts", text: "Debt Title"
@@ -51,8 +51,8 @@ class ContactDebtsTest < ApplicationSystemTestCase
     find("tr", id: dom_id(debt)).click_link("Edit")
     take_screenshot
     fill_in "debt_title", with: "Debt Title Edited"
-    select @contact.decorate.display_name, from: "debt_owed_by"
-    fill_in "debt_amount", with: "Rs 5 edited"
+    choose(option: "contact")
+    fill_in "debt_amount", with: "56"
     fill_in "debt_due_date", with: Date.today
     click_on "Edit Debt"
     assert_no_text "Edit Debt"
