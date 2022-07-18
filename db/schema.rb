@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -157,6 +157,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_gifts_on_contact_id"
     t.index ["user_id"], name: "index_gifts_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "journals", force: :cascade do |t|
@@ -343,6 +349,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
+  create_table "sub_activities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_sub_activities_on_account_id"
+    t.index ["group_id"], name: "index_sub_activities_on_group_id"
+  end
+
+  create_table "sub_events", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_sub_events_on_account_id"
+    t.index ["group_id"], name: "index_sub_events_on_group_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -412,6 +438,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "release_notes", "users"
+  add_foreign_key "sub_activities", "accounts"
+  add_foreign_key "sub_activities", "groups"
+  add_foreign_key "sub_events", "accounts"
+  add_foreign_key "sub_events", "groups"
   add_foreign_key "tasks", "contacts"
   add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"
