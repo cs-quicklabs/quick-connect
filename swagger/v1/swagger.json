@@ -2134,7 +2134,7 @@
                 "api_relative": {
                   "type": "object",
                   "properties": {
-                    "first_contact": {
+                    "first_contact_id": {
                       "type": "integer"
                     },
                     "contact_id": {

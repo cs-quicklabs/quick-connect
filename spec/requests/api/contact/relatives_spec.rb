@@ -37,7 +37,7 @@ RSpec.describe "api/contact/relatives", type: :request do
       parameter name: :api_relative, in: :body, schema: {
         type: :'object',
         properties: { "api_relative": { type: :object, properties: {
-          "first_contact": { type: :integer },
+          "first_contact_id": { type: :integer },
           "contact_id": { type: :integer },
           "relation_id": { type: :integer },
         } } },

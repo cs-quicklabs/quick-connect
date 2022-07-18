@@ -29,6 +29,8 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
 
   test "can add a new phone_call" do
     visit page_url
+    choose(option: "contact")
+    fill_in "phone_call_date", with: Date.today
     fill_in "phone_call_body", with: "Added some phone call"
     click_on "Add Phone Call"
     within "#phone_calls" do
@@ -40,7 +42,7 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
   test "can not add an empty phone call" do
     visit page_url
     click_on "Add Phone Call"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Phone call description can't be blank"
     take_screenshot
   end
 
@@ -64,6 +66,8 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
   test "can edit a phone call" do
     visit page_url
     phone_call = @contact.phone_calls.first
+    choose(option: "contact")
+    fill_in "phone_call_date", with: Date.today
     assert_text phone_call.body
     find("turbo-frame", id: dom_id(phone_call)).click_link("Edit")
     take_screenshot
@@ -84,7 +88,7 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
       fill_in "phone_call_body", with: ""
       click_on "Edit Phone Call"
       take_screenshot
-      assert_selector "div#error_explanation", text: "Body can't be blank"
+      assert_selector "div#error_explanation", text: "Phone call description can't be blank"
     end
   end
 end

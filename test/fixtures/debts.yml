@@ -1,14 +1,14 @@
 one:
   title: Testing one
-  amount: Rs 1
+  amount: 1
   due_date: 2021-02-01
   owed_by: contact
   user: regular
   contact: one
 
-two:
+two:  
   title: Testing two
-  amount: Rs 2
+  amount: 2
   due_date: 2021-02-01
   owed_by: contact
   user: regular
