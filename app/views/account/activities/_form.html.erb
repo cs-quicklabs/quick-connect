@@ -1,0 +1,17 @@
+  <%= tailwind_form_with(model: activity, id: dom_id(activity), url: account_activities_path) do |form| %>
+  <div class="space-y-6">
+    <%= render "shared/form_messages", resource: activity, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Add New Activity", subtitle: "You can define custom Activity which can be applied on contacts." %>
+    <div class="">
+      <label for="group" class="block  text-sm font-medium text-gray-700">
+        Select Group
+      </label>
+      <%= form.collection_select("group_id", Group.all.where(category:"activity").order(:name).decorate, :id, :display_name, { :prompt => "Select Group" }, :class => "form-text-field mt-1") %>
+    </div>
+    <%= form.text_field :name, "Activity", autocomplete: "off", class: "form-text-field"  %>
+    <!-- Hack ends here -->
+    <div class="flex justify-end">
+      <%= form.submit "Save", class: "btn-blue" %>
+    </div>
+  </div>
+<% end %>

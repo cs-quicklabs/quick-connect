@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044875) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_activities_on_account_id"
+    t.index ["group_id"], name: "index_activities_on_group_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -163,6 +173,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "category", default: "activity", null: false
   end
 
   create_table "journals", force: :cascade do |t|
@@ -188,6 +199,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_labels_on_account_id"
+  end
+
+  create_table "life_events", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_life_events_on_account_id"
+    t.index ["group_id"], name: "index_life_events_on_group_id"
   end
 
   create_table "notes", id: false, force: :cascade do |t|
@@ -349,26 +370,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at"
   end
 
-  create_table "sub_activities", force: :cascade do |t|
-    t.string "name"
-    t.bigint "account_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_sub_activities_on_account_id"
-    t.index ["group_id"], name: "index_sub_activities_on_group_id"
-  end
-
-  create_table "sub_events", force: :cascade do |t|
-    t.string "name"
-    t.bigint "account_id", null: false
-    t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_sub_events_on_account_id"
-    t.index ["group_id"], name: "index_sub_events_on_group_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "body"
@@ -410,6 +411,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "accounts"
+  add_foreign_key "activities", "groups"
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
   add_foreign_key "contacts", "accounts"
@@ -426,6 +429,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
   add_foreign_key "gifts", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
+  add_foreign_key "life_events", "accounts"
+  add_foreign_key "life_events", "groups"
   add_foreign_key "notes", "contacts"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
@@ -438,10 +443,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044874) do
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "release_notes", "users"
-  add_foreign_key "sub_activities", "accounts"
-  add_foreign_key "sub_activities", "groups"
-  add_foreign_key "sub_events", "accounts"
-  add_foreign_key "sub_events", "groups"
   add_foreign_key "tasks", "contacts"
   add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"
