@@ -88,7 +88,7 @@ class RelationsTest < ApplicationSystemTestCase
     end
   end
 
-  test "can not edit field with exiting name" do
+  test "can not edit field with existing name" do
     visit page_url
     field = fields(:email)
     facebook = fields(:facebook)

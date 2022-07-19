@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :phone_calls, module: "contact", except: [:show]
     resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
+    resources :contact_activities, module: "contact", except: [:show]
+    resources :contact_events, module: "contact", except: [:show]
     resources :about, module: "contact"
     collection do
       get :form
@@ -102,8 +104,8 @@ Rails.application.routes.draw do
       resources :relations, except: [:show, :new]
       resources :labels, except: [:show, :new]
       resources :fields, except: [:show, :new]
-      resources :activities, except: [:show, :new]
-      resources :life_events, except: [:show, :new]
+      resources :activities, except: [:show]
+      resources :life_events, except: [:show]
     end
 
     resources :journals
@@ -119,6 +121,8 @@ Rails.application.routes.draw do
       resources :gifts, module: "contact", except: [:show]
       resources :debts, module: "contact", except: [:show]
       resources :conversations, module: "contact", except: [:show]
+      resources :contact_activities, module: "contact", except: [:show]
+      resources :contact_events, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
       get "/label/:id", to: "contact/profile#label"
       get "/remove_label/:id", to: "contact/profile#remove_label"

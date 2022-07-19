@@ -14,7 +14,7 @@ class Account::ActivitiesController < Account::BaseController
   def create
     authorize :account
 
-    @activity = Activity.new(relation_params)
+    @activity = Activity.new(activity_params)
     respond_to do |format|
       if @activity.save
         format.turbo_stream {
@@ -30,7 +30,7 @@ class Account::ActivitiesController < Account::BaseController
   def update
     authorize :account
     respond_to do |format|
-      if @activity.update(relation_params)
+      if @activity.update(activity_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@activity, partial: "account/activities/activity", locals: { activity: @activity, messages: nil }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@activity, template: "account/activities/edit", locals: { activity: @activity, messages: @activity.errors.full_messages }) }
@@ -53,7 +53,7 @@ class Account::ActivitiesController < Account::BaseController
     @activity ||= Activity.find(params[:id])
   end
 
-  def relation_params
+  def activity_params
     params.require(:activity).permit(:name, :group_id)
   end
 end
