@@ -4,35 +4,7 @@
     <%= tailwind_form_with(model: contact_activity, id: dom_id(contact_activity), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_activities") do |form| %>
       <div class="space-y-6 px-4 pt-6  mx-auto">
         <%= render "shared/form_messages", resource: contact_activity, message: local_assigns[:message] %>
-        <%= render "shared/form_header", title: "Add New Relation", subtitle: "" %>
-        <main class="max-w-lg   mx-auto space-y-2 lg:pb-2 z-10">
-          <div class="flex justify-center w-full max-w-sm lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contact?profile=<%= contact.id %>">
-            <div class="w-full max-w-sm lg:max-w-sm">
-              <label for="contact" class="block text-sm font-medium text-gray-700">Search to add new Relation</label>
-              <div class="mt-1" >
-                <input type="search"   name="search" id="search-contacts" class="form-text-field" data-nav-search-target="input"  >
-              </div>
-              <div class="contact_activity" >
-                <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-0 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <ul data-nav-search-target="results">
-                  </ul>
-                </div>
-              </div>
-              <div class="contact_activity" >
-                <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <ul data-nav-search-target="results">
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-        </main>
-        <div id="contact_id">
-          <input id="contact_id" name="contact_activity[contact_id]" type="hidden" value="" >
-          <label  class="block  text-sm font-medium text-gray-700">
-            Select  
-          </label>
-        </div>
+        <%= render "shared/form_header", title: "Add Activity", subtitle: "" %>
         <%= form.text_field :name, "Name", autocomplete: "off" %>
         <%= form.text_area :body, "Description", class: "form-text-field" %>
         <div>
@@ -40,6 +12,20 @@
             Date
           </label>
           <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+        </div>
+        <div x-data="packageList()">
+          <div class="">
+            <label for="group" class="block  text-sm font-medium text-gray-700">
+              Select Group
+            </label>
+            <%= form.collection_select("group_id", Group.all.where(category:"activity").order(:name).decorate, :id, :display_name, { :prompt => "Select Group" }, :class => "form-text-field mt-1", ) %>
+          </div>
+          <div id="activity">
+            <label for="group" class="block  text-sm font-medium text-gray-700">
+              Select Activity
+            </label>
+            <%= form.collection_select("activity_id", Activity.all.where(category:"activity").order(:name).decorate, :id, :display_name, { :prompt => "Select Group" }, :class => "form-text-field mt-1") %>
+          </div>
         </div>
         <div class="flex justify-end ">
           <%= form.submit "Add Relation", class: "btn-blue" %>
