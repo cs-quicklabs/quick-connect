@@ -1,0 +1,43 @@
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+  <%= render partial: "contact/title", locals: { contact: @contact } %>
+  <main class="pb-8">
+    <div class="px-4 sm:px-6">
+      <!-- Main 3 column grid -->
+      <div class="grid items-start grid-cols-1  lg:grid-cols-3 ">
+        <!-- Left column -->
+        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+                   <section aria-labelledby="participants_section">
+            <h2 class="sr-only" id="section-1-title">Documents</h2>
+            <div class="overflow-hidden bg-white" >
+              <div class="p-4">
+                <div class="flex flex-wrap">
+                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Documents" %> (<%= @pagy.count.to_s  %>)</p>
+                </div>
+                <ul class="divide-y divide-gray-200" id="documents" data-infinite-scroll-target="entries">
+                  <%= render partial: "document", collection: @documents, as: :document, cached: true %>
+                </ul>
+              </div>
+            </div>
+            <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
+              <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+            </div>
+          </section>
+        </div>
+        <% if policy([@contact, Document]).create? %>
+          <!-- Right column -->
+          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
+            <section aria-labelledby="add-participant-section">
+              <div class="overflow-hidden bg-white">
+                <div class="px-4">
+                  <%= render partial: "form", locals: { document: @document } %>
+                </div>
+              </div>
+            </section>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </main>
+  <div class="pt-4 pl-16 pr-16">
+  </div>
+</main>

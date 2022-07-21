@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
+ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "activities", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "default", default: false, null: false
+    t.index ["account_id"], name: "index_activities_on_account_id"
+    t.index ["group_id"], name: "index_activities_on_group_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
@@ -66,6 +77,34 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.datetime "updated_at", null: false
     t.index ["journal_id"], name: "index_comments_on_journal_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "contact_activities", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.date "date", default: -> { "CURRENT_DATE" }, null: false
+    t.bigint "activity_id", null: false
+    t.bigint "contact_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["activity_id"], name: "index_contact_activities_on_activity_id"
+    t.index ["contact_id"], name: "index_contact_activities_on_contact_id"
+    t.index ["user_id"], name: "index_contact_activities_on_user_id"
+  end
+
+  create_table "contact_events", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.date "date", default: -> { "CURRENT_DATE" }, null: false
+    t.bigint "life_event_id", null: false
+    t.bigint "contact_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_contact_events_on_contact_id"
+    t.index ["life_event_id"], name: "index_contact_events_on_life_event_id"
+    t.index ["user_id"], name: "index_contact_events_on_user_id"
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -120,6 +159,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.index ["user_id"], name: "index_debts_on_user_id"
   end
 
+  create_table "documents", force: :cascade do |t|
+    t.string "filename"
+    t.string "link"
+    t.string "comments"
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_documents_on_contact_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.string "action"
@@ -159,6 +210,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.index ["user_id"], name: "index_gifts_on_user_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category", default: "activity", null: false
+  end
+
   create_table "journals", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id"
@@ -182,6 +240,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_labels_on_account_id"
+  end
+
+  create_table "life_events", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.bigint "group_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "default", default: false, null: false
+    t.index ["account_id"], name: "index_life_events_on_account_id"
+    t.index ["group_id"], name: "index_life_events_on_group_id"
   end
 
   create_table "notes", id: false, force: :cascade do |t|
@@ -384,8 +453,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "activities", "accounts"
+  add_foreign_key "activities", "groups"
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
+  add_foreign_key "contact_activities", "activities"
+  add_foreign_key "contact_activities", "contacts"
+  add_foreign_key "contact_activities", "users"
+  add_foreign_key "contact_events", "contacts"
+  add_foreign_key "contact_events", "life_events"
+  add_foreign_key "contact_events", "users"
   add_foreign_key "contacts", "accounts"
   add_foreign_key "contacts", "relations"
   add_foreign_key "contacts", "users"
@@ -394,12 +471,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044871) do
   add_foreign_key "conversations", "users"
   add_foreign_key "debts", "contacts"
   add_foreign_key "debts", "users"
+  add_foreign_key "documents", "contacts"
+  add_foreign_key "documents", "users"
   add_foreign_key "events", "accounts"
   add_foreign_key "fields", "accounts"
   add_foreign_key "gifts", "contacts"
   add_foreign_key "gifts", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
+  add_foreign_key "life_events", "accounts"
+  add_foreign_key "life_events", "groups"
   add_foreign_key "notes", "contacts"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
