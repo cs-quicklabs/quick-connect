@@ -7,9 +7,9 @@ class Api::PasswordsController < Devise::PasswordsController
     yield resource if block_given?
 
     if successfully_sent?(resource)
-      respond_with({ json: { success: true, message: "Password reset instructions have been sent to your email address." } }, location: after_sending_reset_password_instructions_path_for(resource_name))
+      render json: { success: true, message: "Password reset instructions have been sent to your email address." }
     else
-      respond_with({ json: { success: false, message: resource.errors.full_messages.first } }, location: after_sending_reset_password_instructions_path_for(resource_name))
+      render json: { success: false, message: resource.errors.full_messages.first }
     end
   end
 
