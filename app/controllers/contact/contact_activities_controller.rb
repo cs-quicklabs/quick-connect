@@ -37,11 +37,11 @@ class Contact::ContactActivitiesController < Contact::BaseController
 
   def create
     authorize [@contact, ContactActivity]
-    @activity = AddContactActivity.call(activity_params, current_user, @contact).result
+    @contact_activity = AddContactActivity.call(activity_params, current_user, @contact).result
     respond_to do |format|
-      if @activity.persisted?
+      if @contact_activity.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:contact_activities, partial: "contact/contact_activities/activity", locals: { contact_activity: @activity, contact: @contact }) +
+          render turbo_stream: turbo_stream.prepend(:contact_activities, partial: "contact/contact_activities/activity", locals: { contact_activity: @contact_activity, contact: @contact }) +
                                turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: ContactActivity.new, contact: @contact, activities: Activity.all.order(:name).decorate })
         }
       else

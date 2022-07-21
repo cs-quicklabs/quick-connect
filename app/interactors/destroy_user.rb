@@ -10,6 +10,8 @@ class DestroyUser < Patterns::Service
       delete_journals
       delete_labels
       delete_fields
+      delete_activities
+      delete_life_events
       delete_relations
       delete_ratings
       delete_contacts
@@ -53,6 +55,14 @@ class DestroyUser < Patterns::Service
 
   def add_event
     Event.create(action: "deleted", action_for_context: "deleted a user")
+  end
+
+  def delete_activities
+    Activity.where(account_id: user.account.id).delete_all
+  end
+
+  def delete_life_events
+    LifeEvent.where(account_id: user.account.id).delete_all
   end
 
   attr_reader :user

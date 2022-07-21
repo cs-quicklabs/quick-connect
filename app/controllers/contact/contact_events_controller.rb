@@ -37,11 +37,11 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def create
     authorize [@contact, ContactEvent]
-    @event = AddContactEvent.call(event_params, current_user, @contact).result
+    @contact_event = AddContactEvent.call(event_params, current_user, @contact).result
     respond_to do |format|
-      if @event.persisted?
+      if @contact_event.persisted?
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:contact_events, partial: "contact/contact_events/event", locals: { contact_event: @event, contact: @contact }) +
+          render turbo_stream: turbo_stream.prepend(:contact_events, partial: "contact/contact_events/event", locals: { contact_event: @contact_event, contact: @contact }) +
                                turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: LifeEvent.all.order(:name).decorate })
         }
       else
