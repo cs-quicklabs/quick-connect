@@ -11,7 +11,7 @@ class Api::Contact::GiftsController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, @gift]
 
-    @gift.destroy
+    @gift = DestroyContactDetail.call(@contact, @api_user, @gift).result
     Event.where(trackable: @gift).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Gift was successfully deleted." } }

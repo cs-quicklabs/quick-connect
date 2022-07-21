@@ -74,7 +74,8 @@ class UserController < BaseController
     authorize @user
     respond_to do |format|
       if DestroyUser.call(@user).result
-        format.html { redirect_to new_user_registration_path, notice: "User has been deleted." }
+        signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(@user))
+        format.html { redirect_to new_user_registration_path(script_name: ""), notice: "User has been deleted." }
       else
         format.html { redirect_to user_profile_path, notice: "Failed to delete user." }
       end
