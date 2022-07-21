@@ -1,23 +1,15 @@
-<li class="border-b border-gray-300">
+<li class="">
   <%= turbo_frame_tag dom_id(contact_activity) do %>
-    <div class="flex items-center px-2 py-5 sm:px-6">
-      <div class="flex items-center flex-1 min-w-0">
-        <div class="flex-shrink-0">
-          <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+    <div class="flex mt-6 space-x-3"> 
+      <div>
+        <div class="text-sm text-gray-900 font-medium">
+          <p class="whitespace-pre-wrap"><%= contact_activity.title.upcase_first %> (<%= contact_activity.activity.name.upcase_first%>)</p>
         </div>
-        <div class="flex-1 px-4 md:grid md:grid-cols-8 md:gap-4">
-          <div>
-            <% if @contact.id!=contact_activity.contact_id %>
-              <%= link_to contact_activity.contact.decorate.display_name, contact_about_index_path(contact_activity.contact), class:"text-sm font-medium text-gray-900 whitespace-nowrap hover:underline", target:"_top" %>
-            <% else %>
-              <%= link_to contact_activity.first_contact.decorate.display_name, contact_about_index_path(contact_activity.first_contact),  class:"text-sm font-medium text-gray-900 whitespace-nowrap  hover:underlines",target:"_top"  %>
-            <% end %>
-            <p class="flex items-center mt-1 text-sm text-gray-500 whitespace-nowrap"><%= contact_activity.relation.decorate.display_name%></p>
-          </a>
+        <div class="mt-1 text-sm text-gray-700">
+          <p class="whitespace-pre-wrap"><%= contact_activity.body.upcase_first %></p>
         </div>
-      </div>
-      <div class="flex col-span-1">
-        <div class="whitespace-nowrap">
+ <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_date(contact_activity.date) %></span>
           <% if policy([@contact, contact_activity]).edit? %>
             <%= edit_button(edit_contact_contact_activity_path(@contact, contact_activity)) %>
           <% end %>
@@ -27,6 +19,5 @@
         </div>
       </div>
     </div>
-  </div>
 <% end %>
 </li>

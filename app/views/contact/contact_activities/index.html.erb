@@ -12,11 +12,11 @@
               <div class="overflow-hidden bg-white">
                 <div class="p-4">
                   <div class="flex flex-wrap">
-                    <p class=" mt-1 text-sm font-medium text-gray-900 truncate">Relations(<%= @pagy.count.to_s  %>)</p>
+                    <p class=" mt-1 text-sm font-medium text-gray-900 truncate">Activities(<%= @pagy.count.to_s  %>)</p>
                   </div>
                   <div class="mt-1 ">
                     <ul class=" " id="contact_activities" data-infinite-scroll-target="entries">
-                      <%= render partial: "activity", collection: @contact_activities, as: :activity, cached: true %>
+                      <%= render partial: "activity", collection: @contact_activities, as: :contact_activity, cached: true %>
                     </ul>
                   </div>
                 </div>
@@ -31,7 +31,7 @@
           <!-- Right column -->
           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
             <section aria-labelledby="add-participant-section" id="search" >
-              <%= render partial: "form", locals: { contact_activity: @contact_activity,contact: @contact }, cached: true %>
+              <%= render partial: "form", locals: { contact_activity: @contact_activity,contact: @contact, activities: Activity.all.order(:name).decorate }, cached: true %>
             </section>
           </div>
         <% end %>

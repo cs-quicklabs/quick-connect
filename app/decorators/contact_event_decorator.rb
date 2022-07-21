@@ -3,6 +3,6 @@ class ContactEventDecorator < Draper::Decorator
   decorates_association :user
 
   def display_name
-    "#{name}".upcase_first
+    "#{name}".titleize
   end
 end

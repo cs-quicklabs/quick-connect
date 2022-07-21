@@ -4,7 +4,7 @@
     <%= render "shared/form_messages", resource: @gift, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Edit Gift", subtitle: "Edit gift"%>
     <%= form.text_field :name, "Name", autocomplete: "off" %>
-    <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
+    <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
     <div>
      <label for="status" class="block text-sm font-medium text-gray-700">
         Status

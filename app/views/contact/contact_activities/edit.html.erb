@@ -1,12 +1,19 @@
 <%= turbo_frame_tag dom_id(@contact_activity) do %>
   <% @contact_activity = @contact_activity.decorate%>
   <%= tailwind_form_with(model: @contact_activity, id: dom_id(@contact_activity), url: contact_contact_activity_path(@contact, @contact_activity)) do |form| %>
-    <main class="w-full mx-auto space-y-2 px-4">
+    <main class="w-full mx-auto space-y-3 px-4">
       <%= render "shared/form_messages", resource: @contact_activity, message: local_assigns[:message] %>
       <label for="name" class="block mt-4 ml-1 text-sm font-medium text-gray-700">
-        <%= "Edit #{@contact_activity.contact.decorate.display_name}'s Relation" %>
+        <%= "Edit #{@contact_activity.activity.name.upcase_first} " %>
       </label>
-      <%= form.collection_select("activity_id", Activities.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-2") %>
+        <%= form.text_field :title,  autocomplete: "off"%>
+      <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
+        <div>
+          <label for="date" class="block text-sm font-medium text-gray-700">
+            Date
+          </label>
+          <%= form.date_field :date, class: "form-text-field mt-1" %>
+        </div>
       <div class="flex justify-end py-3">
         <%= form.submit "Edit Activity", class: "btn-blue" %>
       </div>

@@ -14,7 +14,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
 
     @conversation = DestroyContactDetail.call(@contact, @api_user, @conversation).result
     respond_to do |format|
-      format.json { render json: { success: true, data: @conversation, message: "Conversation deleted successfully" } }
+      format.json { render json: { success: true, data: {}, message: "Conversation deleted successfully" } }
     end
   end
 
