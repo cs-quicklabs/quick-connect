@@ -51,6 +51,10 @@ class DestroyContact < Patterns::Service
     contact.gifts.delete_all
   end
 
+  def delete_documents
+    contact.documents.delete_all
+  end
+
   def add_event
     @event = Event.create(user: actor, action: "deleted", action_for_context: "deleted a contact")
     @event.save!
