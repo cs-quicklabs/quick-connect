@@ -25,4 +25,6 @@ class Contact < ApplicationRecord
   has_many :gifts, dependent: :destroy
   normalize_attribute :first_name, :last_name, :email, :with => :strip
   has_and_belongs_to_many :labels, dependent: :destroy
+  has_many :contact_activities, dependent: :destroy
+  has_many :contact_events, dependent: :destroy
 end

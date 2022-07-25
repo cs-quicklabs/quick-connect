@@ -11,6 +11,8 @@ class ResetUser < Patterns::Service
       delete_journals
       delete_labels
       delete_fields
+      delete_activities
+      delete_life_events
       delete_relations
       delete_ratings
     rescue Exception => e
@@ -52,6 +54,14 @@ class ResetUser < Patterns::Service
 
   def delete_fields
     Field.where(account_id: user.account.id, 'default': "f").delete_all
+  end
+
+  def delete_activities
+    Activity.where(account_id: user.account.id, 'default': "f").delete_all
+  end
+
+  def delete_life_events
+    LifeEvent.where(account_id: user.account.id, 'default': "f").delete_all
   end
 
   attr_reader :user

@@ -1,0 +1,32 @@
+one:
+  title: Title
+  body: This is some life_event one
+  user: regular
+  contact: one
+  date: 2021-03-31
+  life_event: family_one
+
+
+two:
+  title: Title
+  body: This is some life_event two
+  user: regular
+  contact: one
+  date: 2021-03-31
+  life_event: family_one
+
+three:
+  title: Title
+  body: This is some life_event three
+  user: regular
+  contact: one
+  date: 2021-03-31
+  life_event: family_two
+
+four:
+  title: Title
+  body: This is some life_event four
+  user: regular
+  contact: one
+  date: 2021-03-31
+  life_event: family_two
