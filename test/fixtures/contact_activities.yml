@@ -1,0 +1,32 @@
+one:
+  title: Title
+  body: This is some activity one
+  user: regular
+  contact: one
+  date: 2021-03-31
+  activity: simple_one
+
+
+two:
+  title: Title
+  body: This is some activity two
+  user: regular
+  contact: one
+  date: 2021-03-31
+  activity: simple_one
+
+three:
+  title: Title
+  body: This is some activity three
+  user: regular
+  contact: one
+  date: 2021-03-31
+  activity: simple_two
+
+four:
+  title: Title
+  body: This is some activity four
+  user: regular
+  contact: one
+  date: 2021-03-31
+  activity: simple_two

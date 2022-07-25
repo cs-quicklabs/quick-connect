@@ -1,0 +1,11 @@
+      <%= turbo_frame_tag dom_id(life_event) do %>
+  <li class="flex py-4 border-b border-gray-200">
+    <div class="flex w-full ml-4">
+      <p class="w-full text-sm font-medium text-gray-900 ml-4"><%= life_event.name.titleize %></p>
+      <div class="flex justify-end space-x-2">
+        <%= edit_button(edit_account_life_event_path(life_event)) %>
+        <%= delete_button(account_life_event_path(life_event)) %>
+      </div>
+    </div>
+  </li>
+<% end %>

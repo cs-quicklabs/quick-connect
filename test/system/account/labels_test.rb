@@ -46,7 +46,7 @@ class LabelsTest < ApplicationSystemTestCase
     assert_selector "div#error_explanation", text: "Name can't be blank"
     take_screenshot
   end
-  test "can not add a duplicate people tag" do
+  test "can not add a duplicate label" do
     visit page_url
     fill_in "Add New Label", with: labels(:one).name
     click_on "Save"
@@ -71,7 +71,7 @@ class LabelsTest < ApplicationSystemTestCase
     assert_selector "li", text: "Edited Name"
   end
 
-  test "can delete a ticket label" do
+  test "can delete a  label" do
     visit page_url
     label = labels(:two)
     assert_selector "li", text: label.name
@@ -81,7 +81,7 @@ class LabelsTest < ApplicationSystemTestCase
     assert_no_selector "li", text: label.name
   end
 
-  test "can not edit people tag with existing name" do
+  test "can not edit label with existing name" do
     visit page_url
     label = labels(:one)
     engg = labels(:two)
