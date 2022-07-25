@@ -2,65 +2,63 @@
   <div class="hidden sm:block">
     <div class="border-b border-gray-200">
       <nav class="flex -mb-px space-x-8 lg:px-8" aria-label="Tabs">
-        <% if policy([@contact, Timeline]).index? %>
-          <a href="<%= contact_timeline_index_path(@contact) %>" class="<%= current_page?(contact_timeline_index_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, Timeline]).index? %>
+          <a href="<%= contact_timeline_index_path(contact) %>" class="<%= current_page?(contact_timeline_index_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Timeline
           </a>
         <% end %>
-        <% if policy([@contact, About]).index? %>
-          <a href="<%= contact_about_index_path(@contact) %>" class="<%= current_page?(contact_about_index_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, About]).index? %>
+          <a href="<%= contact_about_index_path(contact) %>" class="<%= current_page?(contact_about_index_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             About
           </a>
         <% end %>
-        <% if policy([@contact,Note ]).index? %>
-          <a href="<%= contact_notes_path(@contact) %>" class="<%= current_page?(contact_notes_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact,Note ]).index? %>
+          <a href="<%= contact_notes_path(contact) %>" class="<%= current_page?(contact_notes_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Notes
           </a>
         <% end %>
-        <% if policy([@contact, PhoneCall]).index? %>
-          <a href="<%= contact_phone_calls_path(@contact) %>" class="<%= current_page?(contact_phone_calls_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, PhoneCall]).index? %>
+          <a href="<%= contact_phone_calls_path(contact) %>" class="<%= current_page?(contact_phone_calls_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Phone Calls
           </a>
         <% end %>
-        <% if policy([@contact, Task]).index? %>
-          <a href="<%= contact_tasks_path(@contact) %>" class="<%= current_page?(contact_tasks_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, Task]).index? %>
+          <a href="<%= contact_tasks_path(contact) %>" class="<%= current_page?(contact_tasks_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Tasks
           </a>
         <% end %>
-        <% if policy([@contact, Relative]).index? %>
-          <a href="<%= contact_relatives_path(@contact) %>" class="<%= current_page?(contact_relatives_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, Relative]).index? %>
+          <a href="<%= contact_relatives_path(contact) %>" class="<%= current_page?(contact_relatives_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Relatives
           </a>
         <% end %>
-          <% if policy([@contact, Conversation]).index? %>
-          <a href="<%= contact_conversations_path(@contact) %>" class="<%= current_page?(contact_conversations_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+          <% if policy([contact, Conversation]).index? %>
+          <a href="<%= contact_conversations_path(contact) %>" class="<%= current_page?(contact_conversations_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Conversations
           </a>
         <% end %>
-                  <% if policy([@contact, Debt]).index? %>
-          <a href="<%= contact_debts_path(@contact) %>" class="<%= current_page?(contact_debts_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+                  <% if policy([contact, Debt]).index? %>
+          <a href="<%= contact_debts_path(contact) %>" class="<%= current_page?(contact_debts_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Debts
           </a>
         <% end %>
-               <% if policy([@contact, Gift]).index? %>
-          <a href="<%= contact_gifts_path(@contact) %>" class="<%= current_page?(contact_gifts_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+               <% if policy([contact, Gift]).index? %>
+          <a href="<%= contact_gifts_path(contact) %>" class="<%= current_page?(contact_gifts_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Gifts
           </a>
         <% end %>
-
-
-        <% if policy([@contact, Document]).index? %>
-          <a href="<%= contact_documents_path(@contact) %>" class="<%= current_page?(contact_documents_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+        <% if policy([contact, Document]).index? %>
+          <a href="<%= contact_documents_path(contact) %>" class="<%= current_page?(contact_documents_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Documents
             </a>
         <% end %>
-                   <% if policy([@contact, ContactActivity]).index? %>
-          <a href="<%= contact_contact_activities_path(@contact) %>" class="<%= current_page?(contact_contact_activities_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+                   <% if policy([contact, ContactActivity]).index? %>
+          <a href="<%= contact_contact_activities_path(contact) %>" class="<%= current_page?(contact_contact_activities_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Activities
           </a>
         <% end %>
-                       <% if policy([@contact, ContactEvent]).index? %>
-          <a href="<%= contact_contact_events_path(@contact) %>" class="<%= current_page?(contact_contact_events_path(@contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
+                       <% if policy([contact, ContactEvent]).index? %>
+          <a href="<%= contact_contact_events_path(contact) %>" class="<%= current_page?(contact_contact_events_path(contact)) ? "border-indigo-500 text-indigo-600 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" : "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-2 px-1 border-b-2 font-medium text-sm" %>">
             Events
           </a>
         <% end %>
