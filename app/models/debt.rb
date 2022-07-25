@@ -6,5 +6,5 @@ class Debt < ApplicationRecord
   validates :amount, format: { with: /\A[ 0-9*#-.+ ]+\z/,
                                message: "Allows only numbers" }
   validates :title,
-            :length => { :maximum => 22 }
+            :length => { :maximum => 25 }
 end

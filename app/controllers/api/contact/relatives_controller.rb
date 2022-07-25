@@ -24,7 +24,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def edit
     authorize [:api, @contact, @relative]
-    render json: { success: true, data: @relative, message: "Edit Relative" }
+    render json: { success: true, data: @relative.as_json(:include => [:contact, :first_contact, :relation]), message: "Edit Relative" }
   end
 
   def update
@@ -33,7 +33,7 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
     respond_to do |format|
       if @relative.update(relative_params)
         Event.where(trackable: @relative).touch_all
-        format.json { render json: { success: true, data: @relative, message: "Relative was successfully updated." } }
+        format.json { render json: { success: true, data: @relative.as_json(:include => [:contact, :first_contact, :relation]), message: "Relative was successfully updated." } }
       else
         format.json { render json: { success: false, message: @relative.errors.full_messages.first } }
       end

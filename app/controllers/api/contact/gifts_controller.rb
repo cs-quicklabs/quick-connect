@@ -5,13 +5,13 @@ class Api::Contact::GiftsController < Api::Contact::BaseController
     authorize [:api, @contact, Gift]
     @gift = Gift.new
     @pagy, @gifts = pagy_nil_safe(params, @contact.gifts.order(created_at: :desc), items: LIMIT)
-    render json: { success: true, data: @gifts, message: "Contact gifts" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @gifts, message: "Contact gifts" }
   end
 
   def destroy
     authorize [:api, @contact, @gift]
 
-    @gift.destroy
+    @gift = DestroyContactDetail.call(@contact, @api_user, @gift).result
     Event.where(trackable: @gift).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Gift was successfully deleted." } }

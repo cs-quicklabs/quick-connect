@@ -4,5 +4,5 @@ class Note < ApplicationRecord
   belongs_to :contact
   normalize_attribute :title, :body, :with => :strip
   validates :title,
-            :length => { :maximum => 22 }
+            :length => { :maximum => 25 }
 end

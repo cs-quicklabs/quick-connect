@@ -8,13 +8,13 @@ class DestroyUser < Patterns::Service
       delete_events
       add_event
       delete_journals
+      delete_contacts
       delete_labels
       delete_fields
       delete_activities
       delete_life_events
       delete_relations
       delete_ratings
-      delete_contacts
       user.destroy
     rescue Exception => e
       return false
