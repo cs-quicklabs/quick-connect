@@ -8,7 +8,7 @@ class User < ApplicationRecord
   scope :for_current_account, -> { where(account: Current.account) }
   enum permission: [:member, :admin]
   belongs_to :account
-  validates :email, uniqueness: true, confirmation: true
+  validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
