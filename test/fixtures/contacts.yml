@@ -19,9 +19,9 @@ one:
   
 archived:
   first_name: Contact
-  last_name: archived
+  last_name: Archived
   email: contact1@gmail.com
-  phone: 0999999998
+  phone: 0999999997
   account: hansika
   user: regular
   archived: true

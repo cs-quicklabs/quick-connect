@@ -1,12 +1,13 @@
 require "swagger_helper"
 
-RSpec.describe "api/contact/profile", type: :request do
-  path "/{account_id}/api/contacts/{contact_id}/profile" do
+RSpec.describe "api/contact/documents", type: :request do
+  path "/{account_id}/api/contacts/{contact_id}/documents?page={page}" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
 
-    get("contact profile") do
+    get("list documents") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
@@ -24,87 +25,23 @@ RSpec.describe "api/contact/profile", type: :request do
       end
     end
   end
-  path "/{account_id}/api/contacts/{contact_id}/label/{label_id}" do
-    # You'll want to customize the parameter types...
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
-    parameter name: "label_id", in: :path, type: :string, description: "label_id"
-
-    get("contact profile") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        let(:contact_id) { "123" }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-  path "/{account_id}/api/contacts/{contact_id}/remove_label/{label_id}" do
-    # You'll want to customize the parameter types...
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
-    parameter name: "label_id", in: :path, type: :string, description: "label_id"
-
-    get("contact profile") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        let(:contact_id) { "123" }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-  path "/{account_id}/api/contacts/{contact_id}/relation/{relation_id}" do
-    # You'll want to customize the parameter types...
-    parameter name: "account_id", in: :path, type: :string, description: "account_id"
-    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
-    parameter name: "relation_id", in: :path, type: :string, description: "relation_id"
-
-    get("contact profile") do
-      security [Bearer: {}]
-      produces "application/json"
-      consumes "application/json"
-      response(200, "successful") do
-        let(:contact_id) { "123" }
-
-        after do |example|
-          example.metadata[:response][:content] = {
-            "application/json" => {
-              example: JSON.parse(response.body, symbolize_names: true),
-            },
-          }
-        end
-        run_test!
-      end
-    end
-  end
-  path "/{account_id}/api/contacts/{contact_id}/remove_relation" do
+  path "/{account_id}/api/contacts/{contact_id}/documents" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
 
-    get("contact profile") do
+    post("create document") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
+      parameter name: :api_document, in: :body, schema: {
+        type: :'object',
+        properties: { "api_document": { type: :object, properties: {
+          "filename": { type: :string },
+          "comments": { type: :string },
+          "link": { type: :string },
+        } } },
+      }
       response(200, "successful") do
         let(:contact_id) { "123" }
 
@@ -120,17 +57,68 @@ RSpec.describe "api/contact/profile", type: :request do
     end
   end
 
-  path "/{account_id}/api/contacts/{contact_id}/favorite" do
+  path "/{account_id}/api/contacts/{contact_id}/documents/{id}/edit" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "id", in: :path, type: :string, description: "id"
 
-    get("add contact as favorite") do
+    get("edit document") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
       response(200, "successful") do
         let(:contact_id) { "123" }
+        let(:id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
+  end
+
+  path "/{account_id}/api/contacts/{contact_id}/documents/{id}" do
+    # You'll want to customize the parameter types...
+    parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
+    parameter name: "id", in: :path, type: :string, description: "id"
+
+    patch("update document") do
+      security [Bearer: {}]
+      produces "application/json"
+      consumes "application/json"
+      parameter name: :api_document, in: :body, schema: {
+        type: :'object',
+        properties: { "api_document": { type: :object, properties: {
+          "comments": { type: :string },
+          "link": { type: :string },
+        } } },
+      }
+      response(200, "successful") do
+        let(:contact_id) { "123" }
+        let(:id) { "123" }
+
+        after do |example|
+          example.metadata[:response][:content] = {
+            "application/json" => {
+              example: JSON.parse(response.body, symbolize_names: true),
+            },
+          }
+        end
+        run_test!
+      end
+    end
+
+    delete("delete document") do
+      response(200, "successful") do
+        let(:contact_id) { "123" }
+        let(:id) { "123" }
 
         after do |example|
           example.metadata[:response][:content] = {
