@@ -155,6 +155,21 @@ class ContactsTest < ApplicationSystemTestCase
     take_screenshot
   end
 
+  test "can add as favorite" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    favorite = !@contact.favorite
+    within "#contact-header" do
+      click_on "View Profile"
+    end
+    within "#contact-header" do
+      find("div", id: "contact-favorite").click
+      assert_selector "#favorite"
+    end
+    take_screenshot
+  end
+
   test "can archive contact" do
     visit page_url
     find("li", id: dom_id(@contact)).click
@@ -170,13 +185,14 @@ class ContactsTest < ApplicationSystemTestCase
     take_screenshot
     assert_selector "p.notice", text: "Contact has been archived."
   end
+
   test "can activate an contact" do
     visit archived_contacts_url(script_name: "/#{@account.id}")
-    user = users(:inactive)
-    click_on "#{user.first_name} #{user.last_name}"
+    contact = contacts(:archived)
+    click_on "#{contact.first_name} #{contact.last_name}"
     within "#contact-header" do
       page.accept_confirm do
-        click_on "Activate"
+        click_on "Restore"
       end
     end
     take_screenshot

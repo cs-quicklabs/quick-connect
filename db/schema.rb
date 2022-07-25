@@ -122,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.bigint "relation_id"
     t.boolean "archived", default: false
     t.date "archived_on"
+    t.boolean "favorite", default: false, null: false
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -157,6 +158,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.datetime "updated_at", null: false
     t.index ["contact_id"], name: "index_debts_on_contact_id"
     t.index ["user_id"], name: "index_debts_on_user_id"
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.string "filename"
+    t.string "link"
+    t.string "comments"
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_documents_on_contact_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
@@ -459,6 +472,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
   add_foreign_key "conversations", "users"
   add_foreign_key "debts", "contacts"
   add_foreign_key "debts", "users"
+  add_foreign_key "documents", "contacts"
+  add_foreign_key "documents", "users"
   add_foreign_key "events", "accounts"
   add_foreign_key "fields", "accounts"
   add_foreign_key "gifts", "contacts"

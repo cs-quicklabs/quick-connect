@@ -9,4 +9,10 @@ class ContactReflex < ApplicationReflex
 
     morph "#profile", "<div id='profile'>#{html}</div>"
   end
+
+  def favorite
+    contact = Contact.find(element.dataset["contact-id"])
+    contact.update(favorite: !contact.favorite)
+    contact.save!
+  end
 end

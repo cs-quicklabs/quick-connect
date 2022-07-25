@@ -33,6 +33,12 @@ class Api::Contact::ProfileController < Api::Contact::BaseController
     render json: { success: true, data: { contact: @contact.as_json(:include => [:labels, :relations]), labels: @labels, relations: @relations, event: @event, call: @call }, message: "Relation was assigned successfully to contact" }
   end
 
+  def favorite
+    authorize [:api, @contact, :profile]
+    @contact.update(favorite: !@contact.favorite)
+    render json: { success: true, data: { contact: @contact.as_json(:include => [:labels, :relations]), labels: @labels, relations: @relations, event: @event, call: @call }, message: "Favorite was assigned successfully to contact" }
+  end
+
   private
 
   def set_labels
