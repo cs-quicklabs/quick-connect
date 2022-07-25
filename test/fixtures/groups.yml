@@ -1,0 +1,35 @@
+simple:
+  name: Simple Activities 
+  category: activity
+
+sport:   
+  name: Sport
+  category: activity
+
+food:  
+  name: Food
+  category: activity
+
+cultural:    
+  name: Cultural Activities 
+  category: activity
+
+work:
+  name: Work & Education
+  category: event
+
+family:
+  name: Family & Relationships
+  category: event
+
+home:  
+  name: Home & Living
+  category: event
+  
+wellness:  
+  name: Home & Wellness 
+  category: event
+  
+travel:  
+  name: Travel & Experiences
+  category: event

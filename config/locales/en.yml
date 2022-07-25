@@ -42,6 +42,13 @@ en:
 
 en:
   activerecord:
+    models:
+      contact_activity:     
+        one: activity
+         
+
+en:
+  activerecord:
     attributes:
       note:
         body:
@@ -85,3 +92,7 @@ en:
           one: Relative
         contact: 
           one: Relative
+      contact_activity:
+        body: 
+          one: Description
+  

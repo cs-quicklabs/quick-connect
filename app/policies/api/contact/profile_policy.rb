@@ -18,4 +18,8 @@ class Api::Contact::ProfilePolicy < Api::Contact::BaseContactPolicy
   def remove_relation?
     true
   end
+
+  def favorite?
+    true
+  end
 end

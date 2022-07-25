@@ -10,8 +10,7 @@ class Contact::GiftsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @gift]
-
-    @gift = DestroyContactDetail.call(@contact, @api_user, @gift).result
+    @gift = DestroyContactDetail.call(@contact, current_user, @gift).result
     Event.where(trackable: @gift).touch_all #fixes cache issues in activity
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@gift) }

@@ -27,5 +27,5 @@ class ContactRelationReflex < ApplicationReflex
     morph "#search", "<div id='contact_id'>#{html}</div>"
   end
 
-  private
+
 end

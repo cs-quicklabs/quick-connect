@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 202120730073156) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -122,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "relation_id"
     t.boolean "archived", default: false
     t.date "archived_on"
+    t.boolean "favorite", default: false, null: false
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"

@@ -21,6 +21,8 @@ Rails.application.routes.draw do
     resources :phone_calls, module: "contact", except: [:show]
     resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
+    resources :contact_activities, module: "contact", except: [:show]
+    resources :contact_events, module: "contact", except: [:show]
     resources :about, module: "contact"
     resources :documents, module: "contact", except: [:show]
     collection do
@@ -54,6 +56,8 @@ Rails.application.routes.draw do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
     resources :fields, except: [:show, :new]
+    resources :activities, except: [:show, :new]
+    resources :life_events, except: [:show, :new]
   end
   namespace :purchase do
     resources :checkouts
@@ -101,6 +105,8 @@ Rails.application.routes.draw do
       resources :relations, except: [:show, :new]
       resources :labels, except: [:show, :new]
       resources :fields, except: [:show, :new]
+      resources :activities, except: [:show]
+      resources :life_events, except: [:show]
     end
 
     resources :journals
@@ -116,12 +122,15 @@ Rails.application.routes.draw do
       resources :gifts, module: "contact", except: [:show]
       resources :debts, module: "contact", except: [:show]
       resources :conversations, module: "contact", except: [:show]
+      resources :contact_activities, module: "contact", except: [:show]
+      resources :contact_events, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
       resources :documents, module: "contact", except: [:show]
       get "/label/:id", to: "contact/profile#label"
       get "/remove_label/:id", to: "contact/profile#remove_label"
       get "/relation/:id", to: "contact/profile#relation"
       get "/remove_relation", to: "contact/profile#remove_relation"
+      get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
       resources :about, module: "contact", only: [:index]
       resources :timeline, module: "contact", only: [:index]

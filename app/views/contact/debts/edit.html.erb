@@ -1,7 +1,7 @@
 <%= tailwind_form_with(model: @debt, id: dom_id(@debt), url: contact_debt_path(@contact, @debt)) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: @debt, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Edit Debt", subtitle: "Edit debt "%>
+    <%= render "shared/form_header", title: "Edit Debt", subtitle: "Edit debt for #{@debt.contact.decorate.display_name}"%>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
     <div class="w-full ">
