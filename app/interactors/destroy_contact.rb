@@ -14,6 +14,8 @@ class DestroyContact < Patterns::Service
       delete_conversations
       delete_debts
       delete_gifts
+      delete_contact_activities
+      delete_contact_events
       contact.destroy
     rescue Exception => e
       return false
@@ -51,6 +53,13 @@ class DestroyContact < Patterns::Service
     contact.gifts.delete_all
   end
 
+  def delete_contact_activities
+    contact.contact_activities.delete_all
+  end
+
+  def delete_contact_events
+    contact.contact_events.delete_all
+  end
 
   def add_event
     @event = Event.create(user: actor, action: "deleted", action_for_context: "deleted a contact")

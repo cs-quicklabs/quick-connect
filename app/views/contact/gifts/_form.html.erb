@@ -3,7 +3,7 @@
     <%= render "shared/form_messages", resource: gift, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Gift", subtitle: "A gift can be added to a contact which can help you remember important things. " %>
     <%= form.text_field :name, "Name", autocomplete: "off" %>
-    <%= form.text_area :body, "Description", class: "form-text-field" %>
+    <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
     <div class="w-full ">
       <label for="status" class="block text-sm font-medium text-gray-700">
         Status

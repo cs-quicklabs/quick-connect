@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable, :timeoutable, timeout_in: 5.days
+         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days
   scope :available, -> { all_users }
   scope :for_current_account, -> { where(account: Current.account) }
   enum permission: [:member, :admin]
