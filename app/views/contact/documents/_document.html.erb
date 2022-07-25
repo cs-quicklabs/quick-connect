@@ -1,0 +1,26 @@
+<%= turbo_frame_tag dom_id(document) do %>
+  <% document = document.decorate %>
+  <li >
+    <div class="flex mt-6 space-x-3">
+      <div>
+        <div class="text-sm text-gray-900 font-medium">
+          <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline" target="_top">
+        <%= document.display_filename %>
+      </a>
+        </div>
+        <div class="mt-1 text-sm text-gray-700">
+          <p class=""><%= document.comments %></p>
+        </div>
+        <div class="mt-2 space-x-2 text-sm">
+          <span class="font-medium text-gray-500"><%= display_created_at(document) %></span>
+          <% if policy([@contact, document]).edit? %>
+            <%= edit_button(edit_contact_document_path(@contact, document)) %>
+          <% end %>
+          <% if policy([@contact, document]).destroy? %>
+            <%= delete_button(contact_document_path(@contact, document)) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </li>
+<% end %>

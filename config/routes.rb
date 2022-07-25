@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :contact_activities, module: "contact", except: [:show]
     resources :contact_events, module: "contact", except: [:show]
     resources :about, module: "contact"
+    resources :documents, module: "contact", except: [:show]
     collection do
       get :form
     end
@@ -124,6 +125,7 @@ Rails.application.routes.draw do
       resources :contact_activities, module: "contact", except: [:show]
       resources :contact_events, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
+      resources :documents, module: "contact", except: [:show]
       get "/label/:id", to: "contact/profile#label"
       get "/remove_label/:id", to: "contact/profile#remove_label"
       get "/relation/:id", to: "contact/profile#relation"
