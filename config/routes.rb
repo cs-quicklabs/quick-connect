@@ -120,6 +120,7 @@ Rails.application.routes.draw do
       get "/remove_label/:id", to: "contact/profile#remove_label"
       get "/relation/:id", to: "contact/profile#relation"
       get "/remove_relation", to: "contact/profile#remove_relation"
+      get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
       resources :about, module: "contact", only: [:index]
       resources :timeline, module: "contact", only: [:index]
