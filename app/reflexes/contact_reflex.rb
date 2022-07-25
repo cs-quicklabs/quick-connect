@@ -13,6 +13,6 @@ class ContactReflex < ApplicationReflex
   def favorite
     contact = Contact.find(element.dataset["contact-id"])
     contact.update(favorite: !contact.favorite)
-    contact.save!
+    morph "#contact-favorite", render(partial: "contact/title", locals: { contact: contact })
   end
 end
