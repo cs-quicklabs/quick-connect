@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_tenant :account
   scope :for_current_account, -> { where(account: Current.account) }
+  scope :favorites, -> { where(favorite: true) }
   belongs_to :user
   belongs_to :account
   validates_presence_of :first_name, :last_name, :phone
@@ -19,7 +20,7 @@ class Contact < ApplicationRecord
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
   has_many :relations, through: :relatives, dependent: :destroy
-  has_many :events, as: :eventable, dependent: :destroy
+  has_many :events, class_name: "Event", as: :eventable
   has_many :conversations, dependent: :destroy
   has_many :debts, dependent: :destroy
   has_many :gifts, dependent: :destroy

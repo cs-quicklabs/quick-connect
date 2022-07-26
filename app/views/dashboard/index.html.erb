@@ -4,10 +4,40 @@
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
         <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
+        <div class="grid grid-cols-1 gap-4 lg:col-span-2  top-16">
           <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white">
-              <div class="p-4">
+              <div class=" p-4">
+                <div class="flex flex-wrap pt-4">
+                 <p class="pb-2 mt-1 mt-4 text-sm font-medium text-gray-900 truncate"> Recently Contacted</p>
+                </div>
+                   <div class=" flex   bg-white font-sans py-6 px-2">
+                <div class="flex   w-full max-w-lg space-x-6 ">  
+                <% if @recents.size>0 %>
+                 <%= render partial: "recent", collection: @recents, as: :recent, cached: false %>
+                     <% end %>
+                 </div>
+                 </div>
+              </div>
+            </div>
+          </section>
+             <section aria-labelledby="participants_section">
+            <div class="overflow-hidden bg-white">
+              <div class="px-4">
+                <div class="flex flex-wrap">
+                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Favorite Contacts</p>
+                </div>
+             <div class=" flex   bg-white font-sans py-6 px-2">
+                <div class="flex   w-full max-w-lg space-x-6 ">  
+                 <%= render partial: "favorite", collection: Contact.all.favorites, as: :favorite, cached: false %>
+                 </div>
+                 </div>
+              </div>
+            </div>
+          </section>
+             <section aria-labelledby="participants_section">
+            <div class="overflow-hidden bg-white">
+              <div class="px-4">
                 <div class="flex flex-wrap">
                   <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Upcoming Activities</p>
                 </div>

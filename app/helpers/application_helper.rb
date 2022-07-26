@@ -11,6 +11,10 @@ module ApplicationHelper
     display_date(resource.created_at)
   end
 
+  def display_image(resource)
+    resource.first_name[0, 1].upcase_first + resource.last_name[0, 1].upcase_first
+  end
+
   def display_date(date)
     date.to_date.to_formatted_s(:long)
   end

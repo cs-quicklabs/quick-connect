@@ -4,4 +4,5 @@ class Conversation < ApplicationRecord
   belongs_to :field
   belongs_to :contact
   normalize_attribute :body, :with => :strip
+  has_many :events, class_name: "Event", as: :trackable
 end

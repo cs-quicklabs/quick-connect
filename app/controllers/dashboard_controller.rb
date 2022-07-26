@@ -1,6 +1,11 @@
 class DashboardController < BaseController
   def index
     authorize :dashboard
+    @recents = []
+    @contacted = Event.includes(:eventable, :trackable).where(action: ["conversation", "called", "contact_activity"]).order(created_at: :desc).limit(10)
+    @contacted.each do |event|
+      @recents = event if !event.trackable.nil?
+    end
   end
 
   def events
