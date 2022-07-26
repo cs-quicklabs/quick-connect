@@ -29,7 +29,12 @@
           <!-- Right column -->
           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
             <section aria-labelledby="add-participant-section" id="search" >
+            <h2 class="sr-only" id="section-2-title">Add New Relation</h2>
+<div class="bg-white">
+  <div class="px-4">
               <%= render partial: "search", locals: { relatives: @relatives, relative: @relative, relation: @relation, contact: @contact }, cached: true %>
+              </div>
+</div>
             </section>
           </div>
         <% end %>

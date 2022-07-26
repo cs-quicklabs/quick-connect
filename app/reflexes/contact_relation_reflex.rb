@@ -24,8 +24,6 @@ class ContactRelationReflex < ApplicationReflex
     )
     html = render(partial: "contact/relatives/search", locals: { form: form, relation: contact, relative: relative, contact: profile })
 
-    morph "#search", "<div id='contact_id'>#{html}</div>"
+    morph "#contact-relative", "#{html}"
   end
-
-
 end
