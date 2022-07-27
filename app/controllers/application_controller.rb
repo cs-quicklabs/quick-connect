@@ -12,10 +12,10 @@ class ApplicationController < ActionController::Base
 
   skip_before_action :verify_authenticity_token, if: :json_request?
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-  rescue_from ActionController::InvalidAuthenticityToken,
-              with: :token_verification
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  #rescue_from ActionController::InvalidAuthenticityToken,
+  # with: :token_verification
   rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
@@ -166,16 +166,6 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    if (!params[:api_user][:email].nil? && !params[:api_user][:password].nil?)
-      @api_user ||= User.find_by(email: params[:api_user][:email].downcase)
-      if @api_user && @api_user.valid_password?(params[:api_user][:password])
-        if !@api_user.confirmed?
-          render json: { success: false, message: "You have to confirm your email address before continuing." } and return
-        end
-      else
-        render json: { success: false, message: "Email or password is incorrect" } and return
-      end
-    end
     @current_user ||= warden.authenticate(scope: :api_user)
   end
 
