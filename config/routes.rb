@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
+    resources :reminders, module: "contact", except: [:show]
     resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
     resources :contact_activities, module: "contact", except: [:show]
@@ -116,6 +117,7 @@ Rails.application.routes.draw do
     resources :contacts do
       resources :notes, module: "contact", except: [:show]
       resources :phone_calls, module: "contact", except: [:show]
+      resources :reminders, module: "contact", except: [:show]
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end

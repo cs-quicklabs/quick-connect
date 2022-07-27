@@ -1,0 +1,26 @@
+<tr id="<%= dom_id reminder %>">
+<td class="table-cell">
+ <span class="font-medium text-gray-500"><%= display_date(reminder.reminder_date) %></span>
+</td>
+<td class="table-cell">
+<%if reminder.reminder_type=='once'%>
+<%=reminder.reminder_type.upcase_first%>
+<% else %>
+Every <%=reminder.remind_after%> <%=reminder.status%><%if reminder.remind_after>1%>s <% end %>
+<% end %>
+</td>
+       <td class="table-cell">
+          <p class="whitespace-nowrap"><%= reminder.title.upcase_first %></p>
+        </td>
+         <td class="table-cell">
+          <p class="whitespace-pre-wrap"><%= reminder.comments.upcase_first %></p>
+        </td>
+       <td class="table-cell whitespace-nowrap">
+          <% if policy([@contact, reminder]).edit? %>
+            <%= edit_button(edit_contact_reminder_path(@contact, reminder)) %>
+          <% end %>
+          <% if policy([@contact, reminder]).destroy? %>
+            <%= delete_button(contact_reminder_path(@contact, reminder)) %>
+          <% end %>
+        </td>
+</tr>

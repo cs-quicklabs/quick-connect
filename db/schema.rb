@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
+ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -404,6 +404,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.index ["user_id"], name: "index_release_notes_on_user_id"
   end
 
+  create_table "reminders", force: :cascade do |t|
+    t.string "title"
+    t.string "reminder_type"
+    t.string "status"
+    t.integer "remind_after"
+    t.date "reminder_date"
+    t.string "comments"
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_reminders_on_contact_id"
+    t.index ["user_id"], name: "index_reminders_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -494,6 +509,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "release_notes", "users"
+  add_foreign_key "reminders", "contacts"
+  add_foreign_key "reminders", "users"
   add_foreign_key "tasks", "contacts"
   add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"

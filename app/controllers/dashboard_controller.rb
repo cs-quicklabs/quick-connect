@@ -1,11 +1,12 @@
 class DashboardController < BaseController
   def index
     authorize :dashboard
-    @recents = []
-    @contacted = Event.includes(:eventable, :trackable).where(action: ["conversation", "called", "contact_activity"]).order(created_at: :desc).limit(10)
-    @contacted.each do |event|
-      @recents = event if !event.trackable.nil?
+    @recents = Event.includes(:eventable, :trackable).where(action: ["conversation", "called", "contact_activity"]).order(created_at: :desc).limit(10)
+    @reminders = current_user.reminders
+    @reminders.each do |reminder|
+      @upcoming_reminders.push(reminder.upcoming)
     end
+    binding.irb
   end
 
   def events
