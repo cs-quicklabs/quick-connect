@@ -166,7 +166,7 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    if !params[:api_user].nil?
+    if (!params[:api_user][:email].nil? && !params[:api_user][:password].nil?)
       @api_user ||= User.find_by(email: params[:api_user][:email].downcase)
       if @api_user && @api_user.valid_password?(params[:api_user][:password])
         if !@api_user.confirmed?
