@@ -2,8 +2,8 @@ class CreateReminders < ActiveRecord::Migration[7.0]
   def change
     create_table :reminders do |t|
       t.string :title
-      t.string :reminder_type
-      t.string :status
+      t.integer :reminder_type
+      t.integer :status
       t.integer :remind_after
       t.date :reminder_date
       t.string :comments

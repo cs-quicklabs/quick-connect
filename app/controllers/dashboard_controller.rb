@@ -1,12 +1,15 @@
 class DashboardController < BaseController
   def index
     authorize :dashboard
-    @recents = Event.includes(:eventable, :trackable).where(action: ["conversation", "called", "contact_activity"]).order(created_at: :desc).limit(10)
-    @reminders = current_user.reminders
+    Event.joins(phone_calls: :conversations)
+    @contacted = Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").where(events: { trackable_type: "PhoneCall" }).order(created_at: :desc).limit(5) +
+                 Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").where(events: { trackable_type: "Conversation" }).order(created_at: :desc).limit(5)
+    @reminders = current_user.reminders.where("reminder_date <= ?", Date.today + 90.days).to_a
+    @upcoming_reminders = []
     @reminders.each do |reminder|
-      @upcoming_reminders.push(reminder.upcoming)
+      @upcoming_reminders += reminder.upcoming
     end
-    binding.irb
+    @upcoming_reminders = @upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }
   end
 
   def events

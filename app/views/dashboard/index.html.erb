@@ -4,41 +4,80 @@
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
         <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2  top-16">
+        <div class="grid grid-cols-1 lg:col-span-2  top-16  pt-6 ">
+        <%if @contacted.count>0%>
           <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white">
-              <div class=" px-4">
-                <div class="flex flex-wrap pt-4">
-                 <p class="pb-2 mt-1 mt-4 text-sm font-medium text-gray-900 truncate"> Recently Contacted</p>
+            <div class="overflow-hidden bg-white mt-4">
+              <div class="px-4">
+                <div class="flex flex-wrap ">
+                 <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
                 </div>
                    <div class=" flex   bg-white font-sans py-6 px-2">
-                <div class="flex   w-full max-w-lg space-x-6 ">  
-                 <%= render partial: "recent", collection: @recents, as: :recent, cached: false %>
+                <div class="flex   w-full max-w-lg space-x-6 ml-4 ">  
+                 <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
                  </div>
                  </div>
               </div>
             </div>
           </section>
-             <section aria-labelledby="participants_section">
+          <% end %>
+          <%@favorites=Contact.all.favorites%>
+           <%if @favorites.count>0%>
+             <section aria-labelledby="participants_section  ">
             <div class="overflow-hidden bg-white">
               <div class="px-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Favorite Contacts</p>
+                  <p class="  text-sm font-medium text-gray-900 truncate"> Favorite Contacts</p>
                 </div>
-             <div class=" flex   bg-white font-sans py-6 px-2">
-                <div class="flex   w-full max-w-lg space-x-6 ">  
-                 <%= render partial: "favorite", collection: Contact.all.favorites, as: :favorite, cached: false %>
+             <div class=" flex   bg-white font-sans py-6  px-2">
+                <div class="flex   w-full max-w-lg space-x-6 ml-4">  
+                 <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                  </div>
                  </div>
               </div>
             </div>
           </section>
+          <% end %>
              <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white">
+            <div class="overflow-hidden bg-white ">
               <div class="px-4">
                 <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Upcoming Activities</p>
+                  <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
+                   
                 </div>
+               <div class=" flex   bg-white font-sans py-4 px-2">
+                <div class="flex   w-full max-w-lg  ">  
+                <ul>
+                <%  for num in 0..2 do%>                  
+     <p class="  text-sm font-medium text-gray-900 truncate"><%=Date::MONTHNAMES[Date.today.month+num]%> <%=Date.today.year%></p>
+   <%if @upcoming_reminders.size>0%>
+         <% @upcoming_reminders.each do |date, reminder|%>
+         <%=reminder%>
+        <%if (reminder.size>0 && date.month==Date.today.month+num)%>
+              <div class="py-4">
+                <%= render "upcoming", {reminder: reminder}%>
+             
+                </div>
+                   <% break%>
+                <% else %>
+                <div class="py-4">
+                <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
+              
+                  </div>
+                     <% break%>
+                <% end %>
+                   <% end %>
+                <% else %>
+                <div class="py-4">
+                <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
+              
+                  </div>
+           
+         <% end %>
+                <% end %>
+                </ul>
+                 </div>
+                 </div>
               </div>
             </div>
           </section>

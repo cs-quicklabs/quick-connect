@@ -1,12 +1,11 @@
 <div class="content-center">
 <a 
- href="/<%= activity.account.id %>/contacts/<%= activity.eventable.id %>/<%= activity.trackable.class.model_name %>" class="">
-
+ href="/<%= recent.account.id %>/contacts/<%= recent.eventable.id %>/<%= recent.trackable.class.model_name %>" class="  hover:underline">
       <div>
         <span class="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full ring-2 ring-white ml-4">
           <%= image_tag "male-placeholder-image.png", class: "w-7 h-7 rounded-full" %>
         </span>
       </div>
-<p class="text-sm text-gray-500 mt-2  hover:underline"><%=activity.eventable.decorate.display_name%>
+  <p class="text-sm text-gray-500 mt-2  hover:underline"><%=recent.eventable.decorate.display_name%>
 </a>
 </div>

@@ -3,10 +3,10 @@
  <span class="font-medium text-gray-500"><%= display_date(reminder.reminder_date) %></span>
 </td>
 <td class="table-cell">
-<%if reminder.reminder_type=='once'%>
+<%if reminder.once?%>
 <%=reminder.reminder_type.upcase_first%>
 <% else %>
-Every <%=reminder.remind_after%> <%=reminder.status%><%if reminder.remind_after>1%>s <% end %>
+Every <%=reminder.remind_after%> <%=reminder.decorate.display_status%><%if reminder.remind_after>1%>s <% end %>
 <% end %>
 </td>
        <td class="table-cell">

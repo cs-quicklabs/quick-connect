@@ -3,43 +3,57 @@ class Reminder < ApplicationRecord
   belongs_to :user
   belongs_to :contact
   enum reminder_type: [:once, :multiple]
+  enum status: [:week, :month, :year], _prefix: true
   validates :title,
             :length => { :maximum => 25 }
   scope :once, -> { where(reminder_type: "once") }
   scope :multiple, -> { where(reminder_type: "multiple") }
 
-  def reminder
-    if status == "week"
-      days = reminder_date + remind_after * 7.days
-    elsif status == "year"
-      days = reminder_date + remind_after * 365.days
-    elsif status == "month"
-      days = reminder_date + remind_after * 30.days
-    end
-    return reminder_needed = reminder_date + days
-  end
-
   def upcoming
-    num = 1
+    num = 0
     upcomings = []
     loop do
-      if self.status == "week"
-        reminder_needed = self.reminder_date + self.remind_after * 7.days
-      elsif status == "year"
-        reminder_needed = self.reminder_date + self.remind_after * 365.days
-      elsif status == "month"
-        reminder_needed = self.reminder_date + self.remind_after * 30.days
+      if self.once?
+        reminder_needed = self.reminder_date
+      elsif self.status_week?
+        reminder_needed = self.reminder_date + num * self.remind_after * 7.days
+      elsif self.status_month?
+        reminder_needed = self.reminder_date + num * self.remind_after * 365.days
+      elsif self.status_year?
+        reminder_needed = self.reminder_date + num * self.remind_after * 30.days
       end
-      binding.irb
-      upcomings.push(reminder_needed)
-      if reminder_needed > Date.today + 90.days
+      if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
+        upcomings.push([self.as_json, "reminder": reminder_needed])
+        break
+      else
         break
       end
+      num += 1
     end
-    if self.reminder_type == "once"
-      upcomings.push(self.reminder_date)
-    end
+    return upcomings
+  end
 
+  def upcoming_api
+    num = 0
+    upcomings = []
+    loop do
+      if self.once?
+        reminder_needed = self.reminder_date
+      elsif self.status_week?
+        reminder_needed = self.reminder_date + num * self.remind_after * 7.days
+      elsif self.status_month?
+        reminder_needed = self.reminder_date + num * self.remind_after * 365.days
+      elsif self.status_year?
+        reminder_needed = self.reminder_date + num * self.remind_after * 30.days
+      end
+      if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
+        upcomings.push([self.as_json(:include => [:contact]), "reminder": reminder_needed])
+        break
+      else
+        break
+      end
+      num += 1
+    end
     return upcomings
   end
 end

@@ -22,10 +22,6 @@ class Contact::RemindersController < Contact::BaseController
     authorize [@contact, @reminder]
   end
 
-  def show
-    authorize [@contact, @reminder]
-  end
-
   def update
     authorize [@contact, @reminder]
 

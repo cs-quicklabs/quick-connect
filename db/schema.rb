@@ -406,8 +406,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
 
   create_table "reminders", force: :cascade do |t|
     t.string "title"
-    t.string "reminder_type"
-    t.string "status"
+    t.integer "reminder_type"
+    t.integer "status"
     t.integer "remind_after"
     t.date "reminder_date"
     t.string "comments"
