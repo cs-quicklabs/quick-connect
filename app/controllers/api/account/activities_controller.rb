@@ -3,7 +3,7 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
 
   def index
     authorize [:api, :account]
-    @activities = Activity.all.includes(:group).order(:name).order(created_at: :desc).group_by { |r| r.group.slice(:name) }
+    @activities = Activity.all.includes(:group).order(:name).order(created_at: :desc).group_by { |r| r.group.name }.to_a
     render json: { success: true, data: @activities, message: "Activities were successfully retrieved." }
   end
 
