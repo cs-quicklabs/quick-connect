@@ -43,7 +43,7 @@ RSpec.describe "api/account/life_events", type: :request do
       end
     end
   end
-  path "/{account_id}/api/account/life_event/new" do
+  path "/{account_id}/api/account/life_events/new" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     get("fetch groups (categories)") do

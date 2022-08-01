@@ -86,7 +86,7 @@
         }
       }
     },
-    "/{account_id}/api/account/activity/new": {
+    "/{account_id}/api/account/activities/new": {
       "parameters": [
         {
           "name": "account_id",
@@ -693,7 +693,7 @@
         }
       }
     },
-    "/{account_id}/api/account/life_event/new": {
+    "/{account_id}/api/account/life_events/new": {
       "parameters": [
         {
           "name": "account_id",
@@ -1175,6 +1175,9 @@
                     "date": {
                       "type": "string",
                       "format": "date"
+                    },
+                    "activity_id": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -1329,9 +1332,6 @@
                     "date": {
                       "type": "string",
                       "format": "date"
-                    },
-                    "activity_id": {
-                      "type": "integer"
                     }
                   }
                 }
@@ -1461,6 +1461,9 @@
                     "date": {
                       "type": "string",
                       "format": "date"
+                    },
+                    "life_event_id": {
+                      "type": "integer"
                     }
                   }
                 }
@@ -1615,9 +1618,6 @@
                     "date": {
                       "type": "string",
                       "format": "date"
-                    },
-                    "event_id": {
-                      "type": "integer"
                     }
                   }
                 }
