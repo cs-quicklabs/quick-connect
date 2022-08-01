@@ -5,7 +5,7 @@ class Reminder < ApplicationRecord
   enum reminder_type: [:once, :multiple]
   enum status: [:week, :month, :year], _prefix: true
   validates :title,
-            :length => { :maximum => 25 }
+            :length => { :maximum => 50 }
   scope :once, -> { where(reminder_type: "once") }
   scope :multiple, -> { where(reminder_type: "multiple") }
 
