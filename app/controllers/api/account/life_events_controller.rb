@@ -3,7 +3,7 @@ class Api::Account::LifeEventsController < Api::Account::BaseController
 
   def index
     authorize [:api, :account]
-    @life_events = LifeEvent.includes(:group).order(:name).order(created_at: :desc)
+    @life_events = LifeEvent.includes(:group).order(:name)
     render json: { success: true, data: @life_events, message: "Life Events were  succesfully retreived" }
   end
 
