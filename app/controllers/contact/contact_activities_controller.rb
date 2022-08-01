@@ -45,7 +45,7 @@ class Contact::ContactActivitiesController < Contact::BaseController
                                turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: ContactActivity.new, contact: @contact, activities: Activity.all.order(:name).decorate })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: @activity, contact: @contact, activities: Activity.all.order(:name).decorate }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: @contact_activity, contact: @contact, activities: Activity.all.order(:name).decorate }) }
       end
     end
   end

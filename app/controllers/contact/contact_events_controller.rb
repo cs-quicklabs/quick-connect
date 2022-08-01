@@ -45,7 +45,7 @@ class Contact::ContactEventsController < Contact::BaseController
                                turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: LifeEvent.all.order(:name).decorate })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @event, contact: @contact, events: LifeEvent.all.order(:name).decorate }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @contact_event, contact: @contact, events: LifeEvent.all.order(:name).decorate }) }
       end
     end
   end
