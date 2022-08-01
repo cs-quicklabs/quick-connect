@@ -30,6 +30,15 @@
             </label>
             <%= form.collection_select("life_event_id", events, :id, :display_name, { :prompt => "Select Event" }, :class => "form-text-field mt-1") %>
           </div>
+            <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <input id="reminder" name="reminder" value="true" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded">
+        <label for="remember_me" class="block ml-2 text-sm text-gray-900">
+
+Add a yearly reminder for this event
+        </label>
+      </div>
+    </div>
         <div class="flex justify-end ">
           <%= form.submit "Add Event", class: "btn-blue" %>
         </div>

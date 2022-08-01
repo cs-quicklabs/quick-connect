@@ -13,7 +13,9 @@ Every <%=reminder.remind_after%> <%=reminder.decorate.display_status%><%if remin
           <p class="whitespace-nowrap"><%= reminder.title.upcase_first %></p>
         </td>
          <td class="table-cell">
+    <% if reminder.comments?%> 
           <p class="whitespace-pre-wrap"><%= reminder.comments.upcase_first %></p>
+          <% end %>
         </td>
        <td class="table-cell whitespace-nowrap">
           <% if policy([@contact, reminder]).edit? %>
