@@ -3,7 +3,7 @@ class Account::LifeEventsController < Account::BaseController
 
   def index
     authorize :account
-    @life_events = LifeEvent.all.order(:name).order(created_at: :desc).group_by(&:group)
+    @life_events = LifeEvent.all.order(:name).group_by(&:group)
     @life_event = LifeEvent.new
   end
 
