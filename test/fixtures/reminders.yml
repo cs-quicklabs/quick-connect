@@ -1,0 +1,29 @@
+one:
+  title: Some random reminder
+  reminder_date: 2021-03-31
+  reminder_type: once
+  remind_after: 1
+  status: week
+  user: regular
+  contact: one
+  comments: remind
+
+two:
+  title: Some random second reminder
+  reminder_date: 2021-03-31
+  reminder_type: multiple
+  remind_after: 1
+  status: week
+  user: regular
+  contact: one
+  comments: remind
+
+three:
+  title: Some random third reminder
+  reminder_date: 2021-03-31
+  reminder_type: multiple
+  remind_after: 1
+  status: week
+  user: regular
+  contact: one
+  comments: remind
