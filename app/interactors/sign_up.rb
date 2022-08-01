@@ -39,13 +39,13 @@ class SignUp < Patterns::Service
   def seed_database
     now = Time.now
     ActsAsTenant.with_tenant(account) do
-      Field.create!([{ name: "Email", icon: "fa fa-envelope-open", protocol: "mailto:", default: "TRUE" },
-                     { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
-                     { name: "Phone", icon: "fa-solid fa-phone-volume", protocol: "tel:", default: "TRUE" },
-                     { name: "Twitter", icon: "fa-brands fa-twitter-square", protocol: "", default: "TRUE" },
-                     { name: "Whatsapp", icon: "fa-brands fa-whatsapp", protocol: "https://wa.me", default: "TRUE" },
-                     { name: "Telegram", icon: "fa-brands fa-telegram", protocol: "telegram:", default: "TRUE" },
-                     { name: "LinkedIn", icon: "fa-brands fa-linkedin", protocol: "", default: "TRUE" }])
+      Field.create!([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
+                     { name: "Facebook", icon: "fab fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
+                     { name: "Phone", icon: "fa fa-phone-volume", protocol: "tel:", default: "TRUE" },
+                     { name: "Twitter", icon: "fab fa-twitter-square", protocol: "", default: "TRUE" },
+                     { name: "Whatsapp", icon: "fab fa-whatsapp", protocol: "https://wa.me", default: "TRUE" },
+                     { name: "Telegram", icon: "fab fa-telegram", protocol: "telegram:", default: "TRUE" },
+                     { name: "LinkedIn", icon: "fab fa-linkedin", protocol: "", default: "TRUE" }])
       Relation.create!([{ name: "significant other", default: "TRUE" }, { name: "spouse/wife", default: "TRUE" }, { name: "date", default: "TRUE" }, { name: "lover", default: "TRUE" }, { name: "is in love with", default: "TRUE" },
                         { name: "secret lover", default: "TRUE" }, { name: "ex-partner/ex-girlfriend", default: "TRUE" }, { name: "ex-spouse/ex-wife", default: "TRUE" }, { name: "friend", default: "TRUE" }, { name: "parent/mother", default: "TRUE" },
                         { name: "child/daughter", default: "TRUE" }, { name: "sibling/sister", default: "TRUE" }, { name: "grandparent/grandmother", default: "TRUE" }, { name: "grandchild/granddaughter", default: "TRUE" }, { name: "uncle/aunt", default: "TRUE" }, { name: "nephew/niece", default: "TRUE" }, { name: "cousin", default: "TRUE" },
