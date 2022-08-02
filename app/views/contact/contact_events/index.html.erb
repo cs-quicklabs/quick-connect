@@ -8,7 +8,6 @@
         <div class="grid grid-cols-1 gap-4 lg:col-span-2" id="project_gifts" data-controller="infinite-scroll">
           <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">Events</h2>
-            <% if @contact_events.count>0%>
               <div class="overflow-hidden bg-white">
                 <div class="p-4">
                   <div class="flex flex-wrap">
@@ -24,14 +23,18 @@
                   <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
                 </div>
               </div>
-            <% end %>
           </section>
         </div>
         <% if policy([@contact, ContactEvent]).create? %>
           <!-- Right column -->
           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
             <section aria-labelledby="add-participant-section" id="search" >
+            <h2 class="sr-only" id="section-2-title">Add Event</h2>
+<div class="bg-white">
+  <div class="px-4">
               <%= render partial: "form", locals: { contact_event: @contact_event,contact: @contact, events: LifeEvent.all.order(:name).decorate }, cached: true %>
+           </div>
+           </div>
             </section>
           </div>
         <% end %>
