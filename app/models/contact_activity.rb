@@ -3,4 +3,6 @@ class ContactActivity < ApplicationRecord
   belongs_to :activity, class_name: "Activity", foreign_key: "activity_id"
   belongs_to :user
   validates_presence_of :title, :body
+  validates :title,
+            :length => { :maximum => 25 }
 end

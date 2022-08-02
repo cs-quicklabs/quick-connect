@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(@relative) do %>
   <% @relative = @relative.decorate%>
   <%= tailwind_form_with(model: @relative, id: dom_id(@relative), url: contact_relative_path(@contact, @relative)) do |form| %>
-    <main class="w-full mx-auto space-y-2 px-4">
+    <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @relative, message: local_assigns[:message] %>
       <label for="name" class="block mt-4 ml-1 text-sm font-medium text-gray-700">
         <%= "Edit #{@relative.contact.decorate.display_name}'s Relation" %>
