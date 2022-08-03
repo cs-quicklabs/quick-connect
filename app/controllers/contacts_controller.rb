@@ -5,11 +5,7 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
-    if params[:page].present?
-      @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    else
-      @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name))
-    end
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
     render_partial("contacts/contact", collection: @contacts) if stale?(@contacts)
   end
 
