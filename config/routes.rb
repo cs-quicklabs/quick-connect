@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :relatives, module: "contact", except: [:show]
     resources :contact_activities, module: "contact", except: [:show]
     resources :contact_events, module: "contact", except: [:show]
-    resources :about, module: "contact"
+    resources :abouts, module: "contact", except: [:show]
     resources :documents, module: "contact", except: [:show]
     collection do
       get :form
@@ -132,7 +132,7 @@ Rails.application.routes.draw do
       get "/remove_relation", to: "contact/profile#remove_relation"
       get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
-      resources :about, module: "contact", only: [:index]
+      resources :abouts, module: "contact", except: [:show]
       resources :timeline, module: "contact", only: [:index]
     end
   end
