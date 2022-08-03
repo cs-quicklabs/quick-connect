@@ -33,7 +33,7 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
   def update
     authorize [:api, :account]
     respond_to do |format|
-      if @activity.update(relation_params)
+      if @activity.update(activity_params)
         format.json { render json: { success: true, data: @activity, message: "Activity was successfully updated." } }
       else
         format.json { render json: { success: false, message: @activity.errors.full_messages.first } }

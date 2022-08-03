@@ -9,7 +9,7 @@ class Contact::BaseController < BaseController
 
   private
 
-  LIMIT = 20
+  LIMIT = 10
 
   def set_contact
     @contact = Contact.find(params[:contact_id])
