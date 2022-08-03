@@ -7,7 +7,6 @@ class ContactsController < BaseController
     authorize :contact
     if params[:page].present?
       @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-      debugger
     else
       @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name))
     end
