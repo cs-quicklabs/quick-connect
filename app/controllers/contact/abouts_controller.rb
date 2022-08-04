@@ -1,4 +1,5 @@
 class Contact::AboutsController < Contact::BaseController
+  include ActionView::RecordIdentifier
   before_action :set_about, only: %i[show edit update destroy]
 
   def index
@@ -6,8 +7,7 @@ class Contact::AboutsController < Contact::BaseController
   end
 
   def edit
-    authorize [@contact, About]
-    about = @contact.abouts
+    authorize [@contact, @about]
   end
 
   def update
@@ -16,6 +16,15 @@ class Contact::AboutsController < Contact::BaseController
       if @about.update(about_params)
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
       end
+    end
+  end
+
+  def destroy
+    authorize [@contact, @about]
+    @about.assign_attributes({ "#{params[:delete]}" => nil })
+    @about.save!
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
     end
   end
 

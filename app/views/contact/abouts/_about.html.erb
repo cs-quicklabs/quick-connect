@@ -1,146 +1,171 @@
+  <%= turbo_frame_tag dom_id(about) do %>
+                       <%frame_id1= dom_id(about, "address_turbo_frame")%>
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id1})do |form| %>
 
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-          <%frame_id= dom_id(about, "address_turbo_frame")%>
-       <%=turbo_frame_tag frame_id do%>
-      
-   <div class=" items-start    xl:grid xl:grid-flow-col  pb-4 lg:max-w-full  border-b  border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
-        <dt class="text-sm font-medium text-gray-700 " style="margin-right:4.5rem">Address</dt>
-      </div>
-       <div class="block xl:col-span-6">
-      <% if !about.address.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.address%></dt>
-      <% else %>
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
-      <% end %>
-      </div>
-     <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">
-      <span class="ml-4 flex-shrink-0">
-      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
-      
-        </span>
+          <%=turbo_frame_tag frame_id1, class:"inline-edit" do%>
+          <div class="border-b border-gray-200  pb-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">          
+        <dt class="text-sm font-medium text-gray-700" >Address: </dt>
         </div>
-        
-       </div> 
-       <% end %> 
-        <% end %>
-         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-   <%frame_id= dom_id(about, "breif_turbo_frame")%>
-          <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
-    <div class=" items-start  xl:grid xl:grid-flow-col  py-4 lg:max-w-full border-b border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">        
-        <dt class="text-sm font-medium text-gray-700 mr-6">Brief About <%=contact.decorate.display_name%></dt>
+               <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+ <%=delete_button(contact_about_path(@contact, about,:delete=>"address"))%>
+
+        </span>
       </div>
-       <div class="block xl:col-span-6">
-  <% if !about.breif.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.breif%></dt>
+             </div>
+       <div class="block xl:col-span-6 mt-3 ">
+  <% if !about.address.nil?%>
+        <dt class="text-sm font-medium text-gray-900" ><%=about.address.upcase_first%></dt>
             <% else %>
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+        <dt class="text-sm  text-gray-500">Not added</dt>
       <% end %>
       </div>
-       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
-           <span class="ml-4 flex-shrink-0">
+  
+     </div>
+        <% end %>
+        <% end %>
+           <%frame_id= dom_id(about, "breif_turbo_frame")%>
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id})do |form| %>
+
+          <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+  <div class="border-b border-gray-200  py-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">            
+        <dt class="text-sm font-medium text-gray-700  ">Brief About <%=contact.decorate.display_name%></dt>
+       </div>
+               <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
       <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+      <%=delete_button(contact_about_path(@contact, about,:delete=>"breif"))%>
         </span>
-        </div>
+      </div>
+             </div>
+       <div class="block xl:col-span-6 mt-3">
+  <% if !about.breif.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.breif.upcase_first%></dt>
+            <% else %>
+        <dt class="text-sm text-gray-500">Not added</dt>
+      <% end %>
+      </div>
             </div>
         <% end %>
         <% end %>
     
-         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-           <%frame_id= dom_id(about, "met_turbo_frame")%>
+               <%frame_id= dom_id(about, "met_turbo_frame")%>
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id})do |form| %>
+
               <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
-   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6 pr-4">             
-        <dt class="text-sm font-medium text-gray-700">How You Met <%=contact.decorate.display_name%></dt>
+   <div class="border-b border-gray-200  py-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">             
+        <dt class="text-sm font-medium text-gray-700 ">How You Met <%=contact.decorate.display_name%></dt>
       </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+      <%=delete_button(contact_about_path(@contact, about,:delete=>"met"))%>
+        </span>
+      </div>
+             </div>
+       
         <div class="block xl:col-span-6">
              <% if !about.met.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.met%></dt>
+        <dt class="text-sm font-medium text-gray-900"><%=about.met.upcase_first%></dt>
                   <% else %>
                   
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+        <dt class="text-sm  text-gray-500">Not added</dt>
       <% end %>
          </div>
-       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
-           <span class="ml-4 flex-shrink-0">
-      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
-        </span>
-        </div>
                </div>
         <% end %>
         <% end %>
- 
-         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-           <%frame_id= dom_id(about, "habit_turbo_frame")%>
+            <%frame_id= dom_id(about, "habit_turbo_frame")%>
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id})do |form| %>
+
                   <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
-   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 ">
+<div class="border-b border-gray-200  py-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">      
                    
         <dt class="text-sm font-medium text-gray-700">Habits and Preferences</dt>
       </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+<%=delete_button(contact_about_path(@contact, about,:delete=>"habit"))%>
+        </span>
+      </div>
+             </div>
+       
        <div class="block xl:col-span-6">
               <% if !about.habit.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.habit%></dt>
+        <dt class="text-sm font-medium text-gray-900"><%=about.habit.upcase_first%></dt>
                         <% else %>
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+        <dt class="text-sm  text-gray-500  ">Not added</dt>
       <% end %>
          </div>
-      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
-           <span class="ml-4 flex-shrink-0">
-      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
-        </span>
-        </div>
           </div>
         <% end %>
         <% end %>
-
-   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-           <%frame_id= dom_id(about, "work_turbo_frame")%>
+          <%frame_id= dom_id(about, "work_turbo_frame")%>
+   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id})do |form| %>
+ 
                   <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
-   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
+ <div class="border-b border-gray-200  py-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">    
                     
-        <dt class="text-sm font-medium text-gray-700  mr-4">Work Information</dt>
+        <dt class="text-sm font-medium text-gray-700  ">Work Information</dt>
       </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+    
+       <%=delete_button(contact_about_path(@contact, about,:delete=>"work"))%>
+
+        </span>
+      </div>
+             </div>
+       
            <div class="block xl:col-span-6">
           <% if !about.work.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.work%></dt>
+        <dt class="text-sm font-medium text-gray-900"><%=about.work.upcase_first%></dt>
                         <% else %>
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+        <dt class="text-sm  text-gray-500 ">Not added</dt>
       <% end %>
          </div>
-      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
-         <span class="ml-4 flex-shrink-0">
-      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
-        </span>
-        </div>
           </div>
         <% end %>
         <% end %>
-
-   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
-           <%frame_id= dom_id(about, "other_turbo_frame")%>
+ <%frame_id= dom_id(about, "other_turbo_frame")%>
+   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about),  data:{turbo_frame:frame_id})do |form| %>
+          
                              <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
-     <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
-        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
+    <div class="border-b border-gray-200  py-4">
+    <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
+         <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">   
 
-        <dt class="text-sm font-medium text-gray-700" style="margin-right:6rem">Other</dt>
+        <dt class="text-sm font-medium text-gray-700" >Other</dt>
       </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
+           <span class="ml-6 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+   <%=delete_button(contact_about_path(@contact, about,:delete=>"other"))%>
+        </span>
+      </div>
+             </div>
+       
        <div class="block xl:col-span-6">
        <% if !about.other.nil?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.other%></dt>
+        <dt class="text-sm font-medium text-gray-900"><%=about.other.upcase_first%></dt>
        <% else %>
-        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+        <dt class="text-sm text-gray-500">Not added</dt>
       <% end %>
          </div>
-      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
-          <span class="ml-4 flex-shrink-0">
-      <%=link_to "update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
-        </span>
-        </div>
            </div>
         <% end %>
         <% end %>
-   
-    </div>
+        <% end %>
