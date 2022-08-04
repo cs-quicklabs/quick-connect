@@ -98,4 +98,14 @@ en:
       contact_event:
         body: 
           one: Description
-  
+      life_event:
+        name:
+          one: Event
+        group: 
+          one: Category
+      activity:
+        name:
+          one: Activity
+        group: 
+          one: Category
+
