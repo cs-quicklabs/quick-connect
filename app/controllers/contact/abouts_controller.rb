@@ -1,0 +1,31 @@
+class Contact::AboutsController < Contact::BaseController
+  before_action :set_about, only: %i[show edit update destroy]
+
+  def index
+    authorize [@contact, About]
+  end
+
+  def edit
+    authorize [@contact, About]
+    about = @contact.abouts
+  end
+
+  def update
+    authorize [@contact, @about]
+    respond_to do |format|
+      if @about.update(about_params)
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
+      end
+    end
+  end
+
+  private
+
+  def about_params
+    params.require(:about).permit(:address, :breif, :met, :habit, :work, :other)
+  end
+
+  def set_about
+    @about = @contact.abouts
+  end
+end

@@ -1,0 +1,146 @@
+
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+          <%frame_id= dom_id(about, "address_turbo_frame")%>
+       <%=turbo_frame_tag frame_id do%>
+      
+   <div class=" items-start    xl:grid xl:grid-flow-col  pb-4 lg:max-w-full  border-b  border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
+        <dt class="text-sm font-medium text-gray-700 " style="margin-right:4.5rem">Address</dt>
+      </div>
+       <div class="block xl:col-span-6">
+      <% if !about.address.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.address%></dt>
+      <% else %>
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+      </div>
+     <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">
+      <span class="ml-4 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+      
+        </span>
+        </div>
+        
+       </div> 
+       <% end %> 
+        <% end %>
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+   <%frame_id= dom_id(about, "breif_turbo_frame")%>
+          <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+    <div class=" items-start  xl:grid xl:grid-flow-col  py-4 lg:max-w-full border-b border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">        
+        <dt class="text-sm font-medium text-gray-700 mr-6">Brief About <%=contact.decorate.display_name%></dt>
+      </div>
+       <div class="block xl:col-span-6">
+  <% if !about.breif.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.breif%></dt>
+            <% else %>
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+      </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
+           <span class="ml-4 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+        </span>
+        </div>
+            </div>
+        <% end %>
+        <% end %>
+    
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+           <%frame_id= dom_id(about, "met_turbo_frame")%>
+              <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6 pr-4">             
+        <dt class="text-sm font-medium text-gray-700">How You Met <%=contact.decorate.display_name%></dt>
+      </div>
+        <div class="block xl:col-span-6">
+             <% if !about.met.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.met%></dt>
+                  <% else %>
+                  
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+         </div>
+       <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
+           <span class="ml-4 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+        </span>
+        </div>
+               </div>
+        <% end %>
+        <% end %>
+ 
+         <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+           <%frame_id= dom_id(about, "habit_turbo_frame")%>
+                  <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 ">
+                   
+        <dt class="text-sm font-medium text-gray-700">Habits and Preferences</dt>
+      </div>
+       <div class="block xl:col-span-6">
+              <% if !about.habit.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.habit%></dt>
+                        <% else %>
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+         </div>
+      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
+           <span class="ml-4 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+        </span>
+        </div>
+          </div>
+        <% end %>
+        <% end %>
+
+   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+           <%frame_id= dom_id(about, "work_turbo_frame")%>
+                  <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+   <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
+                    
+        <dt class="text-sm font-medium text-gray-700  mr-4">Work Information</dt>
+      </div>
+           <div class="block xl:col-span-6">
+          <% if !about.work.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.work%></dt>
+                        <% else %>
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+         </div>
+      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
+         <span class="ml-4 flex-shrink-0">
+      <%=link_to "Update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+        </span>
+        </div>
+          </div>
+        <% end %>
+        <% end %>
+
+   <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about))do |form| %>
+           <%frame_id= dom_id(about, "other_turbo_frame")%>
+                             <%=turbo_frame_tag frame_id, class:"inline-edit" do%>
+     <div class=" items-start    xl:grid xl:grid-flow-col  py-4 border-b border-gray-200">
+        <div class="grid grid-cols-1  lg:col-span-3 xl:col-span-3 mr-6">
+
+        <dt class="text-sm font-medium text-gray-700" style="margin-right:6rem">Other</dt>
+      </div>
+       <div class="block xl:col-span-6">
+       <% if !about.other.nil?%>
+        <dt class="text-sm font-medium text-gray-900"><%=about.other%></dt>
+       <% else %>
+        <dt class="text-sm font-medium text-gray-900">Not added</dt>
+      <% end %>
+         </div>
+      <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">  
+          <span class="ml-4 flex-shrink-0">
+      <%=link_to "update", edit_contact_about_path(contact, about), class:"btn-inline-edit"%>
+        </span>
+        </div>
+           </div>
+        <% end %>
+        <% end %>
+   
+    </div>
