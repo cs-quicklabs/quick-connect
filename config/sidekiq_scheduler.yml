@@ -1,5 +1,5 @@
 send_daily_reminders:
-  cron: '0 10 * * 1-5'
+  cron: '0 10 * * * *'
   class: DailyReminderMailerJob
   queue: default
   description: 'This job sends a daily list of reminder to users 10:00 AM'

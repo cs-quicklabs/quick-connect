@@ -12,9 +12,8 @@ class DailyReminderMailerJob < ApplicationJob
             reminder_for_user.each do |reminder|
               todays_reminders += reminder.today
             end
-
             if todays_reminders.count > 0
-              DailyReminderMailer.with(user: user, reminders: @todays_reminders).daily_reminder.deliver_now
+              DailyReminderMailer.with(user: user, reminders: todays_reminders).daily_reminder.deliver_now
             end
           end
         end

@@ -1,12 +1,12 @@
 <p>Dear <%= @user.decorate.display_name %>!</p>
 <p> Reminders for the day:</p>
 <ul class="space-y-1">
-<%reminders.each do |reminder|%>
+<%@reminders.each do |reminder|%>
 <li class="">
 <%@contact=Contact.find(reminder.first["contact_id"])%>
-<p class="ml-3 text-sm  inline-flex text-gray-700"><%=remind.second[:reminder]%> </p>
+<p class="ml-3 text-sm  inline-flex text-gray-700"><%=reminder.second[:reminder]%> </p>
 <%= link_to @contact.decorate.display_name, contact_reminders_url(@contact.id, script_name: "/#{@user.account.id}") %>
-<p class=" ml-3 text-sm font-thin text-gray-900 truncate inline-flex"><%=remind.first["title"].upcase_first%></p>
+<p class=" ml-3 text-sm font-thin text-gray-900 truncate inline-flex"><%=reminder.first["title"].upcase_first%></p>
 </li>
 <% end %>
 </ul>
