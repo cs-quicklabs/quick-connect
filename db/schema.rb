@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
+ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "abouts", force: :cascade do |t|
+    t.string "address"
+    t.string "breif"
+    t.string "met"
+    t.string "habit"
+    t.string "work"
+    t.string "other"
+    t.bigint "contact_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_abouts_on_contact_id"
+    t.index ["user_id"], name: "index_abouts_on_user_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
@@ -67,6 +82,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.boolean "default", default: false, null: false
     t.index ["account_id"], name: "index_activities_on_account_id"
     t.index ["group_id"], name: "index_activities_on_group_id"
+  end
+
+  create_table "batches", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_batches_on_account_id"
+  end
+
+  create_table "batches_contacts", id: false, force: :cascade do |t|
+    t.bigint "contact_id", null: false
+    t.bigint "batch_id", null: false
   end
 
   create_table "comments", force: :cascade do |t|
@@ -404,6 +432,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.index ["user_id"], name: "index_release_notes_on_user_id"
   end
 
+  create_table "reminders", force: :cascade do |t|
+    t.string "title"
+    t.integer "reminder_type"
+    t.integer "status"
+    t.integer "remind_after"
+    t.date "reminder_date"
+    t.string "comments"
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_reminders_on_contact_id"
+    t.index ["user_id"], name: "index_reminders_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -452,10 +495,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
+  add_foreign_key "abouts", "contacts"
+  add_foreign_key "abouts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "accounts"
   add_foreign_key "activities", "groups"
+  add_foreign_key "batches", "accounts"
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
   add_foreign_key "contact_activities", "activities"
@@ -494,6 +540,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_09_044878) do
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "release_notes", "users"
+  add_foreign_key "reminders", "contacts"
+  add_foreign_key "reminders", "users"
   add_foreign_key "tasks", "contacts"
   add_foreign_key "tasks", "users"
   add_foreign_key "users", "accounts"

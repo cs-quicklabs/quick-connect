@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
-  get "/reset" => "user#reset", as: "reset_user"
+  get "/rebatch" => "user#rebatch", as: "rebatch_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
@@ -44,13 +44,13 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   resources :sections
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
-  scope "/settings" do
+  scope "/batchtings" do
     get "/profile", to: "user#profile", as: "user_profile"
-    get "/password", to: "user#password", as: "setting_password"
+    get "/password", to: "user#password", as: "batchting_password"
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
-  put ":id/permission", to: "user#update_permission", as: "set_permission"
+  put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
   namespace :account do
     resources :relations, except: [:new, :show]
@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    resources :batches, except: [:show, :new]
   end
   namespace :purchase do
     resources :checkouts
@@ -84,11 +85,11 @@ Rails.application.routes.draw do
       post "/users", to: "registrations#create", as: :new_user_registration
     end
     resources :user
-    get "/reset" => "user#reset", as: "reset_user"
+    get "/rebatch" => "user#rebatch", as: "rebatch_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
-    scope "/settings" do
+    scope "/batchtings" do
       get "/profile", to: "user#profile", as: "user_profile"
-      get "/password", to: "user#password", as: "setting_password"
+      get "/password", to: "user#password", as: "batchting_password"
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
       patch "/permission", to: "user#update_permission", as: "change_permission"
@@ -107,6 +108,7 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
+      resources :batches, except: [:show, :new]
     end
 
     resources :journals

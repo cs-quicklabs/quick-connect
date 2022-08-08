@@ -1,0 +1,10 @@
+  <%= tailwind_form_with(model: batch, id: dom_id(batch), url: account_batches_path) do |form| %>
+  <div class="space-y-6">
+    <%= render "shared/form_messages", resource: batch, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Groups", subtitle: "You can define custom batch which can be applied on contacts." %>
+    <%= form.text_field :name, "Add New Group", autocomplete: "off", class: "form-text-field" %>
+    <div class="flex justify-end pb-8">
+      <%= form.submit "Save", class: "btn-blue" %>
+    </div>
+  </div>
+<% end %>
