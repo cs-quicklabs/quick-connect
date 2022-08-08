@@ -5,4 +5,5 @@ class ContactActivity < ApplicationRecord
   validates_presence_of :title, :body
   validates :title,
             :length => { :maximum => 25 }
+  normalize_attribute :body, :title, :with => :strip
 end
