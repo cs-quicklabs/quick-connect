@@ -5,16 +5,17 @@ class Contact < ApplicationRecord
   scope :for_current_account, -> { where(account: Current.account) }
   belongs_to :user
   belongs_to :account
-  validates_presence_of :first_name, :last_name, :phone
-  validates_uniqueness_of :phone, scope: :account
+  validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
   scope :available, -> { where(archived: false) }
-  validates :phone, :presence => true,
+  validates :phone, :presence => true, uniqueness: { scope: :account },
                     :numericality => true,
-                    :length => { :minimum => 10, :maximum => 12 }
-  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP }
+                    :length => { :minimum => 10, :maximum => 12 }, if: -> { email.blank? }
+  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
