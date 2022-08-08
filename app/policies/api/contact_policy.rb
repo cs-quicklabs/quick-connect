@@ -16,7 +16,7 @@ class Api::ContactPolicy < Api::BaseApiPolicy
   end
 
   def show?
-    return true if record.last.user = user
+    return true if !record.last.archived
   end
 
   def profile?
