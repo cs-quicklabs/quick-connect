@@ -5,4 +5,5 @@ class ContactEvent < ApplicationRecord
   belongs_to :user
   validates :title,
             :length => { :maximum => 25 }
+  normalize_attribute :body, :title, :with => :strip
 end
