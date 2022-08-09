@@ -1,8 +1,8 @@
 <%= turbo_frame_tag dom_id(batch) do %>
   <li class="flex py-4 border-b border-gray-200">
     <div class="flex items-center w-full ml-3">
-      <p class="w-full ml-2 text-sm font-medium text-gray-900">
-        <%= batch.name.titleize %></p>
+    <a href="<%=account_batch_contacts_path(batch)%>" class="hover:underline w-full  text-sm font-medium text-gray-900" target="_top">
+        <%= batch.name.titleize %></a>
       <div class="flex justify-end space-x-2">
         <%= edit_button(edit_account_batch_path(batch)) %>
         <%= delete_button(account_batch_path(batch)) %>

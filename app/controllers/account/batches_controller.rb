@@ -41,6 +41,11 @@ class Account::BatchesController < Account::BaseController
     end
   end
 
+  def contacts
+    authorize :account
+    @batch = Batch.find(params[:batch_id])
+  end
+
   def destroy
     authorize :account
 

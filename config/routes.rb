@@ -58,7 +58,9 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
-    resources :batches, except: [:show, :new]
+    resources :batches, except: [:show, :new] do
+      get "contacts", to: "batches#contacts", as: "contacts"
+    end
   end
   namespace :purchase do
     resources :checkouts
@@ -108,7 +110,9 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
-      resources :batches, except: [:show, :new]
+      resources :batches, except: [:show, :new] do
+        get "contacts", to: "batches#contacts", as: "contacts"
+      end
     end
 
     resources :journals

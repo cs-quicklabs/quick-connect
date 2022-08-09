@@ -9,6 +9,9 @@
         </ul>
       <% end %>
     </div>
+     <li class="flex w-full py-4 border-b border-gray-200">
+      <div class="w-full  space-y-6">
+             <%= form.text_field :name, "Edit Group", autocomplete: "off", class: "form-text-field" %>
         <div class="flex justify-end  ">
           <%= form.submit "Save", class: "btn-blue  " %>
         </div>
