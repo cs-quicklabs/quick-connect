@@ -53,17 +53,17 @@ Rails.application.routes.draw do
   end
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
+  resources :batches, except: [:show, :new] do
+    get "contacts", to: "batches#contacts", as: "contacts"
+    post "add", to: "batches#add", as: "addcontact"
+    delete "remove", to: "batches#remove", as: "removecontact"
+  end
   namespace :account do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
-    resources :batches, except: [:show, :new] do
-      get "contacts", to: "batches#contacts", as: "contacts"
-      post "add", to: "batches#add", as: "addcontact"
-      delete "remove", to: "batches#remove", as: "removecontact"
-    end
   end
   namespace :purchase do
     resources :checkouts
