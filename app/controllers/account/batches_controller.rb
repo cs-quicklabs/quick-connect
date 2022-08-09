@@ -46,6 +46,20 @@ class Account::BatchesController < Account::BaseController
     @batch = Batch.find(params[:batch_id])
   end
 
+  def add
+    authorize :account
+    @batch = Batch.find(params[:batch_id])
+    @contact = Contact.find(params[:search_id])
+
+    @batch.contacts << @contact
+    respond_to do |format|
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "account/batches/contact", locals: { contact: @contact }) +
+                             turbo_stream.replace(Batch.new, partial: "account/batches/search", locals: { batch: Batch.new, message: "Group was created successfully." })
+      }
+    end
+  end
+
   def destroy
     authorize :account
 

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
+  get "/search/add", to: "search#add"
   root :to => "dashboard#index"
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   resources :sections
@@ -60,6 +61,8 @@ Rails.application.routes.draw do
     resources :life_events, except: [:show, :new]
     resources :batches, except: [:show, :new] do
       get "contacts", to: "batches#contacts", as: "contacts"
+      post "add", to: "batches#add", as: "addcontact"
+      delete "remove", to: "batches#remove", as: "removecontact"
     end
   end
   namespace :purchase do
@@ -98,6 +101,7 @@ Rails.application.routes.draw do
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
+    get "/search/add", to: "search#add"
     resources :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"

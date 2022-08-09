@@ -38,4 +38,8 @@ class AccountPolicy < Struct.new(:user, :account)
   def contacts?
     true
   end
+
+  def add?
+    true
+  end
 end
