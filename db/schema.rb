@@ -95,6 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   create_table "batches_contacts", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
     t.bigint "batch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "comments", force: :cascade do |t|
