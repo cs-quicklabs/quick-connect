@@ -1,0 +1,21 @@
+<%= turbo_frame_tag dom_id(@batch) do %>
+  <%= tailwind_form_with(model: @batch, id: dom_id(@batch), url: account_batch_path(@batch)) do |form| %>
+    <div class="mt-2 text-sm text-red-700">
+      <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
+        <ul class="pl-1 space-y-1 pt-1">
+          <% messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+     <li class="flex w-full py-4 border-b border-gray-200">
+      <div class="w-full  space-y-6">
+             <%= form.text_field :name, "Edit Group", autocomplete: "off", class: "form-text-field" %>
+        <div class="flex justify-end  ">
+          <%= form.submit "Save", class: "btn-blue  " %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>

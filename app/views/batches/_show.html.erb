@@ -1,0 +1,36 @@
+                 <section aria-labelledby="participants_section" id="show" >
+          <div class="overflow-hidden bg-white" >
+            <div class="px-4 sm:px-6 py-6">
+                             <div class="flex items-center justify-between ">
+                <div class="flex flex-wrap items-baseline ">
+                  <h1 class="text-3xl font-bold leading-tight text-gray-900"><%=batch.name.titleize%></h1>
+                  <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= batch.contacts.count.to_s  %>)</p>
+                </div>
+              </div>
+
+
+ <%= render "search", batch: batch %>   
+   <% if batch.contacts.count>0%>
+ 
+  <nav class="flex-1  pt-6 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain"  >
+                <div class="relative px-6  h-full pt-6" id="batch_contacts"> 
+                   
+                 <ul role="list" class="relative z-0 divide-y divide-gray-200   "  >
+       <%= render "contact", {batch: batch, contacts:batch.contacts} %>
+        </ul>
+                </div>
+              <% else %>
+                <div class="w-full text-center sm:rounded-lg place-content-center">
+                  <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                      No result found
+                    </h3>
+                    <div class="mt-2 text-sm text-center text-gray-500">
+                      <p>We have not found any result. Please add contacts.</p>
+                    </div>
+                  </div>
+                </div>
+              </nav>
+            <% end %>
+            </section>
+    
