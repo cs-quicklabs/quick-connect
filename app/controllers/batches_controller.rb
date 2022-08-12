@@ -53,7 +53,8 @@ class BatchesController < BaseController
     @batch.contacts << @contact
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(:show, partial: "batches/show", locals: { contacts: @batch.contacts.order(created_at: :desc), batch: @batch })
+        render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch })
+        turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch, message: "Contact was created successfully added." })
       }
     end
   end

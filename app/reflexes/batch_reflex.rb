@@ -6,7 +6,7 @@ class BatchReflex < ApplicationReflex
     contacts = batch.contacts
     html = render(partial: "batches/show", locals: { batch: batch, contacts: contacts })
 
-    morph "#show", "<div id='show'>#{html}</div>"
+    morph "#show1", "#{html}"
   end
 
   def contact

@@ -14,10 +14,14 @@
  </div>
   <nav class="flex-1  pt-6 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain"  >
                 <div class="relative px-6  h-full pt-6" id="batch_contacts"> 
-                   
+                  <% batch.contacts.each do |contact|%>          
                  <ul role="list" class="relative z-0 divide-y divide-gray-200   "  >
-       <%= render "contact", {batch: batch, contacts:batch.contacts} %>
+       
+       <%= render "contact", {batch: batch, contact:contact} %>
+      
+
         </ul>
+         <% end %>
                 </div>
               <% else %>
                 <div class="w-full text-center sm:rounded-lg place-content-center">

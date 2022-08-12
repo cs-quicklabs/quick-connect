@@ -1,6 +1,6 @@
 class BatchPolicy < ApplicationPolicy
   def update?
-    return true if record.user = user
+    true
   end
 
   def new?
@@ -16,15 +16,15 @@ class BatchPolicy < ApplicationPolicy
   end
 
   def show?
-    return true if record.user = user
+    true
   end
 
   def destroy?
-    return true if record.user = user
+    true
   end
 
   def edit?
-    return true if record.user = user
+    true
   end
 
   def contacts?
