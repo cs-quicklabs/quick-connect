@@ -114,11 +114,12 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
-      resources :batches, except: [:show, :new] do
-        get "contacts", to: "batches#contacts", as: "contacts"
-      end
     end
-
+    resources :batches, except: [:show, :new] do
+      get "contacts", to: "batches#contacts", as: "contacts"
+      post "add", to: "batches#add", as: "addcontact"
+      delete "remove", to: "batches#remove", as: "removecontact"
+    end
     resources :journals
     resources :release_notes
     resources :journal_comments

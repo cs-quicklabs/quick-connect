@@ -4,8 +4,9 @@ class BatchesController < BaseController
   def index
     authorize :batch
 
-    @batches = Batch.all.order(:name)
+    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
     @batch = Batch.new
+    render_partial("batches/batch", collection: @batches) if stale?(@batches)
   end
 
   def edit
@@ -30,7 +31,7 @@ class BatchesController < BaseController
   end
 
   def update
-    authorize :batch
+    authorize @batch
 
     respond_to do |format|
       if @batch.update(batch_params)
@@ -47,7 +48,7 @@ class BatchesController < BaseController
   end
 
   def add
-    authorize Batch
+    authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:search_id])
     @batch.contacts << @contact
