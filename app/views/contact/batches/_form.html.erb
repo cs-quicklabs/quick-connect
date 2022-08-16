@@ -1,0 +1,21 @@
+
+    <%= form_with(id:"form", url: "/#{current_user.account.id}/contacts/#{contact.id}/batches") do |form| %>
+      <div class="space-y-6 px-4 pt-6  mx-auto">
+        <%= render "shared/form_header", title: "Add Contact To Group", subtitle: "A Contact can be added to a contact which can help you remember important things." %>
+          <div class="">
+            <label for="group" class="block  text-sm font-medium text-gray-700">
+              Select Group
+            </label>
+          <select  class="form-text-field mt-1" name="batch_id">
+            <option value="" >Select Group</option>
+          <% groups.each do |group|%>
+           <li > <option value="<%=group.id%>"><%=group.name.titleize%>
+          <% end %>
+          </select>
+          </div>
+        <div class="flex justify-end ">
+          <%= form.submit "Add Contact To Group", class: "btn-blue" %>
+        </div>
+      </div>
+    <% end %>
+
