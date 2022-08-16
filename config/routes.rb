@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get :form
     end
     resources :gifts, module: "contact", except: [:show]
+    resources :batches, module: "contact", except: [:show, :new, :update]
     resources :debts, module: "contact", except: [:show]
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
@@ -137,6 +138,7 @@ Rails.application.routes.draw do
       resources :contact_events, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
       resources :documents, module: "contact", except: [:show]
+      resources :batches, module: "contact", except: [:show, :update]
       get "/label/:id", to: "contact/profile#label"
       get "/remove_label/:id", to: "contact/profile#remove_label"
       get "/relation/:id", to: "contact/profile#relation"

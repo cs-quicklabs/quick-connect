@@ -5,13 +5,13 @@ class Contact::ContactEventsController < Contact::BaseController
     authorize [@contact, ContactEvent]
     @contact_event = ContactEvent.new
     @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
-    render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@relatives)
+    render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events)
   end
 
   def destroy
     authorize [@contact, @contact_event]
 
-    @relative = DestroyContactDetail.call(@contact, current_user, @contact_event).result
+    @event = DestroyContactDetail.call(@contact, current_user, @contact_event).result
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact_event) }

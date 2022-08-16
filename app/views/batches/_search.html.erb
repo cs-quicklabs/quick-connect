@@ -1,7 +1,7 @@
 <%=form_with(url: "/#{batch.account.id}/batches/#{batch.id}/add", id: "search") do |form|%>
-              <div class=" flex space-x-4 pt-6 mt-2">
-                <div class="flex-1 min-w-0 pt-6" x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/add?batch_id=<%=batch.id%>" >
-                  <label for="search" class="block  text-sm font-medium text-gray-700 pt-4   " >Search To Add Contact</label>
+              <div class=" flex space-x-4 ">
+                <div class="flex-1 min-w-0" x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/add?batch_id=<%=batch.id%>" >
+                  <label for="search" class="block  text-sm font-medium text-gray-700   " >Search To Add Contact</label>
                          <div class=" flex mt-1">
                   <div class="flex flex-1 relative rounded-md shadow-sm"   >
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

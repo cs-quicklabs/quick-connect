@@ -10,21 +10,18 @@
 <div  class="pt-6">
 
  <%= render "search", batch: batch %>   
-    <div class="relative px-6  h-full pt-6" id="batch_contacts"> 
-   <% if batch.contacts.uniq.count>0%>
+    <div class="relative px-6  h-full pt-6"> 
+
  </div>
   <nav class="flex-1  pt-6 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain"  >
-             
+          <ul role="list" class="relative z-0 divide-y divide-gray-200   "   id="batch_contacts"> 
+             <% if batch.contacts.uniq.count>0%>     
                   <% batch.contacts.uniq.each do |contact|%>          
-                 <ul role="list" class="relative z-0 divide-y divide-gray-200   "  >
+              
        
        <%= render "contact", {batch: batch, contact:contact} %>
-      
-
-        </ul>
-         <% end %>
-                </div>
-              <% else %>
+        <% end %>
+<% else %>
                 <div class="w-full text-center sm:rounded-lg place-content-center">
                   <div class="px-4 py-5 sm:p-6">
                     <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
@@ -37,5 +34,10 @@
                 </div>
               </nav>
             <% end %>
+      
+       
+           </ul>
+                </div>
+              
             </section>
     

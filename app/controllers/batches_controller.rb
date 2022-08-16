@@ -51,11 +51,12 @@ class BatchesController < BaseController
     authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:search_id])
+    @batch = AddContactToGroup.call(@batch, current_user, @contact).result
     @batch.contacts << @contact
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch })
-        turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch, message: "Contact was created successfully added." })
+        render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
+                             turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch, message: "Contact was created successfully added." })
       }
     end
   end
@@ -66,6 +67,8 @@ class BatchesController < BaseController
     @contact = Contact.find(params[:contact_id])
 
     @batch.contacts.destroy @contact
+    Event.where(trackable: @batch).touch_all
+    @contact.events.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from " + @batch.name, trackable: @batch, action_context: "Removed from group " + @batch.name)
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact) }
     end

@@ -10,6 +10,9 @@ application.register("application", ApplicationController)
 import ConfirmationController from "./confirmation_controller.js"
 application.register("confirmation", ConfirmationController)
 
+import CounterController from "./counter_controller.js"
+application.register("counter", CounterController)
+
 import DropdownController from "./dropdown_controller.js"
 application.register("dropdown", DropdownController)
 
@@ -25,18 +28,11 @@ application.register("infinite-scroll", InfiniteScrollController)
 import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
 
-
-
-
 import NavSearchController from "./nav_search_controller.js"
-import StimulusReflex from 'stimulus_reflex'
-import consumer from '../channels/consumer'
-import controller from '../controllers/application_controller'
-import CableReady from 'cable_ready'
 application.register("nav-search", NavSearchController)
-application.consumer = consumer
-StimulusReflex.initialize(application, { controller, isolate: true })
-CableReady.initialize({ consumer })
 
-application.consumer = consumer
-application.consumer = consumer
+import SelectController from "./select_controller.js"
+application.register("select", SelectController)
+
+import ToggleController from "./toggle_controller.js"
+application.register("toggle", ToggleController)
