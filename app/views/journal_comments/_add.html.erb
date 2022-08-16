@@ -6,7 +6,10 @@
             <%= render "shared/form_messages", resource: comment, message: local_assigns[:message] %>
             <%= form.hidden_field :journal_id, :value => journal.id %>
             <div>
-              <textarea id="comment" name="comment[title]" rows="3" class="form-text-field" placeholder="Add a comment"></textarea>
+                 <label for="owned_by" class="block text-sm font-medium text-gray-700">
+          Add A Comment
+        </label>
+              <textarea id="comment" name="comment[title]" rows="3" class="form-text-field mt-1" placeholder="Add a comment"></textarea>
             </div>
             <div  class="flex items-center justify-between mt-3">
               <div class="flex">

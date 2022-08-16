@@ -29,7 +29,9 @@
                 <div class="grid grid-cols-1 gap-2 xl:border-l xl:border-gray-200 overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
           <section aria-labelledby="add-participant-section h-full"  id="rating">
             <div class="overflow-hidden bg-white " > 
+             <% if @rating.blank? %>
   <%= render "journals/ratings/form",  {user:@user, rating: @rating, ratings_by_month:@ratings_by_month}%>
+  <% end %>
             </div>
           </section>
         </div>
