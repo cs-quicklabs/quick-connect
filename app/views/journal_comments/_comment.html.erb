@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(comment) do %>
-  <li class="py-1  w-full">
+  <li class="py-1  w-full px-4 py-6 sm:px-6">
     <div class=" w-full ">
       <p class="whitespace-pre-wrap text-sm "><%= auto_link_urls_in_text(comment.title.upcase_first) %></p>
     </div>
