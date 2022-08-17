@@ -59,14 +59,19 @@ class BatchesController < BaseController
   def add
     authorize :batch
     @batch = Batch.find(params[:batch_id])
-    @contact = Contact.find(params[:search_id])
-    @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-    @batch.contacts << @contact
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
-                             turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch, message: "Contact was created successfully added." })
-      }
+      if !params[:search_id].blank?
+        @contact = Contact.find(params[:search_id])
+        @batch = AddContactToGroup.call(@batch, current_user, @contact).result
+        @batch.contacts << @contact
+
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
+                               turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch })
+        }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(:search, partial: "batches/search", locals: { message: "Please search contact to add", batch: @batch }) }
+      end
     end
   end
 

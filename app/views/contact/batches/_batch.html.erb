@@ -1,8 +1,8 @@
 <tr id="<%= dom_id batch %>">
 
   <td class="table-cell w-full">
-    <div class="text-sm mt-1">
-      <a href="<%=batches_path(:batch_id=>batch.id)%>" class="block hover:underline"  >
+    <div class="text-sm mt-2">
+      <a href="<%=batches_path(:batch_id=>batch.id)%>" class="block hover:underline" target="_top"  >
         <%= batch.name.upcase_first %>
       </div>
     </td>

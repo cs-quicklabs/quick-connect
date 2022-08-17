@@ -5,7 +5,7 @@ class BatchesTest < ApplicationSystemTestCase
     @user = users(:regular)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
-    @batch = batches(:group)
+    @batch = batches(:one)
     sign_in @user
   end
 
@@ -28,10 +28,10 @@ class BatchesTest < ApplicationSystemTestCase
 
   test "can show batch detail page" do
     visit page_url
-    find("li", text: @batch.name).click
+    find("p", text: @batch.name).click
     within "#show1" do
       assert_selector "h1", text: @batch.name
-      assert_text "Add"
+      assert_text "Search To Add Contact"
       take_screenshot
     end
   end
@@ -39,16 +39,16 @@ class BatchesTest < ApplicationSystemTestCase
   test "can create a new batch" do
     visit page_url
     fill_in "batch_name", with: "Badminton"
-    click_on "Save"
+    click_on "Add"
     take_screenshot
     assert text "Group was successfully created."
   end
 
   test "can not create with empty name " do
     visit page_url
-    click_on "Save"
+    click_on "Add"
     assert text "Add New Group"
-    click_on "Save"
+    click_on "Add"
     take_screenshot
     assert_selector "div#error_explanation", text: "Name can't be blank"
   end
@@ -56,11 +56,10 @@ class BatchesTest < ApplicationSystemTestCase
   test "can edit a batch" do
     visit page_url
     find("li", text: @batch.name).click_on("Edit")
-    assert_selector "li", text: @batch.name
     within "turbo-frame#batch_#{@batch.id}" do
       assert text "Edit Group"
       fill_in "batch_name", with: "Bad"
-      click_on "Save"
+      click_on "Add"
     end
     assert text "Group was successfully updated"
   end
@@ -68,16 +67,16 @@ class BatchesTest < ApplicationSystemTestCase
   test "can not edit a batch with existing name" do
     visit page_url
     find("li", text: @batch.name).click_on("Edit")
-    group = batches(:one)
-    assert_selector "li", text: @batch.name
+    group = batches(:group)
     within "turbo-frame#batch_#{@batch.id}" do
       assert text "Edit Group"
       fill_in "batch_name", with: group.name
-      click_on "Save"
+      click_on "Add"
     end
     take_screenshot
     assert text "Edit Group"
   end
+
   test "can delete a  batch" do
     visit page_url
     assert_selector "li", text: @batch.name
@@ -89,25 +88,37 @@ class BatchesTest < ApplicationSystemTestCase
 
   test "can add contact to batch" do
     visit page_url
-    find("li", text: @batch.name).click
+    find("p", text: @batch.name).click
     within "#show1" do
-      assert_selector "h1", text: @batch.name
+      assert text @batch.name.titleize
       fill_in "search", with: "Co"
       find("#batch-contact").click
       sleep(0.5)
       click_on "Add"
-      within "div#batch_contacts" do
+      within "ul#batch_contacts" do
         assert text "Contact Contact"
       end
     end
+    take_screenshot
+  end
+
+  test "can not add with invalid contact batch" do
+    visit page_url
+    find("p", text: @batch.name).click
+    sleep(0.1)
+    within "#show1" do
+      click_on "Add"
+      assert text "Please search contact to add"
+    end
+    take_screenshot
   end
 
   test "can remove contact from batch" do
     visit page_url
-    find("li", text: @batch.name).click
+    find("p", text: @batch.name).click
     within "#show1" do
       assert_selector "h1", text: @batch.name
-      within "div#batch_contacts" do
+      within "ul#batch_contacts" do
         assert text "Contact Contact"
         page.accept_confirm do
           find("li", text: "Contact Contact").click_on("Delete")
@@ -115,21 +126,23 @@ class BatchesTest < ApplicationSystemTestCase
         assert_no_text "Contact Contact"
       end
     end
+    take_screenshot
   end
+
   test "can view profile of any contact" do
     visit page_url
-    find("li", text: @batch.name).click
+    find("p", text: @batch.name).click
     within "#show1" do
       assert_selector "h1", text: @batch.name
       fill_in "search", with: "Co"
       find("#batch-contact").click
       sleep(0.5)
       click_on "Add"
-      within "div#batch_contacts" do
+      within "ul#batch_contacts" do
         find("li", text: "Contact Contact").click
       end
     end
-
     assert_selector "#profile", text: "Contact Contact"
+    take_screenshot
   end
 end
