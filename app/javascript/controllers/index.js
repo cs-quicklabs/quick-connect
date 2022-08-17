@@ -10,8 +10,6 @@ application.register("application", ApplicationController)
 import ConfirmationController from "./confirmation_controller.js"
 application.register("confirmation", ConfirmationController)
 
-import CounterController from "./counter_controller.js"
-application.register("counter", CounterController)
 
 import DropdownController from "./dropdown_controller.js"
 application.register("dropdown", DropdownController)

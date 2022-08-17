@@ -2,8 +2,7 @@
 
   <td class="table-cell w-full">
     <div class="text-sm">
-      <a href="<%=batches_path%>" class="block hover:underline" target="_top" data-controller="counter"
-  data-action="click->counter#increment" data-batch-id="<%=batch.id%>" >
+      <a href="<%=batches_path(:batch_id=>batch.id)%>" class="block hover:underline"  >
         <%= batch.name.upcase_first %>
       </div>
     </td>
