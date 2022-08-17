@@ -32,7 +32,7 @@
         <div class="px-4 py-6 sm:px-6">
           <h2 id="journal-title" class="text-lg font-semibold text-gray-900">Comments</h2>
         </div>
-        <div class="px-4 py-4 sm:px-6">
+        <div class=" py-4 ">
           <ul class="space-y-4" id="comments">
             <%= render partial: "journal_comments/comment", collection: @journal.comments.order(created_at: :asc), as: :comment, cached: true %>
           </ul>
