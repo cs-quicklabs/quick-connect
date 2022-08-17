@@ -12,7 +12,7 @@ class JournalCommentsController < BaseController
                                turbo_stream.replace(:add, partial: "journal_comments/add", locals: { journal: @journal, comment: Comment.new })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(:add, partial: "journal_comments/comment", locals: { journal: @journal, comment: @comment }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(:add, partial: "journal_comments/add", locals: { journal: @journal, comment: @comment }) }
       end
     end
   end
