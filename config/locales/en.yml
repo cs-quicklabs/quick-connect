@@ -102,10 +102,10 @@ en:
         name:
           one: Event
         group: 
-          one: Category
+          one: Group
       activity:
         name:
           one: Activity
         group: 
-          one: Category
+          one: Group
 
