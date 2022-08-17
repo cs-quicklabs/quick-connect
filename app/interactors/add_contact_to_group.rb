@@ -1,6 +1,6 @@
 class AddContactToGroup < Patterns::Service
-  def initialize(batch, actor, contact)
-    @batch = batch
+  def initialize(params, actor, contact)
+    @batch = Batch.find(params[:batch_id])
     @actor = actor
     @contact = contact
   end
@@ -22,7 +22,7 @@ class AddContactToGroup < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "batch", action_for_context: "added " + @contact.decorate.display_name + " to " + @batch.name, trackable: batch, action_context: "Added to group " + @batch.name)
+    contact.events.create(user: actor, action: "batch", action_for_context: "added", trackable: batch, action_context: "Added to group ")
   end
 
   attr_reader :batch, :actor, :contact
