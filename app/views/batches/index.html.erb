@@ -44,9 +44,14 @@
         <div class="flex-1 flex flex-col overflow-y-auto">
 
           <nav class="flex-1" aria-label="Sidebar">
-       <div  class="  " id="show1">
-
-    </div>
+      <%if @batch_show.blank?%>
+        <div  class="  " id="show1">
+        </div>
+        <% else %>
+       <%=render "show", {batch:@batch_show}%>
+               <div  class="  " id="show1">
+        </div>
+       <% end %>
 
           </nav>
         </div>

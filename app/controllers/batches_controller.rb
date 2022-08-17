@@ -6,11 +6,20 @@ class BatchesController < BaseController
 
     @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
     @batch = Batch.new
+    if (params[:batch_id])
+      @batch_show = Batch.find(params[:batch_id])
+    end
     render_partial("batches/batch", collection: @batches) if stale?(@batches)
   end
 
   def edit
     authorize @batch
+  end
+
+  def show
+    authorize @batch
+    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
+    @batch = Batch.new
   end
 
   def create

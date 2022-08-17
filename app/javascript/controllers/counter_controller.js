@@ -2,7 +2,7 @@ import ApplicationController from './application_controller.js'
 
 export default class extends ApplicationController {
   increment(event) {
-    window.location.assign('/73/batches')
+    consumer.connection.open()
     this.stimulate('Batch#show', event.target)
   }
 }

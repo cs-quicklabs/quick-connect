@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   end
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
-  resources :batches, except: [:show, :new] do
+  resources :batches, except: [:new] do
     get "contacts", to: "batches#contacts", as: "contacts"
     post "add", to: "batches#add", as: "addcontact"
     delete "remove", to: "batches#remove", as: "removecontact"
@@ -116,7 +116,7 @@ Rails.application.routes.draw do
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
     end
-    resources :batches, except: [:show, :new] do
+    resources :batches, except: [:new] do
       get "contacts", to: "batches#contacts", as: "contacts"
       post "add", to: "batches#add", as: "addcontact"
       delete "remove", to: "batches#remove", as: "removecontact"
