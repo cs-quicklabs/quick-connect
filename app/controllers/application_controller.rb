@@ -9,13 +9,13 @@ class ApplicationController < ActionController::Base
 
   skip_before_action :verify_authenticity_token, if: :json_request?
 
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-  #rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken,
               with: :token_verification
   rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
-  #rescue_from Pundit::NotDefinedError, with: :record_not_found
-  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from Pundit::NotDefinedError, with: :record_not_found
+  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found

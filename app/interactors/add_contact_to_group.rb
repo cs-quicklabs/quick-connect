@@ -1,6 +1,6 @@
 class AddContactToGroup < Patterns::Service
-  def initialize(params, actor, contact)
-    @batch = Batch.find(params[:batch_id])
+  def initialize(batch, actor, contact)
+    @batch = batch
     @actor = actor
     @contact = contact
   end

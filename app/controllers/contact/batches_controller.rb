@@ -22,8 +22,9 @@ class Contact::BatchesController < Contact::BaseController
   def create
     authorize [@contact, Batch]
     respond_to do |format|
-      if params[:batch_id].nil?
-        @batch_new = AddContactToGroup.call(params, current_user, @contact).result
+      if !params[:batch_id].blank?
+        @batch = Batch.find(params[:batch_id])
+        @batch_new = AddContactToGroup.call(@batch, current_user, @contact).result
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batches, partial: "contact/batches/batch", locals: { batch: @batch, contact: @contact }) +
                                turbo_stream.replace(:form, partial: "contact/batches/form", locals: { groups: Batch.all - @contact.batches, contact: @contact })

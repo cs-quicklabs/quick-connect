@@ -27,7 +27,7 @@
             <label for="group" class="block  text-sm font-medium text-gray-700">
               Select Group
             </label>
-          <select  class="form-text-field mt-1" name="batch_id">
+          <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
             <option value="" >Select Group</option>
           <% groups.each do |group|%>
            <li > <option value="<%=group.id%>"><%=group.name.titleize%>
