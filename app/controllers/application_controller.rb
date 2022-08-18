@@ -98,6 +98,6 @@ class ApplicationController < ActionController::Base
   end
   def authenticate_user!(*args)
     super and return unless args.blank?
-    # json_request? ? authenticate_api_user! : super
+    # json_request? ? authenticate_api_user! : supe
   end
 end

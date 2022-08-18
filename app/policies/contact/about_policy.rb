@@ -1,5 +1,5 @@
 class Contact::AboutPolicy < Contact::BaseContactPolicy
-  def index?
+  def update?
     true
   end
 end
