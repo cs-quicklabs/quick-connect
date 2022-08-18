@@ -12,7 +12,7 @@
           <p class="text-sm text-gray-500">
             You
             <%=event.action_for_context%>
-            <a href="<%= contact_about_index_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
+            <a href="<%= contact_abouts_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
