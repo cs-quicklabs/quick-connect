@@ -1,21 +1,15 @@
 class ContactsController < BaseController
-  include Pagy::Backend
 
   before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
 
   def index
     authorize :contact
-    if params[:page].present?
-      @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    else
-      @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name))
-    end
-    render_partial("contacts/contact", collection: @contacts) if stale?(@contacts)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
+    render_partial("contacts/contact", collection: @contacts)
   end
 
   def new
     authorize :contact
-
     @contact = Contact.new
   end
 
