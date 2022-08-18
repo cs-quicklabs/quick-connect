@@ -1,0 +1,81 @@
+<main class="w-full mx-auto space-y-3 py-4">
+ <%frame_id= dom_id(@about, "address_turbo_frame")%>
+ 
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+  <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+     <%= form.text_area :address, "Address", class: "form-text-field h-20" %>
+               <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+        </main>
+        <% end %>
+      <% end %>
+ <%frame_id= dom_id(@about, "breif_turbo_frame")%>
+ 
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+  <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+     <%= form.text_area :breif, "Breif", class: "form-text-field h-20" %>
+               <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+        </main>
+        <% end %>
+      <% end %>
+     <%frame_id= dom_id(@about, "met_turbo_frame")%>
+  
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+ <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about), data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+       <%= form.text_area :met, "How You Met", class: "form-text-field h-20" %>
+                  <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+        </main>
+        <% end %>
+        <% end %>
+       <%frame_id= dom_id(@about, "habit_turbo_frame")%>
+  
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+ <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+         <%= form.text_area :habit, "Habit and Preferences", class: "form-text-field h-20" %>
+                 <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+        </main>
+          <% end %>
+          <% end %>
+         <%frame_id= dom_id(@about, "work_turbo_frame")%>
+ 
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+  <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+           <%= form.text_area :work, "Work Information", class: "form-text-field h-20" %>
+                    <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+                   </main>
+                   <% end %>
+            <% end %>
+ 
+           <%frame_id= dom_id(@about, "other_turbo_frame")%>
+ 
+ <%=turbo_frame_tag frame_id, class:"initial" do%>
+  <%= tailwind_form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+ <main class="w-full mx-auto space-y-3 py-4">
+             <%= form.text_area :other, "Other", class: "form-text-field h-20" %>
+           <div class="flex justify-end ">
+        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+        </main>
+        <% end %>
+              <% end %>
+    </main>
