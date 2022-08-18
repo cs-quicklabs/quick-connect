@@ -18,7 +18,7 @@
              </div>
        <div class="block xl:col-span-6 mt-1 ">
   <% if !about.address.blank?%>
-        <dt class="text-sm font-medium text-gray-900" ><%=about.address.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap  "style="overflow-wrap: break-word; text-align: justify;" ><%=about.address.upcase_first%></dt>
             <% else %>
         <dt class="text-xs font-normal text-gray-600">Please add address</dt>
       <% end %>
@@ -34,7 +34,7 @@
   <div class="border-b border-gray-200  py-4">
     <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
          <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3">            
-       <dt class="text-sm font-normal text-gray-500" >Brief About <%=contact.decorate.display_name%></dt>
+       <dt class="text-sm font-normal text-gray-500 whitespace-pre-wrap break-words" >Brief About <%=contact.decorate.display_name%></dt>
        </div>
                <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">  
            <span class="ml-6 flex-shrink-0">
@@ -45,7 +45,7 @@
              </div>
        <div class="block xl:col-span-6 mt-1">
   <% if !about.breif.blank?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.breif.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap " style="overflow-wrap: break-word; text-align: justify;"><%=about.breif.upcase_first%></dt>
             <% else %>
         <dt class="text-xs font-normal text-gray-600">Please add brief</dt>
       <% end %>
@@ -73,7 +73,7 @@
        
         <div class="block xl:col-span-6 mt-1">
              <% if !about.met.blank?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.met.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap " style="overflow-wrap: break-word; text-align: justify;"><%=about.met.upcase_first%></dt>
                   <% else %>
                   
          <dt class="text-xs font-normal text-gray-600">Please add how you met</dt>
@@ -102,7 +102,7 @@
        
        <div class="block xl:col-span-6 mt-1">
               <% if !about.habit.blank?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.habit.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap " style="overflow-wrap: break-word; text-align: justify;"><%=about.habit.upcase_first%></dt>
                         <% else %>
           <dt class="text-xs font-normal text-gray-600">Please add habit and preferances</dt>
       <% end %>
@@ -132,7 +132,7 @@
        
            <div class="block xl:col-span-6 mt-1">
           <% if !about.work.blank?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.work.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap" style="overflow-wrap: break-word; text-align: justify;"><%=about.work.upcase_first%></dt>
                         <% else %>
          <dt class="text-xs font-normal text-gray-600">Please add work information</dt>
       <% end %>
@@ -160,7 +160,7 @@
        
        <div class="block xl:col-span-6 mt-1">
        <% if !about.other.blank?%>
-        <dt class="text-sm font-medium text-gray-900"><%=about.other.upcase_first%></dt>
+        <dt class="text-sm font-medium text-gray-900 whitespace-pre-wrap" style="overflow-wrap: break-word; text-align: justify;"><%=about.other.upcase_first%></dt>
        <% else %>
           <dt class="text-xs font-normal text-gray-600">Please add other information</dt>
       <% end %>
