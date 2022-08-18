@@ -84,6 +84,21 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["group_id"], name: "index_activities_on_group_id"
   end
 
+  create_table "batches", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_batches_on_account_id"
+  end
+
+  create_table "batches_contacts", id: false, force: :cascade do |t|
+    t.bigint "contact_id", null: false
+    t.bigint "batch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id", null: false
@@ -231,6 +246,18 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category", default: "activity", null: false
+  end
+
+  create_table "invites", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "account_id"
+    t.string "recipient_email"
+    t.string "token"
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_invites_on_account_id"
+    t.index ["user_id"], name: "index_invites_on_user_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -475,6 +502,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.boolean "email_enabled", default: true
     t.string "jti", null: false
     t.integer "permission", default: 0, null: false
+    t.integer "invitation_id"
+    t.integer "invitation_limit"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["jti"], name: "index_users_on_jti", unique: true
@@ -488,6 +517,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "accounts"
   add_foreign_key "activities", "groups"
+  add_foreign_key "batches", "accounts"
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
   add_foreign_key "contact_activities", "activities"
@@ -510,6 +540,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "fields", "accounts"
   add_foreign_key "gifts", "contacts"
   add_foreign_key "gifts", "users"
+  add_foreign_key "invites", "accounts"
+  add_foreign_key "invites", "users"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"
