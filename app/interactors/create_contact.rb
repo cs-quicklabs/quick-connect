@@ -7,10 +7,10 @@ class CreateContact < Patterns::Service
   end
 
   def call
-    create_contact
-    add_event
-    add_about
     begin
+      create_contact
+      add_event
+      add_about
     rescue
       contact
     end
