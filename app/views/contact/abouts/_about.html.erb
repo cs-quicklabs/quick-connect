@@ -17,7 +17,7 @@
       </div>
              </div>
        <div class="block xl:col-span-6 mt-1 ">
-  <% if !about.address.nil?%>
+  <% if !about.address.blank?%>
         <dt class="text-sm font-medium text-gray-900" ><%=about.address.upcase_first%></dt>
             <% else %>
         <dt class="text-xs font-normal text-gray-600">Please add address</dt>
@@ -44,7 +44,7 @@
       </div>
              </div>
        <div class="block xl:col-span-6 mt-1">
-  <% if !about.breif.nil?%>
+  <% if !about.breif.blank?%>
         <dt class="text-sm font-medium text-gray-900"><%=about.breif.upcase_first%></dt>
             <% else %>
         <dt class="text-xs font-normal text-gray-600">Please add brief</dt>
@@ -72,7 +72,7 @@
              </div>
        
         <div class="block xl:col-span-6 mt-1">
-             <% if !about.met.nil?%>
+             <% if !about.met.blank?%>
         <dt class="text-sm font-medium text-gray-900"><%=about.met.upcase_first%></dt>
                   <% else %>
                   
@@ -101,7 +101,7 @@
              </div>
        
        <div class="block xl:col-span-6 mt-1">
-              <% if !about.habit.nil?%>
+              <% if !about.habit.blank?%>
         <dt class="text-sm font-medium text-gray-900"><%=about.habit.upcase_first%></dt>
                         <% else %>
           <dt class="text-xs font-normal text-gray-600">Please add habit and preferances</dt>
@@ -131,7 +131,7 @@
              </div>
        
            <div class="block xl:col-span-6 mt-1">
-          <% if !about.work.nil?%>
+          <% if !about.work.blank?%>
         <dt class="text-sm font-medium text-gray-900"><%=about.work.upcase_first%></dt>
                         <% else %>
          <dt class="text-xs font-normal text-gray-600">Please add work information</dt>
@@ -159,7 +159,7 @@
              </div>
        
        <div class="block xl:col-span-6 mt-1">
-       <% if !about.other.nil?%>
+       <% if !about.other.blank?%>
         <dt class="text-sm font-medium text-gray-900"><%=about.other.upcase_first%></dt>
        <% else %>
           <dt class="text-xs font-normal text-gray-600">Please add other information</dt>
