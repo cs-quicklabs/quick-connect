@@ -1,8 +1,9 @@
 <%= turbo_frame_tag dom_id(field) do %>
   <li class="flex py-2 border-b border-gray-200">
     <div class="flex items-center w-full ml-4">
-      <p class="ml-3 text-xs font-light text-gray-600"> <i class="<%= field.icon %>"></i></p>
-      <p class="w-full ml-2 text-sm font-medium text-gray-900">
+      <p class="ml-3  font-light text-gray-600"> <i class="<%= field.icon %> w-18 h-18"></i></p>
+      <% if field.icon.empty? %><p class="ml-4"><% end %>
+      <p class="w-full ml-2 text-sm font-medium text-gray-900 ">
         <%= field.name.titleize %></p>
       <p class="w-full ml-2 text-sm font-normal text-gray-700">
         <a type="button" href =  "<%= field.protocol %>" class=" cursor-pointer inline-flex  hover:underline">

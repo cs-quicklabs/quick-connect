@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(@activity) do %>
-  <%= tailwind_form_with(model: @activity, id: dom_id(@activity), url: account_activity_path(@activity)) do |form| %>
+  <%= form_with(model: @activity, id: dom_id(@activity), url: account_activity_path(@activity)) do |form| %>
     <div class="mt-2 text-sm text-red-700">
       <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
         <ul class="pl-1 space-y-1 pt-1">
@@ -11,10 +11,12 @@
     </div>
     <li class="flex w-full py-4 border-b border-gray-200">
       <div class="w-full space-y-6">
+      <div>
         <label for="owned_by" class="block text-sm font-medium text-gray-700">
           Edit Activity
         </label>
-        <%= form.text_field :name, "Activity", autocomplete: "off", class: "form-text-field"  %>
+        <%= form.text_field :name, autocomplete: "off", class: "form-text-field mt-1"  %>
+        </div>
         <div class="flex justify-end ">
           <%= form.submit "Save", class: "btn-blue  " %>
         </div>
