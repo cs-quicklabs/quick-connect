@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    resources :invitations, except: [:show, :new]
   end
   namespace :purchase do
     resources :checkouts
@@ -107,6 +108,7 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
+      resources :invitations, except: [:show, :new]
     end
 
     resources :journals

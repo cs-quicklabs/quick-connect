@@ -24,6 +24,7 @@ gem "hiredis"
 gem "valid_url"
 gem "image_processing", "~> 1.12"
 gem "devise-jwt"
+gem "devise_invitable", "~> 2.0.0"
   gem 'jquery-ui-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"

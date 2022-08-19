@@ -2,8 +2,8 @@ class User < ApplicationRecord
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
   scope :available, -> { all_users }
   scope :for_current_account, -> { where(account: Current.account) }
   enum permission: [:member, :admin]

@@ -1,0 +1,15 @@
+<%= turbo_frame_tag dom_id(invitation) do %>
+  <li class="flex py-4 border-b border-gray-200">
+    <div class="flex items-center w-full ml-3">
+      <p class="whitespace-nowrap text-sm font-medium text-gray-900 "style="width:50%">
+        <%= invitation.decorate.display_name %></p>
+
+         <p class="w-full  text-sm font-medium text-gray-900">
+        <%= invitation.email%></p>
+      <div class="flex justify-end ">
+        <%= delete_button(account_invitations_path(invitation)) %>
+      </div>
+    </div>
+  </li>
+
+<% end %>
