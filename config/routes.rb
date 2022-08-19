@@ -83,6 +83,7 @@ Rails.application.routes.draw do
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
     end
+
     resources :user
     get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
@@ -95,7 +96,9 @@ Rails.application.routes.draw do
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
-    resources :dashboard
+    get "/dashboard", to: "dashboard#index", as: "dashboard"
+    get :recents, controller: :dashboard
+    get :favorites, controller: :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
