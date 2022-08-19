@@ -5,13 +5,13 @@
         <div class="grid grid-cols-1 lg:col-span-2  top-16  pt-6 ">
         <%if @contacted.count>0%>
           <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white mt-4">
+            <div class="overflow-hidden bg-white p-4">
               <div class="px-4">
                 <div class="flex flex-wrap ">
                  <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
                 </div>
                    <div class=" flex   bg-white font-sans py-6 px-2">
-                <div class="flex   w-full max-w-lg space-x-6 ml-4 ">  
+                <div class="flex   w-full max-w-lg space-x-6  ">  
                  <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
                  </div>
                  </div>
@@ -29,7 +29,7 @@
                   <p class="  text-sm font-medium text-gray-900 truncate"> Favorite Contacts</p>
                 </div>
              <div class=" flex   bg-white font-sans py-6  px-2">
-                <div class="flex   w-full max-w-lg space-x-6 ml-4">  
+                <div class="flex   w-full max-w-lg space-x-6 ">  
                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                  </div>
                  </div>
@@ -37,4 +37,26 @@
             </div>
           </section>
           <% end %>
+          </div>
+          </div>
+           <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+          <section aria-labelledby="add-participant-section">
+            <div class="overflow-hidden bg-white h-full">
+              <div class="px-4 sm:px-6 ml-2">
+                <div class="flex flex-wrap pt-4">
+                  <p class="pb-4 mt-4 ml-1 text-sm font-medium text-gray-900 truncate">Recent Activities</p>
+                </div>
+                <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+                <% end %>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </main>
+</main>
+</div>
+</div>
       
