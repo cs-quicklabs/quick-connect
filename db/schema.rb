@@ -250,6 +250,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
 
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "sender_id"
     t.bigint "account_id"
     t.string "first_name"
     t.string "last_name"
@@ -259,6 +260,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_invitations_on_account_id"
+    t.index ["sender_id"], name: "index_invitations_on_sender_id"
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
@@ -558,6 +560,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "gifts", "users"
   add_foreign_key "invitations", "accounts"
   add_foreign_key "invitations", "users"
+  add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"

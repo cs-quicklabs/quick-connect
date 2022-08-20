@@ -1,21 +1,20 @@
 class Invitation < ApplicationRecord
   acts_as_tenant :account
+  belongs_to :sender, :class_name => "User"
+
   belongs_to :user, :class_name => "User"
 
-  validates_presence_of :email
-  validate :invite_is_not_registered
-  #validate :user_has_invitations, :if => :user
-
-  before_create :generate_token
-  #before_create :decrement_user_count, :if => :user
+  validates :email, uniqueness: true
+  validates_presence_of :first_name, :last_name, :email
+  validate :user_is_not_registered
 
   private
 
-  def invite_is_not_registered
-    errors.add :email, "is already registered" if User.find_by_email(email)
-  end
-
   def generate_token
     self.token = Digest::SHA1.hexdigest([Time.now, rand].join)
+  end
+
+  def user_is_not_registered
+    errors.add :email, "is already registered" if User.find_by_email(email)
   end
 end
