@@ -4,7 +4,7 @@ class Contact::ContactEventsController < Contact::BaseController
   def index
     authorize [@contact, ContactEvent]
     @contact_event = ContactEvent.new
-    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
+    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact).order(created_at: :desc), items: LIMIT)
     render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@relatives)
   end
 
