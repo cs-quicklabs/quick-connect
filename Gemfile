@@ -25,6 +25,7 @@ gem "valid_url"
 gem "image_processing", "~> 1.12"
 gem "devise-jwt"
   gem 'jquery-ui-rails'
+
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"
 gem "jsbundling-rails", "1.0.0"

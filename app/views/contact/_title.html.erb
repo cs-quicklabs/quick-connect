@@ -39,37 +39,37 @@
           <%= render partial: "contact/relation", locals: { contact: contact, relation: contact.relation } %>
         </div>
         <!-- This example requires Tailwind CSS v2.0+ -->
-     <div class=" inline-block mr-4  text-left">
-        <div  class="relative" x-data="{open: false}" @cilick="open = false"  >
-          <div>
-            <button @click="open = !open" type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
-              Select Relation
-              <!-- Heroicon name: solid/chevron-down -->
-              <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          <div  x-show="open"
+        <div class=" inline-block mr-4  text-left">
+          <div  class="relative" x-data="{open: false}" @cilick="open = false"  >
+            <div>
+              <button @click="open = !open" type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+                Select Relation
+                <!-- Heroicon name: solid/chevron-down -->
+                <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              </button>
+            </div>
+            <div  x-show="open"
                @click.away="open = false" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-            <% if Relation.all.order(:name).empty? %>
-              <div class="py-1" role="none">
-                <p @click="opentags = false"  role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
-                <a href=<%= account_relations_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
-              <% else %>
+              <% if Relation.all.order(:name).empty? %>
                 <div class="py-1" role="none">
-                  <% Relation.all.order(:name).each do |relation| %>
-                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                    <a @click="open = false"   href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactRelation#change" data-contact-id=<%= contact.id %> data-relation-id=<%= relation.id %> ><%= relation.name.upcase_first %></a>
+                  <p @click="opentags = false"  role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
+                  <a href=<%= account_relations_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
+                <% else %>
+                  <div class="py-1" role="none">
+                    <% Relation.all.order(:name).each do |relation| %>
+                      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                      <a @click="open = false"   href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactRelation#change" data-contact-id=<%= contact.id %> data-relation-id=<%= relation.id %> ><%= relation.name.upcase_first %></a>
+                    <% end %>
                   <% end %>
-                <% end %>
+                </div>
               </div>
             </div>
           </div>
-         </div>
-       <div>
+          <div>
             <%= link_to "Edit", edit_contact_path(contact), class: " btn-normal" %>
-            </div>
+          </div>
           <% if !contact.archived %>
             <div>
             <% end %>
@@ -79,41 +79,37 @@
           <div>
             <%= confirm_button(unarchive_contact_path(contact), "Restore", "Are you sure?", "ml-4 btn-normal") %>
           </div>
-     
         <% end %>
         <div class="ml-4 mt-1" id="contact-favorite">
-       
-              <% if !contact.favorite?%>
-              
-  <li id="not-favorite" class=" flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-      <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-    </svg>
-  </li>
-  <% else %>
-             <li id="favorite" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>" class="flex">
-  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="" style="color:#FDE68A; width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-      <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-    </svg>
-  </li>
-
-    <% end %>
+          <% if !contact.favorite?%>
+            <li id="not-favorite" class=" flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
+              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="cursor-pointer" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+              </svg>
+            </li>
+          <% else %>
+            <li id="favorite" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>" class="flex">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="cursor-pointer" style="color:#FDE68A; width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+              </svg>
+            </li>
+          <% end %>
+        </div>
       </div>
-   </div>
+    </div>
   </div>
- </div>
-    </div>
-    <div class="pb-4">
-    <%  @event = contact.events.order(created_at: :desc).first%>
-    <%  @call = contact.phone_calls.order(created_at: :desc).first%>
-      <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
-        <% if (!@event.blank? && !@call.blank?) %>
-          <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%> and  last phone call was on <%= display_created_at(@call)%>
-        <% elsif !@event.blank? %>
-          <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%>
-        <% elsif !@call.blank? %>
-          Last phone call was on <%= display_created_at(@call)%>
-        <% end %>
-      </p>
-    </div>
-    <%= render partial: "contact/tabs", locals: { contact: contact } %>
+</div>
+<div class="pb-4">
+  <%  @event = contact.events.order(created_at: :desc).first%>
+  <%  @call = contact.phone_calls.order(created_at: :desc).first%>
+  <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
+    <% if (!@event.blank? && !@call.blank?) %>
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%> and  last phone call was on <%= display_created_at(@call)%>
+    <% elsif !@event.blank? %>
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%>
+    <% elsif !@call.blank? %>
+      Last phone call was on <%= display_created_at(@call)%>
+    <% end %>
+  </p>
+</div>
+<%= render partial: "contact/tabs", locals: { contact: contact } %>
