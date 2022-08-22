@@ -97,7 +97,6 @@ class ApplicationController < ActionController::Base
     request.format.json?
   end
   def authenticate_user!(*args)
-    super and return unless args.blank?
-    # json_request? ? authenticate_api_user! : super
+    return unless args.blank? and super
   end
 end
