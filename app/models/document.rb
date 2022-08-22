@@ -4,5 +4,5 @@ class Document < ApplicationRecord
   belongs_to :contact
   normalize_attribute :filename, :comments, :link, :with => :strip
   validates :filename,
-            :length => { :maximum => 22 }
+            :length => { :maximum => 25 }
 end

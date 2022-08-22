@@ -50,3 +50,8 @@
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
+
+.inline-action {
+  display: none;
+}
+.inline-field .inline-action {display: initial;}

@@ -3,7 +3,7 @@ class Account::LifeEventsController < Account::BaseController
 
   def index
     authorize :account
-    @life_events = LifeEvent.all.order(:name).group_by(&:group)
+    @life_events = LifeEvent.all.joins("INNER JOIN groups ON groups.id = life_events.group_id").order("groups.name ASC").order(:name).group_by(&:group)
     @life_event = LifeEvent.new
   end
 
