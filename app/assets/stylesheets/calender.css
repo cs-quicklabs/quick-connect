@@ -1,6 +1,6 @@
 #ratings .calendar {
   border-collapse: collapse;
-  width: 100%;
+  
 }
 #ratings .calendar td, #ratings .calendar th {
   font-family: "Lucida Grande", arial, helvetica, sans-serif;
@@ -15,7 +15,6 @@
   width: 14.2857142857%;
 }
 #ratings .calendar td {
-  background: #fff;
   color: #777;
   text-align: center;
   vertical-align: top;
@@ -27,8 +26,11 @@
 #ratings .calendar .today  {
   background-color: #d7f2ff;
 }
-#ratings .calendar .rating  {
+#ratings .calendar .awesome  {
   background-color: #d7f2ff;
+}
+#ratings .calendar .rating  {
+  background-color: #2E7D32;
 }
 #ratings #month {
   margin: 0;
@@ -55,3 +57,14 @@
   display: none;
 }
 .inline-field .inline-action {display: initial;}
+
+
+.calendar td { height: 5px; width: 10px;  border-collapse: collapse;
+ }
+ .day-of-week,
+ .date-grid {
+   display: grid;
+   grid-template-columns: repeat(7, 40px);
+   gap: 6px;
+   
+ }
