@@ -68,3 +68,24 @@
    gap: 6px;
    
  }
+ .date-grid div.Monday:first-child {
+  grid-column: 2;
+}
+.date-grid div.Sunday:first-child {
+  grid-column: 1;
+}
+.date-grid div.Tuesday:first-child {
+  grid-column: 3;
+}
+.date-grid div.Wednsday:first-child {
+  grid-column: 4;
+}
+.date-grid div.Thursday:first-child {
+  grid-column: 5;
+}
+.date-grid div.Friday:first-child {
+  grid-column: 6;
+}
+.date-grid div.Saturday:first-child {
+  grid-column: 7;
+}
