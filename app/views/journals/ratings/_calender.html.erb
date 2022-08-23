@@ -3,10 +3,10 @@
   <div id="" class=" ">
     <% (0..2).each do |m|  %>
       <%current= (Date.today-m.month).strftime("%B")%>
-      <div id="" class="py-4 flex justify-center">
-        <p id="" class="font-semibold text-sm"   ><%= current%> <%=Date.current.year%></p>
-      </div>
       <% if ratings_by_date[current] %>
+        <div id="" class="py-4 flex justify-center">
+          <p id="" class="font-semibold text-sm"   ><%= current%> <%=Date.current.year%></p>
+        </div>
         <%ratings=ratings_by_date[current]%>
         <div class=" ">
         </div>
