@@ -18,11 +18,11 @@
               <% if ratings[index] %>
                 <% if i.to_s== ratings[index].date.strftime(("%-d"))%>
                   <%if ratings[index].awesome?%>
-                    <div class=" py-4"  style="background-color: #14532D; width:40px; "></div>
+                    <div class=" py-4"  style="background-color: #16a34a; width:40px; "></div>
                   <% elsif ratings[index].normal? %>
-                    <div class=" py-4"  style="background-color: #44403C; width:40px;"></div>
+                    <div class=" py-4"  style="background-color: #6b7280; width:40px;"></div>
                   <% elsif ratings[index].poor? %>
-                    <div class=" py-4"  style="background-color: #7F1D1D; width:40px;"></div>
+                    <div class=" py-4"  style="background-color: #dc2626; width:40px;"></div>
                   <% end %>
                   <%break%>
                 <% end %>
