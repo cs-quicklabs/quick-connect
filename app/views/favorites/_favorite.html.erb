@@ -1,0 +1,40 @@
+<% favorite = favorite.decorate %>
+<%  @event = favorite.events.order(created_at: :desc).first%>
+<tr id="<%= dom_id(favorite) %>">
+  <td class="table-cell whitespace-nowrap">
+    <div class="relative cursor-pointer  py-5 flex items-center space-x-3 " id="show" >
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <a href="<%=contact_abouts_path(favorite)%>">
+          <!-- Extend touch target to entire panel -->
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          <p class="text-sm font-medium text-gray-900" ><%= favorite.display_name %></p>
+          <p class="text-sm text-gray-500 truncate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            <%= favorite.phone %></p>
+        </a>
+      </div>
+    </div>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <% favorite.labels.uniq.each do |label| %>
+      <span class="inline-flex items-center px-2 py-0.5 rounded-full text-sm font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
+        <%= label.name.upcase_first %>
+        <button id="remove" data-reflex="click->favoriteLabels#remove" data-label-id=<%= label.id %> data-favorite-id=<%= favorite.id %> type="button" class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-<%= label.color %>-400 hover:bg-<%= label.color %>-200 hover:text-<%= label.color %>-400 focus:outline-none focus:bg-<%= label.color %>-400 focus:text-white">
+          <svg class="w-2 h-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
+            <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
+          </svg>
+        </button>
+      </span>
+    <% end %>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <p class=" text-sm font-normal text-gray-500 truncate">
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%>
+    </p>
+  </td>
+</tr>
