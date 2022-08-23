@@ -33,6 +33,7 @@ Rails.application.routes.draw do
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
   end
+  get "/favorites", to: "favorites#index", as: "favorites"
   resources :journals
   resources :release_notes
   resources :journal_comments
