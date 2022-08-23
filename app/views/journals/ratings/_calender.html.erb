@@ -32,6 +32,10 @@
               <%index+=1%>
             <% end %>
           <% end %>
+        <% else %>
+          <div id="" class="py-4 flex justify-center">
+            <p id="" class="font-semibold text-sm text-gray-500">No ratings added <%=Date.current.year%></p>
+          </div>
         <% end %>
       </div>
     <% end %>
