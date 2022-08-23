@@ -14,6 +14,7 @@ class Api::DashboardController < Api::BaseController
 
   def favorites
     authorize [:api, :dashboard]
-    render json: { success: true, data: Contact.all.favorites, message: "Favorites were successfully retrieved." }
+    @pagy, @favorites = pagy_nil_safe(params, Contact.all.favorites, items: Limit)
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @favorites, message: "Favorites were successfully retrieved." }
   end
 end
