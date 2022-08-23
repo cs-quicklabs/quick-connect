@@ -1,11 +1,11 @@
-<div class="">
+<div class="text-center flex flex-wrap">
   <a href="<%= contact_abouts_path(favorite)%>" class="  ">
-    <div class="ml-6">
-      <span class="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full ring-2 ring-white ">
-        <%= image_tag "male-placeholder-image.png", class: "w-7 h-7 rounded-full" %>
+    <div class="flex  justify-center " style=" padding-left:5px;">
+      <span class="  bg-gray-200 rounded-full ring-2 ring-white " style="height: 2.5rem;width: 2.5rem;">
+        <%= image_tag "male-placeholder-image.png", class: " rounded-full", :style=>"height: 2.5rem;width: 2.5rem;"%>
       </span>
     </div>
-    <div class="flex   mt-2    " style="width:65px;  overflow-wrap: break-word; padding-left:25px;">
+    <div class="flex   mt-2    " style="width:80px;  overflow-wrap: break-word; padding-left:20px;">
       <p class="text-sm  text-center text-gray-500  hover:underline  line-clamp "> <%=favorite.decorate.decorate.display_name%>
       </div>
     </a>
