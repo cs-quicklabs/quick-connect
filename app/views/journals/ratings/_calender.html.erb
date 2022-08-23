@@ -1,14 +1,22 @@
-<div  class=" py-2 px-6  ">
+<div  class=" py-2 px-6  mb-2">
   <p class="text-sm leading-5 text-gray-500  font-semibold">Last 3 months report:</p>
   <div id="" class=" ">
     <% (0..2).each do |m|  %>
-      <%current= (Date.today-m.month).strftime("%B")%>
+      <%current= (Date.today-m.month).strftime("%B")
+      current_month_year= (Date.today-m.month).strftime("%B %Y")%>
       <% if ratings_by_date[current] %>
-        <div id="" class="py-4 flex justify-center">
-          <p id="" class="font-semibold text-sm"   ><%= current%> <%=Date.current.year%></p>
+        <div id="" class=" py-4 flex justify-center">
+          <p id="" class="font-semibold text-sm"   ><%= current_month_year%></p>
         </div>
         <%ratings=ratings_by_date[current]%>
-        <div class=" ">
+        <div class="py-1 flex justify-center day-of-week">
+          <div>Su</div>
+          <div>Mo</div>
+          <div>Tu</div>
+          <div>We</div>
+          <div>Th</div>
+          <div>Fr</div>
+          <div>Sa</div>
         </div>
         <%@days = days_in_month(Date::MONTHNAMES.index(current)) %>
         <div class=" flex justify-center date-grid " >
@@ -18,16 +26,16 @@
               <% if ratings[index] %>
                 <% if i.to_s== ratings[index].date.strftime(("%-d"))%>
                   <%if ratings[index].awesome?%>
-                    <div class=" py-4"  style="background-color: #16a34a; width:40px; "></div>
+                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #16a34a; width:40px; "></div>
                   <% elsif ratings[index].normal? %>
-                    <div class=" py-4"  style="background-color: #6b7280; width:40px;"></div>
+                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #6b7280; width:40px;"></div>
                   <% elsif ratings[index].poor? %>
-                    <div class=" py-4"  style="background-color: #dc2626; width:40px;"></div>
+                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #dc2626; width:40px;"></div>
                   <% end %>
                   <%break%>
                 <% end %>
               <% else %>
-                <div  class=" py-4" style="background-color: #F5F5F4; width:40px;"></div>
+                <div  class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>" style="background-color: #F5F5F4; width:40px;"></div>
               <% end %>
               <%index+=1%>
             <% end %>
