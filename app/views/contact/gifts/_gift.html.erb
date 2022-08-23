@@ -1,7 +1,7 @@
 <style>
-    .show-read-more .more-text{
-        display: none;
-    }
+  .show-read-more .more-text{
+      display: none;
+  }
 </style>
 <tr id="<%= dom_id gift %>">
   <td class="table-cell whitespace-nowrap max-w-md">
@@ -11,39 +11,35 @@
   </td>
   <td class="table-cell w-full max-w-sm ">
     <div class="text-sm">
-   <p
+      <p
    x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-    <span x-text="isCollapsed ? originalContent : content"><%= highlight_hashtag(gift.body.upcase_first)%></span>
- 
-    <button
+        <span x-text="isCollapsed ? originalContent : content"><%= highlight_hashtag(gift.body.upcase_first)%></span>
+        <button
       @click="isCollapsed = !isCollapsed"
       x-show="originalContent.length > maxLength"
-      x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-    ></button>
-</p>
-      </div>
+          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+          ></button>
+      </p>
+    </div>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <div class="mt-2 space-x-2 text-sm">
+      <span class="inline-flex items-center  px-2 py-0.5 rounded-full text-xs font-medium bg-<%=gift.decorate.display_status_color%>-400 text-<%=gift.decorate.display_status_color%>-800"><%= gift.status.upcase_first %></span>
+    </span>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <div class="mt-2 space-x-2 text-sm">
+      <span class="font-medium text-gray-500"><%= display_date(gift.date) %></span>
     </td>
-     <td class="table-cell whitespace-nowrap">
-      <div class="mt-2 space-x-2 text-sm">
-         <span class="inline-flex items-center  px-2 py-0.5 rounded-full text-xs font-medium bg-<%=gift.decorate.display_status_color%>-400 text-<%=gift.decorate.display_status_color%>-800"><%= gift.status.upcase_first %></span>
-   
-      </span>
-      </td>
     <td class="table-cell whitespace-nowrap">
-      <div class="mt-2 space-x-2 text-sm">
-        <span class="font-medium text-gray-500"><%= display_date(gift.date) %></span>
-      </td>
-      <td class="table-cell whitespace-nowrap">
-        <% if policy([gift.contact, gift]).edit? %>
-          <%= edit_button(edit_contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
-        <% end %>
-        <% if policy([gift.contact, gift]).destroy? %>
-          <%= delete_button(contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
-        <% end %>
-      </div>
-    </td>
-  </tr>
-
-
+      <% if policy([gift.contact, gift]).edit? %>
+        <%= edit_button(edit_contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
+      <% end %>
+      <% if policy([gift.contact, gift]).destroy? %>
+        <%= delete_button(contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
+      <% end %>
+    </div>
+  </td>
+</tr>

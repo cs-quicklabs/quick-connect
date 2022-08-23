@@ -1,10 +1,12 @@
 <div class="">
-<a href="<%= contact_abouts_path(favorite)%>" class="  ">
-      <div>
-        <span class="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full ring-2 ring-white ml-4">
-          <%= image_tag "male-placeholder-image.png", class: "w-7 h-7 rounded-full" %>
-        </span>
+  <a href="<%= contact_abouts_path(favorite)%>" class="  ">
+    <div class="ml-6">
+      <span class="flex items-center justify-center w-8 h-8 bg-gray-200 rounded-full ring-2 ring-white ">
+        <%= image_tag "male-placeholder-image.png", class: "w-7 h-7 rounded-full" %>
+      </span>
+    </div>
+    <div class="flex  ml-4 mt-2 " style="width:65px;  overflow-wrap: break-word;">
+      <p class="text-sm text-gray-500  hover:underline  line-clamp "> <%=favorite.decorate.decorate.display_name%>
       </div>
-<p class="text-sm text-gray-500 mt-2 ml-3 hover:underline text-center"><%=favorite.decorate.display_name%></span>
-</a>
-</div>
+    </a>
+  </div>
