@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
   mount ActionCable.server => "/cable"
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   post "/register", to: "registrations#create"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 

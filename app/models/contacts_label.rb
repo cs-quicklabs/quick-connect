@@ -1,0 +1,2 @@
+class ContatsLabel < ApplicationRecord
+end
