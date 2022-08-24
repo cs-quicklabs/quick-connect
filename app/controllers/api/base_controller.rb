@@ -1,11 +1,17 @@
 class Api::BaseController < ApplicationController
-  protect_from_forgery with: :null_session
-
+  
+  protect_from_forgery with: :exception, unless: :json_request?
+  skip_before_action :verify_authenticity_token, if: :json_request?
   before_action :verify_authenticity_token
   before_action :set_user, if: :json_request?
   before_action :authenticate_account!
-  include Pagy::Backend
-  LIMIT = 10
+
+  rescue_from ActionController::InvalidAuthenticityToken,
+              with: :token_verification
+  rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
+  before_action :set_current_user, if: :json_request?
+
+  LIMIT = 10 
 
   def authenticate_account!
     raise Pundit::NotAuthorizedError unless Current.account
@@ -17,10 +23,18 @@ class Api::BaseController < ApplicationController
     return pagy, collection
   end
 
+  def token_verification
+    json_request? ? invalid_auth_token : invalid_token
+  end
+
   private
 
   def set_user
     @api_user = User.find_by(account: Current.account)
+  end
+
+  def set_current_user
+    @current_user ||= warden.authenticate(scope: :api_user)
   end
 
   def json_request?
