@@ -3,7 +3,7 @@ class Account::InvitationsController < Account::BaseController
 
   def index
     authorize :account
-    @invitations = Invitation.all
+    @invitations = Invitation.all.order(created_at: :desc)
     @invitation = Invitation.new
   end
 

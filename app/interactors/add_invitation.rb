@@ -22,7 +22,6 @@ class AddInvitation < Patterns::Service
   private
 
   def add_invitation
-    @invitation.user = invite
     @invitation.sender = user
     @invitation.account = user.account
     @invitation.save!
@@ -35,6 +34,7 @@ class AddInvitation < Patterns::Service
     invite.password = password
     invite.skip_confirmation!
     invite.save!
+    @invitation.update!(user: invite)
   end
 
   def invite_user

@@ -111,7 +111,10 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
-      resources :invitations, except: [:show, :new]
+      resources :invitations, except: [:show, :new] do
+        get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+        get "/activate", to: "invitations#activate", as: "activate"
+      end
     end
 
     resources :journals
