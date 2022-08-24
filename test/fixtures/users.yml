@@ -23,4 +23,13 @@ unconfirmed:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
   jti: 87044b98-d9c8-11ec-9d64-0242ac120002
 
+invite:
+  first_name: invite
+  last_name: invite
+  email: invite@gmail.com
+  account: hansika
+  confirmed_at: 2021-03-18
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
+  jti: 70105030-d9c8-11ec-9d64-0242ac120003
+
   
