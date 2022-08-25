@@ -15,6 +15,7 @@ class DestroyContact < Patterns::Service
       delete_debts
       delete_gifts
       delete_contact_activities
+      delete_contact_about
       delete_contact_events
       contact.destroy
     rescue Exception => e
@@ -42,7 +43,8 @@ class DestroyContact < Patterns::Service
   end
 
   def delete_events
-    contact.events.delete_all
+    Event.where(trackable: contact).delete_all
+    Event.where(eventable: contact).delete_all
   end
 
   def delete_debts
@@ -59,6 +61,12 @@ class DestroyContact < Patterns::Service
 
   def delete_contact_events
     contact.contact_events.delete_all
+  end
+
+  def delete_contact_about
+    if !contact.abouts.nil?
+      contact.abouts.delete
+    end
   end
 
   def add_event
