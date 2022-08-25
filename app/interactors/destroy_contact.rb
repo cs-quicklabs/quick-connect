@@ -5,20 +5,20 @@ class DestroyContact < Patterns::Service
   end
 
   def call
-    delete_events
-    add_event
-    delete_notes
-    delete_tasks
-    delete_relatives
-    delete_conversations
-    delete_debts
-    delete_gifts
-    delete_contact_activities
-    delete_contact_about
-    delete_contact_events
-    delete_reminders
-    contact.destroy
     begin
+      delete_events
+      add_event
+      delete_notes
+      delete_tasks
+      delete_relatives
+      delete_conversations
+      delete_debts
+      delete_gifts
+      delete_contact_activities
+      delete_contact_about
+      delete_contact_events
+      delete_reminders
+      contact.destroy
     rescue Exception => e
       return false
     end
