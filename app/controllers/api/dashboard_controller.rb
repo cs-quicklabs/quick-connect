@@ -14,12 +14,12 @@ class Api::DashboardController < Api::BaseController
 
   def favorites
     authorize [:api, :dashboard]
-    @pagy, @favorites = pagy_nil_safe(params, Contact.all.favorites, items: LIMIT)
+    @pagy, @favorites = pagy_nil_safe(params, Contact.all.available.favorites, items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @favorites, message: "Favorites were successfully retrieved." }
   end
 
   def upcomings
-    @reminders = current_user.reminders.where("reminder_date <= ?", Date.today + 60.days)
+    @reminders = current_user.reminders.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=? ", false)
     @upcoming_reminders = []
     @reminders.each do |reminder|
       @upcoming_reminders += reminder.upcoming_api

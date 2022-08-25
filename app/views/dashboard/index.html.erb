@@ -28,7 +28,7 @@
             <div class="px-4">
               <div class="flex items-center justify-between ">
                 <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
-                <% if Contact.all.favorites.count>8%>
+                <% if Contact.all.available.favorites.count>8%>
                   <div class="flex sm:mt-0 sm:ml-4 ">
                     <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
                   </div>

@@ -1,7 +1,7 @@
 class DashboardController < BaseController
   def index
     authorize :dashboard
-    @reminders = current_user.reminders.where("reminder_date <= ?", Date.today + 90.days).to_a
+    @reminders = current_user.reminders.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=?", false).to_a
     @upcoming_reminders = []
     @reminders.each do |reminder|
       @upcoming_reminders += reminder.upcoming
