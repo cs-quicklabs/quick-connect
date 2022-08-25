@@ -1,6 +1,5 @@
-<h2 class="sr-only" id="section-2-title">Add New Relation</h2>
-<div class="bg-white">
-  <div class="px-4">
+
+  <div id="contact-relative">
     <%= tailwind_form_with(model: relative, id: dom_id(relative), url: "/#{current_user.account.id}/contacts/#{contact.id}/relatives") do |form| %>
       <div class="space-y-6 px-4 pt-6  mx-auto">
         <%= render "shared/form_messages", resource: relative, message: local_assigns[:message] %>
@@ -48,5 +47,5 @@
         <% end %>
       </div>
     <% end %>
-  </div>
-</div>
+    </div>
+

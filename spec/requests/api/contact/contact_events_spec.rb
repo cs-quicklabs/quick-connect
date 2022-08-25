@@ -35,14 +35,14 @@ RSpec.describe "api/contact/contact_events", type: :request do
       produces "application/json"
       consumes "application/json"
       parameter name: :api_contact_event, in: :body, schema: {
-        type: :'object',
-        properties: { "api_contact_event": { type: :object, properties: {
-          "title": { type: :string },
-          "body": { type: :string },
-          "date": { type: :string, format: :date },
-          "life_event_id": { type: :integer },
-        } } },
-      }
+                  type: :'object',
+                  properties: { "api_contact_event": { type: :object, properties: {
+                    "title": { type: :string },
+                    "body": { type: :string },
+                    "date": { type: :string, format: :date },
+                    "life_event_id": { type: :integer },
+                  } } },
+                }
       response(200, "successful") do
         let(:contact_id) { "123" }
 

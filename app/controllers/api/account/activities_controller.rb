@@ -3,13 +3,13 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
 
   def index
     authorize [:api, :account]
-    @activities = Activity.all.order(:name).order(created_at: :desc).group_by(&:group)
+    @activities = Activity.all.includes(:group).order(:name)
     render json: { success: true, data: @activities, message: "Activities were successfully retrieved." }
   end
 
   def new
     authorize [:api, :account]
-    render json: { success: true, data: Group.all.where(category: "activity").order(:name), message: "Groups wehre succesfully fetched" }
+    render json: { success: true, data: Group.all.where(category: "activity").order(:name), message: "Groups were succesfully fetched" }
   end
 
   def edit
@@ -33,7 +33,7 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
   def update
     authorize [:api, :account]
     respond_to do |format|
-      if @activity.update(relation_params)
+      if @activity.update(activity_params)
         format.json { render json: { success: true, data: @activity, message: "Activity was successfully updated." } }
       else
         format.json { render json: { success: false, message: @activity.errors.full_messages.first } }

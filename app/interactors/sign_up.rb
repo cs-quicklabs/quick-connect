@@ -7,8 +7,8 @@ class SignUp < Patterns::Service
   end
 
   def call
-    register
     begin
+      register
     rescue
       user
     end
@@ -39,7 +39,7 @@ class SignUp < Patterns::Service
   def seed_database
     now = Time.now
     ActsAsTenant.with_tenant(account) do
-      Field.create!([{ name: "Email", icon: "fa fa-envelope-open", protocol: "mailto:", default: "TRUE" },
+      Field.create!([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
                      { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
                      { name: "Phone", icon: "fa-solid fa-phone-volume", protocol: "tel:", default: "TRUE" },
                      { name: "Twitter", icon: "fa-brands fa-twitter-square", protocol: "", default: "TRUE" },
@@ -59,7 +59,7 @@ class SignUp < Patterns::Service
                          { name: "studied abroad", group_id: 5 }, { name: "started voluteering", group_id: 5 }, { name: "published a paper", group_id: 5 },
                          { name: "started a military service", group_id: 5, default: "TRUE" }, { name: "started a relationship", group_id: 6, default: "TRUE" }, { name: "got engaged", group_id: 6, default: "TRUE" }, { name: "got married", group_id: 6, default: "TRUE" },
                          { name: "aniversary", group_id: 6, default: "TRUE" }, { name: "expects a baby", group_id: 6, default: "TRUE" }, { name: "had a child", group_id: 6, default: "TRUE" }, { name: "added a family member", group_id: 7, default: "TRUE" },
-                         { name: "got a pet", group_id: 6 }, { name: "ended a relationship", group_id: 6 }, { name: "last a loved one", group_id: 6 }, { name: "moved", group_id: 7 }, { name: "bought a home", group_id: 7 },
+                         { name: "got a pet", group_id: 6 }, { name: "ended a relationship", group_id: 6 }, { name: "lost a loved one", group_id: 6 }, { name: "moved", group_id: 7 }, { name: "bought a home", group_id: 7 },
                          { name: "made a home improvement", group_id: 7, default: "TRUE" }, { name: "went on holidays", group_id: 7, default: "TRUE" }, { name: "got a new vehicle", group_id: 7, default: "TRUE" }, { name: "got a roommate", group_id: 7, default: "TRUE" },
                          { name: "overcame an illness", group_id: 8, default: "TRUE" }, { name: "quit a habit", group_id: 8, default: "TRUE" }, { name: "started new eating habits", group_id: 8, default: "TRUE" }, { name: "lost weight", group_id: 8, default: "TRUE" }, { name: "started to wear glass or contact lenses", group_id: 8, default: "TRUE" },
                          { name: "broke a bone", group_id: 8, default: "TRUE" }, { name: "had surgery", group_id: 8, default: "TRUE" }, { name: "went to the dentist", group_id: 8, default: "TRUE" },

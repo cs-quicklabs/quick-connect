@@ -14,6 +14,21 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "abouts", force: :cascade do |t|
+    t.string "address"
+    t.string "breif"
+    t.string "met"
+    t.string "habit"
+    t.string "work"
+    t.string "other"
+    t.bigint "contact_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["contact_id"], name: "index_abouts_on_contact_id"
+    t.index ["user_id"], name: "index_abouts_on_user_id"
+  end
+
   create_table "accounts", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -467,6 +482,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["user_id"], name: "index_users_on_user_id"
   end
 
+  add_foreign_key "abouts", "contacts"
+  add_foreign_key "abouts", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "accounts"
