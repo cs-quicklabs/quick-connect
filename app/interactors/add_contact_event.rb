@@ -1,14 +1,16 @@
 class AddContactEvent < Patterns::Service
-  def initialize(params, actor, contact)
+  def initialize(params, actor, contact, reminder)
     @contact_event = ContactEvent.new params
     @actor = actor
     @contact = contact
+    @reminder = reminder
   end
 
   def call
     begin
       add_contact_event
       add_event
+      add_reminder
     rescue
       contact_event
     end
@@ -23,9 +25,15 @@ class AddContactEvent < Patterns::Service
     contact_event.save!
   end
 
+  def add_reminder
+    if !reminder.nil?
+      contact.reminders.create(user: actor, title: contact_event.title + " " + contact_event.life_event.name, comments: contact_event.body, reminder_date: contact_event.date, remind_after: 1, status: "year", reminder_type: "multiple")
+    end
+  end
+
   def add_event
     contact.events.create(user: actor, action: "contact_event", action_for_context: "added a event for", trackable: contact_event, action_context: "Added event")
   end
 
-  attr_reader :contact_event, :actor, :contact
+  attr_reader :contact_event, :actor, :contact, :reminder
 end

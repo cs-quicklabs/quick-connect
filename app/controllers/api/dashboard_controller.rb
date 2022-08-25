@@ -17,4 +17,13 @@ class Api::DashboardController < Api::BaseController
     @pagy, @favorites = pagy_nil_safe(params, Contact.all.favorites, items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @favorites, message: "Favorites were successfully retrieved." }
   end
+
+  def upcomings
+    @reminders = current_user.reminders.where("reminder_date <= ?", Date.today + 60.days)
+    @upcoming_reminders = []
+    @reminders.each do |reminder|
+      @upcoming_reminders += reminder.upcoming_api
+    end
+    render json: { success: true, data: @upcoming_reminders, message: "Recents were successfully retrieved." }
+  end
 end

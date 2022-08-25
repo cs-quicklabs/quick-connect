@@ -1,0 +1,14 @@
+
+<ul class="space-y-1">
+<%reminder.each do |remind|%>
+<li class="">
+<p class="ml-3 text-sm  inline-flex text-gray-700"><%=remind.second[:reminder]%> </p>
+<a href="<%=contact_reminders_path(remind.first["contact_id"])%>" class="inline-flex hover:underline">
+ <p class="text-sm  inline-flex ml-1 "><%=Contact.find(remind.first["contact_id"]).decorate.display_name%></p></a>
+<p class=" ml-3 text-sm font-thin text-gray-900 truncate inline-flex"><%=remind.first["title"].upcase_first%></p>
+
+</li>
+
+<% end %>
+</ul>
+
