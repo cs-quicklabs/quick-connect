@@ -1,4 +1,4 @@
-class SectionsController < BaseController
+class FollowUpsController < BaseController
   def index
     authorize :section
   end
