@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
+    resources :reminders, module: "contact", except: [:show]
     resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
     resources :contact_activities, module: "contact", except: [:show]
@@ -100,6 +101,7 @@ Rails.application.routes.draw do
     get "/dashboard", to: "dashboard#index", as: "dashboard"
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
+    get :upcomings, controller: :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
@@ -120,6 +122,7 @@ Rails.application.routes.draw do
     resources :contacts do
       resources :notes, module: "contact", except: [:show]
       resources :phone_calls, module: "contact", except: [:show]
+      resources :reminders, module: "contact", except: [:show]
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end

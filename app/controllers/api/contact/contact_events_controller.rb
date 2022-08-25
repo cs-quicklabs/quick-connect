@@ -42,7 +42,7 @@ class Api::Contact::ContactEventsController < Api::Contact::BaseController
 
   def create
     authorize [:api, @contact, ContactEvent]
-    @event = AddContactEvent.call(event_params, @api_user, @contact).result
+    @event = AddContactEvent.call(event_params, @api_user, @contact, params[:reminder]).result
     respond_to do |format|
       if @event.persisted?
         format.json { render json: { success: true, data: @event.as_json(:include => :life_event), message: "Event created successfully" } }

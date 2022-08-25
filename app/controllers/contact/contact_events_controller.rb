@@ -37,7 +37,7 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def create
     authorize [@contact, ContactEvent]
-    @contact_event = AddContactEvent.call(event_params, current_user, @contact).result
+    @contact_event = AddContactEvent.call(event_params, current_user, @contact, params[:reminder]).result
     respond_to do |format|
       if @contact_event.persisted?
         format.turbo_stream {
