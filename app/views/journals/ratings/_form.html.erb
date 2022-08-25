@@ -45,6 +45,4 @@
     </ul>
   <% end %>
 </div>
-<% if !ratings_by_date.blank?%>
-  <%= render "journals/ratings/calender", {ratings_by_date:ratings_by_date}%>
-<% end %>
+<%= render "journals/ratings/calender", {ratings_by_date:ratings_by_date}%>

@@ -4,24 +4,24 @@
     <% (0..2).each do |m|  %>
       <%current= (Date.today-m.month).strftime("%B")
       current_month_year= (Date.today-m.month).strftime("%B %Y")%>
-      <% if ratings_by_date[current] %>
-        <div id="" class=" py-4 flex justify-center">
-          <p id="" class="font-semibold text-sm"   ><%= current_month_year%></p>
-        </div>
-        <%ratings=ratings_by_date[current]%>
-        <div class="py-1 flex justify-center day-of-week">
-          <div>Su</div>
-          <div>Mo</div>
-          <div>Tu</div>
-          <div>We</div>
-          <div>Th</div>
-          <div>Fr</div>
-          <div>Sa</div>
-        </div>
-        <%@days = days_in_month(Date::MONTHNAMES.index(current)) %>
-        <div class=" flex justify-center date-grid " >
-          <%j=ratings.count%>
-          <% (1..@days).each do |i|  %>
+      <div id="" class=" py-4 flex justify-center">
+        <p id="" class="font-semibold text-sm"   ><%= current_month_year%></p>
+      </div>
+      <div class="py-1 flex justify-center day-of-week">
+        <div>Su</div>
+        <div>Mo</div>
+        <div>Tu</div>
+        <div>We</div>
+        <div>Th</div>
+        <div>Fr</div>
+        <div>Sa</div>
+      </div>
+      <%@days = days_in_month(Date::MONTHNAMES.index(current)) %>
+      <div class=" flex justify-center date-grid " >
+        <% (1..@days).each do |i|  %>
+          <%ratings=ratings_by_date[current]%>
+          <% if !ratings.nil? %>
+            <%j=ratings.count%>
             <% (0..j).each do |index|  %>
               <% if ratings[index] %>
                 <% if i.to_s== ratings[index].date.strftime(("%-d"))%>
@@ -39,6 +39,8 @@
               <% end %>
               <%index+=1%>
             <% end %>
+          <% else %>
+            <div  class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>" style="background-color: #F5F5F4; width:40px;"></div>
           <% end %>
         <% end %>
       </div>
