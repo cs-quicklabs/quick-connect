@@ -66,7 +66,7 @@ class ContactsController < BaseController
     authorize @contact, :unarchive_contact?
 
     UnarchiveContact.call(@contact, current_user)
-    redirect_to contact_abouts_index_path(@contact), notice: "Contact has been restored."
+    redirect_to contact_abouts_path(@contact), notice: "Contact has been restored."
   end
 
   def destroy
