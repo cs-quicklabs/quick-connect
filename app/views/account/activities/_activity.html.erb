@@ -1,7 +1,8 @@
       <%= turbo_frame_tag dom_id(activity) do %>
   <li class="flex py-4 border-b border-gray-200">
     <div class="flex w-full ml-4">
-      <p class="w-full text-sm font-medium text-gray-900 ml-4"><%= activity.name.titleize %></p>
+       <p class="w-full text-sm font-normal text-gray-900 ml-2">
+     <%= activity.name.upcase_first %></p>
       <div class="flex justify-end space-x-2">
         <%= edit_button(edit_account_activity_path(activity)) %>
         <%= delete_button(account_activity_path(activity)) %>

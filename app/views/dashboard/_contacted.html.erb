@@ -1,0 +1,14 @@
+<li>
+  <div class="" style="margin-top: 1rem;">
+    <a href="/<%= recent.account.id %>/contacts/<%= recent.eventable.id %>/<%= recent.trackable.class.model_name.plural %>" class="  ">
+      <div class="flex  justify-center " style=" padding-left:5px;">
+        <span class=" mx-auto bg-gray-200 rounded-full ring-2 ring-white " style="height: 2.5rem;width: 2.5rem;">
+          <%= image_tag "male-placeholder-image.png", class: " rounded-full", :style=>"height: 2.5rem;width: 2.5rem;"%>
+        </span>
+      </div>
+      <div class="" style="margin-top: 0.5rem; overflow-wrap: break-word; ">
+        <p class="text-sm  text-center text-gray-500  hover:underline  line-clamp "> <%=recent.eventable.decorate.display_name%>
+        </div>
+      </a>
+    </div>
+  </li>

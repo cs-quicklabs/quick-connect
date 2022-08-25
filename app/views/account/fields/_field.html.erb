@@ -3,11 +3,10 @@
     <div class="flex items-center w-full ml-4">
       <p class="ml-3  font-light text-gray-600"> <i class="<%= field.icon %> w-18 h-18"></i></p>
       <% if field.icon.empty? %><p class="ml-4"><% end %>
-      <p class="w-full ml-2 text-sm font-medium text-gray-900 ">
-        <%= field.name.titleize %></p>
+      <p class="w-full ml-2 text-sm font-normal text-gray-900 ">
+        <%= field.name.upcase_first %></p>
       <p class="w-full ml-2 text-sm font-normal text-gray-700">
-        <a type="button" href =  "<%= field.protocol %>" class=" cursor-pointer inline-flex  hover:underline">
-          <%= field.protocol %></a>
+          <%= field.protocol %>
         <div class="flex justify-end space-x-2">
           <%= edit_button(edit_account_field_path(field)) %>
           <%= delete_button(account_field_path(field)) %>

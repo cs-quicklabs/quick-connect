@@ -1,99 +1,92 @@
 <main class="w-full mx-auto space-y-3 py-4">
- <%frame_id= dom_id(@about, "address_turbo_frame")%>
- 
- <%=turbo_frame_tag frame_id, class:"initial" do%>
-  <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
-  <label for="date" class="text-sm font-normal text-gray-500"> Address</label>
-     <%= form.text_area :address,  class: "form-text-field h-20" %>
-     </div>
-               <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+  <%frame_id= dom_id(@about, "address_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500"> Address</label>
+          <%= form.text_area :address,  class: "form-text-field h-20 mt-1" %>
         </div>
-        </main>
-        <% end %>
-      <% end %>
- <%frame_id= dom_id(@about, "breif_turbo_frame")%>
- 
- <%=turbo_frame_tag frame_id, class:"initial" do%>
-  <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
-  <label for="date" class="text-sm font-normal text-gray-500"> Breif about <%=@contact.decorate.display_name%></label>
-     <%= form.text_area :breif, class: "form-text-field h-20" %>
-     </div>
-               <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
         </div>
-        </main>
-        <% end %>
-      <% end %>
-     <%frame_id= dom_id(@about, "met_turbo_frame")%>
-  
- <%=turbo_frame_tag frame_id, class:"initial" do%>
- <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about), data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
-  <label for="date" class="text-sm font-normal text-gray-500">How you met <%=@contact.decorate.display_name%> </label>
-       <%= form.text_area :met,  class: "form-text-field h-20" %>
-       </div>
-                  <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+      </main>
+    <% end %>
+  <% end %>
+  <%frame_id= dom_id(@about, "breif_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500"> Breif about <%=@contact.decorate.display_name%></label>
+          <%= form.text_area :breif, class: "form-text-field h-20 mt-1" %>
         </div>
-        </main>
-        <% end %>
-        <% end %>
-       <%frame_id= dom_id(@about, "habit_turbo_frame")%>
-  
- <%=turbo_frame_tag frame_id, class:"initial" do%>
- <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
-  <label for="date" class="text-sm font-normal text-gray-500">Habits And Preferences</label>
-         <%= form.text_area :habit,  class: "form-text-field h-20" %>
-         </div>
-                 <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
         </div>
-        </main>
-          <% end %>
-          <% end %>
-         <%frame_id= dom_id(@about, "work_turbo_frame")%>
- 
- <%=turbo_frame_tag frame_id, class:"initial" do%>
-  <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
- <label for="date" class="text-sm font-normal text-gray-500">Work Information</label>
-           <%= form.text_area :work,  class: "form-text-field h-20" %>
-           </div>
-                    <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+      </main>
+    <% end %>
+  <% end %>
+  <%frame_id= dom_id(@about, "met_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about), data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500">How you met <%=@contact.decorate.display_name%> </label>
+          <%= form.text_area :met,  class: "form-text-field h-20 mt-1" %>
         </div>
-                   </main>
-                   <% end %>
-            <% end %>
- 
-           <%frame_id= dom_id(@about, "other_turbo_frame")%>
- 
- <%=turbo_frame_tag frame_id, class:"initial" do%>
-  <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
- <main class="w-full mx-auto space-y-3 py-4">
- <div>
-  <label for="date" class="text-sm font-normal text-gray-500">Other</label>
-             <%= form.text_area :other,  class: "form-text-field h-20" %>
-             </div>
-           <div class="flex justify-end ">
-        <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-        <%=link_to "Cancel", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
         </div>
-        </main>
-        <% end %>
-              <% end %>
-    </main>
+      </main>
+    <% end %>
+  <% end %>
+  <%frame_id= dom_id(@about, "habit_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500">Habits And Preferences</label>
+          <%= form.text_area :habit,  class: "form-text-field h-20 mt-1" %>
+        </div>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+      </main>
+    <% end %>
+  <% end %>
+  <%frame_id= dom_id(@about, "work_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500">Work Information</label>
+          <%= form.text_area :work,  class: "form-text-field h-20 mt-1" %>
+        </div>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+      </main>
+    <% end %>
+  <% end %>
+  <%frame_id= dom_id(@about, "other_turbo_frame")%>
+  <%=turbo_frame_tag frame_id, class:"initial" do%>
+    <%= form_with(model: @about, id: dom_id(@about),  url: contact_about_path(@contact, @about),  data:{turbo_frame:frame_id} )do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <div>
+          <label for="date" class="text-sm font-normal text-gray-500">Other</label>
+          <%= form.text_area :other,  class: "form-text-field h-20 mt-1" %>
+        </div>
+        <div class="flex justify-end ">
+          <%=form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+          <%=link_to "Back", contact_abouts_path(@contact), class: "ml-3 btn-normal " %>
+        </div>
+      </main>
+    <% end %>
+  <% end %>
+</main>

@@ -63,7 +63,7 @@ RSpec.describe "api/contact/abouts", type: :request do
         type: :'object',
         properties: { "api_about": { type: :object, properties: {
           "address": { type: :string },
-          "brief": { type: :string },
+          "breif": { type: :string },
           "met": { type: :string },
           "habit": { type: :string },
           "work": { type: :string },
