@@ -4,7 +4,7 @@ class JournalsController < BaseController
 
   def index
     authorize Journal
-    @rating = Rating.find_by_date(Date.today)
+    @rating = Rating.where(Date.today).first
     @ratings_by_date = Rating.select("DISTINCT ON (date)*").all.where("date <= ? and date > ?", Date.today, Date.today - 3.months).order(date: :desc).group_by { |r| r.date.strftime("%B") }
 
     @pagy, @journals = pagy_nil_safe(params, Journal.all.order(created_at: :desc), items: LIMIT)
