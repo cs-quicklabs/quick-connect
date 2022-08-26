@@ -15,12 +15,14 @@ class Reminder < ApplicationRecord
     loop do
       if self.once? && self.reminder_date >= Date.today
         reminder_needed = self.reminder_date
-      elsif self.status_week?
+      elsif self.multiple? && self.status_week?
         reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
-      elsif self.status_month?
+      elsif self.multiple? && self.status_month?
         reminder_needed = self.reminder_date + num * (self.remind_after + 1.month)
-      elsif self.status_year?
+      elsif self.multiple? && self.status_year?
         reminder_needed = self.reminder_date + num * (self.remind_after + 1.year)
+      else
+        break
       end
       if (reminder_needed == Date.today)
         todays.push([self.as_json, "reminder": reminder_needed])
