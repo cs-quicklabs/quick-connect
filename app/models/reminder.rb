@@ -13,7 +13,7 @@ class Reminder < ApplicationRecord
     num = 0
     todays = []
     loop do
-      if self.once?
+      if self.once? && self.reminder_date >= Date.today
         reminder_needed = self.reminder_date
       elsif self.status_week?
         reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
@@ -26,7 +26,6 @@ class Reminder < ApplicationRecord
         todays.push([self.as_json, "reminder": reminder_needed])
         break
       elsif (reminder_needed > Date.today)
-        num += 1
         break
       else
         num += 1
@@ -39,7 +38,7 @@ class Reminder < ApplicationRecord
     num = 0
     upcomings = []
     loop do
-      if self.once?
+      if self.once? && self.reminder_date >= Date.today
         reminder_needed = self.reminder_date
       elsif self.status_week?
         reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
@@ -52,7 +51,6 @@ class Reminder < ApplicationRecord
         upcomings.push([self.as_json, "reminder": reminder_needed.to_date])
         break
       elsif (reminder_needed > Date.today + 60.days)
-        num += 1
         break
       else
         num += 1
@@ -65,7 +63,7 @@ class Reminder < ApplicationRecord
     num = 0
     upcomings = []
     loop do
-      if self.once?
+      if self.once? && self.reminder_date >= Date.today
         reminder_needed = self.reminder_date
       elsif self.status_week?
         reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
@@ -75,10 +73,10 @@ class Reminder < ApplicationRecord
         reminder_needed = self.reminder_date + num * (self.remind_after + 1.years)
       end
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
-        upcomings.push([self.as_json(:include => [:contact]), "reminder": reminder_needed.to_date])
+        upcomings.push([self.as_json(:include => [:contact])])
+        upcomings.last.push("reminder": reminder_needed.to_date)
         break
       elsif (reminder_needed > Date.today + 60.days)
-        num += 1
         break
       else
         num += 1
