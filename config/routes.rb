@@ -69,6 +69,11 @@ Rails.application.routes.draw do
     get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
     get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
   end
+  scope "untracked" do
+    get "/contacts", to: "contacts#untracked", as: "untracked_contacts"
+    get "/contact/:id/track", to: "contacts#track_contact", as: "track_contact"
+    get "/contact/:id", to: "contacts#untrack_contact", as: "untrack_contact"
+  end
   get "account/billing", to: "account/billing#index", as: "billing"
 
   # API namespace, for JSON requests at /api/sign_[in|out]

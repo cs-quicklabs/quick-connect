@@ -11,6 +11,8 @@ class Contact < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
+  scope :untracked, -> { where(track: false) }
+  scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
   validates :phone, :presence => true,
                     :numericality => true,
