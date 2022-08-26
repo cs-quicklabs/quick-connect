@@ -76,7 +76,6 @@ class Reminder < ApplicationRecord
       else
         break
       end
-      binding.irb
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
         upcomings.push([self.as_json(:include => [:contact]), "reminder": reminder_needed.to_date])
         break
