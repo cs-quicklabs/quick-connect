@@ -16,19 +16,20 @@ class Reminder < ApplicationRecord
       if self.once?
         reminder_needed = self.reminder_date
       elsif self.status_week?
-        reminder_needed = self.reminder_date + num * self.remind_after * 7.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
       elsif self.status_month?
-        reminder_needed = self.reminder_date + num * self.remind_after * 365.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.month)
       elsif self.status_year?
-        reminder_needed = self.reminder_date + num * self.remind_after * 30.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.year)
       end
       if (reminder_needed == Date.today)
         todays.push([self.as_json, "reminder": reminder_needed])
         break
-      else
+      elsif (reminder_needed > Date.today)
         break
+      else
+        num += 1
       end
-      num += 1
     end
     return todays
   end
@@ -40,19 +41,20 @@ class Reminder < ApplicationRecord
       if self.once?
         reminder_needed = self.reminder_date
       elsif self.status_week?
-        reminder_needed = self.reminder_date + num * self.remind_after * 7.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
       elsif self.status_month?
-        reminder_needed = self.reminder_date + num * self.remind_after * 365.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.month)
       elsif self.status_year?
-        reminder_needed = self.reminder_date + num * self.remind_after * 30.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.year)
       end
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
-        upcomings.push([self.as_json, "reminder": reminder_needed])
+        upcomings.push([self.as_json, "reminder": reminder_needed.to_date])
+        break
+      elsif (reminder_needed > Date.today + 60.days)
         break
       else
-        break
+        num += 1
       end
-      num += 1
     end
     return upcomings
   end
@@ -64,19 +66,20 @@ class Reminder < ApplicationRecord
       if self.once?
         reminder_needed = self.reminder_date
       elsif self.status_week?
-        reminder_needed = self.reminder_date + num * self.remind_after * 7.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 7.days)
       elsif self.status_month?
-        reminder_needed = self.reminder_date + num * self.remind_after * 365.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.month)
       elsif self.status_year?
-        reminder_needed = self.reminder_date + num * self.remind_after * 30.days
+        reminder_needed = self.reminder_date + num * (self.remind_after + 1.year)
       end
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
-        upcomings.push([self.as_json(:include => [:contact]), "reminder": reminder_needed])
+        upcomings.push([self.as_json(:include => [:contact]), "reminder": reminder_needed.to_date])
+        break
+      elsif (reminder_needed > Date.today + 60.days)
         break
       else
-        break
+        num += 1
       end
-      num += 1
     end
     return upcomings
   end
