@@ -24,7 +24,6 @@ class Reminder < ApplicationRecord
       end
       if (reminder_needed == Date.today)
         todays.push([self.as_json, "reminder": reminder_needed])
-        break
       else
         break
       end
