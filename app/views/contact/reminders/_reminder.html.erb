@@ -9,16 +9,16 @@
       Every <%=reminder.remind_after%> <%=reminder.decorate.display_status%><%if reminder.remind_after>1%>s <% end %>
     <% end %>
   </td>
-  <td class="table-cell w-1/2">
-    <p class="whitespace-nowrap"><%= reminder.title.upcase_first %></p>
+  <td class="table-cell" style="width: 50%;">
+    <p class="" style="overflow-wrap: break-word;"><%= reminder.title.upcase_first %></p>
   </td>
-  <td class="table-cell w-1/2">
+  <td class="table-cell" style="width: 50%;">
     <% if reminder.comments?%>
    <p
    x-data="{ isCollapsed: false, maxLength: 145, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-        <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= reminder.comments.upcase_first %></span>
+        <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; overflow-wrap: break-word;"><%= reminder.comments.upcase_first %></span>
              <button
       @click="isCollapsed = !isCollapsed"
       x-show="originalContent.length > maxLength"
