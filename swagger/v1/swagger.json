@@ -1024,6 +1024,344 @@
         }
       }
     },
+    "/{account_id}/api/batches?page={page}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list groups",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches/{batch_id}/contacts?page={page}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "type": "string",
+          "description": "batch_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list contacts grouped",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches/{batch_id}/add?search_id={search_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "type": "string",
+          "description": "batch_id",
+          "required": true
+        },
+        {
+          "name": "search_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact  _id",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "add contact to group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches/{batch_id}/remove?contact_id={contact_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "type": "string",
+          "description": "batch_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "remove contact from group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "create group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_batch",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_batch": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches/{id}/edit": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "edit group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/batches/{id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "update group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_batch",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_batch": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/api/confirmation": {
       "get": {
         "summary": "show confirmation",
@@ -1080,7 +1418,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "/{account_id}/api/contacts/{contact_id}/abouts": {
+=======
+    "/{account_id}/api/contacts/{contact_id}/batches?page={page}": {
+>>>>>>> group
       "parameters": [
         {
           "name": "account_id",
@@ -1095,10 +1437,24 @@
           "type": "string",
           "description": "contact_id",
           "required": true
+<<<<<<< HEAD
         }
       ],
       "get": {
         "summary": "contact about",
+=======
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list batches",
+>>>>>>> group
         "security": [
           {
             "Bearer": {
@@ -1118,7 +1474,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}/edit": {
+=======
+    "/{account_id}/api/contacts/{contact_id}/batches/new": {
+>>>>>>> group
       "parameters": [
         {
           "name": "account_id",
@@ -1133,6 +1493,7 @@
           "type": "string",
           "description": "contact_id",
           "required": true
+<<<<<<< HEAD
         },
         {
           "name": "id",
@@ -1144,6 +1505,12 @@
       ],
       "get": {
         "summary": "edit about",
+=======
+        }
+      ],
+      "get": {
+        "summary": "fetch batches ",
+>>>>>>> group
         "security": [
           {
             "Bearer": {
@@ -1163,7 +1530,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}": {
+=======
+    "/{account_id}/api/contacts/{contact_id}/batches": {
+>>>>>>> group
       "parameters": [
         {
           "name": "account_id",
@@ -1178,6 +1549,7 @@
           "type": "string",
           "description": "contact_id",
           "required": true
+<<<<<<< HEAD
         },
         {
           "name": "id",
@@ -1189,6 +1561,12 @@
       ],
       "patch": {
         "summary": "update about",
+=======
+        }
+      ],
+      "post": {
+        "summary": "add contact to batch",
+>>>>>>> group
         "security": [
           {
             "Bearer": {
@@ -1203,11 +1581,16 @@
         ],
         "parameters": [
           {
+<<<<<<< HEAD
             "name": "api_about",
+=======
+            "name": "api_batch",
+>>>>>>> group
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
+<<<<<<< HEAD
                 "api_about": {
                   "type": "object",
                   "properties": {
@@ -1228,6 +1611,13 @@
                     },
                     "other": {
                       "type": "string"
+=======
+                "api_batch": {
+                  "type": "object",
+                  "properties": {
+                    "batch_id": {
+                      "type": "integer"
+>>>>>>> group
                     }
                   }
                 }
@@ -1242,7 +1632,11 @@
         }
       }
     },
+<<<<<<< HEAD
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}?delete={delete}": {
+=======
+    "/{account_id}/api/contacts/{contact_id}/batches/{id}": {
+>>>>>>> group
       "parameters": [
         {
           "name": "account_id",
@@ -1264,6 +1658,7 @@
           "type": "string",
           "description": "id",
           "required": true
+<<<<<<< HEAD
         },
         {
           "name": "delete",
@@ -1287,6 +1682,12 @@
         "consumes": [
           "application/json"
         ],
+=======
+        }
+      ],
+      "delete": {
+        "summary": "delete debt",
+>>>>>>> group
         "responses": {
           "200": {
             "description": "successful"
@@ -5667,6 +6068,51 @@
       ],
       "get": {
         "summary": "contacts search",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/search/add?q={q}&batch_id={batch_id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "q",
+          "in": "path",
+          "type": "string",
+          "description": "search keyword",
+          "required": true
+        },
+        {
+          "name": "batch_id",
+          "in": "path",
+          "type": "string",
+          "description": "group_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": " search contacts to add in group",
         "security": [
           {
             "Bearer": {

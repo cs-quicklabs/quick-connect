@@ -6,19 +6,20 @@ class Contact < ApplicationRecord
   scope :favorites, -> { where(favorite: true) }
   belongs_to :user
   belongs_to :account
-  validates_presence_of :first_name, :last_name, :phone
-  validates_uniqueness_of :phone, scope: :account
+  validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
   scope :untracked, -> { where(track: false) }
   scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
-  validates :phone, :presence => true,
+  validates :phone, :presence => true, uniqueness: { scope: :account },
                     :numericality => true,
                     :length => { :minimum => 10, :maximum => 12 }
   scope :favorites, -> { where(favorite: true) }
-  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
@@ -34,4 +35,5 @@ class Contact < ApplicationRecord
   has_many :contact_events, dependent: :destroy
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
+  has_and_belongs_to_many :batches, dependent: :destroy
 end

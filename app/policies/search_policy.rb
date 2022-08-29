@@ -6,4 +6,8 @@ class SearchPolicy < Struct.new(:user, :search)
   def contact?
     true
   end
+
+  def add?
+    true
+  end
 end

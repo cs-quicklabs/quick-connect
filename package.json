@@ -34,9 +34,9 @@
     "build:css": "tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
   "engines": {
-    "node": "16.12.0",
+    "node": "12.16.2",
     "npm": "8.1.0",
-    "yarn": "1.22.19"
+    "yarn": "1.22.11"
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.0",
