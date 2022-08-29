@@ -110,15 +110,12 @@ Rails.application.routes.draw do
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
-<<<<<<< HEAD
     get "/dashboard", to: "dashboard#index", as: "dashboard"
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
     get :upcomings, controller: :dashboard
-=======
     get "/search/add", to: "search#add"
     resources :dashboard
->>>>>>> group
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"

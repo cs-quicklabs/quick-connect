@@ -7,11 +7,11 @@ class FollowupsController < BaseController
     @thirds = []
     @fourths = []
     followups.each do |followup|
-      if Date.today >= followup.event_create && followup.event_create <= Date.today - 30.days
+      if Date.today >= followup.event_create && followup.event_create >= Date.today - 30.days
         @firsts += [followup]
-      elsif Date.today - 30.days > followup.event_create && followup.event_create <= Date.today - 60.days
+      elsif Date.today - 30.days > followup.event_create && followup.event_create >= Date.today - 60.days
         @seconds += [followup]
-      elsif Date.today - 60.days > followup.event_create && followup.event_create <= Date.today - 90.days
+      elsif Date.today - 60.days > followup.event_create && followup.event_create >= Date.today - 90.days
         @thirds += [followup]
       else
         @fourths += [followup]
