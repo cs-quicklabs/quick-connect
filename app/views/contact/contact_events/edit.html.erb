@@ -15,6 +15,7 @@
           <%= form.date_field :date, class: "form-text-field mt-1" %>
         </div>
       <div class="flex justify-end py-3">
+       <%=link_to "Back", contact_events_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Event", class: "btn-blue" %>
       </div>
     </main>

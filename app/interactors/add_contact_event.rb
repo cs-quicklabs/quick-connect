@@ -26,7 +26,7 @@ class AddContactEvent < Patterns::Service
   end
 
   def add_reminder
-    if !reminder.nil?
+    if reminder == "true"
       contact.reminders.create(user: actor, title: contact_event.title + " " + contact_event.life_event.name, comments: contact_event.body, reminder_date: contact_event.date, remind_after: 1, status: "year", reminder_type: "multiple")
     end
   end
