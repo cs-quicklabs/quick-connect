@@ -8,6 +8,7 @@ class Reminder < ApplicationRecord
             :length => { :maximum => 50 }
   scope :once, -> { where(reminder_type: "once") }
   scope :multiple, -> { where(reminder_type: "multiple") }
+  has_many :events, class_name: "Event", as: :trackable, dependent: :destroy
 
   def today
     num = 0
