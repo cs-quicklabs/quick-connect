@@ -19,9 +19,9 @@
     <td class="table-cell w-full">
     <div class="text-sm  whitespace-nowrap">
       <% if debt.owed_by==='contact' %>
-      <%= debt.contact.decorate.display_name %>
+      <span class="font-normal ">  <%= debt.contact.decorate.display_name %></span>
       <% else %>
-      <span class="font-medium text-gray-500">  You</span>
+      <span class="font-normal ">  You</span>
       <% end %>
     </div>
   </td>
