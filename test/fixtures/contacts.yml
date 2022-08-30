@@ -22,6 +22,47 @@ archived:
   last_name: Archived
   email: contact1@gmail.com
   phone: 0999999997
-  account: hansika
+  account: archive
   user: regular
   archived: true
+  archived_on: Date.today
+
+two:
+  first_name: Contact
+  last_name: Contact1
+  email: contact1@gmail.com
+  phone: 0999999999
+  account: two
+  user: regular
+  archived: false  
+
+three:
+  first_name: Contact
+  last_name: Contact1
+  email: contact1@gmail.com
+  phone: 0999999999
+  account: three
+  user: regular
+  archived: false
+
+
+four:
+  first_name: Contact
+  last_name: Contact1
+  email: contact1@gmail.com
+  phone: 0999999999
+  account: four
+  user: regular
+  archived: false
+
+
+untracked:
+  first_name: Contact
+  last_name: Contact1
+  email: contact1@gmail.com
+  phone: 0999999999
+  account: four
+  user: regular
+  archived: false
+  track: false
+  untrack_on: Date.today
