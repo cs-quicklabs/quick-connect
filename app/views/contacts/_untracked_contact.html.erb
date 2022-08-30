@@ -17,7 +17,7 @@
               </svg>
               <p>
                 Untracked on
-                <%= display_date(contact.untracked_on) %>
+                <%= display_date(contact.untrack_on) %>
               </p>
             </div>
           </div>
@@ -25,7 +25,7 @@
       </div>
     </td>
     <td class="table-cell whitespace-nowrap">
-      <div class="flex justify-end">
+      <div class="flex justify-end" >
         <%= link_to "Track", track_contact_path(contact), class: "btn-inline-edit mr-2" %>
       </div>
     </div>

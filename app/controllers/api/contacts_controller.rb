@@ -1,6 +1,6 @@
 class Api::ContactsController < Api::BaseController
   include Pagy::Backend
-  before_action :set_contact, only: %i[ edit update destroy show archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy show archive_contact unarchive_contact untrack track ]
   respond_to :json
 
   def index
@@ -66,6 +66,27 @@ class Api::ContactsController < Api::BaseController
     else
       render json: { success: true, message: "Failed to delete contact." }
     end
+  end
+
+  def untracked_contact
+    authorize [:api, :contact]
+
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.untracked.order(archived_on: :desc), items: LIMIT)
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Untracked contacts were successfully retrieved." }
+  end
+
+  def untrack
+    authorize [:api, @contact], :untrack?
+
+    UntrackContact.call(@contact, @api_user)
+    render json: { success: true, message: "Contact has been untracked now." }
+  end
+
+  def track
+    authorize [:api, @contact], :track?
+
+    TrackContact.call(@contact, @api_user)
+    render json: { success: true, message: "Contact has been tracked now." }
   end
 
   private

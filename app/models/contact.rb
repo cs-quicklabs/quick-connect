@@ -17,9 +17,9 @@ class Contact < ApplicationRecord
   scope :available, -> { where(archived: false) }
   validates :phone, :presence => true, uniqueness: { scope: :account },
                     :numericality => true,
-                    :length => { :minimum => 10, :maximum => 12 }
+                    :length => { :minimum => 10, :maximum => 12 }, on: :create
   scope :favorites, -> { where(favorite: true) }
-  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }
+  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }, on: :create
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
