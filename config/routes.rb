@@ -97,7 +97,7 @@ Rails.application.routes.draw do
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
     end
-
+    get "followups", to: "followups#index"
     resources :user
     get "/rebatch" => "user#rebatch", as: "rebatch_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
