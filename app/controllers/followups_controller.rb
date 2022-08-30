@@ -7,16 +7,14 @@ class FollowupsController < BaseController
     @thirds = []
     @fourths = []
     followups.each do |followup|
-      if !followup.event_type.constantize.where(id: followup.event_track).blank?
-        if Date.today >= followup.event_create.to_date && followup.event_create.to_date >= Date.today - 30.days
-          @firsts += [followup]
-        elsif Date.today - followup.event_create.to_date && followup.event_create.to_date >= Date.today - 60.days
-          @seconds += [followup]
-        elsif Date.today - 60.days > followup.event_create.to_date && followup.event_create.to_date >= Date.today - 90.days
-          @thirds += [followup]
-        else
-          @fourths += [followup]
-        end
+      if Date.today >= followup.event_create.to_date && followup.event_create.to_date >= Date.today - 30.days
+        @firsts += [followup]
+      elsif Date.today - followup.event_create.to_date && followup.event_create.to_date >= Date.today - 60.days
+        @seconds += [followup]
+      elsif Date.today - 60.days > followup.event_create.to_date && followup.event_create.to_date >= Date.today - 90.days
+        @thirds += [followup]
+      else
+        @fourths += [followup]
       end
     end
     render_partial("followups/card", collection: followups) if stale?(followups)
