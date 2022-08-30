@@ -12,13 +12,13 @@
     </div>
     <div class="w-full ">
       <div class="block max-w-lg space-x-8 mt-1">
-        <div class="inline-flex space-x-2">
-          <%= form.radio_button :reminder_type, 'once', class: "mt-1 ", :checked => true %>
-          <%= form.label :reminder_type_once, 'Once', class:" text-sm font-medium text-gray-700"  %>
+        <div class="inline-flex space-x-2 ">
+          <%= form.radio_button :reminder_type, 'once', class: "mt-1 cursor-pointer", :checked => true %>
+          <%= form.label :reminder_type_once, 'Once', class:" cursor-pointer text-sm font-medium text-gray-700"  %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :reminder_type, 'multiple', class: "mt-1 ", :checked => true %>
-           <%= form.label :reminder_type, 'Remind me about this every', class:" text-sm font-medium text-gray-700"  %>
+        <div class="inline-flex space-x-2 pl-4  ">
+          <%= form.radio_button :reminder_type, 'multiple', class: "mt-1 cursor-pointer", :checked => true %>
+           <%= form.label :reminder_type, 'Remind me about this every', class:" cursor-pointer text-sm font-medium text-gray-700"  %>
         </div>
               </div>
     </div>

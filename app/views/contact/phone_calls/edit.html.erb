@@ -17,12 +17,12 @@
         </label>
         <div class="block max-w-lg space-x-8 mt-1">
           <div class="inline-flex space-x-2">
-            <%= form.radio_button :status, 'user', class: "mt-1 ", :checked => @phone_call.status=="user"  %>
-            <%= form.label :status_user, 'You called', class:" text-sm font-medium text-gray-700"  %>
+            <%= form.radio_button :status, 'user', class: "mt-1 cursor-pointer", :checked => @phone_call.status=="user"  %>
+            <%= form.label :status_user, 'You called', class:"  cursor-pointer text-sm font-medium text-gray-700"  %>
           </div>
           <div class="inline-flex space-x-2 pl-4 ">
-            <%= form.radio_button :status, 'contact', class: " mt-1",  :checked => @phone_call.status=="contact"  %>
-            <%= form.label :status_contact, @contact.first_name.upcase_first + " called" , class:" text-sm font-medium text-gray-700" %>
+            <%= form.radio_button :status, 'contact', class: " mt-1 cursor-pointer",  :checked => @phone_call.status=="contact"  %>
+            <%= form.label :status_contact, @contact.first_name.upcase_first + " called" , class:"  break-words w-56 cursor-pointer text-sm font-medium text-gray-700" %>
           </div>
         </div>
       </div>
