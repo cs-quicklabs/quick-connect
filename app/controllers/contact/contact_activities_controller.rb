@@ -4,13 +4,9 @@ class Contact::ContactActivitiesController < Contact::BaseController
   def index
     authorize [@contact, ContactActivity]
     @contact_activity = ContactActivity.new
-<<<<<<< HEAD
-    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact).order(created_at: :desc), items: LIMIT)
-    render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@relatives)
-=======
+
     @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact), items: LIMIT)
     render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@contact_activities)
->>>>>>> group
   end
 
   def destroy

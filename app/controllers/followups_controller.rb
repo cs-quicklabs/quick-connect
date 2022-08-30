@@ -1,7 +1,7 @@
 class FollowupsController < BaseController
   def index
     authorize :followup
-    followups = Contact.all.joins("INNER JOIN events ON contacts.id = events.eventable_id").select("contacts.*,events.created_at as event_create, events.action as event_action, events.trackable_id as event_track").where("events.action IN (?)", ["phone_call", "conversation", "contact_activity", "contact_event"])
+    followups = Contact.all.joins("INNER JOIN events ON contacts.id = events.eventable_id").select("DISTINCT ON (events.eventable_id)*").select("contacts.*, events.created_at as event_create, events.action as event_action, events.trackable_id as event_track").where("events.action IN (?)", ["phone_call", "conversation", "contact_activity", "contact_event"])
     @firsts = []
     @seconds = []
     @thirds = []

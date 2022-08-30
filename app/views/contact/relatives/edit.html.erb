@@ -8,6 +8,7 @@
       </label>
       <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-2") %>
       <div class="flex justify-end py-3">
+       <%=link_to "Back", contact_relatives_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Relation", class: "btn-blue" %>
       </div>
     </main>

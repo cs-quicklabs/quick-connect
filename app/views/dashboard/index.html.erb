@@ -55,25 +55,21 @@
             <div class="flex flex-wrap">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
+            <div class="grid items-start grid-cols-1  lg:gap-2">
               <div class=" flex   bg-white font-sans py-4 px-2">
                 <div class="flex   w-full max-w-lg space-y-2 ">
                   <ul>
                     <%  for num in 0..2 do%>
                       <p class="  text-sm font-medium text-gray-900 truncate"><%=Date::MONTHNAMES[Date.today.month+num]%> <%=Date.today.year%></p>
                       <%if @upcoming_reminders.size>0%>
-                        <% @upcoming_reminders.each do |date, reminder|%>
-                          <%if (reminder.size>0 && date.month==Date.today.month+num)%>
-                            <div class="py-4">
-                              <%= render "upcoming", {reminder: reminder}%>
-                            </div>
-                            <% break%>
-                          <% else %>
-                            <div class="py-4">
-                              <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
-                            </div>
-                            <% break%>
-                          <% end %>
+                        <%if @upcoming_reminders[(Date.today+num.months).beginning_of_month]%>
+                          <div class="py-4">
+                            <%= render "upcoming", {reminder: @upcoming_reminders[(Date.today+num.months).beginning_of_month]}%>
+                          </div>
+                        <% else %>
+                          <div class="py-4">
+                            <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
+                          </div>
                         <% end %>
                       <% else %>
                         <div class="py-4">

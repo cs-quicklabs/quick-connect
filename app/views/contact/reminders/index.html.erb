@@ -6,7 +6,7 @@
       <div class="grid items-start grid-cols-1 lg:grid-cols-3 ">
         <!-- Left column -->
         <div class="grid grid-cols-1  lg:col-span-2"  data-controller="infinite-scroll">
-           <section aria-labelledby="participants_section">
+          <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">tasks</h2>
             <div class="overflow-hidden bg-white" >
               <div class="">
@@ -19,18 +19,18 @@
                       <th scope="col" class="table-head ">
                         Remind After
                       </th>
-                      <th scope="col" class="table-head">
-                       Title
+                      <th scope="col" class="table-head w-1/2">
+                        Title
                       </th>
-                      <th scope="col" class="table-head w-full">
+                      <th scope="col" class="table-head w-1/2">
                         Comments
                       </th>
-                       <th scope="col" class="table-head">
+                      <th scope="col" class="table-head">
                         Action
                       </th>
                     </tr>
                   </thead>
-                  <tbody class="table-body" id="reminders" data-infinite-scroll-target="entries">
+                  <tbody class="table-body "  id="reminders" data-infinite-scroll-target="entries">
                     <%= render partial: "reminder", collection: @reminders, as: :reminder, cached: true %>
                   </tbody>
                 </table>
