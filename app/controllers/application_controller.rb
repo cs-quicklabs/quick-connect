@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
-  before_action :set_current_user, if: :json_request?
+  before_action :set_current_user
   before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {

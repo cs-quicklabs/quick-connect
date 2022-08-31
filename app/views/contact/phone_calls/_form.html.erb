@@ -6,7 +6,7 @@
       <label for="date" class="block text-sm font-medium text-gray-700">
         The phone call happened on 
       </label>
-      <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
+      <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
     </div>
     <div class="w-full ">
       <label for="status" class="block text-sm font-medium text-gray-700">

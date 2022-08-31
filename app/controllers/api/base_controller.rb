@@ -20,7 +20,7 @@ class Api::BaseController < ApplicationController
   private
 
   def set_user
-    @api_user = current_user
+    @api_user = User.find_by(account: Current.account)
   end
 
   def json_request?
