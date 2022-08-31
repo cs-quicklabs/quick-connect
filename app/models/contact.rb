@@ -7,8 +7,8 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :account
   validates_presence_of :first_name, :last_name
-  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
-  validates_uniqueness_of :email, scope: :account, :allow_blank => true
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true, on: :create
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true, on: :create
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }

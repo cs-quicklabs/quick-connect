@@ -49,4 +49,8 @@ class ContactPolicy < ApplicationPolicy
   def track?
     true
   end
+
+  def untrack?
+    true
+  end
 end
