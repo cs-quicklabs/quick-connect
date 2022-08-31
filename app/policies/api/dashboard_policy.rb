@@ -11,7 +11,7 @@ class Api::DashboardPolicy < Api::BaseApiPolicy
     true
   end
 
-  def upcoming?
+  def upcomings?
     true
   end
 end
