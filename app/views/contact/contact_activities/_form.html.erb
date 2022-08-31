@@ -9,16 +9,16 @@
           <label for="date" class="block text-sm font-medium text-gray-700">
             Date
           </label>
-          <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+          <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
         </div>
           <div class="">
             <label for="group" class="block  text-sm font-medium text-gray-700">
               Select Group
             </label>
-          <select  class="form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%=contact.id%>">
+          <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%=contact.id%>">
             <option value="" >Select Group</option>
           <% Group.all.where(category:"activity").order(:name).decorate.each do |group|%>
-           <li > <option value="<%=group.id%>" data-group-id="<%=group.id%>"><%=group.display_name%>
+           <li class="cursor-pointer"> <option value="<%=group.id%>" data-group-id="<%=group.id%>"><%=group.display_name%>
           <% end %>
           </select>
           </div>
@@ -26,7 +26,7 @@
             <label for="group" class="block  text-sm font-medium text-gray-700">
               Select Activity
             </label>
-            <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "form-text-field mt-1") %>
+            <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
           </div>
         <div class="flex justify-end ">
           <%= form.submit "Add Activity", class: "btn-blue" %>
