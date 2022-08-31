@@ -3,9 +3,9 @@
     <li class="flex">
       <p class="ml-3 text-sm  inline-flex text-gray-700 whitespace-nowrap"><%=display_date(remind.second[:reminder])%> </p>
       <a href="<%=contact_reminders_path(remind.first["contact_id"])%>" class="inline-flex hover:underline">
-        <p class="text-sm  inline-flex ml-2 whitespace-nowrap "><%=Contact.find(remind.first["contact_id"]).decorate.display_name%></p>
+        <p class="text-sm font-medium inline-flex ml-2 whitespace-nowrap "><%=Contact.find(remind.first["contact_id"]).decorate.display_name%></p>
       </a>
-      <p class=" ml-3 text-sm  text-gray-900  inline-flex whitespace-nowrap "><%=remind.first["title"].upcase_first%></p>
+      <p class=" ml-3 text-sm  text-gray-500  inline-flex whitespace-nowrap "><%=remind.first["title"].upcase_first%></p>
     </li>
   <% end %>
 </ul>
