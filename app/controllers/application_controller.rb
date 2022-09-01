@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     if http_request?
-      redirect_to(request.referrer || landing_path, alert: "You are not allowed to access this page.")
+      redirect_to(request.referrer || landing_path)
     else
       render json: { success: false, message: "You are not allowed to access this page." }
     end
