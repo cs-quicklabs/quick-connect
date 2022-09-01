@@ -7,14 +7,14 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
   mount ActionCable.server => "/cable"
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   post "/register", to: "registrations#create"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
-  get "/reset" => "user#reset", as: "reset_user"
+  get "/rebatch" => "user#rebatch", as: "rebatch_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       get :form
     end
     resources :gifts, module: "contact", except: [:show]
+    resources :batches, module: "contact", except: [:show, :new, :update]
     resources :debts, module: "contact", except: [:show]
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
@@ -42,24 +43,34 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
+  get "/search/add", to: "search#add"
   root :to => "dashboard#index"
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   resources :sections
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
-  scope "/settings" do
+  scope "/batchtings" do
     get "/profile", to: "user#profile", as: "user_profile"
-    get "/password", to: "user#password", as: "setting_password"
+    get "/password", to: "user#password", as: "batchting_password"
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
-  put ":id/permission", to: "user#update_permission", as: "set_permission"
+  put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
+  resources :batches, except: [:new] do
+    get "contacts", to: "batches#contacts", as: "contacts"
+    post "add", to: "batches#add", as: "addcontact"
+    delete "remove", to: "batches#remove", as: "removecontact"
+  end
   namespace :account do
     resources :relations, except: [:new, :show]
     resources :labels, except: [:new, :show]
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    resources :invitations, except: [:show, :new] do
+      get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+      get "/activate", to: "invitations#activate", as: "activate"
+    end
   end
   namespace :purchase do
     resources :checkouts
@@ -87,17 +98,18 @@ Rails.application.routes.draw do
     end
 
     resources :user
-    get "/reset" => "user#reset", as: "reset_user"
+    get "/rebatch" => "user#rebatch", as: "rebatch_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
-    scope "/settings" do
+    scope "/batchtings" do
       get "/profile", to: "user#profile", as: "user_profile"
-      get "/password", to: "user#password", as: "setting_password"
+      get "/password", to: "user#password", as: "batchting_password"
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
       patch "/permission", to: "user#update_permission", as: "change_permission"
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
+    get "/search/add", to: "search#add"
     get "/dashboard", to: "dashboard#index", as: "dashboard"
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
@@ -113,8 +125,16 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
+      resources :invitations, except: [:show, :new] do
+        get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+        get "/activate", to: "invitations#activate", as: "activate"
+      end
     end
-
+    resources :batches, except: [:new] do
+      get "contacts", to: "batches#contacts", as: "contacts"
+      post "add", to: "batches#add", as: "addcontact"
+      delete "remove", to: "batches#remove", as: "removecontact"
+    end
     resources :journals
     resources :release_notes
     resources :journal_comments
@@ -133,6 +153,7 @@ Rails.application.routes.draw do
       resources :contact_events, module: "contact", except: [:show]
       resources :profile, module: "contact", only: [:index]
       resources :documents, module: "contact", except: [:show]
+      resources :batches, module: "contact", except: [:show, :update]
       get "/label/:id", to: "contact/profile#label"
       get "/remove_label/:id", to: "contact/profile#remove_label"
       get "/relation/:id", to: "contact/profile#relation"

@@ -13,7 +13,6 @@ class Account::LifeEventsController < Account::BaseController
 
   def create
     authorize :account
-
     @life_event = LifeEvent.new(life_event_params)
     respond_to do |format|
       if @life_event.save

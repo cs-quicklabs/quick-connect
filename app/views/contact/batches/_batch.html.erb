@@ -1,0 +1,15 @@
+<tr id="<%= dom_id batch %>">
+
+  <td class="table-cell w-full">
+    <div class="text-sm mt-2">
+      <a href="<%=batches_path(:batch_id=>batch.id)%>" class="block hover:underline" target="_top"  >
+        <%= batch.name.upcase_first %>
+      </div>
+    </td>
+    <td class="table-cell">
+        <% if policy([contact, batch]).destroy? %>
+          <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/batches/#{batch.id}") %>
+        <% end %>
+      </div>
+    </td>
+  </tr>

@@ -1,4 +1,12 @@
 GIT
+  remote: git@github.com:scambra/devise_invitable.git
+  revision: 570689e7aa80246424a9893c35f401cbbcd886e0
+  specs:
+    devise_invitable (2.0.6)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
+
+GIT
   remote: https://github.com/heartcombo/devise.git
   revision: f8d1ea90bc328012f178b8a6616a89b73f2546a4
   branch: main
@@ -461,6 +469,7 @@ DEPENDENCIES
   devise!
   devise-jwt
   devise-pwned_password
+  devise_invitable!
   draper
   font-awesome-rails
   hiredis
