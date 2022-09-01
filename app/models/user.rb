@@ -27,6 +27,7 @@ class User < ApplicationRecord
   has_many :gifts, dependent: :destroy
   normalize_attribute :first_name, :last_name, :email, :with => :strip
   belongs_to :invited_by, :class_name => "User"
+  has_many :reminders, dependent: :destroy
 
   def add_jti
     self.jti ||= SecureRandom.uuid

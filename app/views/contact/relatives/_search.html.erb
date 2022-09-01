@@ -39,7 +39,7 @@
             <label for="relation" class="block  text-sm font-medium text-gray-700">
               Select Relation
             </label>
-            <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-1") %>
+            <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
           </div>
           <div class="flex justify-end ">
             <%= form.submit "Add Relation", class: "btn-blue" %>

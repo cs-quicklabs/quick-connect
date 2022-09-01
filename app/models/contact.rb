@@ -3,6 +3,7 @@ class Contact < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   acts_as_tenant :account
   scope :for_current_account, -> { where(account: Current.account) }
+  scope :favorites, -> { where(favorite: true) }
   belongs_to :user
   belongs_to :account
   validates_presence_of :first_name, :last_name, :phone
@@ -14,12 +15,13 @@ class Contact < ApplicationRecord
   validates :phone, :presence => true,
                     :numericality => true,
                     :length => { :minimum => 10, :maximum => 12 }
+  scope :favorites, -> { where(favorite: true) }
   validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
   has_many :relations, through: :relatives, dependent: :destroy
-  has_many :events, as: :eventable, dependent: :destroy
+  has_many :events, class_name: "Event", as: :eventable
   has_many :conversations, dependent: :destroy
   has_many :debts, dependent: :destroy
   has_many :gifts, dependent: :destroy
@@ -28,5 +30,6 @@ class Contact < ApplicationRecord
   has_many :documents, dependent: :destroy
   has_many :contact_activities, dependent: :destroy
   has_many :contact_events, dependent: :destroy
+  has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
 end

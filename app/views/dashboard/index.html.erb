@@ -1,36 +1,108 @@
-<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
-  <main class="">
-    <div class="px-4 sm:px-6 ">
       <!-- Main 3 column grid -->
-      <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
-        <!-- Left column -->
-        <div class="grid grid-cols-1 gap-4 lg:col-span-2">
-          <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white">
-              <div class="p-4">
-                <div class="flex flex-wrap">
-                  <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"> Upcoming Activities</p>
+<div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2 ">
+  <!-- Left column -->
+  <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+    <div class="grid grid-cols-1 lg:col-span-2  top-16  pt-6 h-full pb-10 border-r xl:border-gray-200 ">
+      <%if @contacted.count>0%>
+        <section aria-labelledby="participants_section">
+          <div class="overflow-hidden bg-white px-4">
+            <div class="px-4">
+              <div class="flex flex-wrap ">
+                <p class=" text-sm font-medium text-gray-900 truncate">Recent Activities</p>
+              </div>
+              <div class=" flex   bg-white font-sans py-6 px-2">
+                <div class="flex   w-full max-w-lg space-x-6  ">
+                  <ul role="list" class="mx-2 " style="grid-template-columns: repeat(8, 100px); gap: 2rem;  display: grid;">
+                    <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
+                  </ul>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
-        <!-- Right column -->
-        <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
-          <section aria-labelledby="add-participant-section">
-            <div class="overflow-hidden bg-white h-full">
-              <div class="px-4 sm:px-6 ml-2">
-                <div class="flex flex-wrap pt-4">
-                  <p class="pb-4 mt-4 ml-1 text-sm font-medium text-gray-900 truncate">Recent Activities</p>
-                </div>
-                <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+          </div>
+        </section>
+      <% end %>
+      <%@favorites=Contact.all.available.favorites.limit(8)%>
+      <%if @favorites.count>0%>
+        <section aria-labelledby="participants_section">
+          <div class="overflow-hidden bg-white px-4">
+            <div class="px-4">
+              <div class="flex items-center justify-between pt-2 pb-6 ">
+                <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
+                <% if @favorites.count>8%>
+                  <div class="flex sm:mt-0 sm:ml-4 ">
+                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
+                  </div>
+                <% else %>
+                  <div class="flex sm:mt-0 sm:ml-4 ">
+                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
+                  </div>
                 <% end %>
               </div>
+              <div class=" flex bg-white font-sans  px-2">
+                <div class="flex   w-full max-w-lg space-x-6  ">
+                  <ul role="list" class="mx-2 " style="grid-template-columns: repeat(8, 100px); gap: 2rem;  display: grid;">
+                    <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
+                  </ul>
+                </div>
+              </div>
             </div>
-          </section>
+          </div>
+        </section>
+      <% end %>
+      <section aria-labelledby="participants_section">
+        <div class="overflow-hidden bg-white px-4">
+          <div class="px-4">
+            <div class="flex flex-wrap py-6">
+              <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
+            </div>
+            <div class="grid items-start grid-cols-1  lg:gap-2">
+              <div class=" flex   bg-white font-sans  px-2">
+                <div class="flex   w-full max-w-lg space-y-2 ">
+                  <ul>
+                    <%  for num in 0..2 do%>
+                      <p class="  text-sm font-medium text-gray-900 truncate"><%=Date::MONTHNAMES[Date.today.month+num]%> <%=Date.today.year%></p>
+                      <%if @upcoming_reminders.size>0%>
+                        <%if @upcoming_reminders[(Date.today+num.months).beginning_of_month]%>
+                          <div class="py-4">
+                            <%= render "upcoming", {reminder: @upcoming_reminders[(Date.today+num.months).beginning_of_month]}%>
+                          </div>
+                        <% else %>
+                          <div class="py-4">
+                            <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <div class="py-4">
+                          <p class="ml-3 text-sm inline-flex text-gray-500">No reminders for this month </p>
+                        </div>
+                      <% end %>
+                    <% end %>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 gap-4  overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+    <section aria-labelledby="add-participant-section">
+      <div class="overflow-hidden bg-white h-full">
+        <div class="px-4 sm:px-6 ">
+          <div class="flex flex-wrap pt-4">
+            <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
+          </div>
+          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+          <% end %>
         </div>
       </div>
-    </div>
-  </main>
+    </section>
+  </div>
+</div>
+</div>
 </main>
+</main>
+</div>
+</div>

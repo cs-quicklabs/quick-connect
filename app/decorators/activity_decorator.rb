@@ -3,6 +3,6 @@ class ActivityDecorator < Draper::Decorator
   decorates_association :user
 
   def display_name
-    "#{name}".titleize
+    "#{name}".upcase_first
   end
 end

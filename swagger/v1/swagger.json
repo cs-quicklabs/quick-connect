@@ -1366,7 +1366,7 @@
                     "address": {
                       "type": "string"
                     },
-                    "brief": {
+                    "breif": {
                       "type": "string"
                     },
                     "met": {
@@ -3978,6 +3978,287 @@
         }
       }
     },
+    "/{account_id}/api/contacts/{contact_id}/reminders?page={page}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list reminders",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/reminders": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "create reminder",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_reminder",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_reminder": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "comments": {
+                      "type": "string"
+                    },
+                    "reminder_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "reminder_type": {
+                      "type": "string",
+                      "example": [
+                        "once",
+                        "multiple"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": [
+                        "week",
+                        "month",
+                        "year"
+                      ]
+                    },
+                    "remind_after": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/reminders/{id}/edit": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "edit reminder",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/reminders/{id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "patch": {
+        "summary": "update reminder",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_reminder",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_reminder": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "comments": {
+                      "type": "string"
+                    },
+                    "reminder_date": {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    "reminder_type": {
+                      "type": "string",
+                      "example": [
+                        "once",
+                        "multiple"
+                      ]
+                    },
+                    "status": {
+                      "type": "string",
+                      "example": [
+                        "week",
+                        "month",
+                        "year"
+                      ]
+                    },
+                    "remind_after": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "delete": {
+        "summary": "delete reminder",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/{account_id}/api/contacts/{contact_id}/tasks/{task_id}/status": {
       "parameters": [
         {
@@ -4706,7 +4987,100 @@
         }
       ],
       "get": {
-        "summary": "list dashboards",
+        "summary": "timeline",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/recents": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "recent activities",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/favorites": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "favorites",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/upcomings": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "upcoming events",
         "security": [
           {
             "Bearer": {

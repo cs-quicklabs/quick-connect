@@ -5,4 +5,5 @@ class Conversation < ApplicationRecord
   validates_presence_of :date, :body
 
   normalize_attribute :body, :with => :strip
+  has_many :events, class_name: "Event", as: :trackable, dependent: :destroy
 end

@@ -3,7 +3,7 @@ class Api::Contact::ContactEventsController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, ContactEvent]
-    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
+    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact).order(created_at: :desc), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contact_events.as_json(:include => :life_event), message: "Events fetched successfully" }
   end
 
@@ -42,7 +42,7 @@ class Api::Contact::ContactEventsController < Api::Contact::BaseController
 
   def create
     authorize [:api, @contact, ContactEvent]
-    @event = AddContactEvent.call(event_params, @api_user, @contact).result
+    @event = AddContactEvent.call(event_params, @api_user, @contact, params[:reminder]).result
     respond_to do |format|
       if @event.persisted?
         format.json { render json: { success: true, data: @event.as_json(:include => :life_event), message: "Event created successfully" } }
