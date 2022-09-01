@@ -34,4 +34,12 @@ class Api::AccountPolicy < Struct.new(:user, :account)
   def new?
     true
   end
+
+  def deactivate?
+    true
+  end
+
+  def activate?
+    true
+  end
 end
