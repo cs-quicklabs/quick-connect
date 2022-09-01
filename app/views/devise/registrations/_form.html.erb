@@ -38,7 +38,7 @@
             <div class="mt-1 flex-auto w-full" >
                <input :type="show ? 'password' : 'text'" name="user[password]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
             </div>
-            <i :class="show ? 'cursor-pointer far fa-eye fa-eye-slash' : 'cursor-pointer far fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
+            <i :class="show ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <div>
@@ -49,7 +49,7 @@
             <div class="mt-1 flex-auto w-full" >
               <input :type="show_confirmation? 'password' : 'text'" name="user[password_confirmation]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
             </div>
-            <i :class="show_confirmation ? ' cursor-pointer far fa-eye fa-eye-slash' : ' cursor-pointer far fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
+            <i :class="show_confirmation ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <div class="actions mt-6">
