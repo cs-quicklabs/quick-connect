@@ -8,6 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% if user_signed_in? %>
       <meta name="current-account", content="<%= Current.account.id %>">
+       <meta name="current-user", content="<%= User.find_by_account_id(Current.account.id) %>">
+
     <% end %>
     <meta name="turbo-cache-control" content="no-cache">
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>

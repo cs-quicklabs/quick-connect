@@ -23,4 +23,18 @@ class SearchController < BaseController
 
     render layout: false
   end
+
+  def add
+    authorize :search
+
+    like_keyword = "%#{params[:q]}%".split(/\s+/)
+    @batch = Batch.find(params[:batch_id])
+    @added = @batch.contacts
+
+    @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
+      .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
+      .limit(4).order(:first_name) - @added
+
+    render layout: false
+  end
 end
