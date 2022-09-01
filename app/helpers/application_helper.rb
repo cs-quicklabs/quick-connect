@@ -11,6 +11,10 @@ module ApplicationHelper
     display_date(resource.created_at)
   end
 
+  def display_image(resource)
+    resource.first_name[0, 1].upcase_first + resource.last_name[0, 1].upcase_first
+  end
+
   def display_date(date)
     date.to_date.to_formatted_s(:long)
   end
@@ -91,5 +95,12 @@ module ApplicationHelper
     out = link_to "Edit", path, class: style
 
     out.html_safe
+  end
+
+  COMMON_YEAR_DAYS_IN_MONTH = [nil, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+
+  def days_in_month(month, year = Time.now.year)
+    return 29 if month == 2 && Date.gregorian_leap?(year)
+    COMMON_YEAR_DAYS_IN_MONTH[month]
   end
 end

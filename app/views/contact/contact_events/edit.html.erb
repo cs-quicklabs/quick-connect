@@ -9,12 +9,13 @@
         <%= form.text_field :title,  autocomplete: "off"%>
       <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
         <div>
-          <label for="date" class="block text-sm font-medium text-gray-700">
+          <label for="date" class="cursor-pointer block text-sm font-medium text-gray-700">
             Date
           </label>
           <%= form.date_field :date, class: "form-text-field mt-1" %>
         </div>
       <div class="flex justify-end py-3">
+       <%=link_to "Back", contact_contact_events_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Event", class: "btn-blue" %>
       </div>
     </main>

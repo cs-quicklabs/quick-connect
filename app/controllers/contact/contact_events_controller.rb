@@ -4,8 +4,13 @@ class Contact::ContactEventsController < Contact::BaseController
   def index
     authorize [@contact, ContactEvent]
     @contact_event = ContactEvent.new
+<<<<<<< HEAD
     @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
     render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events)
+=======
+    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact).order(created_at: :desc), items: LIMIT)
+    render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@relatives)
+>>>>>>> dev
   end
 
   def destroy
@@ -37,7 +42,7 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def create
     authorize [@contact, ContactEvent]
-    @contact_event = AddContactEvent.call(event_params, current_user, @contact).result
+    @contact_event = AddContactEvent.call(event_params, current_user, @contact, params[:reminder]).result
     respond_to do |format|
       if @contact_event.persisted?
         format.turbo_stream {

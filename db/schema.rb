@@ -153,6 +153,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.boolean "archived", default: false
     t.date "archived_on"
     t.boolean "favorite", default: false, null: false
+    t.boolean "track", default: true, null: false
+    t.date "untrack_on"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -246,6 +248,22 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "category", default: "activity", null: false
+  end
+
+  create_table "invitations", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "sender_id"
+    t.bigint "account_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "token"
+    t.datetime "sent_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_invitations_on_account_id"
+    t.index ["sender_id"], name: "index_invitations_on_sender_id"
+    t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "journals", force: :cascade do |t|
@@ -490,8 +508,24 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.boolean "email_enabled", default: true
     t.string "jti", null: false
     t.integer "permission", default: 0, null: false
+    t.string "invitation_token"
+    t.datetime "invitation_created_at"
+    t.datetime "invitation_sent_at"
+    t.datetime "invitation_accepted_at"
+    t.integer "invitation_limit"
+    t.string "invited_by_type"
+    t.bigint "invited_by_id"
+    t.integer "invitations_count", default: 0
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string "current_sign_in_ip"
+    t.string "last_sign_in_ip"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
+    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
+    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
     t.index ["jti"], name: "index_users_on_jti", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["user_id"], name: "index_users_on_user_id"
@@ -526,6 +560,9 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "fields", "accounts"
   add_foreign_key "gifts", "contacts"
   add_foreign_key "gifts", "users"
+  add_foreign_key "invitations", "accounts"
+  add_foreign_key "invitations", "users"
+  add_foreign_key "invitations", "users", column: "sender_id"
   add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"

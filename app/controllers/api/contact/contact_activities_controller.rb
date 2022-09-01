@@ -3,7 +3,7 @@ class Api::Contact::ContactActivitiesController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, ContactActivity]
-    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact), items: LIMIT)
+    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact).order(created_at: :desc), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contact_activities.as_json(:include => :activity), message: "Activities fetched successfully" }
   end
 

@@ -10,6 +10,7 @@ class CreateContact < Patterns::Service
     begin
       create_contact
       add_event
+      add_about
     rescue
       contact
     end
@@ -26,6 +27,10 @@ class CreateContact < Patterns::Service
 
   def add_event
     contact.events.create(user: actor, action: "created", action_for_context: "added new contact", trackable: contact, action_context: "Added contact")
+  end
+
+  def add_about
+    About.create(user: actor, contact: contact)
   end
 
   attr_reader :contact, :actor

@@ -9,9 +9,9 @@
           <div>
     <% if @contact.id!=relative.contact_id %>
   
-       <%= link_to relative.contact.decorate.display_name, contact_about_index_path(relative.contact), class:"text-sm font-medium text-gray-900 whitespace-nowrap hover:underline", target:"_top" %>
+       <%= link_to relative.contact.decorate.display_name, contact_abouts_path(relative.contact), class:"text-sm font-medium text-gray-900 whitespace-nowrap hover:underline", target:"_top" %>
  <% else %>
-  <%= link_to relative.first_contact.decorate.display_name, contact_about_index_path(relative.first_contact),  class:"text-sm font-medium text-gray-900 whitespace-nowrap  hover:underlines",target:"_top"  %>
+  <%= link_to relative.first_contact.decorate.display_name, contact_abouts_path(relative.first_contact),  class:"text-sm font-medium text-gray-900 whitespace-nowrap  hover:underlines",target:"_top"  %>
               <% end %> 
               <p class="flex items-center mt-1 text-sm text-gray-500 whitespace-nowrap"><%= relative.relation.decorate.display_name%></p>
             </a>
