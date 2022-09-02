@@ -1,2 +1,0 @@
-class ContactsLabel < ApplicationRecord
-end
