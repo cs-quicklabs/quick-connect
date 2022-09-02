@@ -1,2 +1,2 @@
-class ContatsLabel < ApplicationRecord
+class ContactsLabel < ApplicationRecord
 end
