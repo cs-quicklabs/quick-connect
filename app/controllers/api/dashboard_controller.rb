@@ -9,7 +9,7 @@ class Api::DashboardController < Api::BaseController
     authorize [:api, :dashboard]
     @contacted = Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }).limit(4) +
                  Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" }).limit(4)
-    render json: { success: true, data: @contacted.sort_by { |r| r.trackable.created_at }.as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
+    render json: { success: true, data: @contacted.sort_by { |r| r.trackable.created_at }.uniq { |r| r.eventable }.as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
   end
 
   def favorites
