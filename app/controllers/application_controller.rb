@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
-  before_action :set_current_user
+  before_action :set_current_user, unless: :user_signed_in?
   before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {
@@ -163,13 +163,14 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
+    @current_user ||= warden.authenticate!(scope: :api_user)
     header = request.headers["Authorization"]
     header = header.split(" ").last if header
     begin
-      jwt_payload = JWT.decode(header, Rails.application.secrets.secret_key_base, true, { :algorithm => "HS256" })
+      jwt_payload = JWT.decode(header, Rails.application.secret_key_base, false, { :algorithm => "HS256" }).first
       @api_user = User.find(jwt_payload["sub"])
     rescue ActiveRecord::RecordNotFound => e
-      render json: { success: false, message: "unauthorized" }
+      render json: { success: false, message: "Record no found" }
     rescue JWT::DecodeError => e
       render json: { success: false, message: "unauthorized" }
     end

@@ -7,6 +7,7 @@ class Api::SessionsController < Devise::SessionsController
   respond_to :json
   # POST /api/login
   def create
+    binding.irb
     unless request.format == :json
       sign_out
       render status: 406,
@@ -49,6 +50,14 @@ class Api::SessionsController < Devise::SessionsController
 
   def current_token
     request.env["warden-jwt_auth.token"]
+  end
+
+  def revoke_token(user)
+    user.update_column(:jti, generate_jti)
+  end
+
+  def generate_jti
+    SecureRandom.uuid
   end
 
   def respond_to_on_destroy
