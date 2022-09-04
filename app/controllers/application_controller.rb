@@ -163,7 +163,16 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    @current_user ||= warden.authenticate(scope: :api_user)
+    header = request.headers["Authorization"]
+    header = header.split(" ").last if header
+    begin
+      jwt_payload = JWT.decode(header, Rails.application.secrets.secret_key_base, true, { :algorithm => "HS256" })
+      @api_user = User.find(jwt_payload["sub"])
+    rescue ActiveRecord::RecordNotFound => e
+      render json: { success: false, message: "unauthorized" }
+    rescue JWT::DecodeError => e
+      render json: { success: false, message: "unauthorized" }
+    end
   end
 
   def token_verification
