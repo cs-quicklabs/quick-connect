@@ -13,19 +13,26 @@ class Api::SessionsController < Devise::SessionsController
       render status: 406,
              json: { message: "JSON requests only." } and return
     end
-    if (!params[:api_user][:email].nil? && !params[:api_user][:password].nil?)
-      @api_user ||= User.find_by(email: params[:api_user][:email].downcase)
-      if @api_user && @api_user.valid_password?(params[:api_user][:password])
-        if !@api_user.confirmed?
-          render json: { success: false, message: "You have to confirm your email address before continuing." } and return
+    if (!params[:api_user][:email].nil?)
+      @api_user = User.find_by(email: params[:api_user][:email].downcase)
+      if @api_user && @api_user.permission == "false"
+        render json: { success: false, message: "Your account is deactivated." } and return
+      elsif @api_user && !@api_user.invitation_token.blank?
+        render json: { success: false, message: "You have a pending invitation, accept it to finish creating your account." } and return
+      end
+      if !params[:api_user][:password].nil?
+        if @api_user && @api_user.valid_password?(params[:api_user][:password])
+          if !@api_user.confirmed?
+            render json: { success: false, message: "You have to confirm your email address before continuing." } and return
+          end
+        else
+          render json: { success: false, message: "Email or password is incorrect." } and return
         end
       else
         render json: { success: false, message: "Email or password is incorrect." } and return
       end
     end
-    if @api_user.permission == "false"
-      render json: { success: false, message: "Your account is deactivated." } and return
-    end
+
     # auth_options should have `scope: :api_user`
     resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)

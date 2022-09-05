@@ -167,15 +167,17 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    header = request.headers["Authorization"]
-    header = header.split(" ").last if header
-    begin
-      jwt_payload = JWT.decode(header, Rails.application.secret_key_base, false, { :algorithm => "HS256" }).first
-      @api_user = User.find(jwt_payload["sub"])
-    rescue ActiveRecord::RecordNotFound => e
-      render json: { success: false, message: "Record no found" }
-    rescue JWT::DecodeError => e
-      render json: { success: false, message: "unauthorized" }
+    if json_request?
+      header = request.headers["Authorization"]
+      header = header.split(" ").last if header
+      begin
+        jwt_payload = JWT.decode(header, Rails.application.secret_key_base, false, { :algorithm => "HS256" }).first
+        @api_user = User.find(jwt_payload["sub"])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { success: false, message: "Record no found" }
+      rescue JWT::DecodeError => e
+        render json: { success: false, message: "unauthorized" }
+      end
     end
   end
 
