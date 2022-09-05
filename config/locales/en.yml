@@ -72,10 +72,10 @@ en:
         body:
           one: Description
       contact:
-        phone:
-          one: 
+        phone: 
+          one: Phone number
         email:
-          one: 
+          one:  E-mail
       relation:
         name:
           one: Relation name
