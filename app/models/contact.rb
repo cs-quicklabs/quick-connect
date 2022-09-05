@@ -13,7 +13,14 @@ class Contact < ApplicationRecord
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
   scope :available, -> { where(archived: false) }
-  validates_presence_of :phone, :message => "E-mail or Phone number is required ", if: -> { email.blank? && phone.blank? }
+  validate :validates
+
+  def validates
+    if email.blank? && phone.blank?
+      errors.add(:phone, "E-mail or Phone number is required ")
+    end
+  end
+
   validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "Phone number is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
   validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "E-mail is invalid" }, if: -> { !email.blank? }, on: :create
   scope :favorites, -> { where(favorite: true) }
