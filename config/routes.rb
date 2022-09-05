@@ -48,7 +48,7 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   resources :sections
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
-  scope "/batchtings" do
+  scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
     get "/password", to: "user#password", as: "batchting_password"
     patch "/password", to: "user#update_password", as: "change_password"
@@ -100,7 +100,7 @@ Rails.application.routes.draw do
     resources :user
     get "/rebatch" => "user#rebatch", as: "rebatch_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
-    scope "/batchtings" do
+    scope "/settings" do
       get "/profile", to: "user#profile", as: "user_profile"
       get "/password", to: "user#password", as: "batchting_password"
       patch "/password", to: "user#update_password", as: "change_password"
