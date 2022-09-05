@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class RelationsTest < ApplicationSystemTestCase
+class FieldsTest < ApplicationSystemTestCase
   setup do
     @user = users(:regular)
     @account = @user.account
@@ -25,7 +25,7 @@ class RelationsTest < ApplicationSystemTestCase
 
   test "can add a new field" do
     visit page_url
-    fill_in "Field Type", with: "New Relation"
+    fill_in "Field Type", with: "New Field"
     click_on "Save"
     take_screenshot
     assert_text "Field was created successfully."

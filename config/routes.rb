@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
   mount ActionCable.server => "/cable"
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   post "/register", to: "registrations#create"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -67,6 +67,10 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    resources :invitations, except: [:show, :new] do
+      get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+      get "/activate", to: "invitations#activate", as: "activate"
+    end
   end
   namespace :purchase do
     resources :checkouts
@@ -105,9 +109,7 @@ Rails.application.routes.draw do
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
-
     get "/search/add", to: "search#add"
-
     get "/dashboard", to: "dashboard#index", as: "dashboard"
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
@@ -124,6 +126,10 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
+      resources :invitations, except: [:show, :new] do
+        get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+        get "/activate", to: "invitations#activate", as: "activate"
+      end
     end
     resources :batches, except: [:new] do
       get "contacts", to: "batches#contacts", as: "contacts"
