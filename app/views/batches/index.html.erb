@@ -1,0 +1,80 @@
+<div class="h-full flex overflow-y-hidden">
+  <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
+   <div class="border-r border-gray-200 h-screen">
+   <div class=" lg:flex lg:flex-shrink-0 ">
+    <div class="flex flex-col " style="width: 24rem; ">
+      <!-- Sidebar component, swap this element with another sidebar if you like -->
+      <div class="flex-1 flex flex-col min-h-0 ">
+        <div class="flex-1 flex flex-col  overflow-y-auto">
+         
+          <nav class=" flex-1" aria-label="Sidebar">
+                   <div class="overflow-hidden bg-white">
+            <div class="px-4 sm:px-6 py-6">
+                <div class="  ">
+                  <h1 class="text-3xl font-bold leading-tight text-gray-900">Groups</h1>
+                  <div class="mt-1 text-sm text-gray-600 pb-2">
+          <p>You can define custom group which can be applied
+            on contacts.</p>
+          </div>
+
+                </div>
+                                 
+                 <div id="batches_form" class="pb-2">
+        <%= render "form", batch: @batch %>
+      </div>
+      <div id="batches" class="pt-6 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain">
+      <nav class="h-full">
+        <%= render @batches %>
+        </nav>
+      </div>
+      </div>
+        </div>
+          </nav>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- Static sidebar for desktop -->
+  <div class=" lg:flex lg:flex-shrink-0 border-r border-gray-200  h-screen ">
+    <div class="flex flex-col " style="width: 24rem;">
+      <!-- Sidebar component, swap this element with another sidebar if you like -->
+      <div class="flex-1 flex flex-col min-h-0  ">
+        <div class="flex-1 flex flex-col overflow-y-auto">
+
+          <nav class="flex-1" aria-label="Sidebar">
+               <div  class="  " id="show1">
+        </div>
+
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+    <div class="flex-1 relative z-0 flex overflow-hidden">
+      <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain">
+        <!-- Breadcrumb -->
+  
+<div id="profile" class="h-full">
+</div>
+
+      </main>
+    
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  window.onload = function() {
+    var url = window.location.href;
+   let paramString = url.split('?')[1];
+   let queryString = new URLSearchParams(paramString);
+     for(let pair of queryString.entries()) {
+      if(!typeof pair[1]!==null) {
+            document.getElementById("batch_"+pair[1]).click();
+     }
+        }
+   
+  }
+</script>

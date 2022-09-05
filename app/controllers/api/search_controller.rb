@@ -23,4 +23,18 @@ class Api::SearchController < Api::BaseController
 
     render json: { success: true, data: @contacts, message: "" }
   end
+
+  def add
+    authorize [:api, :search]
+
+    like_keyword = "%#{params[:q]}%".split(/\s+/)
+    @batch = Batch.find(params[:batch_id])
+    @added = @batch.contacts
+
+    @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
+      .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
+      .limit(4).order(:first_name) - @added
+
+    render json: { success: true, data: @contacts, message: "" }
+  end
 end
