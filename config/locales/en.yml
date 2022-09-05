@@ -46,16 +46,34 @@ en:
       contact_activity:     
         one: activity
          
+en:
+  activerecord:
+    attributes:
+      contact:
+        email: "E-mail or phone number"
+        phone: "E-mail or phone number"
+    errors:
+      models:
+        contact:
+          attributes:
+            email:
+              blank: "is required"
+            phone:
+              blank: "is required"
+
+
+
+
 
 en:
   activerecord:
     attributes:
       note:
         body:
-          one:  Description
+          one: Description
       conversation:
         body:
-          one:   Conversation
+          one: Conversation
         field:
           one: Contact field type  
       phone_call:
@@ -69,9 +87,9 @@ en:
           one: Description
       contact:
         phone:
-          one: Phone number
+          one: 
         email:
-          one: E-mail
+          one: 
       relation:
         name:
           one: Relation name
