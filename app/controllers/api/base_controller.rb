@@ -1,6 +1,5 @@
 class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
-
   before_action :verify_authenticity_token
   before_action :authenticate_user, unless: :user_signed_in?
   before_action :authenticate_account!

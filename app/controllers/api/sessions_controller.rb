@@ -46,6 +46,14 @@ class Api::SessionsController < Devise::SessionsController
     respond_to_on_destroy
   end
 
+  def revoke_token(user)
+    user.update_column(:jti, generate_jti)
+  end
+
+  def generate_jti
+    SecureRandom.uuid
+  end
+
   private
 
   def current_token
