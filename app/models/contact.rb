@@ -7,18 +7,16 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :account
   validates_presence_of :first_name, :last_name
-  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
-  validates_uniqueness_of :email, scope: :account, :allow_blank => true
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true, on: :create
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true, on: :create
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
   scope :available, -> { where(archived: false) }
-  validates :phone, :presence => true, uniqueness: { scope: :account },
-                    :numericality => true,
-                    :length => { :minimum => 10, :maximum => 12 }, if: -> { email.blank? }
-  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }
+  validates_presence_of :phone, :message => "E-mail or Phone number is required ", if: -> { email.blank? && phone.blank? }
+  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "Phone number is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
+  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "E-mail is invalid" }, if: -> { !email.blank? }, on: :create
   scope :favorites, -> { where(favorite: true) }
-  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
