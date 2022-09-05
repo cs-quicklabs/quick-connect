@@ -3,7 +3,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, PhoneCall]
-
     @phone_call = PhoneCall.new
     @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(date: :desc), items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @phone_calls, message: "Contact phone calls" }
@@ -11,7 +10,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
   def destroy
     authorize [:api, @contact, @phone_call]
-
     @phone_call = DestroyContactDetail.call(@contact, @api_user, @phone_call).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Phone call was successfully deleted." } }
@@ -25,7 +23,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
   def update
     authorize [:api, @contact, @phone_call]
-
     respond_to do |format|
       if @phone_call.update(phone_call_params)
         Event.where(trackable: @phone_call).touch_all
@@ -38,7 +35,6 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
 
   def create
     authorize [:api, @contact, PhoneCall]
-
     @phone_call = AddPhoneCall.call(phone_call_params, @api_user, @contact).result
     respond_to do |format|
       if @phone_call.persisted?
