@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Pagy::Backend
 
   respond_to :html
-  protect_from_forgery with: :exception, prepend: true
+  protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
 
   skip_before_action :verify_authenticity_token, if: :json_request?
