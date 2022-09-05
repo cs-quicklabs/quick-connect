@@ -1418,11 +1418,7 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/{account_id}/api/contacts/{contact_id}/batches?page={page}": {
-=======
     "/{account_id}/api/contacts/{contact_id}/abouts": {
->>>>>>> staging
       "parameters": [
         {
           "name": "account_id",
@@ -1437,24 +1433,10 @@
           "type": "string",
           "description": "contact_id",
           "required": true
-<<<<<<< HEAD
-        },
-        {
-          "name": "page",
-          "in": "path",
-          "type": "integer",
-          "description": "page",
-          "required": true
-        }
-      ],
-      "get": {
-        "summary": "list batches",
-=======
         }
       ],
       "get": {
         "summary": "contact about",
->>>>>>> staging
         "security": [
           {
             "Bearer": {
@@ -1474,11 +1456,7 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/{account_id}/api/contacts/{contact_id}/batches/new": {
-=======
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}/edit": {
->>>>>>> staging
       "parameters": [
         {
           "name": "account_id",
@@ -1493,12 +1471,6 @@
           "type": "string",
           "description": "contact_id",
           "required": true
-<<<<<<< HEAD
-        }
-      ],
-      "get": {
-        "summary": "fetch batches ",
-=======
         },
         {
           "name": "id",
@@ -1510,7 +1482,6 @@
       ],
       "get": {
         "summary": "edit about",
->>>>>>> staging
         "security": [
           {
             "Bearer": {
@@ -1530,11 +1501,7 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/{account_id}/api/contacts/{contact_id}/batches": {
-=======
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}": {
->>>>>>> staging
       "parameters": [
         {
           "name": "account_id",
@@ -1549,12 +1516,6 @@
           "type": "string",
           "description": "contact_id",
           "required": true
-<<<<<<< HEAD
-        }
-      ],
-      "post": {
-        "summary": "add contact to batch",
-=======
         },
         {
           "name": "id",
@@ -1566,7 +1527,6 @@
       ],
       "patch": {
         "summary": "update about",
->>>>>>> staging
         "security": [
           {
             "Bearer": {
@@ -1581,22 +1541,11 @@
         ],
         "parameters": [
           {
-<<<<<<< HEAD
-            "name": "api_batch",
-=======
             "name": "api_about",
->>>>>>> staging
             "in": "body",
             "schema": {
               "type": "object",
               "properties": {
-<<<<<<< HEAD
-                "api_batch": {
-                  "type": "object",
-                  "properties": {
-                    "batch_id": {
-                      "type": "integer"
-=======
                 "api_about": {
                   "type": "object",
                   "properties": {
@@ -1617,7 +1566,6 @@
                     },
                     "other": {
                       "type": "string"
->>>>>>> staging
                     }
                   }
                 }
@@ -1632,11 +1580,7 @@
         }
       }
     },
-<<<<<<< HEAD
-    "/{account_id}/api/contacts/{contact_id}/batches/{id}": {
-=======
     "/{account_id}/api/contacts/{contact_id}/abouts/{id}?delete={delete}": {
->>>>>>> staging
       "parameters": [
         {
           "name": "account_id",
@@ -1658,12 +1602,6 @@
           "type": "string",
           "description": "id",
           "required": true
-<<<<<<< HEAD
-        }
-      ],
-      "delete": {
-        "summary": "delete debt",
-=======
         },
         {
           "name": "delete",
@@ -1687,7 +1625,179 @@
         "consumes": [
           "application/json"
         ],
->>>>>>> staging
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/batches?page={page}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list batches",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/batches/new": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "fetch batches ",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/batches": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "add contact to batch",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_batch",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_batch": {
+                  "type": "object",
+                  "properties": {
+                    "batch_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/contacts/{contact_id}/batches/{id}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "contact_id",
+          "in": "path",
+          "type": "string",
+          "description": "contact_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": "id",
+          "required": true
+        }
+      ],
+      "delete": {
+        "summary": "delete debt",
         "responses": {
           "200": {
             "description": "successful"
