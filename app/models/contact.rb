@@ -17,12 +17,12 @@ class Contact < ApplicationRecord
 
   def validates
     if email.blank? && phone.blank?
-      errors.add(:phone, "E-mail or Phone number is required ")
+      errors.add(:phone_number_or, "E-mail can't be blank")
     end
   end
 
-  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "Phone number is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
-  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "E-mail is invalid" }, if: -> { !email.blank? }, on: :create
+  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
+  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }, if: -> { !email.blank? }, on: :create
   scope :favorites, -> { where(favorite: true) }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
