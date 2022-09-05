@@ -7,7 +7,6 @@ class Api::SessionsController < Devise::SessionsController
   respond_to :json
   # POST /api/login
   def create
-    binding.irb
     unless request.format == :json
       sign_out
       render status: 406,
@@ -47,10 +46,14 @@ class Api::SessionsController < Devise::SessionsController
   end
 
   def destroy
-    revoke_token(@api_user)
-    signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(@api_user))
-    yield if block_given?
-    respond_to_on_destroy
+    if !@api_user.blank?
+      super
+    else
+      revoke_token(@api_user)
+      signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(@api_user))
+      yield if block_given?
+      respond_to_on_destroy
+    end
   end
 
   def revoke_token(user)
