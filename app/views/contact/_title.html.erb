@@ -85,7 +85,6 @@
           </div>
         <% end %>
         <div class="ml-4 mt-1" id="contact-favorite">
-
           <% if !contact.favorite?%>
             <li id="not-favorite" class=" flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
               <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="cursor-pointer" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

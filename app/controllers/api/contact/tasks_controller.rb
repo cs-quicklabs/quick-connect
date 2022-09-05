@@ -10,7 +10,6 @@ class Api::Contact::TasksController < Api::Contact::BaseController
 
   def destroy
     authorize [:api, @contact, @task]
-
     @task = DestroyContactDetail.call(@contact, @api_user, @task).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Task was successfully deleted." } }
@@ -29,7 +28,6 @@ class Api::Contact::TasksController < Api::Contact::BaseController
 
   def update
     authorize [:api, @contact, @task]
-
     respond_to do |format|
       if @task.update(task_params)
         Event.where(trackable: @task).touch_all
@@ -40,9 +38,13 @@ class Api::Contact::TasksController < Api::Contact::BaseController
     end
   end
 
+  def show
+    authorize [@contact, @task]
+    render json: { success: true, data: @task, message: "" }
+  end
+
   def create
     authorize [:api, @contact, Task]
-
     @task = AddTask.call(task_params, @api_user, @contact).result
     respond_to do |format|
       if @task.persisted?

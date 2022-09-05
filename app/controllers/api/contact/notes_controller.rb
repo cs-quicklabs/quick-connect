@@ -11,7 +11,6 @@ class Api::Contact::NotesController < Api::Contact::BaseController
 
   def destroy
     authorize [:api, @contact, @note]
-
     @note = DestroyContactDetail.call(@contact, @api_user, @note).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Note was successfully deleted." } }
@@ -36,9 +35,20 @@ class Api::Contact::NotesController < Api::Contact::BaseController
     end
   end
 
+  def update
+    authorize [@contact, @note]
+
+    respond_to do |format|
+      if @note.update(note_params)
+        format.json { render json: { success: true, data: @note, message: "Note was successfully updated." } }
+      else
+        format.json { render json: { success: false, data: @note, message: @note.errors } }
+      end
+    end
+  end
+
   def create
     authorize [:api, @contact, Note]
-
     @note = AddNote.call(note_params, @api_user, @contact).result
     respond_to do |format|
       if @note.persisted?
