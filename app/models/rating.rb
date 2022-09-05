@@ -3,5 +3,5 @@ class Rating < ApplicationRecord
   belongs_to :user
   enum rating: [:awesome, :normal, :poor]
   validates_presence_of :rating
-  validates :user_id, uniqueness: { scope: :date }
+  validates :user, uniqueness: { scope: :date }
 end

@@ -5,4 +5,5 @@ class PhoneCall < ApplicationRecord
   normalize_attribute :body, :with => :strip
   scope :incoming, -> { where(status: "contact") }
   scope :outgoing, -> { where(status: "user") }
+  has_many :events, class_name: "Event", as: :trackable, dependent: :destroy
 end

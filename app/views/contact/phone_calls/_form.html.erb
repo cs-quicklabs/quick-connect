@@ -6,20 +6,20 @@
       <label for="date" class="block text-sm font-medium text-gray-700">
         The phone call happened on 
       </label>
-      <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
+      <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
     </div>
     <div class="w-full ">
       <label for="status" class="block text-sm font-medium text-gray-700">
         Who called?
       </label>
-      <div class="block max-w-lg space-x-8 mt-1">
-        <div class="inline-flex space-x-2">
-          <%= form.radio_button :status, 'user', class: "mt-1 ", :checked => true %>
-          <%= form.label :status_user, 'You called', class:" text-sm font-medium text-gray-700"  %>
+      <div class="block max-w-lg space-x-2 mt-1 flex">
+        <div class="inline-flex space-x-2 whitespace-nowrap">
+          <%= form.radio_button :status, 'user', class: "mt-1 cursor-pointer ", :checked => true %>
+          <%= form.label :status_user, 'You called', class:" cursor-pointer text-sm font-medium text-gray-700"  %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :status, 'contact', class: " mt-1",  :checked => false %>
-          <%= form.label :status_contact, @contact.first_name.upcase_first + " called" , class:" text-sm font-medium text-gray-700" %>
+        <div class="inline-flex space-x-2 pl-4 whitespace-nowrap" style="word-break: break-all; overflow-wrap: break-word; width: 19rem;">
+          <%= form.radio_button :status, 'contact', class: " mt-1 cursor-pointer",  :checked => false %>
+          <%= form.label :status_contact, @contact.first_name.upcase_first + " called" , class:"    cursor-pointer text-sm font-medium text-gray-700 " %>
         </div>
       </div>
     </div>

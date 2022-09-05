@@ -19,11 +19,12 @@ Rails.application.routes.draw do
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
+    resources :reminders, module: "contact", except: [:show]
     resources :tasks, module: "contact"
     resources :relatives, module: "contact", except: [:show]
     resources :contact_activities, module: "contact", except: [:show]
     resources :contact_events, module: "contact", except: [:show]
-    resources :about, module: "contact"
+    resources :abouts, module: "contact", except: [:show]
     resources :documents, module: "contact", except: [:show]
     collection do
       get :form
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
   end
+  get "favorites", to: "favorites#index", as: "favorites"
   resources :journals
   resources :release_notes
   resources :journal_comments
@@ -90,6 +92,7 @@ Rails.application.routes.draw do
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
     end
+
     resources :user
     get "/rebatch" => "user#rebatch", as: "rebatch_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
@@ -102,8 +105,14 @@ Rails.application.routes.draw do
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
+
     get "/search/add", to: "search#add"
-    resources :dashboard
+
+    get "/dashboard", to: "dashboard#index", as: "dashboard"
+    get :recents, controller: :dashboard
+    get :favorites, controller: :dashboard
+    get :upcomings, controller: :dashboard
+
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
@@ -128,6 +137,7 @@ Rails.application.routes.draw do
     resources :contacts do
       resources :notes, module: "contact", except: [:show]
       resources :phone_calls, module: "contact", except: [:show]
+      resources :reminders, module: "contact", except: [:show]
       resources :tasks, module: "contact" do
         get "status", to: "tasks#status", as: "status"
       end
@@ -145,7 +155,7 @@ Rails.application.routes.draw do
       get "/remove_relation", to: "contact/profile#remove_relation"
       get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
-      resources :about, module: "contact", only: [:index]
+      resources :abouts, module: "contact", except: [:show]
       resources :timeline, module: "contact", only: [:index]
     end
   end

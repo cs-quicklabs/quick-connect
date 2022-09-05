@@ -6,12 +6,11 @@ class AddJournal < Patterns::Service
 
   def call
     begin
-      add_journal
-      add_event
+       add_journal
+    add_event
     rescue
       journal
     end
-
     journal
   end
 

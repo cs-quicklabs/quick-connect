@@ -1,0 +1,35 @@
+<% favorite = favorite.decorate %>
+<%  @event = favorite.events.order(created_at: :desc).first%>
+<tr id="<%= dom_id(favorite) %>">
+  <td class="table-cell " style="width: 33.333333%;">
+    <div class="relative cursor-pointer  py-5 flex items-center space-x-3 " id="show" >
+      <div class="flex-shrink-0">
+        <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+      </div>
+      <div class="flex-1 min-w-0">
+        <a href="<%=contact_abouts_path(favorite)%>">
+          <!-- Extend touch target to entire panel -->
+          <span class="absolute inset-0" aria-hidden="true"></span>
+          <p class="text-sm font-medium text-gray-900" ><%= favorite.display_name %></p>
+          <p class="text-sm text-gray-500 truncate">
+            <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            <%= favorite.phone %></p>
+        </a>
+      </div>
+    </div>
+  </td>
+  <td class="table-cell " style="width: 33.333333%;">
+    <% favorite.labels.uniq.each do |label| %>
+      <span class="mr-1 mb-2 mt-1 inline-flex rounded-full text-left px-2 py-0.5 pl-2.5 pr-1  text-sm font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ">
+        <%= label.name.upcase_first %>
+      </span>
+    <% end %>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <p class=" text-sm font-normal text-gray-500 truncate">
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%>
+    </p>
+  </td>
+</tr>

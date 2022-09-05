@@ -85,7 +85,6 @@ class ContactContactEventsTest < ApplicationSystemTestCase
 
   test "can not show add event when contact is inactive" do
     inactive_contact = contacts(:archived)
-    binding.irb
     visit contact_contact_events_url(script_name: "/#{@account.id}", contact_id: inactive_contact.id)
     assert_no_text "Add New Event"
   end

@@ -1,6 +1,6 @@
 <tr id="<%= dom_id task %>">
   <td class="table-cell">
-    <%= check_box_tag "completed", nil, task.completed, data: { reflex: "click->TaskReflex#toggle_contact_task", id: task.id }, class: "w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
+    <%= check_box_tag "completed", nil, task.completed, data: { reflex: "click->TaskReflex#toggle_contact_task", id: task.id }, class: " cursor-pointer w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
   </td>
   <td class="table-cell w-full">
     <div class="text-sm">

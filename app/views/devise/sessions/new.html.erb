@@ -1,6 +1,6 @@
 <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8" id="login-form">
   <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <a href="http://www.skia.me">
+    <a href="https://kutumb-staging-web.onrender.com/">
       <%= image_tag "icon.jpeg", class: "block w-auto h-12 rounded-full   mx-auto" %>
     </a>
     <h1 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
@@ -33,15 +33,15 @@
             <div class="mt-1 flex-auto w-full" >
                <input :type="show ? 'password' : 'text'" name="user[password]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
             </div>
-            <i :class="show ? 'far fa-eye fa-eye-slash' : 'far fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
+            <i :class="show ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <% if devise_mapping.rememberable? %>
           <div class="flex items-center justify-between">
             <div class="flex items-center">
-              <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
-              <label for="remember_me" class="block ml-2 text-sm text-gray-900">
-                Remember me
+              <%= f.check_box :remember_me, class: "cursor-pointer h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" %>
+              <label for="remember_me" class="cursor-pointer block ml-2 text-sm text-gray-900">
+                Remember Me
               </label>
             </div>
           <% end %>

@@ -1,5 +1,5 @@
 <% life_events.each do |group, life_event|%>
-  <p class="w-full text-lg font-semibold text-gray-900 flex pt-4 pb-2  "><%=group.name%></p>
+  <p class="w-full text-base font-medium text-gray-900 flex pt-4 pb-2  "><%=group.name.titleize%></p>
   <%life_event.each do |sub_life_event|%>
     <%= render "life_event", {life_event:sub_life_event}%>
   <% end %>

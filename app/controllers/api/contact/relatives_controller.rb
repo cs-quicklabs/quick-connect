@@ -9,17 +9,10 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def destroy
     authorize [:api, @contact, @relative]
-
     @relative = DestroyContactDetail.call(@contact, @api_user, @relative).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Relative was successfully deleted." } }
     end
-  end
-
-  def new
-    authorize [:api, @contact, Relative]
-    @contact = Contact.find(params[:relative_id])
-    render json: { success: true, data: @contact, relations: Relation.all.order(:name), message: "New relative" }
   end
 
   def edit
@@ -29,7 +22,6 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
 
   def update
     authorize [:api, @contact, @relative]
-
     respond_to do |format|
       if @relative.update(relative_params)
         Event.where(trackable: @relative).touch_all
@@ -43,7 +35,6 @@ class Api::Contact::RelativesController < Api::Contact::BaseController
   def create
     authorize [:api, @contact, Relative]
     @relative = AddRelative.call(relative_params, @api_user, @contact).result
-    @relation = ""
     respond_to do |format|
       if @relative.persisted?
         format.json { render json: { success: true, data: @relative, message: "Relative was successfully created." } }
