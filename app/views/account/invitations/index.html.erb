@@ -1,0 +1,13 @@
+<main class="pb-10 mx-auto max-w-7xl lg:py-12 lg:px-8 z-0">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/account_menu" %>
+    <main class="max-w-3xl  pb-12 lg:col-span-6">
+      <div id="invitations_form">
+        <%= render "form", invitation: @invitation %>
+      </div>
+      <div id="invitations">
+        <%= render @invitations %>
+      </div>
+    </main>
+  </div>
+</main>

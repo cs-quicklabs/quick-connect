@@ -152,6 +152,9 @@ GEM
     devise-pwned_password (0.1.9)
       devise (~> 4)
       pwned (~> 2.0.0)
+    devise_invitable (2.0.6)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.5.0)
     digest (3.1.0)
     draper (4.0.2)
@@ -461,6 +464,7 @@ DEPENDENCIES
   devise!
   devise-jwt
   devise-pwned_password
+  devise_invitable
   draper
   font-awesome-rails
   hiredis

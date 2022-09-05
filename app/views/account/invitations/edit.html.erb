@@ -1,0 +1,27 @@
+<%= turbo_frame_tag dom_id(@field) do %>
+  <%= tailwind_form_with(model: @field, id: dom_id(@field), url: account_field_path(@field)) do |form| %>
+    <div class="mt-2 text-sm text-red-700">
+      <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
+        <ul class="pl-1 space-y-1 pt-1">
+          <% messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <li class="flex w-full py-4 border-b border-gray-200">
+          <div class="w-full space-y-6">
+       <label for="owned_by" class="block text-sm font-medium text-gray-700">
+        Edit Contact Field Type
+      </label>
+
+        <%= form.text_field :name, "Name", autocomplete: "off" %>
+        <%= form.text_field :protocol, "Protocol (optional)", autocomplete: "off", class: "form-text-field " %>
+        <%= form.text_field :icon, "Icon (optional)", autocomplete: "off", class: "form-text-field " %>
+        <div class="flex justify-end ">
+          <%= form.submit "Save", class: "btn-blue  " %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>
