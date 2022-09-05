@@ -46,20 +46,6 @@ en:
       contact_activity:     
         one: activity
          
-en:
-  activerecord:
-    attributes:
-      contact:
-        email: "E-mail or phone number"
-        phone: "E-mail or phone number"
-    errors:
-      models:
-        contact:
-          attributes:
-            email:
-              blank: "is required"
-            phone:
-              blank: "is required"
 
 
 
