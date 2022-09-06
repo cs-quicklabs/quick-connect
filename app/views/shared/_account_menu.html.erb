@@ -61,7 +61,7 @@
         Life Events
       </span>
     </a>
-    <% if !@user.invited_by%>
+    <% if current_user.invited_by_id.nil?%>
       <a href=<%=account_invitations_path %> class="<%= current_page?(account_invitations_path) ? "selected" : "unselected" %>">
         <!-- Heroicon name: outline/user-circle -->
         <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

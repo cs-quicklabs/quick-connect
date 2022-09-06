@@ -6,7 +6,7 @@
         <%= render "user/forms/profile", user: @user %>
       <% end %>
       <!-- This example requires Tailwind CSS v2.0+ -->
-      <% if !@user.invited_by%>
+      <% if @user.invited_by_id.nil?%>
         <%= render "reset", user: @user %>
       <% end %>
     </main>
