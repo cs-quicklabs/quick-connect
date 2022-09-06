@@ -12,7 +12,7 @@ class BatchReflex < ApplicationReflex
   def contact
     contact = Contact.find(element.dataset["contact-id"])
     relatives = Relative.includes(:contact, :relation).where(first_contact_id: contact.id)
-    html = render(partial: "batches/profile", locals: { contact: contact, contacts: contacts, relatives: relatives })
+    html = render(partial: "batches/profile", locals: { contact: contact, relatives: relatives })
 
     morph "#profile", "<div id='profile'>#{html}</div>"
   end
