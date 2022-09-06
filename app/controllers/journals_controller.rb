@@ -6,7 +6,6 @@ class JournalsController < BaseController
     authorize Journal
     @rating = Rating.all.where(date: Date.today).first
     @ratings_by_date = Rating.select("DISTINCT ON (date)*").all.where("date <= ? and date > ?", Date.today, Date.today - 3.months).order(date: :desc).group_by { |r| r.date.strftime("%B") }
-
     @pagy, @journals = pagy_nil_safe(params, Journal.all.order(created_at: :desc), items: LIMIT)
     render_partial("journals/journal", collection: @journals) if (!@rating.nil? and stale?(@journals + [@rating]))
   end

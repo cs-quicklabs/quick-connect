@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
-  get "/rebatch" => "user#rebatch", as: "rebatch_user"
+  get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
-    get "/password", to: "user#password", as: "batchting_password"
+    get "/password", to: "user#password", as: "setting_password"
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
@@ -98,11 +98,11 @@ Rails.application.routes.draw do
     end
 
     resources :user
-    get "/rebatch" => "user#rebatch", as: "rebatch_user"
+    get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
     scope "/settings" do
       get "/profile", to: "user#profile", as: "user_profile"
-      get "/password", to: "user#password", as: "batchting_password"
+      get "/password", to: "user#password", as: "setting_password"
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
       patch "/permission", to: "user#update_permission", as: "change_permission"
