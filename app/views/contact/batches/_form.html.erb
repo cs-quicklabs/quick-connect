@@ -21,7 +21,7 @@
       </div>
     </div>
      <% end %>
-        <%= render "shared/form_header", title: "Add Contact To Group", subtitle: "A Contact can be added to a contact which can help you remember important things." %>
+        <%= render "shared/form_header", title: "Add Contact To Group", subtitle: "A Contact can be added to a group which can help you remember important things." %>
 
           <div class="">
             <label for="group" class="block  text-sm font-medium text-gray-700">
@@ -29,8 +29,10 @@
             </label>
           <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
             <option value="" >Select Group</option>
+            <%if groups.count>0%>
           <% groups.each do |group|%>
            <li > <option value="<%=group.id%>"><%=group.name.titleize%>
+          <% end %>
           <% end %>
           </select>
           </div>
