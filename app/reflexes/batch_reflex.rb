@@ -11,7 +11,6 @@ class BatchReflex < ApplicationReflex
 
   def contact
     contact = Contact.find(element.dataset["contact-id"])
-    contacts = Contact.for_current_account.available.order(:first_name)
     relatives = Relative.includes(:contact, :relation).where(first_contact_id: contact.id)
     html = render(partial: "batches/profile", locals: { contact: contact, contacts: contacts, relatives: relatives })
 
