@@ -23,8 +23,6 @@
                   </thead>
                   <tbody class="table-body" id="batches" data-infinite-scroll-target="entries">
                      <% @contact.batches.uniq.each do |batch|%>          
-              
-       
        <%= render "batch", {batch: batch, contact:@contact} %>
         <% end %>
                   </tbody>
