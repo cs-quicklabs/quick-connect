@@ -44,7 +44,7 @@ class Api::BatchesController < Api::BaseController
   def contacts
     authorize [:api, :batch]
     @batch = Batch.find(params[:batch_id])
-    @pagy, @contacts = pagy_nil_safe(params, @batch.contacts.uniq, items: LIMIT)
+    @pagy, @contacts = pagy_array_safe(params, @batch.contacts.uniq, items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Group members retrieved successfully" }
   end
 
