@@ -35,6 +35,7 @@ application.register("nav-search", NavSearchController)
 import SelectController from "./select_controller.js"
 application.register("select", SelectController)
 
+
 import ToggleController from "./toggle_controller.js"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'

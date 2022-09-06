@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(batch) do %>
-  <li class="flex py-4 border-b border-gray-200 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500"  data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
+  <li class="flex py-4 border-b border-gray-200 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500" id="group_<%=batch.id%>" data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
     <div class="flex items-center w-full  " >
     <p class="hover:underline cursor-pointer w-full  text-sm font-medium text-gray-900" >
         <%= batch.name.titleize %></p>
