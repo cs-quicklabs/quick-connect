@@ -92,7 +92,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["account_id"], name: "index_batches_on_account_id"
   end
 
-  create_table "batches_contacts", force: :cascade do |t|
+  create_table "batches_contacts", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
     t.bigint "batch_id", null: false
     t.datetime "created_at", null: false
