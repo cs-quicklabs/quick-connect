@@ -7,9 +7,9 @@
       <div class="flex">
         <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
       </div>
-      <div class="mt-6 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
-        <div class="sm:hidden 2xl:block mt-6 min-w-0 flex-1">
-          <h1 class="text-xl font-bold text-gray-900 truncate ml-3"><%= contact.decorate.display_name %></h1>
+      <div class="mt-2 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6">
+        <div class="sm:hidden 2xl:block mt-6 min-w-0 flex-1 ml-3">
+          <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
         </div>
         <div id="" class="mt-2 flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 sm:space-x-4">
           <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
