@@ -1,14 +1,14 @@
 <%= turbo_frame_tag dom_id(batch) do %>
-  <li class="flex py-4 border-b border-gray-200 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500" >
-    <a id="group_<%=batch.id%>" data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
-    <div class="flex items-center w-full  " >
+  <li class="flex py-4 border-b border-gray-200 hover:bg-gray-50" data-controller="counter" >
+    <div class="flex  w-full  " data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
+         <a  id="group_<%=batch.id%>" class="inline-flex w-full" data-action="click->counter#increement" data-reflex-dataset="<%=batch.id%>">
     <p class="hover:underline cursor-pointer w-full  text-sm font-medium text-gray-900" >
         <%= batch.name.titleize %></p>
+            </a>
       <div class="flex justify-end space-x-2">
         <%= edit_button(edit_batch_path(batch)) %>
         <%= delete_button(batch_path(batch)) %>
       </div>
     </div>
-    </a>
   </li>
 <% end %>
