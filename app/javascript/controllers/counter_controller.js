@@ -7,7 +7,6 @@ export default class extends ApplicationController {
     let element = document.querySelector("meta[name='current-user']")
     if (element == null) return
     this.current_user = element.getAttribute('content')
-    console.log(this.current_user)
     consumer.connection.open()
     this.stimulate('Batch#show', event.target.getAttribute("data-reflex-dataset"))
   }
