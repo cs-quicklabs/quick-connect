@@ -6,9 +6,9 @@ class AddContactToGroup < Patterns::Service
   end
 
   def call
-    add_batch
-    add_event
     begin
+      add_batch
+      add_event
     rescue
       batch
     end
