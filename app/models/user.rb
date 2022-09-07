@@ -8,7 +8,7 @@ class User < ApplicationRecord
   before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
   enum permission: [:true, :false]
-  belongs_to :account
+  belongs_to :account, optional: true
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy

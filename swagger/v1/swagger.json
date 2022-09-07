@@ -5611,18 +5611,9 @@
         }
       }
     },
-    "/api/invitations?invitation_token={invitation_token}": {
-      "parameters": [
-        {
-          "name": "invitation_token",
-          "in": "path",
-          "type": "string",
-          "description": "invitation_token",
-          "required": true
-        }
-      ],
+    "/api/invitations": {
       "post": {
-        "summary": "change password and login",
+        "summary": "change password and accept invitation",
         "produces": [
           "application/json"
         ],
@@ -5631,7 +5622,7 @@
         ],
         "parameters": [
           {
-            "name": "api_user",
+            "name": "resource",
             "in": "body",
             "schema": {
               "type": "object",
@@ -5643,6 +5634,9 @@
                       "type": "string"
                     },
                     "password_confirmation": {
+                      "type": "string"
+                    },
+                    "invitation_token": {
                       "type": "string"
                     }
                   }

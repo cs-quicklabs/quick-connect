@@ -84,11 +84,9 @@ Rails.application.routes.draw do
 
   # API namespace, for JSON requests at /api/sign_[in|out]
   namespace :api do
-    resource :invitations, only: [:update]
     devise_for :users, defaults: { format: :json },
                        class_name: "ApiUser",
-                       skip: [:invitations,
-                              :unlocks],
+                       skip: [:unlocks],
                        path: "",
                        path_names: { sign_in: "login",
                                      sign_out: "logout" }
@@ -96,6 +94,7 @@ Rails.application.routes.draw do
       get "login", to: "devise/sessions#new"
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
+      post "/invitations", to: "invitations#update", as: :accept_invitation
     end
 
     resources :user
