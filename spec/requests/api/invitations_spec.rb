@@ -1,14 +1,14 @@
 RSpec.describe "api/invitations", type: :request do
-  path "/api/invitations?invitation_token={invitation_token}" do
-    parameter name: "invitation_token", in: :path, type: :string, description: "invitation_token"
-    post("change password and login") do
+  path "/api/invitations" do
+    post("change password and accept invitation") do
       produces "application/json"
       consumes "application/json"
-      parameter name: :api_user, in: :body, schema: {
+      parameter name: :resource, in: :body, schema: {
                   type: :'object',
                   properties: { "api_user": { type: :object, properties: {
                     "password": { type: :string },
                     "password_confirmation": { type: :string },
+                    "invitation_token": { type: :string },
                   } } },
                 }
       response(200, "successful") do
