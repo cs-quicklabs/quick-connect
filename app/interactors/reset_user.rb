@@ -4,19 +4,19 @@ class ResetUser < Patterns::Service
   end
 
   def call
-    delete_events
-    add_event
-    delete_contacts
-    delete_journals
-    delete_labels
-    delete_fields
-    delete_activities
-    delete_life_events
-    delete_relations
-    delete_ratings
-    delete_groups
-    delete_invitations
     begin
+      delete_events
+      add_event
+      delete_contacts
+      delete_journals
+      delete_labels
+      delete_fields
+      delete_activities
+      delete_life_events
+      delete_relations
+      delete_ratings
+      delete_groups
+      delete_invitations
     rescue Exception => e
       return false
     end
@@ -30,7 +30,7 @@ class ResetUser < Patterns::Service
   end
 
   def delete_journals
-    Journal.all.delete_all
+    Journal.all.destroy_all
   end
 
   def delete_ratings

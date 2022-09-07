@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
               with: :token_verification
   rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
   rescue_from Pundit::NotDefinedError, with: :record_not_found
-  #rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
+  rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
-  #rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
+  rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
   before_action :set_current_user, if: :json_request?
   before_action :set_redirect_path, unless: :user_signed_in?
