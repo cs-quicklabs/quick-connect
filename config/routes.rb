@@ -134,7 +134,7 @@ Rails.application.routes.draw do
     resources :batches, except: [:new] do
       get "contacts", to: "batches#contacts", as: "contacts"
       post "add", to: "batches#add", as: "addcontact"
-      delete "remove", to: "batches#remove", as: "removecontact"
+      post "remove", to: "batches#remove", as: "removecontact"
     end
     resources :journals
     resources :release_notes

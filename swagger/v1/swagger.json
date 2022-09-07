@@ -1259,7 +1259,7 @@
         }
       }
     },
-    "/{account_id}/api/batches/{batch_id}/add?search_id={search_id}": {
+    "/{account_id}/api/batches/{batch_id}/add": {
       "parameters": [
         {
           "name": "account_id",
@@ -1273,13 +1273,6 @@
           "in": "path",
           "type": "string",
           "description": "batch_id",
-          "required": true
-        },
-        {
-          "name": "search_id",
-          "in": "path",
-          "type": "string",
-          "description": "contact  _id",
           "required": true
         }
       ],
@@ -1297,6 +1290,25 @@
         "consumes": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"
@@ -1304,7 +1316,7 @@
         }
       }
     },
-    "/{account_id}/api/batches/{batch_id}/remove?contact_id={contact_id}": {
+    "/{account_id}/api/batches/{batch_id}/remove": {
       "parameters": [
         {
           "name": "account_id",
@@ -1319,16 +1331,9 @@
           "type": "string",
           "description": "batch_id",
           "required": true
-        },
-        {
-          "name": "contact_id",
-          "in": "path",
-          "type": "string",
-          "description": "contact_id",
-          "required": true
         }
       ],
-      "delete": {
+      "post": {
         "summary": "remove contact from group",
         "security": [
           {
@@ -1341,6 +1346,25 @@
         ],
         "consumes": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
         ],
         "responses": {
           "200": {

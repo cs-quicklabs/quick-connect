@@ -53,7 +53,7 @@ class Api::BatchesController < Api::BaseController
     @batch = Batch.find(params[:batch_id])
     respond_to do |format|
       if @batch
-        @contact = Contact.find(params[:search_id])
+        @contact = Contact.find(contact_params[:contact_id])
         @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
         format.json {
           render json: { success: true, batch: @batch, data: @contact, message: "Contact was successfully added to group." }
@@ -71,7 +71,7 @@ class Api::BatchesController < Api::BaseController
     @batch = Batch.find(params[:batch_id])
     respond_to do |format|
       if @batch
-        @contact = Contact.find(params[:contact_id])
+        @contact = Contact.find(contact_params[:contact_id])
         @batch.contacts.destroy @contact
         Event.where(trackable: @batch).touch_all
         @contact.events.create(user: @api_user, action: "deleted", action_for_context: "removed from group ", action_context: "Removed", trackable: @batch)
@@ -102,5 +102,9 @@ class Api::BatchesController < Api::BaseController
 
   def batch_params
     params.require(:api_batch).permit(:name)
+  end
+
+  def contact_params
+    params.require(:api_contact).permit(:contact_id)
   end
 end
