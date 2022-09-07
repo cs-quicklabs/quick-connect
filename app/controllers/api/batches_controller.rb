@@ -51,25 +51,39 @@ class Api::BatchesController < Api::BaseController
   def add
     authorize [:api, :batch]
     @batch = Batch.find(params[:batch_id])
-    @contact = Contact.find(params[:search_id])
-    @batch.contacts << @contact
     respond_to do |format|
-      format.json {
-        render json: { success: true, batch: @batch, data: @contact, message: "Contact was successfully added to group." }
-      }
+      if @batch
+        @contact = Contact.find(params[:search_id])
+        @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
+
+        format.json {
+          render json: { success: true, batch: @batch, data: @contact, message: "Contact was successfully added to group." }
+        }
+      else
+        format.json {
+          render json: { success: false, batch: @batch, message: "Group not found" }
+        }
+      end
     end
   end
 
   def remove
     authorize [:api, :batch]
     @batch = Batch.find(params[:batch_id])
-    @contact = Contact.find(params[:contact_id])
-
-    @batch.contacts.destroy @contact
     respond_to do |format|
-      format.json {
-        render json: { success: true, batch: @batch, message: "Contact was successfully removed from group." }
-      }
+      if @batch
+        @contact = Contact.find(params[:contact_id])
+        @batch.contacts.destroy @contact
+        Event.where(trackable: @batch).touch_all
+        @contact.events.create(user: @api_user, action: "deleted", action_for_context: "removed from group ", action_context: "Removed", trackable: @batch)
+        format.json {
+          render json: { success: true, batch: @batch, message: "Contact was successfully removed from group." }
+        }
+      else
+        format.json {
+          render json: { success: false, batch: @batch, message: "Group not found" }
+        }
+      end
     end
   end
 
