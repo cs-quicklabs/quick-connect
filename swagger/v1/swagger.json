@@ -5611,6 +5611,53 @@
         }
       }
     },
+    "/api/invitations?invitation_token={invitation_token}": {
+      "parameters": [
+        {
+          "name": "invitation_token",
+          "in": "path",
+          "type": "string",
+          "description": "invitation_token",
+          "required": true
+        }
+      ],
+      "post": {
+        "summary": "change password and login",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_user": {
+                  "type": "object",
+                  "properties": {
+                    "password": {
+                      "type": "string"
+                    },
+                    "password_confirmation": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/{account_id}/api/journal_comments": {
       "parameters": [
         {
@@ -6016,7 +6063,7 @@
         "summary": "update password",
         "parameters": [
           {
-            "name": "user",
+            "name": "api_user",
             "in": "body",
             "schema": {
               "type": "object",

@@ -84,6 +84,7 @@ Rails.application.routes.draw do
 
   # API namespace, for JSON requests at /api/sign_[in|out]
   namespace :api do
+    resource :invitations, only: [:update]
     devise_for :users, defaults: { format: :json },
                        class_name: "ApiUser",
                        skip: [:invitations,
