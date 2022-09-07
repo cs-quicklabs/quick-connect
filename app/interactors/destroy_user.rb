@@ -31,7 +31,7 @@ class DestroyUser < Patterns::Service
   end
 
   def delete_journals
-    Journal.all.delete_all
+    Journal.all.destroy_all
   end
 
   def delete_ratings
