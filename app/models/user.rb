@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :conversations, dependent: :destroy
   has_many :gifts, dependent: :destroy
   normalize_attribute :first_name, :last_name, :email, :with => :strip
-  belongs_to :invited_by, :class_name => "User"
+  belongs_to :invited_by, :class_name => "User", optional: true
   has_many :reminders, dependent: :destroy
 
   def add_jti

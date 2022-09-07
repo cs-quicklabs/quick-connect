@@ -8,6 +8,7 @@ export default class extends ApplicationController {
     if (element == null) return
     this.current_user = element.getAttribute('content')
     consumer.connection.open()
-    this.stimulate('Batch#show', event.target.getAttribute("data-reflex-dataset"))
+    console.log('contact-id='+event.target.getAttribute("data-reflex-dataset"))
+    this.stimulate('Batch#show','contact-id='+event.target.getAttribute("data-reflex-dataset"))
   }
 }

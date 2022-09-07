@@ -3,7 +3,7 @@ require "swagger_helper"
 RSpec.describe "api/passwords", type: :request do
   path "/api/password" do
     patch("update password") do
-      parameter name: :user, in: :body, schema: {
+      parameter name: :api_user, in: :body, schema: {
         type: :'object',
         properties: { "api_user": { type: :object, properties: {
           "password": { type: :string },
