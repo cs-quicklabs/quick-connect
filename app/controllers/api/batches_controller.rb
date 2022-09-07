@@ -55,7 +55,6 @@ class Api::BatchesController < Api::BaseController
       if @batch
         @contact = Contact.find(params[:search_id])
         @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
-
         format.json {
           render json: { success: true, batch: @batch, data: @contact, message: "Contact was successfully added to group." }
         }
