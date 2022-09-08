@@ -22,7 +22,6 @@ class Api::UserController < Api::BaseController
 
   def profile
     authorize [:api, @api_user]
-    binding.irb
     render json: { success: true, data: @api_user.as_json(:include => [:invited_by]), message: "user profile" }
   end
 
