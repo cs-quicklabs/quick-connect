@@ -79,10 +79,8 @@ class BatchesController < BaseController
     authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:contact_id])
-
     @batch.contacts.destroy @contact
-    Event.where(trackable: @batch).touch_all
-    @contact.events.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from " + @batch.name, trackable: @batch, action_context: "Removed from group " + @batch.name)
+    Event.create(user: @api_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from", eventable: @batch)
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact) }
     end

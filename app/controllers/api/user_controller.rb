@@ -22,7 +22,7 @@ class Api::UserController < Api::BaseController
 
   def profile
     authorize [:api, @api_user]
-    render json: { success: true, data: @api_user, message: "user profile" }
+    render json: { success: true, data: @api_user.as_json(:include => [:invited_by]), message: "user profile" }
   end
 
   def password
@@ -39,7 +39,7 @@ class Api::UserController < Api::BaseController
 
   def preferences
     authorize [:api, @api_user]
-    render json: { success: true, data: @api_user, message: "Show preferences" }
+    render json: { success: true, data: @api_user.as_json(:include => [:invited_by]), message: "Show preferences" }
   end
 
   def reset

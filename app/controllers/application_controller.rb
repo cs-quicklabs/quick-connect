@@ -168,7 +168,7 @@ class ApplicationController < ActionController::Base
       key = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"
       begin
         jwt_payload = JWT.decode(header, key, true, { :algorithm => "HS256" }).first
-        @api_user = User.find(jwt_payload["sub"])
+        @api_user = User.includes(:invited_by).find(jwt_payload["sub"])
       rescue ActiveRecord::RecordNotFound => e
         render json: { success: false, message: "Record no found" }
       rescue JWT::DecodeError => e
