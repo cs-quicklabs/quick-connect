@@ -46,7 +46,7 @@ class AddInvitation < Patterns::Service
   end
 
   def add_event
-    user.events.create(user: user, action: "invited", action_for_context: "added new user", trackable: invitation)
+    Event.create(user: user, action: "invited", action_for_context: "added new user", eventable: invitation)
   end
 
   attr_reader :invitation, :user, :invite
