@@ -12,8 +12,7 @@ class Contact::BatchesController < Contact::BaseController
     authorize [@contact, @batch]
 
     @contact.batches.destroy @batch
-    Event.where(trackable: @batch).touch_all
-    @contact.events.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from " + @batch.name, trackable: @batch, action_context: "Removed from group " + @batch.name)
+    Event.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from ", eventable: @batch)
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end
