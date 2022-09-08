@@ -16,7 +16,7 @@
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-           to    <a href="<%= batches_path(:batch_id=>event.trackable.id) %>" class="font-medium text-gray-900 hover:underline"> <%= event.trackable.decorate.display_name %></a>
+           to    <a href="<%= batches_path(:batch_id=>event.eventable.id) %>" class="font-medium text-gray-900 hover:underline"> <%= event.eventable.decorate.display_name %></a>
             <% end %>
           </p>
         </div>
