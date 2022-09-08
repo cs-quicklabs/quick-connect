@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(batch) do %>
   <li class="flex py-4 border-b border-gray-200 hover:bg-gray-50" data-controller="counter" >
-    <div class="flex  w-full  " data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
-         <a  id="group_<%=batch.id%>" class="inline-flex w-full" data-action="click->counter#increement" data-reflex-dataset="<%=batch.id%>">
+    <div class="flex  w-full  " >
+         <a  id="group_<%=batch.id%>" class="inline-flex w-full"  data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
     <p class="hover:underline cursor-pointer w-full  text-sm font-medium text-gray-900" >
         <%= batch.name.titleize %></p>
             </a>
