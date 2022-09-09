@@ -10,9 +10,7 @@ class Contact::BatchesController < Contact::BaseController
 
   def destroy
     authorize [@contact, @batch]
-
-    @contact.batches.destroy @batch
-    Event.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from ", eventable: @batch)
+    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end

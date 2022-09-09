@@ -16,9 +16,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
 
   def destroy
     authorize [:api, @contact, @batch]
-
-    @contact.batches.destroy @batch
-    Event.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from ", eventable: @batch)
+    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
     end

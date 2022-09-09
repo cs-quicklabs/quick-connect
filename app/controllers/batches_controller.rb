@@ -63,8 +63,6 @@ class BatchesController < BaseController
       if !params[:search_id].blank?
         @contact = Contact.find(params[:search_id])
         @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-        @batch.contacts << @contact
-
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
                                turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch })
@@ -79,8 +77,7 @@ class BatchesController < BaseController
     authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:contact_id])
-    @batch.contacts.destroy @contact
-    Event.create(user: @api_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from", eventable: @batch)
+    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact) }
     end
