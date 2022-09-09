@@ -19,8 +19,8 @@ class SignUp < Patterns::Service
 
   def register
     ActiveRecord::Base.transaction do
-      create_account
       create_user
+      create_account
       seed_database
     end
 
@@ -33,6 +33,7 @@ class SignUp < Patterns::Service
 
   def create_account
     account.name = user.first_name + " " + user.last_name
+    account.user = user
     account.save!
   end
 
