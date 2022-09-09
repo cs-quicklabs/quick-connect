@@ -50,9 +50,9 @@ class Api::BatchesController < Api::BaseController
 
   def add
     authorize [:api, :batch]
-    @batch = Batch.find(params[:batch_id])
     respond_to do |format|
-      if @batch
+      if params[:batch_id]
+        @batch = Batch.find(params[:batch_id])
         @contact = Contact.find(contact_params[:contact_id])
         @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
         format.json {
@@ -60,7 +60,7 @@ class Api::BatchesController < Api::BaseController
         }
       else
         format.json {
-          render json: { success: false, batch: @batch, message: "Group not found" }
+          render json: { success: false, message: "Please select group " }
         }
       end
     end
@@ -68,9 +68,9 @@ class Api::BatchesController < Api::BaseController
 
   def remove
     authorize [:api, :batch]
-    @batch = Batch.find(params[:batch_id])
     respond_to do |format|
-      if @batch
+      if params[:batch_id]
+        @batch = Batch.find(params[:batch_id])
         @contact = Contact.find(contact_params[:contact_id])
         @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
         format.json {
@@ -78,7 +78,7 @@ class Api::BatchesController < Api::BaseController
         }
       else
         format.json {
-          render json: { success: false, batch: @batch, message: "Group not found" }
+          render json: { success: false, message: "Please select group" }
         }
       end
     end

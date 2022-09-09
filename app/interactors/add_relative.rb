@@ -24,7 +24,7 @@ class AddRelative < Patterns::Service
   end
 
   def add_event
-    @contact.events.create(user: actor, action: "relation", action_for_context: "added a relative for", trackable: relative.contact, action_context: "Added relative")
+    @contact.events.create(user: actor, action: "relation", action_for_context: "added a relative for", trackable: relative.contact, action_context: "added relative")
   end
 
   attr_reader :contact, :actor, :relative

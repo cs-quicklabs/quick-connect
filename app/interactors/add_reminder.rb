@@ -24,7 +24,7 @@ class AddReminder < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "reminder", action_for_context: "added a reminder for", trackable: reminder, action_context: "Added reminder")
+    contact.events.create(user: actor, action: "reminder", action_for_context: "added a reminder for", trackable: reminder, action_context: "added reminder")
   end
 
   attr_reader :reminder, :actor, :contact

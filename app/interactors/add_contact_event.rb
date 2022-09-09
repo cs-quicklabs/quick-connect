@@ -32,7 +32,7 @@ class AddContactEvent < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "contact_event", action_for_context: "added a event for", trackable: contact_event, action_context: "Added event")
+    contact.events.create(user: actor, action: "contact_event", action_for_context: "added a event for", trackable: contact_event, action_context: "added event")
   end
 
   attr_reader :contact_event, :actor, :contact, :reminder
