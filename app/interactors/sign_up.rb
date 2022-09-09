@@ -19,8 +19,8 @@ class SignUp < Patterns::Service
 
   def register
     ActiveRecord::Base.transaction do
-      create_user
       create_account
+      create_user
       seed_database
     end
 
@@ -33,7 +33,6 @@ class SignUp < Patterns::Service
 
   def create_account
     account.name = user.first_name + " " + user.last_name
-    account.user = user
     account.save!
   end
 
@@ -76,6 +75,7 @@ class SignUp < Patterns::Service
       user.jti ||= SecureRandom.uuid
       user.save!
     end
+    account.update!(owner_id: user.id)
   end
 
   attr_reader :account, :user
