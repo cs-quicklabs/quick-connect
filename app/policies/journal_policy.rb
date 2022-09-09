@@ -1,6 +1,6 @@
 class JournalPolicy < ApplicationPolicy
   def update?
-    return true if record.user = user
+    true
   end
 
   def new?
@@ -16,18 +16,18 @@ class JournalPolicy < ApplicationPolicy
   end
 
   def show?
-    return true if record.user = user
+    true
   end
 
   def destroy?
-    return true if record.user = user
+    true
   end
 
   def comment?
-    return true if record.user = user
+    true
   end
 
   def edit?
-    return true if record.user = user
+    true
   end
 end

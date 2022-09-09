@@ -1,6 +1,6 @@
 class CommentPolicy < ApplicationPolicy
   def edit?
-    return true if record.user = user
+    true
   end
 
   def update?

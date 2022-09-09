@@ -1,7 +1,6 @@
 class ContactPolicy < ApplicationPolicy
   def update?
     return false if record.archived?
-    return true if record.user = user
   end
 
   def unarchive_contact?
@@ -22,7 +21,6 @@ class ContactPolicy < ApplicationPolicy
 
   def profile?
     return false if record.archived?
-    return true if record.user = user
   end
 
   def password?
@@ -39,6 +37,5 @@ class ContactPolicy < ApplicationPolicy
 
   def edit?
     return false if record.archived?
-    return true if record.user = user
   end
 end

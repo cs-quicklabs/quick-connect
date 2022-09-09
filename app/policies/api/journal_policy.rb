@@ -24,10 +24,10 @@ class Api::JournalPolicy < Api::BaseApiPolicy
   end
 
   def comment?
-    return true if record.last.user = user
+    true
   end
 
   def edit?
-    return true if record.last.user = user
+    true
   end
 end
