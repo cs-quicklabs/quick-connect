@@ -12,7 +12,11 @@
           <p class="text-sm text-gray-500">
             You
             <%=event.action_for_context%>
-            <a href="<%= contact_abouts_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.name.titleize %></a>
+            <% if event.eventable.nil? %>
+              which does not exist anymore.
+            <% else %>
+              <a href="<%= contact_abouts_path(event.eventable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>
+            <% end %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
