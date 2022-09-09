@@ -72,8 +72,7 @@ class Api::BatchesController < Api::BaseController
     respond_to do |format|
       if @batch
         @contact = Contact.find(contact_params[:contact_id])
-        @batch.contacts.destroy @contact
-        Event.create(user: @api_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from", action_context: "Removed from", eventable: @batch)
+        @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
         format.json {
           render json: { success: true, batch: @batch, message: "Contact was successfully removed from group." }
         }
