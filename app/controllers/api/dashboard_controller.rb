@@ -2,7 +2,7 @@ class Api::DashboardController < Api::BaseController
   def index
     authorize [:api, :dashboard]
     @events = Event.all.includes(:eventable, :trackable).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
-    render json: { success: true, data: @events.as_json(:include => [:eventable, :trackable]), message: "Events were successfully retrieved." }
+    render json: { success: true, data: @events.as_json(:include => [:eventable, :trackable, :account, :user]), message: "Events were successfully retrieved." }
   end
 
   def recents
@@ -11,7 +11,6 @@ class Api::DashboardController < Api::BaseController
     @contacted = Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }).limit(4) +
                  Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" }).limit(4)
     render json: { success: true, data: @contacted.sort_by { |r| r.trackable.created_at }.uniq { |r| r.eventable }.as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
-
   end
 
   def favorites
