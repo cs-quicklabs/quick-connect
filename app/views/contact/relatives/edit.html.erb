@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(@relative) do %>
-  <% @relative = @relative.decorate%>
+  <% @relative = @relative.decorate %>
   <%= tailwind_form_with(model: @relative, id: dom_id(@relative), url: contact_relative_path(@contact, @relative)) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @relative, message: local_assigns[:message] %>
@@ -8,7 +8,7 @@
       </label>
       <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "form-text-field mt-2") %>
       <div class="flex justify-end py-3">
-       <%=link_to "Back", contact_relatives_path(@contact), class: "ml-3 btn-normal " %>
+        <%= link_to "Back", contact_relatives_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Relation", class: "btn-blue" %>
       </div>
     </main>

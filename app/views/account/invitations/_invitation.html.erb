@@ -3,28 +3,24 @@
     <div class="flex items-center w-full ml-3 ">
       <p class=" text-sm font-normal text-gray-900 leading-none " style="width:50%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-bottom; ">
         <%= invitation.decorate.display_name %></p>
-         <p class="text-sm font-normal text-gray-900 " style="width:40%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-top;  ">
-        <%= invitation.email%></p>
-         </div>
-      <div class="flex justify-end " style="width:5%;">
-      <%@user= invitation.user%>
-      <% if @user.permission=="true"%>
-       <%= link_to "Deactivate"," #", class: "btn-inline-delete", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to deactivate user",
-                                 action: "confirmation#confirm", reflex: "click->InvitationReflex#deactivate", id: invitation.id 
-                               }%>
-
-        <% else %>
-          <%= link_to "Activate"," #", class: "btn-inline-edit", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to activate user",
-                                 action: "confirmation#confirm",  reflex: "click->InvitationReflex#activate", id: invitation.id 
-                               }%>
-
-          <% end %>
-     
+      <p class="text-sm font-normal text-gray-900 " style="width:40%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-top;  ">
+        <%= invitation.email %></p>
+    </div>
+    <div class="flex justify-end " style="width:5%;">
+      <% @user = invitation.user %>
+      <% if @user.permission == "true" %>
+        <%= link_to "Deactivate", " #", class: "btn-inline-delete", data: {
+                                         controller: "confirmation",
+                                         "confirmation-message-value": "Are you sure you want to deactivate user",
+                                         action: "confirmation#confirm", reflex: "click->InvitationReflex#deactivate", id: invitation.id,
+                                       } %>
+      <% else %>
+        <%= link_to "Activate", " #", class: "btn-inline-edit", data: {
+                                          controller: "confirmation",
+                                          "confirmation-message-value": "Are you sure you want to activate user",
+                                          action: "confirmation#confirm", reflex: "click->InvitationReflex#activate", id: invitation.id,
+                                        } %>
+      <% end %>
     </div>
   </li>
-
 <% end %>

@@ -27,7 +27,7 @@
     <td class="table-cell whitespace-nowrap">
       <div class="flex justify-end">
         <%= link_to "Restore", unarchive_contact_path(contact), class: "btn-inline-edit mr-2" %>
-        <%= delete_button(contact_path(contact,script_name: "/#{contact.account.id}" )) %>
+        <%= delete_button(contact_path(contact, script_name: "/#{contact.account.id}")) %>
       </div>
     </div>
   </td>

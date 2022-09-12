@@ -1,19 +1,14 @@
   <%= turbo_frame_tag "invite_form", target: "_top" do %>
-  <%= tailwind_form_with(model: invitation, id: dom_id(invitation),   url: account_invitations_path) do |f| %>
-        <div class="space-y-6">
-    <%= render "shared/form_messages", resource: invitation, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add New User", subtitle: "You can define user which can access your account." %>
-        
-              <%= f.text_field :first_name, " First Name", autocomplete: "off", class: "form-text-field"  %>
-          
-             <%= f.text_field :last_name, " Last Name", autocomplete: "off", class: "form-text-field"  %>
-           <%= f.text_field :email, "Email Address", autocomplete: "off", class: "form-text-field"  %>
- 
-      
-        <div class="flex justify-end pb-8">
-      <%= f.submit "Save", class: "btn-blue" %>
-    </div>
-      <% end %>
-
-    </div>
+  <%= tailwind_form_with(model: invitation, id: dom_id(invitation), url: account_invitations_path) do |f| %>
+    <div class="space-y-6">
+      <%= render "shared/form_messages", resource: invitation, message: local_assigns[:message] %>
+      <%= render "shared/form_header", title: "Add New User", subtitle: "You can define user which can access your account." %>
+      <%= f.text_field :first_name, " First Name", autocomplete: "off", class: "form-text-field" %>
+      <%= f.text_field :last_name, " Last Name", autocomplete: "off", class: "form-text-field" %>
+      <%= f.text_field :email, "Email Address", autocomplete: "off", class: "form-text-field" %>
+      <div class="flex justify-end pb-8">
+        <%= f.submit "Save", class: "btn-blue" %>
+      </div>
+    <% end %>
+  </div>
 <% end %>

@@ -7,30 +7,30 @@
       <div>
         <div class="text-sm">
           <a href="#" class="font-medium text-gray-900"><%= phone_call.user.decorate.display_name %></a>
-          <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-xs font-medium bg-<%=phone_call.decorate.display_status_color%>-400 text-<%=phone_call.decorate.display_status_color%>-800"> <%= phone_call.decorate.display_status %></span>
+          <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded-full text-xs font-medium bg-<%= phone_call.decorate.display_status_color %>-400 text-<%= phone_call.decorate.display_status_color %>-800"> <%= phone_call.decorate.display_status %></span>
         </div>
         <div class="mt-1 text-sm text-gray-700">
-           <p
+          <p
    x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-          <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= phone_call.body.upcase_first %></span>
-                       <button
+            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= phone_call.body.upcase_first %></span>
+            <button
       @click="isCollapsed = !isCollapsed"
       x-show="originalContent.length > maxLength"
-          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-          ></button>
-        </div>
-        <div class="mt-2 space-x-2 text-sm">
-          <span class="font-medium text-gray-500"><%= display_date(phone_call.date) %></span>
-          <% if policy([@contact, phone_call]).edit? %>
-            <%= edit_button(edit_contact_phone_call_path(@contact, phone_call)) %>
-          <% end %>
-          <% if policy([@contact, phone_call]).destroy? %>
-            <%= delete_button(contact_phone_call_path(@contact, phone_call)) %>
-          <% end %>
+              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+              ></button>
+          </div>
+          <div class="mt-2 space-x-2 text-sm">
+            <span class="font-medium text-gray-500"><%= display_date(phone_call.date) %></span>
+            <% if policy([@contact, phone_call]).edit? %>
+              <%= edit_button(edit_contact_phone_call_path(@contact, phone_call)) %>
+            <% end %>
+            <% if policy([@contact, phone_call]).destroy? %>
+              <%= delete_button(contact_phone_call_path(@contact, phone_call)) %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-  <% end %>
-</li>
+    <% end %>
+  </li>
