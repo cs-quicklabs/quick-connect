@@ -15,8 +15,8 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, Batch]
     respond_to do |format|
-      if params[:batch_id]
-        @batch = Batch.find(params[:batch_id])
+      if batch_params[:batch_id]
+        @batch = Batch.find(batch_params[:batch_id])
         @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
         format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
       else
@@ -30,8 +30,8 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
   def create
     authorize [:api, @contact, Batch]
     respond_to do |format|
-      if params[:batch_id]
-        @batch = Batch.find(params[:batch_id])
+      if batch_params[:batch_id]
+        @batch = Batch.find(batch_params[:batch_id])
         @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
         format.json { render json: { batch: @batch, success: true, data: @contact, message: "Contact added successfully in batch" } }
       else
