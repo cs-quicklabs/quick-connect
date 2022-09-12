@@ -10,7 +10,6 @@ class DashboardController < BaseController
 
     @contacted = (Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }).limit(4) +
                   Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" }).limit(4)).sort_by { |r| r.created_at }
-
   end
 
   def events

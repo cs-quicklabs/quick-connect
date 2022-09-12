@@ -22,8 +22,8 @@
                     </tr>
                   </thead>
                   <tbody class="table-body" id="batches" data-infinite-scroll-target="entries">
-                     <% @contact.batches.uniq.each do |batch|%>          
-       <%= render "batch", {batch: batch, contact:@contact} %>
+                     <% @contact.batches.uniq.each do |batch| %>          
+       <%= render "batch", { batch: batch, contact: @contact } %>
         <% end %>
                   </tbody>
                 </table>
@@ -41,7 +41,7 @@
               <h2 class="sr-only" id="section-2-title">Add Contact To Group </h2>
               <div class="overflow-hidden bg-white">
                 <div class="px-4">
-                  <%= render partial: "form", locals: { groups: @groups, contact:@contact } %>
+                  <%= render partial: "form", locals: { groups: @groups, contact: @contact } %>
                 </div>
               </div>
             </section>

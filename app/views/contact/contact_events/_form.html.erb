@@ -15,10 +15,10 @@
             <label for="group" class="block  text-sm font-medium text-gray-700">
               Select Group
             </label>
-          <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#event"  data-contact-id="<%=contact.id%>">
+          <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#event"  data-contact-id="<%= contact.id %>">
             <option value="" >Select Group</option>
-          <% Group.all.where(category:"event").order(:name).decorate.each do |group|%>
-           <li > <option value="<%=group.id%>" data-group-id="<%=group.id%>"><%=group.display_name%>
+          <% Group.all.where(category: "event").order(:name).decorate.each do |group| %>
+           <li > <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
           <% end %>
           </select>
           </div>

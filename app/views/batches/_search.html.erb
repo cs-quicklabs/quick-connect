@@ -1,4 +1,4 @@
-<%=form_with(url: "/#{batch.account.id}/batches/#{batch.id}/add", id: "search") do |form|%>
+<%= form_with(url: "/#{batch.account.id}/batches/#{batch.id}/add", id: "search") do |form| %>
    <% if local_assigns[:message] && defined?(message) && !message.nil? %>
                <div class="p-4 rounded-md bg-red-50" id="error_explanation">
     <div class="flex">
@@ -20,7 +20,7 @@
     </div>
      <% end %>
               <div class=" flex space-x-4 py-4 ">
-                <div class="flex-1 min-w-0" x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/add?batch_id=<%=batch.id%>" >
+                <div class="flex-1 min-w-0" x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/add?batch_id=<%= batch.id %>" >
                   <label for="search" class="block  text-sm font-medium text-gray-700   " >Search To Add Contact</label>
                          <div class=" flex mt-1">
                   <div class="flex flex-1 relative rounded-md shadow-sm"   >
@@ -33,7 +33,7 @@
                     <input type="search" name="search" id="search" class="block w-full  pl-10 form-text-field " placeholder="Search" data-nav-search-target="input" @keyup="isShowing = true" >
                
                   </div>
-                    <%=form.hidden_field :search_id%>
+                    <%= form.hidden_field :search_id %>
                   <div class="flex justify-end">  
       <%= form.submit "Add", class: "btn-blue" %>
     </div>

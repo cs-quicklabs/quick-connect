@@ -12,7 +12,7 @@
       <label for="date" class="block text-sm font-medium text-gray-700">
         How did you communicate
       </label>
-      <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id,:display_name,  { :prompt => "Select Contact Field Type" }, :class => "cursor-pointer form-text-field mt-1")  %>
+      <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Contact Field Type" }, :class => "cursor-pointer form-text-field mt-1") %>
     </div>
     <%= form.text_area :body, "Conversation", class: "form-text-field h-24" %>
     <div class="flex justify-end">

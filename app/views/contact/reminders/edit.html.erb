@@ -1,7 +1,7 @@
   <%= tailwind_form_with(model: @reminder, id: dom_id(@reminder), url: contact_reminder_path(@contact, @reminder)) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
   <%= render "shared/form_messages", resource: @reminder, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Edit Reminder", subtitle: "Edit reminder for #{@reminder.contact.decorate.display_name}"%>
+    <%= render "shared/form_header", title: "Edit Reminder", subtitle: "Edit reminder for #{@reminder.contact.decorate.display_name}" %>
       <%= form.text_field :title, "Please remind me to…", class: " form-text-field " %>
     <div>
   
@@ -13,19 +13,19 @@
     <div class="w-full ">
       <div class="block max-w-lg space-x-8 mt-1">
         <div class="inline-flex space-x-2 ">
-          <%= form.radio_button :reminder_type, 'once', class: "mt-1 cursor-pointer", :checked => true %>
-          <%= form.label :reminder_type_once, 'Once', class:" cursor-pointer text-sm font-medium text-gray-700"  %>
+          <%= form.radio_button :reminder_type, "once", class: "mt-1 cursor-pointer", :checked => true %>
+          <%= form.label :reminder_type_once, "Once", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
         <div class="inline-flex space-x-2 pl-4  ">
-          <%= form.radio_button :reminder_type, 'multiple', class: "mt-1 cursor-pointer", :checked => true %>
-           <%= form.label :reminder_type, 'Remind me about this every', class:" cursor-pointer text-sm font-medium text-gray-700"  %>
+          <%= form.radio_button :reminder_type, "multiple", class: "mt-1 cursor-pointer", :checked => true %>
+           <%= form.label :reminder_type, "Remind me about this every", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
               </div>
     </div>
      <div class="w-full ">
       <div class="block max-w-lg space-x-8 mt-1">
         <div class="inline-flex space-x-2">
-          <%=form.number_field 'remind_after', min:"1",  :class => "inline-flex appearance-none block  px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"%>
+          <%= form.number_field "remind_after", min: "1", :class => "inline-flex appearance-none block  px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
           </div>
           <div class="inline-flex space-x-2 pl-2 ">
             <%= form.select(:status, [["Week", "week"], ["month", "month"], ["Year", "year"]], {}, :class => "inline-flex  appearance-none block   py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") %>
@@ -36,7 +36,7 @@
     <%= form.text_area :comments, "Comments (optional)", class: "resize-y form-text-field h-20" %>
    
       <div class="flex justify-end">
-       <%=link_to "Back", contact_reminders_path(@contact), class: "ml-3 btn-normal " %>
+       <%= link_to "Back", contact_reminders_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Reminder", class: "btn-blue" %>
       </div>
     </main>

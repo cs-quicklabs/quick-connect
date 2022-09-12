@@ -1,5 +1,5 @@
 
-    <%= form_with(id:"form", url: "/#{current_user.account.id}/contacts/#{contact.id}/batches") do |form| %>
+    <%= form_with(id: "form", url: "/#{current_user.account.id}/contacts/#{contact.id}/batches") do |form| %>
       <div class="space-y-6 px-4 pt-6  mx-auto">
                  <% if local_assigns[:message] && defined?(message) && !message.nil? %>
                <div class="p-4 rounded-md bg-red-50" id="error_explanation">
@@ -29,9 +29,9 @@
             </label>
           <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
             <option value="" >Select Group</option>
-            <%if groups.count>0%>
-          <% groups.each do |group|%>
-           <li > <option value="<%=group.id%>"><%=group.name.titleize%>
+            <% if groups.count > 0 %>
+          <% groups.each do |group| %>
+           <li > <option value="<%= group.id %>"><%= group.name.titleize %>
           <% end %>
           <% end %>
           </select>

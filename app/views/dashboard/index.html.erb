@@ -2,8 +2,8 @@
 <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2 ">
   <!-- Left column -->
   <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
-    <div class="grid grid-cols-1 lg:col-span-2  top-16  pt-6 h-full pb-10 border-r xl:border-gray-200 ">
-      <%if @contacted.count>0%>
+    <div class="top-16  pt-6 h-full pb-10 border-r xl:border-gray-200 ">
+      <% if @contacted.count > 0 %>
         <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white px-4">
             <div class="px-4">
@@ -21,14 +21,14 @@
           </div>
         </section>
       <% end %>
-      <%@favorites=Contact.all.available.favorites.limit(8)%>
-      <%if @favorites.count>0%>
+      <% @favorites = Contact.all.available.favorites.limit(8) %>
+      <% if @favorites.count > 0 %>
         <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white px-4">
             <div class="px-4">
               <div class="flex items-center justify-between pt-2 pb-6 ">
                 <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
-                <% if @favorites.count>8%>
+                <% if @favorites.count > 8 %>
                   <div class="flex sm:mt-0 sm:ml-4 ">
                     <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
                   </div>
@@ -59,12 +59,12 @@
               <div class=" flex   bg-white font-sans  px-2">
                 <div class="flex   w-full max-w-lg space-y-2 ">
                   <ul>
-                    <%  for num in 0..2 do%>
-                      <p class="  text-sm font-medium text-gray-900 truncate"><%=Date::MONTHNAMES[Date.today.month+num]%> <%=Date.today.year%></p>
-                      <%if @upcoming_reminders.size>0%>
-                        <%if @upcoming_reminders[(Date.today+num.months).beginning_of_month]%>
+                    <% for num in 0..2 %>
+                      <p class="  text-sm font-medium text-gray-900 truncate"><%= Date::MONTHNAMES[Date.today.month + num] %> <%= Date.today.year %></p>
+                      <% if @upcoming_reminders.size > 0 %>
+                        <% if @upcoming_reminders[(Date.today + num.months).beginning_of_month] %>
                           <div class="py-4">
-                            <%= render "upcoming", {reminder: @upcoming_reminders[(Date.today+num.months).beginning_of_month]}%>
+                            <%= render "upcoming", { reminder: @upcoming_reminders[(Date.today + num.months).beginning_of_month] } %>
                           </div>
                         <% else %>
                           <div class="py-4">
@@ -100,9 +100,4 @@
       </div>
     </section>
   </div>
-</div>
-</div>
-</main>
-</main>
-</div>
 </div>
