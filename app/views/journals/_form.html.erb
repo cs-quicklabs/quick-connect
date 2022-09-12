@@ -5,7 +5,7 @@
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description", class: "h-24 form-text-field" %>
     <div class="flex justify-end">
-     <%= link_to "Back", journals_path(@contact), class: "ml-3 btn-normal " %>
+      <%= link_to "Back", journals_path(@contact), class: "ml-3 btn-normal " %>
       <%= form.submit "Save", class: "btn-blue" %>
     </div>
   </main>

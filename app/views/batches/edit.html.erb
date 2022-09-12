@@ -9,21 +9,18 @@
         </ul>
       <% end %>
     </div>
-     <li class="flex w-full py-4 border-b border-gray-200">
+    <li class="flex w-full py-4 border-b border-gray-200">
       <div class="flex-1 min-w-0 w-full " >
-   <label for="group" class="block  text-sm font-medium text-gray-700    " >Edit Group</label>
-  <div class=" flex  ">
- 
-                <div class="flex-1 "  >
-               
-                     <%= form.text_field :name, autocomplete: "off", class: "form-text-field mt-1" %>
-               
-                  </div>
-                  <div class="flex justify-end">  
-      <%= form.submit "Add", class: "btn-blue" %>
-    </div>
-                </div>
-</div>
+        <label for="group" class="block  text-sm font-medium text-gray-700    " >Edit Group</label>
+        <div class=" flex  ">
+          <div class="flex-1 "  >
+            <%= form.text_field :name, autocomplete: "off", class: "form-text-field mt-1" %>
+          </div>
+          <div class="flex justify-end">
+            <%= form.submit "Add", class: "btn-blue" %>
+          </div>
+        </div>
+      </div>
     </li>
   <% end %>
 <% end %>

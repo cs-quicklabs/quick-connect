@@ -1,8 +1,6 @@
 <% activities.each do |group, activity| %>
   <p class="w-full text-base   font-medium text-gray-900 flex pt-4  "><%= group.name.titleize %></p>
   <% activity.each do |sub_activity| %>
-  
     <%= render "activity", { activity: sub_activity } %>
-
   <% end %>
 <% end %>

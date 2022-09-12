@@ -1,36 +1,34 @@
-
-    <%= tailwind_form_with(model: contact_activity, id: dom_id(contact_activity), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_activities") do |form| %>
-      <div class="space-y-6 px-4 pt-6  mx-auto">
-        <%= render "shared/form_messages", resource: contact_activity, message: local_assigns[:message] %>
-        <%= render "shared/form_header", title: "Add Activity", subtitle: "A activity can be added to a contact which can help you remember important things." %>
-        <%= form.text_field :title, "Title", autocomplete: "off" %>
-        <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
-        <div>
-          <label for="date" class="block text-sm font-medium text-gray-700">
-            Date
-          </label>
-          <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
-        </div>
-          <div class="">
-            <label for="group" class="block  text-sm font-medium text-gray-700">
-              Select Group
-            </label>
-          <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%= contact.id %>">
-            <option value="" >Select Group</option>
-          <% Group.all.where(category: "activity").order(:name).decorate.each do |group| %>
-           <li class="cursor-pointer"> <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
-          <% end %>
+<%= tailwind_form_with(model: contact_activity, id: dom_id(contact_activity), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_activities") do |form| %>
+  <div class="space-y-6 px-4 pt-6  mx-auto">
+    <%= render "shared/form_messages", resource: contact_activity, message: local_assigns[:message] %>
+    <%= render "shared/form_header", title: "Add Activity", subtitle: "A activity can be added to a contact which can help you remember important things." %>
+    <%= form.text_field :title, "Title", autocomplete: "off" %>
+    <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
+    <div>
+      <label for="date" class="block text-sm font-medium text-gray-700">
+        Date
+      </label>
+      <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+    </div>
+    <div class="">
+      <label for="group" class="block  text-sm font-medium text-gray-700">
+        Select Group
+      </label>
+      <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%= contact.id %>">
+        <option value="" >Select Group</option>
+        <% Group.all.where(category: "activity").order(:name).decorate.each do |group| %>
+          <li class="cursor-pointer"> <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
+            <% end %>
           </select>
-          </div>
-          <div id="activity">
-            <label for="group" class="block  text-sm font-medium text-gray-700">
-              Select Activity
-            </label>
-            <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
-          </div>
+        </div>
+        <div id="activity">
+          <label for="group" class="block  text-sm font-medium text-gray-700">
+            Select Activity
+          </label>
+          <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
+        </div>
         <div class="flex justify-end ">
           <%= form.submit "Add Activity", class: "btn-blue" %>
         </div>
       </div>
     <% end %>
-

@@ -189,6 +189,7 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
+    htmlbeautifier (1.4.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
@@ -255,8 +256,6 @@ GEM
     newrelic_rpm (8.10.0)
     nio4r (2.5.8)
     nokogiri (1.13.8-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (5.10.1)
@@ -394,7 +393,6 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.0-x86_64-darwin)
-    sqlite3 (1.5.0-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
@@ -452,7 +450,6 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
   acts_as_tenant
@@ -472,6 +469,7 @@ DEPENDENCIES
   font-awesome-rails
   hiredis
   hotwire-rails (~> 0.1.3)
+  htmlbeautifier
   image_processing (~> 1.12)
   importmap-rails
   jbuilder (~> 2.7)
@@ -521,4 +519,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.0
+   2.3.22

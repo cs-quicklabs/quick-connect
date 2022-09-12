@@ -10,22 +10,22 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-              <% if event.account.owner_id == event.user_id %> 
-          you
-          <% else %>
-          <%= event.user.decorate.display_name %>
-          <% end %>
+            <% if event.account.owner_id == event.user_id %>
+              you
+            <% else %>
+              <%= event.user.decorate.display_name %>
+            <% end %>
             <%= event.action_for_context %>
-              <% if event.eventable.nil? %>
-               which does not exist anymore.
+            <% if event.eventable.nil? %>
+              which does not exist anymore.
             <% else %>
-             <a href="<%= contact_batches_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %> </a>
-<% end %>
- <% if event.trackable.nil? %>
-               which does not exist anymore.
+              <a href="<%= contact_batches_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %> </a>
+            <% end %>
+            <% if event.trackable.nil? %>
+              which does not exist anymore.
             <% else %>
-          from   <a href="<%= batches_path %>"  class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %> </a>
-<% end %>
+              from   <a href="<%= batches_path %>"  class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %> </a>
+            <% end %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
