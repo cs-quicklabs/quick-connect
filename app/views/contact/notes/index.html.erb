@@ -11,7 +11,7 @@
             <div class="overflow-hidden bg-white" >
               <div class="p-4">
                 <div class="flex flex-wrap">
-                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Notes" %> (<%= @pagy.count.to_s  %>)</p>
+                  <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Notes" %> (<%= @pagy.count.to_s %>)</p>
                 </div>
                 <ul class="divide-y divide-gray-200" id="notes" data-infinite-scroll-target="entries">
                   <%= render partial: "note", collection: @notes, as: :note, cached: true %>

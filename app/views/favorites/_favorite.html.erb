@@ -1,5 +1,5 @@
 <% favorite = favorite.decorate %>
-<%  @event = favorite.events.order(created_at: :desc).first%>
+<% @event = favorite.events.order(created_at: :desc).first %>
 <tr id="<%= dom_id(favorite) %>">
   <td class="table-cell " style="width: 33.333333%;">
     <div class="relative cursor-pointer  py-5 flex items-center space-x-3 " id="show" >
@@ -7,7 +7,7 @@
         <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
       </div>
       <div class="flex-1 min-w-0">
-        <a href="<%=contact_abouts_path(favorite)%>">
+        <a href="<%= contact_abouts_path(favorite) %>">
           <!-- Extend touch target to entire panel -->
           <span class="absolute inset-0" aria-hidden="true"></span>
           <p class="text-sm font-medium text-gray-900" ><%= favorite.display_name %></p>
@@ -29,7 +29,7 @@
   </td>
   <td class="table-cell whitespace-nowrap">
     <p class=" text-sm font-normal text-gray-500 truncate">
-      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event)%>
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
     </p>
   </td>
 </tr>

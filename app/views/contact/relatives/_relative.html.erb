@@ -7,27 +7,26 @@
         </div>
         <div class="flex-1 px-4 md:grid md:grid-cols-8 md:gap-4">
           <div>
-    <% if @contact.id!=relative.contact_id %>
-  
-       <%= link_to relative.contact.decorate.display_name, contact_abouts_path(relative.contact), class:"text-sm font-medium text-gray-900 whitespace-nowrap hover:underline", target:"_top" %>
- <% else %>
-  <%= link_to relative.first_contact.decorate.display_name, contact_abouts_path(relative.first_contact),  class:"text-sm font-medium text-gray-900 whitespace-nowrap  hover:underlines",target:"_top"  %>
-              <% end %> 
-              <p class="flex items-center mt-1 text-sm text-gray-500 whitespace-nowrap"><%= relative.relation.decorate.display_name%></p>
-            </a>
-          </div>
+            <% if @contact.id != relative.contact_id %>
+              <%= link_to relative.contact.decorate.display_name, contact_abouts_path(relative.contact), class: "text-sm font-medium text-gray-900 whitespace-nowrap hover:underline", target: "_top" %>
+            <% else %>
+              <%= link_to relative.first_contact.decorate.display_name, contact_abouts_path(relative.first_contact), class: "text-sm font-medium text-gray-900 whitespace-nowrap  hover:underlines", target: "_top" %>
+            <% end %>
+            <p class="flex items-center mt-1 text-sm text-gray-500 whitespace-nowrap"><%= relative.relation.decorate.display_name %></p>
+          </a>
         </div>
-        <div class="flex col-span-1">
-          <div class="whitespace-nowrap">
-            <% if policy([@contact, relative]).edit? %>
-              <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
-            <% end %>
-            <% if policy([@contact, relative]).destroy? %>
-              <%= delete_button(contact_relative_path(@contact, relative)) %>
-            <% end %>
-          </div>
+      </div>
+      <div class="flex col-span-1">
+        <div class="whitespace-nowrap">
+          <% if policy([@contact, relative]).edit? %>
+            <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
+          <% end %>
+          <% if policy([@contact, relative]).destroy? %>
+            <%= delete_button(contact_relative_path(@contact, relative)) %>
+          <% end %>
         </div>
       </div>
     </div>
-  <% end %>
+  </div>
+<% end %>
 </li>

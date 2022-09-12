@@ -1,45 +1,39 @@
-                 <section aria-labelledby="participants_section" id="show" >
-          <div class="overflow-hidden bg-white h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain" >
-            <div class="px-4 sm:px-6 py-6">
-                             <div class="flex items-center justify-between ">
-                <div class="flex flex-wrap items-baseline ">
-                  <h1 class="text-3xl font-bold leading-tight text-gray-900"><%=batch.name.titleize%></h1>
-                  <%@contacts=batch.contacts.uniq%>
-                  <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @contacts.count.to_s  %>)</p>
-                </div>
-              </div>
-<div  class=" py-6 ">
-
- <%= render "search", batch: batch %>   
-    <div class="relative px-6 py-2 h-full "> 
-
- </div>
-  <nav class="flex-1  "  >
-          <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full  "   id="batch_contacts"> 
-             <% if @contacts.count>0%>     
-                  <% @contacts.each do |contact|%>          
-              
-       
-       <%= render "contact", {batch: batch, contact:contact} %>
-        <% end %>
-<% else %>
-                <div class="w-full text-center sm:rounded-lg place-content-center">
-                  <div class="px-4 py-6 sm:px-6">
-                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
-                      No result found
-                    </h3>
-                    <div class="mt-2 text-sm text-center text-gray-500">
-                      <p>We have not found any result.</p>
-                    </div>
+                 
+<section aria-labelledby="participants_section" id="show" >
+  <div class="overflow-hidden bg-white h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain" >
+    <div class="px-4 sm:px-6 py-6">
+      <div class="flex items-center justify-between ">
+        <div class="flex flex-wrap items-baseline ">
+          <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= batch.name.titleize %></h1>
+          <% @contacts = batch.contacts.uniq %>
+          <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @contacts.count.to_s %>)</p>
+        </div>
+      </div>
+      <div  class=" py-6 ">
+        <%= render "search", batch: batch %>
+        <div class="relative px-6 py-2 h-full ">
+        </div>
+        <nav class="flex-1  "  >
+          <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full  "   id="batch_contacts">
+            <% if @contacts.count > 0 %>
+              <% @contacts.each do |contact| %>
+                <%= render "contact", { batch: batch, contact: contact } %>
+              <% end %>
+            <% else %>
+              <div class="w-full text-center sm:rounded-lg place-content-center">
+                <div class="px-4 py-6 sm:px-6">
+                  <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                    No result found
+                  </h3>
+                  <div class="mt-2 text-sm text-center text-gray-500">
+                    <p>We have not found any result.</p>
                   </div>
                 </div>
-              </nav>
-            <% end %>
-      
-       
-           </ul>
-                </div>
               </div>
-              </div>
-            </section>
-    
+            </nav>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

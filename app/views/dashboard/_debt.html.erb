@@ -10,12 +10,12 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-             <%if event.account.owner_id==event.user_id%> 
-          you
-          <% else %>
-          <%=event.user.decorate.display_name%>
-          <% end %>
-            <%=event.action_for_context%>
+            <% if event.account.owner_id == event.user_id %>
+              you
+            <% else %>
+              <%= event.user.decorate.display_name %>
+            <% end %>
+            <%= event.action_for_context %>
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>

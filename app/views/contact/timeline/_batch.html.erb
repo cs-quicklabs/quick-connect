@@ -10,16 +10,16 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-             <%if event.account.owner_id==event.user_id%> 
+             <% if event.account.owner_id == event.user_id %> 
            you
           <% else %>
-          <%=event.user.decorate.display_name%>
+          <%= event.user.decorate.display_name %>
           <% end %>
-           <%=event.action_context%>
+           <%= event.action_context %>
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-              <a href="<%= batches_path(:batch_id=>event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%=event.trackable.decorate.display_name%></a>
+              <a href="<%= batches_path(:batch_id => event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>
             <% end %>
           </p>
         </div>
