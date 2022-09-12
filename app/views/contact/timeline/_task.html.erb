@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500">
             <% if event.account.owner_id == event.user_id %>
-              you
+              You
             <% else %>
               <%= event.user.decorate.display_name %>
             <% end %>
