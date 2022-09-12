@@ -8,13 +8,13 @@
             <%= form.hidden_field :"user_id", :value => current_user.id %>
             <%= form.hidden_field :"journal_id", :value => @comment.journal.id %>
             <div>
-             <label for="owned_by" class="block text-sm font-medium text-gray-700">
-          Edit Comment
-        </label>
+              <label for="owned_by" class="block text-sm font-medium text-gray-700">
+                Edit Comment
+              </label>
               <textarea id="comment" name="comment[title]" rows="3" class="form-text-field mt-1" placeholder="Add a comment"><%= @comment.title %></textarea>
             </div>
             <div class="flex items-center justify-between mt-4">
-              <div class="flex">  
+              <div class="flex">
               </div>
               <div   class="justify-end ">
                 <!-- This example requires Tailwind CSS v2.0+ -->

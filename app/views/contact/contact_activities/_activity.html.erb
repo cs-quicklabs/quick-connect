@@ -1,32 +1,32 @@
   <%= turbo_frame_tag dom_id(contact_activity) do %>
-<li class="">
-    <div class="flex mt-6 space-x-3"> 
+  <li class="">
+    <div class="flex mt-6 space-x-3">
       <div>
         <div class="text-sm text-gray-900 font-medium">
-          <p class="whitespace-pre-wrap"><%= contact_activity.title.upcase_first %> (<%= contact_activity.activity.name.upcase_first%>)</p>
+          <p class="whitespace-pre-wrap"><%= contact_activity.title.upcase_first %> (<%= contact_activity.activity.name.upcase_first %>)</p>
         </div>
         <div class="mt-1 text-sm text-gray-700">
           <p
    x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-          <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= contact_activity.body.upcase_first %></span>
-                       <button
+            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= contact_activity.body.upcase_first %></span>
+            <button
       @click="isCollapsed = !isCollapsed"
       x-show="originalContent.length > maxLength"
-          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-          ></button>
-        </div>
- <div class="mt-2 space-x-2 text-sm">
-          <span class="font-medium text-gray-500"><%= display_date(contact_activity.date) %></span>
-          <% if policy([@contact, contact_activity]).edit? %>
-            <%= edit_button(edit_contact_contact_activity_path(@contact, contact_activity)) %>
-          <% end %>
-          <% if policy([@contact, contact_activity]).destroy? %>
-            <%= delete_button(contact_contact_activity_path(@contact, contact_activity)) %>
-          <% end %>
+              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+              ></button>
+          </div>
+          <div class="mt-2 space-x-2 text-sm">
+            <span class="font-medium text-gray-500"><%= display_date(contact_activity.date) %></span>
+            <% if policy([@contact, contact_activity]).edit? %>
+              <%= edit_button(edit_contact_contact_activity_path(@contact, contact_activity)) %>
+            <% end %>
+            <% if policy([@contact, contact_activity]).destroy? %>
+              <%= delete_button(contact_contact_activity_path(@contact, contact_activity)) %>
+            <% end %>
+          </div>
         </div>
       </div>
-    </div>
-</li>
-<% end %>
+    </li>
+  <% end %>

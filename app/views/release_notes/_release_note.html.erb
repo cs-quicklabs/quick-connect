@@ -2,7 +2,7 @@
   <div class=" w-full">
     <%= link_to release_note.title.upcase_first, release_note_path(release_note), class: "btn-intdne-edit  hover:underline" %>
     <div class=" mt-1 text-sm font-normal text-gray-500 line-clamp ">
-      <%=release_note.body%>
+      <%= release_note.body %>
     </div>
     <div class=" w-full flex">
       <span class="inline-flex font-normal items-center mt-1 text-sm text-gray-500"><%= display_created_at(release_note) %></span>

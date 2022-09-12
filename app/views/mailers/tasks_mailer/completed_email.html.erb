@@ -1,3 +1,0 @@
-<p>Dear <%= @actor.decorate.display_name %>!</p>
-<p> A Task for <%= @contact.decorate.display_name %> has been marked as complete. Please click link below to see more details:</p>
-<p><%= link_to "Show Task", contact_task_url(@contact, @task, script_name: "/#{@contact.account.id}") %></p>
