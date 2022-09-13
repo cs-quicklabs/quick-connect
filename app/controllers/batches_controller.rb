@@ -45,6 +45,7 @@ class BatchesController < BaseController
 
     respond_to do |format|
       if @batch.update(batch_params)
+        Event.where(trackable: @batch).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, partial: "batches/batch", locals: { batch: @batch, message: nil }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, template: "batches/edit", locals: { batch: @batch, messages: @batch.errors.full_messages }) }

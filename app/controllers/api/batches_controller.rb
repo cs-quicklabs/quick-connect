@@ -35,6 +35,7 @@ class Api::BatchesController < Api::BaseController
 
     respond_to do |format|
       if @batch.update(batch_params)
+        Event.where(trackable: @batch).touch_all
         format.json { render json: { success: true, data: @batch, message: "Group was successfully updated." } }
       else
         format.json { render json: { success: false, message: @batch.errors.full_messages.first } }
