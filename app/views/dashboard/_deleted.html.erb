@@ -9,14 +9,14 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-500 inline-flex">  <% if event.account.owner_id == event.user_id %> 
-          you
-          <% else %>
-          <%= event.user.decorate.display_name %>
-          <% end %>
+          <p class="text-sm text-gray-500 inline-flex">  <% if event.account.owner_id == event.user_id %>
+              You
+            <% else %>
+              <%= event.user.decorate.display_name %>
+            <% end %>
             <%= event.action_for_context %>
             <% if !event.eventable.nil? %>
-             <p class="font-medium text-sm text-gray-900 inline-flex ml-1">  <%= " " + event.eventable.decorate.display_name %></p>
+              <p class="font-medium text-sm text-gray-900 inline-flex ml-1">  <%= " " + event.eventable.decorate.display_name %></p>
             <% end %>
           </p>
         </div>
