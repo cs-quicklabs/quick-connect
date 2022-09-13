@@ -29,6 +29,7 @@ class BatchesController < BaseController
 
     respond_to do |format|
       if @batch.save
+        Event.create(user: current_user, action: "group", action_for_context: "added a group", trackable: @batch)
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batches, partial: "batches/batch", locals: { batch: @batch }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
@@ -44,6 +45,7 @@ class BatchesController < BaseController
 
     respond_to do |format|
       if @batch.update(batch_params)
+        Event.where(trackable: @batch).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, partial: "batches/batch", locals: { batch: @batch, message: nil }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, template: "batches/edit", locals: { batch: @batch, messages: @batch.errors.full_messages }) }
@@ -85,8 +87,8 @@ class BatchesController < BaseController
 
   def destroy
     authorize :batch
-
     @batch.destroy
+    Event.create(user: current_user, action: "deleted", action_for_context: "deleted a group")
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end

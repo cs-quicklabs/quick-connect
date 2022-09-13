@@ -20,6 +20,7 @@ class Api::BatchesController < Api::BaseController
 
     respond_to do |format|
       if @batch.save
+        Event.create(user: @api_user, action: "group", action_for_context: "added a group", trackable: @batch)
         format.json {
           render json: { success: true, data: @batch, message: "Group was successfully created." }
         }
@@ -34,6 +35,7 @@ class Api::BatchesController < Api::BaseController
 
     respond_to do |format|
       if @batch.update(batch_params)
+        Event.where(trackable: @batch).touch_all
         format.json { render json: { success: true, data: @batch, message: "Group was successfully updated." } }
       else
         format.json { render json: { success: false, message: @batch.errors.full_messages.first } }
@@ -87,6 +89,7 @@ class Api::BatchesController < Api::BaseController
   def destroy
     authorize :batch
     @batch.destroy
+    Event.create(user: @api_user, action: "deleted", action_for_context: "deleted a group")
     respond_to do |format|
       format.json { render json: { success: true, message: "Group has been deleted." } }
     end

@@ -16,11 +16,6 @@
               <%= event.user.decorate.display_name %>
             <% end %>
             <%= event.action_context %>
-            <% if event.trackable.nil? %>
-              which does not exist anymore.
-            <% else %>
-              <a href="<%= contact_phone_calls_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline">Phone Call</a>
-            <% end %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">

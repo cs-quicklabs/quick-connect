@@ -1,4 +1,4 @@
-<main class="relative z-0 flex-1 overflow-y-visible focus:outline-none h-screen">
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none h-screen">
   <%= render partial: "contact/title", locals: { contact: @contact } %>
   <main class="pb-8">
     <div class="">
@@ -36,10 +36,10 @@
         </div>
         <!-- Right column -->
         <% if policy([@contact, Batch]).create? %>
-          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
+          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
             <section aria-labelledby="add-participant-section">
               <h2 class="sr-only" id="section-2-title">Add Contact To Group </h2>
-              <div class="overflow-hidden bg-white">
+              <div class=" bg-white">
                 <div class="px-4">
                   <%= render partial: "form", locals: { groups: @groups, contact: @contact } %>
                 </div>
@@ -50,6 +50,4 @@
       </div>
     </div>
   </main>
-  <div class="pt-4 pl-16 pr-16">
-  </div>
 </main>

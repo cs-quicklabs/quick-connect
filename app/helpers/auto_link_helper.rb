@@ -70,21 +70,6 @@ module AutoLinkHelper
 
         private
 
-        AUTO_LINK_RE = %r{
-                (?: ((?:ed2k|ftp|http|https|irc|mailto|news|gopher|nntp|telnet|webcal|xmpp|callto|feed|svn|urn|aim|rsync|tag|ssh|sftp|rtsp|afs|file):)// | www\. )
-                [^\s<\u00A0"]+
-              }ix
-
-        # regexps for determining context, used high-volume
-        AUTO_LINK_CRE = [/<[^>]+$/, /^[^>]*>/, /<a\b.*?>/i, /<\/a>/i]
-
-        AUTO_EMAIL_LOCAL_RE = /[\w.!#\$%&'*\/=?^`{|}~+-]/
-        AUTO_EMAIL_RE = /(?<!#{AUTO_EMAIL_LOCAL_RE})[\w.!#\$%+-]\.?#{AUTO_EMAIL_LOCAL_RE}*@[\w-]+(?:\.[\w-]+)+/
-
-        BRACKETS = { "]" => "[", ")" => "(", "}" => "{" }
-
-        WORD_PATTERN = RUBY_VERSION < "1.9" ? '\w' : '\p{Word}'
-
         # Turns all urls into clickable links.  If a block is given, each url
         # is yielded and the result is used as the link text.
         def auto_link_urls(text, html_options = {}, options = {})

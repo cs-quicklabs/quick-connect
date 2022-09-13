@@ -1,9 +1,9 @@
-
-<% @contacts.each do |contact| %>
-  <li role="option"  id="add-relation" data-reflex="click->ContactRelation#add" data-contact-id="<%= contact.id %>"  data-profile-id="<%= @profile %>" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-    <%= contact.decorate.display_name %>
-  </li>
-<% end %>
+<% if @contacts.count > 0 %>
+  <% @contacts.each do |contact| %>
+    <li role="option"  id="add-relation" data-reflex="click->ContactRelation#add" data-contact-id="<%= contact.id %>"  data-profile-id="<%= @profile %>" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
+      <%= contact.decorate.display_name %>
+    </li>
+  <% end %>
 <% else %>
-<li role="option" class="px-4 py-2 text-sm text-gray-500">No Record Found</li>
+  <li role="option" class="px-4 py-2 text-sm text-gray-500">No Record Found</li>
 <% end %>
