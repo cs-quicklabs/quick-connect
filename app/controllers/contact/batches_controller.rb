@@ -18,17 +18,17 @@ class Contact::BatchesController < Contact::BaseController
 
   def create
     authorize [@contact, Batch]
+    @groups ||= Batch.all - @contact.batches
     respond_to do |format|
       if !params[:batch_id].blank?
         @batch = Batch.find(params[:batch_id])
-        @groups ||= Batch.all - @contact.batches
         @batch_new = AddContactToGroup.call(@batch, current_user, @contact).result
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { groups: @groups, contact: @contact }) +
                                turbo_stream.prepend(:batches, partial: "contact/batches/batch", locals: { batch: @batch, contact: @contact })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { message: "Please select group", groups: Batch.all - @contact.batches, contact: @contact }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { message: "Please select group", groups: @groups, contact: @contact }) }
       end
     end
   end

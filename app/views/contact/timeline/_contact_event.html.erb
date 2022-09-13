@@ -10,17 +10,12 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-            <%= event.action_context %>
             <% if event.account.owner_id == event.user_id %>
               You
             <% else %>
               <%= event.user.decorate.display_name %>
             <% end %>
-            <% if event.trackable.nil? %>
-              which does not exist anymore.
-            <% else %>
-              <a href="<%= contact_contact_events_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.title.upcase_first %></a>
-            <% end %>
+            <%= event.action_context %>
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
