@@ -62,7 +62,7 @@ class Api::BatchesController < Api::BaseController
         }
       else
         format.json {
-          render json: { success: false, message: "Please select group " }
+          render json: { success: false, message: "Please search contact to add" }
         }
       end
     end
@@ -80,7 +80,7 @@ class Api::BatchesController < Api::BaseController
         }
       else
         format.json {
-          render json: { success: false, message: "Please select group" }
+          render json: { success: false, message: "Please search contact to add" }
         }
       end
     end
