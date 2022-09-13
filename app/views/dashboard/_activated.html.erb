@@ -11,7 +11,7 @@
         <div>
           <p class="text-sm text-gray-500">You 
             <%= event.action_for_context %>
-            <% if event.trackable.nil? %>
+            <% if event.eventable.nil? %>
               which does not exist anymore.
             <% else %>
               <a href="<%= account_invitations_path(event.eventable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %></a>
