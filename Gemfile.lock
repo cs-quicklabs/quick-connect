@@ -257,6 +257,8 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.8-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.13.8-x86_64-linux)
+      racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (5.10.1)
       activesupport
@@ -393,6 +395,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     sqlite3 (1.5.0-x86_64-darwin)
+    sqlite3 (1.5.0-x86_64-linux)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
@@ -450,6 +453,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   acts_as_tenant
