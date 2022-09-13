@@ -1,0 +1,14 @@
+[
+    {
+        "relation": [
+            "delegate_permission/common.handle_all_urls"
+        ],
+        "target": {
+            "namespace": "android_app",
+            "package_name": "com.kutumb.meapp",
+            "sha256_cert_fingerprints": [
+                "96:E7:79:68:45:DE:4B:C6:68:8C:F4:7D:B2:92:DD:1F:CE:E6:C2:B9:EA:79:05:CC:31:96:FA:8E:E1:01:35:78"
+            ]
+        }
+    }
+]
