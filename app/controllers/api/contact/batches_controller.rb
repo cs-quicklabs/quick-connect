@@ -17,7 +17,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
     respond_to do |format|
       if batch_params[:batch_id]
         @batch = Batch.find(batch_params[:batch_id])
-        @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
+        @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
         format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
       else
         format.json {
