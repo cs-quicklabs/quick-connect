@@ -71,7 +71,7 @@ class Api::BatchesController < Api::BaseController
   def remove
     authorize [:api, :batch]
     respond_to do |format|
-      if !contact_params[:contact_id].null?
+      if contact_params[:contact_id]
         @batch = Batch.find(params[:batch_id])
         @contact = Contact.find(contact_params[:contact_id])
         @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
