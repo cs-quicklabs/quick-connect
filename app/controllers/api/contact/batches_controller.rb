@@ -16,6 +16,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
     authorize [:api, @contact, Batch]
     respond_to do |format|
       @batch = Batch.find(params[:id])
+      binding.irb
       @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
       format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
     end
