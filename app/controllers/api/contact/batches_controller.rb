@@ -15,15 +15,9 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
   def destroy
     authorize [:api, @contact, Batch]
     respond_to do |format|
-      if batch_params[:batch_id]
-        @batch = Batch.find(batch_params[:batch_id])
-        @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
-        format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
-      else
-        format.json {
-          render json: { success: false, message: "Please select group" }
-        }
-      end
+      @batch = Batch.find(params[:id])
+      @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
+      format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
     end
   end
 
