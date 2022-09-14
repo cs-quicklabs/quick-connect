@@ -5,5 +5,4 @@ class Gift < ApplicationRecord
   normalize_attribute :name, :body, :with => :strip
   validates :name,
             :length => { :maximum => 25 }
-  has_many :events, class_name: "Event", as: :trackable, dependent: :destroy
 end

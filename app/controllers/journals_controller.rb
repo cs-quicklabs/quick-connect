@@ -12,7 +12,7 @@ class JournalsController < BaseController
 
   def destroy
     authorize @journal
-    @journal = DestroyJournal.call(current_user, @journal).result
+    @journal = DestroyUserDetail.call(current_user, @journal).result
     respond_to do |format|
       format.html { redirect_to journals_path, notice: "Journal was successfully deleted.", status: :see_other }
     end

@@ -45,6 +45,11 @@ en:
     models:
       contact_activity:     
         one: activity
+      contact_event:
+        one: event
+      batch:
+        one: group
+
          
 
 
