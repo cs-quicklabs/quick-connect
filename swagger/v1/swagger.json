@@ -1973,7 +1973,13 @@
         }
       ],
       "delete": {
-        "summary": "delete debt",
+        "summary": "delete contact from group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"
