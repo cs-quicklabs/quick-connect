@@ -88,8 +88,7 @@ class Api::BatchesController < Api::BaseController
 
   def destroy
     authorize :batch
-    @batch.destroy
-    Event.create(user: @api_user, action: "deleted", action_for_context: "deleted a group")
+    @batch = DestroyGroup.call(@api_user, @batch)
     respond_to do |format|
       format.json { render json: { success: true, message: "Group has been deleted." } }
     end

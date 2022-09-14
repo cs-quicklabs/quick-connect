@@ -87,8 +87,7 @@ class BatchesController < BaseController
 
   def destroy
     authorize :batch
-    @batch.destroy
-    Event.create(user: current_user, action: "deleted", action_for_context: "deleted a group")
+    @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end
