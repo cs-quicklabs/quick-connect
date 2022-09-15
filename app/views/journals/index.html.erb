@@ -3,7 +3,7 @@
     <div class=" ">
       <div class="grid items-start grid-cols-1  lg:grid-cols-3 lg:gap-4 ">
         <!-- Left column -->
-        <div class="grid grid-cols-1 gap-2 lg:col-span-2" data-contoller="infinite-scroll">
+        <div class="grid grid-cols-1 gap-2 lg:col-span-2 " data-contoller="infinite-scroll">
           <div class="flex items-center justify-between  py-6 px-6">
             <div class="flex flex-wrap items-baseline">
               <h1 class="text-3xl font-bold leading-tight text-gray-900">Journals</h1>
@@ -26,13 +26,11 @@
             </div>
           </section>
         </div>
-        <div class="grid grid-cols-1 gap-2 xl:border-l xl:border-gray-200 overflow-y-visible  h-screen max-content top-16 overscroll-contain min-h-full">
-          <section aria-labelledby="add-participant-section h-full"  id="rating">
-            <div class="overflow-hidden bg-white " >
-              <%= render "journals/ratings/form", { user: @user, rating: @rating, ratings_by_date: @ratings_by_date } %>
-            </div>
-          </section>
-        </div>
+        <section aria-labelledby="add-participant-section " class="border-l border-gray-200 h-full px-6 py-6" id="rating">
+          <div class=" bg-white " >
+            <%= render "journals/ratings/form", { user: @user, rating: @rating, ratings_by_date: @ratings_by_date } %>
+          </div>
+        </section>
       </div>
     </main>
   </main>
