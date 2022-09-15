@@ -24,7 +24,7 @@ class Api::Contact::AboutsController < Api::Contact::BaseController
     authorize [:api, @contact, @about]
     @about.assign_attributes({ "#{params[:delete]}" => nil })
     @about.save!
-    @contact.events.create(user: @api_user, action: "deleted", action_for_context: "deleted about", trackable: about, action_context: "deleted about")
+    @contact.events.create(user: @api_user, action: "deleted", action_for_context: "deleted about", trackable: @about, action_context: "deleted about")
     render json: { success: true, data: @contact.abouts, message: "About updated successfully" }
   end
 
