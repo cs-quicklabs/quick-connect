@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get "/search/add", to: "search#add"
   root :to => "dashboard#index"
   get "/dashboard", to: "dashboard#index", as: "dashboard"
-  get "follow_ups", controller: "follow_ups"
+  get "followups", to: "followups#index"
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
