@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact track ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track ]
 
   def index
     authorize :contact
@@ -88,11 +88,19 @@ class ContactsController < BaseController
     render_partial("contacts/untracked_contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 
+  def untrack
+    authorize :contact, :untrack?
+
+    UntrackContact.call(@contact, current_user)
+
+    render turbo_stream: turbo_stream.remove(@contact)
+  end
+
   def track
     authorize @contact, :track?
 
     TrackContact.call(@contact, current_user)
-    redirect_to contact_abouts_path(@contact), notice: "Contact has been tracked now."
+    render turbo_stream: turbo_stream.remove(@contact)
   end
 
   private

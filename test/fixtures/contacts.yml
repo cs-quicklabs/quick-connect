@@ -25,44 +25,53 @@ archived:
   account: archive
   user: regular
   archived: true
-  archived_on: Date.today
+  archived_on: 2022-08-31
 
 two:
   first_name: Contact
-  last_name: Contact1
-  email: contact1@gmail.com
-  phone: 0999999999
-  account: two
+  last_name: Contact2
+  email: contact2@gmail.com
+  phone: 0999999942
+  account: hansika
   user: regular
   archived: false  
 
 three:
   first_name: Contact
-  last_name: Contact1
-  email: contact1@gmail.com
-  phone: 0999999999
-  account: three
+  last_name: Contact3
+  email: contact3@gmail.com
+  phone: 0999999943
+  account: hansika
   user: regular
   archived: false
 
 
 four:
   first_name: Contact
-  last_name: Contact1
-  email: contact1@gmail.com
-  phone: 0999999999
-  account: four
+  last_name: Contact4
+  email: contact4@gmail.com
+  phone: 0999999978
+  account: hansika
   user: regular
   archived: false
+
+five:
+  first_name: Contact
+  last_name: Contact5
+  email: contact5@gmail.com
+  phone: 0999999967
+  account: hansika
+  user: regular
+  archived: false  
 
 
 untracked:
-  first_name: Contact
+  first_name: Untracked
   last_name: Contact1
   email: contact1@gmail.com
   phone: 0999999999
-  account: four
+  account: hansika
   user: regular
   archived: false
   track: false
-  untrack_on: Date.today
+  untrack_on: 2022-08-31

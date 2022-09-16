@@ -46,4 +46,8 @@ class ContactsPolicy < Struct.new(:user, :contacts)
   def track?
     true
   end
+
+  def untrack?
+    true
+  end
 end
