@@ -38,4 +38,16 @@ class Api::ContactPolicy < Api::BaseApiPolicy
   def archived?
     true
   end
+
+  def untracked_contact?
+    true
+  end
+
+  def untrack?
+    true
+  end
+
+  def track?
+    true
+  end
 end
