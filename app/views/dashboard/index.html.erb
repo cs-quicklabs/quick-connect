@@ -5,44 +5,34 @@
     <div class="top-16  pt-6 h-full pb-10 border-r xl:border-gray-200 ">
       <% if @contacted.count > 0 %>
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white px-4">
-            <div class="px-4">
-              <div class="flex flex-wrap ">
-                <p class=" text-sm font-medium text-gray-900 truncate">Recent Activities</p>
-              </div>
-              <div class=" flex   bg-white font-sans py-6 px-2">
-                <div class="flex   w-full max-w-lg space-x-6  ">
-                  <ul role="list" class="mx-2 " style="grid-template-columns: repeat(8, 100px); gap: 2rem;  display: grid;">
-                    <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
-                  </ul>
-                </div>
+          <div class="overflow-hidden bg-white px-6">
+            <div class="flex flex-wrap ">
+              <p class=" text-sm font-medium text-gray-900 truncate">Recently contacted</p>
+            </div>
+            <div class=" flex   bg-white font-sans py-6 px-2">
+              <div class="flex   w-full max-w-lg  ">
+                <ul role="list" class="" style="grid-template-columns: repeat(8, 80px); gap: 1rem;  display: grid;">
+                  <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
+                </ul>
               </div>
             </div>
           </div>
         </section>
       <% end %>
-      <% @favorites = Contact.all.available.favorites.limit(8) %>
+      <% @favorites = Contact.all.available.favorites.limit(7) %>
       <% if @favorites.count > 0 %>
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white px-4">
-            <div class="px-4">
-              <div class="flex items-center justify-between pt-2 pb-6 ">
-                <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
-                <% if @favorites.count > 8 %>
-                  <div class="flex sm:mt-0 sm:ml-4 ">
-                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
-                  </div>
-                <% else %>
-                  <div class="flex sm:mt-0 sm:ml-4 ">
-                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
-                  </div>
-                <% end %>
-              </div>
-              <div class=" flex bg-white font-sans  px-2">
-                <div class="flex   w-full max-w-lg space-x-6  ">
-                  <ul role="list" class="mx-2 " style="grid-template-columns: repeat(8, 100px); gap: 2rem;  display: grid;">
-                    <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
-                  </ul>
+          <div class="overflow-hidden bg-white px-6">
+            <div class="flex items-center justify-between   ">
+              <p class="  text-sm font-medium text-gray-900 truncate"> Favourite contacts</p>
+            </div>
+            <div class=" flex bg-white font-sans py-6 px-2">
+              <div class="flex flex-1   w-full   ">
+                <ul role="list" class="" style="grid-template-columns: repeat(<%=@favorites.count%>, 40px); gap: 1rem;  display: grid;">
+                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
+                </ul>
+                <div class="flex sm:mt-0 sm:ml-4 items-center ">
+                  <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
                 </div>
               </div>
             </div>
@@ -52,7 +42,7 @@
       <section aria-labelledby="participants_section">
         <div class="overflow-hidden bg-white px-4">
           <div class="px-4">
-            <div class="flex flex-wrap py-6">
+            <div class="flex flex-wrap py-4">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
             <div class="grid items-start grid-cols-1  lg:gap-2">

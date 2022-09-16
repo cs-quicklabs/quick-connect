@@ -26,6 +26,7 @@ gem "image_processing", "~> 1.12"
 gem "devise-jwt"
 gem "devise_invitable"
 gem "jquery-ui-rails"
+gem "htmlbeautifier"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"
@@ -70,7 +71,6 @@ gem "bootsnap", ">= 1.12.0", require: false
 # gem "image_processing", "~> 1.2"
 gem "rswag-api"
 gem "rswag-ui"
-gem 'htmlbeautifier'
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
