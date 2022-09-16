@@ -101,7 +101,7 @@ Rails.application.routes.draw do
       post "/users", to: "registrations#create", as: :new_user_registration
       post "/invitations", to: "invitations#update", as: :accept_invitation
     end
-
+    get "followups", to: "followups#index"
     resources :user
     get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
