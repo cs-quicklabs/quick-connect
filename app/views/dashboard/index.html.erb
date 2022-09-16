@@ -1,4 +1,3 @@
-      <!-- Main 3 column grid -->
 <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2 ">
   <!-- Left column -->
   <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-visible h-screen max-content top-16 overscroll-contain min-h-full">
@@ -9,7 +8,7 @@
             <div class="flex flex-wrap ">
               <p class=" text-sm font-medium text-gray-900 truncate">Recently contacted</p>
             </div>
-            <div class=" flex   bg-white font-sans py-6 px-2">
+            <div class=" flex   bg-white font-sans py-6 ">
               <div class="flex   w-full max-w-lg  ">
                 <ul role="list" class="" style="grid-template-columns: repeat(8, 40px); gap: 1rem;  display: grid;">
                   <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
@@ -22,25 +21,17 @@
       <% @favorites = Contact.all.available.favorites.limit(8) %>
       <% if @favorites.count > 0 %>
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white px-4">
-            <div class="px-4">
-              <div class="flex items-center justify-between pt-2 pb-6 ">
-                <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
-                <% if @favorites.count > 8 %>
-                  <div class="flex sm:mt-0 sm:ml-4 ">
-                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
-                  </div>
-                <% else %>
-                  <div class="flex sm:mt-0 sm:ml-4 ">
-                    <%= link_to "View More...", favorites_path, class: "btn-inline-edit  text-sm text-gray-900" %>
-                  </div>
-                <% end %>
-              </div>
-              <div class=" flex bg-white font-sans  px-2">
-                <div class="flex   w-full max-w-lg space-x-6  ">
-                  <ul role="list" class="mx-2 " style="grid-template-columns: repeat(8, 100px); gap: 2rem;  display: grid;">
-                    <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
-                  </ul>
+          <div class="overflow-hidden bg-white px-6">
+            <div class="flex items-center justify-between  ">
+              <p class="  text-sm font-medium text-gray-900 truncate"> Favorites</p>
+            </div>
+            <div class=" flex bg-white font-sans py-6">
+              <div class="flex  flex-1 w-full   ">
+                <ul role="list" class="" style="grid-template-columns: repeat(<%=@favorites.count%>, 40px); gap: 1rem;  display: grid;">
+                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
+                </ul>
+                <div class="flex items-center sm:mt-0 sm:ml-4 ">
+                  <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
                 </div>
               </div>
             </div>
