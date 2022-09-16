@@ -21,7 +21,7 @@ class Api::DashboardController < Api::BaseController
 
   def upcomings
     authorize [:api, :dashboard]
-    @reminders = @api_user.reminders.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=? ", false)
+    @reminders = Reminder.all.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=? ", false)
     @upcoming_reminders = []
     @reminders.each do |reminder|
       @upcoming_reminders += reminder.upcoming_api

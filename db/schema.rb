@@ -464,6 +464,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "contact_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "account_id", null: false
+    t.index ["account_id"], name: "index_reminders_on_account_id"
     t.index ["contact_id"], name: "index_reminders_on_contact_id"
     t.index ["user_id"], name: "index_reminders_on_user_id"
   end
@@ -581,6 +583,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "release_notes", "users"
+  add_foreign_key "reminders", "accounts"
   add_foreign_key "reminders", "contacts"
   add_foreign_key "reminders", "users"
   add_foreign_key "tasks", "contacts"
