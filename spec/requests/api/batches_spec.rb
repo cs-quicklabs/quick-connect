@@ -45,15 +45,20 @@ RSpec.describe "api/batches", type: :request do
     end
   end
 
-  path "/{account_id}/api/batches/{batch_id}/add?search_id={search_id}" do
+  path "/{account_id}/api/batches/{batch_id}/add" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "batch_id", in: :path, type: :string, description: "batch_id"
-    parameter name: "search_id", in: :path, type: :string, description: "contact  _id"
     post("add contact to group") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
+      parameter name: :api_contact, in: :body, schema: {
+        type: :'object',
+        properties: { "api_contact": { type: :object, properties: {
+          "contact_id": { type: :integer },
+        } } },
+      }
       response(200, "successful") do
         let(:id) { "123" }
 
@@ -68,16 +73,20 @@ RSpec.describe "api/batches", type: :request do
       end
     end
   end
-  path "/{account_id}/api/batches/{batch_id}/remove?contact_id={contact_id}" do
+  path "/{account_id}/api/batches/{batch_id}/remove" do
     # You'll want to customize the parameter types...
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
     parameter name: "batch_id", in: :path, type: :string, description: "batch_id"
-
-    parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
-    delete("remove contact from group") do
+    post("remove contact from group") do
       security [Bearer: {}]
       produces "application/json"
       consumes "application/json"
+      parameter name: :api_contact, in: :body, schema: {
+                  type: :'object',
+                  properties: { "api_contact": { type: :object, properties: {
+                    "contact_id": { type: :integer },
+                  } } },
+                }
       response(200, "successful") do
         let(:id) { "123" }
 

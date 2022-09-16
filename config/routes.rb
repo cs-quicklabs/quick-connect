@@ -7,14 +7,14 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
   mount ActionCable.server => "/cable"
-  devise_for :users, controllers: { registrations: "registrations" }
+  devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   post "/register", to: "registrations#create"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
-  get "/rebatch" => "user#rebatch", as: "rebatch_user"
+  get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
@@ -48,9 +48,9 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get "followups", to: "followups#index"
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
-  scope "/batchtings" do
+  scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
-    get "/password", to: "user#password", as: "batchting_password"
+    get "/password", to: "user#password", as: "setting_password"
     patch "/password", to: "user#update_password", as: "change_password"
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
@@ -67,6 +67,10 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    resources :invitations, except: [:show, :new] do
+      get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+      get "/activate", to: "invitations#activate", as: "activate"
+    end
   end
   namespace :purchase do
     resources :checkouts
@@ -87,8 +91,7 @@ Rails.application.routes.draw do
   namespace :api do
     devise_for :users, defaults: { format: :json },
                        class_name: "ApiUser",
-                       skip: [:invitations,
-                              :unlocks],
+                       skip: [:unlocks],
                        path: "",
                        path_names: { sign_in: "login",
                                      sign_out: "logout" }
@@ -96,26 +99,26 @@ Rails.application.routes.draw do
       get "login", to: "devise/sessions#new"
       delete "logout", to: "devise/sessions#destroy"
       post "/users", to: "registrations#create", as: :new_user_registration
+      post "/invitations", to: "invitations#update", as: :accept_invitation
     end
     get "followups", to: "followups#index"
     resources :user
-    get "/rebatch" => "user#rebatch", as: "rebatch_user"
+    get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
-    scope "/batchtings" do
+    scope "/settings" do
       get "/profile", to: "user#profile", as: "user_profile"
-      get "/password", to: "user#password", as: "batchting_password"
+      get "/password", to: "user#password", as: "setting_password"
       patch "/password", to: "user#update_password", as: "change_password"
       get "/preferences", to: "user#preferences", as: "user_preferences"
       patch "/permission", to: "user#update_permission", as: "change_permission"
     end
     get "/search/contacts", to: "search#contacts"
     get "/search/relative", to: "search#relative"
+    get "/search/add", to: "search#add"
     get "/dashboard", to: "dashboard#index", as: "dashboard"
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
     get :upcomings, controller: :dashboard
-    get "/search/add", to: "search#add"
-    resources :dashboard
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
@@ -132,11 +135,15 @@ Rails.application.routes.draw do
       resources :fields, except: [:show, :new]
       resources :activities, except: [:show]
       resources :life_events, except: [:show]
+      resources :invitations, except: [:show, :new] do
+        get "/deactivate", to: "invitations#deactivate", as: "deactivate"
+        get "/activate", to: "invitations#activate", as: "activate"
+      end
     end
     resources :batches, except: [:new] do
       get "contacts", to: "batches#contacts", as: "contacts"
       post "add", to: "batches#add", as: "addcontact"
-      delete "remove", to: "batches#remove", as: "removecontact"
+      post "remove", to: "batches#remove", as: "removecontact"
     end
     resources :journals
     resources :release_notes

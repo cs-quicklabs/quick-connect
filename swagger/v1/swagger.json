@@ -429,6 +429,158 @@
         }
       }
     },
+    "/{account_id}/api/account/invitations": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "list invitations",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create invitation",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_invitation",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_invitation": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string"
+                    },
+                    "last_name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/account/invitations/{id}/activate": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": " invitation id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "activate invitation",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/account/invitations/{id}/deactivate": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "id",
+          "in": "path",
+          "type": "string",
+          "description": " invitation id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "deactivate invitation",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/{account_id}/api/account/labels": {
       "parameters": [
         {
@@ -1107,7 +1259,7 @@
         }
       }
     },
-    "/{account_id}/api/batches/{batch_id}/add?search_id={search_id}": {
+    "/{account_id}/api/batches/{batch_id}/add": {
       "parameters": [
         {
           "name": "account_id",
@@ -1121,13 +1273,6 @@
           "in": "path",
           "type": "string",
           "description": "batch_id",
-          "required": true
-        },
-        {
-          "name": "search_id",
-          "in": "path",
-          "type": "string",
-          "description": "contact  _id",
           "required": true
         }
       ],
@@ -1145,6 +1290,25 @@
         "consumes": [
           "application/json"
         ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"
@@ -1152,7 +1316,7 @@
         }
       }
     },
-    "/{account_id}/api/batches/{batch_id}/remove?contact_id={contact_id}": {
+    "/{account_id}/api/batches/{batch_id}/remove": {
       "parameters": [
         {
           "name": "account_id",
@@ -1167,16 +1331,9 @@
           "type": "string",
           "description": "batch_id",
           "required": true
-        },
-        {
-          "name": "contact_id",
-          "in": "path",
-          "type": "string",
-          "description": "contact_id",
-          "required": true
         }
       ],
-      "delete": {
+      "post": {
         "summary": "remove contact from group",
         "security": [
           {
@@ -1189,6 +1346,25 @@
         ],
         "consumes": [
           "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "api_contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_contact": {
+                  "type": "object",
+                  "properties": {
+                    "contact_id": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -1797,7 +1973,13 @@
         }
       ],
       "delete": {
-        "summary": "delete debt",
+        "summary": "delete contact from group",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful"
@@ -5604,6 +5786,47 @@
         }
       }
     },
+    "/api/invitations": {
+      "post": {
+        "summary": "change password and accept invitation",
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "resource",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "api_user": {
+                  "type": "object",
+                  "properties": {
+                    "password": {
+                      "type": "string"
+                    },
+                    "password_confirmation": {
+                      "type": "string"
+                    },
+                    "invitation_token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/{account_id}/api/journal_comments": {
       "parameters": [
         {
@@ -6009,7 +6232,7 @@
         "summary": "update password",
         "parameters": [
           {
-            "name": "user",
+            "name": "api_user",
             "in": "body",
             "schema": {
               "type": "object",

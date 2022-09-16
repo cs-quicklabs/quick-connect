@@ -10,4 +10,8 @@ class Api::DashboardPolicy < Api::BaseApiPolicy
   def favorites?
     true
   end
+
+  def upcomings?
+    true
+  end
 end

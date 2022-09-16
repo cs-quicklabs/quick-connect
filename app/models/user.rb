@@ -2,12 +2,13 @@ class User < ApplicationRecord
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days
+  devise :invitable, :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
   scope :available, -> { all_users }
+  before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
-  enum permission: [:member, :admin]
-  belongs_to :account
+  enum permission: [:true, :false]
+  belongs_to :account, optional: true
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
@@ -25,6 +26,7 @@ class User < ApplicationRecord
   has_many :conversations, dependent: :destroy
   has_many :gifts, dependent: :destroy
   normalize_attribute :first_name, :last_name, :email, :with => :strip
+  belongs_to :invited_by, :class_name => "User", optional: true
   has_many :reminders, dependent: :destroy
 
   def add_jti
@@ -36,5 +38,9 @@ class User < ApplicationRecord
       self.reset_password_token = SecureRandom.urlsafe_base64
     end while User.exists?(reset_password_token: self.reset_password_token)
     save!
+  end
+
+  def set_invitation_limit
+    self.invitation_limit = 5
   end
 end

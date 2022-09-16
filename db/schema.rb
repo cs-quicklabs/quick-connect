@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "owner_id"
   end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -302,14 +303,14 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["group_id"], name: "index_life_events_on_group_id"
   end
 
-  create_table "notes", id: false, force: :cascade do |t|
+  create_table "notes", force: :cascade do |t|
     t.text "body"
     t.bigint "contact_id"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "title", default: ""
-    t.bigint "user_id"
     t.index ["contact_id"], name: "index_notes_on_contact_id"
+    t.index ["user_id"], name: "index_notes_on_user_id"
   end
 
   create_table "pay_charges", force: :cascade do |t|
@@ -568,6 +569,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "life_events", "accounts"
   add_foreign_key "life_events", "groups"
   add_foreign_key "notes", "contacts"
+  add_foreign_key "notes", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
   add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
   add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"

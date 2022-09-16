@@ -2,32 +2,32 @@
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: reminder, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Reminder", subtitle: "A reminder can be added to a contact which can help you remember important events. " %>
-    <%= form.text_field :title, "Please remind me to…", class: " form-text-field ", autocomplete: "off"%>
+    <%= form.text_field :title, "Please remind me to…", class: " form-text-field ", autocomplete: "off" %>
     <div>
       <label for="date" class="block text-sm font-medium text-gray-700">
         When is the next time you would like to be reminded about this?
       </label>
-      <%= form.date_field :reminder_date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db), min: Date.today %>
+      <%= form.date_field :reminder_date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), min: Date.today %>
     </div>
     <div class="w-full ">
-      <div class="block max-w-lg space-x-8 mt-1">
+      <div class="block max-w-lg space-x-8 mt-1 ">
         <div class="inline-flex space-x-2">
-          <%= form.radio_button :reminder_type, 'once', class: "mt-1 ", :checked => true %>
-          <%= form.label :reminder_type_once, 'Once', class:" text-sm font-medium text-gray-700"  %>
+          <%= form.radio_button :reminder_type, "once", class: "mt-1 cursor-pointer ", :checked => true %>
+          <%= form.label :reminder_type_once, "Once", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :reminder_type, 'multiple', class: "mt-1 ", :checked => true %>
-          <%= form.label :reminder_type, 'Remind me about this every', class:" text-sm font-medium text-gray-700"  %>
+        <div class="inline-flex space-x-2 pl-4  ">
+          <%= form.radio_button :reminder_type, "multiple", class: "mt-1 cursor-pointer", :checked => true %>
+          <%= form.label :reminder_type, "Remind me about this every", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
       </div>
     </div>
     <div class="w-full ">
       <div class="block max-w-lg space-x-8 mt-1">
         <div class="inline-flex space-x-2">
-          <%=form.number_field 'remind_after', min:"1", value:"1", :class => "inline-flex appearance-none block  px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"%>
+          <%= form.number_field "remind_after", min: "1", value: "1", :class => "inline-flex appearance-none block  px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
         </div>
         <div class="inline-flex space-x-2 pl-2 ">
-          <%= form.select(:status, [["Week", "week"], ["month", "month"], ["Year", "year"]], {}, :class => "inline-flex  appearance-none block   py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") %>
+          <%= form.select(:status, [["Week", "week"], ["month", "month"], ["Year", "year"]], {}, :class => "cursor-pointer inline-flex  appearance-none block   py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm") %>
         </div>
       </div>
     </div>

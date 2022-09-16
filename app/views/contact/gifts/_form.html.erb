@@ -10,12 +10,12 @@
       </label>
       <div class="block max-w-lg space-x-8 mt-1">
         <div class="inline-flex space-x-2">
-          <%= form.radio_button :status, 'received', class: "mt-1 ", :checked => true %>
-          <%= form.label :status_received, 'Received', class:" text-sm font-medium text-gray-700"  %>
+          <%= form.radio_button :status, "received", class: "mt-1 cursor-pointer ", :checked => true %>
+          <%= form.label :status_received, "Received", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
         <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :status, 'given', class: " mt-1" %>
-          <%= form.label :status_given, 'Given' , class:" text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :status, "given", class: " mt-1 cursor-pointer" %>
+          <%= form.label :status_given, "Given", class: " curesor-pointer text-sm font-medium text-gray-700" %>
         </div>
       </div>
     </div>
@@ -23,7 +23,7 @@
       <label for="date" class="block text-sm font-medium text-gray-700">
         Date
       </label>
-      <%= form.date_field :date, class: "form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
+      <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
     <div class="flex justify-end">
       <%= form.submit "Add Gift", class: "btn-blue" %>

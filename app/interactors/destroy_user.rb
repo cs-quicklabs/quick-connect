@@ -15,6 +15,8 @@ class DestroyUser < Patterns::Service
       delete_life_events
       delete_relations
       delete_ratings
+      delete_groups
+      delete_invitations
       user.destroy
     rescue Exception => e
       return false
@@ -25,20 +27,19 @@ class DestroyUser < Patterns::Service
   private
 
   def delete_contacts
-    Contact.where(user: user).destroy_all
+    Contact.all.delete_all
   end
 
   def delete_journals
-    Journal.where(user: user).destroy_all
+    Journal.all.destroy_all
   end
 
   def delete_ratings
-    Rating.where(user: user).destroy_all
+    Rating.all.destroy_all
   end
 
   def delete_events
-    Event.where(user_id: user.id).destroy_all
-    Event.where(trackable_id: user.id).destroy_all
+    Event.all.destroy_all
   end
 
   def delete_labels
@@ -63,6 +64,15 @@ class DestroyUser < Patterns::Service
 
   def delete_life_events
     LifeEvent.where(account_id: user.account.id).delete_all
+  end
+
+  def delete_groups
+    Batch.where(account_id: user.account.id).delete_all
+  end
+
+  def delete_invitations
+    Invitation.where(account_id: user.account.id).delete_all
+    User.where(invited_by: user).delete_all
   end
 
   attr_reader :user

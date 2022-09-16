@@ -83,7 +83,8 @@ RSpec.describe "api/contact/batches", type: :request do
     parameter name: "contact_id", in: :path, type: :string, description: "contact_id"
     parameter name: "id", in: :path, type: :string, description: "id"
 
-    delete("delete debt") do
+    delete("delete contact from group") do
+      security [Bearer: {}]
       response(200, "successful") do
         let(:contact_id) { "123" }
         let(:id) { "123" }

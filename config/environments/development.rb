@@ -14,7 +14,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
   config.reload_classes_only_on_change = false
   # Do not eager load code on boot.
-  config.eager_load = false
+  config.eager_load = true
   config.assets.debug = true
   config.assets.compile = true
   # Generate digests for assets URLs
@@ -73,5 +73,5 @@ Rails.application.configure do
   # config.action_view.annotate_rendered_view_with_filenames = true
 
   # Uncomment if you wish to allow Action Cable access from any origin.
-  #config.action_cable.disable_request_forgery_protection = true
+  config.action_cable.disable_request_forgery_protection = true
 end

@@ -10,13 +10,21 @@
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
           <p class="text-sm text-gray-500">
-            You 
-            <%=event.action_for_context%> <a href="<%= contact_about_index_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"><%=event.eventable.decorate.display_name%> </a>
-
+            <% if event.account.owner_id == event.user_id %>
+              You
+            <% else %>
+              <%= event.user.decorate.display_name %>
+            <% end %>
+            <%= event.action_for_context %>
+            <% if event.eventable.nil? %>
+              which does not exist anymore.
+            <% else %>
+              <a href="<%= contact_batches_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"><%= event.eventable.decorate.display_name %> </a>
+            <% end %>
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-           to    <a href="<%= batches_path(:batch_id=>event.trackable.id) %>" class="font-medium text-gray-900 hover:underline"> <%= event.trackable.decorate.display_name %></a>
+              to   <a href="<%= batches_path(:batch_id => event.trackable_id) %>"  class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %> </a>
             <% end %>
           </p>
         </div>

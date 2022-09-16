@@ -1,4 +1,4 @@
-<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none">
+<main class="relative z-0 flex-1 overflow-y-auto focus:outline-none h-screen">
   <%= render partial: "contact/title", locals: { contact: @contact } %>
   <main class="pb-8">
     <div class="">
@@ -22,11 +22,9 @@
                     </tr>
                   </thead>
                   <tbody class="table-body" id="batches" data-infinite-scroll-target="entries">
-                     <% @contact.batches.uniq.each do |batch|%>          
-              
-       
-       <%= render "batch", {batch: batch, contact:@contact} %>
-        <% end %>
+                    <% @contact.batches.uniq.each do |batch| %>
+                      <%= render "batch", { batch: batch, contact: @contact } %>
+                    <% end %>
                   </tbody>
                 </table>
               </div>
@@ -38,12 +36,12 @@
         </div>
         <!-- Right column -->
         <% if policy([@contact, Batch]).create? %>
-          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200">
+          <div class="grid grid-cols-1 gap-4 xl:border-l xl:border-gray-200 h-full">
             <section aria-labelledby="add-participant-section">
               <h2 class="sr-only" id="section-2-title">Add Contact To Group </h2>
-              <div class="overflow-hidden bg-white">
+              <div class=" bg-white">
                 <div class="px-4">
-                  <%= render partial: "form", locals: { groups: @groups, contact:@contact } %>
+                  <%= render partial: "form", locals: { groups: @groups, contact: @contact } %>
                 </div>
               </div>
             </section>
@@ -52,6 +50,4 @@
       </div>
     </div>
   </main>
-  <div class="pt-4 pl-16 pr-16">
-  </div>
 </main>

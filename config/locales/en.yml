@@ -45,17 +45,26 @@ en:
     models:
       contact_activity:     
         one: activity
+      contact_event:
+        one: event
+      batch:
+        one: group
+
          
+
+
+
+
 
 en:
   activerecord:
     attributes:
       note:
         body:
-          one:  Description
+          one: Description
       conversation:
         body:
-          one:   Conversation
+          one: Conversation
         field:
           one: Contact field type  
       phone_call:
@@ -68,10 +77,10 @@ en:
         body:
           one: Description
       contact:
-        phone:
+        phone: 
           one: Phone number
         email:
-          one: E-mail
+          one:  E-mail
       relation:
         name:
           one: Relation name

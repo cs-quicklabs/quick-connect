@@ -1,6 +1,4 @@
 class Api::Contact::BatchesController < Api::Contact::BaseController
-  before_action :set_batch, only: %i[destroy]
-
   def index
     authorize [:api, @contact, Batch]
     @pagy, @batches = pagy_nil_safe(params, @contact.batches, items: LIMIT)
@@ -15,22 +13,26 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
   end
 
   def destroy
-    authorize [:api, @contact, @batch]
-
-    @contact.batches.destroy @batch
-    Event.where(trackable: @batch).touch_all
-    @contact.events.create(user: @api_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from ", trackable: @batch, action_context: "Removed from group " + @batch.name)
+    authorize [:api, @contact, Batch]
     respond_to do |format|
+      @batch = Batch.find(params[:id])
+      @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
       format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
     end
   end
 
   def create
     authorize [:api, @contact, Batch]
-    @batch = Batch.find(batch_params[:batch_id])
-    @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
     respond_to do |format|
-      format.json { render json: { batch: @batch, success: true, data: @contact, message: "Contact added successfully in batch" } }
+      if batch_params[:batch_id]
+        @batch = Batch.find(batch_params[:batch_id])
+        @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
+        format.json { render json: { batch: @batch, success: true, data: @contact, message: "Contact added successfully in batch" } }
+      else
+        format.json {
+          render json: { success: false, message: "Please select group" }
+        }
+      end
     end
   end
 
@@ -38,9 +40,5 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
 
   def batch_params
     params.require(:api_batch).permit(:batch_id)
-  end
-
-  def set_batch
-    @batch = Batch.find(params[:id])
   end
 end

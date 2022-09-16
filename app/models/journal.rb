@@ -5,4 +5,6 @@ class Journal < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
   normalize_attribute :title, :body, :with => :strip
+  validates :title,
+            :length => { :maximum => 25 }
 end

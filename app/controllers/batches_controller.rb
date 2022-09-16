@@ -29,6 +29,7 @@ class BatchesController < BaseController
 
     respond_to do |format|
       if @batch.save
+        Event.create(user: current_user, action: "group", action_for_context: "added a group", trackable: @batch)
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batches, partial: "batches/batch", locals: { batch: @batch }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
@@ -44,6 +45,7 @@ class BatchesController < BaseController
 
     respond_to do |format|
       if @batch.update(batch_params)
+        Event.where(trackable: @batch).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, partial: "batches/batch", locals: { batch: @batch, message: nil }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@batch, template: "batches/edit", locals: { batch: @batch, messages: @batch.errors.full_messages }) }
@@ -63,8 +65,6 @@ class BatchesController < BaseController
       if !params[:search_id].blank?
         @contact = Contact.find(params[:search_id])
         @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-        @batch.contacts << @contact
-
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
                                turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch })
@@ -79,10 +79,7 @@ class BatchesController < BaseController
     authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:contact_id])
-
-    @batch.contacts.destroy @contact
-    Event.where(trackable: @batch).touch_all
-    @contact.events.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from " + @batch.name, trackable: @batch, action_context: "Removed from group " + @batch.name)
+    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact) }
     end
@@ -90,8 +87,7 @@ class BatchesController < BaseController
 
   def destroy
     authorize :batch
-
-    @batch.destroy
+    @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end

@@ -94,7 +94,7 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     if http_request?
-      redirect_to(request.referrer || landing_path, alert: "You are not allowed to access this page.")
+      redirect_to(request.referrer || landing_path)
     else
       render json: { success: false, message: "You are not allowed to access this page." }
     end
@@ -163,7 +163,18 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
-    @current_user ||= warden.authenticate(scope: :api_user)
+    if header = request.headers["Authorization"]
+      header = header.split(" ").last
+      key = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"
+      begin
+        jwt_payload = JWT.decode(header, key, true, { :algorithm => "HS256" }).first
+        @api_user = User.includes(:invited_by).find(jwt_payload["sub"])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: { success: false, message: "Record no found" }
+      rescue JWT::DecodeError => e
+        render json: { success: false, message: "unauthorized" }
+      end
+    end
   end
 
   def token_verification

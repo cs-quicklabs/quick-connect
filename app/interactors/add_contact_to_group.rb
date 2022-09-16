@@ -22,7 +22,7 @@ class AddContactToGroup < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "batch", action_for_context: "added", trackable: batch, action_context: "Added to group ")
+    Event.create(user: actor, action: "batch", action_for_context: "added", action_context: "added to group", trackable: batch, eventable: contact)
   end
 
   attr_reader :batch, :actor, :contact

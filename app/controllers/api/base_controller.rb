@@ -1,8 +1,7 @@
 class Api::BaseController < ApplicationController
   protect_from_forgery with: :null_session
-
   before_action :verify_authenticity_token
-  before_action :set_user, if: :json_request?
+  before_action :authenticate_user, unless: :user_signed_in?
   before_action :authenticate_account!
   include Pagy::Backend
   LIMIT = 10
@@ -13,14 +12,20 @@ class Api::BaseController < ApplicationController
 
   def pagy_nil_safe(params, collection, vars = {})
     pagy = Pagy.new(count: collection.count(:all), page: params[:page], **vars)
-    return pagy, collection.offset(pagy.offset).limit(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection.offset(pagy.offset).limit(pagy.items).take(pagy.items) if collection.respond_to?(:offset)
+    return pagy, collection
+  end
+
+  def pagy_array_safe(params, collection, vars = {})
+    pagy = Pagy.new(count: collection.count, page: params[:page], **vars)
+    return pagy, collection.take(pagy.items)
     return pagy, collection
   end
 
   private
 
-  def set_user
-    @api_user = User.find_by(account: Current.account)
+  def authenticate_user
+    set_current_user
   end
 
   def json_request?

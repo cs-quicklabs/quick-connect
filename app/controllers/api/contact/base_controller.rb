@@ -2,7 +2,7 @@ class Api::Contact::BaseController < Api::BaseController
   before_action :set_contact, only: %i[index show edit update create destroy new status label remove_label relation remove_relation favorite]
   protect_from_forgery with: :null_session
   before_action :verify_authenticity_token
-  LIMIT = 20
+  LIMIT = 10
   respond_to :json
 
   private

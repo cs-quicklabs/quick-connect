@@ -1,42 +1,41 @@
-
-    <%= form_with(id:"form", url: "/#{current_user.account.id}/contacts/#{contact.id}/batches") do |form| %>
-      <div class="space-y-6 px-4 pt-6  mx-auto">
-                 <% if local_assigns[:message] && defined?(message) && !message.nil? %>
-               <div class="p-4 rounded-md bg-red-50" id="error_explanation">
-    <div class="flex">
-      <div class="flex-shrink-0">
-        <!-- Heroicon name: solid/x-circle -->
-        <svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
-        </svg>
-      </div>
-      <div class="ml-3">
-        <h3 class="text-sm font-medium text-red-800">1 error prohibited this contact from being saved:</h3>
-   <div class="mt-2 text-sm text-red-700">
-          <ul class="pl-5 space-y-1 list-disc">
-            <li><%= message %></li>
-        </ul>
-     </div>
-       </div>
-      </div>
-    </div>
-     <% end %>
-        <%= render "shared/form_header", title: "Add Contact To Group", subtitle: "A Contact can be added to a contact which can help you remember important things." %>
-
-          <div class="">
-            <label for="group" class="block  text-sm font-medium text-gray-700">
-              Select Group
-            </label>
-          <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
-            <option value="" >Select Group</option>
-          <% groups.each do |group|%>
-           <li > <option value="<%=group.id%>"><%=group.name.titleize%>
-          <% end %>
-          </select>
+<%= form_with(id: "form", url: "/#{current_user.account.id}/contacts/#{contact.id}/batches") do |form| %>
+  <div class="space-y-6 px-4 pt-6  mx-auto h-full">
+    <% if local_assigns[:message] && defined?(message) && !message.nil? %>
+      <div class="p-4 rounded-md bg-red-50" id="error_explanation">
+        <div class="flex">
+          <div class="flex-shrink-0">
+            <!-- Heroicon name: solid/x-circle -->
+            <svg class="w-5 h-5 text-red-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+            </svg>
           </div>
+          <div class="ml-3">
+            <h3 class="text-sm font-medium text-red-800">1 error prohibited this contact from being saved:</h3>
+            <div class="mt-2 text-sm text-red-700">
+              <ul class="pl-5 space-y-1 list-disc">
+                <li><%= message %></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= render "shared/form_header", title: "Add Contact To Group", subtitle: "A Contact can be added to a group which can help you remember important things." %>
+    <div class="">
+      <label for="group" class="block  text-sm font-medium text-gray-700">
+        Select Group
+      </label>
+      <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
+        <option value="" >Select Group</option>
+        <% if groups.count > 0 %>
+          <% groups.each do |group| %>
+            <li > <option value="<%= group.id %>"><%= group.name.titleize %>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
         <div class="flex justify-end ">
           <%= form.submit "Save", class: "btn-blue" %>
         </div>
       </div>
     <% end %>
-

@@ -35,6 +35,7 @@ application.register("nav-search", NavSearchController)
 import SelectController from "./select_controller.js"
 application.register("select", SelectController)
 
+
 import ToggleController from "./toggle_controller.js"
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
@@ -43,5 +44,4 @@ import CableReady from 'cable_ready'
 application.register("toggle", ToggleController)
 application.consumer = consumer
 StimulusReflex.initialize(application, { controller, isolate: true })
-StimulusReflex.debug = process.env.RAILS_ENV === 'development'
 CableReady.initialize({ consumer })

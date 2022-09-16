@@ -10,10 +10,7 @@ class Contact::BatchesController < Contact::BaseController
 
   def destroy
     authorize [@contact, @batch]
-
-    @contact.batches.destroy @batch
-    Event.where(trackable: @batch).touch_all
-    @contact.events.create(user: current_user, action: "deleted", action_for_context: "removed " + @contact.decorate.display_name + " from " + @batch.name, trackable: @batch, action_context: "Removed from group " + @batch.name)
+    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
     end
@@ -21,16 +18,17 @@ class Contact::BatchesController < Contact::BaseController
 
   def create
     authorize [@contact, Batch]
+    @groups ||= Batch.all - @contact.batches
     respond_to do |format|
       if !params[:batch_id].blank?
         @batch = Batch.find(params[:batch_id])
         @batch_new = AddContactToGroup.call(@batch, current_user, @contact).result
         format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:batches, partial: "contact/batches/batch", locals: { batch: @batch, contact: @contact }) +
-                               turbo_stream.replace(:form, partial: "contact/batches/form", locals: { groups: Batch.all - @contact.batches, contact: @contact })
+          render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { groups: @groups, contact: @contact }) +
+                               turbo_stream.prepend(:batches, partial: "contact/batches/batch", locals: { batch: @batch, contact: @contact })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { message: "Please select group", groups: Batch.all - @contact.batches, contact: @contact }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { message: "Please select group", groups: @groups, contact: @contact }) }
       end
     end
   end

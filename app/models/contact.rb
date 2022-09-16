@@ -15,11 +15,17 @@ class Contact < ApplicationRecord
   scope :untracked, -> { where(track: false) }
   scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
-  validates :phone, :presence => true, uniqueness: { scope: :account },
-                    :numericality => true,
-                    :length => { :minimum => 10, :maximum => 12 }, on: :create
+  validate :validates
+
+  def validates
+    if email.blank? && phone.blank?
+      errors.add(:phone_number_or, "E-mail can't be blank")
+    end
+  end
+
+  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
+  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }, if: -> { !email.blank? }, on: :create
   scope :favorites, -> { where(favorite: true) }
-  validates :email, :presence => true, uniqueness: { scope: :account }, format: { with: URI::MailTo::EMAIL_REGEXP }, if: -> { phone.blank? }, on: :create
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy
   has_many :relatives, dependent: :destroy
@@ -33,7 +39,7 @@ class Contact < ApplicationRecord
   has_many :documents, dependent: :destroy
   has_many :contact_activities, dependent: :destroy
   has_many :contact_events, dependent: :destroy
+  has_and_belongs_to_many :batches, dependent: :destroy
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
-  has_and_belongs_to_many :batches, dependent: :destroy
 end

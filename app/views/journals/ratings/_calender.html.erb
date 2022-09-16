@@ -1,11 +1,11 @@
 <div  class=" py-2 px-6  mb-2">
   <p class="text-sm leading-5 text-gray-500  font-semibold">Last 3 months report:</p>
   <div id="" class=" ">
-    <% (0..2).each do |m|  %>
-      <%current= (Date.today-m.month).strftime("%B")
-      current_month_year= (Date.today-m.month).strftime("%B %Y")%>
+    <% (0..2).each do |m| %>
+      <% current = (Date.today - m.month).strftime("%B")
+         current_month_year = (Date.today - m.month).strftime("%B %Y") %>
       <div id="" class=" py-4 flex justify-center">
-        <p id="" class="font-semibold text-sm"   ><%= current_month_year%></p>
+        <p id="" class="font-semibold text-sm"   ><%= current_month_year %></p>
       </div>
       <div class="py-1 flex justify-center day-of-week">
         <div>Sun</div>
@@ -16,31 +16,31 @@
         <div>Fri</div>
         <div>Sat</div>
       </div>
-      <%@days = days_in_month(Date::MONTHNAMES.index(current)) %>
+      <% @days = days_in_month(Date::MONTHNAMES.index(current)) %>
       <div class=" flex justify-center date-grid " >
-        <% (1..@days).each do |i|  %>
-          <%ratings=ratings_by_date[current]%>
+        <% (1..@days).each do |i| %>
+          <% ratings = ratings_by_date[current] %>
           <% if !ratings.nil? %>
-            <%j=ratings.count%>
-            <% (0..j).each do |index|  %>
+            <% j = ratings.count %>
+            <% (0..j).each do |index| %>
               <% if ratings[index] %>
-                <% if i.to_s== ratings[index].date.strftime(("%-d"))%>
-                  <%if ratings[index].awesome?%>
-                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #16a34a; width:40px; "></div>
+                <% if i.to_s == ratings[index].date.strftime(("%-d")) %>
+                  <% if ratings[index].awesome? %>
+                    <div class=" py-4 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>"  style="background-color: #16a34a; width:40px; "></div>
                   <% elsif ratings[index].normal? %>
-                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #6b7280; width:40px;"></div>
+                    <div class=" py-4 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>"  style="background-color: #6b7280; width:40px;"></div>
                   <% elsif ratings[index].poor? %>
-                    <div class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>"  style="background-color: #dc2626; width:40px;"></div>
+                    <div class=" py-4 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>"  style="background-color: #dc2626; width:40px;"></div>
                   <% end %>
-                  <%break%>
+                  <% break %>
                 <% end %>
               <% else %>
-                <div  class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>" style="background-color: #F5F5F4; width:40px;"></div>
+                <div  class=" py-4 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" style="background-color: #F5F5F4; width:40px;"></div>
               <% end %>
-              <%index+=1%>
+              <% index += 1 %>
             <% end %>
           <% else %>
-            <div  class=" py-4 <%=current_month_year.to_date.beginning_of_month.strftime("%A")%>" style="background-color: #F5F5F4; width:40px;"></div>
+            <div  class=" py-4 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" style="background-color: #F5F5F4; width:40px;"></div>
           <% end %>
         <% end %>
       </div>

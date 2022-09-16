@@ -11,7 +11,6 @@ class AddJournal < Patterns::Service
     rescue
       journal
     end
-
     journal
   end
 

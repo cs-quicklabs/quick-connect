@@ -9,17 +9,17 @@
         <label for="date" class="block text-sm font-medium text-gray-700">
           Select Date
         </label>
-        <%= form.date_field :date, class: "form-text-field mt-1 " %>
+        <%= form.date_field :date, class: " cursor-pointer form-text-field mt-1 " %>
       </div>
       <div>
         <label for="date" class="block text-sm font-medium text-gray-700">
           How did you communicate
         </label>
-        <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id,:display_name,  { :prompt => "Select Contact Field Type" }, :class => "form-text-field mt-1")  %>
+        <%= form.collection_select("field_id", Field.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Contact Field Type" }, :class => "cursor-pointer form-text-field mt-1") %>
       </div>
       <%= form.text_area :body, "Conversation", class: "resize-y form-text-field h-20" %>
       <div class="flex justify-end">
-       <%=link_to "Back", contact_conversations_path(@contact), class: "ml-3 btn-normal " %>
+        <%= link_to "Back", contact_conversations_path(@contact), class: "ml-3 btn-normal " %>
         <%= form.submit "Edit Conversation", class: "btn-blue" %>
       </div>
     </main>
