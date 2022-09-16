@@ -9,9 +9,9 @@ class Api::FollowupsController < Api::BaseController
     followups.each do |followup|
       if Date.today >= followup.event_create.to_date && followup.event_create.to_date >= Date.today - 30.days
         @firsts += [followup]
-      elsif Date.today - 30.days > followup.event_create && followup.event_create >= Date.today - 60.days
+      elsif Date.today - 30.days - followup.event_create.to_date && followup.event_create.to_date >= Date.today - 60.days
         @seconds += [followup]
-      elsif Date.today - 60.days > followup.event_create && followup.event_create >= Date.today - 90.days
+      elsif Date.today - 60.days > followup.event_create.to_date && followup.event_create.to_date >= Date.today - 90.days
         @thirds += [followup]
       else
         @fourths += [followup]
