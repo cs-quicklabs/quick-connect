@@ -41,4 +41,16 @@ class ContactPolicy < ApplicationPolicy
     return false if record.archived?
     true
   end
+
+  def untracked_contact?
+    true
+  end
+
+  def track?
+    true
+  end
+
+  def untrack?
+    true
+  end
 end

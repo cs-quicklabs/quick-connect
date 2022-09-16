@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track ]
 
   def index
     authorize :contact
@@ -51,7 +51,7 @@ class ContactsController < BaseController
   def archived
     authorize :contact, :index?
 
-    @pagy, @contacts = pagy_nil_safe(params, @current_user.contacts.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.archived.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/archived_contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 
@@ -79,6 +79,28 @@ class ContactsController < BaseController
         format.html { redirect_to archived_contacts_path, status: :see_other, alert: "Failed to delete contact." }
       end
     end
+  end
+
+  def untracked
+    authorize :contact, :index?
+
+    @pagy, @contacts = pagy_nil_safe(params, Contact.all.untracked.order(archived_on: :desc), items: LIMIT)
+    render_partial("contacts/untracked_contact", collection: @contacts, cached: true) if stale?(@contacts)
+  end
+
+  def untrack
+    authorize :contact, :untrack?
+
+    UntrackContact.call(@contact, current_user)
+
+    render turbo_stream: turbo_stream.remove(@contact)
+  end
+
+  def track
+    authorize @contact, :track?
+
+    TrackContact.call(@contact, current_user)
+    render turbo_stream: turbo_stream.remove(@contact)
   end
 
   private

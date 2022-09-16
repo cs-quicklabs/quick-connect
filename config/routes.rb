@@ -46,7 +46,7 @@ Rails.application.routes.draw do
   get "/search/add", to: "search#add"
   root :to => "dashboard#index"
   get "/dashboard", to: "dashboard#index", as: "dashboard"
-  resources :sections
+  get "followups", to: "followups#index"
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
@@ -80,6 +80,11 @@ Rails.application.routes.draw do
     get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
     get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
   end
+  scope "untracked" do
+    get "/contacts", to: "contacts#untracked", as: "untracked_contacts"
+    get "/contact/:id/track", to: "contacts#track", as: "track_contact"
+    get "/contact/:id", to: "contacts#untrack", as: "untrack_contact"
+  end
   get "account/billing", to: "account/billing#index", as: "billing"
 
   # API namespace, for JSON requests at /api/sign_[in|out]
@@ -96,7 +101,7 @@ Rails.application.routes.draw do
       post "/users", to: "registrations#create", as: :new_user_registration
       post "/invitations", to: "invitations#update", as: :accept_invitation
     end
-
+    get "followups", to: "followups#index"
     resources :user
     get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
@@ -114,11 +119,15 @@ Rails.application.routes.draw do
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
     get :upcomings, controller: :dashboard
-
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
       get "/contact/:id/restore", to: "contacts#unarchive_contact", as: "unarchive_contact"
+    end
+    scope "untracked" do
+      get "/contacts", to: "contacts#untracked_contact", as: "untracked_contacts"
+      get "/contact/:id/track", to: "contacts#track", as: "track_contact"
+      get "/contact/:id", to: "contacts#untrack", as: "untrack_contact"
     end
     namespace :account do
       resources :relations, except: [:show, :new]
