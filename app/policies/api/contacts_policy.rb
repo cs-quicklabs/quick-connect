@@ -38,4 +38,16 @@ class Api::ContactsPolicy < Struct.new(:user, :contacts)
   def destroy?
     true
   end
+
+  def untracked_contact?
+    true
+  end
+
+  def untrack?
+    true
+  end
+
+  def track?
+    true
+  end
 end

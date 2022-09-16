@@ -18,12 +18,12 @@ class UntrackContact < Patterns::Service
 
   def untrack
     contact.track = false
-    contact.untracked_on = Date.today
+    contact.untrack_on = Date.today
     contact.save!
   end
 
   def add_event
-    contact.events.create(user: actor, action: "untracked", action_for_context: "untracked contact", trackable: contact, action_context: "Untracked")
+    contact.events.create(user: actor, action: "untrack", action_for_context: "untracked contact", trackable: contact, action_context: "Untracked")
   end
 
   attr_reader :contact, :actor

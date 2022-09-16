@@ -5,9 +5,9 @@ class TrackContact < Patterns::Service
   end
 
   def call
+    track
+    add_event
     begin
-      track
-      add_event
     rescue
       contact
     end
@@ -18,12 +18,12 @@ class TrackContact < Patterns::Service
 
   def track
     contact.track = true
-    contact.untracked_on = nil
+    contact.untrack_on = nil
     contact.save!
   end
 
   def add_event
-    contact.events.create(user: actor, action: "tracked", action_for_context: "tracked contact", trackable: contact, action_context: "Tracked")
+    contact.events.create(user: actor, action: "track", action_for_context: "tracked contact", trackable: contact, action_context: "Tracked")
   end
 
   attr_reader :contact, :actor
