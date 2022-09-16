@@ -37,7 +37,7 @@
  <div class=" overflow-y-hidden overscroll-x-scroll w-[calc(100vw-5.75rem)]  w-fit h-screen ">
     <div class="max-content  lg:max-w-full  xl:grid xl:grid-flow-col  w-max " style="gap: 0.5rem;">
 
-      <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 py-2 h-full " style="grid-column: span 44;margin-left:0.5rem;">
+      <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 py-6 h-full " style="grid-column: span 45;margin-left:0.3rem;">
               <div class="h-full relative" style="min-height: 16rem">
           <div class="absolute inset-0  rounded-lg">
                             <div class="flex flex-wrap items-baseline ">
@@ -54,13 +54,13 @@
           </div>
         </div>
       </div>
-            <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 h-full " style="grid-column: span 44;">
+            <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 py-6 h-full " style="grid-column: span 45;">
               <div class="h-full relative" style="min-height: 16rem">
                             <div class="flex flex-wrap items-baseline ">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">Last 60 days</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @seconds.count.to_s  %>)</p>
                 </div>
-                                  <nav class="flex-1 overflow-y-auto px-2  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.5rem;"  aria-label="Directory" >
+                                  <nav class="flex-1 overflow-y-auto px-2  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.3rem;"  aria-label="Directory" >
                 <div class="relative  h-max py-6" >
                 <ul role="list" class="grid grid-cols-1 gap-6 ">
                   <%= render partial: "card",  collection: @seconds, as: :contact, cached: false  %>
@@ -69,13 +69,13 @@
                 </nav>
         </div>
       </div>
-                  <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6  h-full " style="grid-column: span 44;">
+                  <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 py-6  h-full " style="grid-column: span 45;">
               <div class="h-full relative" style="min-height: 16rem">
                             <div class="flex flex-wrap items-baseline ">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">Last 90 days</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s  %>)</p>
                 </div>
-                                  <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.5rem;" aria-label="Directory" >
+                                  <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.3rem;" aria-label="Directory" >
                 <div class="relative  h-max py-6" >
                 <ul role="list" class="grid grid-cols-1 gap-6 ">
                   <%= render partial: "card",  collection: @thirds, as: :contact, cached: false  %>
@@ -84,13 +84,13 @@
                 </nav>
         </div>
       </div>
-                   <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 h-full " style="grid-column: span 44;">
+                   <div class=" lg:block lg:col-span-3 xl:col-span-12 h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain border-r px-6 py-6 h-full " style="grid-column: span 45;">
               <div class="h-full relative" style="min-height: 16rem">
                             <div class="flex flex-wrap items-baseline ">
                   <h1 class="text-3xl font-bold leading-tight text-gray-900">More than 100 days</h1>
                   <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s  %>)</p>
                 </div>
-                                  <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.5rem;" aria-label="Directory" >
+                                  <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="margin-right:0.3rem;" aria-label="Directory" >
                 <div class="relative  h-max py-6" >
                 <ul role="list" class="grid grid-cols-1 gap-6 ">
                   <%= render partial: "card" ,  collection: @fourths, as: :contact, cached: false %>

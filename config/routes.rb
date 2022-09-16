@@ -119,7 +119,6 @@ Rails.application.routes.draw do
     get :recents, controller: :dashboard
     get :favorites, controller: :dashboard
     get :upcomings, controller: :dashboard
-
     scope "archive" do
       get "/contacts", to: "contacts#archived", as: "archived_contacts"
       get "/contact/:id", to: "contacts#archive_contact", as: "archive_contact"
