@@ -64,28 +64,27 @@
  .day-of-week,
  .date-grid {
    display: grid;
-   grid-template-columns: repeat(7, 40px);
-   gap: 6px;
+   grid-template-columns: repeat(7, 50px);
    
  }
- .date-grid div.Monday:first-child {
+ .date-grid button.Monday:first-child {
   grid-column: 2;
 }
-.date-grid div.Sunday:first-child {
+.date-grid button.Sunday:first-child {
   grid-column: 1;
 }
-.date-grid div.Tuesday:first-child {
+.date-grid button.Tuesday:first-child {
   grid-column: 3;
 }
-.date-grid div.Wednsday:first-child {
+.date-grid button.Wednsday:first-child {
   grid-column: 4;
 }
-.date-grid div.Thursday:first-child {
+.date-grid button.Thursday:first-child {
   grid-column: 5;
 }
-.date-grid div.Friday:first-child {
+.date-grid button.Friday:first-child {
   grid-column: 6;
 }
-.date-grid div.Saturday:first-child {
+.date-grid button.Saturday:first-child {
   grid-column: 7;
 }
