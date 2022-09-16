@@ -1,4 +1,5 @@
 class Reminder < ApplicationRecord
+  acts_as_tenant :account
   validates_presence_of :title, :reminder_type, :reminder_date, :remind_after
   belongs_to :user
   belongs_to :contact

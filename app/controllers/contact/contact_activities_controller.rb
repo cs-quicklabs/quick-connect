@@ -24,7 +24,6 @@ class Contact::ContactActivitiesController < Contact::BaseController
 
   def update
     authorize [@contact, @contact_activity]
-
     respond_to do |format|
       if @contact_activity.update(activity_params)
         Event.where(trackable: @contact_activity).touch_all
