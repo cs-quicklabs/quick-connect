@@ -5755,6 +5755,37 @@
         }
       }
     },
+    "/{account_id}/api/followups": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "follow ups",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
     "/api/invitations": {
       "post": {
         "summary": "change password and accept invitation",
