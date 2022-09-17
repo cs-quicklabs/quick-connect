@@ -40,28 +40,15 @@
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <div class="flex justify-center">
-              <div class="relative grid grid-cols-1 "  style="grid-template-columns: repeat(2, 350px);gap: 3rem; ">
+            <div class="flex gap-px">
+              <div class="flex flex-1 "  id="upcoming">
+                <% current_month_year = (Date.today).strftime("%B %Y") 
+                    current = (Date.today).strftime("%B")%>
                 <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
-                <% for m in 0..1 %>
-                  <div class=" flex bg-white font-sans  w-full  ">
-                    <div class="  text-center md:block  lg:row-start-1  ">
-                      <% current = (Date.today + m.month).strftime("%B")
-                    current_month_year = (Date.today + m.month).strftime("%B %Y") %>
-                      <div class=" items-center  text-gray-900 py-4">
-                        <p class="  text-sm font-normal text-gray-900 truncate"><%= current_month_year %></p>
-                      </div>
-                      <div class="py-2">
-                        <%= render "upcoming", { reminder: upcoming[current_month_year.to_date.beginning_of_month], current_month_year: current_month_year , current:current} %>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
+                <%= render "upcoming", { upcoming: upcoming, current_month_year:current_month_year, current:current } %>
               </div>
-            </div>
-            <div class="flex justify-center items-center">
               <%reminders=@upcoming_reminders%>
-              <section class="mt-12">
+              <div class="flex align-middle  pt-20">
                 <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500">
                   <% if !reminders.nil? %>
                     <% reminders.each do |reminder| %>
@@ -87,25 +74,48 @@
                     <% end %>
                   <% end %>
                 </ol>
-              </section>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
-  </div>
-  <div class="grid grid-cols-1 gap-4  overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
-    <section aria-labelledby="add-participant-section">
-      <div class="overflow-hidden bg-white h-full">
-        <div class="px-4 sm:px-6 ">
-          <div class="flex flex-wrap pt-4">
-            <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
-          </div>
-          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-          <% end %>
         </div>
       </div>
     </section>
   </div>
 </div>
+<div class="grid grid-cols-1 gap-4  overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+  <section aria-labelledby="add-participant-section">
+    <div class="overflow-hidden bg-white h-full">
+      <div class="px-4 sm:px-6 ">
+        <div class="flex flex-wrap pt-4">
+          <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
+        </div>
+        <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+          <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+</div>
+</div>
+<script>
+  today = new Date();
+  currentMonth = today.getMonth();
+  currentYear = today.getFullYear();
+  selectYear = document.getElementById("year");
+  selectMonth = document.getElementById("month");
+
+  months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+  monthAndYear = document.getElementById("monthAndYear");
+
+
+  function next() {
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+  }
+
+  function previous() {
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+  }
+</script>
