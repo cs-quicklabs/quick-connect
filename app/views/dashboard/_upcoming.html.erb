@@ -2,9 +2,13 @@
 <div class=" md:block  lg:row-start-1  ">
   <div >
     <div class="  text-center text-gray-900 py-6">
-      <span class="left button" id="prevBtn"  data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#prev">&lang;</span>
+      <% if current!=(Date.today).strftime("%B")%>
+        <span class="left button" id="prevBtn"  data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#prev">&lang;</span>
+      <% end %>
       <span class="  text-sm font-normal text-gray-900 truncate ml-4 "><%=current_month_year%></span>
-      <span class="right button ml-4" id="nextBtn" data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#next">&rang;</span>
+      <% if current!=(Date.today+2.months).strftime("%B")%>
+        <span class="right button ml-4" id="nextBtn" data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#next">&rang;</span>
+      <% end %>
     </div>
   </div>
   <div class=" text-xs leading-6 text-gray-500 day-of-week">
