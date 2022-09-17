@@ -1,7 +1,7 @@
 class Api::FollowupsController < Api::BaseController
   def index
     authorize [:api, :followup]
-    followups = Contact.all.available.tracked.includes(:events).where("events.action IN (?)", ["phone_call", "conversation", "contact_activity", "contact_event"]).where("events.trackable_id IS NOT NULL").order("events.created_at DESC").uniq
+    followups = Contact.all.available.tracked.includes(:events).where("events.action IN (?)", ["called", "conversation", "contact_activity", "contact_event"]).where("events.trackable_id IS NOT NULL").order("events.created_at DESC").uniq
     @firsts = []
     @seconds = []
     @thirds = []
