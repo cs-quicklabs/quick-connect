@@ -67,6 +67,12 @@
    grid-template-columns: repeat(7, 50px);
    
  }
+ #upcoming .day-of-week,
+ .date-grid {
+   display: grid;
+   grid-template-columns: repeat(7, 40px);
+   
+ }
  .date-grid button.Monday:first-child {
   grid-column: 2;
 }
