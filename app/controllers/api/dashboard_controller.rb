@@ -8,8 +8,9 @@ class Api::DashboardController < Api::BaseController
   def recents
     authorize [:api, :dashboard]
 
-    @contacted = Contact.all.available.tracked.includes(:events).where("events.action IN (?)", ["called", "conversation"]).where("events.trackable_id IS NOT NULL").order("events.created_at DESC").uniq.take(8)
-    render json: { success: true, data: @contacted.sort_by { |r| r.trackable.created_at }.uniq { |r| r.eventable }.take(8).as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
+    @contacted = Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }) +
+                 Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" })
+    render json: { success: true, data: @contacted.sort_by { |r| r.created_at }.uniq { |r| r.eventable }.take(8).as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
   end
 
   def favorites
