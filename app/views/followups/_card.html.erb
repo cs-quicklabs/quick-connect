@@ -1,5 +1,5 @@
-<%= turbo_frame_tag dom_id(contact) do %>
-  <% contact=contact.decorate%>
+<%= turbo_frame_tag dom_id(event) do %>
+  <% contact=event.eventable.decorate%>
   <li id= "<%= dom_id(contact) %>" class="col-span-1 bg-white rounded-lg  border-2 divide-gray-200  hover:bg-gray-50  focus-within:ring-inset">
     <div class="pb-1">
       <div class="w-full flex  justify-between  mt-3 pr-2   " style=" margin-bottom:0.5rem; ">
@@ -7,7 +7,7 @@
           <div class="flex-shrink-0">
             <%= image_tag "male-placeholder-image.png", style:"margin-left: 0.5rem;" , class: "w-10 h-10 rounded-full inline-flex" %>
           </div>
-          <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/<%= contact.event_type.downcase.pluralize %>" class=" cursor-pointer hover:underline" target= "_top">
+          <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/<%= event.trackable.model_name.plural %>" class=" cursor-pointer hover:underline" target= "_top">
             <div class="flex-1 min-w-0"  style="">
               <p class="text-sm font-medium text-gray-900 truncate ... w-56"><%= contact.display_name %>
               </p>
@@ -29,7 +29,7 @@
       </div>
       <div class="px-2 flex ">
         <div class="w-0 flex-1 flex" style="flex-direction: column;">
-          <p class="text-sm font-normal text-gray-900" >Last Activity: <%=display_date(contact.event_create)%> </p>
+          <p class="text-sm font-normal text-gray-900" >Last Activity: <%=display_date(event.created_at)%> </p>
         </div>
         <%html="<div class='flex justify-end cursor-pointer' id='untrack' style='flex-direction: column;'    >
         <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 ml-8 text-gray-500' style='' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>

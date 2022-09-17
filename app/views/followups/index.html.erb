@@ -15,7 +15,7 @@
             <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " aria-label="Directory" >
               <div class="relative  h-max py-6" >
                 <ul role="list" class="grid grid-cols-1 gap-6 " id="firsts">
-                  <%= render partial: "card",  collection: @firsts, as: :contact, cached: false %>
+                  <%= render partial: "card",  collection: @firsts, as: :event, cached: false %>
                 </ul>
               </div>
             </nav>
@@ -31,7 +31,7 @@
           <nav class="flex-1 overflow-y-auto px-2  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style=""  aria-label="Directory" >
             <div class="relative  h-max py-6" >
               <ul role="list" class="grid grid-cols-1 gap-6 " id="seconds">
-                <%= render partial: "card",  collection: @seconds, as: :contact, cached: false  %>
+                <%= render partial: "card",  collection: @seconds, as: :event, cached: false  %>
               </ul>
             </div>
           </nav>
@@ -46,7 +46,7 @@
           <nav class="flex-1 overflow-y-auto px-2  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
             <div class="relative  h-max py-6" >
               <ul role="list" class="grid grid-cols-1 gap-6 " id="thirds">
-                <%= render partial: "card",  collection: @thirds, as: :contact, cached: false  %>
+                <%= render partial: "card",  collection: @thirds, as: :event, cached: false  %>
               </ul>
             </div>
           </nav>
@@ -61,7 +61,7 @@
           <nav class="flex-1 overflow-y-auto px-2 h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
             <div class="relative  h-max py-6" >
               <ul role="list" class="grid grid-cols-1 gap-6 " id="fourths">
-                <%= render partial: "card" ,  collection: @fourths, as: :contact, cached: false %>
+                <%= render partial: "card" ,  collection: @fourths, as: :event, cached: false %>
               </ul>
             </div>
           </nav>
