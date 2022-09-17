@@ -57,11 +57,13 @@
                       <%= turbo_frame_tag dom_id(remind) do %>
                         <li class="py-4 sm:flex">
                           <div class="flex flex-1 " style="width:30rem;">
-                            <time datetime="2022-01-18" class="w-32 flex-none"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
-                            <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline" target="_top">
-                              <p class="mt-2 flex-auto sm:mt-0 text-sm font-semibold  ml-4 whitespace-nowrap w-32" ><%= contact.decorate.display_name %></p>
-                            </a>
-                            <p class="flex-none sm:ml-8  break-words w-40"><%= reminder.first["title"].upcase_first %></p>
+                            <span class="w-48 flex">
+                              <time datetime="2022-01-18" class=" flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                              <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
+                                <p class=" flex-auto text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
+                              </a>
+                            </span>
+                            <p class="flex-none mb-1 sm:ml-8  break-words w-40"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
