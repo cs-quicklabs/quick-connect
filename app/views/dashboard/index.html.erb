@@ -74,7 +74,7 @@
                             <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline" target="_top">
                               <p class="mt-2 flex-auto sm:mt-0 text-sm font-semibold  ml-4 whitespace-nowrap w-32" ><%= contact.decorate.display_name %></p>
                             </a>
-                            <p class="flex-none sm:ml-8  break-words w-32"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-none sm:ml-8  break-words w-40"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
