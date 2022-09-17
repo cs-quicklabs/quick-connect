@@ -1,77 +1,112 @@
 <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2 ">
   <!-- Left column -->
-  <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-visible h-screen max-content top-16 overscroll-contain min-h-full">
-    <div class="top-16  pt-6 h-full pb-10 border-r xl:border-gray-200 ">
-      <% if @contacted.count > 0 %>
-        <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white px-6">
-            <div class="flex flex-wrap ">
-              <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
-            </div>
-            <div class=" flex   bg-white font-sans py-4   w-full">
-              <ul role="list" class="" style="grid-template-columns: repeat(8, 40px); gap: 1rem;  display: grid;">
-                <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
-              </ul>
-            </div>
-          </div>
-        </section>
-      <% end %>
-      <% @favorites = Contact.all.available.favorites.limit(8) %>
-      <% if @favorites.count > 0 %>
-        <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white px-6">
-            <div class="flex items-center justify-between  ">
-              <p class="  text-sm font-medium text-gray-900 truncate"> Favourite Contacts</p>
-            </div>
-            <div class=" flex bg-white font-sans py-4 w-full ">
-              <ul role="list" class="" style="grid-template-columns: repeat(<%=@favorites.count%>, 40px); gap: 1rem;  display: grid;">
-                <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
-              </ul>
-              <div class="flex items-center sm:mt-0 sm:ml-4 ">
-                <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
+  <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+    <div class="h-full  border-r xl:border-gray-200">
+      <div class="top-16  pt-6 h-full pb-10 ">
+        <% if @contacted.count > 0 %>
+          <section aria-labelledby="participants_section">
+            <div class="overflow-hidden bg-white px-6">
+              <div class="flex flex-wrap ">
+                <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
+              </div>
+              <div class=" flex   bg-white font-sans py-4   w-full">
+                <ul role="list" class="" style="grid-template-columns: repeat(8, 40px); gap: 1rem;  display: grid;" id="side-menu">
+                  <%= render partial: "contacted", collection: @contacted, as: :contact, cached: false %>
+                </ul>
               </div>
             </div>
-          </div>
-        </section>
-      <% end %>
-      <section aria-labelledby="participants_section">
-        <div class="overflow-hidden bg-white px-6">
-          <div class="flex flex-wrap ">
-            <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
-          </div>
-          <div class="grid  grid-cols-1  lg:gap-2">
-            <div class=" flex   bg-white font-sans  w-full  ">
-              <ul>
-                <% for m in 0..1 %>
-                  <div class="  text-center   lg:row-start-1  ">
-                    <% current = (Date.today - m.month).strftime("%B")
-                    current_month_year = (Date.today - m.month).strftime("%B %Y") %>
-                    <div class=" items-center  text-gray-900 py-4">
-                      <p class="  text-sm font-normal text-gray-900 truncate"><%= current_month_year %></p>
-                    </div>
-                    <div class="py-4">
-                      <%= render "upcoming", { reminder: @upcoming_reminders[current_month_year.to_date.beginning_of_month], current_month_year: current_month_year , current:current} %>
-                    </div>
-                  <% end %>
+          </section>
+        <% end %>
+        <% @favorites = Contact.all.available.favorites.limit(8) %>
+        <% if @favorites.count > 0 %>
+          <section aria-labelledby="participants_section">
+            <div class="overflow-hidden bg-white px-6 py-4">
+              <div class="flex items-center justify-between  ">
+                <p class="  text-sm font-medium text-gray-900 truncate"> Favourite Contacts</p>
+              </div>
+              <div class=" flex bg-white font-sans py-4 w-full ">
+                <ul role="list" class="" style="grid-template-columns: repeat(<%=@favorites.count%>, 40px); gap: 1rem;  display: grid;">
+                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
+                </ul>
+                <div class="flex items-center sm:mt-0 sm:ml-4 ">
+                  <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
                 </div>
-              </ul>
+              </div>
             </div>
-          </div>
-        </div>
-      </section>
-    </div>
-    <div class="grid grid-cols-1 gap-4  overflow-y-visible  h-screen max-content top-16 overscroll-contain min-h-full">
-      <section aria-labelledby="add-participant-section">
-        <div class="overflow-hidden bg-white h-full">
-          <div class="px-4 sm:px-6 ">
-            <div class="flex flex-wrap pt-4">
-              <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
+          </section>
+        <% end %>
+        <section aria-labelledby="participants_section">
+          <div class=" bg-white px-6 py-4">
+            <div class="flex flex-wrap ">
+              <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-            <% end %>
+            <div class="flex justify-center">
+              <div class="relative grid grid-cols-1 "  style="grid-template-columns: repeat(2, 350px);gap: 3rem; ">
+                <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
+                <% for m in 0..1 %>
+                  <div class=" flex bg-white font-sans  w-full  ">
+                    <div class="  text-center md:block  lg:row-start-1  ">
+                      <% current = (Date.today + m.month).strftime("%B")
+                    current_month_year = (Date.today + m.month).strftime("%B %Y") %>
+                      <div class=" items-center  text-gray-900 py-4">
+                        <p class="  text-sm font-normal text-gray-900 truncate"><%= current_month_year %></p>
+                      </div>
+                      <div class="py-2">
+                        <%= render "upcoming", { reminder: upcoming[current_month_year.to_date.beginning_of_month], current_month_year: current_month_year , current:current} %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+            <div class="flex justify-center items-center">
+              <%reminders=@upcoming_reminders%>
+              <section class="mt-12">
+                <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500">
+                  <% if !reminders.nil? %>
+                    <% reminders.each do |reminder| %>
+                      <%contact=Contact.find(reminder.first["contact_id"])%>
+                      <%remind=Reminder.find(reminder.first["id"])%>
+                      <%= turbo_frame_tag dom_id(remind) do %>
+                        <li class="py-4 sm:flex">
+                          <div class="flex flex-1 " style="width:30rem;">
+                            <time datetime="2022-01-18" class="w-32 flex-none"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                            <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline" target="_top">
+                              <p class="mt-2 flex-auto sm:mt-0 text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
+                            </a>
+                            <p class="flex-none sm:ml-20 whitespace-nowrap"><%= reminder.first["title"].upcase_first %></p>
+                            <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                          </div>
+                          <div class="flex justify-end space-x-2">
+                            <% if policy([contact, remind]).edit? %>
+                              <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
+                              <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
+                            <% end %>
+                          </div>
+                        </li>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                </ol>
+              </section>
+            </div>
           </div>
         </div>
       </section>
     </div>
   </div>
+  <div class="grid grid-cols-1 gap-4  overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
+    <section aria-labelledby="add-participant-section">
+      <div class="overflow-hidden bg-white h-full">
+        <div class="px-4 sm:px-6 ">
+          <div class="flex flex-wrap pt-4">
+            <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
+          </div>
+          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+          <% end %>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

@@ -1,7 +1,8 @@
+<% recent=contact.events.first%>
 <li>
-  <a href="/<%= recent.account.id %>/contacts/<%= recent.eventable.id %>/<%= recent.trackable.class.model_name.plural %>" class="  ">
-    <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-500">
-      <span class="text-xl font-medium leading-none text-white"> <%= display_image(recent.eventable) %>
+  <a href="/<%= recent.account.id %>/contacts/<%= recent.eventable.id %>/<%= recent.trackable.class.model_name.plural %>" class="  " title="<%=recent.eventable.decorate.display_name%>">
+    <span  class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gray-500"  >
+      <span class="font-medium leading-none text-white"  > <%= display_image(recent.eventable) %>
       </span>
     </span>
   </a>

@@ -6,10 +6,8 @@ class DashboardController < BaseController
     @reminders.each do |reminder|
       @upcoming_reminders += reminder.upcoming
     end
-    @upcoming_reminders = @upcoming_reminders.sort_by { |r| r.second[:reminder] }.group_by { |r| r.second[:reminder].beginning_of_month }
-
-    @contacted = (Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }) +
-                  Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").select("DISTINCT ON(events.action) events.*").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" })).sort_by { |r| r.created_at }.uniq { |r| r.eventable }.take(8)
+    @upcoming_reminders = @upcoming_reminders.sort_by { |r| r.second[:reminder] }
+    @contacted = Contact.all.available.tracked.includes(:events).where("events.action IN (?)", ["called", "conversation"]).where("events.trackable_id IS NOT NULL").order("events.created_at DESC").uniq
   end
 
   def events
