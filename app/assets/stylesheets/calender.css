@@ -88,3 +88,22 @@
 .date-grid button.Saturday:first-child {
   grid-column: 7;
 }
+#side-menu:hover {
+	width: 400px !important;	
+	display:inline-block;
+}
+#side-menu li label {
+   visibility: hidden;
+   display:inline-block;
+}
+
+#side-menu li:hover label {
+	visibility: visible;
+  font-size: 0.875rem; /* 14px */
+line-height: 1.25rem;
+background-color: #666;
+font-weight: 400;
+white-space: nowrap;
+color: #d7f2ff;
+
+}
