@@ -63,7 +63,7 @@
                                 <p class=" flex-auto text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
-                            <p class="flex-none mb-1 sm:ml-8  break-words w-40"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-auto mb-2 sm:ml-8  break-words w-40"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
