@@ -72,7 +72,7 @@
                           <div class="flex flex-1 " style="width:30rem;">
                             <time datetime="2022-01-18" class="w-32 flex-none"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
                             <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline" target="_top">
-                              <p class="mt-2 flex-auto sm:mt-0 text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
+                              <p class="mt-2 flex-auto sm:mt-0 text-sm font-semibold  ml-4 whitespace-nowrap w-32" ><%= contact.decorate.display_name %></p>
                             </a>
                             <p class="flex-none sm:ml-8  break-words w-32"><%= reminder.first["title"].upcase_first %></p>
                             <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
