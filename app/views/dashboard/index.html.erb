@@ -60,10 +60,10 @@
                             <span class="w-48 flex">
                               <time datetime="2022-01-18" class=" flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
                               <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
-                                <p class=" flex-auto text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
+                                <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
-                            <p class="flex-auto  sm:ml-8  break-words w-64"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-none  sm:ml-8  break-words w-64"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
