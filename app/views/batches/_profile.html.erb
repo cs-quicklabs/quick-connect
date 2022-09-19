@@ -2,24 +2,24 @@
   <div>
     <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
   </div>
-  <div class="max-w-5xl mx-auto px-2 " id="contact-header">
-    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-2">
+  <div class="max-w-5xl mx-auto lg:px-2 xl:px-8" id="contact-header">
+    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
       <div class="flex">
         <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
       </div>
-      <div class="mt-2 sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6">
-        <div class="sm:hidden 2xl:block mt-6 min-w-0 flex-1 ml-3">
+      <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center sm:justify-end sm:space-x-6">
+        <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1 ml-3 text-center w-24 ml-3">
           <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
         </div>
         <div id="" class="mt-2 flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 sm:space-x-4">
-          <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+          <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
             <!-- Heroicon name: solid/mail -->
             <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
               <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
             </svg>
             <span class="text-gray-900">View Profile</span>
           </a>
-          <a type="button" class=" cursor-pointer inline-flex justify-center px-2 py-1 border  border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+          <a type="button" class=" cursor-pointer inline-flex justify-center px-4 py-2 border  border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
             <!-- Heroicon name: solid/mail -->
             <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
               <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z" />
@@ -27,7 +27,7 @@
             </svg>
             <span class="text-gray-900">Message</span>
           </a>
-          <a type="button" href =  "mailto:<%= contact.email %>" class=" cursor-pointer inline-flex  justify-center px-2 py-1 border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+          <a type="button" href =  "mailto:<%= contact.email %>" class=" cursor-pointer inline-flex  justify-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
             <!-- Heroicon name: solid/phone -->
             <svg class="-ml-1 mr-2 h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -40,8 +40,8 @@
     </div>
     <div>
     </div>
-    <div class="hidden sm:block 2xl:hidden mt-6 min-w-0 flex-1">
-      <h1 class="text-2xl font-bold text-gray-900 truncate"><%= contact.decorate.display_name %></h1>
+    <div class="hidden sm:block 2xl:hidden mt-4 min-w-0 flex-1 text-center w-24 ml-3">
+      <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
     </div>
   </div>
   <!-- Tabs -->
@@ -60,11 +60,19 @@
     <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
       <div class="sm:col-span-1">
         <dt class="text-sm font-medium text-gray-500">Phone</dt>
+        <% if !contact.phone.blank?%>
         <dd class="mt-1 text-sm text-gray-900"><%= contact.phone %></dd>
+        <% else %>
+         <dd class="text-xs font-normal text-gray-600">Please add phone number</dd>
+         <% end %>
       </div>
       <div class="sm:col-span-1">
         <dt class="text-sm font-medium text-gray-500">Email</dt>
+                <% if !contact.email.blank?%>
         <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
+         <% else %>
+         <dd class="text-xs font-normal text-gray-600">Please add email</dd>
+         <% end %>
       </div>
     </dl>
   </div>
