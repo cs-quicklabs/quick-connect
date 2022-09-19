@@ -6,8 +6,8 @@
         <div class="flex items-center justify-between ">
           <div class="flex flex-wrap items-baseline ">
             <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= batch.name.titleize %></h1>
-            <% @contacts = batch.contacts.uniq %>
-            <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @contacts.count.to_s %>)</p>
+            <% contacts = batch.contacts.uniq %>
+            <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= contacts.count.to_s %>)</p>
           </div>
         </div>
         <div  class=" py-4 ">
@@ -16,9 +16,7 @@
           </div>
           <nav class="flex-1">
             <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full  "   id="batch_contacts">
-              <% @contacts.each do |contact| %>
-                <%= render "contact", { batch: batch, contact: contact } %>
-              <% end %>
+              <%= render "contact", { batch: batch, contacts: contacts } %>
             </ul>
           </nav>
         </div>
