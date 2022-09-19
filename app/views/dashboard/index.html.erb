@@ -40,44 +40,48 @@
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <div class="flex flex xl:gap-16 gap-3 ">
-              <div class="flex align-middle">
-                <ol class="mt-2 divide-y-2 divide-gray-200 text-sm leading-6 text-gray-500">
-                  <%reminders=@upcoming_reminders%>
-                  <% if !reminders.nil? %>
-                    <% reminders.each do |reminder| %>
-                      <%contact=Contact.find(reminder.first["contact_id"])%>
-                      <%remind=Reminder.find(reminder.first["id"])%>
-                      <%= turbo_frame_tag dom_id(remind) do %>
-                        <li class="py-4 sm:flex border-b border-gray-200">
-                          <div class="flex flex-1   " style="width:26rem;">
-                            <span class="w-52 flex">
-                              <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
-                              <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
-                                <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap w-24 " ><%= contact.decorate.display_name %></p>
-                              </a>
-                            </span>
-                            <p class="flex-none -mb-2  sm:ml-4  break-words w-48"><%= reminder.first["title"].upcase_first %></p>
-                          </div>
-                          <div class="flex justify-end space-x-2 ml-2">
-                            <% if policy([contact, remind]).edit? %>
-                              <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
-                              <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
-                            <% end %>
-                          </div>
-                        </li>
+            <% if @upcoming_reminders.size>0%>
+              <div class="flex flex xl:gap-16 gap-3 ">
+                <div class="flex align-middle">
+                  <ol class="mt-2 divide-y-2 divide-gray-200 text-sm leading-6 text-gray-500">
+                    <%reminders=@upcoming_reminders%>
+                    <% if !reminders.nil? %>
+                      <% reminders.each do |reminder| %>
+                        <%contact=Contact.find(reminder.first["contact_id"])%>
+                        <%remind=Reminder.find(reminder.first["id"])%>
+                        <%= turbo_frame_tag dom_id(remind) do %>
+                          <li class="py-4 sm:flex border-b border-gray-200">
+                            <div class="flex flex-1    " style="width:26rem;">
+                              <span class="w-52 flex">
+                                <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                                <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
+                                  <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap w-24 " ><%= contact.decorate.display_name %></p>
+                                </a>
+                              </span>
+                              <p class="flex-none -mb-2  sm:ml-4  break-words w-48"><%= reminder.first["title"].upcase_first %></p>
+                            </div>
+                            <div class="flex justify-end space-x-2 ml-2">
+                              <% if policy([contact, remind]).edit? %>
+                                <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
+                                <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
+                              <% end %>
+                            </div>
+                          </li>
+                        <% end %>
                       <% end %>
                     <% end %>
-                  <% end %>
-                </ol>
-              </div>
-              <div class="flex flex-1  -mt-9"  id="upcoming">
-                <% current_month_year = (Date.today).strftime("%B %Y") 
+                  </ol>
+                </div>
+                <div class="flex flex-1  -mt-9"  id="upcoming" style="width:18rem">
+                  <% current_month_year = (Date.today).strftime("%B %Y") 
                     current = (Date.today).strftime("%B")%>
-                <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
-                <%= render "upcoming", { upcoming: upcoming, current_month_year:current_month_year, current:current } %>
+                  <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
+                  <%= render "upcoming", { upcoming: upcoming, current_month_year:current_month_year, current:current } %>
+                </div>
               </div>
-            </div>
+            <% else %>
+              <p class="text-xs font-normal text-gray-500 mt-1">No upcoming events</dd>
+            <% end %>
           </div>
         </div>
       </div>
