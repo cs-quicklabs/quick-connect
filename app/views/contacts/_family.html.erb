@@ -1,3 +1,4 @@
+<% if !family.blank?%>
 <div class="relative rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm flex items-center space-x-3 hover:border-gray-400">
   <div class="flex-shrink-0">
     <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
@@ -10,3 +11,6 @@
     </a>
   </div>
 </div>
+<% else %>
+ <p class="text-xs font-normal text-gray-600"> No family added</p>
+ <% end %>
