@@ -59,7 +59,7 @@
                             </span>
                             <p class="flex-none -mb-2  sm:ml-4  break-words w-52"><%= reminder.first["title"].upcase_first %></p>
                           </div>
-                          <div class="flex justify-end space-x-2">
+                          <div class="flex justify-end space-x-2 ml-2">
                             <% if policy([contact, remind]).edit? %>
                               <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
                               <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
