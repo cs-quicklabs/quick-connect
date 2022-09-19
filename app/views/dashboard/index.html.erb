@@ -1,6 +1,6 @@
-<div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2 ">
+<div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-2 ">
   <!-- Left column -->
-  <div class="grid grid-cols-1 gap-4 lg:col-span-2 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+  <div class="grid grid-cols-1 gap-4 lg:col-span-8 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
     <div class="h-full  border-r xl:border-gray-200">
       <div class="top-16  pt-6 h-full pb-10 ">
         <% if @contacted.count > 0 %>
@@ -40,22 +40,16 @@
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <div class="flex gap-px">
-              <div class="flex flex-1 "  id="upcoming">
-                <% current_month_year = (Date.today).strftime("%B %Y") 
-                    current = (Date.today).strftime("%B")%>
-                <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
-                <%= render "upcoming", { upcoming: upcoming, current_month_year:current_month_year, current:current } %>
-              </div>
-              <%reminders=@upcoming_reminders%>
-              <div class="flex align-middle  pt-20">
-                <ol class="mt-2 divide-y divide-gray-200 text-sm leading-6 text-gray-500">
+            <div class="flex gap-6">
+              <div class="flex align-middle">
+                <ol class="mt-2 divide-y-2 divide-gray-200 text-sm leading-6 text-gray-500">
+                  <%reminders=@upcoming_reminders%>
                   <% if !reminders.nil? %>
                     <% reminders.each do |reminder| %>
                       <%contact=Contact.find(reminder.first["contact_id"])%>
                       <%remind=Reminder.find(reminder.first["id"])%>
                       <%= turbo_frame_tag dom_id(remind) do %>
-                        <li class="py-4 sm:flex">
+                        <li class="py-4 sm:flex border-b border-gray-200">
                           <div class="flex flex-1 " style="width:30rem;">
                             <span class="w-48 flex">
                               <time datetime="2022-01-18" class=" flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
@@ -63,7 +57,7 @@
                                 <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
-                            <p class="flex-none  sm:ml-8  break-words w-64"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-none -mb-2  sm:ml-4  break-words w-48"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
@@ -77,26 +71,32 @@
                   <% end %>
                 </ol>
               </div>
+              <div class="flex flex-1  -mt-9"  id="upcoming">
+                <% current_month_year = (Date.today).strftime("%B %Y") 
+                    current = (Date.today).strftime("%B")%>
+                <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
+                <%= render "upcoming", { upcoming: upcoming, current_month_year:current_month_year, current:current } %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </div>
-<div class="grid grid-cols-1 gap-4  overflow-y-auto  h-screen max-content top-16 overscroll-contain min-h-full">
-  <section aria-labelledby="add-participant-section">
-    <div class="overflow-hidden bg-white h-full">
-      <div class="px-4 sm:px-6 ">
-        <div class="flex flex-wrap pt-4">
-          <p class="pb-4 mt-2  text-sm font-medium text-gray-900 truncate">Timeline</p>
+  <div class="grid grid-cols-1 gap-4  overflow-y-auto lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
+    <section aria-labelledby="add-participant-section">
+      <div class=" bg-white h-full">
+        <div class="px-4 sm:px-6 ">
+          <div class="flex flex-wrap pt-4">
+            <p class="pb-4 mt-2  text-sm font-medium text-gray-900 ">Timeline</p>
+          </div>
+          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+          <% end %>
         </div>
-        <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-          <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-        <% end %>
       </div>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
 </div>
 <script>
   today = new Date();
