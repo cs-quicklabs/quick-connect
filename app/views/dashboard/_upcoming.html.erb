@@ -1,7 +1,7 @@
 <% reminder= upcoming[current_month_year.to_date.beginning_of_month]%>
 <div class=" md:block  lg:row-start-1  ">
   <div >
-    <div class="  text-center text-gray-900 py-6">
+    <div class="  text-center text-gray-900 ">
       <% if current!=(Date.today).strftime("%B")%>
         <span class="cursor-pointer" id="prevBtn"  data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#prev">&lang;</span>
       <% end %>
@@ -11,7 +11,7 @@
       <% end %>
     </div>
   </div>
-  <div class=" text-xs leading-6 text-gray-500 day-of-week">
+  <div class=" text-xs leading-6 text-gray-500 day-of-week pt-2">
     <div>Sun</div>
     <div>Mon</div>
     <div>Tue</div>
