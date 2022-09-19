@@ -71,7 +71,7 @@
                   <% end %>
                 </ol>
               </div>
-              <div class="flex flex-1  -mt-10"  id="upcoming">
+              <div class="flex flex-1  -mt-8"  id="upcoming">
                 <% current_month_year = (Date.today).strftime("%B %Y") 
                     current = (Date.today).strftime("%B")%>
                 <%upcoming=@upcoming_reminders.group_by { |r| r.second[:reminder].beginning_of_month }%>
