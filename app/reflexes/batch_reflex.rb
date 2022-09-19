@@ -23,6 +23,6 @@ class BatchReflex < ApplicationReflex
     @batch = AddContactToGroup.call(@batch, current_user, @contact).result
     html = render(partial: "batches/contact", locals: { batch: @batch, contact: @contact })
 
-    morph "batch_contacts", "#{html}"
+    morph "#batch_contacts", "#{html}"
   end
 end
