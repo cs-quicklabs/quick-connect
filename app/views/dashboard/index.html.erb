@@ -54,7 +54,7 @@
                             <span class="w-52 flex">
                               <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
                               <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
-                                <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
+                                <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap w-24 " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
                             <p class="flex-none -mb-2  sm:ml-4  break-words w-52"><%= reminder.first["title"].upcase_first %></p>
