@@ -40,7 +40,7 @@
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <div class="flex gap-6">
+            <div class="flex gap-8">
               <div class="flex align-middle">
                 <ol class="mt-2 divide-y-2 divide-gray-200 text-sm leading-6 text-gray-500">
                   <%reminders=@upcoming_reminders%>
@@ -50,14 +50,14 @@
                       <%remind=Reminder.find(reminder.first["id"])%>
                       <%= turbo_frame_tag dom_id(remind) do %>
                         <li class="py-4 sm:flex border-b border-gray-200">
-                          <div class="flex flex-1 " style="width:30rem;">
-                            <span class="w-48 flex">
-                              <time datetime="2022-01-18" class=" flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                          <div class="flex flex-1   " style="width:26rem;">
+                            <span class="w-52 flex">
+                              <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
                               <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
                                 <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
-                            <p class="flex-none -mb-2  sm:ml-4  break-words w-48"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-none -mb-2  sm:ml-4  break-words w-52"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2">
                             <% if policy([contact, remind]).edit? %>
