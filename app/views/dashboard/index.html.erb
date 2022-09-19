@@ -49,25 +49,23 @@
                       <% reminders.each do |reminder| %>
                         <%contact=Contact.find(reminder.first["contact_id"])%>
                         <%remind=Reminder.find(reminder.first["id"])%>
-                        <%= turbo_frame_tag dom_id(remind) do %>
-                          <li class="py-4 sm:flex border-b border-gray-200">
-                            <div class="flex flex-1    " style="width:26rem;">
-                              <span class="w-56 flex">
-                                <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
-                                <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
-                                  <p class=" flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-28 " ><%= contact.decorate.display_name %></p>
-                                </a>
-                              </span>
-                              <p class="flex-none -mb-2  sm:ml-6 break-words w-48"><%= reminder.first["title"].upcase_first %></p>
-                            </div>
-                            <div class="flex justify-end space-x-2 ml-2">
-                              <% if policy([contact, remind]).edit? %>
-                                <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
-                                <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
-                              <% end %>
-                            </div>
-                          </li>
-                        <% end %>
+                        <li class="py-4 sm:flex border-b border-gray-200">
+                          <div class="flex flex-1    " style="width:26rem;">
+                            <span class="w-56 flex">
+                              <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                              <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
+                                <p class=" flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-28 " ><%= contact.decorate.display_name %></p>
+                              </a>
+                            </span>
+                            <p class="flex-none -mb-2  sm:ml-6 break-words w-48"><%= reminder.first["title"].upcase_first %></p>
+                          </div>
+                          <div class="flex justify-end space-x-2 ml-2">
+                            <% if policy([contact, remind]).edit? %>
+                              <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
+                              <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
+                            <% end %>
+                          </div>
+                        </li>
                       <% end %>
                     <% end %>
                   </ol>
