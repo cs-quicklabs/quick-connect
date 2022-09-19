@@ -5,13 +5,13 @@
       <% if current!=(Date.today).strftime("%B")%>
         <span class="cursor-pointer" id="prevBtn"  data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#prev">&lang;</span>
       <% end %>
-      <span class="  text-sm font-normal text-gray-900 truncate ml-4 "><%=current_month_year%></span>
+      <span class="  text-sm font-normal text-gray-900 truncate  "><%=current_month_year%></span>
       <% if current!=(Date.today+2.months).strftime("%B")%>
         <span class="cursor-pointer ml-4" id="nextBtn" data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#next">&rang;</span>
       <% end %>
     </div>
   </div>
-  <div class=" text-xs leading-6 text-gray-500 day-of-week pt-2">
+  <div class=" text-xs leading-6 text-gray-500 day-of-week pt-4">
     <div>Sun</div>
     <div>Mon</div>
     <div>Tue</div>
