@@ -1,6 +1,6 @@
-<div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-12 lg:gap-2 ">
+<div class="grid items-start grid-cols-1  lg:grid-cols-12  ">
   <!-- Left column -->
-  <div class="grid grid-cols-1 gap-4 lg:col-span-8 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
+  <div class="grid grid-cols-1 lg:col-span-8 overflow-y-auto h-screen max-content top-16 overscroll-contain min-h-full">
     <div class="h-full  border-r xl:border-gray-200">
       <div class="top-16  pt-6 h-full pb-10 ">
         <% if @contacted.count > 0 %>
@@ -57,7 +57,7 @@
                                 <p class=" flex-auto  text-sm font-semibold  ml-4 whitespace-nowrap w-24 " ><%= contact.decorate.display_name %></p>
                               </a>
                             </span>
-                            <p class="flex-none -mb-2  sm:ml-4  break-words w-52"><%= reminder.first["title"].upcase_first %></p>
+                            <p class="flex-none -mb-2  sm:ml-4  break-words w-56"><%= reminder.first["title"].upcase_first %></p>
                           </div>
                           <div class="flex justify-end space-x-2 ml-2">
                             <% if policy([contact, remind]).edit? %>
@@ -83,7 +83,7 @@
       </div>
     </section>
   </div>
-  <div class="grid grid-cols-1 gap-4  overflow-y-auto lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
+  <div class="grid grid-cols-1   overflow-y-auto lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
     <section aria-labelledby="add-participant-section">
       <div class=" bg-white h-full">
         <div class="px-4 sm:px-6 ">
