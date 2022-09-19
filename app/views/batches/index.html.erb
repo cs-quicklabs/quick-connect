@@ -32,33 +32,38 @@
     </div>
   </div>
   <!-- Static sidebar for desktop -->
-  <div class=" lg:flex lg:flex-shrink-0  "  id="show1">
-    <div class="flex flex-col border-r border-gray-200 " style="width: 24rem;">
-      <!-- Sidebar component, swap this element with another sidebar if you like -->
+  <div class=" lg:flex lg:flex-shrink-0  "  >
+    <div class="flex flex-col " style="width: 24rem;" id="show1">
       <div class="flex-1 flex flex-col min-h-0 overflow-y-visible ">
+        <% if params[:batch_id]%>
+          <%batch= Batch.find(params[:batch_id])%>
+          <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq }%>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
+      <div class="flex-1 relative z-0 flex overflow-hidden">
+        <main class="flex-1 relative z-0 overflow-y-visible focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 overflow-y-scroll overscroll-contain">
+          <!-- Breadcrumb -->
+          <div id="profile" class="h-full">
+            <% if params[:contact_id]%>
+              <%= render partial: "batches/profile", locals: { contact: Contact.find(params[:contact_id]), relatives:Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id])}%>
+            <% end %>
+          </div>
+        </main>
       </div>
     </div>
   </div>
-  <div class="flex flex-col min-w-0 flex-1 overflow-hidden">
-    <div class="flex-1 relative z-0 flex overflow-hidden">
-      <main class="flex-1 relative z-0 overflow-y-visible focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 overflow-y-scroll overscroll-contain">
-        <!-- Breadcrumb -->
-        <div id="profile" class="h-full">
-        </div>
-      </main>
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
-  window.onload = function() {
-    var url = window.location.href;
-   let paramString = url.split('?')[1];
-   let queryString = new URLSearchParams(paramString);
-     for(let pair of queryString.entries()) {
-      if(!typeof pair[1]!==null) {
-            document.getElementById("group_"+pair[1]).click();
-     }
-        }
+  <script type="text/javascript">
+    window.onload = function() {
+      var url = window.location.href;
+     let paramString = url.split('?')[1];
+     let queryString = new URLSearchParams(paramString);
+       for(let pair of queryString.entries()) {
+        if(!typeof pair[1]!==null) {
+              document.getElementById("group_"+pair[1]).click();
+       }
+          }
 
-  }
-</script>
+    }
+  </script>
