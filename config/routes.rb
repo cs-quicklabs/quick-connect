@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   get "/search/contacts", to: "search#contacts"
   get "/search/contact", to: "search#contact"
   get "/search/add", to: "search#add"
+  get "/search/nav", to: "search#nav"
   root :to => "dashboard#index"
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get "followups", to: "followups#index"

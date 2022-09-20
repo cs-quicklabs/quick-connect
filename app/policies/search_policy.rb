@@ -10,4 +10,8 @@ class SearchPolicy < Struct.new(:user, :search)
   def add?
     true
   end
+
+  def nav?
+    true
+  end
 end
