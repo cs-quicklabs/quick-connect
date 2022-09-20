@@ -32,7 +32,7 @@
     </div>
   </div>
   <!-- Static sidebar for desktop -->
-  <div class=" flex flex-1 flex-shrink-0  "  >
+  <div class=" flex  flex-shrink-0  "  >
     <div class="flex flex-col " style="width: 24rem;" >
       <div class="flex-1 flex flex-col min-h-0 overflow-y-auto " id="show1">
         <% if params[:batch_id]%>
@@ -40,27 +40,28 @@
           <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq  }%>
         <% end %>
       </div>
-      <div class="flex flex-col min-w-0 flex-1  ">
-        <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 overflow-y-scroll overscroll-contain">
-          <!-- Breadcrumb -->
-          <div id="profile" class="h-full">
-            <% if params[:contact_id]%>
-              <%= render partial: "batches/profile", locals: { contact: Contact.find(params[:contact_id]), relatives:Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id])}%>
-            <% end %>
-          </div>
-        </main>
-      </div>
     </div>
-    <script type="text/javascript">
-      window.onload = function() {
-        var url = window.location.href;
-       let paramString = url.split('?')[1];
-       let queryString = new URLSearchParams(paramString);
-         for(let pair of queryString.entries()) {
-          if(!typeof pair[1]!==null) {
-                document.getElementById("group_"+pair[1]).click();
-         }
-            }
+    <div class="flex flex-col min-w-0 flex-1  ">
+      <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 overflow-y-scroll overscroll-contain">
+        <!-- Breadcrumb -->
+        <div id="profile" class="h-full">
+          <% if params[:contact_id]%>
+            <%= render partial: "batches/profile", locals: { contact: Contact.find(params[:contact_id]), relatives:Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id])}%>
+          <% end %>
+        </div>
+      </main>
+    </div>
+  </div>
+  <script type="text/javascript">
+    window.onload = function() {
+      var url = window.location.href;
+     let paramString = url.split('?')[1];
+     let queryString = new URLSearchParams(paramString);
+       for(let pair of queryString.entries()) {
+        if(!typeof pair[1]!==null) {
+              document.getElementById("group_"+pair[1]).click();
+       }
+          }
 
-      }
-    </script>
+    }
+  </script>
