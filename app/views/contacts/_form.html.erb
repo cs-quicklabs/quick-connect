@@ -4,10 +4,8 @@
     <%= render "shared/form_header", title: title, subtitle: subtitle %>
     <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
     <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
-    <%= form.text_field :email, "Email (optional)", autocomplete: "off" %>
+    <%= form.text_field :email, "Email", autocomplete: "off" %>
     <%= form.text_field :phone, "Phone", autocomplete: "off" %>
-    <div class="flex items-center justify-between">
-    </div>
     <div class="flex justify-end">
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
       <%= form.submit "Save", class: "btn-blue" %>
