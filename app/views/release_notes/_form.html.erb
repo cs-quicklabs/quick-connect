@@ -3,7 +3,7 @@
     <%= render "shared/form_messages", resource: release_note, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: title, subtitle: subtitle %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
-    <%= form.rich_text_area :body, "Description" %>
+    <%= form.rich_text_area :body, "Description" , class: "h-20"%>
     <div class="flex justify-end">
       <%= form.submit "Save As Draft", :name => "draft", class: "btn-normal" %>
       <%= form.submit "Submit Release Note", class: "btn-blue", data: {

@@ -48,7 +48,7 @@ class ReleaseNotesController < BaseController
       if @release_note.errors.empty?
         format.html { redirect_to release_notes_path, notice: "Release Note was successfully created." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ReleaseNote.new, partial: "release_notes/form", locals: { release_note: @release_note, title: "Add New ReleaseNote", subtitle: "Please add ReleaseNote" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ReleaseNote.new, partial: "release_notes/form", locals: { release_note: @release_note, title: "Add New Release Note", subtitle: "Please add release note" }) }
       end
     end
   end
