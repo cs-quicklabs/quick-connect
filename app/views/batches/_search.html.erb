@@ -1,5 +1,5 @@
   <% if defined?(message) && !message.nil? %>
-  <div class="p-4 rounded-md bg-red-50" id="error_explanation">
+  <div class="p-4 rounded-md bg-green-50" x-data="{open: true}" x-show="open" x-init="setTimeout(function(){open = false; }, 2000);" id="error_explanation">
     <div class="flex">
       <div class="flex-shrink-0">
         <!-- Heroicon name: solid/x-circle -->
