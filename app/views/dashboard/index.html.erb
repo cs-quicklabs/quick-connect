@@ -49,7 +49,7 @@
                       <% reminders.each do |reminder| %>
                         <%contact=Contact.find(reminder.first["contact_id"])%>
                         <%remind=Reminder.find(reminder.first["id"])%>
-                        <li class="py-4 sm:flex border-b border-gray-200">
+                        <li class="py-4 sm:flex ">
                           <div class="flex flex-1    " style="width:26rem;">
                             <span class="w-56 flex">
                               <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>

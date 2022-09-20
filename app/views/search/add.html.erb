@@ -1,10 +1,9 @@
 <% if @contacts.count > 0 %>
   <% @contacts.each do |contact| %>
-    <li role="option"  @click="isShowing = false; document.getElementById('search_id').value='<%= contact.id %>';document.getElementById('search').value='<%= contact.decorate.display_name %>'" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="batch-contact"
-     data-reflex="click->Batch#add" data-contact-id="<%= contact.id %>" data-batch-id="<%=@batch.id%>">
-      <%= contact.decorate.display_name %>
+    <li role="option"  @click="isShowing = false; document.getElementById('search_id').value='<%= contact.id %>';document.getElementById('search').value='<%= contact.decorate.display_name %>'" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" id="batch-contact">
+      <p  data-reflex="click->Batch#add" data-contact-id="<%= contact.id %>" data-batch-id="<%=@batch.id%>"><%= contact.decorate.display_name %></p>
     </li>
   <% end %>
 <% else %>
-  <p role="option" class="px-4 py-2 text-sm text-gray-500">No Record Found</p>
-<% end %>
+  <div role="option" class="px-4 py-2 text-sm text-gray-500 unselectable" onmousedown="return false">No Record Found <input type="button" class="display-none" disabled="disabled"></div>
+<% end%>
