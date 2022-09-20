@@ -41,7 +41,7 @@
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
             <% if @upcoming_reminders.size>0%>
-              <div class="flex ">
+              <div class=" w-full">
                 <ol class="mt-2 divide-y-2 divide-gray-200 text-sm leading-6 text-gray-500">
                   <%reminders=@upcoming_reminders%>
                   <% if !reminders.nil? %>
@@ -51,12 +51,12 @@
                       <li class="py-4 sm:flex ">
                         <div class="flex flex-1    " style="width:26rem;">
                           <span class="w-56 flex">
-                            <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-24"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
+                            <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-32"><%= reminder.second[:reminder].strftime("%B %d") %> </time>
                             <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
-                              <p class=" flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-28 " ><%= contact.decorate.display_name %></p>
+                              <p class=" mb-2 flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-48 " ><%= contact.decorate.display_name %></p>
                             </a>
                           </span>
-                          <p class="flex-none -mb-2  sm:ml-6 break-words w-48"><%= reminder.first["title"].upcase_first %></p>
+                          <p class="flex-none   sm:ml-8 break-words "><%= reminder.first["title"].upcase_first %></p>
                         </div>
                         <div class="flex justify-end space-x-2 ml-2">
                           <% if policy([contact, remind]).edit? %>
