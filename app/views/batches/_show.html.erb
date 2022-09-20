@@ -11,12 +11,16 @@
           </div>
         </div>
         <div  class=" py-4 ">
-          <%= render "search", batch: batch %>
+          <% if defined?(message) && !message.nil? %>
+            <%= render "search",{ batch: batch, message:message} %>
+          <% else %>
+            <%= render "search",{ batch: batch} %>
+          <% end %>
           <div class="relative px-6 h-full ">
           </div>
           <nav class="flex-1">
             <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full  "   id="batch_contacts">
-              <%= render "contact", { batch: batch, contacts: contacts } %>
+              <%= render "contact", { batch: batch, contacts: contacts   } %>
             </ul>
           </nav>
         </div>
