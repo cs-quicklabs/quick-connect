@@ -39,7 +39,7 @@ class ContactsController < BaseController
       if @contact.errors.empty?
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please add contact" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact" }) }
       end
     end
   end

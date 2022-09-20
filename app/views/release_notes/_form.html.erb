@@ -3,14 +3,19 @@
     <%= render "shared/form_messages", resource: release_note, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: title, subtitle: subtitle %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
-    <%= form.rich_text_area :body, "Description" %>
-    <div class="flex justify-end">
-      <%= form.submit "Save As Draft", :name => "draft", class: "btn-normal" %>
-      <%= form.submit "Submit Release Note", class: "btn-blue", data: {
+    <%= form.rich_text_area :body, "Description"%>
+    <div class="flex justify-between">
+      <div class="flex justify-start inline-flex">
+        <%= link_to "Back", release_notes_path, class: "btn-normal " %>
+      </div>
+      <div class="flex  inline-flex">
+        <%= form.submit "Save As Draft", :name => "draft", class: "btn-normal" %>
+        <%= form.submit "Submit Release Note", class: "btn-blue", data: {
                                                      controller: "confirmation",
                                                      "confirmation-message-value": "Are you sure you want to submit it? You won't be able to edit it after this.",
                                                      action: "confirmation#confirm",
                                                    } %>
+      </div>
     </div>
   </main>
 <% end %>

@@ -4,7 +4,7 @@
       <div class=" flex flex-1">
         <p class="whitespace-pre-wrap text-sm "><%= comment.title.upcase_first %></p>
       </div>
-      <div class="text-right  whitespace-nowrap  text-sm font-medium">
+      <div class="text-right  whitespace-nowrap">
         <% if policy(comment).edit? %>
           <%= edit_button(edit_journal_comment_path(comment)) %>
           <%= delete_button(journal_comment_path(comment)) %>

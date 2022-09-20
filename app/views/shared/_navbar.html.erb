@@ -22,7 +22,7 @@
         </div>
         <% if user_signed_in? %>
           <div class="hidden sm:block pl-4">
-            <div class="flex space-x-2">
+            <div class="flex space-x-4">
               <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Home</a>
               <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected" : "nav-unselected" %>">Follow-ups</a>
               <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected" : "nav-unselected" %>">Contacts</a>
