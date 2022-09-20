@@ -5763,6 +5763,13 @@
           "type": "string",
           "description": "account_id",
           "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
         }
       ],
       "get": {

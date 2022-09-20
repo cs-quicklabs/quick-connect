@@ -23,12 +23,31 @@
         <% if user_signed_in? %>
           <div class="hidden sm:block pl-4">
             <div class="flex space-x-4">
-              <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected" : "nav-unselected" %>">Home</a>
-              <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected" : "nav-unselected" %>">Follow-ups</a>
-              <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected" : "nav-unselected" %>">Contacts</a>
-              <a href=<%= journals_path %> class= "<%= current_page?(journals_path) ? "nav-selected" : "nav-unselected" %>">Journals</a>
-              <a href=<%= release_notes_path %> class= "<%= current_page?(release_notes_path) ? "nav-selected" : "nav-unselected" %>">Release Notes</a>
-              <a href=<%= batches_path %> class= "<%= current_page?(batches_path) ? "nav-selected" : "nav-unselected" %>">Groups</a>
+              <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Home</a>
+              <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Follow-ups</a>
+              <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Contacts</a>
+              <a href=<%= journals_path %> class= "<%= current_page?(journals_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Journals</a>
+              <a href=<%= release_notes_path %> class= "<%= current_page?(release_notes_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Release Notes</a>
+              <a href=<%= batches_path %> class= "<%= current_page?(batches_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Groups</a>
+            </div>
+          </div>
+        </div>
+        <div class="flex  w-5/12 px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contacts">
+          <div class="w-full max-w-xs lg:max-w-sm justify-end">
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
+                <!-- Heroicon name: solid/search -->
+                <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <input id="search" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contacts" type="search" data-nav-search-target="input">
+            </div>
+            <div class="relative">
+              <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <ul data-nav-search-target="results">
+                </ul>
+              </div>
             </div>
           </div>
         </div>

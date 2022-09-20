@@ -1,7 +1,8 @@
 require "swagger_helper"
-RSpec.describe "api/followups", type: :request do
+RSpec.describe "api/followups?page={page}", type: :request do
   path "/{account_id}/api/followups" do
     parameter name: "account_id", in: :path, type: :string, description: "account_id"
+    parameter name: "page", in: :path, type: :integer, description: "page"
     get("follow ups") do
       security [Bearer: {}]
       produces "application/json"
