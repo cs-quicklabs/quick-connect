@@ -49,9 +49,9 @@
                       <%contact=Contact.find(reminder.first["contact_id"])%>
                       <%remind=Reminder.find(reminder.first["id"])%>
                       <li class="py-4 sm:flex border-b align-middle">
-                        <div class="flex flex-1    " style="width:26rem;">
+                        <div class="flex flex-1  mt-1  " style="width:26rem;">
                           <span class="w-56 flex">
-                            <time datetime="2022-01-18" class=" -mb-2 flex-none inline-flex w-32"><%= reminder.second[:reminder].strftime("%d %B") %> </time>
+                            <time datetime="2022-01-18" class="  flex-none inline-flex w-32"><%= reminder.second[:reminder].strftime("%d %B") %> </time>
                             <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
                               <p class=" mb-2 flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-48 " ><%= contact.decorate.display_name %></p>
                             </a>
