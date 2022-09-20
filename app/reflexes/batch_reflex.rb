@@ -21,7 +21,7 @@ class BatchReflex < ApplicationReflex
     @contact = Contact.find(element.dataset["contact-id"])
     @batch = Batch.find(element.dataset["batch-id"])
     @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-    html = render(partial: "batches/contact", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "contact added successfully to group", search: contact.decorate.display_name })
+    html = render(partial: "batches/contact", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "contact added successfully to group", search: @contact.decorate.display_name })
 
     morph "#show1", "#{html}"
   end
