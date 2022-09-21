@@ -78,7 +78,7 @@
           </div>
         </div>
       <% else %>
-        <div class="flex items-center justify-end md:flex-1 lg:w-0">
+        <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
           <a href=<%= new_user_registration_path %> class="<%= current_page?(new_user_registration_path) ? "nav-selected" : "nav-unselected" %>">Sign up </a>
           <a href=<%= new_user_session_path %> class="<%= current_page?(new_user_session_path) ? "nav-selected" : "nav-unselected" %>"  >Sign in</a>
         </div>
