@@ -18,9 +18,10 @@ class Api::FollowupsController < Api::BaseController
         else
           @fourths += [event.as_json(:include => [:eventable, :trackable])]
         end
-        @pagy, @fourths = pagy_array_safe(params, @fourths, items: LIMIT)
       end
+      @pagy, @fourths = pagy_array_safe(params, @fourths, items: LIMIT)
+      render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, firsts: @firsts, seconds: @seconds, thirds: @thirds, fourths: @fourths, message: "Follow ups were successfully retrieved" }
     end
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, firsts: @firsts, seconds: @seconds, thirds: @thirds, fourths: @fourths, message: "Follow ups were successfully retrieved" }
+    render json: { success: true, firsts: @firsts, seconds: @seconds, thirds: @thirds, fourths: @fourths, message: "Follow ups were successfully retrieved" }
   end
 end
