@@ -1,4 +1,6 @@
+ <% if defined?(message) && !message.nil? %>
  <%= render "shared/success_message",  message:message %>
+ <% end %>
 <div class=" flex space-x-4">
   <div class="flex-1 min-w-0" x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/add?batch_id=<%= batch.id %>" >
     <label for="search" class="block  text-sm font-medium text-gray-700   " >Search To Add Contact</label>

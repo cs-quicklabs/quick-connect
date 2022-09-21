@@ -20,14 +20,9 @@
     <%= favicon_link_tag "logo.jpeg"%>
   </head>
   <body>
-    <div class="pb-8">
-      <%= render "shared/navbar" %>
-    </div>
-    <div id="modal"></div>
-    <div class="pt-4">
-      <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
-      <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
-    </div>
+    <%= render "shared/navbar" %>
+    <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
+    <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
     <main class="content" >
       <%= yield %>
     </main>
