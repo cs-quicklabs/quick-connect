@@ -10,7 +10,7 @@
       <%= form.date_field :reminder_date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), min: Date.today %>
     </div>
     <div class="w-full ">
-      <div class="block max-w-lg space-x-12 mt-1 ">
+      <div class="block max-w-lg space-x-2 mt-1 ">
         <div class="inline-flex space-x-2">
           <%= form.radio_button :reminder_type, "once", class: "mt-1 cursor-pointer ", :checked => true %>
           <%= form.label :reminder_type_once, "Once", class: " cursor-pointer text-sm font-medium text-gray-700" %>

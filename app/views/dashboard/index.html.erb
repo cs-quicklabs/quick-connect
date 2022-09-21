@@ -56,7 +56,7 @@
                               <p class=" mb-2 flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-48 " ><%= contact.decorate.display_name %></p>
                             </a>
                           </span>
-                          <p class="flex-none   sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
+                          <p class="flex-none  sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
                         </div>
                         <div class="flex justify-end space-x-2 ml-2 flex-none ">
                           <% if policy([contact, remind]).edit? %>
@@ -70,7 +70,7 @@
                 </ol>
               </div>
             <% else %>
-              <p class="text-xs font-normal text-gray-500 mt-1">No upcoming events</dd>
+              <p class="text-xs font-normal text-gray-500 mt-2 ">No reminders added</dd>
             <% end %>
           </div>
         </div>

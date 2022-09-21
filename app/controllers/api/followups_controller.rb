@@ -6,16 +6,18 @@ class Api::FollowupsController < Api::BaseController
     @seconds = []
     @thirds = []
     @fourths = []
-    followups.each do |followup|
-      event = followup.events.first
-      if Date.today >= event.created_at.to_date && event.created_at.to_date >= Date.today - 30.days
-        @firsts += [event.as_json(:include => [:eventable, :trackable])]
-      elsif Date.today - 30.days - event.created_at.to_date && event.created_at.to_date >= Date.today - 60.days
-        @seconds += [event.as_json(:include => [:eventable, :trackable])]
-      elsif Date.today - 60.days > event.created_at.to_date && event.created_at.to_date >= Date.today - 90.days
-        @thirds += [event.as_json(:include => [:eventable, :trackable])]
-      else
-        @fourths += [event.as_json(:include => [:eventable, :trackable])]
+    if followups.size > 0
+      followups.each do |followup|
+        event = followup.events.first
+        if Date.today >= event.created_at.to_date && event.created_at.to_date >= Date.today - 30.days
+          @firsts += [event.as_json(:include => [:eventable, :trackable])]
+        elsif Date.today - 30.days - event.created_at.to_date && event.created_at.to_date >= Date.today - 60.days
+          @seconds += [event.as_json(:include => [:eventable, :trackable])]
+        elsif Date.today - 60.days > event.created_at.to_date && event.created_at.to_date >= Date.today - 90.days
+          @thirds += [event.as_json(:include => [:eventable, :trackable])]
+        else
+          @fourths += [event.as_json(:include => [:eventable, :trackable])]
+        end
       end
       @pagy, @fourths = pagy_array_safe(params, @fourths, items: LIMIT)
     end
