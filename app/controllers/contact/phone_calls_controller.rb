@@ -6,7 +6,7 @@ class Contact::PhoneCallsController < Contact::BaseController
 
     @phone_call = PhoneCall.new
     @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(date: :desc), items: LIMIT)
-    render_partial("phone_calls/call", collection: @phone_calls) if stale?(@phone_calls)
+    render_partial("phone_calls/call", collection: @phone_calls) if stale?(@phone_calls + [@contact])
   end
 
   def destroy

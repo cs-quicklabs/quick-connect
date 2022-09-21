@@ -89,7 +89,11 @@ class BatchesController < BaseController
     authorize :batch
     @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@batch) }
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.remove(@batch) +
+                             turbo_stream.replace(:show1, partial: "batches/show", locals: { batch: "" }) +
+                             turbo_stream.replace(:profile, partial: "batches/profile", locals: { contact: "" })
+      }
     end
   end
 

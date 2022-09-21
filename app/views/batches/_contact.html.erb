@@ -1,12 +1,12 @@
 <% if contacts.size>0 %>
   <% contacts.each do |contact| %>
     <% contact = contact.decorate %>
-    <li  id= "<%= dom_id(contact) %>" class=" " style="list-style-type: none;">
-      <div class="  justify-between  py-5 flex items-center space-x-2 hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500" >
+    <li  id= "<%= dom_id(contact) %>" class="px-4 " style="list-style-type: none;">
+      <div class="  justify-between  py-3 flex items-center space-x-2  focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500" >
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
-        <div class="cursor-pointer flex-1 min-w-0"  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" >     
+        <div class="cursor-pointer flex-1 min-w-0 hover:underline"  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" >     
           <p class="text-sm font-medium text-gray-900" ><%= contact.display_name %></p>
           <p class="text-sm text-gray-500 truncate">
             <% if !contact.phone.blank? %>

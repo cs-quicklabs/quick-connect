@@ -1,23 +1,23 @@
 class Contact::BaseContactPolicy < ApplicationPolicy
   def index?
-    return false if record.first.archived?
     true
   end
 
   def update?
-    index?
+    return false if record.first.archived?
+    true
   end
 
   def create?
-    index?
+    update?
   end
 
   def destroy?
-    index?
+    update?
   end
 
   def edit?
-    index?
+    update?
   end
 
   def show?
@@ -25,6 +25,6 @@ class Contact::BaseContactPolicy < ApplicationPolicy
   end
 
   def new?
-    index?
+    create?
   end
 end

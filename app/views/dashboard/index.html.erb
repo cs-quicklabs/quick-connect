@@ -49,16 +49,16 @@
                       <%contact=Contact.find(reminder.first["contact_id"])%>
                       <%remind=Reminder.find(reminder.first["id"])%>
                       <li class="py-4 sm:flex border-b align-middle">
-                        <div class="flex flex-1  mt-1  " style="width:26rem;">
+                        <div class="flex flex-1 " style="width:26rem;">
                           <span class="w-56 flex">
-                            <time datetime="2022-01-18" class="  flex-none inline-flex w-32"><%= reminder.second[:reminder].strftime("%d %B") %> </time>
-                            <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex" target="_top">
+                            <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.second[:reminder]) %> </time>
+                            <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex font-medium text-gray-900" target="_top">
                               <p class=" mb-2 flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-48 " ><%= contact.decorate.display_name %></p>
                             </a>
                           </span>
-                          <p class="flex-none   sm:ml-8 break-words "><%= reminder.first["title"].upcase_first %></p>
+                          <p class="flex-none   sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
                         </div>
-                        <div class="flex justify-end space-x-2 ml-2">
+                        <div class="flex justify-end space-x-2 ml-2 flex-none ">
                           <% if policy([contact, remind]).edit? %>
                             <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
                             <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>

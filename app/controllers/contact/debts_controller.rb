@@ -5,7 +5,7 @@ class Contact::DebtsController < Contact::BaseController
     authorize [@contact, Debt]
     @debt = Debt.new
     @pagy, @debts = pagy_nil_safe(params, @contact.debts.order(created_at: :desc), items: LIMIT)
-    render_partial("contact/debts/debt", collection: @debts) if stale?(@debts)
+    render_partial("contact/debts/debt", collection: @debts) if stale?(@debts + [@contact])
   end
 
   def destroy

@@ -1,4 +1,4 @@
-<% if policy(contact).profile? %>
+<% if policy(contact).profile? && !contact.blank?%>
   <div>
     <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
   </div>
@@ -47,7 +47,7 @@
         <% if !contact.phone.blank?%>
           <dd class="mt-1 text-sm text-gray-900"><%= contact.phone %></dd>
         <% else %>
-          <dd class="text-xs font-normal text-gray-500 mt-1">Please add phone number</dd>
+          <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
         <% end %>
       </div>
       <div class="sm:col-span-1">
@@ -55,7 +55,7 @@
         <% if !contact.email.blank?%>
           <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
         <% else %>
-          <dd class="text-xs font-normal text-gray-500 mt-1">Please add email</dd>
+          <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
         <% end %>
       </div>
     </dl>
@@ -67,7 +67,7 @@
       <% if !relatives.blank?%>
         <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
       <% else %>
-        <p class="text-xs font-normal text-gray-500">please add family</p>
+        <p class="text-xs font-normal text-gray-500">-</p>
       <% end %>
     </div>
   </div>

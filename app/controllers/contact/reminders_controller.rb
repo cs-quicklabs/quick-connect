@@ -6,7 +6,7 @@ class Contact::RemindersController < Contact::BaseController
 
     @reminder = Reminder.new
     @pagy, @reminders = pagy_nil_safe(params, @contact.reminders.order(created_at: :desc), items: LIMIT)
-    render_partial("reminders/reminder", collection: @reminders) if stale?(@reminders)
+    render_partial("reminders/reminder", collection: @reminders) if stale?(@reminders + [@contact])
   end
 
   def destroy
