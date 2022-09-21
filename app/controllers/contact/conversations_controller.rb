@@ -6,7 +6,7 @@ class Contact::ConversationsController < Contact::BaseController
 
     @conversation = Conversation.new
     @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(date: :desc), items: LIMIT)
-    render_partial("conversations/call", collection: @conversations) if stale?(@conversations)
+    render_partial("conversations/call", collection: @conversations) if stale?(@conversations + [@contact])
   end
 
   def destroy

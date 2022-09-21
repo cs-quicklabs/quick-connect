@@ -5,7 +5,7 @@ class Contact::GiftsController < Contact::BaseController
     authorize [@contact, Gift]
     @gift = Gift.new
     @pagy, @gifts = pagy_nil_safe(params, @contact.gifts.order(created_at: :desc), items: LIMIT)
-    render_partial("contact/gifts/gift", collection: @gifts) if stale?(@gifts)
+    render_partial("contact/gifts/gift", collection: @gifts) if stale?(@gifts + [@contact])
   end
 
   def destroy

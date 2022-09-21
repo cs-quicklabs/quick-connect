@@ -5,7 +5,7 @@ class Contact::NotesController < Contact::BaseController
     authorize [@contact, Note]
     @note = Note.new
     @pagy, @notes = pagy_nil_safe(params, @contact.notes.order(created_at: :desc), items: LIMIT)
-    render_partial("notes/note", collection: @notes) if stale?(@notes)
+    render_partial("notes/note", collection: @notes) if stale?(@notes + [@contact])
   end
 
   def destroy

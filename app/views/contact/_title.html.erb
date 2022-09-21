@@ -1,15 +1,12 @@
   <% contact = contact.decorate %>
-<% contact_labels = contact.labels %>
-<% labels = Label.all.order(:name) - contact_labels %>
-<% contact_relation = contact.relation %>
-<% relations = Relation.all.order(:name) - [contact_relation] %>
 <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="contact-header">
-  <div class="flex flex-wrap items-baseline -mt-2 -ml-2">
-    <h1 class="text-3xl font-bold leading-tight text-gray-900">
+  <div class="flex flex-wrap items-baseline   -ml-2">
+    <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex" >
-      <div  class="ml-2" id="contact-labels">
+    <div class="flex "  >
+      <% contact_labels = contact.labels %>
+      <div  class="ml-2" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
       <div class="relative inline-block  text-left" x-data="{menu: false}"  >
@@ -21,15 +18,21 @@
         </button>
         <div  x-show="menu"
           @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <% if labels.empty? %>
+          <% if Label.all.order(:name).size==0 %>
             <div class="py-1" role="none">
               <p @click="menu = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
-              <a href=<%= account_labels_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+              <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
             <% else %>
-              <div class="py-1" role="none">
-                <% labels.each do |label| %>
-                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                  <a @click="menu = false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
+              <% labels = @labels - contact_labels %>
+              <% if labels.size==0%>
+                <div class="py-1" role="none">
+                  <a @click="menu = false" href="<%= account_labels_path %>"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+              <% else %>
+                <div class="py-1" role="none">
+                  <% labels.each do |label| %>
+                    <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                    <a @click="menu = false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
@@ -38,6 +41,7 @@
       </div>
     </div>
     <div class="flex mt-4 sm:mt-0 sm:ml-4">
+      <% contact_relation = contact.relation %>
       <% if policy(contact).edit? %>
         <div class=" flex justify-end" id="contact-relation" >
           <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
@@ -46,7 +50,7 @@
         <div class=" inline-block mr-4  text-left">
           <div  class="relative" x-data="{open: false}"   >
             <div>
-              <button @click="open = !open" type="button" class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
+              <button @click="open = !open" type="button" class=" whitespace-nowrap inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
                 Select Relation
                 <!-- Heroicon name: solid/chevron-down -->
                 <svg class="w-5 h-5 ml-2 -mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -56,18 +60,19 @@
             </div>
             <div  x-show="open"
                @click.away="open = false" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-              <% if relations.empty? %>
+              <% if Relation.all.order(:name).size==0 %>
                 <div class="py-1" role="none">
                   <p @click="open = false"  role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
-                  <a href=<%= account_relations_path %>  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
+                  <a href="<%= account_relations_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
                 <% else %>
-                  <div class="py-1" role="none">
-                    <% relations.each do |relation| %>
-                      <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                      <a @click="open = false"   href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactRelation#change" data-contact-id=<%= contact.id %> data-relation-id=<%= relation.id %> ><%= relation.name.upcase_first %></a>
-                    <% end %>
+                  <% relations = @relations - [contact_relation] %>
+                    <div class="py-1" role="none">
+                      <% relations.each do |relation| %>
+                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                        <a @click="open = false"   href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactRelation#change" data-contact-id=<%= contact.id %> data-relation-id=<%= relation.id %> ><%= relation.name.upcase_first %></a>
+                      <% end %>
+                        </div>
                   <% end %>
-                </div>
               </div>
             </div>
           </div>

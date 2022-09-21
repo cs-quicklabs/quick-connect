@@ -5,7 +5,7 @@ class Contact::ContactEventsController < Contact::BaseController
     authorize [@contact, ContactEvent]
     @contact_event = ContactEvent.new
     @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
-    render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events)
+    render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events + [@contact])
   end
 
   def destroy

@@ -5,7 +5,7 @@ class Contact::TasksController < Contact::BaseController
     authorize [@contact, Task]
     @task = Task.new
     @pagy, @tasks = pagy_nil_safe(params, @contact.tasks.order(created_at: :desc), items: LIMIT)
-    render_partial("contact/tasks/task", collection: @tasks) if stale?(@tasks)
+    render_partial("contact/tasks/task", collection: @tasks) if stale?(@tasks + [@contact])
   end
 
   def destroy

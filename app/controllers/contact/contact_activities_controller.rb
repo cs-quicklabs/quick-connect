@@ -5,7 +5,7 @@ class Contact::ContactActivitiesController < Contact::BaseController
     authorize [@contact, ContactActivity]
     @contact_activity = ContactActivity.new
     @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact), items: LIMIT)
-    render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@contact_activities)
+    render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@contact_activities + [@contact])
   end
 
   def destroy
