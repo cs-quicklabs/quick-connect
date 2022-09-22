@@ -1,5 +1,5 @@
   <% contact = contact.decorate
-     labels = Label.all.order(:name)
+    labels = Label.all.order(:name)
     relations = Relation.all.order(:name) %>
 <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 " id="contact-header">
   <div class="flex flex-wrap items-baseline   -ml-2">
@@ -20,13 +20,13 @@
         </button>
         <div  x-show="menu"
           @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <% if Label.all.order(:name).size==0 %>
+          <% if Label.all.order(:name).size == 0 %>
             <div class="py-1" role="none">
               <p @click="menu = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
               <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
             <% else %>
               <% labels = labels - contact_labels %>
-              <% if labels.size==0%>
+              <% if labels.size == 0 %>
                 <div class="py-1" role="none">
                   <a @click="menu = false" href="<%= account_labels_path %>"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
                 <% else %>
@@ -62,7 +62,7 @@
               </div>
               <div  x-show="open"
                @click.away="open = false" class="absolute right-0 z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                <% if Relation.all.order(:name).size==0 %>
+                <% if Relation.all.order(:name).size == 0 %>
                   <div class="py-1" role="none">
                     <p @click="open = false"  role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
                     <a href="<%= account_relations_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>

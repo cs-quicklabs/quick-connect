@@ -1,5 +1,5 @@
-<% if !contact.blank?%>
-  <% if policy(contact).profile?%>
+<% if !contact.blank? %>
+  <% if policy(contact).profile? %>
     <div>
       <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
     </div>
@@ -45,7 +45,7 @@
       <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Phone</dt>
-          <% if !contact.phone.blank?%>
+          <% if !contact.phone.blank? %>
             <dd class="mt-1 text-sm text-gray-900"><%= contact.phone %></dd>
           <% else %>
             <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
@@ -53,7 +53,7 @@
         </div>
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Email</dt>
-          <% if !contact.email.blank?%>
+          <% if !contact.email.blank? %>
             <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
           <% else %>
             <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
@@ -65,7 +65,7 @@
     <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
       <h2 class="text-sm font-medium text-gray-500">Family</h2>
       <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <% if !relatives.blank?%>
+        <% if !relatives.blank? %>
           <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
         <% else %>
           <p class="text-xs font-normal text-gray-500">-</p>

@@ -1,12 +1,12 @@
-<% reminder= upcoming[current_month_year.to_date.beginning_of_month]%>
+<% reminder = upcoming[current_month_year.to_date.beginning_of_month] %>
 <div class=" md:block  lg:row-start-1  ">
   <div >
     <div class="  text-center text-gray-900 ">
-      <% if current!=(Date.today).strftime("%B")%>
+      <% if current != (Date.today).strftime("%B") %>
         <span class="cursor-pointer" id="prevBtn"  data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#prev">&lang;</span>
       <% end %>
-      <span class="  text-sm font-normal text-gray-900 truncate  "><%=current_month_year%></span>
-      <% if current!=(Date.today+2.months).strftime("%B")%>
+      <span class="  text-sm font-normal text-gray-900 truncate  "><%= current_month_year %></span>
+      <% if current != (Date.today + 2.months).strftime("%B") %>
         <span class="cursor-pointer ml-4" id="nextBtn" data-current-month="<%= current_month_year %>"  data-reflex="click->Calender#next">&rang;</span>
       <% end %>
     </div>
@@ -30,20 +30,20 @@
           <% if reminders[index] %>
             <% if i.to_s == reminders[index].second[:reminder].strftime(("%-d")) %>
               <button type="button" class="relative bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>"  >
-                <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white"><%=i%></time>
+                <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-indigo-600 font-semibold text-white"><%= i %></time>
               </button>
               <% break %>
             <% end %>
           <% else %>
             <button type="button" class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-              <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%=i%></time>
+              <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%= i %></time>
             </button>
           <% end %>
           <% index += 1 %>
         <% end %>
       <% else %>
         <button type="button" class="bg-white py-1.5 px-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-          <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%=i%></time>
+          <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%= i %></time>
         </button>
       <% end %>
     <% end %>

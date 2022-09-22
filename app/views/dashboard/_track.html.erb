@@ -15,7 +15,7 @@
           <% else %>
             <%= event.user.decorate.display_name %>
           <% end %>
-          <%=event.action_for_context%>
+          <%= event.action_for_context %>
           <a href="<%= contact_abouts_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
         </p>
       </div>

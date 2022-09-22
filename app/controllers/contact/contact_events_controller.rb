@@ -10,9 +10,7 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @contact_event]
-
     @event = DestroyContactDetail.call(@contact, current_user, @contact_event).result
-
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact_event) }
     end
@@ -24,10 +22,9 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def update
     authorize [@contact, @contact_event]
-    binding.irb
-    @contact_event = UpdateContactEvent.call(@contact_event, current_user, event_params, params[:reminder], @contact).result
     respond_to do |format|
-      if @contact_event.errors.empty?
+      if @contact_event.update(event_params)
+        Event.where(trackable: @contact_event).touch_all
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact_event, partial: "contact/contact_events/event", locals: { contact_event: @contact_event, contact: @contact }) }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact_event, template: "contact/contact_events/edit", locals: { event: @contact_event, contact: @contact }) }

@@ -72,8 +72,8 @@
             <article class=" h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
               <!-- contact header -->
               <div id="profile" class="h-full">
-                <% if params[:contact_id]%>
-                  <%= render partial: "profile", locals: { contact: Contact.find(params[:contact_id]), relatives:Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id])}%>
+                <% if params[:contact_id] %>
+                  <%= render partial: "profile", locals: { contact: Contact.find(params[:contact_id]), relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]) } %>
                 <% end %>
               </div>
             </article>

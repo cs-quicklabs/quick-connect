@@ -1,4 +1,4 @@
-<% if contacts.size>0 %>
+<% if contacts.size > 0 %>
   <% contacts.each do |contact| %>
     <% contact = contact.decorate %>
     <li  id= "<%= dom_id(contact) %>" class="px-4 " style="list-style-type: none;">
