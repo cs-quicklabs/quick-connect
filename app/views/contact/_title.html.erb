@@ -1,5 +1,7 @@
-  <% contact = contact.decorate %>
-<div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="contact-header">
+  <% contact = contact.decorate
+     labels = Label.all.order(:name)
+    relations = Relation.all.order(:name) %>
+<div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 " id="contact-header">
   <div class="flex flex-wrap items-baseline   -ml-2">
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
@@ -9,7 +11,7 @@
       <div  class="ml-2" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
-      <div class="relative inline-block  text-left" x-data="{menu: false}"  >
+      <div class="relative inline-block " x-data="{menu: false}"  >
         <button id="add" @click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <!-- Heroicon name: solid/plus -->
           <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -23,7 +25,7 @@
               <p @click="menu = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
               <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
             <% else %>
-              <% labels = @labels - contact_labels %>
+              <% labels = labels - contact_labels %>
               <% if labels.size==0%>
                 <div class="py-1" role="none">
                   <a @click="menu = false" href="<%= account_labels_path %>"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
@@ -65,7 +67,7 @@
                     <p @click="open = false"  role="menuitem" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No relations added yet</p>
                     <a href="<%= account_relations_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Relations</a>
                   <% else %>
-                    <% relations = @relations - [contact_relation] %>
+                    <% relations = relations - [contact_relation] %>
                     <div class="py-1" role="none">
                       <% relations.each do |relation| %>
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
@@ -91,7 +93,7 @@
           <% end %>
           <div class="ml-4 mt-1" id="contact-favorite">
             <% if !contact.favorite? %>
-              <li id="not-favorite" class=" flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
+              <li id="not-favorite" class="flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
                 <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="cursor-pointer" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                   <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
                 </svg>

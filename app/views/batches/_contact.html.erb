@@ -2,7 +2,7 @@
   <% contacts.each do |contact| %>
     <% contact = contact.decorate %>
     <li  id= "<%= dom_id(contact) %>" class="px-4 " style="list-style-type: none;">
-      <div class="  justify-between  py-3 flex items-center space-x-2  focus-within:ring-2 focus-within:ring-inset focus-within:ring-pink-500" >
+      <div class="  justify-between  py-3 flex items-center space-x-2 " >
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
