@@ -1,36 +1,43 @@
-<%= turbo_frame_tag dom_id(document) do %>
+<tr id="<%= dom_id document %>">
   <% document = document.decorate %>
-  <li >
-    <div class="flex mt-6 space-x-3">
-      <div>
-        <div class="text-sm text-gray-900 font-medium">
-          <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline" target="_top">
-            <%= document.display_filename %>
-          </a>
-        </div>
-        <div class="mt-1 text-sm text-gray-700">
-          <p
+  <td class="table-cell">
+    <div class="text-sm text-gray-900 font-medium">
+      <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline" target="_top">
+        <%= document.display_filename %>
+      </a>
+    </div>
+    <div class="mt-1 text-sm text-gray-700">
+      <p
    x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
-            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= document.comments %></span>
-            <button
+        <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= document.comments %></span>
+        <button
       @click="isCollapsed = !isCollapsed"
       x-show="originalContent.length > maxLength"
-              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-              ></button>
-          </p>
-        </div>
-        <div class="mt-2 space-x-2 text-sm">
-          <span class="font-medium text-gray-500"><%= display_created_at(document) %></span>
-          <% if policy([@contact, document]).edit? %>
-            <%= edit_button(edit_contact_document_path(@contact, document)) %>
-          <% end %>
-          <% if policy([@contact, document]).destroy? %>
-            <%= delete_button(contact_document_path(@contact, document)) %>
-          <% end %>
-        </div>
-      </div>
+          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+          ></button>
+      </p>
     </div>
-  </li>
-<% end %>
+  </td>
+  <td class="table-cell align-top whitespace-nowrap">
+    <% if document.contact.account.owner == document.user %>
+      You 
+    <% else %>
+      <a href="<%= account_invitations_path %>" class="block hover:underline" target="_top">
+        <%= document.user.decorate.display_name %>
+      </a>
+    <% end %>
+  </td>
+  <td class="table-cell whitespace-nowrap align-top">
+    <%= display_created_at(document) %>
+  </td>
+  <td class="table-cell  align-top">
+    <% if policy([@contact, document]).edit? %>
+      <div class="flex justify-end items-center space-x-2">
+        <%= edit_button(edit_contact_document_path(@contact, document)) %>
+        <%= delete_button(contact_document_path(@contact, document)) %>
+      </div>
+    <% end %>
+  </td>
+</tr>

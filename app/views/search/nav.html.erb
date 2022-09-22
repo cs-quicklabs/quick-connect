@@ -1,10 +1,10 @@
 <% if @contacts.count > 0 %>
   <% @contacts.each do |contact| %>
-    <li role="option"  @click="isShowing = false; document.getElementById('search').value='<%= contact.decorate.display_name %>'" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="show">
-      <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" target="_top">
+    <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" target="_top">
+      <li role="option"  @click="isShowing = false; document.getElementById('search').value='<%= contact.decorate.display_name %>'" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="show">
         <%= contact.decorate.display_name %>
-      </a>
-    </li>
+      </li>
+    </a>
   <% end %>
 <% else %>
   <div role="option" class="px-4 py-2 text-sm text-gray-500 unselectable" onmousedown="return false">No Record Found <input type="button" class="display-none" disabled="disabled"></div>

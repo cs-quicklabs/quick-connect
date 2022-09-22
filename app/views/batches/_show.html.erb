@@ -1,4 +1,4 @@
-<% if !batch.blank?%>
+<% if !batch.blank? %>
   <div class=" border-r border-gray-200 h-full " >
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <section aria-labelledby="participants_section" id="show" >
@@ -18,15 +18,15 @@
           </div>
           <div  class="">
             <% if defined?(message) && !message.nil? %>
-              <%= render "search",{ batch: batch, message:message} %>
+              <%= render "search", { batch: batch, message: message } %>
             <% else %>
-              <%= render "search",{ batch: batch} %>
+              <%= render "search", { batch: batch } %>
             <% end %>
             <div class="relative px-6 h-full ">
             </div>
             <nav class="flex-1 pt-6">
               <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full" id="batch_contacts">
-                <%= render "contact", { batch: batch, contacts: contacts   } %>
+                <%= render "contact", { batch: batch, contacts: contacts } %>
               </ul>
             </nav>
           </div>

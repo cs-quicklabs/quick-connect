@@ -1,18 +1,17 @@
-<%= turbo_frame_tag dom_id(@document) do %>
-  <%= tailwind_form_with(model: @document, id: dom_id(@document), url: contact_document_path(@contact, @document), method: :patch) do |form| %>
-    <main class="w-full mx-auto space-y-3 py-4">
-      <%= render "shared/form_messages", resource: @document, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
-        <%= "Edit Document" %>
-      </label>
-      <div>
+<main class="max-w-4xl px-4 pb-12 mx-auto space-y-6 lg:pb-16">
+  <div class="px-4">
+    <%= tailwind_form_with(model: @document, id: dom_id(@document), url: contact_document_path(@contact, @document), method: :patch) do |form| %>
+      <main class="w-full mx-auto space-y-3 py-4">
+        <%= render "shared/form_messages", resource: @document, message: local_assigns[:message] %>
+        <%= render "shared/form_header", title: "Edit Document", subtitle: "Edit document for #{@document.contact.decorate.display_name}" %>
+        <%= form.text_field :filename, "Filename", autocomplete: "off" %>
         <%= form.text_field :link, "Link", autocomplete: "off" %>
-      </div>
-      <%= form.text_area :comments, "Comments(optional)", class: "form-text-field", autocomplete: "off" %>
-      <div class="flex justify-end">
-        <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
-        <%= form.submit "Edit Document", class: "btn-blue" %>
-      </div>
-    </main>
-  <% end %>
-<% end %>
+        <%= form.text_area :comments, "Comments(optional)", class: "form-text-field h-32", autocomplete: "off" %>
+        <div class="flex justify-end">
+          <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
+          <%= form.submit "Edit Document", class: "btn-blue" %>
+        </div>
+      </main>
+    <% end %>
+  </div>
+</main>

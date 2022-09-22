@@ -27,29 +27,29 @@
                 <% if i.to_s == ratings[index].date.strftime(("%-d")) %>
                   <% if ratings[index].awesome? %>
                     <button type="button" class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>"  >
-                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white font-semibold"><%=i%></time>
+                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white font-semibold"><%= i %></time>
                     </button>
                   <% elsif ratings[index].normal? %>
                     <button type="button" class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10  <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-gray-500 text-white font-semibold"><%=i%></time>
+                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-gray-500 text-white font-semibold"><%= i %></time>
                     </button>
                   <% elsif ratings[index].poor? %>
                     <button type="button" class="bg-white py-1.5  text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-red-600 text-white font-semibold"><%=i%></time>
+                      <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full bg-red-600 text-white font-semibold"><%= i %></time>
                     </button>
                   <% end %>
                   <% break %>
                 <% end %>
               <% else %>
                 <button type="button" class="bg-white py-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-                  <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%=i%></time>
+                  <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%= i %></time>
                 </button>
               <% end %>
               <% index += 1 %>
             <% end %>
           <% else %>
             <button type="button" class="bg-white py-1.5 px-1.5 text-gray-900 hover:bg-gray-100 focus:z-10 <%= current_month_year.to_date.beginning_of_month.strftime("%A") %>" >
-              <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%=i%></time>
+              <time datetime="2021-12-27" class="mx-auto flex h-7 w-7 items-center justify-center rounded-full"><%= i %></time>
             </button>
           <% end %>
         <% end %>

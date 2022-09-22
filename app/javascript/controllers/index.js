@@ -35,13 +35,15 @@ application.register("nav-search", NavSearchController)
 import SelectController from "./select_controller.js"
 application.register("select", SelectController)
 
-
+import PopperController from "./popper_controller.js"
 import ToggleController from "./toggle_controller.js"
+
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from '../controllers/application_controller'
 import CableReady from 'cable_ready'
 application.register("toggle", ToggleController)
+application.register("popper", PopperController)
 application.consumer = consumer
 StimulusReflex.initialize(application, { controller, isolate: true })
 CableReady.initialize({ consumer })

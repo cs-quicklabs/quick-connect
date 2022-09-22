@@ -10,9 +10,7 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @contact_event]
-
     @event = DestroyContactDetail.call(@contact, current_user, @contact_event).result
-
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@contact_event) }
     end
@@ -24,7 +22,6 @@ class Contact::ContactEventsController < Contact::BaseController
 
   def update
     authorize [@contact, @contact_event]
-
     respond_to do |format|
       if @contact_event.update(event_params)
         Event.where(trackable: @contact_event).touch_all
