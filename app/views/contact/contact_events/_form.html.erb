@@ -1,7 +1,7 @@
 <%= tailwind_form_with(model: contact_event, id: dom_id(contact_event), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_events") do |form| %>
   <div class="space-y-6 px-4 pt-6  mx-auto">
     <%= render "shared/form_messages", resource: contact_event, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add Event", subtitle: "A event can be added to a contact which can help you remember important things." %>
+    <%= render "shared/form_header", title: "Add Event", subtitle: "An event can be added to a contact which can help you remember important dates." %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
     <div>
@@ -23,7 +23,7 @@
         </div>
         <div id="event">
           <label for="group" class="block  text-sm font-medium text-gray-700">
-            Select Event
+            Select Event Category
           </label>
           <%= form.collection_select("life_event_id", events, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
         </div>

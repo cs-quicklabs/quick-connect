@@ -1,7 +1,7 @@
 <%= tailwind_form_with(model: contact_activity, id: dom_id(contact_activity), url: "/#{current_user.account.id}/contacts/#{contact.id}/contact_activities") do |form| %>
   <div class="space-y-6 px-4 pt-6  mx-auto">
     <%= render "shared/form_messages", resource: contact_activity, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add Activity", subtitle: "A activity can be added to a contact which can help you remember important things." %>
+    <%= render "shared/form_header", title: "Add Activity", subtitle: "An activity can be added to a contact which can help you remember important things." %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
     <div>
