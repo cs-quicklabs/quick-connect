@@ -32,7 +32,9 @@
           <div class="h-full">
             <section aria-labelledby="add-participant-section " class="  px-6 py-6  " id="rating">
               <div class=" bg-white " >
-                <%= render "journals/ratings/form", { user: @user, rating: @rating, ratings_by_date: @ratings_by_date } %>
+                <%= turbo_frame_tag "ratings", src: ratings_path, target: "_top", loading: :lazy do %>
+                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch your ratings...</p>
+                <% end %>
               </div>
             </section>
           </div>
