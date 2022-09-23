@@ -3,16 +3,13 @@ class Contact::DocumentsController < Contact::BaseController
 
   def index
     authorize [@contact, Document]
-
     @document = Document.new
     @pagy, @documents = pagy_nil_safe(params, @contact.documents.order(created_at: :desc), items: LIMIT)
-
     render_partial("contact/documents/document", collection: @documents) if stale?(@documents + [@contact])
   end
 
   def create
     authorize [@contact, Document]
-
     @document = AddDocument.call(@contact, document_params, current_user).result
     respond_to do |format|
       if @document.persisted?
@@ -32,11 +29,10 @@ class Contact::DocumentsController < Contact::BaseController
 
   def update
     authorize [@contact, @document]
-
     respond_to do |format|
       if @document.update(document_params)
         Event.where(trackable: @document).touch_all
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, partial: "contact/documents/document", locals: { document: @document }) }
+        format.html { redirect_to contact_documents_path(@contact), notice: "Document was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, template: "contact/documents/edit", locals: { document: @document }) }
       end
@@ -45,7 +41,6 @@ class Contact::DocumentsController < Contact::BaseController
 
   def destroy
     authorize [@contact, @document]
-
     @document = DestroyContactDetail.call(@contact, current_user, @document).result
     Event.where(eventable: @contact, trackable: @document).touch_all #fixes cache issues in activity
     respond_to do |format|

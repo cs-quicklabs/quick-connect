@@ -40,38 +40,7 @@
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
-            <% if @upcoming_reminders.size > 0 %>
-              <div class=" w-full">
-                <ol class="mt-2  divide-gray-200 text-sm leading-6 text-gray-500">
-                  <% reminders = @upcoming_reminders %>
-                  <% if !reminders.nil? %>
-                    <% reminders.each do |reminder| %>
-                      <% contact = Contact.find(reminder.first["contact_id"]) %>
-                      <% remind = Reminder.find(reminder.first["id"]) %>
-                      <li class="py-4 sm:flex border-b align-middle">
-                        <div class="flex flex-1 " style="width:26rem;">
-                          <span class="w-56 flex">
-                            <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.second[:reminder]) %> </time>
-                            <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex font-medium text-gray-900" target="_top">
-                              <p class=" mb-2 flex-auto ml-2 text-sm font-semibold   whitespace-nowrap w-48 " ><%= contact.decorate.display_name %></p>
-                            </a>
-                          </span>
-                          <p class="flex-none  sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
-                        </div>
-                        <div class="flex justify-end space-x-2 ml-2 flex-none ">
-                          <% if policy([contact, remind]).edit? %>
-                            <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
-                            <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
-                          <% end %>
-                        </div>
-                      </li>
-                    <% end %>
-                  <% end %>
-                </ol>
-              </div>
-            <% else %>
-              <p class="text-xs font-normal text-gray-500 mt-2 ">No reminders added</dd>
-            <% end %>
+            <%= render partial: "reminders", locals:{upcoming_reminders:@upcoming_reminders} %>
           </div>
         </div>
       </div>

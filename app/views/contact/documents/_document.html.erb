@@ -20,7 +20,7 @@
       </p>
     </div>
   </td>
-  <td class="table-cell align-top whitespace-nowrap">
+  <td class="table-cell align-middle whitespace-nowrap">
     <% if document.contact.account.owner == document.user %>
       You 
     <% else %>
@@ -29,10 +29,10 @@
       </a>
     <% end %>
   </td>
-  <td class="table-cell whitespace-nowrap align-top">
+  <td class="table-cell whitespace-nowrap align-middle ">
     <%= display_created_at(document) %>
   </td>
-  <td class="table-cell  align-top">
+  <td class="table-cell  align-middle">
     <% if policy([@contact, document]).edit? %>
       <div class="flex justify-end items-center space-x-2">
         <%= edit_button(edit_contact_document_path(@contact, document)) %>
