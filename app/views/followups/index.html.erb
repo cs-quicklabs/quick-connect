@@ -1,72 +1,74 @@
-<div class="min-h-full">
-  <div class="flex flex-wrap items-baseline px-6 py-6 border-b border-gray-200">
-    <h1 class="text-3xl font-bold leading-tight text-gray-900">Follow Ups</h1>
-    <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
-  </div>
-  <div class="  ">
-    <div class="max-content  lg:max-w-full  xl:grid xl:grid-flow-col  w-max px-1 " style="gap: 0.5rem;">
-      <div class=" lg:block lg:col-span-3 xl:col-span-12   py-2 h-full border-r " style="grid-column: span 45;margin-left:0.2rem;">
-        <div class=" relative" style="min-height: 16rem">
-          <div class="absolute inset-0  rounded-lg">
-            <div class="flex flex-wrap items-baseline px-4 py-2">
-              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 30 days</h3>
-              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
+<main class="relative z-0 flex-1 overflow-y-scroll focus:outline-none">
+  <div class="min-h-full">
+    <div class="flex flex-wrap items-baseline px-6 py-6 border-b border-gray-200">
+      <h1 class="text-3xl font-bold leading-tight text-gray-900">Follow Ups</h1>
+      <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
+    </div>
+    <div class="  ">
+      <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:grid  px-1 " style="gap: 0.5rem;">
+        <div class=" lg:block grid grid-cols-1 flex  py-2 h-full border-r " >
+          <div class=" relative" style="min-height: 16rem">
+            <div class="absolute inset-0  rounded-lg">
+              <div class="flex flex-wrap items-baseline px-4 py-2">
+                <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 30 days</h3>
+                <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
+              </div>
+              <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-5.75rem)]  max-content top-16 overscroll-contain" aria-label="Directory" >
+                <div class="relative  h-full py-4" >
+                  <ul role="list" class="grid grid-cols-1 gap-6  px-4 mr-1" id="firsts">
+                    <%= render partial: "card", collection: @firsts, as: :event, cached: false %>
+                  </ul>
+                </div>
+              </nav>
             </div>
-            <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-5.75rem)]  max-content top-16 overscroll-contain" aria-label="Directory" >
+          </div>
+        </div>
+        <div class=" lg:block grid grid-cols-1 flex  py-2 h-full border-r " >
+          <div class=" relative" style="min-height: 16rem">
+            <div class="flex flex-wrap items-baseline px-4 py-2 ">
+              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 60 days</h3>
+              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @seconds.count.to_s %>)</p>
+            </div>
+            <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style=""  aria-label="Directory" >
               <div class="relative  h-full py-4" >
-                <ul role="list" class="grid grid-cols-1 gap-6  px-4 mr-1" id="firsts">
-                  <%= render partial: "card", collection: @firsts, as: :event, cached: false %>
+                <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="seconds">
+                  <%= render partial: "card", collection: @seconds, as: :event, cached: false %>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class=" lg:block grid grid-cols-1 flex  py-2 h-full border-r  " >
+          <div class="h-full relative" style="min-height: 16rem">
+            <div class="flex flex-wrap items-baseline px-4 py-2 ">
+              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 90 days</h3>
+              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s %>)</p>
+            </div>
+            <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
+              <div class="relative  h-full py-4 " >
+                <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="thirds">
+                  <%= render partial: "card", collection: @thirds, as: :event, cached: false %>
+                </ul>
+              </div>
+            </nav>
+          </div>
+        </div>
+        <div class=" lg:block grid grid-cols-1 flex  py-2 h-full border-r " >
+          <div class="h-full relative" style="min-height: 16rem">
+            <div class="flex flex-wrap items-baseline px-4 py-2">
+              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 100 days</h3>
+              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s %>)</p>
+            </div>
+            <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
+              <div class="relative  h-full py-4" >
+                <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="fourths">
+                  <%= render partial: "card", collection: @fourths, as: :event, cached: false %>
                 </ul>
               </div>
             </nav>
           </div>
         </div>
       </div>
-      <div class=" lg:block lg:col-span-3 xl:col-span-12  border-r  py-2 h-full " style="grid-column: span 45;">
-        <div class=" relative" style="min-height: 16rem">
-          <div class="flex flex-wrap items-baseline px-4 py-2 ">
-            <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 60 days</h3>
-            <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @seconds.count.to_s %>)</p>
-          </div>
-          <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style=""  aria-label="Directory" >
-            <div class="relative  h-full py-4" >
-              <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="seconds">
-                <%= render partial: "card", collection: @seconds, as: :event, cached: false %>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <div class=" lg:block lg:col-span-3 xl:col-span-12  border-r  py-2  h-full " style="grid-column: span 45;">
-        <div class="h-full relative" style="min-height: 16rem">
-          <div class="flex flex-wrap items-baseline px-4 py-2 ">
-            <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 90 days</h3>
-            <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s %>)</p>
-          </div>
-          <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
-            <div class="relative  h-full py-4 " >
-              <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="thirds">
-                <%= render partial: "card", collection: @thirds, as: :event, cached: false %>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-      <div class=" lg:block lg:col-span-3 xl:col-span-12   py-2 h-full " style="grid-column: span 45;">
-        <div class="h-full relative" style="min-height: 16rem">
-          <div class="flex flex-wrap items-baseline px-4 py-2">
-            <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 100 days</h3>
-            <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s %>)</p>
-          </div>
-          <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
-            <div class="relative  h-full py-4" >
-              <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="fourths">
-                <%= render partial: "card", collection: @fourths, as: :event, cached: false %>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
     </div>
   </div>
-</div>
+</main>

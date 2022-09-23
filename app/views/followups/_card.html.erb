@@ -30,13 +30,13 @@
         </div>
         <div class="px-2 flex ">
           <div class="w-0 flex-1 flex" style="flex-direction: column;">
-            <p class="text-sm font-normal text-gray-900" >Last Activity: <%= display_date(event.created_at) %> </p>
+            <p class="text-sm font-normal text-gray-500" >Last Activity: <%= display_date(event.created_at) %> </p>
           </div>
           <% html = "<div class='flex justify-end cursor-pointer' id='untrack' style='flex-direction: column;'    >
                      <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 ml-8 text-gray-500' style='' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
                <path stroke-linecap='round' stroke-linejoin='round' d='M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z' />
              </svg>
-                        <p class='text-xs font-normal text-gray-900'>Do not track</p>
+                        <p class='text-xs font-normal text-gray-500'>Do not track</p>
                    
                      </div>" %>
           <%= link_to (raw(html)), untrack_contact_path(contact), class: "", data: {
