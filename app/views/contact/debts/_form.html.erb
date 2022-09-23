@@ -10,12 +10,12 @@
       </label>
       <div class="block max-w-lg space-x-8">
         <div class="inline-flex space-x-2  ">
-          <%= form.radio_button :owed_by, "you", class: "mt-1 cursor-pointer ", :checked => true %>
-          <%= form.label :owed_by_you, "You", class: "text-sm font-medium cursor-pointer text-gray-700" %>
+          <%= form.radio_button :owed_by, "you", class: "mt-1 cursor-pointer flex-auto", :checked => true %>
+          <%= form.label :owed_by_you, "You", class: "text-sm font-medium cursor-pointer text-gray-700 flex-none" %>
         </div>
         <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :owed_by, "contact", class: " mt-1 cursor-pointer" %>
-          <%= form.label :owed_by_contact, @contact.decorate.display_name, class: "break-words w-60 cursor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :owed_by, "contact", class: "mt-1 cursor-pointer flex-auto" %>
+          <%= form.label :owed_by_contact, @contact.decorate.display_name, class: "break-words w-60 cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
       </div>
     </div>

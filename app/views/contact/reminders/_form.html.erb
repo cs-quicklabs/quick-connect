@@ -18,14 +18,14 @@
       <%= form.date_field :reminder_date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), min: Date.today %>
     </div>
     <div class="w-full"  x-data="{ show: false }" >
-      <div class="block max-w-lg space-x-2 mt-1 ">
+      <div class="block max-w-lg space-x-2 ">
         <div class="inline-flex space-x-2  " >
-          <%= form.radio_button :reminder_type, "once", class: "mt-1 cursor-pointer ", :checked => true, onchange: "show()" %>
-          <%= form.label :reminder_type_once, "Once", class: " cursor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :reminder_type, "once", class: "mt-1 cursor-pointer flex-auto", :checked => true, onchange: "show()" %>
+          <%= form.label :reminder_type_once, "Once", class: " cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
         <div class="inline-flex space-x-2 pl-4  " >
-          <%= form.radio_button :reminder_type, "multiple", class: "mt-1 cursor-pointer", :value => "multiple", onchange: "show2()" %>
-          <%= form.label :reminder_type, "Remind me about this every", class: " cursor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :reminder_type, "multiple", class: "mt-1 cursor-pointer flex-auto", :value => "multiple", onchange: "show2()" %>
+          <%= form.label :reminder_type, "Remind me about this every", class: " cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
       </div>
     </div>

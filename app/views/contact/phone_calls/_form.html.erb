@@ -12,14 +12,14 @@
       <label for="status" class="block text-sm font-medium text-gray-700">
         Who called?
       </label>
-      <div class="block max-w-lg space-x-2 mt-1 flex">
+      <div class="block max-w-lg space-x-2 flex">
         <div class="inline-flex space-x-2 whitespace-nowrap">
-          <%= form.radio_button :status, "user", class: "mt-1 cursor-pointer ", :checked => true %>
-          <%= form.label :status_user, "You called", class: " cursor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :status, "user", class: " cursor-pointer flex-auto", :checked => true %>
+          <%= form.label :status_user, "You called", class: " cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 whitespace-nowrap" style="word-break: break-all; overflow-wrap: break-word; width: 19rem;">
-          <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer", :checked => false %>
-          <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "    cursor-pointer text-sm font-medium text-gray-700 " %>
+        <div class="inline-flex space-x-2 pl-4 whitespace-nowrap" style="word-break: break-all; overflow-wrap: break-word; ">
+          <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => false %>
+          <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none" style="width: 19rem;"%>
         </div>
       </div>
     </div>
