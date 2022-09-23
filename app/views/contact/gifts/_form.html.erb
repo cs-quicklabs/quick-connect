@@ -1,21 +1,21 @@
 <%= tailwind_form_with(model: gift, id: dom_id(gift), url: contact_gifts_path) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: gift, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add New Gift", subtitle: "A gift can be added to a contact which can help you remember important things. " %>
+    <%= render "shared/form_header", title: "Add New Gift", subtitle: "A gift can be added to keep track of gifts given or received to your contacts. " %>
     <%= form.text_field :name, "Name", autocomplete: "off" %>
     <%= form.text_area :body, "Description", class: "form-text-field h-20" %>
     <div class="w-full ">
       <label for="status" class="block text-sm font-medium text-gray-700">
         Status
       </label>
-      <div class="block max-w-lg space-x-8 mt-1">
+      <div class="block max-w-lg space-x-8 flex">
         <div class="inline-flex space-x-2">
-          <%= form.radio_button :status, "received", class: "mt-1 cursor-pointer ", :checked => true %>
-          <%= form.label :status_received, "Received", class: " cursor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :status, "received", class: "mt-1 cursor-pointer flex-auto", :checked => true %>
+          <%= form.label :status_received, "Received", class: " cursor-pointer text-sm font-medium text-gray-700 flex-none " %>
         </div>
         <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :status, "given", class: " mt-1 cursor-pointer" %>
-          <%= form.label :status_given, "Given", class: " curesor-pointer text-sm font-medium text-gray-700" %>
+          <%= form.radio_button :status, "given", class: " mt-1 cursor-pointer flex-auto" %>
+          <%= form.label :status_given, "Given", class: " curesor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
       </div>
     </div>
