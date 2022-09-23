@@ -32,7 +32,7 @@
   </td>
   <td class="table-cell">
     <% if reminder.once? %>
-      <%= reminder.reminder_type.upcase_firsts %>
+      <%= reminder.reminder_type.upcase_first %>
     <% else %>
       Every <%= reminder.remind_after %> <%= reminder.decorate.display_status %><% if reminder.remind_after > 1 %>s <% end %>
     <% end %>
