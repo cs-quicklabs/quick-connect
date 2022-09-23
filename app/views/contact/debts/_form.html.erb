@@ -1,14 +1,14 @@
 <%= tailwind_form_with(model: debt, id: dom_id(debt), url: contact_debts_path) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: debt, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Add New Debt", subtitle: "A debt can be added to a contact which can help you remember important things. " %>
+    <%= render "shared/form_header", title: "Add New Debt", subtitle: "A debt can be added to keep track of money given or recieved from your contacts. " %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
     <div class="w-full ">
       <label for="owned_by" class="block text-sm font-medium text-gray-700">
         Owed by
       </label>
-      <div class="block max-w-lg space-x-8 mt-1">
+      <div class="block max-w-lg space-x-8">
         <div class="inline-flex space-x-2  ">
           <%= form.radio_button :owed_by, "you", class: "mt-1 cursor-pointer ", :checked => true %>
           <%= form.label :owed_by_you, "You", class: "text-sm font-medium cursor-pointer text-gray-700" %>
