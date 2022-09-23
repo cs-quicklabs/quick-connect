@@ -12,7 +12,7 @@
               <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 30 days</h3>
               <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
             </div>
-            <nav class="flex-1 overflow-y-auto   h-[calc(100vh-5.75rem)]  max-content top-16 overscroll-contain" aria-label="Directory" >
+            <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-5.75rem)]  max-content top-16 overscroll-contain" aria-label="Directory" >
               <div class="relative  h-full py-4" >
                 <ul role="list" class="grid grid-cols-1 gap-6  px-4 mr-1" id="firsts">
                   <%= render partial: "card", collection: @firsts, as: :event, cached: false %>
@@ -28,7 +28,7 @@
             <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 60 days</h3>
             <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @seconds.count.to_s %>)</p>
           </div>
-          <nav class="flex-1 overflow-y-auto   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style=""  aria-label="Directory" >
+          <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style=""  aria-label="Directory" >
             <div class="relative  h-full py-4" >
               <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="seconds">
                 <%= render partial: "card", collection: @seconds, as: :event, cached: false %>
@@ -43,7 +43,7 @@
             <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 90 days</h3>
             <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s %>)</p>
           </div>
-          <nav class="flex-1 overflow-y-auto   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
+          <nav class="flex-1 overflow-y-scroll   h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
             <div class="relative  h-full py-4 " >
               <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="thirds">
                 <%= render partial: "card", collection: @thirds, as: :event, cached: false %>
@@ -58,7 +58,7 @@
             <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 100 days</h3>
             <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s %>)</p>
           </div>
-          <nav class="flex-1 overflow-y-auto  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
+          <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain h-full  " style="" aria-label="Directory" >
             <div class="relative  h-full py-4" >
               <ul role="list" class="grid grid-cols-1 gap-6 px-4 mr-1" id="fourths">
                 <%= render partial: "card", collection: @fourths, as: :event, cached: false %>
