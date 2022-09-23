@@ -17,13 +17,16 @@
                         Group
                       </th>
                       <th scope="col" class="table-head">
+                        Created_at
+                      </th>
+                      <th scope="col" class="table-head">
                         Action
                       </th>
                     </tr>
                   </thead>
                   <tbody class="table-body" id="batches" data-infinite-scroll-target="entries">
-                    <% @contact.batches.uniq.each do |batch| %>
-                      <%= render "batch", { batch: batch, contact: @contact } %>
+                    <% @batches_contacts.each do |batches_contact| %>
+                      <%= render "batch", { batches_contact: batches_contact, contact: @contact } %>
                     <% end %>
                   </tbody>
                 </table>

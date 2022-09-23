@@ -3,9 +3,9 @@ class Contact::BatchesController < Contact::BaseController
 
   def index
     authorize [@contact, Batch]
-    @pagy, @batches = pagy_nil_safe(params, @contact.batches, items: LIMIT)
+    @pagy, @batches_contacts = pagy_nil_safe(params, BatchesContact.includes(:batch).where(contact_id: @contact.id), items: LIMIT)
     @groups = Batch.all.order(:name) - @contact.batches
-    render_partial("contact/batches/batch", collection: @batches) if stale?(@batches + [@contact])
+    render_partial("contact/batches/batch", collection: @batches_contacts) if stale?(@batches_contacts + [@contact])
   end
 
   def destroy
