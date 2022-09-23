@@ -36,7 +36,7 @@ class Contact::DocumentsController < Contact::BaseController
     respond_to do |format|
       if @document.update(document_params)
         Event.where(trackable: @document).touch_all
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, partial: "contact/documents/document", locals: { document: @document }) }
+        format.html { redirect_to contact_documents_path(@contact), notice: "Document was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@document, template: "contact/documents/edit", locals: { document: @document }) }
       end
