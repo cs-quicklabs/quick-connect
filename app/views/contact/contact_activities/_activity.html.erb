@@ -18,7 +18,7 @@
               ></button>
           </div>
           <div class="mt-2 space-x-2 text-sm">
-            <span class="font-medium text-gray-500"><%= display_date(contact_activity.date) %></span>
+            <span class="font-normal text-gray-500"><%= display_date(contact_activity.date) %></span>
             <% if policy([@contact, contact_activity]).edit? %>
               <%= edit_button(edit_contact_contact_activity_path(@contact, contact_activity)) %>
             <% end %>

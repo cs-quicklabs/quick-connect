@@ -5,7 +5,6 @@
       <label for="name" class="block mt-1 text-sm font-bold text-gray-700">
         <%= "Edit Note" %>
       </label>
-      <%= form.text_field :title, autocomplete: "off" %>
       <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
       <div class="flex justify-end">
         <%= link_to "Back", contact_notes_path(@contact), class: "ml-3 btn-normal " %>

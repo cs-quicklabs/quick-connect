@@ -1,8 +1,6 @@
 class Note < ApplicationRecord
   belongs_to :user
-  validates_presence_of :title, :body
+  validates_presence_of :body
   belongs_to :contact
-  normalize_attribute :title, :body, :with => :strip
-  validates :title,
-            :length => { :maximum => 25 }
+  normalize_attribute :body, :with => :strip
 end
