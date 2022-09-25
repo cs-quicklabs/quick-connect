@@ -15,6 +15,10 @@ class ReleaseNotePolicy < ApplicationPolicy
     true
   end
 
+  def release?
+    true
+  end
+
   def show?
     true
   end

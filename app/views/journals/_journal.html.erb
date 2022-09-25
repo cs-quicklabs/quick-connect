@@ -4,7 +4,7 @@
       <a href="<%=journal_path(journal)%>" class="block focus:outline-none" target="_top">
         <span class="absolute inset-0" aria-hidden="true"></span>
         <p class="truncate text-sm font-medium text-gray-900"> <%= journal.title.upcase_first %></p>
-        <p class="truncate text-sm text-gray-500"> <%= journal.body.upcase_first %></p>
+        <p class="truncate text-sm text-gray-500 line-clamp-2"> <%= journal.body.upcase_first %></p>
       </a>
     </div>
     <div class="whitespace-nowrap ">

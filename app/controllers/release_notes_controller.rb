@@ -3,7 +3,6 @@ class ReleaseNotesController < BaseController
 
   def index
     authorize ReleaseNote
-
     @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.order(created_at: :desc), items: LIMIT)
     render_partial("release_notes/release_note", collection: @release_notes) if stale?(@release_notes)
   end
@@ -14,6 +13,12 @@ class ReleaseNotesController < BaseController
     respond_to do |format|
       format.html { redirect_to release_notes_path, notice: "Release Note was successfully deleted.", status: :see_other }
     end
+  end
+
+  def release
+    authorize ReleaseNote
+    @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.published.order(created_at: :desc), items: LIMIT)
+    render_partial("release_notes/release_note", collection: @release_notes) if stale?(@release_notes)
   end
 
   def new
