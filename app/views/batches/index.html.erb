@@ -2,10 +2,10 @@
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
   <div class="border-r border-gray-200 h-screen">
     <div class=" lg:flex lg:flex-shrink-0 ">
-      <div class="flex flex-col " style=" ">
+      <div class="flex flex-col " style="width: 24rem; ">
         <!-- Sidebar component, swap this element with another sidebar if you like -->
         <div class="flex-1 flex flex-col min-h-0 ">
-          <div class="flex-1 flex flex-col  overflow-y-scroll">
+          <div class="flex-1 flex flex-col  overflow-y-scroll" >
             <nav class=" flex-1" aria-label="Sidebar">
               <div class="overflow-hidden bg-white h-[calc(100vh-5.75rem)]  max-content top-16 overflow-y-scroll overscroll-contain">
                 <div class="px-4 sm:px-6 py-6">
@@ -33,8 +33,8 @@
     </div>
   </div>
   <!-- Static sidebar for desktop -->
-  <div class=" flex   md:flex-1 shrink-0  "  >
-    <div class="flex flex-col " style="" >
+  <div class=" flex  flex-1 shrink-0  "  >
+    <div class="flex flex-col " style="width: 24rem;" >
       <div class="flex-1 flex flex-col min-h-0 overflow-y-scroll " id="show1">
         <% if params[:batch_id] %>
           <% message = "Contact added successfully to group" %>
