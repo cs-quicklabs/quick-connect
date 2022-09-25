@@ -6,7 +6,7 @@
         <% reminders.each do |reminder| %>
           <% contact = Contact.find(reminder.first["contact_id"]) %>
           <% remind = Reminder.find(reminder.first["id"]) %>
-          <li class="py-4 sm:flex border-b align-middle mt-2">
+          <li class="py-1 sm:flex border-b align-middle mt-2">
             <div class="flex flex-1 " style="width:26rem;">
               <span class="w-56 flex">
                 <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.second[:reminder]) %> </time>

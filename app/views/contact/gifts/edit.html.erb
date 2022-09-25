@@ -8,14 +8,14 @@
       <label for="status" class="block text-sm font-medium text-gray-700">
         Status
       </label>
-      <div class="block max-w-lg space-x-8 mt-2">
+      <div class="block max-w-lg space-x-8 ">
         <div class="inline-flex space-x-2">
-          <%= form.radio_button :status, "received", class: "mt-2 cursor-pointer " %>
-          <%= form.label :status_received, "Received", class: "cursor-pointer text-sm font-medium text-gray-700 mt-1" %>
+          <%= form.radio_button :status, "received", class: "mt-1 cursor-pointer flex-auto" %>
+          <%= form.label :status_received, "Received", class: "cursor-pointer text-sm font-medium text-gray-700  flex-none " %>
         </div>
         <div class="inline-flex space-x-2 pl-4 ">
-          <%= form.radio_button :status, "given", class: " mt-2 cursor-pointer" %>
-          <%= form.label :status_given, "Given", class: "cursor-pointer text-sm font-medium text-gray-700 mt-1" %>
+          <%= form.radio_button :status, "given", class: " mt-1 cursor-pointer flex-auto" %>
+          <%= form.label :status_given, "Given", class: "cursor-pointer text-sm font-medium text-gray-700 mt-1 flex-none " %>
         </div>
       </div>
     </div>

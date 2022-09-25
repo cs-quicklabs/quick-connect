@@ -15,14 +15,14 @@
         <label for="status" class="block text-sm font-medium text-gray-700">
           Who called?
         </label>
-        <div class="block max-w-lg space-x-8 mt-1">
+        <div class="block max-w-lg space-x-8">
           <div class="inline-flex space-x-2">
-            <%= form.radio_button :status, "user", class: "mt-1 cursor-pointer", :checked => @phone_call.status == "user" %>
-            <%= form.label :status_user, "You called", class: "  cursor-pointer text-sm font-medium text-gray-700" %>
+            <%= form.radio_button :status, "user", class: "mt-1 cursor-pointer flex-auto", :checked => @phone_call.status == "user" %>
+            <%= form.label :status_user, "You called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
           </div>
           <div class="inline-flex space-x-2 pl-4 ">
-            <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer", :checked => @phone_call.status == "contact" %>
-            <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "  break-words  cursor-pointer text-sm font-medium text-gray-700" %>
+            <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => @phone_call.status == "contact" %>
+            <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "  break-words  cursor-pointer text-sm font-medium text-gray-700 flex-auto" style="width: 19rem;"%>
           </div>
         </div>
       </div>
