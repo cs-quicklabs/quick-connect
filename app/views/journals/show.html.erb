@@ -1,35 +1,23 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
-<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto space-y-2 lg:pb-16">
-  <div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6" id="journal-header">
-    <div class="flex-1 min-w-0">
-      <h3 class="text-2xl font-bold leading-tight text-gray-900">
-        <%= @journal.title.upcase_first %>
-      </h3>
-      <div class="flex  space-x-3">
-        <div>
-          <div class="mt-1 space-x-2 text-sm">
-            <span class="font-medium text-gray-500"> Created at <%= display_created_at(@journal) %></span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="flex mt-4 sm:mt-0 sm:ml-4">
+<main class="max-w-4xl px-4 pt-10 pb-12 mx-auto space-y-4 lg:pb-16">
+  <div class="px-4  sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="journal-header">
+    <%= render partial: "shared/journals/title", locals: { journal: @journal } %>
+    <div class="flex  sm:mt-0 sm:ml-4 flex-auto justify-end">
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
+      <% if policy(@journal).edit? %>
+        <%= link_to "Edit", edit_journal_path(@journal), class: "btn-blue ml-3" %>
+      <% end %>
     </div>
-    <% if policy(@journal).edit? %>
-      <%= styled_delete_button(release_note_path(@journal), "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 sm:order-1 sm:ml-3 cursor-pointer") %>
-      <%= link_to "Edit", edit_journal_path(@journal), class: "btn-blue ml-3" %>
-    <% end %>
   </div>
   <% cache @journal do %>
-    <div class="text-sm text-gray-700 sm:px-6 ">
-      <p class="whitespace-pre-wrap"><%= @journal.body.upcase_first %></p>
+    <div class="text-sm text-gray-700 sm:px-6 lg:px-8">
+      <p><%= @journal.body.upcase_first %></p>
     </div>
   <% end %>
   <section aria-labelledby="journal-title">
     <div class="pb-24 bg-white sm:rounded-lg overflow">
       <div class="divide-y divide-gray-200">
-        <div class="px-4 py-6 sm:px-6">
+        <div class="px-4 py-3 sm:px-6">
           <h2 id="journal-title" class="text-lg font-semibold text-gray-900">Comments</h2>
         </div>
         <div class=" py-4 ">

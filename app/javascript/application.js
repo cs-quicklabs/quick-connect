@@ -9,3 +9,6 @@ import '@tailwindcss/forms'
 import "./channels"
 import "@rails/actioncable"
 
+import "trix"
+import "@rails/actiontext"
+import "./trix-editor-overrides"

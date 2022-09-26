@@ -4,7 +4,7 @@ class TailwindFormBuilder < ActionView::Helpers::FormBuilder
       @template.content_tag :div do
         label(name, title, class: "block text-sm font-medium text-gray-700") +
         (@template.content_tag :div, class: "mt-2" do
-          super(name, options.reverse_merge(class: "form-text-field", style: "height:10rem"))
+          super(name, options.reverse_merge(class: "form-text-field resize-y"))
         end)
       end
     end
@@ -37,7 +37,7 @@ class TailwindFormBuilder < ActionView::Helpers::FormBuilder
     default_opts = { class: "form-text-field" }
     merged_opts = default_opts.merge(opts)
     @template.content_tag :div do
-      label(method, title, class: "block text-sm font-medium text-gray-700") +
+      label(method, title, class: "block text-sm font-medium text-gray-700 resize-y") +
       (@template.content_tag :div, class: "mt-1" do
         super(method, merged_opts)
       end)

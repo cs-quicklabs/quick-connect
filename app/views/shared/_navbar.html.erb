@@ -13,7 +13,7 @@
 <div data-reflex-permanent>
   <nav class="bg-gray-800  ">
     <div class="px-2 mx-auto sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between  h-12">
+      <div class="relative flex items-center justify-between  h-12 space-x-6">
         <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
           <div class="flex items-center flex-shrink-0">
             <a href="<%= root_path %>">
@@ -28,12 +28,14 @@
                 <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Follow-ups</a>
                 <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Contacts</a>
                 <a href=<%= journals_path %> class= "<%= current_page?(journals_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Journals</a>
-                <a href=<%= release_notes_path %> class= "<%= current_page?(release_notes_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Release Notes</a>
+                <% if policy(ReleaseNote).index? %>
+                  <a href=<%= release_notes_path %> class= "<%= current_page?(release_notes_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Release Notes</a>
+                <% end %>
                 <a href=<%= batches_path %> class= "<%= current_page?(batches_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Groups</a>
               </div>
             </div>
           </div>
-          <div class="flex  w-5/12 px-6 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/nav">
+          <div class="flex  w-5/12 px-16"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/nav">
             <div class="w-full max-w-xs lg:max-w-sm ">
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
@@ -52,8 +54,17 @@
               </div>
             </div>
           </div>
+          <% if policy(ReleaseNote).release? %>
+            <a href="<%=release_path%>" type="button" class="  flex-shrink-0 rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" target="_top">
+              <span class="sr-only">View notifications</span>
+              <!-- Heroicon name: outline/bell -->
+              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+              </svg>
+            </a>
+          <% end %>
           <!-- This example requires Tailwind CSS v2.0+ -->
-          <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+          <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto  sm:pr-0">
             <!-- Profile dropdown -->
             <div @click.away="open = false" class="relative z-10 ml-3" x-data="{ open: false }">
               <div>
