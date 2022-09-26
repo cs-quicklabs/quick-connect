@@ -21,11 +21,12 @@ gem "stimulus-rails"
 gem "stimulus_reflex", "= 3.5.0.pre8"
 gem "hiredis"
 gem "valid_url"
-gem "image_processing", "~> 1.12"
 gem "devise-jwt"
 gem "devise_invitable"
 gem "jquery-ui-rails"
 gem "htmlbeautifier"
+gem 'ffi', git: 'https://github.com/ffi/ffi'
+gem "ruby-vips" 
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"
@@ -67,7 +68,7 @@ gem "bootsnap", ">= 1.12.0", require: false
 # gem "sassc-rails", "~> 2.1"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-# gem "image_processing", "~> 1.2"
+gem "image_processing", "~> 1.2"
 gem "rswag-api"
 gem "rswag-ui"
 
