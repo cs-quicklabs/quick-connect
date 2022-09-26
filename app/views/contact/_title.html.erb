@@ -1,7 +1,7 @@
   <% contact = contact.decorate
     labels = Label.all.order(:name)
     relations = Relation.all.order(:name) %>
-<div class="px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 " id="contact-header">
+<div class="px-4 py-4 sm:flex  sm:justify-between sm:px-6 " id="contact-header">
   <div class="flex flex-wrap items-baseline   ml-2">
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
@@ -92,35 +92,37 @@
             </div>
           <% end %>
           <div class="ml-4 mt-1" id="contact-favorite">
-            <% if !contact.favorite? %>
-              <li id="not-favorite" class="flex" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="cursor-pointer" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                </svg>
-              </li>
-            <% else %>
-              <li id="favorite" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>" class="flex">
-                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="cursor-pointer" style="color:#FDE68A; width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                  <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                </svg>
-              </li>
-            <% end %>
+            <ul class="flex list-none">
+              <% if !contact.favorite? %>
+                <li id="not-favorite" class="flex-auto  mb-4 " data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
+                  <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class="cursor-pointer" style="color:#FDE68A;  width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                  </svg>
+                </li>
+              <% else %>
+                <li id="favorite" data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>" class="flex-auto  mb-4">
+                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class="cursor-pointer" style="color:#FDE68A; width:2.1rem" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                  </svg>
+                </li>
+              <% end %>
+            </ul>
           </div>
         </div>
       </div>
+      <div class="pb-4 flex">
+        <% @event = contact.events.order(created_at: :desc).first %>
+        <% @call = contact.phone_calls.order(created_at: :desc).first %>
+        <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
+          <% if (!@event.blank? && !@call.blank?) %>
+            <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and  last phone call was on <%= display_created_at(@call) %>
+          <% elsif !@event.blank? %>
+            <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
+          <% elsif !@call.blank? %>
+            Last phone call was on <%= display_created_at(@call) %>
+          <% end %>
+        </p>
+      </div>
     </div>
-  </div>
-  <div class="pb-4">
-    <% @event = contact.events.order(created_at: :desc).first %>
-    <% @call = contact.phone_calls.order(created_at: :desc).first %>
-    <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
-      <% if (!@event.blank? && !@call.blank?) %>
-        <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and  last phone call was on <%= display_created_at(@call) %>
-      <% elsif !@event.blank? %>
-        <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
-      <% elsif !@call.blank? %>
-        Last phone call was on <%= display_created_at(@call) %>
-      <% end %>
-    </p>
   </div>
   <%= render partial: "contact/tabs", locals: { contact: contact } %>
