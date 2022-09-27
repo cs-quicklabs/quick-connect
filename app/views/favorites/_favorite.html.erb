@@ -31,7 +31,7 @@
   </td>
   <td class="table-cell " style="width: 50%;">
     <% favorite.labels.uniq.each do |label| %>
-      <span class="mr-1 mb-2 mt-1 inline-flex rounded-full text-left px-4 py-1 pl-2.5   text-xs font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ">
+      <span class="mr-1 mb-2 mt-1 inline-flex rounded-full text-left px-2 py-0.5   text-xs font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ">
         <%= label.name.upcase_first %>
       </span>
     <% end %>
