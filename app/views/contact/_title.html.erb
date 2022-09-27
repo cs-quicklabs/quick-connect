@@ -45,7 +45,7 @@
       <div class="flex mt-4 sm:mt-0 sm:ml-4">
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
-          <div class=" flex justify-end" id="contact-relation" >
+          <div class="" id="contact-relation" >
             <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
           </div>
           <!-- This example requires Tailwind CSS v2.0+ -->

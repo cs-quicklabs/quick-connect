@@ -1,6 +1,6 @@
 <main class="relative z-0 flex-1 overflow-y-scroll focus:outline-none">
   <%= render partial: "contact/title", locals: { contact: @contact } %>
-  <main class="min-h-screen">
+  <main class="">
     <div class="px-4 sm:px-6">
       <!-- Main 3 column grid -->
       <div class="grid items-start grid-cols-1 gap-2 lg:grid-cols-3 lg:gap-2">
@@ -20,7 +20,7 @@
                 </div>
               </div>
               <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
-                <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
               </div>
             </div>
           </section>
