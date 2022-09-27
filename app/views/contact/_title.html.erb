@@ -11,7 +11,7 @@
       <div  class="ml-2" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
-      <div class=" flex-auto relative inline-block " x-data="{menu: false}"  >
+      <div class=" flex-auto  inline-block " x-data="{menu: false}"  >
         <button id="add" @click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
           <!-- Heroicon name: solid/plus -->
           <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -45,12 +45,12 @@
       <div class="flex mt-4 sm:mt-0 sm:ml-4">
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
-          <div class="" id="contact-relation" >
+          <div class="mt-4" id="contact-relation" >
             <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
           </div>
           <!-- This example requires Tailwind CSS v2.0+ -->
           <div class=" inline-block mr-4  text-left">
-            <div  class="relative" x-data="{open: false}"   >
+            <div  class="" x-data="{open: false}"   >
               <div>
                 <button @click="open = !open" type="button" class=" whitespace-nowrap inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500" id="menu-button" aria-expanded="true" aria-haspopup="true">
                   Select Relation
