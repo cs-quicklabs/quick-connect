@@ -115,7 +115,7 @@
         <% @call = contact.phone_calls.order(created_at: :desc).first %>
         <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
           <% if (!@event.blank? && !@call.blank?) %>
-            <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and  last phone call was on <%= display_created_at(@call) %>
+            <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
           <% elsif !@event.blank? %>
             <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
           <% elsif !@call.blank? %>
