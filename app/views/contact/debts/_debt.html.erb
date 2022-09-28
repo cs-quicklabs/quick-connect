@@ -1,7 +1,17 @@
 <tr id="<%= dom_id debt %>" class="h-12">
   <td class="table-cell w-full">
     <div class="text-sm">
-      <span style="white-space: pre-wrap; word-break: break-all;"><%= debt.title.upcase_first %></span>
+      <p
+   x-data="{ isCollapsed: false, maxLength: 130, originalContent: '', content: '' }"
+   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
+   >
+        <span style="white-space: pre-wrap; word-break: break-all;" x-text="isCollapsed ? originalContent : content"><%= debt.title.upcase_first %></span>
+        <button
+      @click="isCollapsed = !isCollapsed"
+      x-show="originalContent.length > maxLength"
+          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
+          ></button>
+      </p>
     </div>
   </td>
   <td class="table-cell w-full">
@@ -14,31 +24,20 @@
     </div>
   </td>
   <td class="table-cell w-full">
-    <div class="text-sm">
-      <p
-   x-data="{ isCollapsed: false, maxLength: 50, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-   >
-        <span x-text="isCollapsed ? originalContent : content">  <%= debt.amount.upcase_first %></span>
-        <button
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-          ></button>
-      </p>
-    </div>
+    <span><%= debt.amount.upcase_first %></span>
+  </div>
+</td>
+<td class="table-cell whitespace-nowrap">
+  <div class=" space-x-2 text-sm">
+    <span class="font-normal text-gray-500"><%= display_date(debt.due_date) %></span>
   </td>
   <td class="table-cell whitespace-nowrap">
-    <div class=" space-x-2 text-sm">
-      <span class="font-normal text-gray-500"><%= display_date(debt.due_date) %></span>
-    </td>
-    <td class="table-cell whitespace-nowrap">
-      <% if policy([debt.contact, debt]).edit? %>
-        <%= edit_button(edit_contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
-      <% end %>
-      <% if policy([debt.contact, debt]).destroy? %>
-        <%= delete_button(contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
-      <% end %>
-    </div>
-  </td>
+    <% if policy([debt.contact, debt]).edit? %>
+      <%= edit_button(edit_contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
+    <% end %>
+    <% if policy([debt.contact, debt]).destroy? %>
+      <%= delete_button(contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
+    <% end %>
+  </div>
+</td>
 </tr>
