@@ -150,3 +150,7 @@
 #tooltip[data-show] {
   display: block;
 }
+
+[x-cloak] {
+  display: none !important;
+}

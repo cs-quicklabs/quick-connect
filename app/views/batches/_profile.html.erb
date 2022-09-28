@@ -30,6 +30,7 @@
                   </svg>
                   <span class="text-gray-900">Send Sms</span>
                 </a>
+                <%= render partial: "contacts/modal",locals:{contact:contact}%>
               <% end %>
               <% if !contact.email.blank? %>
                 <a type="button" href="mailto:<%=contact.email%>" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-4 py-2  border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
