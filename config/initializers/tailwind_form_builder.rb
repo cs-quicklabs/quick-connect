@@ -4,7 +4,7 @@ class TailwindFormBuilder < ActionView::Helpers::FormBuilder
       @template.content_tag :div do
         label(name, title, class: "block text-sm font-medium text-gray-700") +
         (@template.content_tag :div, class: "mt-2" do
-          super(name, options.reverse_merge(class: "form-text-field resize-y"))
+          super(name, options.reverse_merge(class: "form-text-field"))
         end)
       end
     end
