@@ -1,11 +1,11 @@
 <li class="relative border-b border-gray-200  bg-white py-5 px-4 "  >
   <div class="flex justify-between space-x-3">
-    <a href="<%=journal_path(journal)%>" class="block focus:outline-none hover:underline" target="_top">
-      <div class="min-w-0 flex-1">
+    <div class="min-w-0 flex-1">
+      <a href="<%=journal_path(journal)%>" class="block focus:outline-none hover:underline" target="_top">
         <p class="truncate ... text-sm font-medium text-gray-900"> <%= journal.title.upcase_first %></p>
-        <p class="text-sm text-gray-500 line-clamp"> <%= journal.body.upcase_first %></p>
-      </div>
-    </a>
+      </a>
+      <p class="text-sm text-gray-500 line-clamp"> <%= journal.body.upcase_first %></p>
+    </div>
     <div class="whitespace-nowrap ">
       <% if policy(journal).edit? %>
         <%= edit_button(edit_journal_path(journal)) %>
