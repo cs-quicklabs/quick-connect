@@ -1,6 +1,6 @@
 <!-- This example requires Tailwind CSS v2.0+ -->
 <main class="max-w-4xl px-4 pt-10 pb-12 mx-auto space-y-4 lg:pb-16">
-  <div class="px-4  sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8" id="journal-header">
+  <div class="px-4  sm:flex sm:items-center sm:justify-between sm:px-6" id="journal-header">
     <%= render partial: "shared/journals/title", locals: { journal: @journal } %>
     <div class="flex  sm:mt-0 sm:ml-4 flex-auto justify-end">
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
@@ -10,7 +10,7 @@
     </div>
   </div>
   <% cache @journal do %>
-    <div class="text-sm text-gray-700 sm:px-6 lg:px-8">
+    <div class="text-sm text-gray-700 sm:px-6 ">
       <p><%= @journal.body.upcase_first %></p>
     </div>
   <% end %>
