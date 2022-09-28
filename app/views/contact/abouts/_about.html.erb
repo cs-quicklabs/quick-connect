@@ -145,8 +145,10 @@
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
             <span class="ml-6 flex-shrink-0">
-              <%= link_to "Update", edit_contact_about_path(contact, about), class: "btn-inline-edit font-normal" %>
-              <%= styled_delete_button(contact_about_path(@contact, about, :delete => "work"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+              <% if policy([contact, about]).update? %>
+                <%= link_to "Update", edit_contact_about_path(contact, about), class: "btn-inline-edit font-normal" %>
+                <%= styled_delete_button(contact_about_path(@contact, about, :delete => "work"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+              <% end %>
             </span>
           </div>
         </div>

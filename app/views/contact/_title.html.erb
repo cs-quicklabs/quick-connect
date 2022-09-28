@@ -7,6 +7,7 @@
       <%= contact.display_name %>
     </h1>
     <div class="flex "  >
+       <% if policy(contact).edit? %>
       <% contact_labels = contact.labels %>
       <div  class="ml-2" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
@@ -42,6 +43,7 @@
           </div>
         </div>
       </div>
+      <% end %>
       <div class="flex mt-4 sm:mt-0 sm:ml-4">
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
@@ -81,9 +83,10 @@
             <div>
               <%= link_to "Edit", edit_contact_path(contact), class: " btn-normal" %>
             </div>
+                        <% end %>
             <% if !contact.archived %>
               <div>
-              <% end %>
+  
               <%= confirm_button(archive_contact_path(contact), "Archive", "Are you sure?", "ml-4 btn-normal") %>
             </div>
           <% else %>
