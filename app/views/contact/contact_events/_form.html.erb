@@ -15,7 +15,7 @@
         Select Group
       </label>
       <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#event"  data-contact-id="<%= contact.id %>">
-        <option value="" >Select Group</option>
+        <option value="" > Select Event Category</option>
         <% Group.all.where(category: "event").order(:name).decorate.each do |group| %>
           <li > <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
             <% end %>
@@ -23,7 +23,7 @@
         </div>
         <div id="event">
           <label for="group" class="block  text-sm font-medium text-gray-700">
-            Select Event Category
+            Select Event
           </label>
           <%= form.collection_select("life_event_id", events, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
         </div>
