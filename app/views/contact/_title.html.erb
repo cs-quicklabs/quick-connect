@@ -154,6 +154,9 @@
         <% @event = contact.events.order(created_at: :desc).first %>
         <% @call = contact.phone_calls.order(created_at: :desc).first %>
         <p class="px-6  -mt-3 text-sm font-medium text-gray-500 truncate">
+          <%if !contact.intro.nil?%>
+            <%=contact.intro.upcase_first%>-
+          <% end %>
           <% if (!@event.blank? && !@call.blank?) %>
             <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
           <% elsif !@event.blank? %>
