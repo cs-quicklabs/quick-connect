@@ -1,9 +1,9 @@
-<li class=" border-b border-gray-200  bg-white py-5 px-4 "  >
+<li class="relative border-b border-gray-200  bg-white py-5 px-4 "  >
   <div class="flex justify-between space-x-3">
     <a href="<%=journal_path(journal)%>" class="block focus:outline-none hover:underline" target="_top">
       <div class="min-w-0 flex-1">
-        <p class="truncate text-sm font-medium text-gray-900"> <%= journal.title.upcase_first %></p>
-        <p class="truncate text-sm text-gray-500 line-clamp-2"> <%= journal.body.upcase_first %></p>
+        <p class="truncate ... text-sm font-medium text-gray-900"> <%= journal.title.upcase_first %></p>
+        <p class="text-sm text-gray-500 line-clamp"> <%= journal.body.upcase_first %></p>
       </div>
     </a>
     <div class="whitespace-nowrap ">
