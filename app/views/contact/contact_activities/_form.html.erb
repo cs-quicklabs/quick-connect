@@ -23,7 +23,7 @@
         </div>
         <div id="activity">
           <label for="group" class="block  text-sm font-medium text-gray-700">
-            Select Activity
+            Select Activity Category
           </label>
           <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
         </div>
