@@ -16,10 +16,10 @@
           </div>
           <div class="mt-2 space-x-2 text-sm">
             <span class="font-normal text-gray-500"><%= display_created_at(note) %></span>
-            <% if policy([@contact, note]).edit? %>
+            <% if policy([note.contact, note]).edit? %>
               <%= edit_button(edit_contact_note_path(@contact, note)) %>
             <% end %>
-            <% if policy([@contact, note]).destroy? %>
+            <% if policy([note.contact, note]).destroy? %>
               <%= delete_button(contact_note_path(@contact, note)) %>
             <% end %>
           </div>

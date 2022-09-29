@@ -57,10 +57,10 @@
     </div>
   </td>
   <td class="table-cell whitespace-nowrap">
-    <% if policy([@contact, reminder]).edit? %>
+    <% if policy([reminder.contact, reminder]).edit? %>
       <%= edit_button(edit_contact_reminder_path(@contact, reminder)) %>
     <% end %>
-    <% if policy([@contact, reminder]).destroy? %>
+    <% if policy([reminder.contact, reminder]).destroy? %>
       <%= delete_button(contact_reminder_path(@contact, reminder)) %>
     <% end %>
   </td>

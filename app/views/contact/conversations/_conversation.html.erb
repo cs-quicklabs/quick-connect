@@ -25,10 +25,10 @@
           </div>
           <div class="mt-2 space-x-2 text-sm">
             <span class="font-normal text-gray-500"><%= display_date(conversation.date) %></span>
-            <% if policy([@contact, conversation]).edit? %>
+            <% if policy([conversation.contact, conversation]).edit? %>
               <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
             <% end %>
-            <% if policy([@contact, conversation]).destroy? %>
+            <% if policy([conversation.contact, conversation]).destroy? %>
               <%= delete_button(contact_conversation_path(@contact, conversation)) %>
             <% end %>
           </div>
