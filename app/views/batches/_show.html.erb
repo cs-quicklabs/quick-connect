@@ -1,4 +1,4 @@
-<% if !batch.blank? %>
+
   <div class=" border-r border-gray-200 h-full " >
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <section aria-labelledby="participants_section" id="show" >
@@ -7,9 +7,11 @@
           <div class="flex items-center justify-between ">
             <div class="flex flex-wrap items-baseline ">
               <div class="flex   items-baseline inline-block " style="width: 21rem;">
+              <% if !batch.blank? %>
                 <h1 class="text-3xl font-bold leading-tight text-gray-900  truncate .. "><%= batch.name.titleize %></h1>
                 <% contacts = batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq %>
                 <p class="mt-2 ml-1 text-sm text-gray-600   ">(<%= contacts.count.to_s %>)</p>
+                <% end %>
               </div>
               <div class="mt-1 text-sm text-gray-600 pb-2">
                 <p>Please add contacts to group.</p>
@@ -24,14 +26,15 @@
             <% end %>
             <div class="relative px-6 h-full ">
             </div>
+            <% if !batch.blank? %>
             <nav class="flex-1 pt-6">
               <ul role="list" class="relative z-0 divide-y divide-gray-200 h-full" id="batch_contacts">
                 <%= render "contact", { batch: batch, contacts: contacts } %>
               </ul>
             </nav>
+            <% end %>
           </div>
         </div>
       </div>
     </section>
   </div>
-<% end %>
