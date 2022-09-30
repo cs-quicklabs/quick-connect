@@ -1,6 +1,5 @@
 <%= turbo_frame_tag dom_id(event) do %>
   <% contact = event.eventable.decorate %>
-  <% if !event.trackable.nil? %>
     <li id= "<%= dom_id(contact) %>" class="col-span-1 bg-white rounded-lg  border divide-gray-200   ">
       <div class="pb-1">
         <div class="w-full flex  justify-between  mt-3 pr-2   " style=" margin-bottom:0.5rem; ">
@@ -47,5 +46,4 @@
         </div>
       </div>
     </li>
-  <% end %>
 <% end %>
