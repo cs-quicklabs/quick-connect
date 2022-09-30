@@ -45,4 +45,7 @@ class BatchReflex < ApplicationReflex
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
   end
+
+  def create
+  end
 end

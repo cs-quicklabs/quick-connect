@@ -46,7 +46,7 @@
       <%end%>
       <div class="flex mt-4 sm:mt-0 sm:ml-4">
         <% contact_relation = contact.relation %>
-        <div class=" flex text-left" id="contact-relation" >
+        <div class=" text-left" id="contact-relation" >
           <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
         </div>
         <!-- This example requires Tailwind CSS v2.0+ -->
