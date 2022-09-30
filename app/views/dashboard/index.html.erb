@@ -31,8 +31,9 @@
                 <%if @favorites.count>8 %>
                 <div class="flex items-center sm:mt-0 sm:ml-4 ">
                   <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
-                  <% end %>
+                  
                 </div>
+                <% end %>
               </div>
             </div>
           </section>
@@ -47,7 +48,7 @@
         </div>
       </div>
     </section>
-  </div>
+    </div>
   <div class="grid grid-cols-1   overflow-y-scroll lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
     <section aria-labelledby="add-participant-section">
       <div class=" bg-white h-full">
