@@ -27,8 +27,8 @@ class BatchReflex < ApplicationReflex
   end
 
   def remove
-    @batch = Batch.find(element.dataset["batch_id"])
-    @contact = Contact.find(element.dataset["contact_id"])
+    @batch = Batch.find(element.dataset["batch"])
+    @contact = Contact.find(element.dataset["contact"])
     @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     html = render(partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact deleted successfully from  group" })
     profile = render(partial: "batches/profile", locals: { contact: [] })
