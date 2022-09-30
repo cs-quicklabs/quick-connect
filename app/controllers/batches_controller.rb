@@ -82,7 +82,7 @@ class BatchesController < BaseController
     @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(:show1, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" })
+        render turbo_stream: turbo_stream.replace(:show, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" })
         turbo_stream.replace(:profile, partial: "batches/profile", locals: { contact: "" })
       }
     end
@@ -92,11 +92,7 @@ class BatchesController < BaseController
     authorize :batch
     @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.remove(@batch) +
-                             turbo_stream.replace(:show1, partial: "batches/show", locals: { batch: "" }) +
-                             turbo_stream.replace(:profile, partial: "batches/profile", locals: { contact: "" })
-      }
+      format.html { redirect_to batches_path, notice: "Group was successfully deleted.", status: :see_other }
     end
   end
 

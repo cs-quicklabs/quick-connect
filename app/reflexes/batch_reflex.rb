@@ -25,4 +25,7 @@ class BatchReflex < ApplicationReflex
 
     morph "#show1", "#{html}"
   end
+
+  def destroy
+  end
 end
