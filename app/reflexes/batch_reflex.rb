@@ -40,7 +40,7 @@ class BatchReflex < ApplicationReflex
     @batch = Batch.find(element.dataset["batch"])
     @batch = DestroyGroup.call(current_user, @batch).result
     html = render(partial: "batches/show", locals: { batch: [], contacts: [] })
-    profile = render(partial: "batches/profile", locals: { contact: [] })
+    profile = render(partial: "batches/profile", locals: { contact: "" })
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
   end
