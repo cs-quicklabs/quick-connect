@@ -82,8 +82,8 @@ class BatchesController < BaseController
     @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
     respond_to do |format|
       format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(:show, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" })
-        turbo_stream.replace(:profile, partial: "batches/profile", locals: { contact: "" })
+        render turbo_stream: turbo_stream.replace(:show1, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" }) +
+                             turbo_stream.replace(:profile, partial: "batches/profile", locals: { contact: "" })
       }
     end
   end
