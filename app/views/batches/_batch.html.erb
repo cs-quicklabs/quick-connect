@@ -1,6 +1,4 @@
 
-<% if batches.size > 0 %>
-  <% batches.each do |batch| %>
 <%= turbo_frame_tag dom_id(batch) do %>
 <div id ="batches1">
   <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
@@ -16,7 +14,5 @@
     </div>
   </li>
   </div>
-<% end %>
-<% end %>
 <% end %>
 
