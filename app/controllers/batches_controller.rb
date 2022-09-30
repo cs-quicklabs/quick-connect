@@ -31,7 +31,7 @@ class BatchesController < BaseController
       if @batch.save
         Event.create(user: current_user, action: "group", action_for_context: "added a group", trackable: @batch)
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(:batches1, partial: "batches/batch", locals: { batches: Batch.all.order(created_at: :desc) }) +
+          render turbo_stream: turbo_stream.replace(:batches, partial: "batches/batch", locals: { batches: Batch.all.order(created_at: :desc) }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
         }
       else
@@ -92,8 +92,11 @@ class BatchesController < BaseController
     authorize :batch
     @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
-      render turbo_stream: turbo_stream.replace(:batches, partial: "batches/batch", locals: { batches: Batch.all.order(:name) }) +
-                           turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.remove(@batch) +
+                             turbo_stream.replace(:show, partial: "batches/show", locals: { batch: [], contacts: [] }) +
+                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
+      }
     end
   end
 
