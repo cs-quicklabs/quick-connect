@@ -1,3 +1,4 @@
+<div id ="batches1">
 <% if batches.size > 0 %>
   <% batches.each do |batch| %>
 <%= turbo_frame_tag dom_id(batch) do %>
@@ -20,3 +21,4 @@
 <% end %>
 <% end %>
 <% end %>
+</div>
