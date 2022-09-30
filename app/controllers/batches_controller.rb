@@ -92,7 +92,8 @@ class BatchesController < BaseController
     authorize :batch
     @batch = DestroyGroup.call(current_user, @batch).result
     respond_to do |format|
-      format.html { redirect_to batches_path, notice: "Group was successfully deleted.", status: :see_other }
+      render turbo_stream: turbo_stream.replace(:batches, partial: "batches/batch", locals: { batches: Batch.all.order(:name) }) +
+                           turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
     end
   end
 

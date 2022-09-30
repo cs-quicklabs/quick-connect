@@ -41,7 +41,7 @@ class BatchReflex < ApplicationReflex
     batch = render(partial: "batches/batch", locals: { batches: @batches })
     html = render(partial: "batches/show", locals: { batch: [], contacts: [] })
     profile = render(partial: "batches/profile", locals: { contact: "" })
-    morph "#batches", "#{batch}"
+    morph "#batches1", "#{batch}"
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
   end
