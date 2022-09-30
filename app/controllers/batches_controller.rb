@@ -31,7 +31,7 @@ class BatchesController < BaseController
       if @batch.save
         Event.create(user: current_user, action: "group", action_for_context: "added a group", trackable: @batch)
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace(:batches, partial: "batches/batch", locals: { batches: Batch.all.order(created_at: :desc) }) +
+          render turbo_stream: turbo_stream.replace(:batches1, partial: "batches/batch", locals: { batches: Batch.all.order(created_at: :desc) }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." })
         }
       else
