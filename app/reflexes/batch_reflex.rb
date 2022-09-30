@@ -30,7 +30,7 @@ class BatchReflex < ApplicationReflex
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:contact_id])
     @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
-    html = render(partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact removed successfully from  group" })
+    html = render(partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact deleted successfully from  group" })
     profile = render(partial: "batches/profile", locals: { contact: [] })
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
