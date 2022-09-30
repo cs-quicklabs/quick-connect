@@ -28,8 +28,10 @@
                 <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
                   <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                 </ul>
+                <%if @favorites.count>8 %>
                 <div class="flex items-center sm:mt-0 sm:ml-4 ">
                   <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
+                  <% end %>
                 </div>
               </div>
             </div>

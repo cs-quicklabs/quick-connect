@@ -7,7 +7,11 @@
       </a>
       <div class="flex justify-end space-x-2">
         <%= edit_button(edit_batch_path(batch)) %>
-        <%= delete_button(batch_path(batch)) %>
+           <%= link_to "Delete", " #", class: "btn-inline-delete", data: {
+                                          controller: "confirmation",
+                                          "confirmation-message-value": "Are you sure you want to delete group",
+                                          action: "confirmation#confirm", reflex: "click->Batch#destroy", batch:batch.id
+                                        } %>
       </div>
     </div>
   </li>
