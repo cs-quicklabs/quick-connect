@@ -5601,7 +5601,7 @@
                       "type": "string"
                     },
                     "relation_id": {
-                      "type": "int"
+                      "type": "integer"
                     }
                   }
                 }
