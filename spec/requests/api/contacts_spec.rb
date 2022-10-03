@@ -167,6 +167,8 @@ RSpec.describe "api/contacts", type: :request do
                     "last_name": { type: :string },
                     "phone": { type: :string },
                     "email": { type: :string },
+                    "intro": { type: :string },
+                    "relation_id": { type: :int },
                   } } },
                 }
       response(200, "successful") do
@@ -241,6 +243,8 @@ RSpec.describe "api/contacts", type: :request do
           "last_name": { type: :string },
           "phone": { type: :string },
           "email": { type: :string },
+          "intro": { type: :string },
+          "relation_id": { type: :int },
         } } },
       }
       response(200, "successful") do

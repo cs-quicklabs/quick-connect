@@ -5466,6 +5466,12 @@
                     },
                     "email": {
                       "type": "string"
+                    },
+                    "intro": {
+                      "type": "string"
+                    },
+                    "relation_id": {
+                      "type": "int"
                     }
                   }
                 }
@@ -5590,6 +5596,12 @@
                     },
                     "email": {
                       "type": "string"
+                    },
+                    "intro": {
+                      "type": "string"
+                    },
+                    "relation_id": {
+                      "type": "int"
                     }
                   }
                 }
