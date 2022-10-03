@@ -32,7 +32,7 @@ class BatchesController < BaseController
           render turbo_stream: turbo_stream.prepend(:batches, partial: "batches/batch", locals: { batch: @batch }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." }) +
                                turbo_stream.replace(:show, partial: "batches/show", locals: { batch: @batch, contacts: [] }) +
-                               turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: [] })
+                               turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: @batch }) }
@@ -83,7 +83,7 @@ class BatchesController < BaseController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.replace(:show1, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" }) +
-                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: [] })
+                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
       }
     end
   end
