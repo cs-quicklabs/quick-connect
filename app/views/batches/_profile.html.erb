@@ -30,10 +30,10 @@
                   </svg>
                   <span class="text-gray-900">Send Sms</span>
                 </a>
-                <%= render partial: "contacts/modal",locals:{contact:contact}%>
+                <%= render partial: "contacts/modal", locals: { contact: contact } %>
               <% end %>
               <% if !contact.email.blank? %>
-                <a type="button" href="mailto:<%=contact.email%>" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-4 py-2  border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
+                <a type="button" href="mailto:<%= contact.email %>" class=" whitespace-nowrap cursor-pointer inline-flex justify-center px-4 py-2  border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                   <!-- Heroicon name: solid/mail -->
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="-ml-1 mr-2 h-5 w-5 text-gray-400">
                     <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />

@@ -54,7 +54,7 @@
           <!-- This example requires Tailwind CSS v2.0+ -->
           <% if !contact.phone.blank? %>
             <div>
-              <a type="button" href="//api.whatsapp.com/send?phone=91<%=contact.phone%>"  title="WhatsApp" target="_blank">
+              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <i class="fa-brands fa-whatsapp"></i>
@@ -72,11 +72,11 @@
                 </span>
               </a>
             </div>
-            <%= render partial: "contacts/modal",locals:{contact:contact}%>
+            <%= render partial: "contacts/modal", locals: { contact: contact } %>
           <% end %>
           <% if !contact.email.blank? %>
             <div>
-              <a type="button" href="sms:(+91)<%=contact.phone%>"  title="Send Email">
+              <a type="button" href="sms:(+91)<%= contact.phone %>"  title="Send Email">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -88,7 +88,7 @@
             </div>
           <% end %>
           <div>
-            <a href="<%=edit_contact_path(contact)%>" title="Edit">
+            <a href="<%= edit_contact_path(contact) %>" title="Edit">
               <span class="icon-span">
                 <!-- Heroicon name: outline/check-badge -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ">
@@ -99,17 +99,17 @@
             </a>
           </div>
           <div>
-            <% archive ="<span class='icon-span'>
-                              <!-- Heroicon name: outline/check-badge -->
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
-              <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
-            </svg>
-            </span>"%>
-            <%=link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to archive this contact?",
-                                 action: "confirmation#confirm",
-                               }, title:"Archive"%>
+            <% archive = "<span class='icon-span'>
+                                             <!-- Heroicon name: outline/check-badge -->
+                           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
+                             <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
+                           </svg>
+                           </span>" %>
+            <%= link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
+                                                                            controller: "confirmation",
+                                                                            "confirmation-message-value": "Are you sure you want to archive this contact?",
+                                                                            action: "confirmation#confirm",
+                                                                          }, title: "Archive" %>
           </div>
           <div class="" id="contact-favorite">
             <ul class="flex list-none">
@@ -143,27 +143,27 @@
   <div class="mt-2">
     <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
   </div>
-  <% restore ="<span class='icon-span'>
-                            <!-- Heroicon name: outline/check-badge -->
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
-            <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
-            <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
-          </svg>
-          </span>"%>
-  <%=link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to restore this contact?",
-                                 action: "confirmation#confirm",
-                               }, title:"Restore"%>
+  <% restore = "<span class='icon-span'>
+                                 <!-- Heroicon name: outline/check-badge -->
+               <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
+                 <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
+                 <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
+               </svg>
+               </span>" %>
+  <%= link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
+                                                                    controller: "confirmation",
+                                                                    "confirmation-message-value": "Are you sure you want to restore this contact?",
+                                                                    action: "confirmation#confirm",
+                                                                  }, title: "Restore" %>
 </div>
 <% end %>
 </div>
 <div class="pb-4 flex px-6 -mt-3">
   <% @event = contact.events.order(created_at: :desc).first %>
   <% @call = contact.phone_calls.order(created_at: :desc).first %>
-  <%if contact.intro?%>
+  <% if contact.intro? %>
     <p class=" text-sm font-medium text-gray-500 truncate w-3/5">
-      <%=contact.intro.upcase_first%>
+      <%= contact.intro.upcase_first %>
     </p>
     <p class=" text-sm font-medium text-gray-500">
       -

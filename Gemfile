@@ -21,8 +21,8 @@ gem "devise-jwt"
 gem "devise_invitable"
 gem "jquery-ui-rails"
 gem "htmlbeautifier"
-gem 'ffi', git: 'https://github.com/ffi/ffi'
-gem "ruby-vips" 
+gem "ffi", git: "https://github.com/ffi/ffi"
+gem "ruby-vips"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "~> 2.7"
@@ -97,8 +97,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
 
-    gem "rails_live_reload"
-
+  gem "rails_live_reload"
 end
 
 group :test do
