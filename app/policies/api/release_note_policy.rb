@@ -3,6 +3,10 @@ class Api::ReleaseNotePolicy < Api::BaseApiPolicy
     true
   end
 
+  def release?
+    true
+  end
+
   def show?
     true
   end

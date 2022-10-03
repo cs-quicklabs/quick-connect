@@ -168,7 +168,7 @@ RSpec.describe "api/contacts", type: :request do
                     "phone": { type: :string },
                     "email": { type: :string },
                     "intro": { type: :string },
-                    "relation_id": { type: :int },
+                    "relation_id": { type: :integer },
                   } } },
                 }
       response(200, "successful") do

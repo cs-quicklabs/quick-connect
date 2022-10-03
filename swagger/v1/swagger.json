@@ -5471,7 +5471,7 @@
                       "type": "string"
                     },
                     "relation_id": {
-                      "type": "int"
+                      "type": "integer"
                     }
                   }
                 }
@@ -6444,6 +6444,44 @@
       ],
       "get": {
         "summary": "list release_notes",
+        "security": [
+          {
+            "Bearer": {
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      }
+    },
+    "/{account_id}/api/release?page={page}": {
+      "parameters": [
+        {
+          "name": "account_id",
+          "in": "path",
+          "type": "string",
+          "description": "account_id",
+          "required": true
+        },
+        {
+          "name": "page",
+          "in": "path",
+          "type": "integer",
+          "description": "page",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "show releases",
         "security": [
           {
             "Bearer": {
