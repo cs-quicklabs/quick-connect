@@ -19,10 +19,10 @@
       <div class="flex col-span-1">
         <div class="whitespace-nowrap">
           <% if policy([relative.first_contact, relative]).edit? %>
-            <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
+            <%= edit_button(edit_contact_relative_path(relative.first_contact, relative)) %>
           <% end %>
           <% if policy([relative.first_contact, relative]).destroy? %>
-            <%= delete_button(contact_relative_path(@contact, relative)) %>
+            <%= delete_button(contact_relative_path(relative.first_contact, relative)) %>
           <% end %>
         </div>
       </div>

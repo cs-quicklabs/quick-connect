@@ -33,11 +33,11 @@
     <%= display_created_at(document) %>
   </td>
   <td class="table-cell  align-middle">
-    <% if policy([document.contact, document]).edit? %>
-      <div class="flex justify-end items-center space-x-2">
-        <%= edit_button(edit_contact_document_path(@contact, document)) %>
-        <%= delete_button(contact_document_path(@contact, document)) %>
-      </div>
-    <% end %>
+    <div class="flex justify-end items-center space-x-2">
+      <% if policy([document.contact, document]).edit? %>
+        <%= edit_button(edit_contact_document_path(document.contact, document)) %>
+        <%= delete_button(contact_document_path(document.contact, document)) %>
+      <% end %>
+    </div>
   </td>
 </tr>
