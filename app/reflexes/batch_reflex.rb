@@ -5,7 +5,11 @@ class BatchReflex < ApplicationReflex
     batch = Batch.find(element.dataset["batch-id"])
     contacts = batch.contacts.order(:name).uniq
     html = render(partial: "batches/show", locals: { batch: batch, contacts: contacts })
-    profile = render(partial: "batches/profile", locals: { contact: contacts.first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: contacts.first.id) })
+    if contacts.size > 0
+      profile = render(partial: "batches/profile", locals: { contact: contacts.first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: contacts.first.id) })
+    else
+      profile = render(partial: "batches/profile", locals: { contact: [] })
+    end
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
   end
