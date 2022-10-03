@@ -44,7 +44,7 @@
           </div>
         </div>
       <% end %>
-      <div class="flex mt-4 sm:mt-0  space-x-4" x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
+      <div class="flex mt-4 sm:mt-0  space-x-4" >
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
           <div class=" float-right mt-2  " id="contact-relation" >
@@ -62,7 +62,7 @@
               </a>
             </div>
             <div>
-              <a type="button" x-on:click="isModalOpen = true" href=""  title="Send Sms">
+              <a type="button" x-on:click="isModalOpen = true"   title="Send Sms">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
