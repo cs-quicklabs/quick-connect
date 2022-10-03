@@ -6,14 +6,10 @@ gem "font-awesome-rails"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3.1"
 gem "pg"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
 gem "attribute_normalizer"
 # Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6.4"
+gem "puma", "5.6.5"
 gem "sassc-rails", "~> 2.1"
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem "turbo-rails"
 # Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
@@ -100,6 +96,9 @@ group :development do
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
+
+    gem "rails_live_reload"
+
 end
 
 group :test do
