@@ -94,8 +94,8 @@ class BatchesController < BaseController
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.remove(@batch) +
-                             turbo_stream.replace(:show, partial: "batches/show", locals: { batch: [], contacts: [] }) +
-                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: [] })
+                             turbo_stream.replace(:show, partial: "batches/show", locals: { batch: "", contacts: [] }) +
+                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
       }
     end
   end
