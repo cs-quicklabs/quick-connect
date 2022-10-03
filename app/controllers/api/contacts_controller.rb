@@ -96,6 +96,6 @@ class Api::ContactsController < Api::BaseController
   end
 
   def contact_params
-    params.require(:api_contact).permit(:first_name, :last_name, :email, :phone)
+    params.require(:api_contact).permit(:first_name, :last_name, :email, :phone, :relation_id, :intro)
   end
 end
