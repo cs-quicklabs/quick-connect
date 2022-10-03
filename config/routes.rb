@@ -105,6 +105,7 @@ Rails.application.routes.draw do
       post "/invitations", to: "invitations#update", as: :accept_invitation
     end
     get "followups", to: "followups#index"
+    get "/release", to: "release_notes#release", as: "release"
     resources :user
     get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
