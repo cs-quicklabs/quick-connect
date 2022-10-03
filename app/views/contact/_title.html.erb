@@ -46,11 +46,11 @@
       <% end %>
       <div class="flex mt-4 sm:mt-0  space-x-4">
         <% contact_relation = contact.relation %>
-        <div class=" text-left mt-2 " id="contact-relation" >
-          <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
-        </div>
-        <!-- This example requires Tailwind CSS v2.0+ -->
         <% if policy(contact).edit? %>
+          <div class=" float-right mt-2  " id="contact-relation" >
+            <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
+          </div>
+          <!-- This example requires Tailwind CSS v2.0+ -->
           <!-- This example requires Tailwind CSS v2.0+ -->
           <% if !contact.phone.blank? %>
             <div>
@@ -139,7 +139,10 @@
   </div>
 </div>
 </div>
-<div>
+<div class="inline-block flex" id="contact-relation" >
+  <div class="mt-2">
+    <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
+  </div>
   <% restore ="<span class='icon-span'>
                             <!-- Heroicon name: outline/check-badge -->
           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
@@ -147,7 +150,7 @@
             <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
           </svg>
           </span>"%>
-  <%=link_to restore.html_safe, unarchive_contact_path(contact), class: "", data: {
+  <%=link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
                                  controller: "confirmation",
                                  "confirmation-message-value": "Are you sure you want to restore this contact?",
                                  action: "confirmation#confirm",
@@ -158,18 +161,21 @@
 <div class="pb-4 flex px-6">
   <% @event = contact.events.order(created_at: :desc).first %>
   <% @call = contact.phone_calls.order(created_at: :desc).first %>
-  <%if !contact.intro.nil?%>
-    <p class="-mt-1 text-sm font-medium text-gray-500 truncate w-3/5">
+  <%if contact.intro?%>
+    <p class=" text-sm font-medium text-gray-500 truncate w-3/5">
       <%=contact.intro.upcase_first%>
     </p>
+    <p class=" text-sm font-medium text-gray-500">
+      -
+    </p>
   <% end %>
-  <p class=" -mt-1 text-sm font-medium text-gray-500 truncate">
+  <p class="  text-sm font-medium text-gray-500 truncate">
     <% if (!@event.blank? && !@call.blank?) %>
-      - <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
     <% elsif !@event.blank? %>
-      - <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
+      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
     <% elsif !@call.blank? %>
-      - Last phone call was on <%= display_created_at(@call) %>
+      Last phone call was on <%= display_created_at(@call) %>
     <% end %>
   </p>
 </div>
