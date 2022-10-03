@@ -18,6 +18,7 @@ class DestroyContact < Patterns::Service
       delete_contact_about
       delete_contact_events
       delete_reminders
+      delete_contact_batches
       contact.destroy
     rescue Exception => e
       return false
@@ -68,6 +69,10 @@ class DestroyContact < Patterns::Service
     if !contact.abouts.nil?
       contact.abouts.delete
     end
+  end
+
+  def delete_contact_batches
+    BatchesContact.where(contact_id: @contact.id).destroy_all
   end
 
   def delete_reminders

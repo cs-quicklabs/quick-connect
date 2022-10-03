@@ -24,7 +24,11 @@
           </p>
         </div>
         <div class="">
-          <%= delete_button("/#{batch.account.id}/batches/#{batch.id}/remove?contact_id=#{contact.id}") %>
+              <%= link_to "Delete", " #", class: "btn-inline-delete", data: {
+                                          controller: "confirmation",
+                                          "confirmation-message-value": "Are you sure you want to delete contact from group",
+                                          action: "confirmation#confirm", reflex: "click->Batch#remove", contact: contact.id, batch:batch.id
+                                        } %>
         </div>
       </div>
     </li>

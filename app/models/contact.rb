@@ -6,7 +6,7 @@ class Contact < ApplicationRecord
   scope :favorites, -> { where(favorite: true) }
   belongs_to :user
   belongs_to :account
-  validates_presence_of :first_name, :last_name, :intro
+  validates_presence_of :first_name, :last_name, :intro, on: :create
   validates_uniqueness_of :phone, scope: :account, :allow_blank => true, on: :create
   validates_uniqueness_of :email, scope: :account, :allow_blank => true, on: :create
   has_many :notes, dependent: :destroy
@@ -39,7 +39,6 @@ class Contact < ApplicationRecord
   has_many :documents, dependent: :destroy
   has_many :contact_activities, dependent: :destroy
   has_many :contact_events, dependent: :destroy
-  has_and_belongs_to_many :batches_contacts, dependent: :destroy
   has_and_belongs_to_many :batches, dependent: :destroy
 
   has_many :reminders, dependent: :destroy

@@ -8,7 +8,7 @@
     </div>
     <div class="mt-1 text-sm text-gray-700">
       <p
-   x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
+   x-data="{ isCollapsed: false, maxLength: 120, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
    >
         <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= document.comments %></span>
@@ -33,7 +33,7 @@
     <%= display_created_at(document) %>
   </td>
   <td class="table-cell  align-middle">
-    <% if policy([@contact, document]).edit? %>
+    <% if policy([document.contact, document]).edit? %>
       <div class="flex justify-end items-center space-x-2">
         <%= edit_button(edit_contact_document_path(@contact, document)) %>
         <%= delete_button(contact_document_path(@contact, document)) %>

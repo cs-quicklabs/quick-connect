@@ -1,6 +1,6 @@
-<% if !contact.blank? %>
+<% if contact.size>0 %>
   <% if policy(contact).profile? %>
-    <div class="h-full">
+    <div class="h-full" id="profile1">
       <div>
         <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
       </div>
@@ -13,7 +13,7 @@
             <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1  ">
               <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
             </div>
-            <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 md:space-x-2 xl:space-x-4 ">
+            <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 md:space-x-2 xl:space-x-4 "  x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false">
               <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" class=" whitespace-nowrap cursor-pointer inline-flex justify-center xl:px-4 xl:py-2  md:py-1 md:px-2  border border-gray-300 shadow-sm text-sm font-normal rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500">
                 <!-- Heroicon name: solid/mail -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 mr-2 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">

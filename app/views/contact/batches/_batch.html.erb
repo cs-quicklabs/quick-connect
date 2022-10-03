@@ -12,7 +12,7 @@
         <%= display_date(batches_contact.created_at) %>
       </td>
       <td class="table-cell">
-        <% if policy([contact, batch]).destroy? %>
+        <% if policy([batches_contact.contact, batch]).destroy? %>
           <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/batches/#{batch.id}") %>
         <% end %>
       </div>

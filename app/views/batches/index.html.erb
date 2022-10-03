@@ -19,9 +19,9 @@
                   <div id="batches_form" class="pb-2">
                     <%= render "form", batch: @batch %>
                   </div>
-                  <div id="batches" class="pt-6 ">
-                    <nav class="h-full">
-                      <%= render @batches %>
+                  <div  class="pt-6">
+                    <nav class="h-full" id="batches">
+                       <%= render @batches %>
                     </nav>
                   </div>
                 </div>
@@ -41,7 +41,6 @@
           <% batch = Batch.find(params[:batch_id]) %>
           <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq, message: message } %>
         <% end %>
-        <%= render partial: "show", locals: { batch: [], contacts: [] } %>
       </div>
     </div>
     <div class="flex flex-col min-w-0 flex-1  ">
@@ -51,7 +50,6 @@
           <% if params[:contact_id] %>
             <%= render partial: "batches/profile", locals: { contact: Contact.find(params[:contact_id]), relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]) } %>
           <% end %>
-          <%= render partial: "profile", locals: { contact: [] } %>
         </div>
       </main>
     </div>

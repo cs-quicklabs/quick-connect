@@ -13,17 +13,17 @@
 <div data-reflex-permanent>
   <nav class="bg-gray-800  ">
     <div class="px-2 mx-auto sm:px-6 lg:px-8">
-      <div class="relative flex items-center justify-between  h-12 space-x-6">
-        <div class="flex items-center justify-center flex-1 sm:items-stretch sm:justify-start">
-          <div class="flex items-center flex-shrink-0">
-            <a href="<%= root_path %>">
-              <%= image_tag "icon.jpeg", class: "block w-8 h-8 rounded-full  inline-flex" %>
-              <h1 class="inline-flex items-center ml-2 px-2 py-0.5 font-bold text-xl font-medium  text-white">KUTUMB</h1>
-            </a>
-          </div>
+      <div class="relative flex items-center justify-between h-12">
+        <div class="flex items-center flex-shrink-0">
+          <a href="<%= root_path %>">
+            <%= image_tag "icon.jpeg", class: "block w-8 h-8 rounded-full  inline-flex" %>
+            <h1 class="inline-flex items-center ml-2 px-2 py-0.5 font-bold text-xl font-medium  text-white">KUTUMB</h1>
+          </a>
+        </div>
+        <div class="flex items-center px-2 lg:px-0">
           <% if user_signed_in? %>
             <div class="hidden sm:block pl-4">
-              <div class="flex space-x-4">
+              <div class="flex space-x-2">
                 <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Home</a>
                 <a href=<%= followups_path %> class= "<%= current_page?(followups_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Follow-ups</a>
                 <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Contacts</a>
@@ -35,54 +35,58 @@
               </div>
             </div>
           </div>
-          <div class="flex  w-5/12 px-16"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/nav">
-            <div class="w-full max-w-xs lg:max-w-sm ">
+          <div class="flex  flex-1 justify-center px-2 lg:ml-6 lg:justify-end"  data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/nav">
+            <div class="w-full max-w-lg lg:max-w-sm ">
               <div class="relative">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none" >
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 " >
                   <!-- Heroicon name: solid/search -->
                   <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                   </svg>
                 </div>
-                <input id="search" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contacts" type="search" data-nav-search-target="input">
+                <input id="navbar" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contact" type="search" data-nav-search-target="input">
               </div>
-              <div class="relative">
-                <div class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-                  <ul data-nav-search-target="results">
+              <div class="relative ">
+                <div class="absolute  left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                  <ul data-nav-search-target="results" >
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-          <% if policy(ReleaseNote).release? %>
-            <a href="<%=release_path%>" type="button" class="  flex-shrink-0 rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" target="_top">
-              <span class="sr-only">View notifications</span>
-              <!-- Heroicon name: outline/bell -->
-              <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
-              </svg>
-            </a>
-          <% end %>
-          <!-- This example requires Tailwind CSS v2.0+ -->
-          <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto  sm:pr-0">
-            <!-- Profile dropdown -->
-            <div @click.away="open = false" class="relative z-10 ml-3" x-data="{ open: false }">
-              <div>
-                <button @click="open = !open" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
-                  <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
-                </button>
-              </div>
-              <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
-                  <div class= "px-4 py-3">
-                    <p class="text-sm">Signed in as</p>
-                    <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.email %></p>
+          <div class="hidden lg:ml-4 lg:block">
+            <div class="flex items-center">
+              <% if policy(ReleaseNote).release? %>
+                <a href="<%=release_path%>" type="button" class="  flex-shrink-0 rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" target="_top">
+                  <span class="sr-only">View notifications</span>
+                  <!-- Heroicon name: outline/bell -->
+                  <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0" />
+                  </svg>
+                </a>
+              <% end %>
+              <!-- This example requires Tailwind CSS v2.0+ -->
+              <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-2 sm:static sm:inset-auto  sm:pr-0">
+                <!-- Profile dropdown -->
+                <div @click.away="open = false" class="relative z-10 ml-3" x-data="{ open: false }">
+                  <div>
+                    <button @click="open = !open" class="flex text-sm bg-gray-800 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" id="user-menu" aria-haspopup="true">
+                      <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
+                    </button>
                   </div>
-                  <div class="border-t border-gray-100">
-                    <div>
-                      <a><%= link_to "Account", account_relations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                      <a><%= link_to "Settings", user_profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
-                      <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                  <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
+                    <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                      <div class= "px-4 py-3">
+                        <p class="text-sm">Signed in as</p>
+                        <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.email %></p>
+                      </div>
+                      <div class="border-t border-gray-100">
+                        <div>
+                          <a><%= link_to "Account", account_relations_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                          <a><%= link_to "Settings", user_profile_path, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                          <a><%= link_to "Sign Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: "block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100", role: "menuitem" %></a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -91,8 +95,8 @@
           </div>
         <% else %>
           <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-            <a href=<%= new_user_registration_path %> class="<%= current_page?(new_user_registration_path) ? "nav-selected" : "nav-unselected" %>">Sign up </a>
-            <a href=<%= new_user_session_path %> class="<%= current_page?(new_user_session_path) ? "nav-selected" : "nav-unselected" %>"  >Sign in</a>
+            <a href=<%= new_user_registration_path %> class="<%= current_page?(new_user_registration_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Sign up </a>
+            <a href=<%= new_user_session_path %> class="<%= current_page?(new_user_session_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>"  >Sign in</a>
           </div>
         <% end %>
       </div>

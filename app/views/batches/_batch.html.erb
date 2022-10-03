@@ -1,4 +1,6 @@
+
 <%= turbo_frame_tag dom_id(batch) do %>
+<div id ="batches1">
   <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
     <div class="flex  w-full  " >
       <a  id="group_<%= batch.id %>" class="inline-flex w-full hover:underline"  data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
@@ -7,8 +9,10 @@
       </a>
       <div class="flex justify-end space-x-2">
         <%= edit_button(edit_batch_path(batch)) %>
-        <%= delete_button(batch_path(batch)) %>
+          <%=delete_button(batch_path(batch))%>
       </div>
     </div>
   </li>
+  </div>
 <% end %>
+
