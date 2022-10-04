@@ -1,6 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.action_controller.default_url_options = { host: "localhost", port: 3000 }
   config.session_store :cache_store
 
   # Settings specified here will take precedence over those in config/application.rb.
@@ -8,25 +9,14 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded any time
   # it changes. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-
   config.cache_classes = false
-  config.action_controller.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.reload_classes_only_on_change = false
+
   # Do not eager load code on boot.
   config.eager_load = false
-  config.assets.debug = true
-  config.assets.compile = true
-  # Generate digests for assets URLs
-  config.assets.digest = false
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  # Enable server timing
-  config.server_timing = true
-  config.public_file_server.enabled = true
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join("tmp/caching-dev.txt").exist?
@@ -45,6 +35,7 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+  Rails.application.config.active_storage.variant_processor = :mini_magick
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
@@ -66,12 +57,36 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
+  # Debug mode disables concatenation and preprocessing of assets.
+  # This option may cause significant delays in view rendering with a large
+  # number of complex assets.
+  config.assets.debug = true
+
+  # Suppress logger output for asset requests.
+  config.assets.quiet = true
+
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
 
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
   # Uncomment if you wish to allow Action Cable access from any origin.
-  #config.action_cable.disable_request_forgery_protection = true
+  # config.action_cable.disable_request_forgery_protection = true
+
+  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  #config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
+  #config.action_mailer.delivery_method = :smtp
+  #config.action_mailer.perform_deliveries = true
+  #config.action_mailer.raise_delivery_errors = true
+  #config.action_mailer.default :charset => "utf-8"
+
 end
