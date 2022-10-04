@@ -16,15 +16,13 @@
           </a>
         </div>
       </div>
-      <div class="flex col-span-1">
-        <div class="whitespace-nowrap">
-          <% if policy([relative.first_contact, relative]).edit? %>
-            <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
-          <% end %>
-          <% if policy([relative.first_contact, relative]).destroy? %>
-            <%= delete_button(contact_relative_path(@contact, relative)) %>
-          <% end %>
-        </div>
+      <div class="flex col-span-1 whitespace-nowrap">
+        <% if policy([relative.first_contact, relative]).edit? %>
+          <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
+        <% end %>
+        <% if policy([relative.first_contact, relative]).destroy? %>
+          <%= delete_button(contact_relative_path(@contact, relative)) %>
+        <% end %>
       </div>
     </div>
   </div>
