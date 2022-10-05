@@ -39,7 +39,7 @@
         <% if params[:batch_id] %>
           <% message = "Contact added successfully to group" %>
           <% batch = Batch.find(params[:batch_id]) %>
-          <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq, message: message } %>
+          <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq } %>
         <% end %>
       </div>
     </div>

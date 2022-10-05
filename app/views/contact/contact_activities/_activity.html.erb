@@ -20,10 +20,10 @@
           <div class="mt-2 space-x-2 text-sm">
             <span class="font-normal text-gray-500"><%= display_date(contact_activity.date) %></span>
             <% if policy([contact_activity.contact, contact_activity]).edit? %>
-              <%= edit_button(edit_contact_contact_activity_path(@contact, contact_activity)) %>
+              <%= edit_button("/#{current_user.account.id}/contacts/#{@contact.id}/contact_activity/#{contact_activity.id}/edit") %>
             <% end %>
             <% if policy([contact_activity.contact, contact_activity]).destroy? %>
-              <%= delete_button(contact_contact_activity_path(@contact, contact_activity)) %>
+              <%= delete_button("/#{current_user.account.id}/contacts/#{@contact.id}/contact_activity/#{contact_activity.id}") %>
             <% end %>
           </div>
         </div>

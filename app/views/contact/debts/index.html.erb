@@ -31,7 +31,7 @@
                     </tr>
                   </thead>
                   <tbody class="table-body" id="debts" data-infinite-scroll-target="entries">
-                    <%= render partial: "debt", collection: @debts, as: :debt, cached: true %>
+                    <%= render partial: "debt", collection: @debts, as: :debt, cached: false %>
                   </tbody>
                 </table>
               </div>

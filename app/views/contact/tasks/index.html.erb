@@ -28,7 +28,7 @@
                     </tr>
                   </thead>
                   <tbody class="table-body" id="tasks" data-infinite-scroll-target="entries">
-                    <%= render partial: "task", collection: @tasks, as: :task, cached: true %>
+                    <%= render partial: "task", collection: @tasks, as: :task, cached: false %>
                   </tbody>
                 </table>
               </div>
