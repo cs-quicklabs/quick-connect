@@ -287,11 +287,6 @@ GEM
       activerecord (>= 4.2.6)
       ruby2_keywords
       virtus
-    rails_live_reload (0.3.1)
-      listen
-      nio4r
-      railties
-      websocket-driver
     railties (7.0.3.1)
       actionpack (= 7.0.3.1)
       activesupport (= 7.0.3.1)
@@ -463,7 +458,6 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (= 7.0.3.1)
   rails-patterns
-  rails_live_reload
   redis (~> 4.0)
   rexml
   rspec-rails
