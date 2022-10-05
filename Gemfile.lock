@@ -303,10 +303,7 @@ GEM
     rb-fsevent (0.11.2)
     rb-inotify (0.10.1)
       ffi (~> 1.0)
-    redis (5.0.5)
-      redis-client (>= 0.9.0)
-    redis-client (0.9.0)
-      connection_pool
+    redis (4.8.0)
     regexp_parser (2.6.0)
     reline (0.3.1)
       io-console (~> 0.5)
@@ -467,7 +464,7 @@ DEPENDENCIES
   rails (= 7.0.3.1)
   rails-patterns
   rails_live_reload
-  redis (>= 4.0)
+  redis (~> 4.0)
   rexml
   rspec-rails
   rswag-api
@@ -494,4 +491,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.22
+   2.3.19
