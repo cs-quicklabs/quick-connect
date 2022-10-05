@@ -86,7 +86,7 @@ module ApplicationHelper
   end
 
   def edit_button(path)
-    out = link_to "Edit", path, class: "btn-inline-edit", target: "_top"
+    out = link_to "Edit", path, class: "btn-inline-edit"
 
     out.html_safe
   end

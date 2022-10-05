@@ -33,26 +33,28 @@
     </div>
   </div>
   <!-- Static sidebar for desktop -->
-  <div class=" flex    shrink-0  "  >
-    <div class="flex flex-col " style="width: 24rem;" >
-      <div class="flex-1 flex flex-col min-h-0  " id="show1">
-        <% if params[:batch_id] %>
-          <% message = "Contact added successfully to group" %>
-          <% batch = Batch.find(params[:batch_id]) %>
-          <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq } %>
-        <% end %>
-      </div>
-    </div>
-    <div class="flex min-w-0 flex-1  ">
-      <main class="flex-1 relative z-0 ">
+  <div class="relative z-0 flex flex-1 overflow-hidden">
+    <main class="relative z-0 flex-1 flex  focus:outline-none order-last " >
+      <div class="absolute inset-0  flex-shrink-0 ">
         <!-- Breadcrumb -->
-        <div id="profile" class="overflow-y-scroll focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 overflow-y-scroll">
+        <div id="profile" class="overflow-y-scroll focus:outline-none h-[calc(100vh-5.75rem)]  max-content top-0 ">
           <% if params[:contact_id] %>
             <%= render partial: "batches/profile", locals: { contact: Contact.find(params[:contact_id]), relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]) } %>
           <% end %>
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
+    <aside class="relative flex-shrink-0 flex flex-col min-h-0 order-first " style="width: 24rem;">
+      <div class="absolute inset-0" >
+        <div id="show1"  >
+          <% if params[:batch_id] %>
+            <% message = "Contact added successfully to group" %>
+            <% batch = Batch.find(params[:batch_id]) %>
+            <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq } %>
+          <% end %>
+        </div>
+      </div>
+    </aside>
   </div>
 </div>
 <script type="text/javascript">
