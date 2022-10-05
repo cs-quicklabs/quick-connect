@@ -13,7 +13,7 @@
     "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.3",
     "autoprefixer": "10.4.12",
-    "esbuild": "0.15.9",
+    "esbuild": "0.15.8",
     "postcss": "8.4.16",
     "postcss-cli": "10.0.0",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
