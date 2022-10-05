@@ -74,9 +74,6 @@ gem "stripe", "~> 7.0"
 gem "font-awesome-rails"
 gem "attribute_normalizer"
 gem "devise-jwt"
-
-gem "ruby-vips"
-
 gem "rswag-api"
 gem "rswag-ui"
 
