@@ -184,6 +184,9 @@ GEM
     globalid (1.0.0)
       activesupport (>= 5.0)
     hiredis (0.6.3)
+    hotwire-livereload (1.2.2)
+      listen (>= 3.0.0)
+      rails (>= 6.0.0)
     htmlbeautifier (1.4.2)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
@@ -440,6 +443,7 @@ DEPENDENCIES
   draper
   font-awesome-rails
   hiredis
+  hotwire-livereload
   htmlbeautifier
   image_processing (~> 1.12)
   jbuilder (= 2.11.5)

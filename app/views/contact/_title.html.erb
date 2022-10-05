@@ -47,7 +47,7 @@
       <div class="flex mt-4 sm:mt-0  space-x-4" >
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
-          <div class=" float-right mt-2  " id="contact-relation" >
+          <div class=" float-right mt-1" id="contact-relation" >
             <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
           </div>
           <!-- This example requires Tailwind CSS v2.0+ -->
