@@ -1,5 +1,5 @@
-<li>
-  <%= turbo_frame_tag dom_id(phone_call) do %>
+  <%= turbo_frame_tag dom_id(phone_call), target: "_top" do %>
+  <li>
     <div class="flex mt-6 space-x-3">
       <div class="flex-shrink-0">
         <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
@@ -34,5 +34,5 @@
           </div>
         </div>
       </div>
-    <% end %>
-  </li>
+    </li>
+  <% end %>
