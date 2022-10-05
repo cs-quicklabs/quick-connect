@@ -32,7 +32,7 @@ gem "stimulus-rails", "1.1.0"
 gem "stimulus_reflex", "= 3.5.0.pre8"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder", "~> 2.7"
+gem "jbuilder", "2.11.5"
 
 # Use Redis adapter to run Action Cable in production
 gem "hiredis"

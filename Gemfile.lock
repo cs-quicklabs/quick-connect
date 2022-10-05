@@ -448,7 +448,7 @@ DEPENDENCIES
   font-awesome-rails
   hiredis
   image_processing (~> 1.12)
-  jbuilder (~> 2.7)
+  jbuilder (= 2.11.5)
   jsbundling-rails (= 1.0.3)
   launchy
   letter_opener
