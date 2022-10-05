@@ -4,8 +4,7 @@ class Contact::BaseContactPolicy < ApplicationPolicy
   end
 
   def update?
-    return false if record.first.archived?
-    true
+    !record.first.archived?
   end
 
   def create?

@@ -103,6 +103,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "rails_live_reload"
+  gem "htmlbeautifier"
 end
 
 group :test do
