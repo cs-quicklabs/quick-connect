@@ -6,20 +6,20 @@
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex "  >
+    <div class="flex "   x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
       <% contact_labels = contact.labels %>
-      <div  class="ml-2" id="contact-labels" >
+      <div  class="flex-none" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
       <% if policy(contact).edit? %>
-        <div class=" flex-auto  inline-block " x-data="{menu: false}"  >
+        <div class=" flex-auto  inline-block ">
           <button id="add" @click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <!-- Heroicon name: solid/plus -->
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
             </svg>
           </button>
-          <div  x-show="menu"
+          <div  x-show="menu"  id="labels"
           @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <% if Label.all.order(:name).size == 0 %>
               <div class="py-1" role="none">
@@ -34,7 +34,7 @@
                     <div class="py-1" role="none">
                       <% labels.each do |label| %>
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                        <a @click="menu = false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
+                        <a x-on:click="menu=false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -44,7 +44,7 @@
           </div>
         </div>
       <% end %>
-      <div class="flex mt-4 sm:mt-0  space-x-4">
+      <div class="flex mt-4 sm:mt-0  space-x-4" >
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
           <div class=" float-right mt-2  " id="contact-relation" >
@@ -62,7 +62,7 @@
               </a>
             </div>
             <div>
-              <a type="button" x-on:click="isModalOpen = true" href=""  title="Send Sms">
+              <a type="button" x-on:click="isModalOpen = true"   title="Send Sms">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -158,18 +158,18 @@
 </div>
 <% end %>
 </div>
-<div class="pb-4 flex px-6 -mt-3">
+<div class="pb-4 px-6 -mt-3 flex">
   <% @event = contact.events.order(created_at: :desc).first %>
   <% @call = contact.phone_calls.order(created_at: :desc).first %>
   <%if contact.intro?%>
-    <p class=" text-sm font-medium text-gray-500 truncate w-3/5">
+    <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
       <%=contact.intro.upcase_first%>
     </p>
-    <p class=" text-sm font-medium text-gray-500">
-      -
+    <p class=" text-sm font-medium text-gray-500 px-2">
+      -    
     </p>
   <% end %>
-  <p class="  text-sm font-medium text-gray-500 truncate">
+  <p class="  text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
     <% if (!@event.blank? && !@call.blank?) %>
       <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
     <% elsif !@event.blank? %>
@@ -178,8 +178,5 @@
       Last phone call was on <%= display_created_at(@call) %>
     <% end %>
   </p>
-</div>
-</div>
-</div>
 </div>
 <%= render partial: "contact/tabs", locals: { contact: contact } %>

@@ -14,7 +14,7 @@
                   <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Notes" %> (<%= @pagy.count.to_s %>)</p>
                 </div>
                 <ul class="divide-y divide-gray-200" id="notes" data-infinite-scroll-target="entries">
-                  <%= render partial: "note", collection: @notes, as: :note, cached: true %>
+                  <%= render partial: "note", collection: @notes, as: :note, cached: false %>
                 </ul>
               </div>
             </div>

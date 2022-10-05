@@ -17,14 +17,16 @@
               x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
               ></button>
           </div>
-          <div class="mt-2 space-x-2 text-sm">
+          <div class="mt-2 space-x-2 text-sm flex inline-block">
             <span class="font-normal text-gray-500"><%= display_date(contact_event.date) %></span>
-            <% if policy([contact_event.contact, contact_event]).edit? %>
-              <%= edit_button(edit_contact_contact_event_path(contact_event.contact, contact_event)) %>
-            <% end %>
-            <% if policy([contact_event.contact, contact_event]).destroy? %>
-              <%= delete_button(contact_contact_event_path(contact_event.contact, contact_event)) %>
-            <% end %>
+            <div>
+              <% if policy([contact_event.contact, contact_event]).edit? %>
+                <%= edit_button(edit_contact_contact_event_path(contact_event.contact, contact_event)) %>
+              <% end %>
+              <% if policy([contact_event.contact, contact_event]).destroy? %>
+                <%= delete_button(contact_contact_event_path(contact_event.contact, contact_event)) %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>

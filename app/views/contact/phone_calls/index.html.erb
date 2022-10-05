@@ -14,7 +14,7 @@
                   <p class="mt-1 text-sm font-medium text-gray-900 truncate"><%= " Phone Calls" %>(<%= @pagy.count.to_s %>)</p>
                 </div>
                 <ul class="space-y-6" id="phone_calls" data-infinite-scroll-target="entries">
-                  <%= render partial: "phone_call", collection: @phone_calls, as: :phone_call, cached: true %>
+                  <%= render partial: "phone_call", collection: @phone_calls, as: :phone_call, cached: false %>
                 </ul>
               </div>
             </div>

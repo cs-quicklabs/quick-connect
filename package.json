@@ -4,13 +4,13 @@
   "module": "commonjs",
   "dependencies": {
     "@hotwired/stimulus": "3.1.0",
-    "@hotwired/turbo": "7.1.0",
+    "@hotwired/turbo": "7.2.0",
     "@popperjs/core": "^2.11.6",
     "@rails/actioncable": "7.0.2",
-    "@rails/actiontext": "^7.0.4",
+    "@rails/actiontext": "6.1.4-1",
     "@rails/request.js": "0.0.6",
     "@tailwindcss/forms": "0.5.2",
-    "@tailwindcss/line-clamp": "0.4.0",
+    "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.3",
     "autoprefixer": "10.4.8",
     "esbuild": "0.15.7",
@@ -28,7 +28,7 @@
   },
   "engines": {
     "node": "16.17.0",
-    "npm": "8.15.0",
+    "npm": "7.6.0",
     "yarn": "1.22.19"
   },
   "version": "1.22.19"
