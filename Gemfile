@@ -101,6 +101,7 @@ group :development do
   gem "spring"
   gem "htmlbeautifier"
   gem "hotwire-livereload"
+  gem "rspec-rails"
 end
 
 group :test do
