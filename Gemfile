@@ -51,8 +51,7 @@ gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dab
 gem "newrelic_rpm"
 gem "pagy"
 gem "rails-patterns"
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "pg_search"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
@@ -61,6 +60,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise", github: "heartcombo/devise", branch: "main"
 gem "devise_invitable", "~> 2.0.0"
 gem "devise-pwned_password"
+gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq"
@@ -73,14 +73,14 @@ gem "stripe", "~> 7.0"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
-gem "devise-jwt"
+
+# swagger documentation 
 gem "rswag-api"
 gem "rswag-ui"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-  gem "rspec-rails"
   gem "rswag-specs"
 end
 
