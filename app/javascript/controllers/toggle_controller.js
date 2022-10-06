@@ -3,10 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["show", "unhide"];
 
-  password() {
-    // console.log(`${this.value.textContent}`);
-   //  console.log(`${this.input.type}`);
-
+  toggle() {
     if (this.value.textContent === "show") {
       this.value.textContent = "hide";
       this.input.type = "text";

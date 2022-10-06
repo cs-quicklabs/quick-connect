@@ -423,6 +423,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-20
+  x86_64-darwin-21
 
 DEPENDENCIES
   acts_as_tenant
@@ -459,7 +460,7 @@ DEPENDENCIES
   rack-mini-profiler (~> 2.0)
   rails (= 7.0.3.1)
   rails-patterns
-  redis (~> 4.0)
+  redis (>= 4.0)
   rexml
   rspec-rails
   rswag-api
@@ -484,4 +485,4 @@ RUBY VERSION
    ruby 3.1.2p20
 
 BUNDLED WITH
-   2.3.22
+   2.3.19

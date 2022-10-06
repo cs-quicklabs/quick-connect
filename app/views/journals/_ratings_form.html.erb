@@ -1,4 +1,4 @@
-  <% if rating.blank? %>
+<% if rating.blank? %>
   <div class="flex flex-wrap justify-center  ">
     <p class="text-sm leading-6 text-gray-800 font-semibold ">Select your today's emotion:</p>
   </div>
@@ -46,4 +46,6 @@
   </ul>
 <% end %>
 </div>
-<%= render "journals/calender", { ratings_by_date: ratings_by_date } %>
+<div class="pb-16">
+  <%= render "journals/calender", { ratings_by_date: ratings_by_date } %>
+</div>

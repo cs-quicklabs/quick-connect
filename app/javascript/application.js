@@ -1,15 +1,12 @@
 // Entry point for the build script in your package.json
 
 import "./controllers"
-import 'trix'
+import "./channels"
 import '@rails/actiontext'
 import '@rails/activestorage'
+import "@rails/actioncable"
 import '@tailwindcss/line-clamp'
 import '@tailwindcss/forms'
-import "./channels"
-import "@rails/actioncable"
-
-import "trix"
-import "@rails/actiontext"
+import 'trix'
 import "./trix-editor-overrides"
 import "@hotwired/turbo-rails"
