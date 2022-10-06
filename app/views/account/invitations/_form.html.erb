@@ -1,4 +1,4 @@
-  <%= turbo_frame_tag "invite_form", target: "_top" do %>
+  <%= turbo_frame_tag "invite_form" do %>
   <%= tailwind_form_with(model: invitation, id: dom_id(invitation), url: account_invitations_path) do |f| %>
     <div class="space-y-6">
       <%= render "shared/form_messages", resource: invitation, message: local_assigns[:message] %>

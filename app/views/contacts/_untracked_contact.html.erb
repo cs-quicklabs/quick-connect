@@ -1,6 +1,5 @@
-
 <% contact = contact.decorate %>
-<tr id= "<%= dom_id contact %>"> 
+<tr id= "<%= dom_id contact %>">
   <td class="w-full table-cell whitespace-nowrap">
     <div class="flex items-center">
       <div class="flex-1 min-w-0 sm:flex sm:items-center sm:justify-between">
@@ -27,9 +26,8 @@
     </td>
     <td class="table-cell whitespace-nowrap">
       <div class="flex justify-end" >
-        <%= link_to "Track", track_contact_path(contact), class: "btn-inline-edit mr-2" %>
+        <%=confirm_button(track_contact_path(contact), "Track", "Are you sure you wan to track contact","btn-inline-edit mr-2" )%>
       </div>
     </div>
   </td>
 </tr>
-
