@@ -35,8 +35,8 @@ gem "stimulus_reflex", "= 3.5.0.pre8"
 gem "jbuilder", "2.11.5"
 
 # Use Redis adapter to run Action Cable in production
-gem 'hiredis'
-gem 'redis', '~> 4.0'
+gem "hiredis"
+gem "redis", ">= 4.0"
 gem "valid_url"
 
 # Use Active Storage variant
