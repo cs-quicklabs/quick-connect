@@ -3,16 +3,29 @@
   "private": "true",
   "module": "commonjs",
   "dependencies": {
+<<<<<<< HEAD
     "@hotwired/stimulus": "3.1.0",
     "@hotwired/turbo": "7.2.0",
     "@popperjs/core": "^2.11.6",
     "@rails/actiontext": "^7.0.4",
+=======
+    "@hotwired/stimulus": "^3.1.0",
+    "@hotwired/turbo-rails": "7.2.0",
+    "@popperjs/core": "^2.11.6",
+    "@rails/actioncable": "7.0.2",
+    "@rails/actiontext": "6.1.4-1",
+>>>>>>> dev
     "@rails/request.js": "0.0.6",
-    "@tailwindcss/forms": "0.5.2",
-    "@tailwindcss/line-clamp": "0.4.0",
+    "@tailwindcss/forms": "0.5.3",
+    "@tailwindcss/line-clamp": "0.4.2",
     "@tailwindcss/typography": "0.5.3",
+<<<<<<< HEAD
     "autoprefixer": "10.4.8",
     "esbuild": "0.15.10",
+=======
+    "autoprefixer": "10.4.12",
+    "esbuild": "0.15.8",
+>>>>>>> dev
     "postcss": "8.4.16",
     "stimulus": "https://github.com/stimulusreflex/stimulus/raw/master/stimulus-v3.0.0.tgz",
     "stimulus_reflex": "3.5.0-pre8",
@@ -26,7 +39,7 @@
   },
   "engines": {
     "node": "16.17.0",
-    "npm": "8.15.0",
+    "npm": "7.6.0",
     "yarn": "1.22.19"
   },
   "version": "1.22.19"
