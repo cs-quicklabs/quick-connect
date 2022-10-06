@@ -98,9 +98,8 @@ class ContactsController < BaseController
 
   def track
     authorize @contact, :track?
-
     TrackContact.call(@contact, current_user)
-    render turbo_stream: turbo_stream.remove(@contact)
+    redirect_to followups_path, notice: "Contact has been tracked."
   end
 
   private
