@@ -16,7 +16,7 @@
           </a>
         </div>
       </div>
-      <div class="flex col-span-1 whitespace-nowrap">
+      <div class="flex col-span-1 whitespace-nowrap space-x-2">
         <% if policy([relative.first_contact, relative]).edit? %>
           <%= edit_button(edit_contact_relative_path(@contact, relative)) %>
         <% end %>
