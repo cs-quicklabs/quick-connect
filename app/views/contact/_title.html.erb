@@ -54,7 +54,7 @@
           <!-- This example requires Tailwind CSS v2.0+ -->
           <% if !contact.phone.blank? %>
             <div>
-              <a type="button" href="//api.whatsapp.com/send?phone=91<%=contact.phone%>"  title="WhatsApp" target="_blank">
+              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <i class="fa-brands fa-whatsapp"></i>
@@ -72,11 +72,11 @@
                 </span>
               </a>
             </div>
-            <%= render partial: "contacts/modal",locals:{contact:contact}%>
+            <%= render partial: "contacts/modal", locals: { contact: contact } %>
           <% end %>
           <% if !contact.email.blank? %>
             <div>
-              <a type="button" href="sms:(+91)<%=contact.phone%>"  title="Send Email">
+              <a type="button" href="sms:(+91)<%= contact.phone %>"  title="Send Email">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -88,7 +88,7 @@
             </div>
           <% end %>
           <div>
-            <a href="<%=edit_contact_path(contact)%>" title="Edit">
+            <a href="<%= edit_contact_path(contact) %>" title="Edit">
               <span class="icon-span">
                 <!-- Heroicon name: outline/check-badge -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ">
@@ -99,17 +99,17 @@
             </a>
           </div>
           <div>
-            <% archive ="<span class='icon-span'>
-                              <!-- Heroicon name: outline/check-badge -->
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
-              <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
-            </svg>
-            </span>"%>
-            <%=link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to archive this contact?",
-                                 action: "confirmation#confirm",
-                               }, title:"Archive"%>
+            <% archive = "<span class='icon-span'>
+                                             <!-- Heroicon name: outline/check-badge -->
+                           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
+                             <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
+                           </svg>
+                           </span>" %>
+            <%= link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
+                                                                            controller: "confirmation",
+                                                                            "confirmation-message-value": "Are you sure you want to archive this contact?",
+                                                                            action: "confirmation#confirm",
+                                                                          }, title: "Archive" %>
           </div>
           <div class="" id="contact-favorite">
             <ul class="flex list-none">

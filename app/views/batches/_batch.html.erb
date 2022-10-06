@@ -8,9 +8,8 @@
         </a>
         <div class="flex justify-end space-x-2">
           <%= edit_button(edit_batch_path(batch)) %>
-          <%=delete_button(batch_path(batch))%>
+          <%= delete_button(batch_path(batch)) %>
         </div>
-      </div>
-    </li>
-  </div>
-<% end %>
+      </li>
+    </div>
+  <% end %>

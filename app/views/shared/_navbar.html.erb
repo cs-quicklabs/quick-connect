@@ -57,7 +57,7 @@
           <div class="hidden lg:ml-4 lg:block">
             <div class="flex items-center">
               <% if policy(ReleaseNote).release? %>
-                <a href="<%=release_path%>" type="button" class="  flex-shrink-0 rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" target="_top">
+                <a href="<%= release_path %>" type="button" class="  flex-shrink-0 rounded-full bg-gray-800 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" target="_top">
                   <span class="sr-only">View notifications</span>
                   <!-- Heroicon name: outline/bell -->
                   <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -66,7 +66,7 @@
                 </a>
               <% end %>
               <!-- This example requires Tailwind CSS v2.0+ -->
-              <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-4 sm:static sm:inset-auto  sm:pr-0">
+              <div class="absolute inset-y-0 right-0 items-center flex-shrink-0 pr-6 sm:static sm:inset-auto  sm:pr-0">
                 <!-- Profile dropdown -->
                 <div @click.away="open = false" class="relative z-10 ml-3" x-data="{ open: false }">
                   <div>

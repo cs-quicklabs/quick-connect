@@ -12,7 +12,7 @@
       </label>
       <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
     </div>
-    <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class:"h-16 form-text-field" %>
+    <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class: "h-16 form-text-field" %>
     <div class="flex justify-end">
       <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
       <%= form.submit "Save", class: "btn-blue" %>
