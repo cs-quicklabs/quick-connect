@@ -36,7 +36,7 @@ gem "jbuilder", "2.11.5"
 
 # Use Redis adapter to run Action Cable in production
 gem "hiredis"
-gem "redis", ">= 4.0", require: ["redis", "redis/connection/hiredis"]
+gem "redis", ">= 4.0"
 gem "valid_url"
 
 # Use Active Storage variant
