@@ -19,7 +19,7 @@ module Kutumb
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
     config.middleware.use AccountMiddleware
-
+    config.active_storage.variant_processor = :mini_magick
     config.autoload_paths << "#{Rails.root}/lib"
     config.autoload_paths << "#{Rails.root}/interactors"
     config.autoload_paths << "#{Rails.root}/presenters"
