@@ -6,7 +6,7 @@
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex "  >
+    <div class="flex mt-2"  >
       <% contact_labels = contact.labels %>
       <div  class="flex-none z-10" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
