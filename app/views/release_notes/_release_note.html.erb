@@ -1,12 +1,12 @@
 <li class="relative border-b border-gray-200 bg-white py-5 px-4 "  >
   <div class="flex justify-between space-x-3">
     <div class="min-w-0 flex-1">
-      <a href="<%=release_note_path(release_note)%>" class="block focus:outline-none hover:underline" target="_top">
-        <p class="truncate ... text-sm font-medium text-gray-900"> <%=release_note.title.upcase_first%> </p>
+      <a href="<%= release_note_path(release_note) %>" class="block focus:outline-none hover:underline" target="_top">
+        <p class="truncate ... text-sm font-medium text-gray-900"> <%= release_note.title.upcase_first %> </p>
       </a>
       <p class="text-sm text-gray-500 line-clamp"><%= release_note.body %></p>
     </div>
-    <a href="<%=release_note_path(release_note)%>" class="block focus:outline-none hover:underline" target="_top">
+    <a href="<%= release_note_path(release_note) %>" class="block focus:outline-none hover:underline" target="_top">
       <div class="  whitespace-nowrap">
         <% if policy(release_note).edit? %>
           <%= edit_button(edit_release_note_path(release_note)) %>

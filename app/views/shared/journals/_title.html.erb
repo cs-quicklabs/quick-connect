@@ -5,7 +5,7 @@
   <div class="flex mt-4 space-x-3">
     <div>
       <div class="mt-1 space-x-2 text-sm">
-        <%if journal.account.owner!=journal.user%>
+        <% if journal.account.owner != journal.user %>
           <span class="font-medium text-gray-500">Created By <%= journal.user.decorate.display_name %> on <%= display_created_at(journal) %></span>
         <% end %>
       </div>

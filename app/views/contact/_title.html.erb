@@ -2,17 +2,17 @@
     labels = Label.all.order(:name)
     relations = Relation.all.order(:name) %>
 <div class="px-4 py-4 sm:flex  sm:justify-between sm:px-6 " x-data="{'isModalOpen': false}" x-on:keydown.escape="isModalOpen=false" id="contact-header">
-  <div class="flex flex-wrap items-baseline ">
+  <div class="flex flex-wrap items-baseline "  x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex "   x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
+    <div class="flex mt-2"  >
       <% contact_labels = contact.labels %>
-      <div  class="flex-none" id="contact-labels" >
+      <div  class="flex-none z-10" id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
       <% if policy(contact).edit? %>
-        <div class=" flex-auto  inline-block ">
+        <div class=" flex-auto  ">
           <button id="add" @click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <!-- Heroicon name: solid/plus -->
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -44,17 +44,17 @@
           </div>
         </div>
       <% end %>
-      <div class="flex mt-4 sm:mt-0  space-x-4" >
+      <div class="flex mt-4 sm:mt-0  space-x-4 ml-4" >
         <% contact_relation = contact.relation %>
         <% if policy(contact).edit? %>
-          <div class=" float-right mt-2  " id="contact-relation" >
+          <div class=" float-right mt-1" id="contact-relation" >
             <%= render partial: "contact/relation", locals: { contact: contact, relation: contact_relation } %>
           </div>
           <!-- This example requires Tailwind CSS v2.0+ -->
           <!-- This example requires Tailwind CSS v2.0+ -->
           <% if !contact.phone.blank? %>
             <div>
-              <a type="button" href="//api.whatsapp.com/send?phone=91<%=contact.phone%>"  title="WhatsApp" target="_blank">
+              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <i class="fa-brands fa-whatsapp"></i>
@@ -65,21 +65,21 @@
               <a type="button" x-on:click="isModalOpen = true"   title="Send Sms">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
                     <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
                     <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
                   </svg>
                 </span>
               </a>
             </div>
-            <%= render partial: "contacts/modal",locals:{contact:contact}%>
+            <%= render partial: "contacts/modal", locals: { contact: contact } %>
           <% end %>
           <% if !contact.email.blank? %>
             <div>
-              <a type="button" href="sms:(+91)<%=contact.phone%>"  title="Send Email">
+              <a type="button" href="sms:(+91)<%= contact.phone %>"  title="Send Email">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
                     <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
                     <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
                   </svg>
@@ -88,10 +88,10 @@
             </div>
           <% end %>
           <div>
-            <a href="<%=edit_contact_path(contact)%>" title="Edit">
+            <a href="<%= edit_contact_path(contact) %>" title="Edit">
               <span class="icon-span">
                 <!-- Heroicon name: outline/check-badge -->
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 ">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-4 w-4 ">
                   <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
                   <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
                 </svg>
@@ -99,24 +99,24 @@
             </a>
           </div>
           <div>
-            <% archive ="<span class='icon-span'>
-                              <!-- Heroicon name: outline/check-badge -->
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
-              <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
-            </svg>
-            </span>"%>
-            <%=link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
-                                 controller: "confirmation",
-                                 "confirmation-message-value": "Are you sure you want to archive this contact?",
-                                 action: "confirmation#confirm",
-                               }, title:"Archive"%>
+            <% archive = "<span class='icon-span'>
+                                             <!-- Heroicon name: outline/check-badge -->
+                           <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
+                             <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
+                           </svg>
+                           </span>" %>
+            <%= link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
+                                                                            controller: "confirmation",
+                                                                            "confirmation-message-value": "Are you sure you want to archive this contact?",
+                                                                            action: "confirmation#confirm",
+                                                                          }, title: "Archive" %>
           </div>
           <div class="" id="contact-favorite">
             <ul class="flex list-none">
               <% if !contact.favorite? %>
                 <a title="Favourite">
                   <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class=" h-5 w-5"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                       <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
                     </svg>
                   </span>
@@ -124,7 +124,7 @@
               <% else %>
                 <a title="not-favourite">
                   <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-5 w-5"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
                       <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
                     </svg>
                   </span>
@@ -145,7 +145,7 @@
   </div>
   <% restore ="<span class='icon-span'>
                             <!-- Heroicon name: outline/check-badge -->
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='w-5 h-5'>
+          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
             <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
             <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
           </svg>

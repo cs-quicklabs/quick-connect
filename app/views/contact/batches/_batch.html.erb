@@ -1,4 +1,4 @@
-<%batch=batches_contact.batch%>
+<% batch = batches_contact.batch %>
 <tr id="<%= dom_id batch %>" class="h-12">
   <td class="table-cell w-full">
     <div class="text-sm mt-2" >
@@ -12,9 +12,11 @@
         <%= display_date(batches_contact.created_at) %>
       </td>
       <td class="table-cell">
-        <% if policy([batches_contact.contact, batch]).destroy? %>
-          <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/batches/#{batch.id}") %>
-        <% end %>
+        <div>
+          <% if policy([batches_contact.contact, batch]).destroy? %>
+            <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/batches/#{batch.id}") %>
+          <% end %>
+        </div>
       </div>
     </td>
   </tr>
