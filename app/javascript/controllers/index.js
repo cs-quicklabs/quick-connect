@@ -22,6 +22,8 @@ application.register("infinite-scroll", InfiniteScrollController)
 import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
 
+
+
 import NavSearchController from "./nav_search_controller.js"
 application.register("nav-search", NavSearchController)
 
