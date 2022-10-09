@@ -15,4 +15,10 @@ class ContactReflex < ApplicationReflex
     contact.update(favorite: !contact.favorite)
     morph "#contact-favorite", render(partial: "contact/title", locals: { contact: contact })
   end
+
+  def phone
+    contact = Contact.find(element.dataset["contact-id"])
+    html = render(partial: "shared/phone", locals: { contact: contact })
+    morph "#modal", "#{html}"
+  end
 end
