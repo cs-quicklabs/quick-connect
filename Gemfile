@@ -1,81 +1,86 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+# ruby version app is using, [https://www.ruby-lang.org/en/downloads/]
 ruby "3.1.2"
-gem "font-awesome-rails"
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3.1"
+
+# Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
+gem "rails", "7.0.3.1"
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails", "3.4.2"
+
+# Use postgresql as the database for Active Record
 gem "pg"
-# Use sqlite3 as the database for Active Record
-gem "sqlite3", "~> 1.4"
-gem "attribute_normalizer"
-# Use the Puma web server [https://github.com/puma/puma]
-gem "puma", "~> 5.6.4"
-gem "sassc-rails", "~> 2.1"
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+
+# Use Puma as the app server [https://github.com/puma/puma]
+gem "puma", "5.6.5"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+gem "jsbundling-rails", "1.0.3"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails", "1.1.1"
+
+# Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
 gem "turbo-rails", "1.3.0"
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+
+# Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
+gem "stimulus-rails", "1.1.0"
+
+# Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
 gem "stimulus_reflex", "= 3.5.0.pre8"
-gem "hiredis"
-gem "valid_url"
-gem "devise-jwt"
-gem "devise_invitable"
-gem "jquery-ui-rails"
-gem "htmlbeautifier"
-gem 'ffi', git: 'https://github.com/ffi/ffi'
-gem "ruby-vips" 
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder", "~> 2.7"
-gem "jsbundling-rails", "1.0.3"
-gem "cssbundling-rails", "1.1.1"
+gem "jbuilder", "2.11.5"
+
 # Use Redis adapter to run Action Cable in production
-gem "redis", "~> 4.0", require: ["redis", "redis/connection/hiredis"]
-gem "sprockets-rails", "3.4.2"
+gem "hiredis"
+gem "redis", ">= 4.0"
+gem "valid_url"
+
+# Use Active Storage variant
+gem "image_processing", "~> 1.12"
+
+# Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
 gem "aws-sdk-s3", "~> 1.87"
+gem "bootsnap", "1.13.0", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
 gem "newrelic_rpm"
 gem "pagy"
 gem "rails-patterns"
-gem "wicked_pdf"
-gem "wkhtmltopdf-binary"
-gem "rufo"
+
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem "pg_search"
+gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
+
+# devise gems
 gem "devise", github: "heartcombo/devise", branch: "main"
+gem "devise_invitable", "~> 2.0.0"
 gem "devise-pwned_password"
+gem "devise-jwt"
+
+# sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq"
 gem "sidekiq-scheduler"
 gem "sinatra", ">= 1.3.0", require: nil
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
-gem "pay", "~> 5.0.3"
 
-# To use Stripe, also include:
+# Payments
+gem "pay", "5.0.3"
 gem "stripe", "~> 7.0"
-# Reduces boot times through caching; required in config/boot.rb
-gem "bootsnap", ">= 1.12.0", require: false
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
-# gem "bcrypt", "~> 3.1.7"
+gem "font-awesome-rails"
+gem "attribute_normalizer"
 
-# Use Sass to process CSS
-# gem "sassc-rails", "~> 2.1"
-
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem "image_processing", "~> 1.2"
+# swagger documentation 
 gem "rswag-api"
 gem "rswag-ui"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-  gem "rspec-rails"
   gem "rswag-specs"
 end
 
@@ -94,12 +99,9 @@ group :development do
   gem "rack-mini-profiler", "~> 2.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler", ">= 2.3.3"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
+  gem "htmlbeautifier"
+  gem "hotwire-livereload"
+  gem "rspec-rails"
 end
 
 group :test do
@@ -108,7 +110,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "hotwire-rails", "~> 0.1.3"
-
-gem "cable_ready", "~> 5.0.pre8"

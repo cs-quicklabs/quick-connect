@@ -1,6 +1,11 @@
 <% unless relation.nil? %>
+<<<<<<< HEAD
+  <span class="inline-flex items-center px-3 py-0.5   whitespace-nowrap  rounded-full text-xs font-medium bg-gray-100 text-gray-800" >
+    <%= relation.name.titleize %>
+=======
   <span class="inline-flex items-center px-2 py-1   whitespace-nowrap  rounded-full text-xs font-medium bg-gray-100 text-gray-800" >
     <%=relation.name.titleize%>
+>>>>>>> stimulus
     <button id="remove" data-reflex="click->ContactRelation#remove" data-relation-id=<%= relation.id %> data-contact-id=<%= contact.id %> type="button" class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-gray-400 hover:bg-gray-200 hover:text-gray-400 focus:outline-none focus:bg-gray-400 focus:text-white">
       <svg class="w-2 h-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
         <path stroke-linecap="round" stroke-width="1.5" d="M1 1l6 6m0-6L1 7" />
