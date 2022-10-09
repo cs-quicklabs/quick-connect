@@ -1,7 +1,7 @@
 <main class="relative z-0 flex-1 overflow-hidden focus:outline-none">
   <main class="">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-4">
+    <div class="grid items-start grid-cols-1  lg:grid-cols-4"  >
       <!-- Left column -->
       <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  "   >
         <section aria-labelledby="participants_section">
@@ -71,7 +71,7 @@
             </div>
             <article class=" h-[calc(100vh-6.0rem)]  max-content  overflow-y-scroll   overscroll-contain">
               <!-- contact header -->
-              <div id="profile" class="h-full">
+              <div id="profile" class="h-full" >
                 <% if params[:contact_id] %>
                   <%= render partial: "profile", locals: { contact: Contact.find(params[:contact_id]), relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]) } %>
                 <% end %>

@@ -4,7 +4,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
-  validates_confirmation_of :password
+  validates_confirmation_of :password, on: :update
   scope :available, -> { all_users }
   before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
