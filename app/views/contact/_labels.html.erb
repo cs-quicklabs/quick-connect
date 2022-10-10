@@ -1,6 +1,6 @@
 <% if labels.load.size > 0 %>
   <% labels.uniq.each do |label| %>
-    <span class="mb-1 inline-flex items-center whitespace-nowrap px-2 py-1 rounded-full text-xs font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
+    <span class="mb-1 inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded-full text-xs font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
       <%= label.name.upcase_first %>
       <button id="remove"  data-reflex="click->ContactLabels#remove" data-label-id=<%= label.id %> data-contact-id=<%= contact.id %> type="button" class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-<%= label.color %>-400 hover:bg-<%= label.color %>-200 hover:text-<%= label.color %>-400 focus:outline-none focus:bg-<%= label.color %>-400 focus:text-white">
         <svg class="w-2 h-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">

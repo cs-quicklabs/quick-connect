@@ -22,7 +22,6 @@ class DestroyUserDetail < Patterns::Service
   end
 
   def update_event
-    Event.where(trackable: @detail).touch_all
     Event.create(user: actor, action: "deleted", action_for_context: "deleted a " + detail.class.model_name.downcase)
   end
 

@@ -42,7 +42,6 @@ class BatchesController < BaseController
 
   def update
     authorize @batch
-
     respond_to do |format|
       if @batch.update(batch_params)
         Event.where(trackable: @batch).touch_all

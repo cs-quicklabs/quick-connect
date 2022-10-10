@@ -6,6 +6,7 @@ class Invitation < ApplicationRecord
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name
   validate :user_is_not_registered, on: :create
+  has_many :events, class_name: "Event", foreign_key: "eventable", dependent: :destroy
 
   private
 

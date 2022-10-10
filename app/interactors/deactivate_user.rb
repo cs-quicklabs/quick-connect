@@ -22,7 +22,7 @@ class DeactivateUser < Patterns::Service
   end
 
   def add_event
-    Event.create(user: actor, action: "deactivated", action_for_context: "deactivated user", eventable: invitation)
+    Event.create(user: actor, action: "deactivated", action_for_context: "deactivated an user", eventable: invitation)
   end
 
   attr_reader :actor, :invitation

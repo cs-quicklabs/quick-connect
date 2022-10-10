@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   has_many :tasks, dependent: :destroy
+
   before_create :add_jti
   has_many :comments
   has_many :debts, dependent: :destroy

@@ -4,7 +4,7 @@ class GiftDecorator < Draper::Decorator
 
   def display_status_color
     if self.status == "given"
-      "yellow"
+      "blue"
     else
       "green"
     end

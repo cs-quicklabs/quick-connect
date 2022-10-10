@@ -4,4 +4,5 @@ class ReleaseNote < ApplicationRecord
   has_rich_text :body
   scope :published, -> { where(published: true) }
   normalize_attribute :title, :body, :with => :strip
+  has_many :events, class_name: "Event", foreign_key: "trackable", dependent: :destroy
 end

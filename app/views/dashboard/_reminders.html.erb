@@ -10,8 +10,8 @@
             <div class="flex flex-1 " style="width:26rem;">
               <span class="w-56 flex">
                 <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.second[:reminder]) %> </time>
-                <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex font-medium text-gray-900" target="_top">
-                  <p class=" mb-2 flex-auto ml-2 text-sm font-medium  w-48 break-words " ><%= contact.decorate.display_name %></p>
+                <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline inline-flex font-medium text-gray-900  w-48" target="_top">
+                  <p class=" mb-2 flex-auto ml-2 text-sm font-medium  break-words " ><%= contact.decorate.display_name %></p>
                 </a>
               </span>
               <p class="flex-none  sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
