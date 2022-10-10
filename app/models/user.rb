@@ -1,4 +1,16 @@
 class User < ApplicationRecord
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :jwt_authenticatable, jwt_revocation_strategy: self
+  validates :jti, presence: true
+
+  def generate_jwt
+    JWT.encode({ id: id,
+                 exp: 5.days.from_now.to_i },
+               "aOiynmWWvo17LrD9XTENHp9czMpuw4kH", true, { :algorithm => "HS256" })
+  end
+
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
