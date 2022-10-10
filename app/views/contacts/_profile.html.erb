@@ -1,5 +1,6 @@
 <% if policy(contact).profile? %>
   <div class="h-full"  >
+   <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
       <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
     </div>
@@ -72,7 +73,7 @@
     </div>
     <!-- Description list -->
     <div class="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-      <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
+      <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Phone</dt>
           <% if !contact.phone.blank? %>
@@ -85,6 +86,14 @@
           <dt class="text-sm font-medium text-gray-500">Email</dt>
           <% if !contact.email.blank? %>
             <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
+          <% else %>
+            <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
+          <% end %>
+        </div>
+            <div class="sm:col-span-1">
+          <dt class="text-sm font-medium text-gray-500">Relation</dt>
+          <% if !contact.relation.blank? %>
+            <dd class="mt-1 text-sm text-gray-900"><%= contact.relation.name.upcase_first %></dd>
           <% else %>
             <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
           <% end %>

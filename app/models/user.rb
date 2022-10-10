@@ -1,9 +1,20 @@
 class User < ApplicationRecord
+  # Include default devise modules.
+  include Devise::JWT::RevocationStrategies::JTIMatcher
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
+  devise :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
+  validates :jti, presence: true
+
+  def generate_jwt
+    JWT.encode({ id: id,
+                 exp: 5.days.from_now.to_i },
+               "aOiynmWWvo17LrD9XTENHp9czMpuw4kH", true, { :algorithm => "HS256" })
+  end
+
   validates_confirmation_of :password, on: :update
   scope :available, -> { all_users }
   before_create :set_invitation_limit

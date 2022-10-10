@@ -1,13 +1,12 @@
 class BaseController < ApplicationController
   before_action :set_user, only: %i[ index show edit update destroy create new contacts events deactivate activate add remove ]
   before_action :authenticate_user!
-
   before_action :authenticate_account!, if: :http_request?
   after_action :verify_authorized
   include Pagy::Backend
 
   def authenticate_account!
-    raise Pundit::NotAuthorizedError unless current_user.account == Current.account
+    raise Pundit::NotAuthorizedError unless Current.account
   end
 
   def pagy_nil_safe(params, collection, vars = {})
