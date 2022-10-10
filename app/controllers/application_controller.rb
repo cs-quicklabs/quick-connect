@@ -2,7 +2,6 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   include Pagy::Backend
-  before_action
   respond_to :html
   protect_from_forgery with: :null_session, if: :json_request?
   protect_from_forgery with: :exception, if: :json_request?
