@@ -2,18 +2,17 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   include Pagy::Backend
-
+  before_action
   respond_to :html
-  protect_from_forgery with: :null_session
-  protect_from_forgery with: :exception, unless: :json_request?
+  protect_from_forgery with: :null_session, if: :json_request?
+  protect_from_forgery with: :exception, if: :json_request?
 
   skip_before_action :verify_authenticity_token, if: :json_request?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken,
-              with: :token_verification
-  rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
+              with: :invalid_auth_token
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
@@ -148,7 +147,17 @@ class ApplicationController < ActionController::Base
   # Use api_user Devise scope for JSON access
   def authenticate_user!(*args)
     super and return unless args.blank?
-    json_request? ? authenticate_api_user! : super
+    if json_request?
+      authenticate_api_user!
+    elsif header = request.headers["Authorization"]
+      authenticate_user
+    else
+      super
+    end
+  end
+
+  def authenticate_user
+    set_current_user
   end
 
   def invalid_auth_token
