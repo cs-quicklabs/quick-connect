@@ -2,6 +2,7 @@ class BaseController < ApplicationController
   before_action :set_user, only: %i[ index show edit update destroy create new contacts events deactivate activate add remove ]
   before_action :authenticate_user!
   before_action :authenticate_account!, if: :http_request?
+  after_action :verify_authorized
   include Pagy::Backend
 
   def authenticate_account!
