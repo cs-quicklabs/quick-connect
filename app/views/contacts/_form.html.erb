@@ -10,7 +10,20 @@
       <label for="group" class="block  text-sm font-medium text-gray-700">
         Select Relation
       </label>
-      <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
+     <select name="contact[relation_id]" class="form-text-field mt-1">
+           <% if contact.relation_id.nil? %>
+            <option value="" selected="selected">None</option>
+          <% else %>
+            <option value="">None</option>
+          <% end %>
+          <% Relation.all.order(:name).decorate.each do |relation| %>
+            <% if contact.relation_id == relation.id %>
+              <option selected= "selected" value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
+            <% else %>
+              <option value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
+            <% end %>
+          <% end %>
+        </select>
     </div>
     <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class: "h-16 form-text-field" %>
     <div class="flex justify-end">

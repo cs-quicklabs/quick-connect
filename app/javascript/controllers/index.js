@@ -36,6 +36,9 @@ application.register("popper", PopperController)
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
 
+import ClickOutsideController from "./click_outside_controller"
+application.register("click-outside", ClickOutsideController)
+
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from '../controllers/application_controller'
