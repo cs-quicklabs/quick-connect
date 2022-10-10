@@ -10,7 +10,7 @@ class Api::DashboardController < Api::BaseController
 
     @contacted = Event.joins("INNER JOIN phone_calls ON phone_calls.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "PhoneCall" }) +
                  Event.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" })
-    render json: { success: true, data: @contacted.sort_by { |r| r.created_at }.uniq { |r| r.eventable }.take(8).as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
+    render json: { success: true, data: @contacted.uniq { |r| r.eventable }.take(8).as_json(:include => [:eventable, :trackable]), message: "Recents were successfully retrieved." }
   end
 
   def favorites

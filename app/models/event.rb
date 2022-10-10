@@ -6,6 +6,7 @@ class Event < ApplicationRecord
   belongs_to :eventable, polymorphic: true, optional: true
   validates_presence_of :action
   validates :action, inclusion: { in: ACTIONS }
+  default_scope { order(created_at: :desc) }
 
   def relation_events
     Event.all.where trackable_type: "relative"

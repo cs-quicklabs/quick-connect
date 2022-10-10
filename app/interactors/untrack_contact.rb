@@ -23,7 +23,7 @@ class UntrackContact < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "untrack", action_for_context: "untracked contact", trackable: contact, action_context: "untracked")
+    contact.events.create(user: actor, action: "untrack", action_for_context: "untracked contact", trackable: contact, action_context: "untracked this contact")
   end
 
   attr_reader :contact, :actor

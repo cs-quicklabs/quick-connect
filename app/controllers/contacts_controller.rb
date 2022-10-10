@@ -21,7 +21,6 @@ class ContactsController < BaseController
 
   def update
     authorize @contact
-
     respond_to do |format|
       if @contact.update(contact_params)
         Event.where(eventable: @contact).or(Event.where(trackable: @contact)).touch_all

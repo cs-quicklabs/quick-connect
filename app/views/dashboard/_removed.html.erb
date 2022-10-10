@@ -24,7 +24,7 @@
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-              from   <a href="<%= batches_path %>"  class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %> </a>
+              from group named <a href="<%= batches_path %>"  class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %> </a>
             <% end %>
           </p>
         </div>

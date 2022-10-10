@@ -22,7 +22,6 @@ class DestroyGroup < Patterns::Service
   end
 
   def update_event
-    Event.where(trackable: @group).touch_all
     Event.create(user: actor, action: "deleted", action_for_context: "deleted a group")
   end
 

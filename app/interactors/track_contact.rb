@@ -23,7 +23,7 @@ class TrackContact < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "track", action_for_context: "tracked contact", trackable: contact, action_context: "tracked")
+    contact.events.create(user: actor, action: "track", action_for_context: "tracked a contact", trackable: contact, action_context: "tracked this contact")
   end
 
   attr_reader :contact, :actor

@@ -42,7 +42,7 @@ class ResetUser < Patterns::Service
   end
 
   def add_event
-    user.events.create(user: user, action: "reset", action_for_context: " ")
+    user.events.create(user: user, action: "reset", action_for_context: "your account was reset")
   end
 
   def delete_labels

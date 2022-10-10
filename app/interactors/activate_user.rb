@@ -27,7 +27,7 @@ class ActivateUser < Patterns::Service
   end
 
   def add_event
-    Event.create(user: actor, action: "activated", action_for_context: "activated user", eventable: invitation)
+    Event.create(user: actor, action: "activated", action_for_context: "activated a user", eventable: invitation)
   end
 
   attr_reader :actor, :invitation, :user

@@ -14,7 +14,6 @@ class Contact::AboutsController < Contact::BaseController
     authorize [@contact, @about]
     respond_to do |format|
       if @about.update(about_params)
-        @contact.events.create(user: current_user, action: "about", action_for_context: "added about", trackable: @about, action_context: "added about")
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
       end
     end
@@ -24,7 +23,6 @@ class Contact::AboutsController < Contact::BaseController
     authorize [@contact, @about]
     @about.assign_attributes({ "#{params[:delete]}" => nil })
     @about.save!
-    @contact.events.create(user: current_user, action: "deleted", action_for_context: "deleted about", trackable: @about, action_context: "deleted about")
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
     end

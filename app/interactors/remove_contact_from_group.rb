@@ -22,7 +22,7 @@ class RemoveContactFromGroup < Patterns::Service
   end
 
   def add_event
-    Event.create(user: actor, action: "removed", action_for_context: "removed", action_context: "removed from group", trackable: batch, eventable: contact)
+    Event.create(user: actor, action: "removed", action_for_context: "removed", action_context: "removed this contact from group named", trackable: batch, eventable: contact)
   end
 
   attr_reader :batch, :actor, :contact

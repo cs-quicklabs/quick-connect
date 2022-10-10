@@ -24,7 +24,7 @@ class AddDocument < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "document", action_for_context: "added new document for", trackable: document, action_context: "added document")
+    contact.events.create(user: actor, action: "document", action_for_context: "added new document for", trackable: document, action_context: "added new document named")
   end
 
   attr_reader :contact, :document, :actor

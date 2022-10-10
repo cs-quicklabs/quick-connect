@@ -8,10 +8,10 @@ class UpdateContactEvent < Patterns::Service
   end
 
   def call
-    update_contact_event
-    update_event
-    add_reminder
     begin
+      update_contact_event
+      update_event
+      add_reminder
     rescue
       contact_event
     end
