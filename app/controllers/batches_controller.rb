@@ -27,7 +27,7 @@ class BatchesController < BaseController
     @batch = Batch.new(batch_params)
     respond_to do |format|
       if @batch.save
-        Event.create(user: current_user, action: "group", action_for_context: "created a group", trackable: @batch)
+        Event.create(user: current_user, action: "group", action_for_context: "created a group named", trackable: @batch)
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:batches, partial: "batches/batch", locals: { batch: @batch }) +
                                turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." }) +

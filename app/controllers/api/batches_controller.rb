@@ -20,7 +20,7 @@ class Api::BatchesController < Api::BaseController
 
     respond_to do |format|
       if @batch.save
-        Event.create(user: @api_user, action: "group", action_for_context: "added a group", trackable: @batch)
+        Event.create(user: @api_user, action: "group", action_for_context: "created a group named", trackable: @batch)
         format.json {
           render json: { success: true, data: @batch, message: "Group was successfully created." }
         }
