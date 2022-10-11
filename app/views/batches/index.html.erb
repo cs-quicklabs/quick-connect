@@ -36,7 +36,7 @@
           <% if params[:batch_id] %>
             <% message = "Contact added successfully to group" %>
             <% batch = Batch.find(params[:batch_id]) %>
-            <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.uniq } %>
+            <%= render partial: "show", locals: { batch: batch, contacts: @batch.contacts.includes(:batches_contacts).where("contacts.archived=?", false).order("batches_contacts.created_at DESC").uniq } %>
           <% end %>
         </div>
       </div>
