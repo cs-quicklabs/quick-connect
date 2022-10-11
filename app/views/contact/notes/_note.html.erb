@@ -16,7 +16,7 @@
           </div>
           <div class="mt-2 space-x-2 text-sm inline-flex">
             <span class="font-normal text-gray-500"><%= display_created_at(note) %></span>
-            <div>
+            <div class="space-x-1">
               <% if policy([note.contact, note]).edit? %>
                 <%= edit_button(edit_contact_note_path(@contact, note)) %>
               <% end %>

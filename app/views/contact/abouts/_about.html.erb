@@ -8,7 +8,7 @@
             <dt class="text-sm font-normal text-gray-500" >Address: </dt>
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
-            <span class="ml-6 flex-shrink-0">
+            <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= delete_button(contact_about_path(about.contact, about, :delete => "address")) %>
@@ -43,7 +43,7 @@
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
             <% if policy([about.contact, about]).update? %>
-              <span class="ml-6 flex-shrink-0">
+              <span class="ml-6 flex-shrink-0 space-x-1">
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "breif"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
               </span>
@@ -76,7 +76,7 @@
             <dt class="text-sm font-normal text-gray-500" >How You Met <%= contact.decorate.display_name %></dt>
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
-            <span class="ml-6 flex-shrink-0">
+            <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "met"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
@@ -110,7 +110,7 @@
             <dt class="text-sm font-normal text-gray-500" >Habits And Preferences</dt>
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
-            <span class="ml-6 flex-shrink-0">
+            <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "habit"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
@@ -144,7 +144,7 @@
             <dt class="text-sm font-normal text-gray-500" >Work Information</dt>
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
-            <span class="ml-6 flex-shrink-0">
+            <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "work"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
@@ -178,7 +178,7 @@
             <dt class="text-sm font-normal text-gray-500" >Other</dt>
           </div>
           <div class="grid grid-cols-1  lg:col-span-2 xl:col-span-3 text-right">
-            <span class="ml-6 flex-shrink-0">
+            <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
                 <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "other"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>

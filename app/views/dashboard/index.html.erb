@@ -44,9 +44,17 @@
             </div>
             <%= render partial: "reminders", locals: { upcoming_reminders: @upcoming_reminders } %>
           </div>
-        </div>
+        </section>
+        <section aria-labelledby="participants_section">
+          <div class=" bg-white px-6 py-4">
+            <div class="flex flex-wrap ">
+              <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
+            </div>
+            <%= render partial: "tasks", collection: @tasks, as: :task, cached: false %>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </div>
   <div class="grid grid-cols-1   overflow-y-scroll lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
     <section aria-labelledby="add-participant-section">
@@ -56,9 +64,9 @@
             <p class="pb-4 mt-1  text-sm font-medium text-gray-900 ">Timeline</p>
           </div>
           <div class="h-full">
-          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-          <% end %>
+            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+            <% end %>
           </div>
         </div>
       </div>
