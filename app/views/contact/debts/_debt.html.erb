@@ -31,7 +31,7 @@
   <div class=" space-x-2 text-sm">
     <span class="font-normal text-gray-500"><%= display_date(debt.due_date) %></span>
   </td>
-  <td class="table-cell whitespace-nowrap">
+  <td class="table-cell whitespace-nowrap space-x-1">
     <% if policy([debt.contact, debt]).edit? %>
       <%= edit_button(edit_contact_debt_path(debt.contact, debt, script_name: "/#{debt.contact.account.id}")) %>
     <% end %>

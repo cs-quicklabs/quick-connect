@@ -17,7 +17,7 @@
             </div>
           </section>
         <% end %>
-        <% @favorites = Contact.all.available.favorites.limit(8) %>
+        <% @favorites = Contact.all.available.favorites.limit(10) %>
         <% if @favorites.count > 0 %>
           <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white px-6 py-4">
@@ -28,7 +28,7 @@
                 <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
                   <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                 </ul>
-                <% if @favorites.count > 8 %>
+                <% if @favorites.count > 10 %>
                   <div class="flex items-center sm:mt-0 sm:ml-4 ">
                     <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
                   </div>
@@ -44,9 +44,17 @@
             </div>
             <%= render partial: "reminders", locals: { upcoming_reminders: @upcoming_reminders } %>
           </div>
-        </div>
+        </section>
+        <section aria-labelledby="participants_section">
+          <div class=" bg-white px-6 py-4">
+            <div class="flex flex-wrap ">
+              <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
+            </div>
+            <%= render partial: "tasks", collection: @tasks, as: :task, cached: false %>
+          </div>
+        </section>
       </div>
-    </section>
+    </div>
   </div>
   <div class="grid grid-cols-1   overflow-y-scroll lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
     <section aria-labelledby="add-participant-section">
@@ -56,9 +64,9 @@
             <p class="pb-4 mt-1  text-sm font-medium text-gray-900 ">Timeline</p>
           </div>
           <div class="h-full">
-          <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-            <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-          <% end %>
+            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+            <% end %>
           </div>
         </div>
       </div>

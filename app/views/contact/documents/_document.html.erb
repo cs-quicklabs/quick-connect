@@ -34,7 +34,7 @@
   </td>
   <td class="table-cell  align-middle">
     <% if policy([document.contact, document]).edit? %>
-      <div class="flex justify-end items-center space-x-1">
+      <div class="flex justify-end items-center space-x-2">
         <%= edit_button(edit_contact_document_path(@contact, document)) %>
         <%= delete_button(contact_document_path(@contact, document)) %>
       </div>

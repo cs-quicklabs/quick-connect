@@ -33,7 +33,7 @@
     <div class="mt-2 space-x-2 text-sm">
       <span class="font-normal text-gray-500"><%= display_date(gift.date) %></span>
     </td>
-    <td class="table-cell whitespace-nowrap">
+    <td class="table-cell whitespace-nowrap space-x-1">
       <% if policy([gift.contact, gift]).edit? %>
         <%= edit_button(edit_contact_gift_path(gift.contact, gift, script_name: "/#{gift.contact.account.id}")) %>
       <% end %>
