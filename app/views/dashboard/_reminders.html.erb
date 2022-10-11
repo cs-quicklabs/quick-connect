@@ -16,7 +16,7 @@
                   </a>
                 </div>
               </span>
-              <p class="flex-none  sm:ml-8 break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
+              <p class="flex-none  break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
               <% if !reminder.first["comments"].blank? %>
                 <!--Code Block for white tooltip starts-->
                 <div data-controller="popper" class="flex-auto  ml-1">
