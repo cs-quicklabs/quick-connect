@@ -46,9 +46,11 @@
           <p class="text-sm font-normal text-green-800">
             This task has been completed on <%= display_date(@task.updated_at) %>
           </p>
-          <p class="text-sm md:mt-0 md:ml-6 justify-end">
-            <button type="button" data-reflex="click->TaskReflex#toggle_task" data-id="<%= @task.id %>" class="font-medium text-green-800 cursor-pointer whitespace-nowrap hover:text-green-600">Reopen</button>
-          </p>
+          <% if policy([task.contact, task]).edit? %>
+            <p class="text-sm md:mt-0 md:ml-6 justify-end">
+              <button type="button" data-reflex="click->TaskReflex#toggle_task" data-id="<%= @task.id %>" class="font-medium text-green-800 cursor-pointer whitespace-nowrap hover:text-green-600">Reopen</button>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
@@ -66,9 +68,11 @@
           <p class="text-sm text-blue-800">
             This task has not been completed. 
           </p>
-          <p class=" text-sm md:mt-0 md:ml-6 justify-end">
-            <button type="button" data-reflex="click->TaskReflex#toggle_task" data-id="<%= @task.id %>" class="font-medium text-blue-800 cursor-pointer whitespace-nowrap hover:text-blue-600">Mark As Complete</button>
-          </p>
+          <% if policy([task.contact, task]).edit? %>
+            <p class=" text-sm md:mt-0 md:ml-6 justify-end">
+              <button type="button" data-reflex="click->TaskReflex#toggle_task" data-id="<%= @task.id %>" class="font-medium text-blue-800 cursor-pointer whitespace-nowrap hover:text-blue-600">Mark As Complete</button>
+            </p>
+          <% end %>
         </div>
       </div>
     </div>
