@@ -23,7 +23,7 @@ class ContactsController < BaseController
     authorize @contact
     respond_to do |format|
       if @contact.update(contact_params)
-        Event.where(eventable: @contact).or(Event.where(trackable: @contact)).touch_all
+        Event.where(eventable: @contact).touch_all
         format.html { redirect_to contact_abouts_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
