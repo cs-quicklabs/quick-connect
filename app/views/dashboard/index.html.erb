@@ -10,7 +10,7 @@
                 <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
               </div>
               <div class=" flex   bg-white font-sans py-4   w-full">
-                <ul role="list" class="" style="grid-template-columns: repeat(8, 40px); gap: 1rem;  display: grid;" id="side-menu">
+                <ul role="list" class="" style="grid-template-columns: repeat(10, 40px); gap: 1rem;  display: grid;" id="side-menu">
                   <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
                 </ul>
               </div>
