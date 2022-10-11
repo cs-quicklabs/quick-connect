@@ -10,9 +10,4 @@ export default class extends Controller {
     if (event.key === 'Escape') this.close()
 
   }
-  clickOutside(event) {
-    // example to close a modal
-    event.preventDefault()
-    this.element.remove()
-  }
 }
