@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
   devise :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
-  validates :jti, presence: true
+  validates :jti, presence: true, on: :update
 
   def generate_jwt
     JWT.encode({ id: id,
@@ -15,7 +15,13 @@ class User < ApplicationRecord
                "aOiynmWWvo17LrD9XTENHp9czMpuw4kH", true, { :algorithm => "HS256" })
   end
 
-  validates_confirmation_of :password, on: :update
+  normalize_attribute :first_name, :last_name, :email, :with => :strip
+  validates_confirmation_of :password, if: :password_confirmation_given?, on: :update
+
+  def password_confirmation_given?
+    password_confirmation ? true : false
+  end
+
   scope :available, -> { all_users }
   before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
