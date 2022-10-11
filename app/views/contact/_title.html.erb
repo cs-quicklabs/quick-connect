@@ -2,18 +2,18 @@
     labels = Label.all.order(:name)
     relations = Relation.all.order(:name) %>
 <div class="px-4 py-4 sm:flex  sm:justify-between sm:px-6 "  id="contact-header">
-  <div class="flex flex-wrap items-baseline "  x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
+  <div class="flex flex-wrap items-baseline " >
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex mt-2"  >
+    <div class="flex mt-2 z-10 -ml-2 "   >
       <% contact_labels = contact.labels %>
-      <div  class="flex-none z-10" id="contact-labels" >
+      <div  class="flex-none " id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
       <% if policy(contact).edit? %>
-        <div class=" flex-auto  ">
-          <button id="add" @click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+        <div class=" flex-auto  " x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
+          <button id="add" x-on:click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
             <!-- Heroicon name: solid/plus -->
             <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
