@@ -17,7 +17,7 @@
             </div>
           </section>
         <% end %>
-        <% @favorites = Contact.all.available.favorites.limit(8) %>
+        <% @favorites = Contact.all.available.favorites.limit(10) %>
         <% if @favorites.count > 0 %>
           <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white px-6 py-4">
@@ -28,7 +28,7 @@
                 <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
                   <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                 </ul>
-                <% if @favorites.count > 8 %>
+                <% if @favorites.count > 10 %>
                   <div class="flex items-center sm:mt-0 sm:ml-4 ">
                     <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
                   </div>
