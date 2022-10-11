@@ -2,6 +2,7 @@ class Invitation < ApplicationRecord
   acts_as_tenant :account
   belongs_to :sender, :class_name => "User"
   belongs_to :user, :class_name => "User", optional: true
+  normalize_attribute :first_name, :last_name, :email, :with => :strip
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name

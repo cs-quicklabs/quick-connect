@@ -6,7 +6,8 @@ class Contact < ApplicationRecord
   scope :favorites, -> { where(favorite: true) }
   belongs_to :user
   belongs_to :account
-  validates_presence_of :first_name, :last_name, :intro, on: :create
+  normalize_attribute :first_name, :last_name, :email, :with => :strip
+  validates_presence_of :first_name, :last_name, on: :create
   validates_uniqueness_of :phone, scope: :account, :allow_blank => true, on: :create
   validates_uniqueness_of :email, scope: :account, :allow_blank => true, on: :create
   has_many :notes, dependent: :destroy
