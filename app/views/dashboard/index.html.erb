@@ -24,7 +24,7 @@
               <div class="flex items-center justify-between  ">
                 <p class="  text-sm font-medium text-gray-900 truncate"> Favourite Contacts</p>
               </div>
-              <div class=" flex bg-white font-sans py-4 w-full ">
+              <div class=" flex bg-white font-sans pt-4 pb-3 w-full ">
                 <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
                   <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
                 </ul>
@@ -38,7 +38,7 @@
           </section>
         <% end %>
         <section aria-labelledby="participants_section">
-          <div class=" bg-white px-6 py-4">
+          <div class=" bg-white px-6 ">
             <div class="flex flex-wrap ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
@@ -48,7 +48,7 @@
         <section aria-labelledby="participants_section">
           <div class=" bg-white px-6 py-4">
             <%if @tasks.count>0%>
-              <div class="flex flex-wrap ">
+              <div class="flex flex-wrap py-3">
                 <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
               </div>
               <%= render partial: "tasks", collection: @tasks, as: :task, cached: false %>
