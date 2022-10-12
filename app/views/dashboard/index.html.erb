@@ -39,7 +39,7 @@
         <% end %>
         <section aria-labelledby="participants_section">
           <div class=" bg-white px-6 ">
-            <div class="flex flex-wrap ">
+            <div class="flex flex-wrap py-1 ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
             </div>
             <%= render partial: "reminders", locals: { upcoming_reminders: @upcoming_reminders } %>
@@ -48,7 +48,7 @@
         <section aria-labelledby="participants_section">
           <div class=" bg-white px-6 py-4">
             <%if @tasks.count>0%>
-              <div class="flex flex-wrap py-3">
+              <div class="flex flex-wrap mt-3 pb-2">
                 <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
               </div>
               <%= render partial: "tasks", collection: @tasks, as: :task, cached: false %>
