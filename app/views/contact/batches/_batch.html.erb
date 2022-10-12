@@ -1,14 +1,14 @@
 <% batch = batches_contact.batch %>
 <tr id="<%= dom_id batch %>" class="h-12">
   <td class="table-cell w-full">
-    <div class="text-sm mt-2" >
+    <div class="text-sm " >
       <a href="<%= batches_path(:batch_id => batch.id, :contact_id => contact.id) %>" class="block hover:underline" target="_top">
         <!--<a href="#" class="block hover:underline" target="_top" data-action="click->counter#increement" >-->
         <%= batch.name.upcase_first %>
       </div>
     </td>
     <td class="table-cell w-full">
-      <div class="text-sm mt-2 whitespace-nowrap" >
+      <div class="text-sm  whitespace-nowrap" >
         <%= display_date(batches_contact.created_at) %>
       </td>
       <td class="table-cell">
