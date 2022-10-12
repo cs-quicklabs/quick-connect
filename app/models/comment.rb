@@ -5,5 +5,4 @@ class Comment < ApplicationRecord
   belongs_to :journal
   validates_presence_of :title
   normalize_attribute :title, :with => :strip
-  has_many :events, dependent: :destroy
 end
