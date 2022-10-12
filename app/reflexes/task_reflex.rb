@@ -21,6 +21,7 @@ class TaskReflex < ApplicationReflex
     task.update(completed: !task.completed)
     TasksMailer.with(actor: task.user, contact: task.contact, task: task).completed_email.deliver_later if deliver_email?(task)
     task.save!
+    morph "#{dom_id(task)}", render(partial: "dashboard/tasks", locals: { task: task })
   end
 
   def deliver_email?(task)
