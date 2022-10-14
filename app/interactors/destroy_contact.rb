@@ -72,7 +72,7 @@ class DestroyContact < Patterns::Service
   end
 
   def delete_contact_batches
-    BatchesContact.where(contact_id: @contact.id).destroy_all
+    BatchesContact.where(contact_id: @contact.id).delete_all
   end
 
   def delete_reminders
