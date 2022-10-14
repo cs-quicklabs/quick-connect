@@ -29,7 +29,7 @@
                 <% labels = labels - contact_labels %>
                 <% if labels.size == 0 %>
                   <div class="py-1" role="none">
-                    <a @click="menu = false" href="<%= account_labels_path %>"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+                    <a @click="menu = false" href="/<%=current_user.account_id%>/account/labels"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
                   <% else %>
                     <div class="py-1" role="none">
                       <% labels.each do |label| %>
