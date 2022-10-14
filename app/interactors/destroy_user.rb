@@ -4,20 +4,20 @@ class DestroyUser < Patterns::Service
   end
 
   def call
-    delete_events
-    add_event
-    delete_journals
-    delete_contacts
-    delete_labels
-    delete_fields
-    delete_activities
-    delete_life_events
-    delete_relations
-    delete_ratings
-    delete_groups
-    delete_invitations
-    user.destroy
     begin
+      delete_events
+      add_event
+      delete_journals
+      delete_contacts
+      delete_labels
+      delete_fields
+      delete_activities
+      delete_life_events
+      delete_relations
+      delete_ratings
+      delete_groups
+      delete_invitations
+      user.destroy
     rescue Exception => e
       return false
     end
@@ -27,7 +27,7 @@ class DestroyUser < Patterns::Service
   private
 
   def delete_contacts
-    Contact.all.delete_all
+    Contact.all.destroy_all
   end
 
   def delete_journals
