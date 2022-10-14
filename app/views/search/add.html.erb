@@ -5,5 +5,5 @@
     </li>
   <% end %>
 <% else %>
- <a role="option" href="<%=new_contact_path%>" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" >Add Contact </a>
+  <a role="option" aria-disabled="true" tabindex="-1" @click="isShowing = false; document.getElementById('search').value=''" href="<%=new_contact_path%>" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" ><input type="button" class="display-none" disabled="disabled">Add Contact </a>
 <% end %>

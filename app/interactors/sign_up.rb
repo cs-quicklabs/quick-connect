@@ -39,33 +39,33 @@ class SignUp < Patterns::Service
   def seed_database
     now = Time.now
     ActsAsTenant.with_tenant(account) do
-      Field.create!([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
-                     { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
-                     { name: "Phone", icon: "fa-solid fa-phone-volume", protocol: "tel:", default: "TRUE" },
-                     { name: "Twitter", icon: "fa-brands fa-twitter-square", protocol: "", default: "TRUE" },
-                     { name: "Whatsapp", icon: "fa-brands fa-whatsapp", protocol: "https://wa.me", default: "TRUE" },
-                     { name: "Telegram", icon: "fa-brands fa-telegram", protocol: "telegram:", default: "TRUE" },
-                     { name: "LinkedIn", icon: "fa-brands fa-linkedin", protocol: "", default: "TRUE" }])
-      Relation.create!([{ name: "significant other", default: "TRUE" }, { name: "Husband/Wife", default: "TRUE" }, { name: "date", default: "TRUE" }, { name: "lover", default: "TRUE" }, { name: "is in love with", default: "TRUE" },
-                        { name: "secret lover", default: "TRUE" }, { name: "Ex-boyfriend/Ex-girlfriend", default: "TRUE" }, { name: "Ex-husband/Ex-wife", default: "TRUE" }, { name: "friend", default: "TRUE" }, { name: "Father/Mother", default: "TRUE" },
-                        { name: "son/daughter", default: "TRUE" }, { name: "Brother/Sister", default: "TRUE" }, { name: "Grandfather/Grandmother", default: "TRUE" }, { name: "Grandson/Granddaughter", default: "TRUE" }, { name: "Uncle/Aunt", default: "TRUE" }, { name: "Nephew/Niece", default: "TRUE" }, { name: "cousin", default: "TRUE" },
-                        { name: "Godmother/Godfather", default: "TRUE" }, { name: "Godson/Goddaughter", default: "TRUE" }, { name: "Step-father/Step-mother", default: "TRUE" }, { name: "Stepson/Stepdaughter", default: "TRUE" },
-                        { name: "best friend", default: "TRUE" }, { name: "colleague", default: "TRUE" }, { name: "boss", default: "TRUE" }, { name: "subordinate", default: "TRUE" }, { name: "mentor", default: "TRUE" }, { name: "protégé", default: "TRUE" }])
-      Activity.create!([{ name: "just hung out", group_id: 1, default: "TRUE" }, { name: "watched a movie at home", group_id: 1, default: "TRUE" }, { name: "just talked at home", group_id: 1, default: "TRUE" },
-                        { name: "played a sport together", group_id: 2, default: "TRUE" }, { name: "ate at their place", group_id: 3, default: "TRUE" }, { name: "went to a bar", group_id: 3, default: "TRUE" },
-                        { name: "ate at home", group_id: 3, default: "TRUE" }, { name: "picnicked", group_id: 3, default: "TRUE" }, { name: "ate at a restaurant", group_id: 3, default: "TRUE" }, { name: "went to a theater", group_id: 4, default: "TRUE" },
-                        { name: "went to a concert", group_id: 4, default: "TRUE" }, { name: "went to a play", group_id: 4, default: "TRUE" }, { name: "went to the museum", group_id: 4, default: "TRUE" }, { name: "other", group_id: 10, default: "TRUE" }])
-      LifeEvent.create!([{ name: "started a new job", group_id: 5, default: "TRUE" }, { name: "retired", group_id: 5, default: "TRUE" }, { name: "started school", group_id: 5, default: "TRUE" },
-                         { name: "studied abroad", group_id: 5 }, { name: "started voluteering", group_id: 5 }, { name: "published a paper", group_id: 5 },
-                         { name: "started a military service", group_id: 5, default: "TRUE" }, { name: "started a relationship", group_id: 6, default: "TRUE" }, { name: "got engaged", group_id: 6, default: "TRUE" }, { name: "got married", group_id: 6, default: "TRUE" },
-                         { name: "aniversary", group_id: 6, default: "TRUE" }, { name: "expects a baby", group_id: 6, default: "TRUE" }, { name: "had a child", group_id: 6, default: "TRUE" }, { name: "added a family member", group_id: 7, default: "TRUE" },
-                         { name: "got a pet", group_id: 6 }, { name: "ended a relationship", group_id: 6 }, { name: "lost a loved one", group_id: 6 }, { name: "moved", group_id: 7 }, { name: "bought a home", group_id: 7 },
-                         { name: "made a home improvement", group_id: 7, default: "TRUE" }, { name: "went on holidays", group_id: 7, default: "TRUE" }, { name: "got a new vehicle", group_id: 7, default: "TRUE" }, { name: "got a roommate", group_id: 7, default: "TRUE" },
-                         { name: "overcame an illness", group_id: 8, default: "TRUE" }, { name: "quit a habit", group_id: 8, default: "TRUE" }, { name: "started new eating habits", group_id: 8, default: "TRUE" }, { name: "lost weight", group_id: 8, default: "TRUE" }, { name: "started to wear glass or contact lenses", group_id: 8, default: "TRUE" },
-                         { name: "broke a bone", group_id: 8, default: "TRUE" }, { name: "had surgery", group_id: 8, default: "TRUE" }, { name: "went to the dentist", group_id: 8, default: "TRUE" },
-                         { name: "started a sport", group_id: 9, default: "TRUE" }, { name: "started a hobby", group_id: 9, default: "TRUE" }, { name: "learned a new instrument", group_id: 9, default: "TRUE" }, { name: "learned a new language", group_id: 9, default: "TRUE" },
-                         { name: "got a tattoo or piercing", group_id: 9, default: "TRUE" }, { name: "got a license", group_id: 9, default: "TRUE" }, { name: "traveled", group_id: 9, default: "TRUE" }, { name: "got an achivement or award", group_id: 9, default: "TRUE" },
-                         { name: "changed beliefs", group_id: 9, default: "TRUE" }, { name: "other", group_id: 11, default: "TRUE" }])
+      Field.insert_all([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
+                        { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
+                        { name: "Phone", icon: "fa-solid fa-phone-volume", protocol: "tel:", default: "TRUE" },
+                        { name: "Twitter", icon: "fa-brands fa-twitter-square", protocol: "", default: "TRUE" },
+                        { name: "Whatsapp", icon: "fa-brands fa-whatsapp", protocol: "https://wa.me", default: "TRUE" },
+                        { name: "Telegram", icon: "fa-brands fa-telegram", protocol: "telegram:", default: "TRUE" },
+                        { name: "LinkedIn", icon: "fa-brands fa-linkedin", protocol: "", default: "TRUE" }])
+      Relation.insert_all([{ name: "significant other", default: "TRUE" }, { name: "Husband/Wife", default: "TRUE" }, { name: "date", default: "TRUE" }, { name: "lover", default: "TRUE" }, { name: "is in love with", default: "TRUE" },
+                           { name: "secret lover", default: "TRUE" }, { name: "Ex-boyfriend/Ex-girlfriend", default: "TRUE" }, { name: "Ex-husband/Ex-wife", default: "TRUE" }, { name: "friend", default: "TRUE" }, { name: "Father/Mother", default: "TRUE" },
+                           { name: "son/daughter", default: "TRUE" }, { name: "Brother/Sister", default: "TRUE" }, { name: "Grandfather/Grandmother", default: "TRUE" }, { name: "Grandson/Granddaughter", default: "TRUE" }, { name: "Uncle/Aunt", default: "TRUE" }, { name: "Nephew/Niece", default: "TRUE" }, { name: "cousin", default: "TRUE" },
+                           { name: "Godmother/Godfather", default: "TRUE" }, { name: "Godson/Goddaughter", default: "TRUE" }, { name: "Step-father/Step-mother", default: "TRUE" }, { name: "Stepson/Stepdaughter", default: "TRUE" },
+                           { name: "best friend", default: "TRUE" }, { name: "colleague", default: "TRUE" }, { name: "boss", default: "TRUE" }, { name: "subordinate", default: "TRUE" }, { name: "mentor", default: "TRUE" }, { name: "protégé", default: "TRUE" }])
+      Activity.insert_all([{ name: "just hung out", group_id: 1, default: "TRUE" }, { name: "watched a movie at home", group_id: 1, default: "TRUE" }, { name: "just talked at home", group_id: 1, default: "TRUE" },
+                           { name: "played a sport together", group_id: 2, default: "TRUE" }, { name: "ate at their place", group_id: 3, default: "TRUE" }, { name: "went to a bar", group_id: 3, default: "TRUE" },
+                           { name: "ate at home", group_id: 3, default: "TRUE" }, { name: "picnicked", group_id: 3, default: "TRUE" }, { name: "ate at a restaurant", group_id: 3, default: "TRUE" }, { name: "went to a theater", group_id: 4, default: "TRUE" },
+                           { name: "went to a concert", group_id: 4, default: "TRUE" }, { name: "went to a play", group_id: 4, default: "TRUE" }, { name: "went to the museum", group_id: 4, default: "TRUE" }, { name: "other", group_id: 10, default: "TRUE" }])
+      LifeEvent.insert_all([{ name: "started a new job", group_id: 5, default: "TRUE" }, { name: "retired", group_id: 5, default: "TRUE" }, { name: "started school", group_id: 5, default: "TRUE" },
+                            { name: "studied abroad", group_id: 5, default: "TRUE" }, { name: "started voluteering", group_id: 5, default: "TRUE" }, { name: "published a paper", group_id: 5, default: "TRUE" },
+                            { name: "started a military service", group_id: 5, default: "TRUE" }, { name: "started a relationship", group_id: 6, default: "TRUE" }, { name: "got engaged", group_id: 6, default: "TRUE" }, { name: "got married", group_id: 6, default: "TRUE" },
+                            { name: "aniversary", group_id: 6, default: "TRUE" }, { name: "expects a baby", group_id: 6, default: "TRUE" }, { name: "had a child", group_id: 6, default: "TRUE" }, { name: "added a family member", group_id: 7, default: "TRUE" },
+                            { name: "got a pet", group_id: 6, default: "TRUE" }, { name: "ended a relationship", group_id: 6, default: "TRUE" }, { name: "lost a loved one", group_id: 6, default: "TRUE" }, { name: "moved", group_id: 7, default: "TRUE" }, { name: "bought a home", group_id: 7, default: "TRUE" },
+                            { name: "made a home improvement", group_id: 7, default: "TRUE" }, { name: "went on holidays", group_id: 7, default: "TRUE" }, { name: "got a new vehicle", group_id: 7, default: "TRUE" }, { name: "got a roommate", group_id: 7, default: "TRUE" },
+                            { name: "overcame an illness", group_id: 8, default: "TRUE" }, { name: "quit a habit", group_id: 8, default: "TRUE" }, { name: "started new eating habits", group_id: 8, default: "TRUE" }, { name: "lost weight", group_id: 8, default: "TRUE" }, { name: "started to wear glass or contact lenses", group_id: 8, default: "TRUE" },
+                            { name: "broke a bone", group_id: 8, default: "TRUE" }, { name: "had surgery", group_id: 8, default: "TRUE" }, { name: "went to the dentist", group_id: 8, default: "TRUE" },
+                            { name: "started a sport", group_id: 9, default: "TRUE" }, { name: "started a hobby", group_id: 9, default: "TRUE" }, { name: "learned a new instrument", group_id: 9, default: "TRUE" }, { name: "learned a new language", group_id: 9, default: "TRUE" },
+                            { name: "got a tattoo or piercing", group_id: 9, default: "TRUE" }, { name: "got a license", group_id: 9, default: "TRUE" }, { name: "traveled", group_id: 9, default: "TRUE" }, { name: "got an achivement or award", group_id: 9, default: "TRUE" },
+                            { name: "changed beliefs", group_id: 9, default: "TRUE" }, { name: "other", group_id: 11, default: "TRUE" }])
     end
   end
 
