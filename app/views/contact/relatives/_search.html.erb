@@ -41,6 +41,7 @@
           <%= form.collection_select("relation_id", Relation.all.order(:name).decorate, :id, :display_name, { :prompt => "Select Relation" }, :class => "cursor-pointer form-text-field mt-1") %>
         </div>
         <div class="flex justify-end ">
+          <%= link_to "Back", contact_relatives_path(contact), class: "ml-3 btn-normal " %>
           <%= form.submit "Add Relation", class: "btn-blue" %>
         </div>
       <% end %>
