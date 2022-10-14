@@ -84,19 +84,19 @@
           <div class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Email</dt>
             <% if !contact.email.blank? %>
-              <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
+              <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.email %></dd>
             <% else %>
               <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
             <% end %>
           </div>
-                    <div class="sm:col-span-1">
-          <dt class="text-sm font-medium text-gray-500">Relation</dt>
-          <% if !contact.relation.blank? %>
-            <dd class="mt-1 text-sm text-gray-900"><%= contact.relation.name.upcase_first %></dd>
-          <% else %>
-            <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
-          <% end %>
-        </div>
+          <div class="sm:col-span-1">
+            <dt class="text-sm font-medium text-gray-500">Relation</dt>
+            <% if !contact.relation.blank? %>
+              <dd class="mt-1 text-sm text-gray-900"><%= contact.relation.name.upcase_first %></dd>
+            <% else %>
+              <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
+            <% end %>
+          </div>
         </dl>
       </div>
       <!-- Team member list -->

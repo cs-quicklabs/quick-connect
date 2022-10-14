@@ -11,7 +11,8 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken,
-              with: :invalid_auth_token
+              with: :token_verification
+  rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
@@ -162,7 +163,7 @@ class ApplicationController < ActionController::Base
   def invalid_auth_token
     respond_to do |format|
       format.html {
-        redirect_to sign_in_path,
+        redirect_to new_user_session_path,
                     error: "Login invalid or expired"
       }
       format.json { head 401 }
