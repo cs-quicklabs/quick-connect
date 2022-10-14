@@ -3,7 +3,7 @@
     relations = Relation.all.order(:name) %>
 <div class="px-4 py-4 sm:flex  sm:justify-between sm:px-6 "  id="contact-header">
   <div class="flex flex-wrap items-baseline " >
-    <h1 class="text-3xl font-bold leading-tight text-gray-900 flex-none">
+    <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
     <div class="flex mt-2 z-10 "   >
@@ -69,7 +69,7 @@
           <% end %>
           <% if !contact.email.blank? %>
             <div>
-              <a type="button" href="sms:(+91)<%= contact.phone %>"  title="Send Email">
+              <a type="button" href="mailto:<%= contact.email %>"  title="Send Email">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
