@@ -24,6 +24,8 @@ class Api::BaseController < ApplicationController
 
   private
 
+  # So we can use Pundit policies for api_users
+
   def json_request?
     request.format.json?
   end

@@ -6,7 +6,15 @@ class ContactsController < BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    render_partial("contacts/contact", collection: @contacts) if stale?(@contacts)
+    respond_to do |format|
+      format.html
+      format.json {
+        render json: { entries: render_to_string(partial: "contacts/contact", formats: [:html], collection: @contacts, cached: cached),
+                       pagination: render_to_string(partial: "shared/paginator", formats: [:html], locals: { pagy: @pagy }) }
+      }
+      format.html
+      format.csv { send_data Contact.all.available.order(:first_name).to_csv, filename: "contacts-#{Date.today}.csv" }
+    end
   end
 
   def new
@@ -27,6 +35,20 @@ class ContactsController < BaseController
         format.html { redirect_to contact_abouts_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
+      end
+    end
+  end
+
+  def import
+    authorize :contact
+    @import = Contact.import(file_params[:file_name], current_user)
+    respond_to do |format|
+      if @import.first > 1
+        format.html { redirect_to contacts_path, notice: "Imported #{@import} contacts" }
+      elsif @import.first == 1
+        format.html { redirect_to contacts_path, notice: "Imported #{@import} contact" }
+      else
+        format.html { redirect_to contacts_path, :alert => "There were no contacts imported from your file" }
       end
     end
   end
@@ -107,7 +129,11 @@ class ContactsController < BaseController
     @contact ||= Contact.find(params[:id])
   end
 
+  def file_params
+    params.require(:contact).permit(:file_name)
+  end
+
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :birthday, :address, :about, :relation_id, :intro)
+    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :relation_id, :intro)
   end
 end

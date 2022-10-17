@@ -147,13 +147,7 @@ class ApplicationController < ActionController::Base
   # Use api_user Devise scope for JSON access
   def authenticate_user!(*args)
     super and return unless args.blank?
-    if json_request?
-      authenticate_api_user!
-    elsif header = request.headers["Authorization"]
-      authenticate_user
-    else
-      super
-    end
+    json_request? ? authenticate_api_user! : super
   end
 
   def authenticate_user
@@ -168,6 +162,10 @@ class ApplicationController < ActionController::Base
       }
       format.json { head 401 }
     end
+  end
+
+  def authenticate_user
+    set_current_user
   end
 
   # So we can use Pundit policies for api_users
@@ -185,6 +183,8 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  # So we can use Pundit policies for api_users
 
   def token_verification
     json_request? ? invalid_auth_token : invalid_token
