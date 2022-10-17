@@ -17,6 +17,13 @@ GIT
   specs:
     mimemagic (0.3.5)
 
+GIT
+  remote: https://github.com/zdennis/activerecord-import
+  revision: ef08aca875b956c74f0432e78b0fa1559e189eb9
+  specs:
+    activerecord-import (1.4.1)
+      activerecord (>= 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -429,6 +436,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  activerecord-import!
   acts_as_tenant
   attribute_normalizer
   aws-sdk-s3 (~> 1.87)
