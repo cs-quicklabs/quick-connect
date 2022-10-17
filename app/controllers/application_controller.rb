@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   include Pagy::Backend
+
   respond_to :html
-  protect_from_forgery with: :null_session, if: :json_request?
+  protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
 
   skip_before_action :verify_authenticity_token, if: :json_request?
@@ -18,7 +19,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
-  before_action :set_current_user, if: :http_request?
+  before_action :set_current_user, if: :json_request?
   before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {
@@ -150,22 +151,14 @@ class ApplicationController < ActionController::Base
     json_request? ? authenticate_api_user! : super
   end
 
-  def authenticate_user
-    set_current_user
-  end
-
   def invalid_auth_token
     respond_to do |format|
       format.html {
-        redirect_to new_user_session_path,
+        redirect_to sign_in_path,
                     error: "Login invalid or expired"
       }
       format.json { head 401 }
     end
-  end
-
-  def authenticate_user
-    set_current_user
   end
 
   # So we can use Pundit policies for api_users
@@ -183,8 +176,6 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
-  # So we can use Pundit policies for api_users
 
   def token_verification
     json_request? ? invalid_auth_token : invalid_token
