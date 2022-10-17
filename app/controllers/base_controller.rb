@@ -7,7 +7,7 @@ class BaseController < ApplicationController
   include Pagy::Backend
 
   def authenticate_account!
-    raise Pundit::NotAuthorizedError unless current_user.account = Current.account
+    raise Pundit::NotAuthorizedError unless current_user.account == Current.account
   end
 
   def pagy_nil_safe(params, collection, vars = {})
