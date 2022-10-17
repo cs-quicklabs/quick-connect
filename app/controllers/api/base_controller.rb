@@ -24,7 +24,9 @@ class Api::BaseController < ApplicationController
 
   private
 
-  # So we can use Pundit policies for api_users
+  def authenticate_user
+    set_current_user
+  end
 
   def json_request?
     request.format.json?

@@ -2,7 +2,7 @@
   <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
   <%= render "shared/form_header", title: title, subtitle: subtitle %>
   <%= form_with(model: Contact, url:"#{import_contacts_path}", method: :post, class:"flex mt-2 ") do |form| %>
-    <%= form.file_field :file_name, class:"form-text-field py-1", accept: 'text/csv' %>
+    <%= form.file_field :file_name, class:"form-text-field py-1 ", :style=>" opacity: 0; position: absolute;z-index: -1;", accept: 'text/csv' %>
     <%= form.submit "Upload", class: "btn-blue   py-0.5" %>
   <% end %>
   <%= tailwind_form_with(model: contact, id: dom_id(contact), class:"space-y-3") do |form| %>
