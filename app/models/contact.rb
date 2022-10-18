@@ -1,6 +1,7 @@
 class Contact < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  attr_accessor :relation_name
   require "activerecord-import"
   acts_as_tenant :account
   scope :for_current_account, -> { where(account: Current.account) }
@@ -46,16 +47,26 @@ class Contact < ApplicationRecord
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
   def self.to_csv
-    attributes = %w{id name email phone relation favorite intro}
+    attributes = %w{id name email phone relation_name intro}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
-      all.find_each do |user|
-        csv << attributes.map { |attr| user.send(attr) }
+      all.find_each do |contact|
+        !contact.relation.nil? ? contact.relation_name = contact.relation.name.upcase_first : contact.relation_name = ""
+        !contact.intro.nil? ? contact.intro = contact.intro.upcase_first : contact.intro = ""
+        csv << attributes.map { |attr| contact.send(attr) }
       end
     end
   end
+  def self.sample
+    attributes = %w{id name email phone relation_name intro}
+
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+    end
+  end
+
   def self.import(file, current_user)
     i = 0
     errors = []
@@ -66,7 +77,8 @@ class Contact < ApplicationRecord
       contact_hash.email = col[2]
       contact_hash.phone ||= col[3]
       contact_hash.user_id = current_user.id
-      contact_hash.intro = col[4]
+      contact_hash.phone ||= Relation.find_by_name(col[4]).id
+      contact_hash.intro = col[5]
       @result = contact_hash.save
       if @result
         i += 1
@@ -80,6 +92,6 @@ class Contact < ApplicationRecord
   end
 
   def name
-    "#{first_name} #{last_name}"
+    "#{first_name} #{last_name}".titleize
   end
 end

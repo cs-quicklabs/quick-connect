@@ -21,6 +21,10 @@ class ContactsController < BaseController
     authorize :contact
 
     @contact = Contact.new
+    respond_to do |format|
+      format.html
+      format.csv { send_data Contact.sample, filename: "contacts-sample.csv" }
+    end
   end
 
   def edit
@@ -41,12 +45,12 @@ class ContactsController < BaseController
 
   def import
     authorize :contact
-    @import = Contact.import(file_params[:file_name], current_user)
+    @import = Contact.import(file_params[:filename], current_user)
     respond_to do |format|
       if @import.first > 1
-        format.html { redirect_to contacts_path, notice: "Imported #{@import} contacts" }
+        format.html { redirect_to contacts_path, notice: "Imported #{@import.first} contacts" }
       elsif @import.first == 1
-        format.html { redirect_to contacts_path, notice: "Imported #{@import} contact" }
+        format.html { redirect_to contacts_path, notice: "Imported #{@import.first} contact" }
       else
         format.html { redirect_to contacts_path, :alert => "There were no contacts imported from your file" }
       end
@@ -130,7 +134,7 @@ class ContactsController < BaseController
   end
 
   def file_params
-    params.require(:contact).permit(:file_name)
+    params.require(:contact).permit(:filename)
   end
 
   def contact_params
