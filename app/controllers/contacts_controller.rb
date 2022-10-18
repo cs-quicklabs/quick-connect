@@ -47,10 +47,10 @@ class ContactsController < BaseController
     authorize :contact
     @import = Contact.import(file_params[:filename], current_user)
     respond_to do |format|
-      if @import.first > 1
-        format.html { redirect_to contacts_path, notice: "Imported #{@import.first} contacts" }
-      elsif @import.first == 1
-        format.html { redirect_to contacts_path, notice: "Imported #{@import.first} contact" }
+      if @import > 1
+        format.html { redirect_to contacts_path, notice: "Imported #{@import} contacts" }
+      elsif @import == 1
+        format.html { redirect_to contacts_path, notice: "Imported #{@import} contact" }
       else
         format.html { redirect_to contacts_path, :alert => "There were no contacts imported from your file" }
       end
