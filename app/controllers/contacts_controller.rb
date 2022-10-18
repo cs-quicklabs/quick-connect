@@ -52,7 +52,7 @@ class ContactsController < BaseController
       elsif @import == 1
         format.html { redirect_to contacts_path, notice: "Imported #{@import} contact" }
       else
-        format.html { redirect_to contacts_path, :alert => "There were no contacts imported from your file" }
+        format.html { redirect_to new_contact_path, :alert => "There were no contacts imported from your file" }
       end
     end
   end
