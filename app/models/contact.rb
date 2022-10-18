@@ -68,27 +68,26 @@ class Contact < ApplicationRecord
   end
 
   def self.import(file, current_user)
-    i = 0
+    j = 0
     errors = []
-    CSV.foreach(file.path, headers: true) do |col|
-      contact_hash = Contact.new
-      contact_hash.first_name = col[1].split(" ")[0]
-      contact_hash.last_name = col[1].split(" ")[1]
-      contact_hash.email = col[2]
-      contact_hash.phone ||= col[3]
-      contact_hash.user_id = current_user.id
-      contact_hash.phone ||= Relation.find_by_name(col[4]).id
-      contact_hash.intro = col[5]
-      @result = contact_hash.save
-      if @result
-        i += 1
-      elsif contact_hash.errors.errors.empty?
-        errors = ["file was empty"]
-      else
-        errors += [contact_hash.errors]
+    CSV.foreach(file.path, headers: true) do |row|
+      if !row[1].nil?
+        contact_hash = Contact.new
+        contact_hash.first_name = row[1].split(" ")[0]
+        contact_hash.last_name = row[1].split(" ")[1]
+        contact_hash.email = row[2]
+        contact_hash.phone = row[3]
+        contact_hash.user_id = current_user.id
+        if !row[4].nil?
+          contact_hash.relation ||= Relation.find_by_name(row[4]).id
+        end
+        contact_hash.intro ||= row[5]
+        if contact_hash.save
+          j += 1
+        end
       end
     end
-    return i, errors
+    return j
   end
 
   def name
