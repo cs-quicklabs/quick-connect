@@ -29,7 +29,7 @@ class SearchController < BaseController
     like_keyword = "%#{params[:q]}%".split(/\s+/)
     @profile = params[:profile]
 
-    @contact = [Contact.find(params[:profile])] + Contact.joins(:relatives).where("relatives.first_contact_id=? OR relatives.contact_id", @profile, @profile)
+    @contact = [Contact.find(params[:profile])] + Contact.joins(:relatives).where("relatives.first_contact_id=? OR relatives.contact_id=?", @profile, @profile)
     @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
       .limit(4).order(:first_name) - @contact
