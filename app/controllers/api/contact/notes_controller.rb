@@ -6,7 +6,7 @@ class Api::Contact::NotesController < Api::Contact::BaseController
 
     @note = Note.new
     @pagy, @notes = pagy_nil_safe(params, @contact.notes.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @notes, message: "Contact notes" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @notes, message: "Contact notes" } if stale?(@notes + [@contact])
   end
 
   def destroy

@@ -5,7 +5,7 @@ class Api::Account::LabelsController < Api::Account::BaseController
     authorize [:api, :account]
 
     @labels = Label.all.order(:name).order(created_at: :desc)
-    render json: { success: true, data: @labels, message: "Labels were successfully retrieved." }
+    render json: { success: true, data: @labels, message: "Labels were successfully retrieved." } if stale?(@labels)
   end
 
   def edit

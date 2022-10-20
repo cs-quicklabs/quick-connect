@@ -6,7 +6,7 @@ class Api::Contact::ProfileController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, :profile]
-    render json: { success: true, data: { contact: @contact.as_json(:include => [:labels, :relations]), labels: @labels, relations: @relations, event: @event, call: @call }, message: "Contact profile" }
+    render json: { success: true, data: { contact: @contact.as_json(:include => [:labels, :relations]), labels: @labels, relations: @relations, event: @event, call: @call }, message: "Contact profile" } if stale?(@labels + @relations + [@event] + [@call] + [@contact])
   end
 
   def label

@@ -10,7 +10,7 @@ class Api::ReleaseNotesController < Api::BaseController
   def release
     authorize [:api, :release_note]
     @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.published.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @release_notes.as_json(:include => [:body]), message: " Release Notes were successfully retrived" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @release_notes.as_json(:include => [:body]), message: " Release Notes were successfully retrived" } if stale?(@release_notes)
   end
 
   def show

@@ -4,7 +4,7 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
   def index
     authorize [:api, :account]
     @activities = Activity.all.includes(:group).order(:name)
-    render json: { success: true, data: @activities, message: "Activities were successfully retrieved." }
+    render json: { success: true, data: @activities, message: "Activities were successfully retrieved." } if stale?(@activities)
   end
 
   def new

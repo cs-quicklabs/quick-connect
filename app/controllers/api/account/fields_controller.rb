@@ -5,7 +5,7 @@ class Api::Account::FieldsController < Api::Account::BaseController
     authorize [:api, :account]
 
     @fields = Field.all.order(:name).order(created_at: :desc)
-    render json: { success: true, data: @fields, message: "Fields were successfully retrieved." }
+    render json: { success: true, data: @fields, message: "Fields were successfully retrieved." } if stale?(@fields)
   end
 
   def edit

@@ -40,11 +40,8 @@
             <% if @contacts.count > 0 %>
               <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" >
                 <div class="relative px-6 h-max pb-12" >
-                  <div class="flex justify-end ">
-                    <%= link_to( 'Export Contacts' ,{ :controller => :contacts, :action => :index, format: 'csv'}, { :class => "btn-inline-blue hover:underline mb-1 " } ) %>
-                  </div>
                   <ul role="list" class="relative z-0 divide-y divide-gray-200  "  data-infinite-scroll-target="entries">
-                    <%= render partial: "contact", collection: @contacts, cached: false %>
+                    <%= render partial: "contact", collection: @contacts, cached: true %>
                   </ul>
                   <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
                     <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>

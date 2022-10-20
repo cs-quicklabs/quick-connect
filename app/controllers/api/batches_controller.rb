@@ -5,7 +5,7 @@ class Api::BatchesController < Api::BaseController
     authorize [:api, :batch]
 
     @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @batches, message: "Groups retrieved successfully" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @batches, message: "Groups retrieved successfully" } if stale?(@batches)
   end
 
   def edit
@@ -47,7 +47,7 @@ class Api::BatchesController < Api::BaseController
     authorize [:api, :batch]
     @batch = Batch.find(params[:batch_id])
     @pagy, @contacts = pagy_array_safe(params, @batch.contacts.uniq, items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Group members retrieved successfully" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Group members retrieved successfully" } if stale?(@contacts + [@batch])
   end
 
   def add

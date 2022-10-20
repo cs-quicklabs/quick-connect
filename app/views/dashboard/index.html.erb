@@ -11,7 +11,7 @@
               </div>
               <div class=" flex   bg-white font-sans py-4   w-full">
                 <ul role="list" class="" style="grid-template-columns: repeat(10, 40px); gap: 1rem;  display: grid;" id="side-menu">
-                  <%= render partial: "contacted", collection: @contacted, as: :recent, cached: false %>
+                  <%= render partial: "contacted", collection: @contacted, as: :recent, cached: true %>
                 </ul>
               </div>
             </div>
@@ -26,7 +26,7 @@
               </div>
               <div class=" flex bg-white font-sans pt-4 pb-3 w-full ">
                 <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
-                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: false %>
+                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: true %>
                 </ul>
                 <% if @favorites.count > 10 %>
                   <div class="flex items-center sm:mt-0 sm:ml-4 ">
@@ -51,7 +51,7 @@
               <div class="flex flex-wrap mt-3 pb-2">
                 <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
               </div>
-              <%= render partial: "tasks", collection: @tasks, as: :task, cached: false %>
+              <%= render partial: "tasks", collection: @tasks, as: :task, cached: true %>
             </div>
           <% end %>
         </section>

@@ -3,7 +3,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
     authorize [:api, @contact, Batch]
     @pagy, @batches = pagy_nil_safe(params, @contact.batches, items: LIMIT)
 
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @batches, message: "Contact batches" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @batches, message: "Contact batches" } if stale?(@batches + [@contact])
   end
 
   def new

@@ -7,7 +7,7 @@ class Api::Contact::DocumentsController < Api::Contact::BaseController
     @document = Document.new
     @pagy, @documents = pagy_nil_safe(params, @contact.documents.order(created_at: :desc), items: LIMIT)
 
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @documents, message: "Contact Documents" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @documents, message: "Contact Documents" } if stale?(@documents + [@contact])
   end
 
   def create

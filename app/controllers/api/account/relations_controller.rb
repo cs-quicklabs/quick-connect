@@ -4,7 +4,7 @@ class Api::Account::RelationsController < Api::Account::BaseController
   def index
     authorize [:api, :account]
     @relations = Relation.all.order(:name).order(created_at: :desc)
-    render json: { success: true, data: @relations, message: "Relations were successfully retrieved." }
+    render json: { success: true, data: @relations, message: "Relations were successfully retrieved." } if stale?(@relations)
   end
 
   def edit
