@@ -1,6 +1,6 @@
 <%= form_with(model: Contact, url: "#{import_contacts_path}", method: :post) do |form| %>
   <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
-    <div class="p-4 rounded-md bg-red-50" id="error_explanation" x-data="{open: true}" x-show="open" x-init="setTimeout(function(){open = false; }, 2000);">>
+    <div class="p-4 rounded-md bg-red-50" id="error_explanation" x-data="{open: true}" x-show="open" x-init="setTimeout(function(){open = false; }, 2000);">
       <div class="flex">
         <div class="flex-shrink-0">
           <!-- Heroicon name: solid/x-circle -->

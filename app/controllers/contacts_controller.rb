@@ -42,8 +42,7 @@ class ContactsController < BaseController
         @contacts = Contact.import(file_params[:filename], current_user)
         if !params[:commit]
           format.turbo_stream {
-            render turbo_stream: turbo_stream.replace(:imported_contacts, partial: "account/import/contact", locals: { contacts: @contacts }) +
-                                 turbo_stream.replace(:form, partial: "account/import/form", locals: {})
+            render turbo_stream: turbo_stream.replace(:imported_contacts, partial: "account/import/contact", locals: { contacts: @contacts })
           }
         else
           @import = Contact.save_all(@contacts)
