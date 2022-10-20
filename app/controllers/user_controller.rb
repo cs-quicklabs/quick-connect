@@ -44,7 +44,7 @@ class UserController < BaseController
   def profile
     authorize @user
     respond_to do |format|
-      format.html { render :profile }
+      format.html { render :profile } if stale?([@user])
     end
   end
 

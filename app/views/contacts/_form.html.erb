@@ -1,20 +1,6 @@
    <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16 " >
   <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
   <%= render "shared/form_header", title: title, subtitle: subtitle %>
-  <%= form_with(model: Contact, url:"#{import_contacts_path}", method: :post, class:" -pb-3 ") do |form| %>
-    <div class="flex mt-2 justify-between">
-      <div class="flex-1 cursor-default  block" style=" z-index:1" >
-        <label for="file-upload" class="form-text-field py-0.5  " style="" x-data="{ files: null }" >
-          <input type="file" class="absolute overflow-hidden" style=" cursor: pointer;opacity: 0; z-index: 2;" accept= 'text/csv' name="contact[filename]"  x-on:change="files = Object.values($event.target.files)" id="contact_filename" />
-          <%= form.file_field :picture, class:"hidden"%>
-          <i class="fa fa-cloud-upload svg-icon mr-0 mt-2 "  ></i>
-          <span  x-text="files ? files.map(file => file.name).join(', ') : 'Custom Upload'">   </span>
-        </label>
-      </div>
-      <%= form.submit "Upload", class: "btn-blue   py-0.5" %>
-    </div>
-    <%= link_to( 'Export Sample CSV' ,{ :controller => :contacts, :action => :new, format: 'csv'}, { :class => "btn-inline-blue hover:underline  justify-end flex mr-24 " } ) %>
-  <% end %>
   <%= tailwind_form_with(model: contact, id: dom_id(contact), class:"space-y-6") do |form| %>
     <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
     <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>

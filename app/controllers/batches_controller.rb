@@ -3,13 +3,12 @@ class BatchesController < BaseController
 
   def index
     authorize :batch
-
     @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
     @batch = Batch.new
     if (params[:batch_id])
       @batch_show = Batch.find(params[:batch_id])
     end
-    render_partial("batches/batch", collection: @batches) if stale?(@batches)
+    render_partial("batches/batch", collection: @batches, cached: true) if stale?(@batches)
   end
 
   def edit

@@ -5,7 +5,7 @@ class Api::Contact::TasksController < Api::Contact::BaseController
     authorize [:api, @contact, Task]
     @task = Task.new
     @pagy, @tasks = pagy_nil_safe(params, @contact.tasks.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @tasks, message: "Contact tasks" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @tasks, message: "Contact tasks" } if stale?(@tasks + [@contact])
   end
 
   def destroy

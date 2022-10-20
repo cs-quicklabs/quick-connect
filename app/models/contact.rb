@@ -47,20 +47,29 @@ class Contact < ApplicationRecord
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
   def self.to_csv
-    attributes = %w{id name email phone relation_name intro}
+    attributes = %w{id name email phone}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
 
       all.find_each do |contact|
-        !contact.relation.nil? ? contact.relation_name = contact.relation.name.upcase_first : contact.relation_name = ""
-        !contact.intro.nil? ? contact.intro = contact.intro.upcase_first : contact.intro = ""
         csv << attributes.map { |attr| contact.send(attr) }
       end
     end
   end
+  def self.save_all(contacts)
+    i = 0
+    contacts.each do |contact|
+      if contact.save
+        About.create(user: contact.user, contact: contact)
+        i += 1
+      end
+    end
+    return i
+  end
+
   def self.sample
-    attributes = %w{id name email phone relation_name intro}
+    attributes = %w{id name email phone}
 
     CSV.generate(headers: true) do |csv|
       csv << attributes
@@ -68,8 +77,7 @@ class Contact < ApplicationRecord
   end
 
   def self.import(file, current_user)
-    j = 0
-    errors = []
+    contacts = []
     CSV.foreach(file.path, headers: true) do |row|
       if !row[1].nil?
         contact_hash = Contact.new
@@ -78,16 +86,10 @@ class Contact < ApplicationRecord
         contact_hash.email = row[2]
         contact_hash.phone = row[3]
         contact_hash.user_id = current_user.id
-        if !row[4].nil?
-          contact_hash.relation ||= Relation.find_by_name(row[4]).id
-        end
-        contact_hash.intro ||= row[5]
-        if contact_hash.save
-          j += 1
-        end
+        contacts += [contact_hash]
       end
     end
-    return j
+    return contacts
   end
 
   def name

@@ -155,7 +155,9 @@
     <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
       <%=contact.intro.upcase_first%>
     </p>
-    <p class=" text-sm font-medium text-gray-500 px-2">
+  <% end %>
+  <% if (!@event.blank? || !@call.blank?) %>
+    <p class=" text-sm font-medium text-gray-500 px-1">
       -    
     </p>
   <% end %>

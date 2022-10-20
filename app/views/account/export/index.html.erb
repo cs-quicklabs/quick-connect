@@ -1,0 +1,11 @@
+  <main class="pb-10  max-w-7xl lg:py-12 lg:px-8 mx-auto z-0">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/account_menu" %>
+    <main class="max-w-xl px-4 pb-12 lg:col-span-6">
+      <%= render "shared/form_header", title: "Export Contacts", subtitle: "Export contacts from your account in csv format" %>
+      <div class="mt-4">
+        <%= link_to( 'Export Contacts' ,{ :controller => :export, :action => :index, format: 'csv'}, { :class => "btn-blue ml-0 " } ) %>
+      </div>
+    </main>
+  </div>
+</main>

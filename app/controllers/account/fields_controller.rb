@@ -3,9 +3,9 @@ class Account::FieldsController < Account::BaseController
 
   def index
     authorize :account
-
     @fields = Field.all.order(:name).order(created_at: :desc)
     @field = Field.new
+    fresh_when @fields
   end
 
   def edit
@@ -14,9 +14,7 @@ class Account::FieldsController < Account::BaseController
 
   def create
     authorize :account
-
     @field = Field.new(field_params)
-
     respond_to do |format|
       if @field.save
         format.turbo_stream {

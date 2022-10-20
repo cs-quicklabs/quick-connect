@@ -165,23 +165,4 @@
   opacity: 0.75;
 }
 
-div.upload {
-  background-color:#fff;
-  border: 1px solid #ddd;
-  border-radius:5px;
-  display:inline-block;
-  height: 26px;
-  position:relative;
-  width: 100%;
-}
 
-div.upload:hover {
-  opacity:0.95;
-}
-
-input[type=file]::-webkit-file-upload-button { /* chromes and blink button */
-  cursor: pointer; 
-}
-input[type=file]:hover { /* chromes and blink button */
-  opacity:0.95;
-}

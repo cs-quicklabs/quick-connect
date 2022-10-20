@@ -72,6 +72,8 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    get "/export", to: "export#index", as: "export_contacts"
+    get "/import", to: "import#index", as: "import_contacts"
     resources :invitations, except: [:show, :new] do
       get "/deactivate", to: "invitations#deactivate", as: "deactivate"
       get "/activate", to: "invitations#activate", as: "activate"

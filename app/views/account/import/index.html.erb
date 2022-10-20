@@ -1,0 +1,14 @@
+  <main class="pb-10  max-w-7xl lg:py-12 lg:px-8 mx-auto z-0">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/account_menu" %>
+    <main class="max-w-3xl px-4 pb-12 lg:col-span-6">
+      <div id="form">
+        <%= render "form" %>
+      </div>
+      <div class="" id="imported_contacts">
+        <%if !@contacts.nil?%>
+          <%= render @contacts %>
+        <% end %>
+      </main>
+    </div>
+  </main>
