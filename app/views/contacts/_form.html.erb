@@ -1,7 +1,7 @@
    <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16 " >
   <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
   <%= render "shared/form_header", title: title, subtitle: subtitle %>
-  <%= tailwind_form_with(model: contact, id: dom_id(contact), class:"space-y-6") do |form| %>
+  <%= tailwind_form_with(model: contact, id: dom_id(contact), class: "space-y-6") do |form| %>
     <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
     <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
     <%= form.text_field :email, "Email", autocomplete: "off" %>

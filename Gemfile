@@ -12,7 +12,7 @@ gem "sprockets-rails", "3.4.2"
 
 # Use postgresql as the database for Active Record
 gem "pg"
-gem 'activerecord-import',  git: 'https://github.com/zdennis/activerecord-import'
+gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma", "5.6.5"
 
@@ -74,10 +74,9 @@ gem "stripe", "~> 7.0"
 gem "font-awesome-rails"
 gem "attribute_normalizer"
 
-# swagger documentation 
+# swagger documentation
 gem "rswag-api"
 gem "rswag-ui"
-
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]

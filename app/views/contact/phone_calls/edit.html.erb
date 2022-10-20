@@ -22,7 +22,7 @@
           </div>
           <div class="inline-flex space-x-2 pl-4 ">
             <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => @phone_call.status == "contact" %>
-            <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "break-words  cursor-pointer text-sm font-medium text-gray-700 flex-auto", style:"width: 19rem;"%>
+            <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "break-words  cursor-pointer text-sm font-medium text-gray-700 flex-auto", style: "width: 19rem;" %>
           </div>
         </div>
       </div>
