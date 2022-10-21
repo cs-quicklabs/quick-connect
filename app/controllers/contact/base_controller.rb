@@ -9,11 +9,19 @@ class Contact::BaseController < BaseController
   LIMIT = 10
 
   def set_contact
-    @contact = Contact.find(params[:contact_id])
+    if !@contact
+      @contact = Contact.find(params[:contact_id])
+    else
+      return @contact
+    end
   end
 
   def set_details
-    @labels = Label.all.order(:name)
-    @relations = Relation.all.order(:name)
+    if !@labels || !@contact_labels
+      @labels = Label.all.order(:name)
+      @contact_labels = @contact.labels
+    else
+      return @labels, @contact_labels
+    end
   end
 end

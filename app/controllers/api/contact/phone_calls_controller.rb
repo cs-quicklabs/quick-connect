@@ -4,7 +4,8 @@ class Api::Contact::PhoneCallsController < Api::Contact::BaseController
   def index
     authorize [:api, @contact, PhoneCall]
     @phone_call = PhoneCall.new
-    @pagy, @phone_calls = pagy_nil_safe(params, @contact.phone_calls.order(date: :desc), items: LIMIT)
+    phone_calls = @contact.phone_calls.order(date: :desc)
+    @pagy, @phone_calls = pagy_nil_safe(params, phone_calls, items: LIMIT)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @phone_calls, message: "Contact phone calls" } if stale?(@phone_calls + [@contact])
   end
 

@@ -25,7 +25,11 @@ class Api::BaseController < ApplicationController
   private
 
   def authenticate_user
-    set_current_user
+    if !@api_user
+      set_current_user
+    else
+      return @api_user
+    end
   end
 
   def json_request?

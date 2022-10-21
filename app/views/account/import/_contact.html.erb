@@ -1,11 +1,13 @@
 <div class=" py-6 mt-12">
   <h3 class="text-sm font-medium text-gray-700 text-center ">Imported Contacts</h3>
 </div>
+
+<%if contacts.size>0%>
 <ul role="list" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2" >
   <% contacts.each do |contact| %>
-    <% if !contact.blank? %>
+    <% if !contact.nil? %>
       <% contact = contact.decorate %>
-      <li  id= "<%= dom_id(contact) %>" class="hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500">
+      <li  id= "<%= dom_id(contact) %>" class="hover:bg-gray-50 ">
         <button type="button" class="group flex w-full items-center justify-between space-x-1 rounded-full border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
           <span class="flex min-w-0 flex-1 items-center space-x-2">
             <span class="block flex-shrink-0">
@@ -31,6 +33,20 @@
           </span>
         </button>
       </li>
-    <% end %>
+      <% end %>
+
   <% end %>
-</ul>
+  </ul>
+        <% else %>
+      <div class="w-full text-center sm:rounded-lg place-content-center">
+                  <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                      No result found
+                    </h3>
+                    <div class="mt-2 text-sm text-center text-gray-500">
+                      <p>We have not found any contacts from the fie uploaded.Please upload another file.</p>
+                    </div>
+                  </div>
+                </div>
+    <% end %>
+

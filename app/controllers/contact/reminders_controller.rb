@@ -5,7 +5,7 @@ class Contact::RemindersController < Contact::BaseController
     authorize [@contact, Reminder]
 
     @reminder = Reminder.new
-    @pagy, @reminders = pagy_nil_safe(params, @contact.reminders.order(created_at: :desc), items: LIMIT)
+    @pagy, @reminders = pagy_nil_safe(params, @contact.reminders.includes(:user).order(created_at: :desc), items: LIMIT)
     render_partial("reminders/reminder", collection: @reminders) if stale?(@reminders + [@contact])
   end
 
