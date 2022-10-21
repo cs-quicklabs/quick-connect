@@ -1,13 +1,10 @@
-  <% contact = contact.decorate
-    labels = Label.all.order(:name)
-    relations = Relation.all.order(:name) %>
+  <% contact = contact.decorate %>
 <div class="px-4 py-4 sm:flex  sm:justify-between sm:px-6 "  id="contact-header">
   <div class="flex flex-wrap items-baseline " >
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
     <div class="flex mt-2 z-10 "   >
-      <% contact_labels = contact.labels %>
       <div  class="flex-auto " id="contact-labels" >
         <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
       </div>
@@ -23,16 +20,16 @@
           @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <% if Label.all.order(:name).size == 0 %>
               <div class="py-1" role="none">
-                <p @click="menu = false" role="menuitem" class="block px-2 py-2 text-sm text-gray-700 hover:bg-gray-50 " > No label added yet</p>
+                <p @click="menu = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700  " > No label added yet</p>
                 <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
               <% else %>
-                <% labels = labels - contact_labels %>
-                <% if labels.size == 0 %>
+                <% @labels = labels - contact_labels %>
+                <% if @labels.size == 0 %>
                   <div class="py-1" role="none">
                     <a @click="menu = false" href="/<%= current_user.account_id %>/account/labels"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
                   <% else %>
                     <div class="py-1" role="none">
-                      <% labels.each do |label| %>
+                      <% @labels.each do |label| %>
                         <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                         <a x-on:click="menu=false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
                       <% end %>
@@ -149,8 +146,7 @@
 <% end %>
 </div>
 <div class="pb-4 px-6 -mt-3 flex">
-  <% @event = contact.events.order(created_at: :desc).first %>
-  <% @call = contact.phone_calls.order(created_at: :desc).first %>
+
   <% if contact.intro? %>
     <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
       <%= contact.intro.upcase_first %>
@@ -162,12 +158,12 @@
     </p>
   <% end %>
   <p class="  text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
-    <% if (!@event.blank? && !@call.blank?) %>
-      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %> and last phone call was on <%= display_created_at(@call) %>
-    <% elsif !@event.blank? %>
-      <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
-    <% elsif !@call.blank? %>
-      Last phone call was on <%= display_created_at(@call) %>
+    <% if (!event.blank? && !call.blank?) %>
+      <%= event.action_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
+    <% elsif !event.blank? %>
+      <%= event.action_context.upcase_first %> on <%= display_created_at(event) %>
+    <% elsif !call.blank? %>
+      Last phone call was on <%= display_created_at(call) %>
     <% end %>
   </p>
 </div>
