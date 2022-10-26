@@ -2,7 +2,7 @@
   <li class="flex py-2 border-b border-gray-200">
     <div class="flex items-center w-full ml-4">
       <p class="ml-3  font-light text-gray-600"> <i class="<%= field.icon %> w-18 h-18"></i></p>
-      <% if field.icon.empty? %>
+      <% if field.icon.nil? %>
         <p class="ml-4"><% end %>
         <p class="w-full ml-2 text-sm font-normal text-gray-900 ">
           <%= field.name.upcase_first %></p>

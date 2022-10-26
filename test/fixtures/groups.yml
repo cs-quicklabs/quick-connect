@@ -33,3 +33,11 @@ wellness:
 travel:  
   name: Travel & Experiences
   category: event
+
+other_act:  
+  name: Other
+  category: activity
+
+other:  
+  name: Other
+  category: event    

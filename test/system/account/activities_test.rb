@@ -43,7 +43,7 @@ class ActivitiesTest < ApplicationSystemTestCase
   test "can not add an empty activity" do
     visit page_url
     click_on "Save"
-    assert_selector "div#error_explanation", text: "Name can't be blank"
+    assert_selector "div#error_explanation", text: "Activity name can't be blank"
     take_screenshot
   end
   test "can not add a duplicate activity" do
@@ -51,7 +51,7 @@ class ActivitiesTest < ApplicationSystemTestCase
     fill_in "activity_name", with: activities(:simple_one).name
     click_on "Save"
     take_screenshot
-    assert_text "Name has already been taken"
+    assert_text "Activity name has already been taken"
   end
 
   test "can visit edit page" do
@@ -71,9 +71,22 @@ class ActivitiesTest < ApplicationSystemTestCase
     assert_selector "li", text: "Edited Name"
   end
 
-  test "can delete a  activity" do
+  test "can not delete a  activity" do
     visit page_url
     activity = activities(:simple_two)
+    assert_selector "li", text: activity.name
+    page.accept_confirm do
+      find("li", text: activity.name).click_on("Delete")
+    end
+    assert_text "Unable to Delete Record"
+    click_on "Cancel"
+    assert_no_text "Unable to Delete Record"
+    assert_selector "li", text: activity.name
+  end
+
+  test "can delete a activity" do
+    visit page_url
+    activity = activities(:simple_three)
     assert_selector "li", text: activity.name
     page.accept_confirm do
       find("li", text: activity.name).click_on("Delete")
@@ -91,7 +104,7 @@ class ActivitiesTest < ApplicationSystemTestCase
       fill_in "activity_name", with: two.name
       click_on "Save"
       take_screenshot
-      assert_text "Name has already been taken"
+      assert_text "Activity name has already been taken"
     end
   end
 end

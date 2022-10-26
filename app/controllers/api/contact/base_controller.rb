@@ -8,6 +8,9 @@ class Api::Contact::BaseController < Api::BaseController
   private
 
   def set_contact
+    if @contact
+      return @contact
+    end
     @contact ||= Contact.find_by_id(params[:contact_id])
   end
 end

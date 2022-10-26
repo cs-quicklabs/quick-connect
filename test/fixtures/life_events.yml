@@ -7,3 +7,8 @@ family_two:
   name: Watched A Movie At Home
   group: family
   account: hansika
+
+family_three:  
+  name: Watched Movie 
+  group: family
+  account: hansika  

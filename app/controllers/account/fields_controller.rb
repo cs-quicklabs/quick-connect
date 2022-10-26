@@ -19,7 +19,7 @@ class Account::FieldsController < Account::BaseController
       if @field.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:fields, partial: "account/fields/field", locals: { field: @field }) +
-                               turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: Field.new, message: "Field was created successfully." })
+                               turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: Field.new, message: "Contact field type was created successfully." })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: @field }) }

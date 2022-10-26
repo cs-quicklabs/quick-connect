@@ -89,6 +89,9 @@ class UserController < BaseController
   end
 
   def find_user
+    if @user
+      return @user
+    end
     @user ||= User.find(params[:id])
   end
 
