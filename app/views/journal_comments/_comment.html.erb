@@ -1,5 +1,5 @@
 <%= turbo_frame_tag dom_id(comment) do %>
-  <li class="py-1  w-full px-4 py-6 sm:px-6">
+  <li class="  w-full px-4 py-2 sm:px-6">
     <div class=" w-full flex">
       <div class=" flex flex-1">
         <p class="whitespace-pre-wrap text-sm "><%= comment.title.upcase_first %></p>
@@ -11,7 +11,7 @@
         <% end %>
       </div>
     </div>
-    <div class=" flex flex-1 mt-2 whitespace-nowrap  text-sm ">
+    <div class=" flex flex-1  whitespace-nowrap  text-sm ">
       <span class="text-gray-500 text-sm"><%= display_created_at(comment) %></span>
     </div>
   </li>
