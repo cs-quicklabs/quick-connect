@@ -109,12 +109,15 @@ en:
           one: Description
       life_event:
         name:
-          one: Event
+          one: Event name
         group: 
           one: Group
       activity:
         name:
-          one: Activity
+          one: Activity name
         group: 
           one: Group
+      invitation:
+         email:
+          one:  E-mail  
 

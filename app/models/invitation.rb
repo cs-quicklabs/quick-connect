@@ -3,9 +3,9 @@ class Invitation < ApplicationRecord
   belongs_to :sender, :class_name => "User"
   belongs_to :user, :class_name => "User", optional: true
   normalize_attribute :first_name, :last_name, :email, :with => :strip
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :user_is_not_registered, on: :create
   has_many :events, class_name: "Event", foreign_key: "eventable", dependent: :destroy
 

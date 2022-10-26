@@ -36,7 +36,7 @@ class RelationsTest < ApplicationSystemTestCase
     visit page_url
     click_on "Save"
     take_screenshot
-    assert_text "Name can't be blank"
+    assert_text "Relation name can't be blank"
   end
 
   test "can not add a duplicate relation" do
@@ -44,7 +44,7 @@ class RelationsTest < ApplicationSystemTestCase
     fill_in "Add New Relation", with: relations(:father).name
     click_on "Save"
     take_screenshot
-    assert_text "Name has already been taken"
+    assert_text "Relation name has already been taken"
   end
 
   test "can visit edit page" do
@@ -78,7 +78,7 @@ class RelationsTest < ApplicationSystemTestCase
 
   test "should have nav bar" do
     visit page_url
-    assert_selector "#menubar", count: 1
+    assert_selector "#menu", count: 1
   end
 
   test "should have left menu with relations selected" do
@@ -100,7 +100,7 @@ class RelationsTest < ApplicationSystemTestCase
       fill_in "relation_name", with: father.name
       click_on "Save"
       take_screenshot
-      assert_text "Name has already been taken"
+      assert_text "Relation name has already been taken"
     end
   end
 

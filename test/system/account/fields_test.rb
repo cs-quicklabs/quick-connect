@@ -28,7 +28,7 @@ class FieldsTest < ApplicationSystemTestCase
     fill_in "Field Type", with: "New Field"
     click_on "Save"
     take_screenshot
-    assert_text "Field was created successfully."
+    assert_text "Contact field type was created successfully."
     assert_selector "#field_name", text: ""
   end
 
@@ -36,7 +36,7 @@ class FieldsTest < ApplicationSystemTestCase
     visit page_url
     click_on "Save"
     take_screenshot
-    assert_text "Name can't be blank"
+    assert_text "Field type can't be blank"
   end
 
   test "can not add a duplicate field" do
@@ -44,7 +44,7 @@ class FieldsTest < ApplicationSystemTestCase
     fill_in "Field Type", with: fields(:facebook).name
     click_on "Save"
     take_screenshot
-    assert_text "Name has already been taken"
+    assert_text "Field type has already been taken"
   end
 
   test "can visit edit page" do
@@ -78,7 +78,7 @@ class FieldsTest < ApplicationSystemTestCase
 
   test "should have nav bar" do
     visit page_url
-    assert_selector "#menubar", count: 1
+    assert_selector "#menu", count: 1
   end
 
   test "should have left menu with fields selected" do
@@ -99,7 +99,7 @@ class FieldsTest < ApplicationSystemTestCase
       fill_in "field_name", with: facebook.name
       click_on "Save"
       take_screenshot
-      assert_text "Name has already been taken"
+      assert_text "Field type has already been taken"
     end
   end
 

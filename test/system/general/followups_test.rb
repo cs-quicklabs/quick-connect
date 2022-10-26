@@ -1,6 +1,6 @@
 require "application_system_test_case"
 
-class BatchesTest < ApplicationSystemTestCase
+class FollowupsTest < ApplicationSystemTestCase
   setup do
     @user = users(:regular)
     @account = @user.account
@@ -77,7 +77,9 @@ class BatchesTest < ApplicationSystemTestCase
     visit untracked_contacts_url(script_name: "/#{@account.id}")
     contact = contacts(:untracked)
     within "tr#contact_#{contact.id}" do
-      click_on "Track"
+      page.accept_confirm do
+        click_on "Track"
+      end
     end
     take_screenshot
     assert_selector "p.notice", text: "Contact has been tracked."

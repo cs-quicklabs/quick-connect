@@ -172,10 +172,6 @@ Rails.application.routes.draw do
       resources :profile, module: "contact", only: [:index]
       resources :documents, module: "contact", except: [:show]
       resources :batches, module: "contact", except: [:show, :update]
-      get "/label/:id", to: "contact/profile#label"
-      get "/remove_label/:id", to: "contact/profile#remove_label"
-      get "/relation/:id", to: "contact/profile#relation"
-      get "/remove_relation", to: "contact/profile#remove_relation"
       get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
       resources :abouts, module: "contact", except: [:show]

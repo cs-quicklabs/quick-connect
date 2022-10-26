@@ -14,7 +14,7 @@ class JournalsTest < ApplicationSystemTestCase
   end
 
   def journals_page_url
-    journal_url(script_name: "/#{@account.id}", journal_id: @journal.id)
+    journal_url(script_name: "/#{@account.id}", id: @journal.id)
   end
 
   test "can show index if logged in" do
@@ -32,10 +32,10 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can show journal detail page" do
     visit page_url
-    find(id: dom_id(@journal)).click_link(@journal.title)
+    find("li", id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       assert_text "Edit"
-      assert_text "Delete"
+      assert_text "Back"
     end
     take_screenshot
   end
@@ -65,12 +65,12 @@ class JournalsTest < ApplicationSystemTestCase
     click_on "Save"
     take_screenshot
     assert_selector "div#error_explanation", text: "Title can't be blank"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Description can't be blank"
   end
 
   test "can edit a journal" do
     visit page_url
-    find(id: dom_id(@journal)).click_link(@journal.title)
+    find("li", id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       click_on "Edit"
     end
@@ -83,23 +83,20 @@ class JournalsTest < ApplicationSystemTestCase
 
   test "can not edit a journal with invalid name" do
     visit page_url
-    find(id: dom_id(@journal)).click_link(@journal.title)
+    find("li", id: dom_id(@journal)).click_link(@journal.title)
     within "#journal-header" do
       click_on "Edit"
     end
     assert_selector "h1", text: "Edit Journal"
     fill_in "journal_title", with: ""
-    click_on "Save Journal"
+    click_on "Save"
     take_screenshot
   end
 
   test "can delete journal" do
     visit page_url
-    find(id: dom_id(@journal)).click_link(@journal.title)
-    within "#journal-header" do
-      page.accept_confirm do
-        click_on "Delete"
-      end
+    page.accept_confirm do
+      find("li", id: dom_id(@journal)).click_link("Delete")
     end
     take_screenshot
     assert_selector "p.notice", text: "Journal was successfully deleted."

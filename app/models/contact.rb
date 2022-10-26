@@ -9,9 +9,9 @@ class Contact < ApplicationRecord
   belongs_to :user
   belongs_to :account
   normalize_attribute :first_name, :last_name, :email, :with => :strip
-  validates_presence_of :first_name, :last_name, on: :create
-  validates_uniqueness_of :phone, scope: :account, :allow_blank => true, on: :create
-  validates_uniqueness_of :email, scope: :account, :allow_blank => true, on: :create
+  validates_presence_of :first_name, :last_name
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
@@ -26,8 +26,8 @@ class Contact < ApplicationRecord
     end
   end
 
-  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "is invalid", :multiline => true }, if: -> { !phone.blank? }, on: :create
-  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }, if: -> { !email.blank? }, on: :create
+  validates :phone, :allow_blank => true, :format => { with: /^[0-9]{10,12}$/, message: "is invalid", :multiline => true }, if: -> { !phone.blank? }
+  validates :email, :allow_blank => true, format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }, if: -> { !email.blank? }
   scope :favorites, -> { where(favorite: true) }
   belongs_to :relation, optional: true
   has_many :tasks, dependent: :destroy

@@ -44,8 +44,8 @@
       <div class="flex mt-4 sm:mt-0  space-x-4 ml-4" >
         <% if policy(contact).edit? %>
           <% if !contact.phone.blank? %>
-            <div>
-              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank">
+            <div >
+              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <i class="fa-brands fa-whatsapp"></i>
@@ -77,7 +77,7 @@
               </a>
             </div>
           <% end %>
-          <div>
+          <label for ="edit">
             <a href="<%= edit_contact_path(contact) %>" title="Edit">
               <span class="icon-span">
                 <!-- Heroicon name: outline/check-badge -->
@@ -87,7 +87,7 @@
                 </svg>
               </span>
             </a>
-          </div>
+          </label>
           <div>
             <% archive = "<span class='icon-span'>
                                                             <!-- Heroicon name: outline/check-badge -->
@@ -104,21 +104,25 @@
           <div class="" id="contact-favorite">
             <ul class="flex list-none">
               <% if !contact.favorite? %>
-                <a title="Favourite">
-                  <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                    <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                      <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                    </svg>
-                  </span>
-                </a>
+                <li id="favorite">
+                  <a title="Favourite" >
+                    <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
+                      <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
+                      </svg>
+                    </span>
+                  </a>
+                </li>
               <% else %>
-                <a title="not-favourite">
-                  <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                      <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                    </svg>
-                  </span>
-                </a>
+                <li id="noyt-favorite">
+                  <a title="not-favourite">
+                    <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                        <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
+                      </svg>
+                    </span>
+                  </a>
+                </li>
               <% end %>
             </ul>
           </div>
@@ -146,18 +150,17 @@
 <% end %>
 </div>
 <div class="pb-4 px-6 -mt-3 flex">
-
   <% if contact.intro? %>
     <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
       <%= contact.intro.upcase_first %>
     </p>
   <% end %>
-  <% if (!@event.blank? || !@call.blank?) %>
-    <p class=" text-sm font-medium text-gray-500 px-1">
+  <% if ((!@event.blank? || !@call.blank?) && contact.intro? ) %>
+    <p class="text-sm font-medium text-gray-500 px-1">
       -    
     </p>
   <% end %>
-  <p class="  text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
+  <p class="text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
     <% if (!event.blank? && !call.blank?) %>
       <%= event.action_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
     <% elsif !event.blank? %>

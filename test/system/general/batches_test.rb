@@ -92,23 +92,13 @@ class BatchesTest < ApplicationSystemTestCase
     within "#show1" do
       assert text @batch.name.titleize
       fill_in "search", with: "Co"
-      find("#batch-contact").click
+      within "#searched_contacts" do
+        first("#batch-contact").click
+      end
       sleep(0.5)
-      click_on "Add"
       within "ul#batch_contacts" do
         assert text "Contact Contact"
       end
-    end
-    take_screenshot
-  end
-
-  test "can not add with invalid contact batch" do
-    visit page_url
-    find("p", text: @batch.name).click
-    sleep(0.1)
-    within "#show1" do
-      click_on "Add"
-      assert text "Please search contact to add"
     end
     take_screenshot
   end
@@ -129,15 +119,16 @@ class BatchesTest < ApplicationSystemTestCase
     take_screenshot
   end
 
-  test "can view profile of any contact" do
+  test "can view profile of any contact on adding" do
     visit page_url
     find("p", text: @batch.name).click
     within "#show1" do
       assert_selector "h1", text: @batch.name
       fill_in "search", with: "Co"
-      find("#batch-contact").click
+      within "#searched_contacts" do
+        first("#batch-contact").click
+      end
       sleep(0.5)
-      click_on "Add"
       within "ul#batch_contacts" do
         find("li", text: "Contact Contact").click
       end

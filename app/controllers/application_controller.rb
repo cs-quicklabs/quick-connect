@@ -154,7 +154,7 @@ class ApplicationController < ActionController::Base
   def invalid_auth_token
     respond_to do |format|
       format.html {
-        redirect_to sign_in_path,
+        redirect_to new_user_session_path,
                     error: "Login invalid or expired"
       }
       format.json { head 401 }
@@ -163,6 +163,9 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
+    if @api_user
+      return @api_user
+    end
     if header = request.headers["Authorization"]
       header = header.split(" ").last
       key = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"

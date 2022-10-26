@@ -14,8 +14,8 @@
             <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
           </div>
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 ">
-            <div>
-              <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" title="View Profile">
+            <label for="profile" >
+              <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" title="View Profile" id="profile">
                 <span class="icon-span">
                   <!-- Heroicon name: outline/check-badge -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -23,7 +23,7 @@
                   </svg>
                 </span>
               </a>
-            </div>
+            </label>
             <% if !contact.phone.blank? %>
               <div >
                 <button type="button"  data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms">
