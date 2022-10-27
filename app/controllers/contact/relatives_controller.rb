@@ -59,6 +59,9 @@ class Contact::RelativesController < Contact::BaseController
   end
 
   def set_relative
+    if @relative
+      return @relative
+    end
     @relative = Relative.find(params[:id])
   end
 end

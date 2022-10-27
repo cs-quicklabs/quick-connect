@@ -48,10 +48,16 @@ class JournalCommentsController < BaseController
   end
 
   def set_comment
+    if @comment
+      return @contact_activity
+    end
     @comment ||= Comment.find(params["id"])
   end
 
   def set_journal
+    if @journal
+      return @journal
+    end
     @journal ||= Journal.find(comment_params["journal_id"])
   end
 end

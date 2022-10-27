@@ -26,6 +26,6 @@ class Api::DashboardController < Api::BaseController
     @reminders.each do |reminder|
       @upcoming_reminders += reminder.upcoming_api
     end
-    render json: { success: true, data: @upcoming_reminders.sort_by { |r| r.second[:reminder] }, message: "Recents were successfully retrieved." } if stale?(@upcoming_reminders)
+    render json: { success: true, data: @upcoming_reminders.sort_by { |r| r.second[:reminder] }, message: "Recents were successfully retrieved." } if stale?(@reminders)
   end
 end

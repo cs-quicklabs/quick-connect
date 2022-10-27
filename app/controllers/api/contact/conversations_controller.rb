@@ -52,6 +52,9 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
   private
 
   def set_conversation
+    if @conversation
+      return @conversation
+    end
     @conversation = Conversation.find(params["id"])
   end
 

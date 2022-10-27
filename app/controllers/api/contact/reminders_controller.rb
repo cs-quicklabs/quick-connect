@@ -53,6 +53,9 @@ class Api::Contact::RemindersController < Api::Contact::BaseController
   private
 
   def set_reminder
+    if @reminder
+      return @reminder
+    end
     @reminder = Reminder.find(params["id"])
   end
 

@@ -63,6 +63,9 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
   private
 
   def set_debt
+    if @debt
+      return @debt
+    end
     @debt = Debt.find(params["id"])
   end
 

@@ -12,10 +12,6 @@ class ContactsController < BaseController
   def new
     authorize :contact
     @contact = Contact.new
-    respond_to do |format|
-      format.html
-      format.csv { send_data Contact.sample, filename: "contacts-sample.csv" }
-    end
   end
 
   def edit
@@ -137,6 +133,9 @@ class ContactsController < BaseController
   private
 
   def set_contact
+    if @contact
+      return @contact
+    end
     @contact ||= Contact.find(params[:id])
   end
 

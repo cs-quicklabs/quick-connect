@@ -65,6 +65,9 @@ class Api::Contact::TasksController < Api::Contact::BaseController
   private
 
   def set_task
+    if @task
+      return @task
+    end
     @task = Task.find(params["id"])
   end
 

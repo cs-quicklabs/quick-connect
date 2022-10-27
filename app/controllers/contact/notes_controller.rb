@@ -56,6 +56,9 @@ class Contact::NotesController < Contact::BaseController
   private
 
   def set_note
+    if @note
+      return @note
+    end
     @note = Note.find(params["id"])
   end
 

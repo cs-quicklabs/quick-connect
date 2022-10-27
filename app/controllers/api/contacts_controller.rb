@@ -92,6 +92,9 @@ class Api::ContactsController < Api::BaseController
   private
 
   def set_contact
+    if @contact
+      return @contact
+    end
     @contact ||= Contact.find(params[:id])
   end
 

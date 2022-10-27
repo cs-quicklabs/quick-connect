@@ -57,6 +57,9 @@ class Contact::ConversationsController < Contact::BaseController
   private
 
   def set_conversation
+    if @converstaion
+      return @conversation
+    end
     @conversation = Conversation.find(params["id"])
   end
 

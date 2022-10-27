@@ -46,6 +46,9 @@ class Api::JournalCommentsController < Api::BaseController
   end
 
   def set_comment
+    if @comment
+      return @comment
+    end
     @comment ||= Comment.find(params["id"])
   end
 

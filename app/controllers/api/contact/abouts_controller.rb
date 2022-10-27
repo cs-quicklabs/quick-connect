@@ -33,6 +33,9 @@ class Api::Contact::AboutsController < Api::Contact::BaseController
   end
 
   def set_about
+    if @about
+      return @about
+    end
     @about = @contact.abouts
   end
 end

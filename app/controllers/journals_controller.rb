@@ -65,6 +65,9 @@ class JournalsController < BaseController
   private
 
   def set_journal
+    if @journal
+      return @journal
+    end
     @journal = Journal.find(params["id"])
   end
 
