@@ -21,4 +21,9 @@ class ContactReflex < ApplicationReflex
     html = render(partial: "shared/phone", locals: { contact: contact })
     morph "#modal", "#{html}"
   end
+
+  def export
+    html = render(partial: "account/export/export")
+    morph "#export", "#{html}"
+  end
 end

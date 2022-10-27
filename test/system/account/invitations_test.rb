@@ -23,6 +23,17 @@ class InvitationsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Sign in to your account"
   end
 
+  test "should have nav bar" do
+    visit page_url
+    assert_selector "#menu", count: 1
+  end
+  test "should have left menu with  users selected" do
+    visit page_url
+    within "#menu" do
+      assert_selector ".selected", text: "Users"
+    end
+  end
+
   test "can add a new invitation" do
     visit page_url
     fill_in "invitation_first_name", with: "invite"

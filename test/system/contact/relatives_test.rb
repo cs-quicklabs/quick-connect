@@ -25,13 +25,14 @@ class ContactRelativesTest < ApplicationSystemTestCase
     visit page_url
     assert_selector "h1", text: "Sign in to your account"
   end
+
   test "can not add an empty relation" do
     visit page_url
     fill_in "search-contacts", with: "Co"
-    find("#add-relation").click
-    assert_selector "#contact-contacts", text: "Select Contact Contact1's relation"
+    first("#add-relation").click
+    assert_text "Select Contact Two's relation"
     click_on "Add Relation"
-    assert_selector "div#error_explanation", text: "Relation can't be blank"
+    assert_selector "div#error_explanation", text: "Relation must exist"
     take_screenshot
   end
 
@@ -39,15 +40,16 @@ class ContactRelativesTest < ApplicationSystemTestCase
     visit page_url
     relation = relations(:father).name
     fill_in "search-contacts", with: "Co"
-    find("#add-relation").click
-    assert_selector "#contact-contacts", text: "Select Contact Contact1's relation"
-    select relation, from: "#relative_relation_id"
+    first("#add-relation").click
+    assert_text "Select Contact Two's relation"
+    select relations(:mother).name, from: "relative_relation_id"
     click_on "Add Relation"
     within "#relatives" do
-      assert_text "Contact Contact1"
+      assert_text "Contact Two"
       assert_text relation
     end
   end
+
   test "can edit a relation" do
     visit page_url
     relation = Relative.includes(:contact).where("first_contact_id=?", @contact.id).first

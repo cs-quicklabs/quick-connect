@@ -47,7 +47,6 @@ class ContactTasksTest < ApplicationSystemTestCase
   test "can check a task" do
     visit page_url
     task = @contact.tasks.first
-
     find("tr", id: dom_id(task)).check "completed"
     take_screenshot
   end
@@ -61,7 +60,7 @@ class ContactTasksTest < ApplicationSystemTestCase
 
   test "can edit a task" do
     visit page_url
-    task = @contact.tasks.where(completed: 0).first
+    task = @contact.tasks.where(completed: 0).last
     assert_text task.title
     find("tr", id: dom_id(task)).click_link("Edit")
     take_screenshot
@@ -70,7 +69,7 @@ class ContactTasksTest < ApplicationSystemTestCase
     take_screenshot
     assert_no_text "Edit Task"
     assert_selector "p.notice", text: "Task was successfully updated."
-    assert_selector "tr##{dom_id(task)}", text: "Task Edited"
+    assert_selector "##{dom_id(task)}", text: "Task Edited"
   end
 
   test "can not edit task with invalid params" do

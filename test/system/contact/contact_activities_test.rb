@@ -28,12 +28,12 @@ class ContactContactActivitiesTest < ApplicationSystemTestCase
 
   test "can add new activity" do
     visit page_url
-    fill_in "contact_activity_title", with: "Some Random Activity Title"
+    fill_in "contact_activity_title", with: "Random Activity Title"
     fill_in "contact_activity_body", with: "Some Random Activity Body"
     fill_in "contact_activity_date", with: Time.now
     select activities(:simple_one).name.upcase_first, from: "contact_activity_activity_id"
     click_on "Add Activity"
-    assert_selector "#contact_activities", text: "Some Random Activity Title"
+    assert_selector "#contact_activities", text: "Random Activity Title"
     take_screenshot
   end
 

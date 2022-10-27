@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   resources :user
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
-  match "/contacts.csv" => "contacts#index", via: :get, defaults: { format: :csv }
+  match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]

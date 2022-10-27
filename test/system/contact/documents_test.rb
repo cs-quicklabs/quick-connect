@@ -53,7 +53,7 @@ class ContactDocumentsTest < ApplicationSystemTestCase
     @document = @contact.documents.first
     visit page_url
     page.accept_confirm do
-      find("turbo-frame", id: dom_id(@document)).click_link("Delete")
+      find("tr", id: dom_id(@document)).click_link("Delete")
     end
     assert_no_selector "##{dom_id(@document)}"
     take_screenshot
@@ -69,13 +69,12 @@ class ContactDocumentsTest < ApplicationSystemTestCase
     visit page_url
     document = @contact.documents.first
     assert_text document.filename
-    find("turbo-frame", id: dom_id(document)).click_link("Edit")
-    within "#documents" do
-      fill_in "document_comments", with: "comments"
-    end
+    find("tr", id: dom_id(document)).click_link("Edit")
+    assert_text "Edit Document"
+    fill_in "document_filename", with: "File"
     take_screenshot
     click_on "Edit Document"
-    assert_selector "##{dom_id(document)}", text: "comments"
+    assert_selector "##{dom_id(document)}", text: "File"
     take_screenshot
   end
 
@@ -83,12 +82,11 @@ class ContactDocumentsTest < ApplicationSystemTestCase
     visit page_url
     document = @contact.documents.first
     assert_text document.filename
-    find("turbo-frame", id: dom_id(document)).click_link("Edit")
+    find("tr", id: dom_id(document)).click_link("Edit")
     take_screenshot
-    within "#documents" do
-      fill_in "document_link", with: nil
-      click_on "Edit Document"
-    end
+    assert_text "Edit Document"
+    fill_in "document_link", with: nil
+    click_on "Edit Document"
     assert_selector "div#error_explanation", text: "Link can't be blank"
     take_screenshot
   end

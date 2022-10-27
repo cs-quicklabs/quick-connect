@@ -30,7 +30,9 @@
   </div>
   <% cache @task do %>
     <div class="text-sm text-gray-700 sm:px-6 lg:px-8">
-      <p><%= @task.body.upcase_first %></p>
+      <%if @task.body%>
+        <p><%= @task.body.upcase_first %></p>
+      <% end %>
     </div>
   <% end %>
   <% if @task.completed? %>

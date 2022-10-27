@@ -61,4 +61,22 @@ class UsersTest < ApplicationSystemTestCase
     assert_text "Original password is not correct"
     assert_text "New password is too short (minimum is 6 characters)"
   end
+
+  test "can reset user " do
+    visit page_url
+    take_screenshot
+    page.accept_confirm do
+      click_on "Reset Account"
+    end
+    assert_text "Your account has been reset successfully."
+  end
+  test "can destroy user " do
+    visit page_url
+    take_screenshot
+    assert_selector "h1", text: "Profile"
+    page.accept_confirm do
+      click_on "Delete Account"
+    end
+    assert_text "Your account has been deleted successfully."
+  end
 end

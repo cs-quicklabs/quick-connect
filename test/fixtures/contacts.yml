@@ -10,7 +10,7 @@ contact:
   
 one:
   first_name: Contact
-  last_name: one
+  last_name: One
   email: contact1@gmail.com
   phone: 0999999999
   account: hansika
@@ -29,7 +29,7 @@ archived:
 
 two:
   first_name: Contact
-  last_name: two
+  last_name: Two
   email: contact2@gmail.com
   phone: 0999999942
   account: hansika
@@ -38,7 +38,7 @@ two:
 
 three:
   first_name: Contact
-  last_name: three
+  last_name: Three
   email: contact3@gmail.com
   phone: 0999999943
   account: hansika
@@ -48,7 +48,7 @@ three:
 
 four:
   first_name: Contact
-  last_name: four
+  last_name: Four
   email: contact4@gmail.com
   phone: 0999999978
   account: hansika
@@ -57,7 +57,7 @@ four:
 
 five:
   first_name: Contact
-  last_name: five
+  last_name: Five
   email: contact5@gmail.com
   phone: 0999999967
   account: hansika
@@ -67,7 +67,7 @@ five:
 
 untracked:
   first_name: Untracked
-  last_name: one
+  last_name: One
   email: contact1@gmail.com
   phone: 0999999999
   account: hansika
