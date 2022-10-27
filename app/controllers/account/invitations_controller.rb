@@ -52,6 +52,9 @@ class Account::InvitationsController < Account::BaseController
   end
 
   def set_invitation
+    if @invitation
+      return @document
+    end
     @invitation = Invitation.find(params[:invitation_id])
   end
 end

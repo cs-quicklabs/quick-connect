@@ -10,8 +10,8 @@ class Contact < ApplicationRecord
   belongs_to :account
   normalize_attribute :first_name, :last_name, :email, :with => :strip
   validates_presence_of :first_name, :last_name
-  validates_uniqueness_of :phone, scope: :account, :allow_blank => true
-  validates_uniqueness_of :email, scope: :account, :allow_blank => true
+  validates_uniqueness_of :phone, scope: :account, :allow_blank => true, if: -> { phone.present? }
+  validates_uniqueness_of :email, scope: :account, :allow_blank => true, if: -> { email.present? }
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
   scope :archived, -> { where(archived: true) }
@@ -19,6 +19,14 @@ class Contact < ApplicationRecord
   scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
   validate :validates
+
+  def should_validate_phone?
+    new_record? || phone.present?
+  end
+
+  def should_validate?
+    new_record? || email.present?
+  end
 
   def validates
     if email.blank? && phone.blank?

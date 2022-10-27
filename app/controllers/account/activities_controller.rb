@@ -51,6 +51,9 @@ class Account::ActivitiesController < Account::BaseController
   private
 
   def set_relation
+    if @activity
+      return @activity
+    end
     @activity ||= Activity.find(params[:id])
   end
 
