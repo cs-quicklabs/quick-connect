@@ -50,6 +50,9 @@ class Api::Account::InvitationsController < Api::Account::BaseController
   end
 
   def set_invitation
+    if @invitation
+      return @invitation
+    end
     @invitation = Invitation.find(params[:invitation_id])
   end
 end

@@ -51,6 +51,9 @@ class Api::Account::LabelsController < Api::Account::BaseController
   private
 
   def set_label
+    if @label
+      return @label
+    end
     @label ||= Label.find(params[:id])
   end
 

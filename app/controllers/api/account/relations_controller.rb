@@ -49,6 +49,9 @@ class Api::Account::RelationsController < Api::Account::BaseController
   private
 
   def set_relation
+    if @relation
+      return @relation
+    end
     @relation ||= Relation.find(params[:id])
   end
 

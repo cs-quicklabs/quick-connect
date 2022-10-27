@@ -51,6 +51,9 @@ class Account::FieldsController < Account::BaseController
   private
 
   def set_field
+    if @field
+      return @field
+    end
     @field ||= Field.find(params[:id])
   end
 

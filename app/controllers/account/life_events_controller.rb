@@ -50,6 +50,9 @@ class Account::LifeEventsController < Account::BaseController
   private
 
   def set_relation
+    if @life_event
+      return @life_event
+    end
     @life_event ||= LifeEvent.find(params[:id])
   end
 

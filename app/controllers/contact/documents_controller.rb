@@ -51,13 +51,13 @@ class Contact::DocumentsController < Contact::BaseController
   private
 
   def set_document
+    if @document
+      return @document
+    end
     @document ||= Document.find(params["id"])
   end
 
   def document_params
-    if @document
-      return @document
-    end
     params.require(:document).permit(:filename, :comments, :link)
   end
 end
