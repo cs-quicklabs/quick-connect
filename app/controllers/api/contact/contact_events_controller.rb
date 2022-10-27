@@ -59,6 +59,9 @@ class Api::Contact::ContactEventsController < Api::Contact::BaseController
   end
 
   def set_event
+    if @contact_activity
+      return @contact_event
+    end
     @contact_event = ContactEvent.find(params[:id])
   end
 end

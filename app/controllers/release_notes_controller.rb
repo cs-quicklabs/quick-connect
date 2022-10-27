@@ -61,6 +61,9 @@ class ReleaseNotesController < BaseController
   private
 
   def set_release_note
+    if @release_note
+      return @release_note
+    end
     @release_note = ReleaseNote.find(params["id"])
   end
 

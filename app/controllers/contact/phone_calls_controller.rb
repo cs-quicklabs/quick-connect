@@ -58,6 +58,9 @@ class Contact::PhoneCallsController < Contact::BaseController
   private
 
   def set_phone_call
+    if @phone_call
+      return @phone_call
+    end
     @phone_call = PhoneCall.find(params["id"])
   end
 

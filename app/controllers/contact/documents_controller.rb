@@ -55,6 +55,9 @@ class Contact::DocumentsController < Contact::BaseController
   end
 
   def document_params
+    if @document
+      return @document
+    end
     params.require(:document).permit(:filename, :comments, :link)
   end
 end

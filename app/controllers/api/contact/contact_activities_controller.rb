@@ -59,6 +59,9 @@ class Api::Contact::ContactActivitiesController < Api::Contact::BaseController
   end
 
   def set_activity
+    if @contact_activity
+      return @contact_activity
+    end
     @contact_activity = ContactActivity.find(params[:id])
   end
 end

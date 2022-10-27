@@ -54,6 +54,9 @@ class Contact::ContactEventsController < Contact::BaseController
   end
 
   def set_event
+    if @contact_event
+      return @contact_event
+    end
     @contact_event = ContactEvent.find(params[:id])
   end
 end

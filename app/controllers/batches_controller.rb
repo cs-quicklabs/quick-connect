@@ -101,6 +101,9 @@ class BatchesController < BaseController
   private
 
   def set_batch
+    if @batch
+      return @batch
+    end
     @batch ||= Batch.find(params[:id])
   end
 

@@ -63,6 +63,9 @@ class Api::Contact::GiftsController < Api::Contact::BaseController
   private
 
   def set_gift
+    if @gift
+      return @gift
+    end
     @gift = Gift.find(params["id"])
   end
 

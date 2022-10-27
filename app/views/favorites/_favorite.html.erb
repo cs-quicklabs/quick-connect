@@ -38,7 +38,7 @@
   </td>
   <td class="table-cell whitespace-nowrap">
     <p class=" text-sm font-normal text-gray-500 truncate">
-    <%if !@event.nil?%>
+    <% if !@event.nil? %>
       <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
       <% end %>
     </p>
