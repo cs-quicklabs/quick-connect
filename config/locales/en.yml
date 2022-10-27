@@ -69,7 +69,7 @@ en:
           one: Contact field type  
       phone_call:
         body:
-          one: Phone call description
+          one: Description
       task:
         body:
           one: Description

@@ -42,7 +42,7 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
   test "can not add an empty phone call" do
     visit page_url
     click_on "Add Phone Call"
-    assert_selector "div#error_explanation", text: "Phone call description can't be blank"
+    assert_selector "div#error_explanation", text: "Description can't be blank"
     take_screenshot
   end
 
@@ -88,7 +88,7 @@ class ContactPhoneCallsTest < ApplicationSystemTestCase
       fill_in "phone_call_body", with: ""
       click_on "Edit Phone Call"
       take_screenshot
-      assert_selector "div#error_explanation", text: "Phone call description can't be blank"
+      assert_selector "div#error_explanation", text: "Description can't be blank"
     end
   end
 end

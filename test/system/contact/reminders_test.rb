@@ -51,6 +51,7 @@ class ContactRemindersTest < ApplicationSystemTestCase
     find("tr", id: dom_id(reminder)).click_link("Edit")
     take_screenshot
     fill_in "reminder_title", with: "Reminder Edited"
+    fill_in "reminder_reminder_date", with: Date.today + 10.days
     click_on "Edit Reminder"
     take_screenshot
     assert_no_text "Edit Reminder"
@@ -64,6 +65,7 @@ class ContactRemindersTest < ApplicationSystemTestCase
     assert_text reminder.title
     find("tr", id: dom_id(reminder)).click_link("Edit")
     fill_in "reminder_title", with: ""
+    fill_in "reminder_reminder_date", with: Date.today + 10.days
     click_on "Edit Reminder"
     take_screenshot
     assert_selector "div#error_explanation", text: "Title can't be blank"

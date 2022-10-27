@@ -63,7 +63,7 @@ class UserController < BaseController
     authorize @user
     respond_to do |format|
       if ResetUser.call(@user).result
-        format.html { redirect_to user_profile_path, notice: "Your account has been reset." }
+        format.html { redirect_to user_profile_path, notice: "Your account has been reset successfully." }
       else
         format.html { redirect_to user_profile_path, notice: "Failed to reset your account." }
       end
@@ -75,7 +75,7 @@ class UserController < BaseController
     respond_to do |format|
       if DestroyUser.call(@user).result
         signed_out = (Devise.sign_out_all_scopes ? sign_out : sign_out(@user))
-        format.html { redirect_to new_user_registration_path(script_name: ""), notice: "User has been deleted." }
+        format.html { redirect_to new_user_registration_path(script_name: ""), notice: "Your account has been deleted successfully." }
       else
         format.html { redirect_to user_profile_path, notice: "Failed to delete user." }
       end

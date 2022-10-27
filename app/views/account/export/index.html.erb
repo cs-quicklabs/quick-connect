@@ -3,8 +3,10 @@
     <%= render "shared/account_menu" %>
     <main class="max-w-xl px-4 pb-12 lg:col-span-6">
       <%= render "shared/form_header", title: "Export Contacts", subtitle: "Export contacts from your account in csv format" %>
-      <div class="mt-4">
-        <%= link_to("Export Contacts", { :controller => :export, :action => :index, format: "csv" }, { :class => "btn-blue ml-0 " }) %>
+      <div class="mt-4" id="button">
+        <button data-reflex="click->Contact#export" class="btn-blue ml-0">Export Contacts</button>
+      </div>
+      <div id="export" class=" py-6 mt-12">
       </div>
     </main>
   </div>

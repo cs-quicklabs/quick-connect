@@ -40,7 +40,7 @@ class ContactGiftsTest < ApplicationSystemTestCase
     visit page_url
     click_on "Add Gift"
     assert_selector "div#error_explanation", text: "Name can't be blank"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Description can't be blank"
     take_screenshot
   end
 

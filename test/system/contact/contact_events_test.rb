@@ -37,6 +37,21 @@ class ContactContactEventsTest < ApplicationSystemTestCase
     take_screenshot
   end
 
+  test "can add new event with reminder" do
+    visit page_url
+    fill_in "contact_event_title", with: "Random Event Title"
+    fill_in "contact_event_body", with: "Some Random Event Body"
+    fill_in "contact_event_date", with: Time.now
+    check "reminder"
+    select life_events(:family_one).name.upcase_first, from: "contact_event_life_event_id"
+    click_on "Add Event"
+    assert_selector "#contact_events", text: "Random Event Title"
+    take_screenshot
+    visit contact_reminders_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+    assert_selector "#reminders", text: "Random Event Title (#{life_events(:family_one).name.upcase_first})"
+    take_screenshot
+  end
+
   test "can not add event with empty params" do
     visit page_url
     click_on "Add Event"
