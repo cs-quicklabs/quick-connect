@@ -17,7 +17,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
     respond_to do |format|
       @batch = Batch.find(params[:id])
       @batch = RemoveContactFromGroup.call(@batch, @api_user, @contact).result
-      format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from batch" } }
+      format.json { render json: { success: true, data: {}, message: "Contact deleted successfully from group" } }
     end
   end
 
@@ -27,7 +27,7 @@ class Api::Contact::BatchesController < Api::Contact::BaseController
       if batch_params[:batch_id]
         @batch = Batch.find(batch_params[:batch_id])
         @batch = AddContactToGroup.call(@batch, @api_user, @contact).result
-        format.json { render json: { batch: @batch, success: true, data: @contact, message: "Contact added successfully in batch" } }
+        format.json { render json: { batch: @batch, success: true, data: @contact, message: "Contact added successfully in group" } }
       else
         format.json {
           render json: { success: false, message: "Please select group" }
