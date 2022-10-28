@@ -3,9 +3,9 @@ class Account::FieldsController < Account::BaseController
 
   def index
     authorize :account
-
     @fields = Field.all.order(:name).order(created_at: :desc)
     @field = Field.new
+    fresh_when @fields
   end
 
   def edit
@@ -14,14 +14,12 @@ class Account::FieldsController < Account::BaseController
 
   def create
     authorize :account
-
     @field = Field.new(field_params)
-
     respond_to do |format|
       if @field.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:fields, partial: "account/fields/field", locals: { field: @field }) +
-                               turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: Field.new, message: "Field was created successfully." })
+                               turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: Field.new, message: "Contact field type was created successfully." })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Field.new, partial: "account/fields/form", locals: { field: @field }) }
@@ -53,6 +51,9 @@ class Account::FieldsController < Account::BaseController
   private
 
   def set_field
+    if @field
+      return @field
+    end
     @field ||= Field.find(params[:id])
   end
 

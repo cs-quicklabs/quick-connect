@@ -24,6 +24,12 @@ class ReleaseNotesTest < ApplicationSystemTestCase
     assert_text "Add Release Note"
   end
 
+  test "can view release notes if logged in" do
+    visit release_path
+    take_screenshot
+    assert_selector "h1", text: "What's New"
+  end
+
   test "can not show index if not logged in" do
     sign_out @user
     visit page_url
@@ -55,11 +61,11 @@ class ReleaseNotesTest < ApplicationSystemTestCase
     click_on "Add Release Note"
     assert_selector "h1", text: "Add New Release Note"
     page.accept_confirm do
-      click_on "Submit Release Note"
+      click_on "Publish Release Note"
     end
     take_screenshot
     assert_selector "div#error_explanation", text: "Title can't be blank"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Description can't be blank"
   end
 
   test "can edit a release_note if not published" do
@@ -72,7 +78,7 @@ class ReleaseNotesTest < ApplicationSystemTestCase
     fill_in "release_note_title", with: "Release Note"
     fill_in_rich_text_area dom_id(@release_note), with: "This is some nugget"
     page.accept_confirm do
-      click_on "Submit Release Note"
+      click_on "Publish Release Note"
     end
     assert_selector "p.notice", text: "Release Note was successfully updated."
   end

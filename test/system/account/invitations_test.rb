@@ -23,19 +23,31 @@ class InvitationsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Sign in to your account"
   end
 
+  test "should have nav bar" do
+    visit page_url
+    assert_selector "#menu", count: 1
+  end
+  test "should have left menu with  users selected" do
+    visit page_url
+    within "#menu" do
+      assert_selector ".selected", text: "Users"
+    end
+  end
+
   test "can add a new invitation" do
     visit page_url
     fill_in "invitation_first_name", with: "invite"
     fill_in "invitation_last_name", with: "invite1"
     fill_in "invitation_email", with: "invite1@gmail.com"
     click_on "Save"
+    sleep(0.5)
     take_screenshot
     assert_text "Thank you, invitation sent."
     assert_selector "#invitations", text: "Invite Invite1"
     sign_out(@user)
-    assert_emails 1 do
-      click_on "Accept Invitation"
-    end
+    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
+    link = doc.css("a").first.values.first
+    visit link
     fill_in "user_password", with: "password"
     fill_in "user_password_confirmation", with: "password"
     click_on "Set password and login"
@@ -49,7 +61,7 @@ class InvitationsTest < ApplicationSystemTestCase
     take_screenshot
     assert_text "First name can't be blank"
     assert_text "Last name can't be blank"
-    assert_text "Email is invalid"
+    assert_text "E-mail is invalid"
   end
 
   test "can not add a duplicate invitation user email" do
@@ -60,9 +72,9 @@ class InvitationsTest < ApplicationSystemTestCase
     fill_in "invitation_email", with: user.email
     click_on "Save"
     take_screenshot
-    assert_text "Email is already registered"
+    assert_text "E-mail is already registered"
   end
-  test "can not add a duplicate invitation  email" do
+  test "can not add a duplicate invite  email" do
     visit page_url
     invitation = invitations(:one)
     fill_in "invitation_first_name", with: "invite"
@@ -70,8 +82,8 @@ class InvitationsTest < ApplicationSystemTestCase
     fill_in "invitation_email", with: invitation.email
     click_on "Save"
     take_screenshot
-    assert_text "Email has already been taken"
-    assert_text "Email is already registered"
+    assert_text "E-mail has already been taken"
+    assert_text "E-mail is already registered"
   end
 
   test "can deactivate user" do
@@ -94,17 +106,18 @@ class InvitationsTest < ApplicationSystemTestCase
     invitation = invitations(:one)
     within "turbo-frame#invitation_#{invitation.id}" do
       page.accept_confirm do
-        click_on("activate")
+        click_on("Activate")
       end
       assert text "Deactivate"
     end
+    sleep(0.5)
     sign_out(@user)
-    assert_emails 1 do
-      click_on "Accept Invitation"
-    end
+    doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
+    link = doc.css("a").first.values.first
+    visit link
     fill_in "user_password", with: "password"
     fill_in "user_password_confirmation", with: "password"
-    click_on "Set Password And Login"
+    click_on "Set password and login"
     take_screenshot
     assert_selector "p.notice", text: "Your password was set successfully. You are now signed in."
   end

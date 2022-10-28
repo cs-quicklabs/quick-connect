@@ -5,7 +5,7 @@ class JournalsController < BaseController
   def index
     authorize Journal
     @pagy, @journals = pagy_nil_safe(params, Journal.all.order(created_at: :desc), items: LIMIT)
-    render_partial("journals/journal", collection: @journals) if (!@rating.nil? and stale?(@journals + [@rating]))
+    render_partial("journals/journal", collection: @journals, cached: true) if (!@rating.nil? and stale?(@journals + [@rating]))
   end
 
   def destroy
@@ -65,6 +65,9 @@ class JournalsController < BaseController
   private
 
   def set_journal
+    if @journal
+      return @journal
+    end
     @journal = Journal.find(params["id"])
   end
 

@@ -5,6 +5,7 @@ class Account::LifeEventsController < Account::BaseController
     authorize :account
     @life_events = LifeEvent.all.joins("INNER JOIN groups ON groups.id = life_events.group_id").order("groups.name ASC").order(:name).group_by(&:group)
     @life_event = LifeEvent.new
+    fresh_when LifeEvent.all
   end
 
   def edit
@@ -18,7 +19,7 @@ class Account::LifeEventsController < Account::BaseController
       if @life_event.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:life_events, partial: "account/life_events/life_event", locals: { life_event: @life_event }) +
-                               turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: LifeEvent.new, message: "Life Event was created successfully." })
+                               turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: LifeEvent.new, message: "Life event was created successfully." })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: @life_event }) }
@@ -49,6 +50,9 @@ class Account::LifeEventsController < Account::BaseController
   private
 
   def set_relation
+    if @life_event
+      return @life_event
+    end
     @life_event ||= LifeEvent.find(params[:id])
   end
 

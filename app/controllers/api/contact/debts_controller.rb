@@ -5,7 +5,7 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
     authorize [:api, @contact, Debt]
     @debt = Debt.new
     @pagy, @debts = pagy_nil_safe(params, @contact.debts.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @debts, message: "Contact debts" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @debts, message: "Contact debts" } if stale?(@debts + [@contact])
   end
 
   def destroy
@@ -63,6 +63,9 @@ class Api::Contact::DebtsController < Api::Contact::BaseController
   private
 
   def set_debt
+    if @debt
+      return @debt
+    end
     @debt = Debt.find(params["id"])
   end
 

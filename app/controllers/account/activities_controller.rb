@@ -5,6 +5,7 @@ class Account::ActivitiesController < Account::BaseController
     authorize :account
     @activities = Activity.all.joins("INNER JOIN groups ON groups.id = activities.group_id").order("groups.name ASC").order(:name).group_by(&:group)
     @activity = Activity.new
+    fresh_when Activity.all
   end
 
   def edit
@@ -50,6 +51,9 @@ class Account::ActivitiesController < Account::BaseController
   private
 
   def set_relation
+    if @activity
+      return @activity
+    end
     @activity ||= Activity.find(params[:id])
   end
 

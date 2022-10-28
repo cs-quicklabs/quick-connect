@@ -27,7 +27,7 @@
       </label>
       <select  class="form-text-field mt-1" name="batch_id" id="batch_id">
         <option value="" >Select Group</option>
-        <% if groups.count > 0 %>
+        <% if !groups.nil? %>
           <% groups.each do |group| %>
             <li > <option value="<%= group.id %>"><%= group.name.titleize %>
               <% end %>

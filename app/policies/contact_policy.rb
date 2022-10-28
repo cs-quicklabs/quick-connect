@@ -53,4 +53,8 @@ class ContactPolicy < ApplicationPolicy
   def untrack?
     true
   end
+
+  def import?
+    true
+  end
 end

@@ -1,10 +1,10 @@
 class Api::Account::ActivitiesController < Api::Account::BaseController
-  before_action :set_relation, only: %i[ show edit update destroy ]
+  before_action :set_activity, only: %i[ show edit update destroy ]
 
   def index
     authorize [:api, :account]
     @activities = Activity.all.includes(:group).order(:name)
-    render json: { success: true, data: @activities, message: "Activities were successfully retrieved." }
+    render json: { success: true, data: @activities, message: "Activities were successfully retrieved." } if stale?(@activities)
   end
 
   def new
@@ -52,7 +52,10 @@ class Api::Account::ActivitiesController < Api::Account::BaseController
 
   private
 
-  def set_relation
+  def set_activity
+    if @activity
+      return @activity
+    end
     @activity ||= Activity.find(params[:id])
   end
 

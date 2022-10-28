@@ -4,7 +4,7 @@ class Api::JournalsController < Api::BaseController
   def index
     authorize [:api, Journal]
     @pagy, @journals = pagy_nil_safe(params, Journal.all.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @journals.as_json(:include => [:comments]), message: "Journals were successfully retrieved" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @journals.as_json(:include => [:comments]), message: "Journals were successfully retrieved" } if stale?(@journals)
   end
 
   def destroy
@@ -52,6 +52,9 @@ class Api::JournalsController < Api::BaseController
   private
 
   def set_journal
+    if @journal
+      return @journal
+    end
     @journal = Journal.find(params["id"])
   end
 

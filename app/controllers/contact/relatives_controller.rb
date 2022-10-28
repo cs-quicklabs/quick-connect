@@ -5,7 +5,7 @@ class Contact::RelativesController < Contact::BaseController
     authorize [@contact, Relative]
     @relative = Relative.new
     @relation = ""
-    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id), items: LIMIT)
+    @pagy, @relatives = pagy_nil_safe(params, Relative.includes(:first_contact, :contact).where("first_contact_id=? OR contact_id=?", @contact.id, @contact.id), items: LIMIT)
     render_partial("contact/relatives/relative", collection: @relatives) if stale?(@relatives + [@contact])
   end
 
@@ -59,6 +59,9 @@ class Contact::RelativesController < Contact::BaseController
   end
 
   def set_relative
+    if @relative
+      return @relative
+    end
     @relative = Relative.find(params[:id])
   end
 end

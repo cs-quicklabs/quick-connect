@@ -29,7 +29,6 @@ class ContactNotesTest < ApplicationSystemTestCase
 
   test "can add a new note" do
     visit page_url
-    fill_in "note_title", with: "Title"
     fill_in "note_body", with: "Added some note"
     click_on "Add Note"
     within "#notes" do
@@ -41,7 +40,7 @@ class ContactNotesTest < ApplicationSystemTestCase
   test "can not add an empty note" do
     visit page_url
     click_on "Add Note"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Description can't be blank"
     take_screenshot
   end
 
@@ -69,7 +68,6 @@ class ContactNotesTest < ApplicationSystemTestCase
     find("turbo-frame", id: dom_id(note)).click_link("Edit")
     take_screenshot
     within "#notes" do
-      fill_in "note_title", with: "Title"
       fill_in "note_body", with: "Noted Edited"
       click_on "Edit Note"
       take_screenshot
@@ -86,7 +84,7 @@ class ContactNotesTest < ApplicationSystemTestCase
       fill_in "note_body", with: ""
       click_on "Edit Note"
       take_screenshot
-      assert_selector "div#error_explanation", text: "Body can't be blank"
+      assert_selector "div#error_explanation", text: "Description can't be blank"
     end
   end
 end

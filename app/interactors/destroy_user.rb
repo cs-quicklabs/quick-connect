@@ -27,7 +27,7 @@ class DestroyUser < Patterns::Service
   private
 
   def delete_contacts
-    Contact.all.delete_all
+    Contact.all.destroy_all
   end
 
   def delete_journals

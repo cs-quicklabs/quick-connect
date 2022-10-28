@@ -10,7 +10,8 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: regular.email
     fill_in "user_password", with: "password"
     click_on "Log In"
-    assert_current_path(root_path(script_name: "/#{regular.account.id}"))
+    sleep(0.5)
+    assert_current_path(dashboard_path(script_name: "/#{regular.account.id}"))
     take_screenshot
   end
 
@@ -19,7 +20,6 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_session_path
     click_on "Forgot your password?"
     fill_in "user_email", with: regular.email
-
     assert_emails 1 do
       click_on "Send Me Reset Password Instructions"
       sleep(0.5)
@@ -39,14 +39,12 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_registration_path
     fill_in "user_first_name", with: "Aashish"
     fill_in "user_last_name", with: "Dhawan"
-    fill_in "user_email", with: "awesome@crownstack.com"
+    fill_in "user_email", with: "awesome1@crownstack.com"
     fill_in "user_password", with: "Awesome@2021!"
     fill_in "user_password_confirmation", with: "Awesome@2021!"
     assert_emails 1 do
-      within "#sign_up_form" do
-        click_on "Sign Up"
-      end
-      sleep(4.0)
+      click_on "Sign Up"
+      sleep(0.5)
     end
     take_screenshot
     assert_selector "p.notice", text: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
@@ -54,7 +52,7 @@ class OnboardingTest < ApplicationSystemTestCase
     link = doc.css("a").first.values.first
     visit link
     assert_selector "p.notice", text: "Your email address has been successfully confirmed."
-    fill_in "user_email", with: "awesome@crownstack.com"
+    fill_in "user_email", with: "awesome1@crownstack.com"
     fill_in "user_password", with: "Awesome@2021!"
     click_on "Log In"
     assert_selector "p.notice", text: "Signed in successfully."
@@ -91,7 +89,6 @@ class OnboardingTest < ApplicationSystemTestCase
       sleep(0.5)
     end
     take_screenshot
-
     assert_selector "p.notice", text: "You will receive an email with instructions for how to confirm your email address in a few minutes."
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
     link = doc.css("a").first.values.first

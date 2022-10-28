@@ -2,8 +2,9 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   include Pagy::Backend
+
   respond_to :html
-  protect_from_forgery with: :null_session, if: :json_request?
+  protect_from_forgery with: :null_session
   protect_from_forgery with: :exception, unless: :json_request?
 
   skip_before_action :verify_authenticity_token, if: :json_request?
@@ -11,7 +12,8 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   rescue_from ActionController::InvalidAuthenticityToken,
-              with: :invalid_auth_token
+              with: :token_verification
+  rescue_from ActionController::InvalidAuthenticityToken, with: :token_verification
   rescue_from Pundit::NotDefinedError, with: :record_not_found
   rescue_from ActiveRecord::InvalidForeignKey, with: :show_referenced_alert
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
@@ -146,23 +148,13 @@ class ApplicationController < ActionController::Base
   # Use api_user Devise scope for JSON access
   def authenticate_user!(*args)
     super and return unless args.blank?
-    if json_request?
-      authenticate_api_user!
-    elsif header = request.headers["Authorization"]
-      authenticate_user
-    else
-      super
-    end
-  end
-
-  def authenticate_user
-    set_current_user
+    json_request? ? authenticate_api_user! : super
   end
 
   def invalid_auth_token
     respond_to do |format|
       format.html {
-        redirect_to sign_in_path,
+        redirect_to new_user_session_path,
                     error: "Login invalid or expired"
       }
       format.json { head 401 }
@@ -171,6 +163,9 @@ class ApplicationController < ActionController::Base
 
   # So we can use Pundit policies for api_users
   def set_current_user
+    if @api_user
+      return @api_user
+    end
     if header = request.headers["Authorization"]
       header = header.split(" ").last
       key = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"

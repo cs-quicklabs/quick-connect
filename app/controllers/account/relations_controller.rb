@@ -5,6 +5,7 @@ class Account::RelationsController < Account::BaseController
     authorize :account
     @relations = Relation.all.order(:name).order(created_at: :desc)
     @relation = Relation.new
+    fresh_when @relations
   end
 
   def edit
@@ -50,6 +51,9 @@ class Account::RelationsController < Account::BaseController
   private
 
   def set_relation
+    if @relation
+      return @relation
+    end
     @relation ||= Relation.find(params[:id])
   end
 

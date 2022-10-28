@@ -1,12 +1,15 @@
 class BaseController < ApplicationController
+  protect_from_forgery with: :exception
   before_action :set_user, only: %i[ index show edit update destroy create new contacts events deactivate activate add remove ]
   before_action :authenticate_user!
   before_action :authenticate_account!, if: :http_request?
   after_action :verify_authorized
+
+  skip_before_action :authenticate_account!, :authenticate_user!, :only => [:release]
   include Pagy::Backend
 
   def authenticate_account!
-    raise Pundit::NotAuthorizedError unless Current.account
+    raise Pundit::NotAuthorizedError unless current_user.account == Current.account
   end
 
   def pagy_nil_safe(params, collection, vars = {})

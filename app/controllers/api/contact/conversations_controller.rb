@@ -6,7 +6,7 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
 
     @conversation = Conversation.new
     @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(date: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @conversations.as_json(:include => :field), message: "Conversations fetched successfully" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @conversations.as_json(:include => :field), message: "Conversations fetched successfully" } if stale?(@conversations + [@contact])
   end
 
   def destroy
@@ -52,6 +52,9 @@ class Api::Contact::ConversationsController < Api::Contact::BaseController
   private
 
   def set_conversation
+    if @conversation
+      return @conversation
+    end
     @conversation = Conversation.find(params["id"])
   end
 

@@ -1,0 +1,13 @@
+  <main class="pb-10  max-w-7xl lg:py-12 lg:px-8 mx-auto z-0">
+  <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+    <%= render "shared/account_menu" %>
+    <main class="max-w-xl px-4 pb-12 lg:col-span-6">
+      <%= render "shared/form_header", title: "Export Contacts", subtitle: "Export contacts from your account in csv format" %>
+      <div class="mt-4" id="button">
+        <button data-reflex="click->Contact#export" class="btn-blue ml-0">Export Contacts</button>
+      </div>
+      <div id="export" class="py-6 mt-4">
+      </div>
+    </main>
+  </div>
+</main>

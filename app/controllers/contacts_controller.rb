@@ -6,12 +6,11 @@ class ContactsController < BaseController
   def index
     authorize :contact
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    render_partial("contacts/contact", collection: @contacts) if stale?(@contacts)
+    render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 
   def new
     authorize :contact
-
     @contact = Contact.new
   end
 
@@ -27,6 +26,36 @@ class ContactsController < BaseController
         format.html { redirect_to contact_abouts_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
+      end
+    end
+  end
+
+  def import
+    authorize :contact
+    @contacts = []
+    respond_to do |format|
+      if params[:contact]
+        @contacts = Contact.import(file_params[:filename], current_user)
+        if !params[:commit]
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.update(:imported_contacts, partial: "account/import/contact", locals: { contacts: @contacts })
+          }
+        else
+          @import = Contact.save_all(@contacts)
+          if @import > 1
+            Event.create(user: current_user, action: "imported", action_for_context: "imported #{@import} contacts via csv")
+            format.html { redirect_to account_import_contacts_path, notice: "Imported #{@import} contacts" }
+          elsif @import == 1
+            Event.create(user: current_user, action: "imported", action_for_context: "imported #{@import} contact via csv")
+            format.html { redirect_to account_import_contacts_path, notice: "Imported #{@import} contact" }
+          else
+            format.html { redirect_to account_import_contacts_path, :alert => "There were no contacts imported from your file" }
+          end
+        end
+      else
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(:form, partial: "account/import/form", locals: { messages: "Please upload file" })
+        }
       end
     end
   end
@@ -84,7 +113,7 @@ class ContactsController < BaseController
     authorize :contact, :index?
 
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.untracked.order(archived_on: :desc), items: LIMIT)
-    render_partial("contacts/untracked_contact", collection: @contacts, cached: true) if stale?(@contacts)
+    render_partial("contacts/untracked_contact", collection: @contacts, cached: false) if stale?(@contacts)
   end
 
   def untrack
@@ -104,10 +133,17 @@ class ContactsController < BaseController
   private
 
   def set_contact
+    if @contact
+      return @contact
+    end
     @contact ||= Contact.find(params[:id])
   end
 
+  def file_params
+    params.require(:contact).permit(:filename)
+  end
+
   def contact_params
-    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :birthday, :address, :about, :relation_id, :intro)
+    params.require(:contact).permit(:first_name, :last_name, :email, :phone, :relation_id, :intro)
   end
 end

@@ -6,7 +6,7 @@ class Api::ContactsController < Api::BaseController
   def index
     authorize [:api, :contact]
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.order(:first_name), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Contacts were successfully retrieved." }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @contacts, message: "Contacts were successfully retrieved." } if stale?(@contacts)
   end
 
   def edit
@@ -92,6 +92,9 @@ class Api::ContactsController < Api::BaseController
   private
 
   def set_contact
+    if @contact
+      return @contact
+    end
     @contact ||= Contact.find(params[:id])
   end
 

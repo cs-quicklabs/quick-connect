@@ -24,6 +24,10 @@ class Api::BaseController < ApplicationController
 
   private
 
+  def authenticate_user
+    set_current_user
+  end
+
   def json_request?
     request.format.json?
   end

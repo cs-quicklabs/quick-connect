@@ -51,7 +51,7 @@ class ContactAboutsTest < ApplicationSystemTestCase
         page.accept_confirm do
           click_on("Delete")
         end
-        assert_text "Not added"
+        assert_text "-"
       end
     end
     take_screenshot

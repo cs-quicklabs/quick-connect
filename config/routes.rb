@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   resources :user
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
+  match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
@@ -28,6 +29,7 @@ Rails.application.routes.draw do
     resources :documents, module: "contact", except: [:show]
     collection do
       get :form
+      post :import
     end
     resources :gifts, module: "contact", except: [:show]
     resources :batches, module: "contact", except: [:show, :new, :update]
@@ -70,6 +72,8 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    get "/export", to: "export#index", as: "export_contacts"
+    get "/import", to: "import#index", as: "import_contacts"
     resources :invitations, except: [:show, :new] do
       get "/deactivate", to: "invitations#deactivate", as: "deactivate"
       get "/activate", to: "invitations#activate", as: "activate"
@@ -168,10 +172,6 @@ Rails.application.routes.draw do
       resources :profile, module: "contact", only: [:index]
       resources :documents, module: "contact", except: [:show]
       resources :batches, module: "contact", except: [:show, :update]
-      get "/label/:id", to: "contact/profile#label"
-      get "/remove_label/:id", to: "contact/profile#remove_label"
-      get "/relation/:id", to: "contact/profile#relation"
-      get "/remove_relation", to: "contact/profile#remove_relation"
       get "/favorite", to: "contact/profile#favorite"
       resources :relatives, module: "contact", except: [:show]
       resources :abouts, module: "contact", except: [:show]

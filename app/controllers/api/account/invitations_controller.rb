@@ -4,7 +4,7 @@ class Api::Account::InvitationsController < Api::Account::BaseController
   def index
     authorize :account
     @invitations = Invitation.all.order(created_at: :desc)
-    render json: { success: true, data: @invitations.as_json(:include => [:user, :sender]), message: "Invitations were successfully retrieved." }
+    render json: { success: true, data: @invitations.as_json(:include => [:user, :sender]), message: "Invitations were successfully retrieved." } if stale?(@invitations)
   end
 
   def create
@@ -50,6 +50,9 @@ class Api::Account::InvitationsController < Api::Account::BaseController
   end
 
   def set_invitation
+    if @invitation
+      return @invitation
+    end
     @invitation = Invitation.find(params[:invitation_id])
   end
 end

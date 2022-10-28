@@ -36,14 +36,14 @@ class LifeEventsTest < ApplicationSystemTestCase
     fill_in "life_event_name", with: "played a sport together"
     click_on "Save"
     take_screenshot
-    assert_text "Life Event was created successfully"
+    assert_text "Life event was created successfully"
     assert_selector "#life_event_name", text: ""
   end
 
   test "can not add an empty life event" do
     visit page_url
     click_on "Save"
-    assert_selector "div#error_explanation", text: "Name can't be blank"
+    assert_selector "div#error_explanation", text: "Event name can't be blank"
     take_screenshot
   end
 
@@ -52,7 +52,7 @@ class LifeEventsTest < ApplicationSystemTestCase
     fill_in "life_event_name", with: life_events(:family_one).name
     click_on "Save"
     take_screenshot
-    assert_text "Name has already been taken"
+    assert_text "Event name has already been taken"
   end
 
   test "can visit edit page" do
@@ -74,12 +74,25 @@ class LifeEventsTest < ApplicationSystemTestCase
 
   test "can delete a  life event" do
     visit page_url
-    life_event = life_events(:family_two)
+    life_event = life_events(:family_three)
     assert_selector "li", text: life_event.name
     page.accept_confirm do
       find("li", text: life_event.name).click_on("Delete")
     end
     assert_no_selector "li", text: life_event.name
+  end
+
+  test "can not delete a life event" do
+    visit page_url
+    life_event = life_events(:family_two)
+    assert_selector "li", text: life_event.name
+    page.accept_confirm do
+      find("li", text: life_event.name).click_on("Delete")
+    end
+    assert_text "Unable to Delete Record"
+    click_on "Cancel"
+    assert_no_text "Unable to Delete Record"
+    assert_selector "li", text: life_event.name
   end
 
   test "can not edit life event with existing name" do
@@ -92,7 +105,7 @@ class LifeEventsTest < ApplicationSystemTestCase
       fill_in "life_event_name", with: two.name
       click_on "Save"
       take_screenshot
-      assert_text "Name has already been taken"
+      assert_text "Event name has already been taken"
     end
   end
 end

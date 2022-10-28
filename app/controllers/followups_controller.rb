@@ -22,6 +22,6 @@ class FollowupsController < BaseController
         end
       end
     end
-    render_partial("followups/card", collection: followups) if stale?(followups)
+    render_partial("followups/card", collection: followups, cached: false) if stale?(followups)
   end
 end

@@ -5,7 +5,7 @@ class Api::Contact::GiftsController < Api::Contact::BaseController
     authorize [:api, @contact, Gift]
     @gift = Gift.new
     @pagy, @gifts = pagy_nil_safe(params, @contact.gifts.order(created_at: :desc), items: LIMIT)
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @gifts, message: "Contact gifts" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @gifts, message: "Contact gifts" } if stale?(@gifts + [@contact])
   end
 
   def destroy
@@ -63,6 +63,9 @@ class Api::Contact::GiftsController < Api::Contact::BaseController
   private
 
   def set_gift
+    if @gift
+      return @gift
+    end
     @gift = Gift.find(params["id"])
   end
 

@@ -6,8 +6,8 @@
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
-        <div class="cursor-pointer flex-1 min-w-0 hover:underline"  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" >     
-          <p class="text-sm font-medium text-gray-900" ><%= contact.display_name %></p>
+        <div class="cursor-pointer flex-1 min-w-0 "  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" >     
+          <p class="text-sm font-medium text-gray-900 hover:underline" ><%= contact.display_name %></p>
           <p class="text-sm text-gray-500 truncate">
             <% if !contact.phone.blank? %>
               <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
@@ -24,11 +24,11 @@
           </p>
         </div>
         <div class="">
-              <%= link_to "Delete", " #", class: "btn-inline-delete", data: {
-                                            controller: "confirmation",
-                                            "confirmation-message-value": "Are you sure you want to delete contact from group",
-                                            action: "confirmation#confirm", reflex: "click->Batch#remove", contact: contact.id, batch: batch.id,
-                                          } %>
+          <%= link_to "Delete", " #", class: "btn-inline-delete", data: {
+                                        controller: "confirmation",
+                                        "confirmation-message-value": "Are you sure you want to delete contact from group",
+                                        action: "confirmation#confirm", reflex: "click->Batch#remove", contact: contact.id, batch: batch.id,
+                                      } %>
         </div>
       </div>
     </li>

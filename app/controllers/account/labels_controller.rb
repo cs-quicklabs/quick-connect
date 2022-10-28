@@ -3,9 +3,9 @@ class Account::LabelsController < Account::BaseController
 
   def index
     authorize :account
-
     @labels = Label.all.order(:name).order(created_at: :desc)
     @label = Label.new
+    fresh_when @labels
   end
 
   def edit
@@ -14,9 +14,7 @@ class Account::LabelsController < Account::BaseController
 
   def create
     authorize :account
-
     @label = Label.new(label_params)
-
     respond_to do |format|
       if @label.save
         format.turbo_stream {
@@ -53,6 +51,9 @@ class Account::LabelsController < Account::BaseController
   private
 
   def set_label
+    if @label
+      return @label
+    end
     @label ||= Label.find(params[:id])
   end
 

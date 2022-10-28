@@ -5,6 +5,7 @@ class Account::InvitationsController < Account::BaseController
     authorize :account
     @invitations = Invitation.all.order(created_at: :desc)
     @invitation = Invitation.new
+    fresh_when @invitations
   end
 
   def create
@@ -51,6 +52,9 @@ class Account::InvitationsController < Account::BaseController
   end
 
   def set_invitation
+    if @invitation
+      return @document
+    end
     @invitation = Invitation.find(params[:invitation_id])
   end
 end

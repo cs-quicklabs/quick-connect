@@ -4,7 +4,7 @@ class ReleaseNotesController < BaseController
   def index
     authorize ReleaseNote
     @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.order(created_at: :desc), items: LIMIT)
-    render_partial("release_notes/release_note", collection: @release_notes) if stale?(@release_notes)
+    render_partial("release_notes/release_note", collection: @release_notes, cached: true) if stale?(@release_notes)
   end
 
   def destroy
@@ -18,7 +18,7 @@ class ReleaseNotesController < BaseController
   def release
     authorize ReleaseNote
     @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.published.order(created_at: :desc), items: LIMIT)
-    render_partial("release_notes/release_note", collection: @release_notes) if stale?(@release_notes)
+    render_partial("release_notes/release_note", collection: @release_notes, cached: true) if stale?(@release_notes)
   end
 
   def new
@@ -61,6 +61,9 @@ class ReleaseNotesController < BaseController
   private
 
   def set_release_note
+    if @release_note
+      return @release_note
+    end
     @release_note = ReleaseNote.find(params["id"])
   end
 

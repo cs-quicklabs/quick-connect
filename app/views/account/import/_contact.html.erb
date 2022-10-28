@@ -1,0 +1,52 @@
+<div class=" py-6 mt-12">
+  <h3 class="text-sm font-medium text-gray-700 text-center ">Imported Contacts</h3>
+</div>
+
+<% if contacts.size > 0 %>
+<ul role="list" class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2" >
+  <% contacts.each do |contact| %>
+    <% if !contact.nil? %>
+      <% contact = contact.decorate %>
+      <li  id= "<%= dom_id(contact) %>" class="hover:bg-gray-50 ">
+        <button type="button" class="group flex w-full items-center justify-between space-x-1 rounded-full border border-gray-300 p-2 text-left shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <span class="flex min-w-0 flex-1 items-center space-x-2">
+            <span class="block flex-shrink-0">
+              <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
+            </span>
+            <span class="block min-w-0 flex-1">
+              <span class="block truncate text-sm font-medium text-gray-900"><%= contact.display_name %></span>
+              <span class="block truncate text-sm font-medium text-gray-500">
+                <% if !contact.phone.blank? %>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                  </svg>
+                  <%= contact.phone %>
+                <% else %>
+                  <svg class="inline-flex" style="width: .8rem;height:.8rem" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                  </svg>
+                  <%= contact.email %>
+                <% end %>
+              </span>
+            </span>
+          </span>
+        </button>
+      </li>
+      <% end %>
+
+  <% end %>
+  </ul>
+        <% else %>
+      <div class="w-full text-center sm:rounded-lg place-content-center">
+                  <div class="px-4 py-5 sm:p-6">
+                    <h3 class="text-lg font-medium leading-6 text-center text-gray-900">
+                      No result found
+                    </h3>
+                    <div class="mt-2 text-sm text-center text-gray-500">
+                      <p>We have not found any contacts from the fie uploaded.Please upload another file.</p>
+                    </div>
+                  </div>
+                </div>
+    <% end %>
+

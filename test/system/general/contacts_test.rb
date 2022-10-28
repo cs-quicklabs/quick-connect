@@ -13,8 +13,12 @@ class ContactsTest < ApplicationSystemTestCase
     contacts_url(script_name: "/#{@account.id}")
   end
 
-  def contacts_page_url
-    contacts_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+  def contact_page_url
+    contact_abouts_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+  end
+
+  def edit_contact_page_url
+    edit_contact_url(script_name: "/#{@account.id}", id: @contact.id)
   end
 
   test "can show index if logged in" do
@@ -34,11 +38,6 @@ class ContactsTest < ApplicationSystemTestCase
     visit page_url
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
-    within "#contact-header" do
-      assert_text "View Profile"
-      assert_text "Message"
-      assert_text "Email"
-    end
     take_screenshot
   end
 
@@ -47,7 +46,7 @@ class ContactsTest < ApplicationSystemTestCase
     click_on "Add Contact"
     fill_in "contact_first_name", with: "contact"
     fill_in "contact_last_name", with: "contact"
-    fill_in "contact_email", with: "contact@gmail.com"
+    fill_in "contact_email", with: "contact7@gmail.com"
     fill_in "contact_phone", with: "9050687378"
     click_on "Save"
     take_screenshot
@@ -63,9 +62,7 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Add New Contact"
     assert_selector "div#error_explanation", text: "First name can't be blank"
     assert_selector "div#error_explanation", text: "Last name can't be blank"
-    assert_selector "div#error_explanation", text: "Phone number can't be blank"
-    assert_selector "div#error_explanation", text: "Phone number is not a number"
-    assert_selector "div#error_explanation", text: "Phone number is too short (minimum is 10 characters)"
+    assert_selector "div#error_explanation", text: "Phone number or E-mail can't be blank"
   end
 
   test "can edit a contact" do
@@ -73,10 +70,10 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      click_on "View Profile"
+      find('label[for="profile"]').click
     end
     within "#contact-header" do
-      click_on "Edit"
+      find('label[for="edit"]').click
     end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_first_name", with: "contact"
@@ -91,18 +88,17 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      click_on "View Profile"
+      find('label[for="profile"]').click
     end
     within "#contact-header" do
-      click_on "Edit"
+      find('label[for="edit"]').click
     end
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_phone", with: "phone"
     click_on "Save"
     take_screenshot
     assert_selector "h1", text: "Edit Contact"
-    assert_selector "div#error_explanation", text: "Phone number is not a number"
-    assert_selector "div#error_explanation", text: "Phone number is too short (minimum is 10 characters)"
+    assert_selector "div#error_explanation", text: "Phone number is invalid"
   end
 
   test "can add label" do
@@ -110,48 +106,17 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      click_on "View Profile"
+      find('label[for="profile"]').click
     end
     within "#contact-header" do
       click_on "add"
     end
     take_screenshot
-
     click_on Label.first.name
     assert_selector "span", text: Label.first.name
     take_screenshot
     find("div", id: "contact-labels").click_button("remove")
     assert_no_selector "span", text: Label.first.name
-    take_screenshot
-  end
-
-  test "can add relation" do
-    visit page_url
-    find("li", id: dom_id(@contact)).click
-    assert_selector "h1", text: @contact.decorate.display_name
-    within "#contact-header" do
-      click_on "View Profile"
-    end
-    within "#contact-header" do
-      click_on "menu-button"
-    end
-    click_on Relation.first.name
-    assert_selector "span", text: @contact.relation.name
-    take_screenshot
-  end
-
-  test "can remove relation" do
-    visit page_url
-    find("li", id: dom_id(@contact)).click
-    assert_selector "h1", text: @contact.decorate.display_name
-    within "#contact-header" do
-      click_on "View Profile"
-    end
-    within "#contact-header" do
-      find("div", id: "contact-relation").click_button("remove")
-    end
-
-    assert_no_selector "span", text: Relation.first.name
     take_screenshot
   end
 
@@ -161,7 +126,7 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "h1", text: @contact.decorate.display_name
     favorite = !@contact.favorite
     within "#contact-header" do
-      click_on "View Profile"
+      find('label[for="profile"]').click
     end
     within "#contact-header" do
       find("div", id: "contact-favorite").click
@@ -175,7 +140,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      click_on "View Profile"
+      find('label[for="profile"]').click
     end
     within "#contact-header" do
       page.accept_confirm do

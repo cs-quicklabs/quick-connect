@@ -4,7 +4,7 @@ class Contact::TasksController < Contact::BaseController
   def index
     authorize [@contact, Task]
     @task = Task.new
-    @pagy, @tasks = pagy_nil_safe(params, @contact.tasks.order(created_at: :desc), items: LIMIT)
+    @pagy, @tasks = pagy_nil_safe(params, @contact.tasks.includes(:user).order(created_at: :desc), items: LIMIT)
     render_partial("contact/tasks/task", collection: @tasks) if stale?(@tasks + [@contact])
   end
 
@@ -56,6 +56,9 @@ class Contact::TasksController < Contact::BaseController
   private
 
   def set_task
+    if @task
+      return @task
+    end
     @task = Task.find(params["id"])
   end
 

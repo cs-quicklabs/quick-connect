@@ -16,7 +16,10 @@ class LabelsTest < ApplicationSystemTestCase
     take_screenshot
     assert_selector "h1", text: "Labels"
   end
-
+  test "should have nav bar" do
+    visit page_url
+    assert_selector "#menu", count: 1
+  end
   test "should have left menu with  Labels selected" do
     visit page_url
     within "#menu" do
@@ -43,7 +46,7 @@ class LabelsTest < ApplicationSystemTestCase
   test "can not add an empty label" do
     visit page_url
     click_on "Save"
-    assert_selector "div#error_explanation", text: "Name can't be blank"
+    assert_selector "div#error_explanation", text: "Label name can't be blank"
     take_screenshot
   end
   test "can not add a duplicate label" do
@@ -51,7 +54,7 @@ class LabelsTest < ApplicationSystemTestCase
     fill_in "Add New Label", with: labels(:one).name
     click_on "Save"
     take_screenshot
-    assert_text "Name has already been taken"
+    assert_text "Label name has already been taken"
   end
 
   test "can visit edit page" do
@@ -92,7 +95,7 @@ class LabelsTest < ApplicationSystemTestCase
       choose(option: "blue")
       click_on "Save"
       take_screenshot
-      assert_text "Name has already been taken"
+      assert_text "Label name has already been taken"
     end
   end
 end

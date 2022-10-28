@@ -1,5 +1,5 @@
 <% favorite = favorite.decorate %>
-<% @event = favorite.events.order(created_at: :desc).first %>
+<% @event = favorite.events.first %>
 <tr id="<%= dom_id(favorite) %>">
   <td class="table-cell " style="width: 20%;">
     <div class="relative cursor-pointer  py-1 flex items-center space-x-3 " id="show" >
@@ -38,7 +38,9 @@
   </td>
   <td class="table-cell whitespace-nowrap">
     <p class=" text-sm font-normal text-gray-500 truncate">
+    <% if !@event.nil? %>
       <%= @event.action_context.upcase_first %> on <%= display_created_at(@event) %>
+      <% end %>
     </p>
   </td>
 </tr>

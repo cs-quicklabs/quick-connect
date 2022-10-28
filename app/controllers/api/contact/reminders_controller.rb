@@ -7,7 +7,7 @@ class Api::Contact::RemindersController < Api::Contact::BaseController
     @reminder = Reminder.new
     @pagy, @reminders = pagy_nil_safe(params, @contact.reminders.order(created_at: :desc), items: LIMIT)
 
-    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @reminders, message: "Contact reminders" }
+    render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @reminders, message: "Contact reminders" } if stale?(@reminders + [@contact])
   end
 
   def destroy
@@ -53,6 +53,9 @@ class Api::Contact::RemindersController < Api::Contact::BaseController
   private
 
   def set_reminder
+    if @reminder
+      return @reminder
+    end
     @reminder = Reminder.find(params["id"])
   end
 

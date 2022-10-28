@@ -22,7 +22,7 @@ class Api::UserController < Api::BaseController
 
   def profile
     authorize [:api, @api_user]
-    render json: { success: true, data: @api_user.as_json(:include => [:invited_by]), message: "user profile" }
+    render json: { success: true, data: @api_user.as_json(:include => [:invited_by]), message: "user profile" } if stale?([@api_user])
   end
 
   def password
@@ -67,6 +67,9 @@ class Api::UserController < Api::BaseController
   private
 
   def find_user
+    if @api_user
+      return @api_user
+    end
     @api_user ||= User.find(params[:id])
   end
 

@@ -1,6 +1,6 @@
 <% if policy(contact).profile? %>
   <div class="h-full"  >
-   <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
+    <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
       <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
     </div>
@@ -14,8 +14,8 @@
             <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
           </div>
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 ">
-            <div>
-              <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" title="View Profile">
+            <label for="profile" >
+              <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" title="View Profile" id="profile">
                 <span class="icon-span">
                   <!-- Heroicon name: outline/check-badge -->
                   <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -23,7 +23,7 @@
                   </svg>
                 </span>
               </a>
-            </div>
+            </label>
             <% if !contact.phone.blank? %>
               <div >
                 <button type="button"  data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms">
@@ -40,7 +40,7 @@
             <% end %>
             <% if !contact.email.blank? %>
               <div>
-                <a type="button" href="sms:(+91)<%=contact.phone%>"  title="Send Email">
+                <a type="button" href="mailto:<%= contact.phone %>"  title="Send Email">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -85,12 +85,12 @@
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Email</dt>
           <% if !contact.email.blank? %>
-            <dd class="mt-1 text-sm text-gray-900"><%= contact.email %></dd>
+            <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.email %></dd>
           <% else %>
             <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
           <% end %>
         </div>
-            <div class="sm:col-span-1">
+        <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Relation</dt>
           <% if !contact.relation.blank? %>
             <dd class="mt-1 text-sm text-gray-900"><%= contact.relation.name.upcase_first %></dd>

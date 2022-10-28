@@ -1,7 +1,7 @@
-<%= tailwind_form_with(model: contact, id: dom_id(contact)) do |form| %>
-  <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16">
-    <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: title, subtitle: subtitle %>
+   <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16 " >
+  <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
+  <%= render "shared/form_header", title: title, subtitle: subtitle %>
+  <%= tailwind_form_with(model: contact, id: dom_id(contact), class: "space-y-6") do |form| %>
     <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
     <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
     <%= form.text_field :email, "Email", autocomplete: "off" %>
@@ -10,20 +10,20 @@
       <label for="group" class="block  text-sm font-medium text-gray-700">
         Select Relation
       </label>
-     <select name="contact[relation_id]" class="form-text-field mt-1">
-           <% if contact.relation_id.nil? %>
-            <option value="" selected="selected">None</option>
+      <select name="contact[relation_id]" class="form-text-field mt-1">
+        <% if contact.relation_id.nil? %>
+          <option value="" selected="selected">None</option>
+        <% else %>
+          <option value="">None</option>
+        <% end %>
+        <% Relation.all.order(:name).decorate.each do |relation| %>
+          <% if contact.relation_id == relation.id %>
+            <option selected= "selected" value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
           <% else %>
-            <option value="">None</option>
+            <option value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
           <% end %>
-          <% Relation.all.order(:name).decorate.each do |relation| %>
-            <% if contact.relation_id == relation.id %>
-              <option selected= "selected" value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
-            <% else %>
-              <option value="<%= relation.id %>"><%= relation.name.upcase_first %></option>
-            <% end %>
-          <% end %>
-        </select>
+        <% end %>
+      </select>
     </div>
     <%= form.text_area :intro, "Quick Introduction", autocomplete: "off", class: "h-16 form-text-field" %>
     <div class="flex justify-end">

@@ -12,7 +12,11 @@ module ApplicationHelper
   end
 
   def display_image(resource)
-    resource.first_name[0, 1].upcase_first + resource.last_name[0, 1].upcase_first
+    if resource.last_name
+      resource.first_name[0, 1].upcase_first + resource.last_name[0, 1].upcase_first
+    else
+      resource.first_name[0]
+    end
   end
 
   def display_date(date)

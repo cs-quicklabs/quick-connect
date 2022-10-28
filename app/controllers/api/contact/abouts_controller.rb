@@ -4,7 +4,7 @@ class Api::Contact::AboutsController < Api::Contact::BaseController
 
   def index
     authorize [:api, @contact, About]
-    render json: { success: true, data: @contact.abouts, message: "About fetched successfully" }
+    render json: { success: true, data: @contact.abouts, message: "About fetched successfully" } if stale?([@contact.abouts] + [@contact])
   end
 
   def edit
@@ -33,6 +33,9 @@ class Api::Contact::AboutsController < Api::Contact::BaseController
   end
 
   def set_about
+    if @about
+      return @about
+    end
     @about = @contact.abouts
   end
 end

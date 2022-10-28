@@ -42,7 +42,8 @@ class ContactConversationsTest < ApplicationSystemTestCase
   test "can not add an empty phone call" do
     visit page_url
     click_on "Add Conversation"
-    assert_selector "div#error_explanation", text: "Body can't be blank"
+    assert_selector "div#error_explanation", text: "Conversation can't be blank"
+    assert_selector "div#error_explanation", text: "Contact field type must exist"
     take_screenshot
   end
 
@@ -88,7 +89,7 @@ class ContactConversationsTest < ApplicationSystemTestCase
       fill_in "conversation_body", with: ""
       click_on "Edit Conversation"
       take_screenshot
-      assert_selector "div#error_explanation", text: "Body can't be blank"
+      assert_selector "div#error_explanation", text: "Conversation can't be blank"
     end
   end
 end

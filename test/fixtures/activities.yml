@@ -7,4 +7,11 @@ simple_two:
   name: Watched A Movie At Home
   group: simple
   account: hansika
+
+simple_three:  
+  name: Watched Movie
+  group: simple
+  account: hansika  
+
+
    
