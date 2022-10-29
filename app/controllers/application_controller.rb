@@ -138,11 +138,11 @@ class ApplicationController < ActionController::Base
   private
 
   def json_request?
-    request.format.json?
+    request.format.json? and request.url.include?("api")
   end
 
   def http_request?
-    !request.format.json?
+    !json_request?
   end
 
   # Use api_user Devise scope for JSON access
