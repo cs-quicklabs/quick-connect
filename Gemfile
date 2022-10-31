@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.1.2"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.3.1"
+gem "rails", "7.0.4"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
@@ -14,7 +14,7 @@ gem "sprockets-rails", "3.4.2"
 gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "5.6.5"
+gem "puma", "6.0.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.3"
@@ -23,7 +23,7 @@ gem "jsbundling-rails", "1.0.3"
 gem "cssbundling-rails", "1.1.1"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.3.0"
+gem "turbo-rails", "1.3.2"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.1.0"
@@ -33,6 +33,8 @@ gem "stimulus_reflex", "= 3.5.0.pre8"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
+
+gem 'rack-cors'
 
 # Use Redis adapter to run Action Cable in production
 gem "hiredis"
