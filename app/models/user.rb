@@ -12,7 +12,7 @@ class User < ApplicationRecord
   def generate_jwt
     JWT.encode({ id: id,
                  exp: 5.days.from_now.to_i },
-               "aOiynmWWvo17LrD9XTENHp9czMpuw4kH", true, { :algorithm => "HS256" })
+               Rails.application.secrets.secret_key_base)
   end
 
   normalize_attribute :first_name, :last_name, :email, :with => :strip

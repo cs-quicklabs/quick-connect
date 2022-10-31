@@ -168,10 +168,10 @@ class ApplicationController < ActionController::Base
     end
     if header = request.headers["Authorization"]
       header = header.split(" ").last
-      key = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"
       begin
-        jwt_payload = JWT.decode(header, key, true, { :algorithm => "HS256" }).first
-        @api_user = User.includes(:invited_by).find(jwt_payload["sub"])
+        jwt_payload = JWT.decode(header, Rails.application.secrets.secret_key_base).first
+
+        @api_user = User.includes(:invited_by).find(jwt_payload["id"])
       rescue ActiveRecord::RecordNotFound => e
         render json: { success: false, message: "Record no found" }
       rescue JWT::DecodeError => e
