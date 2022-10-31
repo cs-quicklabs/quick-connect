@@ -6,8 +6,4 @@ class InvitationDecorator < Draper::Decorator
   def display_name
     "#{first_name} #{last_name}".titleize
   end
-
-  def display_email
-    "#{email}".upcase_first
-  end
 end

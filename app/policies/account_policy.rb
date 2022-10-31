@@ -46,8 +46,4 @@ class AccountPolicy < Struct.new(:user, :account)
   def activate?
     true
   end
-
-  def invitation?
-    user.account.owner_id == user.id
-  end
 end

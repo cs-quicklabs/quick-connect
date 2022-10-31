@@ -10,8 +10,4 @@ class UserDecorator < Draper::Decorator
   def name
     display_name
   end
-
-  def display_email
-    "#{email}".upcase_first
-  end
 end
