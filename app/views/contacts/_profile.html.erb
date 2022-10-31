@@ -1,4 +1,5 @@
 <% if policy(contact).profile? %>
+  <% contact=contact.decorate%>
   <div class="h-full"  >
     <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
@@ -11,7 +12,7 @@
         </div>
         <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center justify-end  lg:space-x-3">
           <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1  ">
-            <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.decorate.display_name %></h1>
+            <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.display_name %></h1>
           </div>
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 ">
             <label for="profile" >
@@ -84,7 +85,7 @@
         </div>
         <div class="sm:col-span-1">
           <dt class="text-sm font-medium text-gray-500">Email</dt>
-          <% if !contact.email.blank %>
+          <% if !contact.email.blank? %>
             <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.display_email %></dd>
           <% else %>
             <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
