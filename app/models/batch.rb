@@ -6,5 +6,4 @@ class Batch < ApplicationRecord
   normalize_attribute :name, :with => :strip
   validates_presence_of :name
   has_many :events, class_name: "Event", foreign_key: "trackable", dependent: :destroy
-  validates :name, :allow_blank => true, :length => { :maximum => 25 }
 end
