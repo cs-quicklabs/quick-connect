@@ -38,7 +38,7 @@ class SignUp < Patterns::Service
 
   def seed_database
     now = Time.now
-    groups = Group.all.to_a
+    groups = Group.all.uniq.to_a
     ActsAsTenant.with_tenant(account) do
       Field.insert_all([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
                         { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
