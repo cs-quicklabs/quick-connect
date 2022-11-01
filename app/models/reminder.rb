@@ -27,7 +27,7 @@ class Reminder < ApplicationRecord
         break
       end
       if (reminder_needed == Date.today)
-        todays.push([self.as_json, "reminder": reminder_needed])
+        todays.push([self, self.contact, "reminder": reminder_needed])
         break
       elsif (reminder_needed > Date.today)
         break
@@ -54,7 +54,7 @@ class Reminder < ApplicationRecord
         break
       end
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
-        upcomings.push([self.as_json, "reminder": reminder_needed.to_date])
+        upcomings.push([self, self.contact, "reminder": reminder_needed.to_date])
         break
       elsif (reminder_needed > Date.today + 60.days)
         break

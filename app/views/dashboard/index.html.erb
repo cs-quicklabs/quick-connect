@@ -17,7 +17,6 @@
             </div>
           </section>
         <% end %>
-        <% @favorites = Contact.all.available.favorites.limit(10) %>
         <% if @favorites.count > 0 %>
           <section aria-labelledby="participants_section">
             <div class="overflow-hidden bg-white px-6 py-4">

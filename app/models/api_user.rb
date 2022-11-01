@@ -7,6 +7,6 @@ class ApiUser < User
   def generate_jwt
     JWT.encode({ id: id,
                  exp: 5.days.from_now.to_i },
-               "aOiynmWWvo17LrD9XTENHp9czMpuw4kH", true, { :algorithm => "HS256" })
+               Rails.application.secrets.secret_key_base)
   end
 end
