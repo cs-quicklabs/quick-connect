@@ -4,6 +4,6 @@ class Debt < ApplicationRecord
   belongs_to :contact
   normalize_attribute :title, :amount, :with => :strip
   validates :amount, format: { with: /\A[ 0-9*#-.+ ]+\z/,
-                               message: "Allows only numbers" }
+                               message: "should be in numbers" }
   has_many :events, class_name: "Event", foreign_key: "trackable", dependent: :destroy
 end
