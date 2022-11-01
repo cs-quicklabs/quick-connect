@@ -15,7 +15,7 @@ class ContactReflex < ApplicationReflex
   def favorite
     contact = Contact.find(element.dataset["contact-id"])
     contact.update(favorite: !contact.favorite)
-    morph "#contact-favorite", render(partial: "contact/title", locals: { contact: contact, contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
+    morph "#contact-favorite", render(partial: "contact/title", locals: { contact: contact, contact_labels: contact.labels, event: @event, call: @call, labels: Label.all })
   end
 
   def phone
