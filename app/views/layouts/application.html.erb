@@ -18,6 +18,7 @@
     <script src="https://kit.fontawesome.com/db0a2349c3.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "calender", "data-turbo-track": "reload" %>
     <%= favicon_link_tag "logo.jpeg" %>
+    <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
   <body>
     <%= render "shared/navbar" %>
