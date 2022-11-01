@@ -31,7 +31,6 @@ class Api::SessionsController < Devise::SessionsController
         render json: { success: false, message: "Email or password is incorrect." } and return
       end
     end
-
     # auth_options should have `scope: :api_user`
     resource = warden.authenticate!(auth_options)
     sign_in(resource_name, resource)

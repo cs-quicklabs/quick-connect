@@ -10,7 +10,7 @@ class ContactAboutsTest < ApplicationSystemTestCase
   end
 
   def page_url
-    contact_abouts_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+    contact_about_index_path_url(script_name: "/#{@account.id}", contact_id: @contact.id)
   end
 
   test "can visit contatcts about if logged in" do

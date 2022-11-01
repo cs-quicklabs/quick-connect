@@ -81,10 +81,12 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    if params[:redirect_to].present?
-      store_location_for(resource, params[:redirect_to])
-    else
-      landing_path
+    if http_request?
+      if params[:redirect_to].present?
+        store_location_for(resource, params[:redirect_to])
+      else
+        landing_path
+      end
     end
   end
 
@@ -138,7 +140,7 @@ class ApplicationController < ActionController::Base
   private
 
   def json_request?
-    request.format.json? and request.url.include?("api")
+    request.format.json?
   end
 
   def http_request?
