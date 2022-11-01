@@ -44,7 +44,7 @@ class Contact::RelativesController < Contact::BaseController
       if @relative.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:relatives, partial: "contact/relatives/relative", locals: { relative: @relative, contact: @contact }) +
-                               turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact, relation: "" })
+                               turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: Relative.new, relation: @relation, contact: @contact })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Relative.new, partial: "contact/relatives/search", locals: { relative: @relative, relation: @relation, contact: @contact }) }
