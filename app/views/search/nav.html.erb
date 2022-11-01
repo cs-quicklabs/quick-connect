@@ -1,10 +1,18 @@
-<% if @contacts.count > 0 %>
-  <% @contacts.each do |contact| %>
-    <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/abouts" target="_top" class="float-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ...">
-      <li role="option"  @click="isShowing = false; document.getElementById('navbar').value='<%= contact.decorate.display_name %>'" class="" id="show">
-        <%= contact.decorate.display_name %>
-      </li>
-    </a>
+<% if @results.count > 0 %>
+  <% @results.each do |result| %>
+    <%if result.class.name=="Contact"%>
+      <a type="button" href="/<%= result.account.id %>/contacts/<%= result.id %>/abouts" target="_top" class="float-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ...">
+        <li role="option"  @click="isShowing = false; document.getElementById('navbar').value='<%= result.decorate.display_name %>'" class="" id="show">
+          <%= result.decorate.display_name %>
+        </li>
+      </a>
+    <% else %>
+      <a type="button" href="/<%= result.account.id %>/batches?batch_id=<%=result.id%>" target="_top" class="float-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ...">
+        <li role="option"  @click="isShowing = false; document.getElementById('navbar').value='<%= result.name.upcase_first %>'" class="" id="show">
+          <%= result.decorate.display_name %>
+        </li>
+      </a>
+    <% end %>
   <% end %>
 <% else %>
   <a role="option" aria-disabled="true" tabindex="-1" @click="isShowing = false; document.getElementById('search').value=''" href="<%= new_contact_path %>" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" ><input type="button" class="display-none" disabled="disabled">Add Contact </a>
