@@ -10,6 +10,7 @@
       }
   }
 </script>
+<% current_user=@user.decorate%>
 <div data-reflex-permanent>
   <nav class="bg-gray-800  ">
     <div class="px-2 mx-auto sm:px-6 lg:px-8">
@@ -83,7 +84,7 @@
                     <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 ring-1 ring-black ring-opacity-5" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                       <div class= "px-4 py-3">
                         <p class="text-sm">Signed in as</p>
-                        <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.email %></p>
+                        <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.display_email %></p>
                       </div>
                       <div class="border-t border-gray-100">
                         <div>

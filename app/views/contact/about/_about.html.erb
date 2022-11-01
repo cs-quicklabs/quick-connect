@@ -1,6 +1,6 @@
   <%= turbo_frame_tag dom_id(about) do %>
   <% frame_id1 = dom_id(about, "address_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id1 }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id1 }) do |form| %>
     <%= turbo_frame_tag frame_id1, class: "inline-edit" do %>
       <div class="border-b border-gray-200  pb-4">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full mt-2 ">
@@ -11,7 +11,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= delete_button(contact_about_path(about.contact, about, :delete => "address")) %>
+                <%= clear_button(contact_about_index_path(about.contact, about, :delete => "address")) %>
               <% end %>
             </span>
           </div>
@@ -34,7 +34,7 @@
     <% end %>
   <% end %>
   <% frame_id = dom_id(about, "breif_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
     <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
       <div class="border-b border-gray-200  py-4 ">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
@@ -45,7 +45,7 @@
             <% if policy([about.contact, about]).update? %>
               <span class="ml-6 flex-shrink-0 space-x-1">
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "breif"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "breif")) %>
               </span>
             <% end %>
           </div>
@@ -68,7 +68,7 @@
     <% end %>
   <% end %>
   <% frame_id = dom_id(about, "met_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
     <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
       <div class="border-b border-gray-200  py-4 ">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
@@ -79,7 +79,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "met"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "met")) %>
               <% end %>
             </span>
           </div>
@@ -102,7 +102,7 @@
     <% end %>
   <% end %>
   <% frame_id = dom_id(about, "habit_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
     <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
       <div class="border-b border-gray-200  py-4">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
@@ -113,7 +113,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "habit"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "habit")) %>
               <% end %>
             </span>
           </div>
@@ -136,7 +136,7 @@
     <% end %>
   <% end %>
   <% frame_id = dom_id(about, "work_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
     <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
       <div class="border-b border-gray-200  py-4">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
@@ -147,7 +147,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "work"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "work")) %>
               <% end %>
             </span>
           </div>
@@ -170,7 +170,7 @@
     <% end %>
   <% end %>
   <% frame_id = dom_id(about, "other_turbo_frame") %>
-  <%= form_with(model: about, id: dom_id(about), url: contact_about_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
+  <%= form_with(model: about, id: dom_id(about), url: contact_about_index_path(contact, about), data: { turbo_frame: frame_id }) do |form| %>
     <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
       <div class="border-b border-gray-200  py-4">
         <div class=" items-start  xl:grid xl:grid-flow-col  lg:max-w-full ">
@@ -181,7 +181,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= styled_delete_button(contact_about_path(about.contact, about, :delete => "other"), "text-sm text-gray-400 hover:text-red-600 cursor-pointer font-normal") %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "other")) %>
               <% end %>
             </span>
           </div>

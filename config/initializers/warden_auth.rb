@@ -1,6 +1,6 @@
 # config/initializers/warden_auth.rb
 Warden::JWTAuth.configure do |config|
-  config.secret = "aOiynmWWvo17LrD9XTENHp9czMpuw4kH"
+  config.secret = Rails.application.secrets.secret_key_base
   config.dispatch_requests = [
     ["POST", %r{^/api/login$}],
     ["POST", %r{^/api/login.json$}],

@@ -1,5 +1,5 @@
 <% frame_id = dom_id(model, "name_turbo_frame") %>
-<%= tailwind_form_with(model: model, id: dom_id(@about), url: contact_about_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
+<%= tailwind_form_with(model: model, id: dom_id(@about), url: contact_about_index_path(@contact, @about), data: { turbo_frame: frame_id }) do |form| %>
   <%= turbo_frame_tag frame_id, class: "inline-edit" do %>
     <%= yield %>
     <%= form.button class: "inline-action" do %>

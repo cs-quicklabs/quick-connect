@@ -39,7 +39,7 @@
               <% end %>
               <% if !contact.email.blank? %>
                 <div>
-                  <a type="button" href="mailto:<%= contact.phone %>"  title="Send Email">
+                  <a type="button" href="mailto:<%= contact.email %>"  title="Send Email">
                     <!-- Heroicon name: solid/mail -->
                     <span class="icon-span">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -58,6 +58,27 @@
         <div class="hidden sm:block 2xl:hidden mt-4 min-w-0 flex-1">
           <h1 class="text-2xl font-bold text-gray-900  "><%= contact.decorate.display_name %></h1>
         </div>
+      </div>
+      <div class="py-2  px-6  flex">
+        <% if contact.intro? %>
+          <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
+            <%= contact.intro.upcase_first %>
+          </p>
+        <% end %>
+        <% if ((!@event.blank? || !@call.blank?) && contact.intro?) %>
+          <p class="text-sm font-medium text-gray-500 px-1">
+            -    
+          </p>
+        <% end %>
+        <p class="text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
+          <% if (!event.blank? && !call.blank?) %>
+            <%= event.action_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
+          <% elsif !event.blank? %>
+            <%= event.action_context.upcase_first %> on <%= display_created_at(event) %>
+          <% elsif !call.blank? %>
+            Last phone call was on <%= display_created_at(call) %>
+          <% end %>
+        </p>
       </div>
       <!-- Tabs -->
       <div class="mt-6 sm:mt-2 2xl:mt-5">
@@ -84,7 +105,7 @@
           <div class="sm:col-span-1">
             <dt class="text-sm font-medium text-gray-500">Email</dt>
             <% if !contact.email.blank? %>
-              <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.email %></dd>
+              <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.display_email %></dd>
             <% else %>
               <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
             <% end %>

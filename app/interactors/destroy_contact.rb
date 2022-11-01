@@ -15,7 +15,7 @@ class DestroyContact < Patterns::Service
       delete_debts
       delete_gifts
       delete_contact_activities
-      delete_contact_about
+      delete_contact_about_index_path
       delete_contact_events
       delete_reminders
       delete_contact_batches
@@ -65,7 +65,7 @@ class DestroyContact < Patterns::Service
     contact.contact_events.delete_all
   end
 
-  def delete_contact_about
+  def delete_contact_about_index_path
     if !contact.abouts.nil?
       contact.abouts.delete
     end

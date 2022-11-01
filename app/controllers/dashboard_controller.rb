@@ -11,6 +11,7 @@ class DashboardController < BaseController
                   current_user.events.joins("INNER JOIN conversations ON conversations.id = events.trackable_id").joins("INNER JOIN contacts ON contacts.id = events.eventable_id").where("contacts.archived=?", false).where(events: { trackable_type: "Conversation" })).uniq { |r| r.eventable }.take(10)
     @tasks = current_user.tasks.joins(:contact).where("contacts.archived=?", false).order(created_at: :desc).limit(10)
     fresh_when @contacted + @tasks + @reminders
+    @favorites = Contact.all.available.favorites.limit(10)
   end
 
   def events
