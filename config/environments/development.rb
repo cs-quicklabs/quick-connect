@@ -83,6 +83,4 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_dispatch.default_headers["Cache-Control"] = "no-cache, no-store"
-
-  config.hotwire_livereload.listen_paths << Rails.root.join("app/assets/builds")
 end
