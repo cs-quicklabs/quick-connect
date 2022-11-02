@@ -38,7 +38,7 @@ class SignUp < Patterns::Service
 
   def seed_database
     now = Time.now
-    groups = Group.all.to_a
+    groups = Group.all.uniq.to_a
     ActsAsTenant.with_tenant(account) do
       Field.insert_all([{ name: "Email", icon: "far fa-envelope-open", protocol: "mailto:", default: "TRUE" },
                         { name: "Facebook", icon: "fa-brands fa-facebook-square", protocol: "https://facebook.com", default: "TRUE" },
@@ -55,7 +55,7 @@ class SignUp < Patterns::Service
       Activity.insert_all([{ name: "just hung out", group_id: groups.values_at(0).first.id, default: "TRUE" }, { name: "watched a movie at home", group_id: groups.values_at(0).first.id, default: "TRUE" }, { name: "just talked at home", group_id: groups.values_at(0).first.id, default: "TRUE" },
                            { name: "played a sport together", group_id: groups.values_at(1).first.id, default: "TRUE" }, { name: "ate at their place", group_id: groups.values_at(2).first.id, default: "TRUE" }, { name: "went to a bar", group_id: groups.values_at(2).first.id, default: "TRUE" },
                            { name: "ate at home", group_id: groups.values_at(2).first.id, default: "TRUE" }, { name: "picnicked", group_id: groups.values_at(2).first.id, default: "TRUE" }, { name: "ate at a restaurant", group_id: groups.values_at(2).first.id, default: "TRUE" }, { name: "went to a theater", group_id: groups.values_at(3).first.id, default: "TRUE" },
-                           { name: "went to a concert", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "went to a play", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "went to the museum", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "other", group_id: groups.values_at(9).first.id, default: "TRUE" }])
+                           { name: "went to a concert", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "went to a play", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "went to the museum", group_id: groups.values_at(3).first.id, default: "TRUE" }, { name: "other", group_id: groups.values_at(9).first.id, default: "TRUE" }, { name: "Online meeting", group_id: groups.values_at(11).first.id, default: "TRUE" }, { name: "Meeting in Office ", group_id: groups.values_at(11).first.id, default: "TRUE" }, { name: "Met in Conference", group_id: groups.values_at(11).first.id, default: "TRUE" }])
       LifeEvent.insert_all([{ name: "started a new job", group_id: groups.values_at(4).first.id, default: "TRUE" }, { name: "retired", group_id: groups.values_at(4).first.id, default: "TRUE" }, { name: "started school", group_id: groups.values_at(4).first.id, default: "TRUE" },
                             { name: "studied abroad", group_id: groups.values_at(4).first.id, default: "TRUE" }, { name: "started voluteering", group_id: groups.values_at(4).first.id, default: "TRUE" }, { name: "published a paper", group_id: groups.values_at(4).first.id, default: "TRUE" },
                             { name: "started a military service", group_id: groups.values_at(4).first.id, default: "TRUE" }, { name: "started a relationship", group_id: groups.values_at(5).first.id, default: "TRUE" }, { name: "got engaged", group_id: groups.values_at(5).first.id, default: "TRUE" }, { name: "got married", group_id: groups.values_at(5).first.id, default: "TRUE" },

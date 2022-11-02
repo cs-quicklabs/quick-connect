@@ -64,8 +64,10 @@ class ContactsController < BaseController
     authorize :contact
     @contact = CreateContact.call(contact_params, @user).result
     respond_to do |format|
-      if @contact.errors.empty?
+      if @contact.errors.empty? && params[:commit] != "Save and Add More"
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
+      elsif @contact.errors.empty? && params[:commit] == "Save and Add More"
+        format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact" }) }
       end

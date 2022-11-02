@@ -4,7 +4,7 @@
       <a href="<%= journal_path(journal) %>" class="block focus:outline-none hover:underline" target="_top">
         <p class="truncate ... text-sm font-medium text-gray-900"> <%= journal.title.upcase_first %></p>
       </a>
-      <p class="text-sm text-gray-500 line-clamp"> <%= journal.body.upcase_first %></p>
+      <p class="text-sm text-gray-500 line-clamp break-words"> <%= journal.body.upcase_first %></p>
     </div>
     <div class="whitespace-nowrap ">
       <% if policy(journal).edit? %>

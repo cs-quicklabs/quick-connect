@@ -8,7 +8,6 @@ class ContactReflex < ApplicationReflex
     @event = contact.events.order(created_at: :desc).first
     @call = contact.phone_calls.order(created_at: :desc).first
     html = render(partial: "contacts/profile", locals: { contact: contact, contacts: contacts, relatives: relatives, event: @event, call: @call })
-
     morph "#profile", "<div id='profile'>#{html}</div>"
   end
 

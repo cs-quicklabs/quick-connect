@@ -3,7 +3,11 @@ class GroupReflex < ApplicationReflex
     group = element.value
     contact = Contact.find(element.dataset["contact-id"])
     contact_activity = ContactActivity.new
-    activities = Activity.where(group_id: group).decorate
+    if !group.nil?
+      activities = Activity.all.where(group_id: group).decorate
+    else
+      activities = Activity.all
+    end
     html = render(partial: "contact/contact_activities/form", locals: { activities: activities, contact_activity: contact_activity, contact: contact })
 
     morph "#activity", "#{html}"
@@ -13,7 +17,11 @@ class GroupReflex < ApplicationReflex
     group = element.value
     contact = Contact.find(element.dataset["contact-id"])
     contact_event = ContactEvent.new
-    events = LifeEvent.where(group_id: group).decorate
+    if !group.nil?
+      events = LifeEvent.all.where(group_id: group).decorate
+    else
+      events = LifeEvent.all
+    end
     html = render(partial: "contact/contact_events/form", locals: { events: events, contact_event: contact_event, contact: contact })
 
     morph "#event", "#{html}"

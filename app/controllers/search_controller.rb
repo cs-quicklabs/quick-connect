@@ -16,9 +16,9 @@ class SearchController < BaseController
 
     like_keyword = "%#{params[:q]}%".split(/\s+/)
 
-    @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
+    @results = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
-      .limit(4).order(:first_name)
+      .limit(4).order(:first_name) + Batch.all.where("name iLIKE ANY ( array[?] )", like_keyword)
 
     render layout: false
   end
