@@ -7,7 +7,7 @@ class SearchController < BaseController
     @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
       .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))
-      .order(:first_name).uniq.limit(5)
+      .order(:first_name).limit(5).uniq
 
     render layout: false
   end

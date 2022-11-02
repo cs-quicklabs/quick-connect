@@ -3,6 +3,7 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
+import { Application } from '@hotwired/stimulus';
 
 import ApplicationController from "./application_controller.js"
 application.register("application", ApplicationController)
@@ -36,11 +37,13 @@ application.register("popper", PopperController)
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
 
-
+import MultiSelectController from '@kanety/stimulus-multi-select';
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from '../controllers/application_controller'
 import CableReady from 'cable_ready'
+const app = Application.start();
+app.register('multi-select', MultiSelectController);
 
 application.consumer = consumer
 StimulusReflex.initialize(application, { controller, isolate: true })

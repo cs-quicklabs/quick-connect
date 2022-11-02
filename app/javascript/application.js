@@ -10,3 +10,4 @@ import '@tailwindcss/forms'
 import 'trix'
 import "./trix-editor-overrides"
 import "@hotwired/turbo-rails"
+

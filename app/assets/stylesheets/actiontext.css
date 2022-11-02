@@ -4,7 +4,10 @@
  * inclusion directly in any other asset bundle and remove this file.
  *
  *= require trix
+
+
 */
+
 
 /*
  * We need to override trix.css’s image gallery styles to accommodate the
