@@ -4,7 +4,7 @@
       <a href="<%= release_note_path(release_note) %>" class="block focus:outline-none hover:underline" target="_top">
         <p class="truncate ... text-sm font-medium text-gray-900"> <%= release_note.title.upcase_first %> </p>
       </a>
-      <div class="text-sm text-gray-500 line-clamp"><%= release_note.body %></div>
+      <div class="text-sm text-gray-500 line-clamp break-words"><%= release_note.body %></div>
     </div>
     <a href="<%= release_note_path(release_note) %>" class="block focus:outline-none hover:underline" target="_top">
       <div class="  whitespace-nowrap">

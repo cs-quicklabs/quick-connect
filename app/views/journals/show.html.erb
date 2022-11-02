@@ -10,7 +10,7 @@
     </div>
   </div>
   <% cache @journal do %>
-    <div class="text-sm text-gray-700 sm:px-6 ">
+    <div class="text-sm text-gray-700 sm:px-6 break-words ">
       <p><%= @journal.body.upcase_first %></p>
     </div>
   <% end %>
