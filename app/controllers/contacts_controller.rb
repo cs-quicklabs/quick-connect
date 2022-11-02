@@ -12,6 +12,7 @@ class ContactsController < BaseController
   def new
     authorize :contact
     @contact = Contact.new
+    @batches = Batch.all.order(:name)
   end
 
   def edit
@@ -62,14 +63,14 @@ class ContactsController < BaseController
 
   def create
     authorize :contact
-    @contact = CreateContact.call(contact_params, @user).result
+    @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
       if @contact.errors.empty? && params[:commit] != "Save and Add More"
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
       elsif @contact.errors.empty? && params[:commit] == "Save and Add More"
         format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name) }) }
       end
     end
   end
