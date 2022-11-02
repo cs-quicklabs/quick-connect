@@ -2,11 +2,11 @@ class Api::SearchController < Api::BaseController
   def contacts
     authorize [:api, :search]
 
-    like_keyword = "%#{params[:q]}%".split(/\s+/)
-
+    like_keyword = "#{params[:q]}".split(/\s+/)
     @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
-      .limit(4).order(:first_name)
+      .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))
+      .order(:first_name).uniq
 
     render json: { success: true, data: @contacts, message: "" }
   end
@@ -19,7 +19,8 @@ class Api::SearchController < Api::BaseController
     @contact = [Contact.find(params[:profile])]
     @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
-      .limit(4).order(:first_name) - @contact
+      .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))
+      .order(:first_name).uniq - @contact
 
     render json: { success: true, data: @contacts, message: "" }
   end
@@ -33,7 +34,8 @@ class Api::SearchController < Api::BaseController
 
     @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
-      .limit(4).order(:first_name) - @added
+      .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))
+      .order(:first_name).uniq - @added
 
     render json: { success: true, data: @contacts, message: "" }
   end
