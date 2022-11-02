@@ -14,4 +14,8 @@ class ContactDecorator < Draper::Decorator
   def display_archived_on
     "#{archived_on}".to_date
   end
+
+  def display_email
+    "#{email}".upcase_first
+  end
 end

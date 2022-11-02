@@ -1,4 +1,4 @@
-class Contact::AboutsController < Contact::BaseController
+class Contact::AboutController < Contact::BaseController
   include ActionView::RecordIdentifier
   before_action :set_about, only: %i[show edit update destroy]
 

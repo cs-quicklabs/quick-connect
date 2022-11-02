@@ -12,6 +12,7 @@ class ContactsController < BaseController
   def new
     authorize :contact
     @contact = Contact.new
+    @batches = Batch.all.order(:name)
   end
 
   def edit
@@ -23,7 +24,7 @@ class ContactsController < BaseController
     respond_to do |format|
       if @contact.update(contact_params)
         Event.where(eventable: @contact).touch_all
-        format.html { redirect_to contact_abouts_path(@contact), notice: "Contact was successfully updated." }
+        format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@contact, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact" }) }
       end
@@ -62,12 +63,14 @@ class ContactsController < BaseController
 
   def create
     authorize :contact
-    @contact = CreateContact.call(contact_params, @user).result
+    @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
-      if @contact.errors.empty?
+      if @contact.errors.empty? && params[:commit] != "Save and Add More"
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
+      elsif @contact.errors.empty? && params[:commit] == "Save and Add More"
+        format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact" }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name) }) }
       end
     end
   end
@@ -94,7 +97,7 @@ class ContactsController < BaseController
     authorize @contact, :unarchive_contact?
 
     UnarchiveContact.call(@contact, current_user)
-    redirect_to contact_abouts_path(@contact), notice: "Contact has been restored."
+    redirect_to contact_about_index_path(@contact), notice: "Contact has been restored."
   end
 
   def destroy

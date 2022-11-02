@@ -5,8 +5,6 @@ class Reminder < ApplicationRecord
   belongs_to :contact
   enum reminder_type: [:once, :multiple]
   enum status: [:week, :month, :year], _prefix: true
-  validates :title,
-            :length => { :maximum => 50 }
   scope :once, -> { where(reminder_type: "once") }
   scope :multiple, -> { where(reminder_type: "multiple") }
   has_many :events, class_name: "Event", foreign_key: "trackable", dependent: :destroy
@@ -27,7 +25,7 @@ class Reminder < ApplicationRecord
         break
       end
       if (reminder_needed == Date.today)
-        todays.push([self.as_json, "reminder": reminder_needed])
+        todays.push([self, self.contact, "reminder": reminder_needed])
         break
       elsif (reminder_needed > Date.today)
         break
@@ -54,7 +52,7 @@ class Reminder < ApplicationRecord
         break
       end
       if (reminder_needed >= Date.today && reminder_needed < Date.today + 60.days)
-        upcomings.push([self.as_json, "reminder": reminder_needed.to_date])
+        upcomings.push([self, self.contact, "reminder": reminder_needed.to_date])
         break
       elsif (reminder_needed > Date.today + 60.days)
         break

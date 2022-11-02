@@ -1,9 +1,10 @@
 class CreateContact < Patterns::Service
   CHARS = ("0".."9").to_a + ("A".."Z").to_a + ("a".."z").to_a
 
-  def initialize(params, actor)
+  def initialize(params, actor, groups)
     @contact = Contact.new(params)
     @actor = actor
+    @groups = groups
   end
 
   def call
@@ -11,6 +12,7 @@ class CreateContact < Patterns::Service
       create_contact
       add_event
       add_about
+      add_groups
     rescue
       contact
     end
@@ -33,5 +35,12 @@ class CreateContact < Patterns::Service
     About.create(user: actor, contact: contact)
   end
 
-  attr_reader :contact, :actor
+  def add_groups
+    if !groups.nil?
+      @batches = Batch.where("id IN (?)", groups)
+      contact.batches << @batches
+    end
+  end
+
+  attr_reader :contact, :actor, :groups
 end

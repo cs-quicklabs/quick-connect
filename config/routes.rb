@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
+
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
     resources :relatives, module: "contact", except: [:show]
     resources :contact_activities, module: "contact", except: [:show]
     resources :contact_events, module: "contact", except: [:show]
-    resources :abouts, module: "contact", except: [:show]
+    resources :about, module: "contact", except: [:show]
     resources :documents, module: "contact", except: [:show]
     collection do
       get :form
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
   resources :journals
   resources :release_notes
   resources :journal_comments
+  get "contacts/groups", to: "contacts#groups"
   post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"
@@ -72,6 +74,7 @@ Rails.application.routes.draw do
     resources :fields, except: [:show, :new]
     resources :activities, except: [:show, :new]
     resources :life_events, except: [:show, :new]
+    match "/contact-sample.csv" => "import#export", via: :get, defaults: { format: :csv }
     get "/export", to: "export#index", as: "export_contacts"
     get "/import", to: "import#index", as: "import_contacts"
     resources :invitations, except: [:show, :new] do

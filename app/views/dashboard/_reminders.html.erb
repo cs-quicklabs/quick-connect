@@ -4,12 +4,12 @@
       <% reminders = upcoming_reminders %>
       <% if !reminders.nil? %>
         <% reminders.each do |reminder| %>
-          <% contact = Contact.find(reminder.first["contact_id"]) %>
-          <% remind = Reminder.find(reminder.first["id"]) %>
+          <% contact = reminder.second %>
+          <% remind = reminder.first %>
           <li class="py-1 sm:flex border-b align-middle mt-2">
             <div class="flex flex-1 " style="width:26rem;">
               <span class="w-72 flex">
-                <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.second[:reminder]) %> </time>
+                <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.third[:reminder]) %> </time>
                 <div class=" break-words  inline-flex">
                   <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline  font-medium text-gray-900 " target="_top">
                     <p class=" mb-2 flex-auto ml-2 text-sm font-medium   " ><%= contact.decorate.display_name %></p>
