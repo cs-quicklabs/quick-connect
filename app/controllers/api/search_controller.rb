@@ -1,7 +1,7 @@
 class Api::SearchController < Api::BaseController
   def contacts
     authorize [:api, :search]
-    if !q.nil?
+    if !params[:q].nil?
       like_keyword = "#{params[:q]}".split(/\s+/)
       contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
         .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
@@ -18,7 +18,7 @@ class Api::SearchController < Api::BaseController
 
   def relative
     authorize [:api, :search]
-    if !q.nil?
+    if !params[:q].nil?
       like_keyword = "%#{params[:q]}%".split(/\s+/)
       @profile = params[:profile]
       @contact = [Contact.find(params[:profile])]
@@ -35,7 +35,7 @@ class Api::SearchController < Api::BaseController
 
   def add
     authorize [:api, :search]
-    if !q.nil?
+    if !params[:q].nil?
       like_keyword = "%#{params[:q]}%".split(/\s+/)
       @batch = Batch.find(params[:batch_id])
       @added = @batch.contacts
