@@ -14,7 +14,7 @@ class SearchController < BaseController
 
   def nav
     authorize :search
-
+if 
     like_keyword = "%#{params[:q]}%".split(/\s+/)
 
     @results = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
