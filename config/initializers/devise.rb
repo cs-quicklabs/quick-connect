@@ -375,7 +375,7 @@ Devise.setup do |config|
 
   # config/initializers/devise.rb
   config.jwt do |jwt|
-    jwt.secret = Rails.application.secrets.secret_key_base
+    jwt.secret = Rails.application.credentials.secret_key_base
     jwt.dispatch_requests = [
       ["POST", %r{^/api/login$}],
       ["POST", %r{^/api/login.json$}],
