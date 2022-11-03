@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   resources :journals
   resources :release_notes
   resources :journal_comments
+  get "contacts/groups", to: "contacts#groups"
   post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   get "/search/contacts", to: "search#contacts"

@@ -12,6 +12,7 @@ class ContactsController < BaseController
   def new
     authorize :contact
     @contact = Contact.new
+    @batches = Batch.all.order(:name)
   end
 
   def edit
@@ -66,7 +67,7 @@ class ContactsController < BaseController
 
   def create
     authorize :contact
-    @contact = CreateContact.call(contact_params, @user).result
+    @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
       if @contact.errors.empty? && params[:commit] != "Save and Add More"
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }

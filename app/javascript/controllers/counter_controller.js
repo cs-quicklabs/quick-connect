@@ -1,5 +1,4 @@
 import ApplicationController from './application_controller.js'
-import consumer from "../channels/consumer"
 
 export default class extends ApplicationController {
   static targets = [ "groups" ]
@@ -14,4 +13,9 @@ for (var i = 0; i < checkboxes.length; i++) {
 }
 this.groupsTarget.innerHTML = array.join('')
   }
+}
+
+function getMetaValue(name) {
+  const element = document.head.querySelector(`meta[name="${name}"]`)
+  return element.getAttribute("content")
 }
