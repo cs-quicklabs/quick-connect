@@ -98,6 +98,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "batch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["contact_id", "batch_id"], name: "index_batches_contacts_on_contact_id_and_batch_id", unique: true
   end
 
   create_table "comments", force: :cascade do |t|

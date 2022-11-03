@@ -16,8 +16,8 @@ class Api::ContactsController < Api::BaseController
 
   def update
     authorize [:api, @contact]
-    if @contact.update(contact_params)
-      Event.where(eventable: @contact).or(Event.where(trackable: @contact)).touch_all
+    @contact = UpdateContact.call(contact_params, @contact, params[:groups]).result
+    if @contact.errors.empty?
       render json: { success: true, data: @contact, message: "Contact was successfully updated." }
     else
       render json: { success: false, message: @contact.errors.full_messages.first }

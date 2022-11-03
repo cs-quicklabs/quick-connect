@@ -1,3 +1,5 @@
 <%= turbo_frame_tag "contact", target: "_top" do %>
-  <%= render partial: "form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact" } %>
+  <div id="new">
+    <%= render partial: "form", locals: { contact: @contact, contact_batches: @contact_batches,batches: @batches, title: "Add New Contact", subtitle: "Please provide details of new contact" } %>
+  </div>
 <% end %>
