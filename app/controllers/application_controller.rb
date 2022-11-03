@@ -170,7 +170,6 @@ class ApplicationController < ActionController::Base
     end
     if header = request.headers["Authorization"]
       header = header.split(" ").last
-      binding.irb
       begin
         jwt_payload = JWT.decode(header, Rails.application.credentials.secret_key_base, true, { :algorithm => "HS256" }).first
         @api_user = User.includes(:invited_by).find(jwt_payload["sub"])
