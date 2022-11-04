@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       post :import
     end
     resources :gifts, module: "contact", except: [:show]
-    resources :batches, module: "contact", except: [:show, :new, :update]
+    resources :batches, module: "contact", path: "groups", except: [:show, :new, :update]
     resources :debts, module: "contact", except: [:show]
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
