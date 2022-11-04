@@ -6,7 +6,7 @@
       <label for="group" class="block  text-sm font-medium text-gray-700">
         Select Group
       </label>
-      <%= form.collection_select("group_id", Group.all.where(category: "event").order(:name).decorate, :id, :display_name, { :prompt => "Select Group" }, :class => "cursor-pointer form-text-field mt-1") %>
+      <%= form.collection_select("group_id", @groups, :id, :display_name, { :prompt => "Select Group" }, :class => "cursor-pointer form-text-field mt-1") %>
     </div>
     <%= form.text_field :name, "Life Event", autocomplete: "off", class: "form-text-field" %>
     <!-- Hack ends here -->

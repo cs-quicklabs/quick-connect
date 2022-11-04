@@ -21,6 +21,12 @@ class ReleaseNotesController < BaseController
     render_partial("release_notes/release_note", collection: @release_notes, cached: true) if stale?(@release_notes)
   end
 
+  def whatsnew
+    authorize ReleaseNote
+    @pagy, @release_notes = pagy_nil_safe(params, ReleaseNote.published.order(created_at: :desc), items: LIMIT)
+    render_partial("release_notes/release_note", collection: @release_notes, cached: true) if stale?(@release_notes)
+  end
+
   def new
     authorize ReleaseNote
     @release_note = ReleaseNote.new

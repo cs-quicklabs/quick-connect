@@ -62,6 +62,7 @@ Rails.application.routes.draw do
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
   get "/release", to: "release_notes#release", as: "release"
+  get "/whatsnew", to: "release_notes#whatsnew", as: "whatsnew"
   get :ratings, controller: :journals
   resources :batches, except: [:new] do
     get "contacts", to: "batches#contacts", as: "contacts"

@@ -4,6 +4,7 @@ class Contact::AboutController < Contact::BaseController
 
   def index
     authorize [@contact, About]
+    @about = @contact.abouts
   end
 
   def edit
@@ -14,7 +15,7 @@ class Contact::AboutController < Contact::BaseController
     authorize [@contact, @about]
     respond_to do |format|
       if @about.update(about_params)
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/about/about", locals: { about: @about, contact: @contact }) }
       end
     end
   end
@@ -24,7 +25,7 @@ class Contact::AboutController < Contact::BaseController
     @about.assign_attributes({ "#{params[:delete]}" => nil })
     @about.save!
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/abouts/about", locals: { about: @about, contact: @contact }) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace(@about, partial: "contact/about/about", locals: { about: @about, contact: @contact }) }
     end
   end
 

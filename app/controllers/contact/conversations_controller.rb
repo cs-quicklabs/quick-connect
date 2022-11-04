@@ -5,6 +5,7 @@ class Contact::ConversationsController < Contact::BaseController
     authorize [@contact, Conversation]
 
     @conversation = Conversation.new
+    @fields = Field.all.order(:name).decorate
     @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(date: :desc), items: LIMIT)
     render_partial("conversations/call", collection: @conversations) if stale?(@conversations + [@contact])
   end
