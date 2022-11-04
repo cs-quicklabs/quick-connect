@@ -31,4 +31,8 @@ class ReleaseNotePolicy < ApplicationPolicy
   def release?
     true
   end
+
+  def whatsnew?
+    true
+  end
 end

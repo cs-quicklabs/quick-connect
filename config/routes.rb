@@ -33,7 +33,7 @@ Rails.application.routes.draw do
       post :import
     end
     resources :gifts, module: "contact", except: [:show]
-    resources :batches, module: "contact", except: [:show, :new, :update]
+    resources :batches, module: "contact", path: "groups", except: [:show, :new, :update]
     resources :debts, module: "contact", except: [:show]
     resources :conversations, module: "contact", except: [:show]
     resources :timeline, module: "contact", only: [:index]
@@ -62,8 +62,9 @@ Rails.application.routes.draw do
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
   get "/release", to: "release_notes#release", as: "release"
+  get "/whatsnew", to: "release_notes#whatsnew", as: "whatsnew"
   get :ratings, controller: :journals
-  resources :batches, except: [:new] do
+  resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
     post "add", to: "batches#add", as: "addcontact"
     delete "remove", to: "batches#remove", as: "removecontact"

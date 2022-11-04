@@ -7,7 +7,9 @@
     <div class="max-w-none prose-h3:mb-4 prose-h3:text-base prose-h3:leading-6 prose-sm prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
       <h3 class="font-medium text-gray-900 text-sm"><%= release_note.title.upcase_first %></h3>
       <% cache release_note do %>
-        <p class="mt-2 text-sm text-gray-700"> <%= release_note.body %></p>
+        <div class="break-words">
+          <p class="mt-2 text-sm text-gray-700 "> <%= release_note.body %></p>
+        </div>
       <% end %>
     </div>
   </div>
