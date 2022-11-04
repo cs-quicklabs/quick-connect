@@ -3,10 +3,10 @@
     <%= render "shared/account_menu" %>
     <main class="max-w-3xl  pb-12 lg:col-span-6">
       <div id="activities_form">
-        <%= render "form", activity: @activity %>
+        <%= render "form", {activity: @activity, groups: @groups }%>
       </div>
       <div id="activities">
-        <%= render "activities", { activities: @activities } %>
+        <%= render "activities", { activities: @activities  } %>
       </div>
     </main>
   </div>
