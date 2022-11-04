@@ -140,7 +140,7 @@ class ApplicationController < ActionController::Base
   private
 
   def json_request?
-    request.format.json?
+    request.format.json? and request.url.include?("api")
   end
 
   def http_request?
