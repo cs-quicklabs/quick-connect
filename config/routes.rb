@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get "/release", to: "release_notes#release", as: "release"
   get "/whatsnew", to: "release_notes#whatsnew", as: "whatsnew"
   get :ratings, controller: :journals
-  resources :batches, except: [:new] do
+  resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
     post "add", to: "batches#add", as: "addcontact"
     delete "remove", to: "batches#remove", as: "removecontact"
