@@ -5,7 +5,7 @@ regular:
   account: hansika
   confirmed_at: 2021-03-18
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 70105030-d9c8-11ec-9d64-0242ac120002
+  jti: 70105030-d9c8-11ec-9d64-0242ac120006
   admin: true
 
 actor:
@@ -14,7 +14,7 @@ actor:
   email: rachita@crownstack.com
   account: hansika
   confirmed_at: 2021-03-18
-  jti: 81643806-d9c8-11ec-9d64-0242ac120002
+  jti: 81643806-d9c8-11ec-9d64-0242ac120005
   admin: false
   
 unconfirmed:
@@ -23,16 +23,29 @@ unconfirmed:
   email: unconfirmed@crownstack.com
   account: hansika
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
-  jti: 87044b98-d9c8-11ec-9d64-0242ac120002
+  jti: 87044b98-d9c8-11ec-9d64-0242ac120004
   admin: false
 
-invite:
+active:
   first_name: invite
-  last_name: invite
-  email: invite@gmail.com
+  last_name: activated
+  email: activated@gmail.com
   account: hansika
   confirmed_at: 2021-03-18
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
   jti: 70105030-d9c8-11ec-9d64-0242ac120003
   admin: false
+
+
+
+deactivated:
+  first_name: invite
+  last_name: deactivated
+  email: deactivated@gmail.com
+  account: hansika
+  confirmed_at: 2021-03-18
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
+  jti: 70105030-d9c8-11ec-9d64-0242ac120001
+  admin: false
+  permission: 1
   
