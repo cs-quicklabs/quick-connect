@@ -20,7 +20,7 @@ class Account::LifeEventsController < Account::BaseController
       if @life_event.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:life_events, partial: "account/life_events/life_event", locals: { life_event: @life_event }) +
-                               turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: LifeEvent.new, message: "Life event was created successfully.", groups: Group.all.where(category: "event").order(:name).decorate  })
+                               turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: LifeEvent.new, message: "Life event was created successfully.", groups: Group.all.where(category: "event").order(:name).decorate })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(LifeEvent.new, partial: "account/life_events/form", locals: { life_event: @life_event, groups: Group.all.where(category: "event").order(:name).decorate }) }

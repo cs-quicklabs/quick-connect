@@ -46,7 +46,7 @@ class ContactsTest < ApplicationSystemTestCase
     click_on "Add Contact"
     fill_in "contact_first_name", with: "contact"
     fill_in "contact_last_name", with: "contact"
-    fill_in "contact_email", with: "contact7@gmail.com"
+    fill_in "contact_email", with: "contact8@gmail.com"
     fill_in "contact_phone", with: "9050687378"
     click_on "Save"
     take_screenshot

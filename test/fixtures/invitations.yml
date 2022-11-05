@@ -1,7 +1,15 @@
 one:
   first_name: invite
-  last_name: invite
-  email: invite@gmail.com
-  user: invite
+  last_name: activated
+  email: activated@gmail.com
+  user: active
   sender: regular
   account: hansika
+
+two:
+  first_name: invite
+  last_name: deactivated
+  email: deactivated@gmail.com
+  user: deactivated
+  sender: regular
+  account: hansika  
