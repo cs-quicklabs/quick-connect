@@ -80,7 +80,7 @@ gem "attribute_normalizer"
 gem "rswag-api"
 gem "rswag-ui"
 
-gem "hotwire-livereload"
+
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
@@ -103,7 +103,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "htmlbeautifier"
-
+  gem "hotwire-livereload"
   gem "rspec-rails"
 end
 
