@@ -3,7 +3,7 @@
     <%= render "shared/account_menu" %>
     <main class="max-w-3xl  pb-12 lg:col-span-6">
       <div id="activities_form">
-        <%= render "form", life_event: @life_event %>
+        <%= render "form", {life_event: @life_event, groups: @groups} %>
       </div>
       <div id="life_events">
         <%= render "life_events", { life_events: @life_events } %>

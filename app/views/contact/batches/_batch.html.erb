@@ -14,7 +14,7 @@
       <td class="table-cell">
         <div>
           <% if policy([batches_contact.contact, batch]).destroy? %>
-            <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/batches/#{batch.id}") %>
+            <%= delete_button("/#{current_user.account.id}/contacts/#{contact.id}/groups/#{batch.id}") %>
           <% end %>
         </div>
       </div>
