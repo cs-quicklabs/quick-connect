@@ -15,7 +15,7 @@
           Edit Event
         </label>
         <div class="flex w-full  ">
-          <input type='text' id="life_event_name" name="life_event[name]" id="user_password" class="form-text-field flex-flex-1"  />
+          <input type='text' id="life_event_name" name="life_event[name]" id="user_password" class="form-text-field flex-flex-1" value="<%=@life_event.name%>" />
           <div class="   inline-flex">
             <%= form.submit "Save", class: "btn-blue ml-3 flex-none  " %>
           </div>
