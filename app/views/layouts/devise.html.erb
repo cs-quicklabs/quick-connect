@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html class="">
+  <head>
+    <title>Kutumb</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= action_cable_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% if user_signed_in? %>
+      <meta name="current-account", content="<%= Current.account.id %>">
+      <meta name="current-user", content="<%= current_user.id %>">
+    <% end %>
+    <meta name="turbo-cache-control" content="no-cache">
+    <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "actiontext", "data-turbo-track": "reload" %>
+    <script src="https://kit.fontawesome.com/db0a2349c3.js" crossorigin="anonymous"></script>
+    <%= stylesheet_link_tag "calender", "data-turbo-track": "reload" %>
+    <%= favicon_link_tag "logo.jpeg" %>
+  </head>
+  <body class="h-full bg-gray-50">
+    <%= render "shared/navbar" %>
+    <div id="modal" data-controller="modal" data-action="click:outside->modal#close"></div>
+    <p class="text-sm font-medium text-center notice bg-green-50"><%= notice %></p>
+    <p class="text-sm font-medium text-center alert bg-red-50"><%= alert %></p>
+    <main class="content" >
+      <%= yield %>
+    </main>
+  </body>
+</html>
