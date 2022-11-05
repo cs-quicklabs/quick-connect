@@ -9,14 +9,14 @@
         </ul>
       <% end %>
     </div>
-    <li class="flex w-full py-4 border-b border-gray-200">
-      <div class="w-full  ">
+    <li class="list-none w-full py-4 border-b border-gray-200">
+      <div class="space-y-6">
         <label for="owned_by" class="block text-sm font-medium text-gray-700 mb-1">
           Edit Event
         </label>
-        <div class="flex">
-          <%= form.text_field :name, autocomplete: "off", class: "form-text-field flex flex-1 flex-auto   " %>
-          <div class="flex justify-end ">
+        <div class="flex w-full  ">
+          <input type='text' id="life_event_name" name="life_event[name]" id="user_password" class="form-text-field flex-flex-1"  />
+          <div class="   inline-flex">
             <%= form.submit "Save", class: "btn-blue ml-3 flex-none  " %>
           </div>
         </div>

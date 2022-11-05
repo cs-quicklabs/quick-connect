@@ -38,7 +38,7 @@ class InvitationsTest < ApplicationSystemTestCase
     visit page_url
     fill_in "invitation_first_name", with: "invite"
     fill_in "invitation_last_name", with: "invite1"
-    fill_in "invitation_email", with: "invite1@gmail.com"
+    fill_in "invitation_email", with: "invite2@gmail.com"
     click_on "Save"
     sleep(0.5)
     take_screenshot
@@ -103,10 +103,10 @@ class InvitationsTest < ApplicationSystemTestCase
 
   test "can activate user" do
     visit page_url
-    invitation = invitations(:one)
+    invitation = invitations(:two)
     within "turbo-frame#invitation_#{invitation.id}" do
       page.accept_confirm do
-        click_on("Activate")
+        find("li", text: invitation.email).click_link("Activate")
       end
       assert text "Deactivate"
     end
