@@ -1,52 +1,57 @@
-<div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8 min-h-full">
-  <div class="sm:mx-auto sm:w-full sm:max-w-md">
-    <%= image_tag "icon.jpeg", class: "block w-auto h-12 rounded-full   mx-auto" %>
-    <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
-      Change Your Password
-    </h2>
-  </div>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-    <%= f.hidden_field :reset_password_token %>
-    <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <div class="px-4 py-8 mt-4 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
-        <div>
-          <label for="password" class="block text-sm font-medium text-gray-700">
-            New Password
-          </label>
-          <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-          <% end %>
-          <div class="mt-1 flex w-full"  x-data="{ show: true }">
-            <div class="mt-1 flex-auto w-full" >
-              <input :type="show ? 'password' : 'text'" name="user[password]" id="user_password" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
-            </div>
-            <i :class="show ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
-          </div>
-        </div>
-        <div>
-          <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
-            Confirm New Password
-          </label>
-          <div class="mt-1 flex w-full"   x-data="{ show_confirmation: true }">
-            <div class="mt-1 flex-auto w-full" >
-              <input :type="show_confirmation? 'password' : 'text'" id="user_password_confirmation" name="user[password_confirmation]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
-            </div>
-            <i :class="show_confirmation ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
-          </div>
-        </div>
-        <div>
-          <%= f.submit "Change My Password", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-        </div>
-        <div>
-          <% -if controller_name != "sessions" %>
-          <div class="text-sm text-center">
-            <a href="<%= new_session_path(resource_name) %>" class="font-medium text-indigo-600 hover:text-indigo-500">
-              Log in
-            </a>
-          </div>
-        <% end %>
+<html class="h-full bg-gray-50">
+  <body class="h-full">
+    <div class="flex flex-col justify-center min-h-screen py-12 bg-gray-50 sm:px-6 lg:px-8">
+      <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <%= image_tag "icon.jpeg", class: "block w-auto h-12 rounded-full   mx-auto" %>
+        <h2 class="mt-6 text-3xl font-extrabold text-center text-gray-900">
+          Change Your Password
+        </h2>
       </div>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= f.hidden_field :reset_password_token %>
+        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+          <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="px-4 py-8 mt-4 space-y-6 bg-white shadow sm:rounded-lg sm:px-10">
+            <div>
+              <label for="password" class="block text-sm font-medium text-gray-700">
+                New Password
+              </label>
+              <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em><br />
+              <% end %>
+              <div class="mt-1 flex w-full"  x-data="{ show: true }">
+                <div class="mt-1 flex-auto w-full" >
+                  <input :type="show ? 'password' : 'text'" name="user[password]" id="user_password" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+                </div>
+                <i :class="show ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
+              </div>
+            </div>
+            <div>
+              <label for="password_confirmation" class="block text-sm font-medium text-gray-700">
+                Confirm New Password
+              </label>
+              <div class="mt-1 flex w-full"   x-data="{ show_confirmation: true }">
+                <div class="mt-1 flex-auto w-full" >
+                  <input :type="show_confirmation? 'password' : 'text'" id="user_password_confirmation" name="user[password_confirmation]" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+                </div>
+                <i :class="show_confirmation ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
+              </div>
+            </div>
+            <div>
+              <%= f.submit "Change My Password", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+            </div>
+            <div>
+              <% -if controller_name != "sessions" %>
+              <div class="text-sm text-center">
+                <a href="<%= new_session_path(resource_name) %>" class="font-medium text-indigo-600 hover:text-indigo-500">
+                  Log in
+                </a>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-</div>
+    </div>
+  </body>
+</html>

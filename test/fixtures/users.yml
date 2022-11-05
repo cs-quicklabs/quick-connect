@@ -35,5 +35,4 @@ invite:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>  
   jti: 70105030-d9c8-11ec-9d64-0242ac120003
   admin: false
-  permission: 1
   

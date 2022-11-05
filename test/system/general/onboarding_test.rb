@@ -9,6 +9,7 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_session_path
     fill_in "user_email", with: regular.email
     fill_in "user_password", with: "password"
+    take_screenshot
     click_on "Log In"
     sleep(0.5)
     assert_current_path(dashboard_path(script_name: "/#{regular.account.id}"))
@@ -20,6 +21,7 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_session_path
     click_on "Forgot your password?"
     fill_in "user_email", with: regular.email
+    take_screenshot
     assert_emails 1 do
       click_on "Send Me Reset Password Instructions"
       sleep(0.5)
@@ -82,6 +84,7 @@ class OnboardingTest < ApplicationSystemTestCase
     visit new_user_session_path
     click_on "Didn't receive email confirmation instructions?"
     fill_in "user_email", with: users(:unconfirmed).email
+    take_screenshot
     assert_emails 1 do
       click_on "Resend Confirmation Instructions"
       sleep(0.5)
