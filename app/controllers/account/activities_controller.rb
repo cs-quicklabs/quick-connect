@@ -4,6 +4,7 @@ class Account::ActivitiesController < Account::BaseController
   def index
     authorize :account
     @activities = Activity.all.joins("INNER JOIN groups ON groups.id = activities.group_id").order("groups.name ASC").order(:name).group_by(&:group)
+    @groups = Group.all.where(category: "activity").order(:name).decorate
     @activity = Activity.new
     fresh_when Activity.all
   end
@@ -20,10 +21,10 @@ class Account::ActivitiesController < Account::BaseController
       if @activity.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:activities, partial: "account/activities/activity", locals: { activity: @activity }) +
-                               turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: Activity.new, message: "Activity was created successfully." })
+                               turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: Activity.new, message: "Activity was created successfully.", groups: Group.all.where(category: "activity").order(:name).decorate })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: @activity }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: @activity, groups: Group.all.where(category: "activity").order(:name).decorate }) }
       end
     end
   end

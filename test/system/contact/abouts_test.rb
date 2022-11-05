@@ -10,7 +10,7 @@ class ContactAboutsTest < ApplicationSystemTestCase
   end
 
   def page_url
-    contact_about_index_path_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+    contact_about_index_url(script_name: "/#{@account.id}", contact_id: @contact.id)
   end
 
   test "can visit contatcts about if logged in" do
@@ -49,7 +49,7 @@ class ContactAboutsTest < ApplicationSystemTestCase
       frame_id = dom_id(@contact.abouts, key + "_turbo_frame")
       within "##{frame_id}" do
         page.accept_confirm do
-          click_on("Delete")
+          click_on("Clear")
         end
         assert_text "-"
       end

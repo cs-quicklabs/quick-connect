@@ -4,6 +4,7 @@ class Contact::ContactEventsController < Contact::BaseController
   def index
     authorize [@contact, ContactEvent]
     @contact_event = ContactEvent.new
+    @life_events = LifeEvent.all.order(:name).decorate
     @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
     render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events + [@contact])
   end

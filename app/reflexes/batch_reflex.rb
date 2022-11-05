@@ -5,11 +5,9 @@ class BatchReflex < ApplicationReflex
     batch = Batch.find(element.dataset["batch-id"])
     contacts = batch.contacts.where("contacts.archived=?", false).order(:first_name).uniq
     contact = contacts.first
-    @event = contact.events.order(created_at: :desc).first
-    @call = contact.phone_calls.order(created_at: :desc).first
     html = render(partial: "batches/show", locals: { batch: batch, contacts: contacts })
     if contacts.size > 0
-      profile = render(partial: "batches/profile", locals: { contact: contacts.first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: contact.id), event: @event, call: @call })
+      profile = render(partial: "batches/profile", locals: { contact: contacts.first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: contact.id), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first })
     else
       profile = render(partial: "batches/profile", locals: { contact: "" })
     end

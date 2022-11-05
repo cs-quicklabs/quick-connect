@@ -41,3 +41,7 @@ other_act:
 other:  
   name: Other
   category: event    
+
+work:  
+  name: work
+  category: activity   

@@ -5,6 +5,7 @@ class Contact::ConversationsController < Contact::BaseController
     authorize [@contact, Conversation]
 
     @conversation = Conversation.new
+    @fields = Field.all.order(:name).decorate
     @pagy, @conversations = pagy_nil_safe(params, @contact.conversations.order(date: :desc), items: LIMIT)
     render_partial("conversations/call", collection: @conversations) if stale?(@conversations + [@contact])
   end
@@ -46,10 +47,10 @@ class Contact::ConversationsController < Contact::BaseController
       if @conversation.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:conversations, partial: "contact/conversations/conversation", locals: { conversation: @conversation }) +
-                               turbo_stream.replace(Conversation.new, partial: "contact/conversations/form", locals: { conversation: Conversation.new })
+                               turbo_stream.replace(Conversation.new, partial: "contact/conversations/form", locals: { conversation: Conversation.new, fields: Field.all.order(:name).decorate })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(Conversation.new, partial: "contact/conversations/form", locals: { conversation: @conversation }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Conversation.new, partial: "contact/conversations/form", locals: { conversation: @conversation, fields: Field.all.order(:name).decorate }) }
       end
     end
   end

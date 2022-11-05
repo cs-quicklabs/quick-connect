@@ -11,7 +11,7 @@
             <span class="ml-6 flex-shrink-0 space-x-1">
               <% if policy([about.contact, about]).update? %>
                 <%= link_to "Update", edit_contact_about_path(about.contact, about), class: "btn-inline-edit font-normal" %>
-                <%= clear_button(contact_about_index_path(about.contact, about, :delete => "address")) %>
+                <%= clear_button(contact_about_path(about.contact, about, :delete => "address")) %>
               <% end %>
             </span>
           </div>
