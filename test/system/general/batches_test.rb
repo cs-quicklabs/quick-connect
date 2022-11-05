@@ -111,7 +111,7 @@ class BatchesTest < ApplicationSystemTestCase
       within "ul#batch_contacts" do
         assert text "Contact Contact"
         page.accept_confirm do
-          find("li", text: "Contact Contact").click_on("Delete")
+          find("li", id: dom_id(@batch.contacts.first)).click_on("Delete")
         end
         assert_no_text "Contact Contact"
       end

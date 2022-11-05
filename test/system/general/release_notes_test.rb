@@ -25,7 +25,7 @@ class ReleaseNotesTest < ApplicationSystemTestCase
   end
 
   test "can view release notes if logged in" do
-    visit whatsnew_path
+    visit whatsnew_url(script_name: "/#{@account.id}")
     take_screenshot
     assert_selector "h1", text: "What's New"
   end

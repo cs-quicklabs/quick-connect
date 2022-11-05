@@ -21,7 +21,7 @@ class Account::ActivitiesController < Account::BaseController
       if @activity.save
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:activities, partial: "account/activities/activity", locals: { activity: @activity }) +
-                               turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: Activity.new, message: "Activity was created successfully." })
+                               turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: Activity.new, message: "Activity was created successfully.", groups: Group.all.where(category: "activity").order(:name).decorate })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Activity.new, partial: "account/activities/form", locals: { activity: @activity, groups: Group.all.where(category: "activity").order(:name).decorate }) }

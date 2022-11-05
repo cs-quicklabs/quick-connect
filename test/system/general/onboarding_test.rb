@@ -42,10 +42,8 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: "awesome1@crownstack.com"
     fill_in "user_password", with: "Awesome@2021!"
     fill_in "user_password_confirmation", with: "Awesome@2021!"
-    assert_emails 1 do
-      click_on "Sign Up"
-      sleep(0.5)
-    end
+    click_on "Sign Up"
+    sleep(0.5)
     take_screenshot
     assert_selector "p.notice", text: "A message with a confirmation link has been sent to your email address. Please follow the link to activate your account."
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
