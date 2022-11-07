@@ -33,8 +33,8 @@ class UpdateContact < Patterns::Service
     @batches = Batch.where("id IN (?)", groups)
     batch = contact_batches - @batches
     contact_batches.destroy batch
-    if !groups.nil?
-      contact.batches << @batches
+    if !@batches.nil?
+      contact_batches << @batches - contact_batches
     end
   end
 

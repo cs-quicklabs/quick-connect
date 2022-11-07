@@ -45,7 +45,7 @@
         <% if policy(contact).edit? %>
           <% if !contact.phone.blank? %>
             <div >
-              <a type="button" href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
+              <a  href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <i class="fa-brands fa-whatsapp"></i>
@@ -53,7 +53,7 @@
               </a>
             </div>
             <div >
-              <a type="button"  data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"    title="Send Sms">
+              <a  data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"    title="Send Sms">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
@@ -66,7 +66,7 @@
           <% end %>
           <% if !contact.email.blank? %>
             <div>
-              <a type="button" href="mailto:<%= contact.email %>"  title="Send Email">
+              <a  href="mailto:<%= contact.email %>"  title="Send Email">
                 <!-- Heroicon name: solid/mail -->
                 <span class="icon-span">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-4 w-4">
