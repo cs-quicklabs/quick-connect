@@ -20,14 +20,6 @@ class Contact < ApplicationRecord
   scope :available, -> { where(archived: false) }
   validate :validates
 
-  def should_validate_phone?
-    new_record? || phone.present?
-  end
-
-  def should_validate?
-    new_record? || email.present?
-  end
-
   def validates
     if email.blank? && phone.blank?
       errors.add(:phone_number_or, "E-mail can't be blank")
