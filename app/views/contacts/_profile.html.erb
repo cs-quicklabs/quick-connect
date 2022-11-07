@@ -14,7 +14,7 @@
           <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1  ">
             <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.display_name %></h1>
           </div>
-          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 ">
+          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 mr-4 ">
             <label for="profile" >
               <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" title="View Profile" id="profile">
                 <span class="icon-span">
@@ -26,8 +26,8 @@
               </a>
             </label>
             <% if !contact.phone.blank? %>
-              <div >
-                <button type="button"  data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms">
+              <label for="phone" class="mx-2" >
+                <a   data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms" id="phone">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
@@ -35,13 +35,13 @@
                       <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
                     </svg>
                   </span>
-                </button>
+                </a>
                 <span ></span>
-              </div>
+              </label>
             <% end %>
             <% if !contact.email.blank? %>
               <div>
-                <a type="button" href="mailto:<%= contact.email %>"  title="Send Email">
+                <a  href="mailto:<%= contact.email %>"  title="Send Email">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
