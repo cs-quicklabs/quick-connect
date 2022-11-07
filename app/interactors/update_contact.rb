@@ -34,7 +34,7 @@ class UpdateContact < Patterns::Service
     batch = contact_batches - @batches
     contact_batches.destroy batch
     if !@batches.nil?
-      contact.batches << @batches - contact_batches
+      contact_batches << @batches - contact_batches
     end
   end
 
