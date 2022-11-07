@@ -49,6 +49,9 @@
           <% if params[:contact_id] %>
             <%contact=Contact.find(params[:contact_id])%>
             <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]),event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
+          <% elsif params[:batch_id]%>
+            <%contact=batch.contacts.first%>
+            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]),event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
           <% end %>
         </div>
       </div>

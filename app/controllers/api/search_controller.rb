@@ -2,7 +2,7 @@ class Api::SearchController < Api::BaseController
   def contacts
     authorize [:api, :search]
     if !params[:q].nil?
-      like_keyword = "#{params[:q]}".split(/\s+/)
+      like_keyword = "%#{params[:q]}%".split(/\s+/)
       contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
         .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
         .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))

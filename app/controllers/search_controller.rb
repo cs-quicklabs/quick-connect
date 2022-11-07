@@ -16,11 +16,11 @@ class SearchController < BaseController
     authorize :search
     like_keyword = "%#{params[:q]}%".split(/\s+/)
 
-    @results = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
+    @contacts = Contact.all.available.where("first_name iLIKE ANY ( array[?] )", like_keyword)
       .or(Contact.all.available.where("last_name iLIKE ANY ( array[?] )", like_keyword))
       .or(Contact.all.available.where("first_name iLIKE ANY ( array[?] ) and last_name iLIKE ANY ( array[?] )", like_keyword, like_keyword))
-      .order(:first_name).limit(3).uniq + Batch.all.where("name iLIKE ANY ( array[?] )", like_keyword).order(:name).limit(2)
-
+      .order(:first_name).limit(3).uniq
+    @batches = Batch.all.where("name iLIKE ANY ( array[?] )", like_keyword).order(:name).limit(3)
     render layout: false
   end
 
