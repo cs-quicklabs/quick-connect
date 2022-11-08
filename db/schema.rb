@@ -125,7 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "email", default: ""
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
-    t.string "phone", default: "", null: false
+    t.string "phone", default: ""
     t.datetime "birthday", precision: nil
     t.string "address", default: ""
     t.string "about", default: ""

@@ -27,7 +27,7 @@ class ContactsController < BaseController
     respond_to do |format|
       if @contact.errors.empty? && params[:commit] != "Save and Add More"
         format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully updated." }
-      elsif @contact.errors.empty? && params[:commit] == "Save and Add More"
+      elsif @contact.errors.empty? && params[:commit] == "Save And Add More"
         format.html { redirect_to new_contact_path, notice: "Contact was successfully updated." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.update(:edit, partial: "contacts/form", locals: { contact: @contact, title: "Edit Contact", subtitle: "Please update details of existing contact", batches: Batch.all.order(:name), contact_batches: @contact.batches }) }
@@ -69,10 +69,10 @@ class ContactsController < BaseController
     authorize :contact
     @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
-      if @contact.errors.empty? && params[:commit] != "Save and Add More"
+      if @contact.errors.empty? && params[:commit] != "Save And Add More"
         format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
-      elsif @contact.errors.empty? && params[:commit] == "Save and Add More"
-        format.html { render turbo_stream: turbo_stream.replace(Contact.new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name), contact_batches: [] }) }
+      elsif @contact.errors.empty? && params[:commit] == "Save And Add More"
+        format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.update(:new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name), contact_batches: [] }) }
       end
