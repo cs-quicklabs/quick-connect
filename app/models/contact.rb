@@ -81,8 +81,8 @@ class Contact < ApplicationRecord
     CSV.foreach(file.path, headers: true) do |row|
       if !row[1].nil?
         contact_hash = Contact.new
-        contact_hash.first_name = row[1].split(" ")[0]
-        contact_hash.last_name = row[1].split(" ")[1]
+        contact_hash.first_name = row[1].split(" ")[0].downcase
+        contact_hash.last_name = row[1].split(" ")[1] ? row[1].split(" ")[1].downcase : ""
         contact_hash.email = row[2]
         contact_hash.phone = row[3]
         contact_hash.user_id = current_user.id
