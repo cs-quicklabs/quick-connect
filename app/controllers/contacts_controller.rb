@@ -25,7 +25,7 @@ class ContactsController < BaseController
     authorize @contact
     @contact = UpdateContact.call(contact_params, @contact, params[:groups]).result
     respond_to do |format|
-      if @contact.errors.empty? && params[:commit] != "Save and Add More"
+      if @contact.errors.empty? && params[:commit] != "Save And Add More"
         format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully updated." }
       elsif @contact.errors.empty? && params[:commit] == "Save And Add More"
         format.html { redirect_to new_contact_path, notice: "Contact was successfully updated." }

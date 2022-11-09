@@ -1,3 +1,6 @@
 one:
   batch: one
   contact: one
+one:
+  batch: group
+  contact: one  
