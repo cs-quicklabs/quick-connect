@@ -14,7 +14,7 @@ class ContactsTest < ApplicationSystemTestCase
   end
 
   def contact_page_url
-    contact_about_index_path_url(script_name: "/#{@account.id}", contact_id: @contact.id)
+    contact_about_index_url(script_name: "/#{@account.id}", contact_id: @contact.id)
   end
 
   def edit_contact_page_url
@@ -53,11 +53,36 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Contact was successfully created."
   end
 
+  test "can create a new contact save and add more" do
+    visit page_url
+    click_on "Add Contact"
+    fill_in "contact_first_name", with: "contact"
+    fill_in "contact_last_name", with: "contact"
+    fill_in "contact_email", with: "contact8@gmail.com"
+    fill_in "contact_phone", with: "9050687378"
+    click_on "Save And Add More"
+    take_screenshot
+    assert_selector "p.notice", text: "Contact was successfully created."
+  end
+
   test "can not create with empty first_name last_name email phone" do
     visit page_url
     click_on "Add Contact"
     assert_selector "h1", text: "Add New Contact"
     click_on "Save"
+    take_screenshot
+    assert_selector "h1", text: "Add New Contact"
+    assert_selector "div#error_explanation", text: "First name can't be blank"
+    assert_selector "div#error_explanation", text: "Last name can't be blank"
+    assert_selector "div#error_explanation", text: "Phone number or E-mail can't be blank"
+    assert_selector "h1", text: "Add New Contact"
+  end
+
+  test "can not create with empty first_name last_name email phone save and add more" do
+    visit page_url
+    click_on "Add Contact"
+    assert_selector "h1", text: "Add New Contact"
+    click_on "Save And Add More"
     take_screenshot
     assert_selector "h1", text: "Add New Contact"
     assert_selector "div#error_explanation", text: "First name can't be blank"
@@ -83,7 +108,26 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "p.notice", text: "Contact was successfully updated."
   end
 
-  test "can not edit a contact with invalid phone" do
+  test "can edit a contact save and add more" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    within "#contact-header" do
+      find('label[for="profile"]').click
+    end
+    within "#contact-header" do
+      find('label[for="edit"]').click
+    end
+    assert_selector "h1", text: "Edit Contact"
+    fill_in "contact_first_name", with: "contact"
+    fill_in "contact_last_name", with: "contact1"
+    fill_in "contact_phone", with: "9050687378"
+    click_on "Save And Add More"
+    assert_selector "p.notice", text: "Contact was successfully updated."
+    assert_selector "h1", text: "Add New Contact"
+  end
+
+  test "can not edit a contact with invalid phone email" do
     visit page_url
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
@@ -96,6 +140,24 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Edit Contact"
     fill_in "contact_phone", with: "phone"
     click_on "Save"
+    take_screenshot
+    assert_selector "h1", text: "Edit Contact"
+    assert_selector "div#error_explanation", text: "Phone number is invalid"
+  end
+
+  test "can not edit a contact with invalid phone save and add more" do
+    visit page_url
+    find("li", id: dom_id(@contact)).click
+    assert_selector "h1", text: @contact.decorate.display_name
+    within "#contact-header" do
+      find('label[for="profile"]').click
+    end
+    within "#contact-header" do
+      find('label[for="edit"]').click
+    end
+    assert_selector "h1", text: "Edit Contact"
+    fill_in "contact_phone", with: "phone"
+    click_on "Save And Add More"
     take_screenshot
     assert_selector "h1", text: "Edit Contact"
     assert_selector "div#error_explanation", text: "Phone number is invalid"
