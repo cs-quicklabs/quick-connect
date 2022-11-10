@@ -4,7 +4,7 @@ class ReminderDecorator < Draper::Decorator
 
   def display_status
     if self.status_week?
-      "week"
+      "Week"
     elsif self.status_month?
       "Month"
     else

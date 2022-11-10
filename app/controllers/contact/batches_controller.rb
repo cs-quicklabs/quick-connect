@@ -11,7 +11,7 @@ class Contact::BatchesController < Contact::BaseController
   def destroy
     authorize [@contact, @batch]
     @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
-    @groups = Batch.all - @contact.batches
+    @groups = Batch.all.order(:name) - @contact.batches
     respond_to do |format|
       format.turbo_stream {
         render turbo_stream: turbo_stream.remove(@batch) +
@@ -27,7 +27,7 @@ class Contact::BatchesController < Contact::BaseController
       if !params[:batch_id].blank?
         @batch = Batch.find(params[:batch_id])
         @batch_new = AddContactToGroup.call(@batch, current_user, @contact).result
-        @groups = Batch.all - @contact.batches
+        @groups = Batch.all.order(:name) - @contact.batches
         batches_contact = BatchesContact.joins(:batch).where(batch_id: @batch_new.id).where(contact_id: @contact.id).first
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(:form, partial: "contact/batches/form", locals: { groups: @groups, contact: @contact }) +

@@ -31,11 +31,13 @@
     <span class=" font-normal text-gray-500  whitespace-nowrap"><%= display_date(reminder.reminder_date) %></span>
   </td>
   <td class="table-cell">
-    <% if reminder.once? %>
-      <%= reminder.reminder_type.upcase_first %>
-    <% else %>
-      Every <%= reminder.remind_after %> <%= reminder.decorate.display_status %><% if reminder.remind_after > 1 %>s <% end %>
-    <% end %>
+    <span class="inline-flex items-center rounded bg-indigo-100 px-2 py-0.5 text-xs font-medium text-indigo-800">
+      <% if reminder.once? %>
+        <%= reminder.reminder_type.upcase_first %>
+      <% else %>
+        Every <%= reminder.remind_after %> <%= reminder.decorate.display_status %><% if reminder.remind_after > 1 %>s <% end %>
+      <% end %>
+    </span>
   </td>
   <td class="table-cell w-full">
     <div class="flex">
