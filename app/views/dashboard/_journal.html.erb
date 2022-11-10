@@ -9,22 +9,22 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-          <p class="text-sm text-gray-500">
-            <% if event.account.owner_id == event.user_id %>
-              You
-            <% else %>
-              <%= event.user.decorate.display_name %>
-            <% end %>
-            <%= event.action_for_context %>
-            <% if event.trackable.nil? %>
-              which does not exists anymore 
-            <% else %>
-              <a href="<%= journal_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.title.upcase_first %></a>
-            <% end %>
-          </p>
-        </div>
-        <div class="text-sm text-right text-gray-500 whitespace-nowrap">
-          <%= display_created_at(event) %>
+          <p class="mt-0.5 text-sm text-gray-500"> <%= display_created_at(event) %></p>
+          <div class="mt-1 text-sm text-gray-700">
+            <p class="">
+              <% if event.account.owner_id == event.user_id %>
+                You
+              <% else %>
+                <%= event.user.decorate.display_name %>
+              <% end %>
+              <%= event.action_for_context %>
+              <% if event.trackable.nil? %>
+                which does not exists anymore 
+              <% else %>
+                <a href="<%= journal_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.title.upcase_first %></a>
+              <% end %>
+            </p>
+          </div>
         </div>
       </div>
     </div>
