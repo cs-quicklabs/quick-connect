@@ -5,7 +5,7 @@
       <!-- Left column -->
       <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  "   >
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white" data-controller="infinite-scroll">
+          <div class="overflow-hidden bg-white" >
             <div class="sm:px-4  py-6">
               <div class="flex items-center justify-evenly ">
                 <div class="flex flex-wrap items-baseline  flex-none">
@@ -38,7 +38,7 @@
               </div>
             </div>
             <% if @contacts.count > 0 %>
-              <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" >
+              <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
                 <div class="relative px-4 h-max pb-12" >
                   <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries">
                     <%= render partial: "contact", collection: @contacts, cached: true %>
