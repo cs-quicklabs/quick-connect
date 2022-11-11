@@ -63,7 +63,7 @@
     </div>
     <div class="py-2  xl:px-8 md:px-6 mx-auto flex">
       <% if contact.intro? %>
-        <p class=" text-sm font-medium text-gray-500 truncate ..." style="flex-shrink: 2 ">
+        <p class=" text-sm font-medium text-gray-500 " style="flex-shrink: 2 ">
           <%= contact.intro.upcase_first %>
         </p>
       <% end %>
@@ -72,11 +72,11 @@
           -    
         </p>
       <% end %>
-      <p class="text-sm font-medium text-gray-500 basis-1/2 truncate ... "  style="flex-grow: 1;">
+      <p class="text-sm font-medium text-gray-500 basis-1/2 "  style="flex-grow: 1;">
         <% if (!event.blank? && !call.blank?) %>
-          <%= event.action_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
+          <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
         <% elsif !event.blank? %>
-          <%= event.action_context.upcase_first %> on <%= display_created_at(event) %>
+          <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %>
         <% elsif !call.blank? %>
           Last phone call was on <%= display_created_at(call) %>
         <% end %>

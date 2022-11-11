@@ -13,6 +13,7 @@ gem "sprockets-rails", "3.4.2"
 # Use postgresql as the database for Active Record
 gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
+
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma", "6.0.0"
 
