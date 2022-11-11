@@ -4,7 +4,7 @@ class Api::BatchesController < Api::BaseController
   def index
     authorize [:api, :batch]
 
-    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
+    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: 20)
     render json: { pagy: pagination_meta(pagy_metadata(@pagy)), success: true, data: @batches, message: "Groups retrieved successfully" } if stale?(@batches)
   end
 
