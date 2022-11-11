@@ -28,7 +28,7 @@ class ContactBatchesTest < ApplicationSystemTestCase
 
   test "can add contact to group" do
     visit page_url
-    batch = batches(:group)
+    batch = batches(:two)
     select batch.name.titleize, from: "batch_id"
     click_on "Save"
     sleep(0.5)
