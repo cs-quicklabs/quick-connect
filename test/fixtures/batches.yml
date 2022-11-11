@@ -5,3 +5,7 @@ group:
 one:
   name: Gym
   account: hansika
+
+two:
+  name: Walk
+  account: hansika  
