@@ -14,8 +14,3 @@ for (var i = 0; i < checkboxes.length; i++) {
 this.groupsTarget.innerHTML = array.join('')
   }
 }
-
-function getMetaValue(name) {
-  const element = document.head.querySelector(`meta[name="${name}"]`)
-  return element.getAttribute("content")
-}

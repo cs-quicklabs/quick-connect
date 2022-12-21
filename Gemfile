@@ -29,7 +29,7 @@ gem "turbo-rails", "1.3.2"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.1.1"
 
-# Build reactive applications [https://github.com/stimulusreflex/stimulus_reflex]
+
 gem "stimulus_reflex", "= 3.5.0.pre8"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
