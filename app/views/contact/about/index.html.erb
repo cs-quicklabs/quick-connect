@@ -20,16 +20,16 @@
           </section>
         </div>
         <div class="grid grid-cols-1 gap-4 lg:col-span-1">
-          <section aria-labelledby="participants_section" data-controller="toggle">
+          <section aria-labelledby="participants_section" >
             <h2 class="sr-only" id="section-1-title">Add Social Profile Links</h2>
             <div class="overflow-hidden bg-white">
-              <div class="px-4">
+              <div class="px-8">
                 <div class="items-center flex">
                   <%= render partial: "contact/links/form", locals: { contact: @contact, link: @link}, cached: true %>
                 </div>
-                <div class="mt-1 items-center flex px-4">
+                <div class="mt-1 items-center flex ">
                   <ul class="space-y-6" id="contact_links" >
-                    <%= render partial: "contact/links/link", collection: @contact_links, as: :link, cached: false %>
+                    <%= render partial: "contact/links/link", collection: @links, as: :social, cached: false %>
                   </ul>
                 </div>
               </div>
