@@ -5,6 +5,7 @@ class Contact::AboutController < Contact::BaseController
   def index
     authorize [@contact, About]
     @about = @contact.abouts
+    @link = @contact.links.new
   end
 
   def edit

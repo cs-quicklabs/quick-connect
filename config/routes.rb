@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :contact_events, module: "contact", except: [:show]
     resources :about, module: "contact", except: [:show]
     resources :documents, module: "contact", except: [:show]
+    resources :links, module: "contact", except: [:show]
     collection do
       get :form
       post :import

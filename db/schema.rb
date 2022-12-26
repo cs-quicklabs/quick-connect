@@ -305,6 +305,15 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["group_id"], name: "index_life_events_on_group_id"
   end
 
+  create_table "links", force: :cascade do |t|
+    t.string "link"
+    t.string "link_type"
+    t.bigint "user_id"
+    t.bigint "contact_id"
+    t.index ["contact_id"], name: "index_links_on_contact_id"
+    t.index ["user_id"], name: "index_links_on_user_id"
+  end
+
   create_table "notes", force: :cascade do |t|
     t.text "body"
     t.bigint "contact_id"
@@ -576,6 +585,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"
   add_foreign_key "life_events", "groups"
+  add_foreign_key "links", "contacts"
+  add_foreign_key "links", "users"
   add_foreign_key "notes", "contacts"
   add_foreign_key "notes", "users"
   add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
