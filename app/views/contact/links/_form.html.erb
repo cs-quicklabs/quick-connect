@@ -1,4 +1,3 @@
-
 <%= form_with(model: link, id: dom_id(link), url: contact_social_index_path(contact)) do |form| %>
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: link, message: local_assigns[:message] %>
@@ -14,7 +13,6 @@
     </div>
     <div class="flex justify-end ">
       <%= form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
-      <%= link_to "Cancel", contact_about_index_path(contact), class: "ml-3 btn-normal " %>
     </div>
   </main>
 <% end %>

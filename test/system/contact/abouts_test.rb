@@ -17,6 +17,8 @@ class ContactAboutsTest < ApplicationSystemTestCase
     visit page_url
     assert_selector "h1", text: "#{@contact.decorate.display_name}"
     assert_text "About"
+    assert_text "Address"
+    assert_text "Add Social Profile Links"
   end
 
   test "can edit the contact about" do
@@ -55,5 +57,71 @@ class ContactAboutsTest < ApplicationSystemTestCase
       end
     end
     take_screenshot
+  end
+
+  test "can add a social media link" do
+    visit page_url
+    select "Youtube", from: "link_link_type"
+    fill_in "link_link", with: "youtube.com"
+    click_on "Save"
+    within "#contact_links" do
+      assert_text "Youtube"
+      assert_text "youtube.com"
+    end
+    take_screenshot
+  end
+
+  test "can not add an empty social media link " do
+    visit page_url
+    click_on "Save"
+    assert_selector "div#error_explanation", text: "Link can't be blank"
+    take_screenshot
+  end
+
+  test "can not add an invalid social media link " do
+    visit page_url
+    select "LinkedIn", from: "link_link_type"
+    fill_in "link_link", with: "linkedin.com"
+    click_on "Save"
+    assert_selector "div#error_explanation", text: "Profile already exists"
+    take_screenshot
+  end
+
+  test "can delete a social media link" do
+    visit page_url
+    link = @contact.links.first
+    assert_text link.link_type.split("-").last.upcase_first
+    page.accept_confirm do
+      find("turbo-frame", id: dom_id(link)).click_link("Delete")
+    end
+    assert_no_text link.link_type.split("-").last
+    take_screenshot
+  end
+
+  test "can edit a social media link" do
+    visit page_url
+    link = @contact.links.first
+    assert_text link.link_type.split("-").last.upcase_first
+    find("turbo-frame", id: dom_id(link)).click_link("Edit")
+    within "#contact_links" do
+      fill_in "link_link", with: "linkedin.com1"
+      click_on "Save"
+      take_screenshot
+      assert_no_text "Edit Link"
+    end
+    assert_selector "##{dom_id(link)}", text: "linkedin.com1"
+  end
+
+  test "can not edit social link with invalid params" do
+    visit page_url
+    link = @contact.links.first
+    assert_text link.link_type.split("-").last.upcase_first
+    find("turbo-frame", id: dom_id(link)).click_link("Edit")
+    within "#contact_links" do
+      fill_in "link_link", with: ""
+      click_on "Save"
+      take_screenshot
+      assert_selector "div#error_explanation", text: "Link can't be blank"
+    end
   end
 end

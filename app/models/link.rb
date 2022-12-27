@@ -9,7 +9,7 @@ class Link < ApplicationRecord
     ["Instagram", "fa-brands fa-instagram"],
     ["Whatsapp", "fa-brands fa-whatsapp"],
     ["Twitter", "fa-brands fa-twitter"],
-    ["Linkedin", "fa-brands fa-linkedin"],
+    ["LinkedIn", "fa-brands fa-linkedin"],
   ]
-  validates :link, uniqueness: { :scope => [:contact_id, :link_type], message: "already exists" }
+  validates :link_type, uniqueness: { :scope => [:contact_id], message: "already exists" }
 end
