@@ -3,15 +3,15 @@
     <div class="flex ">
       <div class="flex justify-between space-x-36">
         <div class="text-sm text-gray-900 font-medium w-40">
-          <a href="<%=social.link%>">
+          <a  href="https://www.<%=social.link%>"  target="_blank">
             <p class="ml-3  font-light text-gray-600 inline-flex">
-            <span class="bg-black h-12 w-12 rounded-full ">
-             <i class="<%= social.link_type %> font-medium fa-2xl flex-auto pt-6 pl-2 text-white "></i></span>
-             <% if !social.link_type.nil?%>
-              <span class=" flex-none mt-1 font-semibold pl-4"><%= social.link_type.split("-").last.upcase_first %> </span>
+              <span class="bg-black h-12 w-12 rounded-full place-content-center grid">
+                <i class="<%= social.link_type %> font-medium fa-2xl  text-white "></i></span>
+              <% if !social.link_type.nil?%>
+                <span class=" flex-none mt-1 font-semibold pl-4"><%= social.link_type.split("-").last.upcase_first %> </span>
               <% end %>
             </p>
-            <p class="text-sm text-gray-900 font-light pl-16 ml-3 -mt-6"><%= social.link %> </p>
+            <p class="text-sm text-gray-900 font-light pl-14 ml-3 -mt-5"><%= social.link %> </p>
           </a>
         </div>
         <div class="mt-2 space-x-2 text-sm inline-flex ">

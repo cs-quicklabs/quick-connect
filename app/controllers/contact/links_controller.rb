@@ -13,7 +13,7 @@ class Contact::LinksController < Contact::BaseController
       if @link.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:contact_links, partial: "contact/links/link", locals: { social: @link }) +
-                               turbo_stream.replace(Note.new, partial: "contact/links/form", locals: { link: Link.new, contact: @contact })
+                               turbo_stream.replace(Link.new, partial: "contact/links/form", locals: { link: Link.new, contact: @contact })
         }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Link.new, partial: "contact/links/form", locals: { link: @link, contact: @contact }) }

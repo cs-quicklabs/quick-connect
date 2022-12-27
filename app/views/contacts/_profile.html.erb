@@ -1,11 +1,12 @@
 <% if policy(contact).profile? %>
+  <%links=contact.links%>
   <% contact=contact.decorate%>
   <div class="h-full"  >
     <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
       <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
     </div>
-    <div class="max-w-5xl  xl:px-8 md:px-6" id="contact-header"  >
+    <div class=" xl:px-8 md:px-6" id="contact-header"  >
       <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5"  >
         <div class="flex">
           <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
@@ -15,6 +16,19 @@
             <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.display_name %></h1>
           </div>
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 mr-4 ">
+            <% if !contact.links.empty? %>
+              <%contact.links.each do |link|%>
+                <label for="links" class="" >
+                  <a  href="https://www.<%=link.link%>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%=link.link_type.split("-").last.upcase_first%>" id="phone">
+                    <!-- Heroicon name: solid/mail -->
+                    <span class="icon-span ">
+                      <i class="<%= link.link_type %> font-medium fa-lg flex-auto  py-2 px-0.25 "></i>
+                    </span>
+                  </a>
+                  <span ></span>
+                </label>
+              <% end %>
+            <% end %>
             <% if !contact.phone.blank? %>
               <label for="phone" class="mx-2" >
                 <a   data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms" id="phone">
@@ -42,11 +56,9 @@
                 </a>
               </div>
             <% end %>
-            <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" type="button" class="inline-flex items-center rounded-md border border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">View Profile</a>
+            <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" type="button" class="inline-flex items-center rounded-md border whitespace-nowrap border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">View Profile</a>
           </div>
         </div>
-      </div>
-      <div>
       </div>
       <div class="hidden sm:block 2xl:hidden mt-4 min-w-0 flex-1 ">
         <h1 class="text-2xl font-bold text-gray-900  "><%= contact.decorate.display_name %></h1>
@@ -115,13 +127,31 @@
     </div>
     <!-- Team member list -->
     <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
-      <h2 class="text-sm font-medium text-gray-500">Family</h2>
-      <div class="mt-1 grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <% if !relatives.blank? %>
-          <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
-        <% else %>
-          <p class="text-xs font-normal text-gray-500">-</p>
-        <% end %>
+      <div class="grid grid-cols-2 gap-16 ">
+        <div class="grid grid-cols-1 col-span-1 ">
+          <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
+          <% if !contact.events.empty? %>
+            <ul >
+              <% contact.events.each do |event| %>
+                <% if lookup_context.template_exists?(event.action, "dashboard", true) %>
+                  <% cache event do %>
+                    <%= render partial: "dashboard/"+event.action, locals: { event: event } %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </ul>
+          <% else %>
+            <p class="text-xs font-normal text-gray-500">-</p>
+          <% end %>
+        </div>
+        <div class="col-span-1">
+          <h2 class="text-sm font-medium text-gray-500 pb-2">Family</h2>
+          <% if !relatives.blank? %>
+            <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
+          <% else %>
+            <p class="text-xs font-normal text-gray-500 ">-</p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
