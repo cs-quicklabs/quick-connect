@@ -149,7 +149,9 @@
         <div class="col-span-1">
           <h2 class="text-sm font-medium text-gray-500 pb-2">Family</h2>
           <% if !relatives.blank? %>
-            <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
+            <div class="grid grid-cols-1 col-span-1 gap-4">
+              <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
+            </div>
           <% else %>
             <p class="text-xs font-normal text-gray-500 ">-</p>
           <% end %>
