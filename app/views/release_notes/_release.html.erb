@@ -1,16 +1,46 @@
-<section id="2022-09-07" aria-labelledby="2022-09-07-heading" class="md:flex">
-  <h2 id="2022-09-07-heading" class="pl-7 text-sm leading-6 text-gray-500 md:w-1/4 md:pl-0 md:pr-5 md:text-right">
-    <a href="#<%= display_created_at(release_note) %>"><%= display_created_at(release_note) %></a></h2>
-  <div class="relative pt-2 pl-7 md:w-3/4 md:pt-0 md:pl-12 pb-16">
-    <div class="absolute bottom-0 left-0 w-px bg-slate-200 -top-3 md:top-2.5"></div>
-    <div class="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-slate-300 bg-white md:top-[0.4375rem]"></div>
-    <div class="max-w-none prose-h3:mb-4 prose-h3:text-base prose-h3:leading-6 prose-sm prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
-      <h3 class="font-medium text-gray-900 text-sm"><%= release_note.title.upcase_first %></h3>
-      <% cache release_note do %>
-        <div class="break-words">
-          <p class="mt-2 text-sm text-gray-700 "> <%= release_note.body %></p>
+<%= turbo_frame_tag dom_id(release_note) do %>
+  <section id="2022-09-07" aria-labelledby="2022-09-07-heading" class="md:flex">
+    <% if policy(release_note).create? %>
+      <div class="grid  flex-wrap pr-7 w-40" style="grid-template-rows: repeat(3, minmax(0, 30px));">
+        <div class=" justify-end flex ">
+          <div>
+            <% if policy(release_note).edit? %>
+              <span class="inline-flex items-center rounded bg-red-100 px-2 py-0.5 text-xs font-medium text-red-800 flex-none ">Unpublished</span>
+            <% end %>
+          </div>
         </div>
-      <% end %>
+        <h2 id="2022-09-07-heading" class="pl-7 text-sm leading-6 text-gray-500  md:pl-0 md: md:text-right">
+          <a href="#<%= display_created_at(release_note) %>"><%= display_created_at(release_note) %></a></h2>
+        <div class="  whitespace-nowrap flex justify-end space-x-2 ">
+          <div>
+            <% if policy(release_note).edit? %>
+              <%= edit_button(edit_release_note_path(release_note)) %>
+            <% end %>
+          </div>
+          <div>
+            <% if policy(release_note).destroy? %>
+              <%= delete_button(release_note_path(release_note)) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="w-40">
+        <h2 id="2022-09-07-heading" class="pl-7 text-sm leading-6 text-gray-500  md:pl-0 md:pr-7 md:text-right">
+          <a href="#<%= display_created_at(release_note) %>"><%= display_created_at(release_note) %></a></h2>
+      </div>
+    <% end %>
+    <div class="relative pt-2 pl-7 md:w-3/4 md:pt-0 md:pl-12 pb-16">
+      <div class="absolute bottom-0 left-0 w-px bg-slate-200 -top-3 md:top-2.5"></div>
+      <div class="absolute -top-[1.0625rem] -left-1 h-[0.5625rem] w-[0.5625rem] rounded-full border-2 border-slate-300 bg-white md:top-[0.4375rem]"></div>
+      <div class="max-w-none prose-h3:mb-4 prose-h3:text-base prose-h3:leading-6 prose-sm prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
+        <h3 class="font-medium text-gray-900 text-sm"><%= release_note.title.upcase_first %></h3>
+        <% cache release_note do %>
+          <div class="break-words">
+            <p class="mt-2 text-sm text-gray-700 "> <%= release_note.body %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+<% end %>

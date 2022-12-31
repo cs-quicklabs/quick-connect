@@ -95,7 +95,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       find('label[for="edit"]').click
@@ -113,7 +113,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       find('label[for="edit"]').click
@@ -132,7 +132,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       find('label[for="edit"]').click
@@ -150,7 +150,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       find('label[for="edit"]').click
@@ -168,7 +168,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       click_on "add"
@@ -188,7 +188,7 @@ class ContactsTest < ApplicationSystemTestCase
     assert_selector "h1", text: @contact.decorate.display_name
     favorite = !@contact.favorite
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       find("div", id: "contact-favorite").click
@@ -202,7 +202,7 @@ class ContactsTest < ApplicationSystemTestCase
     find("li", id: dom_id(@contact)).click
     assert_selector "h1", text: @contact.decorate.display_name
     within "#contact-header" do
-      find('label[for="profile"]').click
+      click_link("View Profile")
     end
     within "#contact-header" do
       page.accept_confirm do

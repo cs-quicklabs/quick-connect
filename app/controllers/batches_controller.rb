@@ -3,7 +3,7 @@ class BatchesController < BaseController
 
   def index
     authorize :batch
-    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: LIMIT)
+    @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: 100)
     @batch = Batch.new
     if (params[:batch_id])
       @batch_show = Batch.find(params[:batch_id])
