@@ -15,24 +15,22 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   enable_extension "plpgsql"
 
   create_table "abouts", force: :cascade do |t|
-    t.string "address"
-    t.string "breif"
-    t.string "met"
-    t.string "habit"
-    t.string "work"
-    t.string "other"
+    t.string "address", default: ""
+    t.string "breif", default: ""
+    t.string "met", default: ""
+    t.string "habit", default: ""
+    t.string "work", default: ""
+    t.string "other", default: ""
     t.bigint "contact_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_abouts_on_contact_id"
-    t.index ["user_id"], name: "index_abouts_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "accounts", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "owner_id"
   end
 
@@ -41,9 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.text "body"
     t.string "record_type", null: false
     t.bigint "record_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -51,9 +48,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
-    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
-    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+    t.datetime "created_at", precision: nil, null: false
   end
 
   create_table "active_storage_blobs", force: :cascade do |t|
@@ -64,40 +59,35 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
     t.string "checksum"
-    t.datetime "created_at", null: false
-    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+    t.datetime "created_at", precision: nil, null: false
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
-    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
     t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "default", default: false, null: false
-    t.index ["account_id"], name: "index_activities_on_account_id"
-    t.index ["group_id"], name: "index_activities_on_group_id"
   end
 
   create_table "batches", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_batches_on_account_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "batches_contacts", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
     t.bigint "batch_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["contact_id", "batch_id"], name: "index_batches_contacts_on_contact_id_and_batch_id", unique: true
   end
 
@@ -105,10 +95,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "title"
     t.bigint "user_id", null: false
     t.bigint "journal_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["journal_id"], name: "index_comments_on_journal_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "contact_activities", force: :cascade do |t|
@@ -118,11 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "activity_id", null: false
     t.bigint "contact_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["activity_id"], name: "index_contact_activities_on_activity_id"
-    t.index ["contact_id"], name: "index_contact_activities_on_contact_id"
-    t.index ["user_id"], name: "index_contact_activities_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "contact_events", force: :cascade do |t|
@@ -132,11 +117,8 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "life_event_id", null: false
     t.bigint "contact_id", null: false
     t.bigint "user_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_contact_events_on_contact_id"
-    t.index ["life_event_id"], name: "index_contact_events_on_life_event_id"
-    t.index ["user_id"], name: "index_contact_events_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -144,24 +126,20 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "phone", default: ""
-    t.datetime "birthday"
+    t.datetime "birthday", precision: nil
     t.string "address", default: ""
     t.string "about", default: ""
     t.bigint "user_id"
     t.bigint "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "relation_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "archived", default: false
     t.date "archived_on"
+    t.bigint "relation_id"
     t.boolean "favorite", default: false, null: false
     t.boolean "track", default: true, null: false
     t.date "untrack_on"
     t.string "intro"
-    t.index ["account_id"], name: "index_contacts_on_account_id"
-    t.index ["first_name"], name: "index_contacts_on_first_name"
-    t.index ["relation_id"], name: "index_contacts_on_relation_id"
-    t.index ["user_id"], name: "index_contacts_on_user_id"
   end
 
   create_table "contacts_labels", id: false, force: :cascade do |t|
@@ -175,24 +153,19 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.bigint "user_id"
     t.bigint "field_id"
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_conversations_on_contact_id"
-    t.index ["field_id"], name: "index_conversations_on_field_id"
-    t.index ["user_id"], name: "index_conversations_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "debts", force: :cascade do |t|
     t.string "title"
     t.string "amount"
-    t.string "owed_by", default: "user", null: false
+    t.string "owed_by", default: "user"
     t.bigint "user_id"
     t.bigint "contact_id"
-    t.datetime "due_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_debts_on_contact_id"
-    t.index ["user_id"], name: "index_debts_on_user_id"
+    t.datetime "due_date", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "documents", force: :cascade do |t|
@@ -201,17 +174,15 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "comments"
     t.bigint "user_id"
     t.bigint "contact_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_documents_on_contact_id"
-    t.index ["user_id"], name: "index_documents_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "events", force: :cascade do |t|
     t.integer "user_id"
     t.string "action"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "action_for_context"
     t.integer "trackable_id"
     t.string "trackable_type"
@@ -219,7 +190,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "eventable_type"
     t.bigint "account_id", null: false
     t.string "action_context"
-    t.index ["account_id"], name: "index_events_on_account_id"
   end
 
   create_table "fields", force: :cascade do |t|
@@ -227,82 +197,67 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "name", null: false
     t.string "protocol"
     t.string "icon"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean "type", default: false, null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "default", default: false, null: false
-    t.index ["account_id"], name: "index_fields_on_account_id"
   end
 
   create_table "gifts", force: :cascade do |t|
     t.string "name"
     t.text "body"
-    t.string "status", default: "true"
+    t.string "status", default: "received"
     t.bigint "user_id"
     t.bigint "contact_id"
-    t.datetime "date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_gifts_on_contact_id"
-    t.index ["user_id"], name: "index_gifts_on_user_id"
+    t.datetime "date", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "groups", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.string "category", default: "activity", null: false
   end
 
   create_table "invitations", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "sender_id"
     t.bigint "account_id"
     t.string "first_name"
     t.string "last_name"
     t.string "email"
     t.string "token"
-    t.datetime "sent_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_invitations_on_account_id"
-    t.index ["sender_id"], name: "index_invitations_on_sender_id"
-    t.index ["user_id"], name: "index_invitations_on_user_id"
+    t.datetime "sent_at", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.integer "sender_id"
   end
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "body"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "body", null: false
     t.integer "account_id"
-    t.index ["user_id"], name: "index_journals_on_user_id"
-  end
-
-  create_table "jwt_denylist", force: :cascade do |t|
-    t.string "jti", null: false
-    t.datetime "exp", precision: nil, null: false
-    t.index ["jti"], name: "index_jwt_denylist_on_jti"
   end
 
   create_table "labels", force: :cascade do |t|
     t.string "name"
     t.string "color", default: "gray", null: false
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_labels_on_account_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "life_events", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
     t.bigint "group_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "default", default: false, null: false
-    t.index ["account_id"], name: "index_life_events_on_account_id"
-    t.index ["group_id"], name: "index_life_events_on_group_id"
   end
 
   create_table "links", force: :cascade do |t|
@@ -318,15 +273,14 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.text "body"
     t.bigint "contact_id"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["contact_id"], name: "index_notes_on_contact_id"
-    t.index ["user_id"], name: "index_notes_on_user_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.string "title", default: ""
   end
 
   create_table "pay_charges", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "subscription_id"
+    t.bigint "customer_id", null: false
+    t.bigint "subscription_id"
     t.string "processor_id", null: false
     t.integer "amount", null: false
     t.string "currency"
@@ -334,51 +288,45 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.integer "amount_refunded"
     t.jsonb "metadata"
     t.jsonb "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id", "processor_id"], name: "index_pay_charges_on_customer_id_and_processor_id", unique: true
-    t.index ["subscription_id"], name: "index_pay_charges_on_subscription_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "pay_customers", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
     t.jsonb "data"
     t.datetime "deleted_at", precision: nil
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_type", "owner_id", "deleted_at", "default"], name: "pay_customer_owner_index"
-    t.index ["processor", "processor_id"], name: "index_pay_customers_on_processor_and_processor_id", unique: true
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "pay_merchants", force: :cascade do |t|
     t.string "owner_type"
-    t.integer "owner_id"
+    t.bigint "owner_id"
     t.string "processor", null: false
     t.string "processor_id"
     t.boolean "default"
     t.jsonb "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["owner_type", "owner_id", "processor"], name: "index_pay_merchants_on_owner_type_and_owner_id_and_processor"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "pay_payment_methods", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "processor_id", null: false
     t.boolean "default"
     t.string "type"
     t.jsonb "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id", "processor_id"], name: "index_pay_payment_methods_on_customer_id_and_processor_id", unique: true
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "pay_subscriptions", force: :cascade do |t|
-    t.integer "customer_id", null: false
+    t.bigint "customer_id", null: false
     t.string "name", null: false
     t.string "processor_id", null: false
     t.string "processor_plan", null: false
@@ -389,29 +337,26 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.decimal "application_fee_percent", precision: 8, scale: 2
     t.jsonb "metadata"
     t.jsonb "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["customer_id", "processor_id"], name: "index_pay_subscriptions_on_customer_id_and_processor_id", unique: true
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "pay_webhooks", force: :cascade do |t|
     t.string "processor"
     t.string "event_type"
     t.jsonb "event"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "phone_calls", force: :cascade do |t|
     t.text "body"
     t.bigint "contact_id"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
     t.string "status", default: "contact", null: false
-    t.index ["contact_id"], name: "index_phone_calls_on_contact_id"
-    t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
 
   create_table "preferences", force: :cascade do |t|
@@ -420,48 +365,43 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "title"
     t.string "message"
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_preferences_on_account_id"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "ratings", force: :cascade do |t|
     t.integer "rating", default: 1, null: false
     t.bigint "user_id"
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "account_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
   create_table "relations", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "default", default: false, null: false
-    t.index ["account_id"], name: "index_relations_on_account_id"
   end
 
   create_table "relatives", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "first_contact_id"
     t.integer "relation_id"
     t.integer "contact_id"
-    t.index ["account_id"], name: "index_relatives_on_account_id"
   end
 
   create_table "release_notes", force: :cascade do |t|
     t.string "title"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "published", default: false
-    t.index ["user_id"], name: "index_release_notes_on_user_id"
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -473,21 +413,9 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.string "comments"
     t.bigint "user_id"
     t.bigint "contact_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id", null: false
-    t.index ["account_id"], name: "index_reminders_on_account_id"
-    t.index ["contact_id"], name: "index_reminders_on_contact_id"
-    t.index ["user_id"], name: "index_reminders_on_user_id"
-  end
-
-  create_table "sessions", force: :cascade do |t|
-    t.string "session_id", null: false
-    t.text "data"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
-    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
+    t.bigint "account_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -495,116 +423,102 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.text "body"
     t.bigint "contact_id"
     t.bigint "user_id"
-    t.datetime "due_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "due_date", precision: nil
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.boolean "completed", default: false
-    t.index ["contact_id"], name: "index_tasks_on_contact_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.string "first_name", default: "", null: false
     t.string "last_name", default: "", null: false
     t.string "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
+    t.datetime "confirmed_at", precision: nil
+    t.datetime "confirmation_sent_at", precision: nil
     t.string "unconfirmed_email"
     t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "account_id"
-    t.boolean "email_enabled", default: true
-    t.string "jti", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.integer "permission", default: 0, null: false
     t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
     t.integer "invitation_limit"
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
+    t.bigint "account_id"
+    t.boolean "email_enabled", default: true
+    t.string "jti", null: false
     t.integer "admin", default: 0, null: false
-    t.string "uid", default: ""
-    t.json "tokens"
-    t.index ["account_id"], name: "index_users_on_account_id"
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
-    t.index ["invited_by_id"], name: "index_users_on_invited_by_id"
-    t.index ["invited_by_type", "invited_by_id"], name: "index_users_on_invited_by"
-    t.index ["jti"], name: "index_users_on_jti", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-    t.index ["uid"], name: "index_users_on_uid"
-    t.index ["user_id"], name: "index_users_on_user_id"
   end
 
-  add_foreign_key "abouts", "contacts"
-  add_foreign_key "abouts", "users"
-  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "activities", "accounts"
-  add_foreign_key "activities", "groups"
-  add_foreign_key "batches", "accounts"
-  add_foreign_key "comments", "journals"
-  add_foreign_key "comments", "users"
-  add_foreign_key "contact_activities", "activities"
-  add_foreign_key "contact_activities", "contacts"
-  add_foreign_key "contact_activities", "users"
-  add_foreign_key "contact_events", "contacts"
-  add_foreign_key "contact_events", "life_events"
-  add_foreign_key "contact_events", "users"
-  add_foreign_key "contacts", "accounts"
-  add_foreign_key "contacts", "relations"
-  add_foreign_key "contacts", "users"
-  add_foreign_key "conversations", "contacts"
-  add_foreign_key "conversations", "fields"
-  add_foreign_key "conversations", "users"
-  add_foreign_key "debts", "contacts"
-  add_foreign_key "debts", "users"
-  add_foreign_key "documents", "contacts"
-  add_foreign_key "documents", "users"
-  add_foreign_key "events", "accounts"
-  add_foreign_key "fields", "accounts"
-  add_foreign_key "gifts", "contacts"
-  add_foreign_key "gifts", "users"
-  add_foreign_key "invitations", "accounts"
-  add_foreign_key "invitations", "users"
-  add_foreign_key "invitations", "users", column: "sender_id"
-  add_foreign_key "journals", "users"
-  add_foreign_key "labels", "accounts"
-  add_foreign_key "life_events", "accounts"
-  add_foreign_key "life_events", "groups"
+  add_foreign_key "abouts", "contacts", name: "abouts_contact_id_fkey"
+  add_foreign_key "abouts", "users", name: "abouts_user_id_fkey"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id", name: "active_storage_attachments_blob_id_fkey"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id", name: "active_storage_variant_records_blob_id_fkey"
+  add_foreign_key "activities", "accounts", name: "activities_account_id_fkey"
+  add_foreign_key "activities", "groups", name: "activities_group_id_fkey"
+  add_foreign_key "batches", "accounts", name: "batches_account_id_fkey"
+  add_foreign_key "comments", "journals", name: "comments_journal_id_fkey"
+  add_foreign_key "comments", "users", name: "comments_user_id_fkey"
+  add_foreign_key "contact_activities", "activities", name: "contact_activities_activity_id_fkey"
+  add_foreign_key "contact_activities", "contacts", name: "contact_activities_contact_id_fkey"
+  add_foreign_key "contact_activities", "users", name: "contact_activities_user_id_fkey"
+  add_foreign_key "contact_events", "contacts", name: "contact_events_contact_id_fkey"
+  add_foreign_key "contact_events", "life_events", name: "contact_events_life_event_id_fkey"
+  add_foreign_key "contact_events", "users", name: "contact_events_user_id_fkey"
+  add_foreign_key "contacts", "accounts", name: "contacts_account_id_fkey"
+  add_foreign_key "contacts", "relations", name: "contacts_relation_id_fkey"
+  add_foreign_key "contacts", "users", name: "contacts_user_id_fkey"
+  add_foreign_key "conversations", "contacts", name: "conversations_contact_id_fkey"
+  add_foreign_key "conversations", "fields", name: "conversations_field_id_fkey"
+  add_foreign_key "conversations", "users", name: "conversations_user_id_fkey"
+  add_foreign_key "debts", "contacts", name: "debts_contact_id_fkey"
+  add_foreign_key "debts", "users", name: "debts_user_id_fkey"
+  add_foreign_key "documents", "contacts", name: "documents_contact_id_fkey"
+  add_foreign_key "documents", "users", name: "documents_user_id_fkey"
+  add_foreign_key "events", "accounts", name: "events_account_id_fkey"
+  add_foreign_key "fields", "accounts", name: "fields_account_id_fkey"
+  add_foreign_key "gifts", "contacts", name: "gifts_contact_id_fkey"
+  add_foreign_key "gifts", "users", name: "gifts_user_id_fkey"
+  add_foreign_key "invitations", "accounts", name: "invitations_account_id_fkey"
+  add_foreign_key "invitations", "users", name: "invitations_user_id_fkey"
+  add_foreign_key "journals", "users", name: "journals_user_id_fkey"
+  add_foreign_key "labels", "accounts", name: "labels_account_id_fkey"
+  add_foreign_key "life_events", "accounts", name: "life_events_account_id_fkey"
+  add_foreign_key "life_events", "groups", name: "life_events_group_id_fkey"
   add_foreign_key "links", "contacts"
   add_foreign_key "links", "users"
-  add_foreign_key "notes", "contacts"
-  add_foreign_key "notes", "users"
-  add_foreign_key "pay_charges", "pay_customers", column: "customer_id"
-  add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id"
-  add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id"
-  add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id"
-  add_foreign_key "phone_calls", "contacts"
-  add_foreign_key "phone_calls", "users"
-  add_foreign_key "preferences", "accounts"
-  add_foreign_key "ratings", "users"
-  add_foreign_key "relations", "accounts"
-  add_foreign_key "relatives", "accounts"
-  add_foreign_key "release_notes", "users"
-  add_foreign_key "reminders", "accounts"
-  add_foreign_key "reminders", "contacts"
-  add_foreign_key "reminders", "users"
-  add_foreign_key "tasks", "contacts"
-  add_foreign_key "tasks", "users"
-  add_foreign_key "users", "accounts"
-  add_foreign_key "users", "users"
+  add_foreign_key "notes", "contacts", name: "notes_contact_id_fkey"
+  add_foreign_key "notes", "users", name: "notes_user_id_fkey"
+  add_foreign_key "pay_charges", "pay_customers", column: "customer_id", name: "pay_charges_customer_id_fkey"
+  add_foreign_key "pay_charges", "pay_subscriptions", column: "subscription_id", name: "pay_charges_subscription_id_fkey"
+  add_foreign_key "pay_payment_methods", "pay_customers", column: "customer_id", name: "pay_payment_methods_customer_id_fkey"
+  add_foreign_key "pay_subscriptions", "pay_customers", column: "customer_id", name: "pay_subscriptions_customer_id_fkey"
+  add_foreign_key "phone_calls", "contacts", name: "phone_calls_contact_id_fkey"
+  add_foreign_key "phone_calls", "users", name: "phone_calls_user_id_fkey"
+  add_foreign_key "preferences", "accounts", name: "preferences_account_id_fkey"
+  add_foreign_key "ratings", "users", name: "ratings_user_id_fkey"
+  add_foreign_key "relations", "accounts", name: "relations_account_id_fkey"
+  add_foreign_key "relatives", "accounts", name: "relatives_account_id_fkey"
+  add_foreign_key "release_notes", "users", name: "release_notes_user_id_fkey"
+  add_foreign_key "reminders", "accounts", name: "reminders_account_id_fkey"
+  add_foreign_key "reminders", "contacts", name: "reminders_contact_id_fkey"
+  add_foreign_key "reminders", "users", name: "reminders_user_id_fkey"
+  add_foreign_key "tasks", "contacts", name: "tasks_contact_id_fkey"
+  add_foreign_key "tasks", "users", name: "tasks_user_id_fkey"
+  add_foreign_key "users", "accounts", name: "users_account_id_fkey"
+  add_foreign_key "users", "users", name: "users_user_id_fkey"
 end

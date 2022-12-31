@@ -1,6 +1,6 @@
 <% if policy(contact).profile? %>
-  <%links=contact.links%>
-  <% contact=contact.decorate%>
+  <% links = contact.links %>
+  <% contact = contact.decorate %>
   <div class="h-full"  >
     <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
@@ -17,9 +17,9 @@
           </div>
           <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 mr-4 ">
             <% if !contact.links.empty? %>
-              <%contact.links.each do |link|%>
+              <% contact.links.each do |link| %>
                 <label for="links" class="" >
-                  <a  href="https://www.<%=link.link%>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%=link.link_type.split("-").last.upcase_first%>" id="phone">
+                  <a  href="https://www.<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
                     <!-- Heroicon name: solid/mail -->
                     <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
                       <span class="">
@@ -137,7 +137,7 @@
               <% contact.events.each do |event| %>
                 <% if lookup_context.template_exists?(event.action, "dashboard", true) %>
                   <% cache event do %>
-                    <%= render partial: "dashboard/"+event.action, locals: { event: event } %>
+                    <%= render partial: "dashboard/" + event.action, locals: { event: event } %>
                   <% end %>
                 <% end %>
               <% end %>

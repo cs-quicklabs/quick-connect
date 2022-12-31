@@ -1,14 +1,14 @@
   <%= turbo_frame_tag dom_id(social) do %>
-  <%if !social.id.nil?%>
+  <% if !social.id.nil? %>
     <li class=" py-3">
       <div class="flex ">
         <div class="flex justify-between space-x-36">
           <div class="text-sm text-gray-900 font-medium w-40">
-            <a  href="https://www.<%=social.link%>"  target="_blank">
+            <a  href="https://www.<%= social.link %>"  target="_blank">
               <p class="ml-3  font-light text-gray-600 inline-flex">
                 <span class="bg-black h-12 w-12 rounded-full place-content-center grid">
                   <i class="<%= social.link_type %> font-medium fa-2xl  text-white "></i></span>
-                <% if !social.link_type.nil?%>
+                <% if !social.link_type.nil? %>
                   <span class=" flex-none mt-1 font-semibold pl-4"><%= social.link_type.split("-").last.upcase_first %> </span>
                 <% end %>
               </p>
