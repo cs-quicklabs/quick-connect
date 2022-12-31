@@ -4,13 +4,10 @@ export default class extends Controller {
   static targets = ["show", "unhide"];
 
   toggle() {
-    if (this.value.textContent === "show") {
-      this.value.textContent = "hide";
-      this.input.type = "text";
-    } else {
-      this.value.textContent = "show";
-      this.input.type = "password";
-    }
+    
+    this.element.addEventListener("click", function() {
+      this.showTarget.style.display = "block";
+    });
   }
 
   get value() {

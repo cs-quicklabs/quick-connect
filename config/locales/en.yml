@@ -120,4 +120,7 @@ en:
       invitation:
          email:
           one:  E-mail  
+      link:
+         link_type:
+          one:  Profile      
 

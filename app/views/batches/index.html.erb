@@ -8,7 +8,7 @@
           <div class="flex-1 flex flex-col  " >
             <nav class=" flex-1" aria-label="Sidebar">
               <div class="overflow-hidden bg-white  h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
-                <div class="px-4 sm:px-6 pt-6">
+                <div class="px-4 sm:px-6 py-6 mb-4">
                   <div class=" flex flex-wrap items-baseline ">
                     <h1 class="text-3xl font-bold leading-tight text-gray-900">Groups</h1>
                     <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @pagy.count.to_s %>)</p>
@@ -19,11 +19,11 @@
                   <div id="batches_form" class="pb-2">
                     <%= render "form", batch: @batch %>
                   </div>
-                  <div  class="pt-6"  data-controller="infinite-scroll">
-                    <nav class="h-full" id="batches"  data-infinite-scroll-target="entries">
+                  <div  class="pt-6 "  data-controller="infinite-scroll">
+                    <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
                       <%= render partial: "batch", collection: @batches, cached: true %>
                     </nav>
-                    <div class="flex justify-end mt-2  mr-2 invisible" data-infinite-scroll-target="pagination">
+                    <div class="flex justify-end mt-2   mr-2 invisible" data-infinite-scroll-target="pagination">
                       <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
                     </div>
                   </div>
@@ -47,11 +47,11 @@
         <!-- Breadcrumb -->
         <div id="profile" class="h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
           <% if params[:contact_id] %>
-            <%contact=Contact.find(params[:contact_id])%>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]),event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
-          <% elsif params[:batch_id] && batch.contacts.size>0 %>
-            <%contact=batch.contacts.first%>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]),event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
+            <% contact = Contact.find(params[:contact_id]) %>
+            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
+          <% elsif params[:batch_id] && batch.contacts.size > 0 %>
+            <% contact = batch.contacts.first %>
+            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
           <% end %>
         </div>
       </div>

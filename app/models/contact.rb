@@ -43,6 +43,7 @@ class Contact < ApplicationRecord
   has_many :contact_activities, dependent: :destroy
   has_many :contact_events, dependent: :destroy
   has_and_belongs_to_many :batches, dependent: :destroy
+  has_many :links, dependent: :destroy
 
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy

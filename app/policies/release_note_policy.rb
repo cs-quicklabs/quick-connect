@@ -1,31 +1,18 @@
 class ReleaseNotePolicy < ApplicationPolicy
-  def edit?
-    return false if record.published?
-    true
-  end
-
-  def update?
-    edit?
-  end
-
-  def index?
+  def create?
     user.admin == "true"
   end
 
-  def new?
-    index?
+  def edit?
+    !record.published? && create?
   end
 
-  def create?
-    index?
-  end
-
-  def show?
-    index?
+  def update?
+    create?
   end
 
   def destroy?
-    index?
+    create?
   end
 
   def release?

@@ -18,7 +18,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1  ">
           <% if !about.address.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"> <%= about.address.upcase_first %></span>
               <a
@@ -52,7 +52,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.breif.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.breif.upcase_first %></span>
               <a
@@ -86,7 +86,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.met.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.met.upcase_first %></span>
               <a
@@ -120,7 +120,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.habit.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.habit.upcase_first %></span>
               <a
@@ -154,7 +154,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.work.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.work.upcase_first %></span>
               <a
@@ -188,7 +188,7 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.other.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 520, originalContent: '', content: '' }"
+            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
    x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
               <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.other.upcase_first %></span>
               <a
