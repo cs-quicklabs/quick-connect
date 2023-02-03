@@ -377,7 +377,7 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    stimulus-rails (1.1.1)
+    stimulus-rails (1.2.1)
       railties (>= 6.0.0)
     stimulus_reflex (3.5.0.pre8)
       cable_ready (= 5.0.0.pre8)
@@ -395,7 +395,7 @@ GEM
       actionpack (>= 6.0.0)
       activejob (>= 6.0.0)
       railties (>= 6.0.0)
-    tzinfo (2.0.5)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     valid_url (0.0.4)
       addressable
@@ -481,7 +481,7 @@ DEPENDENCIES
   sinatra (>= 1.3.0)
   spring
   sprockets-rails (= 3.4.2)
-  stimulus-rails (= 1.1.1)
+  stimulus-rails (= 1.2.1)
   stimulus_reflex (= 3.5.0.pre8)
   stripe (~> 7.0)
   turbo-rails (= 1.3.2)
