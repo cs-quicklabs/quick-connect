@@ -15,7 +15,7 @@ gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.0.0"
+gem "puma", "6.0.2"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.0.3"
@@ -27,7 +27,7 @@ gem "cssbundling-rails", "1.1.1"
 gem "turbo-rails", "1.3.2"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.1.1"
+gem "stimulus-rails", "1.2.1"
 
 gem "stimulus_reflex", "= 3.5.0.pre8"
 
