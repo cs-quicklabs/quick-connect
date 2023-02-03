@@ -60,7 +60,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
 gem "devise", github: "heartcombo/devise", branch: "main"
-gem "devise_invitable", "~> 2.0.0"
+gem "devise_invitable", "~> 2.0.7"
 gem "devise-pwned_password"
 gem "devise-jwt"
 
