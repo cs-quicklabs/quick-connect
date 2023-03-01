@@ -2,10 +2,10 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby version app is using, [https://www.ruby-lang.org/en/downloads/]
-ruby "3.1.2"
+ruby "3.2.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.4"
+gem "rails", "7.0.4.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
@@ -24,7 +24,7 @@ gem "jsbundling-rails", "1.0.3"
 gem "cssbundling-rails", "1.1.1"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.3.2"
+gem "turbo-rails", "1.3.3"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.1"
@@ -65,13 +65,13 @@ gem "devise-pwned_password"
 gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq"
-gem "sidekiq-scheduler"
-gem "sinatra", ">= 1.3.0", require: nil
+gem "sidekiq", "7.0.5"
+gem "sidekiq-scheduler", "5.0.1"
+gem "sinatra", "3.0.5", require: nil
 
 # Payments
-gem "pay", "5.0.3"
-gem "stripe", "~> 7.0"
+gem "pay", "6.3.1"
+gem "stripe", "~> 8.3"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
@@ -98,7 +98,7 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem "listen", "~> 3.3"
-  gem "rack-mini-profiler", "~> 2.0"
+  gem "rack-mini-profiler", "~> 3.0"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "htmlbeautifier"
