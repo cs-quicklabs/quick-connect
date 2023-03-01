@@ -142,7 +142,7 @@ GEM
       xpath (~> 3.2)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
     cssbundling-rails (1.1.1)
@@ -255,8 +255,7 @@ GEM
     nokogiri (1.14.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (5.10.1)
-      activesupport
+    pagy (6.0.2)
     pay (5.0.3)
       rails (>= 6.0.0)
     pg (1.4.3)
