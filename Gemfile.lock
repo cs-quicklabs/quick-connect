@@ -128,8 +128,11 @@ GEM
       msgpack (~> 1.2)
     builder (3.2.4)
     byebug (11.1.3)
-    cable_ready (5.0.0.pre8)
-      rails (>= 5.2)
+    cable_ready (5.0.0.pre10)
+      actionpack (>= 5.2)
+      actionview (>= 5.2)
+      activesupport (>= 5.2)
+      railties (>= 5.2)
       thread-local (>= 1.1.0)
     capybara (3.38.0)
       addressable
@@ -205,7 +208,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
-    jsbundling-rails (1.0.3)
+    jsbundling-rails (1.1.1)
       railties (>= 6.0.0)
     json-schema (3.0.0)
       addressable (>= 2.8)
@@ -263,7 +266,7 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     public_suffix (5.0.1)
-    puma (6.0.2)
+    puma (6.1.0)
       nio4r (~> 2.0)
     pwned (2.0.2)
     raabro (1.4.0)
@@ -386,12 +389,16 @@ GEM
       sprockets (>= 3.0.0)
     stimulus-rails (1.2.1)
       railties (>= 6.0.0)
-    stimulus_reflex (3.5.0.pre8)
-      cable_ready (= 5.0.0.pre8)
-      nokogiri
-      rack
-      rails (>= 5.2)
-      redis
+    stimulus_reflex (3.5.0.pre10)
+      actioncable (>= 5.2, < 8)
+      actionpack (>= 5.2, < 8)
+      actionview (>= 5.2, < 8)
+      activesupport (>= 5.2, < 8)
+      cable_ready (>= 5.0.0.pre10)
+      nokogiri (~> 1.0)
+      rack (~> 2.0)
+      railties (>= 5.2, < 8)
+      redis (>= 4.0, < 6.0)
     stripe (8.3.0)
     thor (1.2.1)
     thread-local (1.1.0)
@@ -459,7 +466,7 @@ DEPENDENCIES
   htmlbeautifier
   image_processing (~> 1.12)
   jbuilder (= 2.11.5)
-  jsbundling-rails (= 1.0.3)
+  jsbundling-rails (= 1.1.1)
   launchy
   letter_opener
   letter_opener_web
@@ -470,12 +477,12 @@ DEPENDENCIES
   pay (= 6.3.1)
   pg
   pg_search
-  puma (= 6.0.2)
+  puma (= 6.1.0)
   rack-cors
   rack-mini-profiler (~> 3.0)
   rails (= 7.0.4.2)
   rails-patterns
-  redis (>= 4.0)
+  redis (= 5.0.6)
   rexml
   rspec-rails
   rswag-api
@@ -488,7 +495,7 @@ DEPENDENCIES
   spring
   sprockets-rails (= 3.4.2)
   stimulus-rails (= 1.2.1)
-  stimulus_reflex (= 3.5.0.pre8)
+  stimulus_reflex (= 3.5.0.pre10)
   stripe (~> 8.3)
   turbo-rails (= 1.4.0)
   tzinfo-data

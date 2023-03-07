@@ -15,10 +15,10 @@ gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.0.2"
+gem "puma", "6.1.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.0.3"
+gem "jsbundling-rails", "1.1.1"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.1.2"
@@ -29,7 +29,7 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.1"
 
-gem "stimulus_reflex", "= 3.5.0.pre8"
+gem "stimulus_reflex", "= 3.5.0.pre10"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
@@ -37,8 +37,8 @@ gem "jbuilder", "2.11.5"
 gem "rack-cors"
 
 # Use Redis adapter to run Action Cable in production
+gem "redis", "5.0.6"
 gem "hiredis"
-gem "redis", ">= 4.0"
 gem "valid_url"
 
 # Use Active Storage variant
