@@ -33,7 +33,7 @@ Devise.setup do |config|
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   #config.parent_controller = 'DeviseController'
-  config.parent_controller = "TurboController"
+  #config.parent_controller = "TurboController"
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
@@ -372,6 +372,9 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
 
   # config/initializers/devise.rb
   config.jwt do |jwt|
