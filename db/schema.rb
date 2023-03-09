@@ -339,6 +339,14 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.jsonb "data"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.boolean "metered"
+    t.string "pause_behavior"
+    t.datetime "pause_starts_at"
+    t.datetime "pause_resumes_at"
+    t.index ["metered"], name: "index_pay_subscriptions_on_metered"
+    t.index ["pause_starts_at"], name: "index_pay_subscriptions_on_pause_starts_at"
   end
 
   create_table "pay_webhooks", force: :cascade do |t|
