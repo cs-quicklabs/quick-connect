@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "owner_id"
+    t.boolean "expired", default: false, null: false
   end
 
   create_table "action_text_rich_texts", force: :cascade do |t|

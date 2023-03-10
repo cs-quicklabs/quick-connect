@@ -183,4 +183,14 @@ Rails.application.routes.draw do
       resources :timeline, module: "contact", only: [:index]
     end
   end
+
+  namespace :purchase do
+    resources :checkouts
+  end
+
+    # purchase routes
+    get "success", to: "purchase/checkouts#success", as: "success"
+    get "expired", to: "purchase/billings#expired", as: "expired"
+    post "billings", to: "purchase/billings#create", as: "billing_portal"
+  
 end
