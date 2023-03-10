@@ -27,7 +27,7 @@
                 <div class="items-center flex">
                   <%= render partial: "contact/links/form", locals: { contact: @contact, link: @link }, cached: true %>
                 </div>
-                <div class="mt-1 items-center flex ">
+                <div class="mt-1 items-center">
                   <ul class="space-y-6" id="contact_links" >
                     <%= render partial: "contact/links/link", collection: @links, as: :social, cached: false %>
                   </ul>
