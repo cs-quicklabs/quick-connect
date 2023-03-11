@@ -43,16 +43,10 @@ class UserController < BaseController
 
   def profile
     authorize @user
-    respond_to do |format|
-      format.html { render :profile } if stale?([@user])
-    end
   end
 
   def password
     authorize @user
-    respond_to do |format|
-      format.html { render :password }
-    end
   end
 
   def preferences
