@@ -11,6 +11,7 @@ class SubscriptionManager
     #something went wrong with payment processor
     if payment_processor.nil?
       user.set_payment_processor :stripe
+      payment_processor = user.payment_processor
     end
 
     # set a default template
