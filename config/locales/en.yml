@@ -93,9 +93,6 @@ en:
       journal:
         body:
           one: Description
-      release_note:
-        body:
-          one: Description
       relative:
         first_contact: 
           one: Relative

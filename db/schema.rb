@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
     t.integer "owner_id"
+    t.boolean "expired", default: false, null: false
   end
 
   create_table "action_text_rich_texts", force: :cascade do |t|
@@ -339,6 +340,14 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.jsonb "data"
     t.datetime "created_at", precision: nil, null: false
     t.datetime "updated_at", precision: nil, null: false
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.boolean "metered"
+    t.string "pause_behavior"
+    t.datetime "pause_starts_at"
+    t.datetime "pause_resumes_at"
+    t.index ["metered"], name: "index_pay_subscriptions_on_metered"
+    t.index ["pause_starts_at"], name: "index_pay_subscriptions_on_pause_starts_at"
   end
 
   create_table "pay_webhooks", force: :cascade do |t|
@@ -394,14 +403,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.integer "first_contact_id"
     t.integer "relation_id"
     t.integer "contact_id"
-  end
-
-  create_table "release_notes", force: :cascade do |t|
-    t.string "title"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.boolean "published", default: false
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -513,7 +514,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "ratings", "users", name: "ratings_user_id_fkey"
   add_foreign_key "relations", "accounts", name: "relations_account_id_fkey"
   add_foreign_key "relatives", "accounts", name: "relatives_account_id_fkey"
-  add_foreign_key "release_notes", "users", name: "release_notes_user_id_fkey"
   add_foreign_key "reminders", "accounts", name: "reminders_account_id_fkey"
   add_foreign_key "reminders", "contacts", name: "reminders_contact_id_fkey"
   add_foreign_key "reminders", "users", name: "reminders_user_id_fkey"

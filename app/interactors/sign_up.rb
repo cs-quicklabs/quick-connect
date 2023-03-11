@@ -83,5 +83,11 @@ class SignUp < Patterns::Service
     account.update!(owner_id: user.id)
   end
 
+  def set_stripe_subscription_trial
+    time = 14.days.from_now
+    user.set_payment_processor :fake_processor, allow_fake: true
+    user.payment_processor.subscribe(trial_ends_at: time, ends_at: time)
+  end
+
   attr_reader :account, :user
 end

@@ -5,7 +5,6 @@ class BaseController < ApplicationController
   before_action :authenticate_account!, if: :http_request?
   after_action :verify_authorized
 
-  skip_before_action :authenticate_account!, :authenticate_user!, :only => [:release]
   include Pagy::Backend
 
   def authenticate_account!

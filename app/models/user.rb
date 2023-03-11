@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  pay_customer
+  
   # Include default devise modules.
   include Devise::JWT::RevocationStrategies::JTIMatcher
   require "securerandom"
@@ -33,7 +35,6 @@ class User < ApplicationRecord
   has_many :contacts, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
   has_many :journals, dependent: :destroy
-  has_many :release_notes, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :notes, dependent: :destroy

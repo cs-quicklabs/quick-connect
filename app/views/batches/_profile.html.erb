@@ -129,9 +129,9 @@
       <!-- Team member list -->
       <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
         <div class="grid grid-cols-2 gap-16 ">
-          <div class="grid grid-cols-1 col-span-1 ">
-            <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
-            <% if !contact.events.empty? %>
+          <div class="grid grid-cols-1 col-span-2 ">
+            <div>
+              <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
               <ul class="mt-1">
                 <% contact.events.limit(7).each do |event| %>
                   <% if lookup_context.template_exists?(event.action, "dashboard", true) %>
@@ -141,17 +141,7 @@
                   <% end %>
                 <% end %>
               </ul>
-            <% else %>
-              <p class="text-xs font-normal text-gray-500">-</p>
-            <% end %>
-          </div>
-          <div class="col-span-1">
-            <h2 class="text-sm font-medium text-gray-500 pb-2">Family</h2>
-            <% if !relatives.blank? %>
-              <%= render partial: "contacts/family", collection: relatives, as: :relative, cached: false %>
-            <% else %>
-              <p class="text-xs font-normal text-gray-500 ">-</p>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>
