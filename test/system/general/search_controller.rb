@@ -5,7 +5,6 @@ class SearchTest < ApplicationSystemTestCase
     @user = users(:regular)
     @account = @user.account
     ActsAsTenant.current_tenant = @account
-    @release_note = ReleaseNote.where(published: false).first
     sign_in @user
   end
 

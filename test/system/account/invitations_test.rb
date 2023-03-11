@@ -103,14 +103,14 @@ class InvitationsTest < ApplicationSystemTestCase
 
   test "can activate user" do
     visit page_url
-    invitation = invitations(:two)
+    invitation = invitations(:one)
     within "turbo-frame#invitation_#{invitation.id}" do
       page.accept_confirm do
-        find("li", text: invitation.email).click_link("Activate")
+        find("li", text: invitation.email).click_link("Deactivate")
       end
-      assert text "Deactivate"
+      assert text "Activate"
     end
-    sleep(0.5)
+    sleep(1.0)
     sign_out(@user)
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
     link = doc.css("a").first.values.first

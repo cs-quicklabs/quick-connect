@@ -41,7 +41,6 @@ Rails.application.routes.draw do
   end
   get "favorites", to: "favorites#index", as: "favorites"
   resources :journals
-  resources :release_notes
   resources :journal_comments
   get "contacts/groups", to: "contacts#groups"
   post "/status", to: "status#create", as: "statuses"
@@ -62,8 +61,6 @@ Rails.application.routes.draw do
   end
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
   get :events, controller: :dashboard
-  get "/release", to: "release_notes#release", as: "release"
-  get "/whatsnew", to: "release_notes#whatsnew", as: "whatsnew"
   get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
@@ -114,7 +111,6 @@ Rails.application.routes.draw do
       post "/invitations", to: "invitations#update", as: :accept_invitation
     end
     get "followups", to: "followups#index"
-    get "/release", to: "release_notes#release", as: "release"
     resources :user
     get "/reset" => "user#reset", as: "reset_user"
     get "/destroy" => "user#destroy", as: "destroy_user"
@@ -159,7 +155,6 @@ Rails.application.routes.draw do
       post "remove", to: "batches#remove", as: "removecontact"
     end
     resources :journals
-    resources :release_notes
     resources :journal_comments
     resources :ratings, only: [:create, :index]
     resources :contacts do

@@ -405,14 +405,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.integer "contact_id"
   end
 
-  create_table "release_notes", force: :cascade do |t|
-    t.string "title"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: nil, null: false
-    t.datetime "updated_at", precision: nil, null: false
-    t.boolean "published", default: false
-  end
-
   create_table "reminders", force: :cascade do |t|
     t.string "title"
     t.integer "reminder_type"
@@ -522,7 +514,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "ratings", "users", name: "ratings_user_id_fkey"
   add_foreign_key "relations", "accounts", name: "relations_account_id_fkey"
   add_foreign_key "relatives", "accounts", name: "relatives_account_id_fkey"
-  add_foreign_key "release_notes", "users", name: "release_notes_user_id_fkey"
   add_foreign_key "reminders", "accounts", name: "reminders_account_id_fkey"
   add_foreign_key "reminders", "contacts", name: "reminders_contact_id_fkey"
   add_foreign_key "reminders", "users", name: "reminders_user_id_fkey"
