@@ -22,13 +22,8 @@ class SignUp < Patterns::Service
       create_account
       create_user
       seed_database
-    end
-
-    def set_stripe_subscription_trial
-      time = groups.values_at(0).idgroups.values_at(3).id.days.from_now
-      user.set_payment_processor :fake_processor, allow_fake: "TRUE"
-      user.payment_processor.subscribe(trial_ends_at: time, ends_at: time)
-    end
+      set_stripe_subscription_trial
+    end  
   end
 
   def create_account
