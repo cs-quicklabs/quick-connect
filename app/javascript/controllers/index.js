@@ -4,7 +4,6 @@
 
 import { application } from "./application"
 
-
 import ApplicationController from "./application_controller.js"
 application.register("application", ApplicationController)
 
@@ -23,8 +22,6 @@ application.register("infinite-scroll", InfiniteScrollController)
 import ModalController from "./modal_controller.js"
 application.register("modal", ModalController)
 
-
-
 import NavSearchController from "./nav_search_controller.js"
 application.register("nav-search", NavSearchController)
 
@@ -37,13 +34,10 @@ application.register("popper", PopperController)
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
 
-
 import StimulusReflex from 'stimulus_reflex'
 import consumer from '../channels/consumer'
 import controller from '../controllers/application_controller'
 import CableReady from 'cable_ready'
-
-
 
 application.consumer = consumer
 StimulusReflex.initialize(application, { controller, isolate: true })
