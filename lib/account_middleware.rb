@@ -4,6 +4,7 @@ class AccountMiddleware
   end
 
   def call(env)
+    request = ActionDispatch::Request.new env
     _, account_id, request_path = env["REQUEST_PATH"].split("/", 3)
 
     if account_id =~ /\d+/
@@ -23,7 +24,6 @@ class AccountMiddleware
       env["REQUEST_URI"] = "/#{request_path}"
     end
 
-    status, headers, body = @app.call(env)
-    [status, headers, body]
+    @app.call(env)
   end
 end
