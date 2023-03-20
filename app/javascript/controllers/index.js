@@ -34,11 +34,3 @@ application.register("popper", PopperController)
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
 
-import StimulusReflex from 'stimulus_reflex'
-import consumer from '../channels/consumer'
-import controller from '../controllers/application_controller'
-import CableReady from 'cable_ready'
-
-application.consumer = consumer
-StimulusReflex.initialize(application, { controller, isolate: true })
-CableReady.initialize({ consumer })

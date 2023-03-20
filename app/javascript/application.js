@@ -2,6 +2,7 @@
 
 import "./controllers"
 import "./channels"
+import "./config"
 import '@rails/actiontext'
 import '@rails/activestorage'
 import "@rails/actioncable"
@@ -10,4 +11,3 @@ import '@tailwindcss/forms'
 import 'trix'
 import "./trix-editor-overrides"
 import "@hotwired/turbo-rails"
-
