@@ -21,11 +21,13 @@
             <% end %>
           </select>
         </div>
-        <div id="activity">
+        <div >
           <label for="group" class="block  text-sm font-medium text-gray-700">
             Select Activity
           </label>
-          <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
+          <div id="activity">
+            <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
+          </div>
         </div>
         <div class="flex justify-end ">
           <%= form.submit "Add Activity", class: "btn-blue" %>

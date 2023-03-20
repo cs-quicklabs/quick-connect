@@ -19,8 +19,9 @@
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-              <a href="<%= contact_documents_path(event.eventable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.display_filename %></a>
+              <a href="/<%= event.eventable.account.id %>/contacts/<%= event.eventable.id %>/documents" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_filename %></a>
             <% end %>
+            for this contact.
           </p>
         </div>
         <div class="text-sm text-right text-gray-500 whitespace-nowrap">
