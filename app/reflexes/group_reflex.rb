@@ -1,6 +1,5 @@
 class GroupReflex < ApplicationReflex
   def activity
-    binding.irb
     group = element.value
     contact = Contact.find(element.dataset["contact-id"])
     contact_activity = ContactActivity.new
