@@ -6,7 +6,7 @@
         <%= document.decorate.display_filename %>
       </a>
     </div>
-    <div  class=" text-sm text-gray-700 -mt-2" data-controller="show-more">
+    <div  class=" text-sm text-gray-700 -mt-3" data-controller="show-more">
       <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
         <%=highlight_hashtag(auto_link_urls_in_text(document.comments.truncate(120).upcase_first)) %>
       </p>

@@ -5,7 +5,7 @@
         <div class="text-sm text-gray-900 font-medium">
           <p class="whitespace-pre-wrap"><%= contact_activity.title.upcase_first %> (<%= contact_activity.activity.name.upcase_first %>)</p>
         </div>
-        <div  class=" text-sm text-gray-700" data-controller="show-more">
+        <div  class=" text-sm text-gray-700 -mt-3" data-controller="show-more">
           <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
             <%=highlight_hashtag(auto_link_urls_in_text(contact_activity.body.truncate(500).upcase_first)) %>
           </p>
