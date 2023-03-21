@@ -70,7 +70,7 @@ class ContactsController < BaseController
     @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
       if @contact.errors.empty? && params[:commit] != "Save And Add More"
-        format.html { redirect_to contacts_path, notice: "Contact was successfully created." }
+        format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully created." }
       elsif @contact.errors.empty? && params[:commit] == "Save And Add More"
         format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
       else

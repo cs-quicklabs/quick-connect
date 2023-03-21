@@ -21,11 +21,13 @@
             <% end %>
           </select>
         </div>
-        <div id="event">
+        <div>
           <label for="group" class="block  text-sm font-medium text-gray-700">
             Select Event
           </label>
-          <%= form.collection_select("life_event_id", events, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
+          <div id="event">
+            <%= form.collection_select("life_event_id", events, :id, :display_name, { :prompt => "Select Event" }, :class => "cursor-pointer form-text-field mt-1") %>
+          </div>
         </div>
         <div class="flex items-center justify-between">
           <div class="flex items-center">
