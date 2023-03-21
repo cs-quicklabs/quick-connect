@@ -2,8 +2,8 @@ class DashboardController < BaseController
   def index
     authorize :dashboard
     added = current_user.contacts.available.order(created_at: :desc)
-    @favorites = added.favorites.limit(10)
-    @added = added.limit(10)
+    @favorites = added.select { |c| c.favorite? }
+    @added = added.take(10)
     fresh_when added
   end
 
