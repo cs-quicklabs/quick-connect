@@ -10,13 +10,13 @@ export default class extends Controller {
         const button = this.buttonTarget;
   
       if (truncatedText.style.display === 'none') {
-        truncatedText.style.display = 'inline';
+        truncatedText.style.display = 'block';
         fullText.style.display = 'none';
         button.textContent = 'Show more';
       } else {
         truncatedText.style.display = 'none';
-        fullText.style.display = 'inline';
-        button.textContent = 'Show less';
+        fullText.style.display = 'block';
+         button.textContent = 'Show less';
       }
     }
 }

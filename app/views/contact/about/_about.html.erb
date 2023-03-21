@@ -18,14 +18,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1  ">
           <% if !about.address.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"> <%= about.address.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.address.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.address.upcase_first)) %></p>
+              <%if about.address.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
@@ -52,14 +53,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.breif.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.breif.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.breif.upcase_first)) %></p>
+              <%if about.breif.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
@@ -86,14 +88,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.met.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.met.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 pb-2"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.breif.upcase_first)) %></p>
+              <%if about.breif.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
@@ -120,14 +123,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.habit.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.habit.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.habit.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.habit.upcase_first)) %></p>
+              <%if about.habit.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
@@ -154,14 +158,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.work.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.work.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.work.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.work.upcase_first)) %></p>
+              <%if about.work.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
@@ -188,14 +193,15 @@
         </div>
         <div class="block xl:col-span-6 mt-1">
           <% if !about.other.blank? %>
-            <dt class="text-sm font-normal text-gray-900  "   x-data="{ isCollapsed: false, maxLength: 515, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"  style="overflow-wrap: break-word; " >
-              <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap;"><%= about.other.upcase_first %></span>
-              <a
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-                x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600"
-                ></a></dt>
+            <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+                <%=highlight_hashtag(auto_link_urls_in_text(about.other.truncate(500).upcase_first)) %>
+              </p>
+              <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.other.upcase_first)) %></p>
+              <%if about.other.strip.length > 500 %>
+                <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600 "  data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+              <% end %>
+            </dt>
           <% else %>
             <dt class="text-xs font-normal text-gray-600">-</dt>
           <% end %>
