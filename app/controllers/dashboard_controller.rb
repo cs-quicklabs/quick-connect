@@ -3,6 +3,7 @@ class DashboardController < BaseController
     authorize :dashboard
     added = current_user.contacts.available.order(created_at: :desc)
     @favorites = added.select { |c| c.favorite? }
+    @visited = added.sort_by { |c| c.activity_count }.reverse.take(10)
     @added = added.take(10)
     fresh_when added
   end

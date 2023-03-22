@@ -45,6 +45,18 @@
           </div>
         </section>
         <section aria-labelledby="participants_section">
+          <div class="overflow-hidden bg-white px-6">
+            <div class="flex flex-wrap ">
+              <p class=" text-sm font-medium text-gray-900 truncate">Most Visited</p>
+            </div>
+            <div class=" flex   bg-white font-sans py-4   w-full">
+              <ul role="list" class="" style="grid-template-columns: repeat(10, 40px); gap: 1rem;  display: grid;" id="side-menu">
+                <%= render partial: "contact", collection: @visited, as: :contact, cached: true %>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section aria-labelledby="participants_section">
           <div class=" bg-white px-6 py-6">
             <div class="flex flex-wrap py-1 ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events (For next 2 months)</p>
