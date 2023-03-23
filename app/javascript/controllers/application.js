@@ -5,7 +5,7 @@ const application = Application.start()
 
 // Configure Stimulus development experience
 application.warnings = true
-application.debug    = true
+application.debug    = false
 application.consumer = consumer
 window.Stimulus      = application
 

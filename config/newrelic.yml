@@ -3,7 +3,7 @@
 # .NET, PHP, Python, Node, and Go applications with deep visibility and low
 # overhead.  For more information, visit www.newrelic.com.
 #
-# Generated October 9, 2022
+# Generated March 23, 2023
 #
 # This configuration file is custom generated for NewRelic Administration
 #
@@ -12,11 +12,11 @@
 
 common: &default_settings
   # Required license key associated with your New Relic account.
-  license_key: 89fab6655f4550f52d285e92660bff8f55faNRAL
+  license_key: 4044382f92f006555ef2c4d0b3a795571c88NRAL
 
   # Your application name. Renaming here affects where data displays in New
   # Relic.  For more details, see https://docs.newrelic.com/docs/apm/new-relic-apm/maintenance/renaming-applications
-  app_name: kutumb
+  app_name: Kutumb
 
   distributed_tracing:
     enabled: true
@@ -50,9 +50,8 @@ common: &default_settings
 # If your application has other named environments, configure them here.
 development:
   <<: *default_settings
-  app_name: kutumb (Development)
+  app_name: Kutumb (Development)
   monitor_mode: false
-
 
 test:
   <<: *default_settings
@@ -61,7 +60,7 @@ test:
 
 staging:
   <<: *default_settings
-  app_name: kutumb (Staging)
+  app_name: Kutumb (Staging)
   monitor_mode: false
 
 production:
