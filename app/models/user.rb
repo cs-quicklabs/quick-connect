@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   pay_customer
-  
+
   # Include default devise modules.
   include Devise::JWT::RevocationStrategies::JTIMatcher
   require "securerandom"
