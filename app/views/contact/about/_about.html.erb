@@ -20,10 +20,10 @@
           <% if !about.address.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.address.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.address.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.address.upcase_first)) %></p>
-              <%if about.address.strip.length > 500 %>
+              <% if about.address.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>
@@ -55,10 +55,10 @@
           <% if !about.breif.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.breif.upcase_first)) %></p>
-              <%if about.breif.strip.length > 500 %>
+              <% if about.breif.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>
@@ -90,10 +90,10 @@
           <% if !about.met.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.breif.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.breif.upcase_first)) %></p>
-              <%if about.breif.strip.length > 500 %>
+              <% if about.breif.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>
@@ -125,10 +125,10 @@
           <% if !about.habit.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.habit.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.habit.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.habit.upcase_first)) %></p>
-              <%if about.habit.strip.length > 500 %>
+              <% if about.habit.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>
@@ -160,10 +160,10 @@
           <% if !about.work.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.work.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.work.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.work.upcase_first)) %></p>
-              <%if about.work.strip.length > 500 %>
+              <% if about.work.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>
@@ -195,10 +195,10 @@
           <% if !about.other.blank? %>
             <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
-                <%=highlight_hashtag(auto_link_urls_in_text(about.other.truncate(500).upcase_first)) %>
+                <%= highlight_hashtag(auto_link_urls_in_text(about.other.truncate(500).upcase_first)) %>
               </p>
               <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(about.other.upcase_first)) %></p>
-              <%if about.other.strip.length > 500 %>
+              <% if about.other.strip.length > 500 %>
                 <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600 "  data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
               <% end %>
             </dt>

@@ -2,12 +2,12 @@
   <td class="table-cell w-full">
     <div  class=" text-sm text-gray-700" data-controller="show-more">
       <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
-        <%=highlight_hashtag(auto_link_urls_in_text(debt.title.truncate(100).upcase_first)) %>
+        <%= highlight_hashtag(auto_link_urls_in_text(debt.title.truncate(100).upcase_first)) %>
       </p>
       <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
         <%= highlight_hashtag(auto_link_urls_in_text(debt.title.upcase_first)) %>
       </p>
-      <%if debt.title.strip.length > 100 %>
+      <% if debt.title.strip.length > 100 %>
         <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">
           Show more
         </button>

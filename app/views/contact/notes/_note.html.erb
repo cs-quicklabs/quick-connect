@@ -4,12 +4,12 @@
       <div >
         <div  class="mt-4 text-sm text-gray-700" data-controller="show-more">
           <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
-            <%=highlight_hashtag(auto_link_urls_in_text(note.body.truncate(500).upcase_first)) %>
+            <%= highlight_hashtag(auto_link_urls_in_text(note.body.truncate(500).upcase_first)) %>
           </p>
           <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
             <%= highlight_hashtag(auto_link_urls_in_text(note.body.upcase_first)) %>
           </p>
-          <%if note.body.strip.length > 500 %>
+          <% if note.body.strip.length > 500 %>
             <button type="button" class=" btn-inline-edit text-blue-800 hover:text-blue-600 " data-action="click->show-more#toggle" data-target="show-more.button">
               Show more
             </button>

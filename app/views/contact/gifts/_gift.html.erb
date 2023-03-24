@@ -12,12 +12,12 @@
   <td class="table-cell  w-3/5">
     <div  class="text-sm text-gray-700" data-controller="show-more">
       <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
-        <%=highlight_hashtag(auto_link_urls_in_text(gift.body.truncate(100).upcase_first)) %>
+        <%= highlight_hashtag(auto_link_urls_in_text(gift.body.truncate(100).upcase_first)) %>
       </p>
       <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
         <%= highlight_hashtag(auto_link_urls_in_text(gift.body.upcase_first)) %>
       </p>
-      <%if gift.body.strip.length > 100 %>
+      <% if gift.body.strip.length > 100 %>
         <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600 " data-action="click->show-more#toggle" data-target="show-more.button">
           Show more
         </button>
