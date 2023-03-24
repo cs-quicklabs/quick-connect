@@ -1,31 +1,32 @@
 <%= turbo_frame_tag dom_id(note) do %>
   <li >
-    <div class="flex mt-6 space-x-3">
-      <div>
-        <div class="mt-1 text-sm text-gray-700">
-          <p
-   x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-   >
-            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= note.body.upcase_first %></span>
-            <button
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-              ></button>
-          </div>
-          <div class="mt-2 space-x-2 text-sm inline-flex">
-            <span class="font-normal text-gray-500"><%= display_created_at(note) %></span>
-            <div class="space-x-1">
-              <% if policy([note.contact, note]).edit? %>
-                <%= edit_button(edit_contact_note_path(@contact, note)) %>
-              <% end %>
-              <% if policy([note.contact, note]).destroy? %>
-                <%= delete_button(contact_note_path(@contact, note)) %>
-              <% end %>
-            </div>
+    <div class="flex  space-x-3">
+      <div >
+        <div  class="mt-4 text-sm text-gray-700" data-controller="show-more">
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
+            <%=highlight_hashtag(auto_link_urls_in_text(note.body.truncate(500).upcase_first)) %>
+          </p>
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
+            <%= highlight_hashtag(auto_link_urls_in_text(note.body.upcase_first)) %>
+          </p>
+          <%if note.body.strip.length > 500 %>
+            <button type="button" class=" btn-inline-edit text-blue-800 hover:text-blue-600 " data-action="click->show-more#toggle" data-target="show-more.button">
+              Show more
+            </button>
+          <% end %>
+        </div>
+        <div class="mt-2 space-x-2 text-sm inline-flex">
+          <span class="font-normal text-gray-500"><%= display_created_at(note) %></span>
+          <div class="space-x-1">
+            <% if policy([note.contact, note]).edit? %>
+              <%= edit_button(edit_contact_note_path(@contact, note)) %>
+            <% end %>
+            <% if policy([note.contact, note]).destroy? %>
+              <%= delete_button(contact_note_path(@contact, note)) %>
+            <% end %>
           </div>
         </div>
       </div>
-    </li>
-  <% end %>
+    </div>
+  </li>
+<% end %>

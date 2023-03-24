@@ -1,4 +1,5 @@
 class Note < ApplicationRecord
+  include Extractor::HashTag
   belongs_to :user
   validates_presence_of :body
   belongs_to :contact

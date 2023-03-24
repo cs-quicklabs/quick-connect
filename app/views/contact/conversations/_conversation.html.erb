@@ -11,30 +11,31 @@
             <%= conversation.field.name.upcase_first %>
           </span>
         </div>
-        <div class="mt-1 text-sm text-gray-700 ">
-          <p
-   x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-   >
-            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= conversation.body.upcase_first %></span>
-            <button
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-              ></button>
-          </div>
-          <div class="mt-2 space-x-2 text-sm inline-flex">
-            <span class="font-normal text-gray-500"><%= display_date(conversation.date) %></span>
-            <div class="space-x-1">
-              <% if policy([conversation.contact, conversation]).edit? %>
-                <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
-              <% end %>
-              <% if policy([conversation.contact, conversation]).destroy? %>
-                <%= delete_button(contact_conversation_path(@contact, conversation)) %>
-              <% end %>
-            </div>
+        <div  class=" text-sm text-gray-700 -mt-4" data-controller="show-more">
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
+            <%=highlight_hashtag(auto_link_urls_in_text(conversation.body.truncate(500).upcase_first)) %>
+          </p>
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
+            <%= highlight_hashtag(auto_link_urls_in_text(conversation.body.upcase_first)) %>
+          </p>
+          <%if conversation.body.strip.length > 500 %>
+            <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">
+              Show more
+            </button>
+          <% end %>
+        </div>
+        <div class="mt-2 space-x-2 text-sm inline-flex">
+          <span class="font-normal text-gray-500"><%= display_date(conversation.date) %></span>
+          <div class="space-x-1">
+            <% if policy([conversation.contact, conversation]).edit? %>
+              <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
+            <% end %>
+            <% if policy([conversation.contact, conversation]).destroy? %>
+              <%= delete_button(contact_conversation_path(@contact, conversation)) %>
+            <% end %>
           </div>
         </div>
       </div>
-    <% end %>
-  </li>
+    </div>
+  <% end %>
+</li>

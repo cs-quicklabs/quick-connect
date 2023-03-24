@@ -19,7 +19,7 @@
             <% if event.trackable.nil? %>
               which does not exist anymore.
             <% else %>
-              <a href="<%= batches_path(:batch_id => event.trackable_id) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>
+              <a href="/<%= event.eventable.account.id %>/groups?batch_id=<%= event.trackable.id %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.decorate.display_name %></a>
             <% end %>
           </p>
         </div>

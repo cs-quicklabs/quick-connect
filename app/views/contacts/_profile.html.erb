@@ -19,7 +19,7 @@
             <% if !contact.links.empty? %>
               <% contact.links.each do |link| %>
                 <label for="links" class="" >
-                  <a  href="https://www.<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
+                  <a  href="<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
                     <!-- Heroicon name: solid/mail -->
                     <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
                       <span class="">
@@ -135,9 +135,9 @@
             <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
             <ul class="mt-1">
               <% contact.events.each do |event| %>
-                <% if lookup_context.template_exists?(event.action, "dashboard", true) %>
+                <% if lookup_context.template_exists?(event.action, "contact/timeline", true) %>
                   <% cache event do %>
-                    <%= render partial: "dashboard/" + event.action, locals: { event: event } %>
+                    <%= render partial: "contact/timeline/" + event.action, locals: { event: event} %>
                   <% end %>
                 <% end %>
               <% end %>

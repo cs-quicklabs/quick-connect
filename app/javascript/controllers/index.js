@@ -34,3 +34,6 @@ application.register("popper", PopperController)
 import ToggleController from "./toggle_controller.js"
 application.register("toggle", ToggleController)
 
+import ShowMoreController from "./show_more_controller.js"
+application.register("show-more", ShowMoreController)
+

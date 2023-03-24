@@ -1,5 +1,6 @@
 class Contact::BaseController < BaseController
   before_action :set_contact, only: %i[index show edit update create destroy new]
+  after_action :add_count, only: %i[index]
   after_action :verify_authorized
   before_action :set_details
   include Pagy::Backend
@@ -7,6 +8,11 @@ class Contact::BaseController < BaseController
   private
 
   LIMIT = 10
+
+  def add_count
+    @contact.activity_count += 1
+    @contact.save
+  end
 
   def set_contact
     if @contact

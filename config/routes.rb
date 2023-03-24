@@ -60,7 +60,13 @@ Rails.application.routes.draw do
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
+
+  #dashboard
   get :events, controller: :dashboard
+  get :tasks, controller: :dashboard
+  get :contacted, controller: :dashboard
+  get :reminders, controller: :dashboard
+
   get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"

@@ -2,22 +2,22 @@
   <% document = document.decorate %>
   <td class="table-cell">
     <div class="text-sm text-gray-900 font-medium">
-      <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline" target="_top">
-        <%= document.display_filename %>
+      <a href="<%= ensure_protocol(document.link) %>" target="_blank"  class="line-clamp-2 font-medium text-gray-900 block hover:underline mt-2" target="_top">
+        <%= document.decorate.display_filename %>
       </a>
     </div>
-    <div class="mt-1 text-sm text-gray-700">
-      <p
-   x-data="{ isCollapsed: false, maxLength: 120, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-   >
-        <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= document.comments %></span>
-        <button
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-          x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-          ></button>
+    <div  class=" text-sm text-gray-700 -mt-3" data-controller="show-more">
+      <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
+        <%=highlight_hashtag(auto_link_urls_in_text(document.comments.truncate(120).upcase_first)) %>
       </p>
+      <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
+        <%= highlight_hashtag(auto_link_urls_in_text(document.comments.upcase_first)) %>
+      </p>
+      <%if document.comments.strip.length > 120 %>
+        <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600 " data-action="click->show-more#toggle" data-target="show-more.button">
+          Show more
+        </button>
+      <% end %>
     </div>
   </td>
   <td class="table-cell align-middle whitespace-nowrap">
