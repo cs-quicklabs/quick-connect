@@ -50,7 +50,6 @@ gem "aws-sdk-s3", "~> 1.119"
 gem "bootsnap", "1.16.0", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
-gem "newrelic_rpm"
 gem "pagy"
 gem "rails-patterns"
 
@@ -59,7 +58,7 @@ gem "pg_search"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
-gem "devise", github: "heartcombo/devise", branch: "main"
+gem "devise", "4.9.0"
 gem "devise_invitable", "~> 2.0.7"
 gem "devise-pwned_password"
 gem "devise-jwt"
@@ -79,6 +78,8 @@ gem "attribute_normalizer"
 # swagger documentation
 gem "rswag-api"
 gem "rswag-ui"
+
+gem 'appsignal'
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
