@@ -63,7 +63,7 @@
         </div>
       </div>
       <div class="hidden sm:block 2xl:hidden mt-4 min-w-0 flex-1 ">
-        <h1 class="text-2xl font-bold text-gray-900  "><%= contact.decorate.display_name %></h1>
+        <h1 class="text-2xl font-bold text-gray-900  "><%= contact.display_name %></h1>
       </div>
     </div>
     <div class="py-2  xl:px-8 md:px-6 mx-auto flex">
@@ -134,7 +134,7 @@
           <div>
             <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
             <ul class="mt-1">
-              <% contact.events.each do |event| %>
+              <% contact.events.order(created_at: :desc).limit(5).each do |event| %>
                 <% if lookup_context.template_exists?(event.action, "contact/timeline", true) %>
                   <% cache event do %>
                     <%= render partial: "contact/timeline/" + event.action, locals: { event: event} %>

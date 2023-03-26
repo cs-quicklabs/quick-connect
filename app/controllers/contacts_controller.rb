@@ -69,10 +69,9 @@ class ContactsController < BaseController
     authorize :contact
     @contact = CreateContact.call(contact_params, @user, params[:groups]).result
     respond_to do |format|
-      if @contact.errors.empty? && params[:commit] != "Save And Add More"
-        format.html { redirect_to contact_about_index_path(@contact), notice: "Contact was successfully created." }
-      elsif @contact.errors.empty? && params[:commit] == "Save And Add More"
-        format.html { redirect_to new_contact_path, notice: "Contact was successfully created." }
+      if @contact.errors.empty?
+        path = (should_add_more_contacts? ? new_contact_path : contact_about_index_path(@contact))
+        format.html { redirect_to path, notice: "Contact was successfully created." }      
       else
         format.turbo_stream { render turbo_stream: turbo_stream.update(:new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name), contact_batches: [] }) }
       end
@@ -125,9 +124,7 @@ class ContactsController < BaseController
 
   def untrack
     authorize :contact, :untrack?
-
     UntrackContact.call(@contact, current_user)
-
     render turbo_stream: turbo_stream.remove(@contact)
   end
 
@@ -139,10 +136,11 @@ class ContactsController < BaseController
 
   private
 
+  def should_add_more_contacts?
+    params[:commit] == "Save And Add More"
+  end
+
   def set_contact
-    if @contact
-      return @contact
-    end
     @contact ||= Contact.find(params[:id])
   end
 

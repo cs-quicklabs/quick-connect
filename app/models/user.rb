@@ -64,4 +64,17 @@ class User < ApplicationRecord
   def set_invitation_limit
     self.invitation_limit = 5
   end
+  
+  def upcoming_tasks 
+    self.tasks.joins(:contact).where("contacts.archived=?", false).order(created_at: :desc).limit(10)
+  end
+
+  def upcoming_reminders
+    reminders = self.reminders.joins("INNER JOIN contacts ON contacts.id = reminders.contact_id").where("contacts.archived=?", false).to_a
+    upcoming_reminders = []
+    reminders.each do |reminder|
+      upcoming_reminders += reminder.upcoming
+    end
+    upcoming_reminders.sort_by { |r| r.third[:reminder] }
+  end
 end
