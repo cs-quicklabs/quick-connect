@@ -11,4 +11,8 @@ class Event < ApplicationRecord
   def relation_events
     Event.all.where trackable_type: "relative"
   end
+
+  def self.top_50_events
+    Event.all.includes(:eventable, :trackable, :user, :account).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
+  end
 end

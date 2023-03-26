@@ -4,43 +4,10 @@
     <h1 class="text-3xl font-bold leading-tight text-gray-900 ">
       <%= contact.display_name %>
     </h1>
-    <div class="flex mt-2 z-10 "   >
-      <div  class="flex-auto " id="contact-labels" >
-        <%= render partial: "contact/labels", locals: { contact: contact, labels: contact_labels } %>
+    <div class="flex mt-2 z-10 "    >
+      <div  class="inline-flex "id="contact-labels" >
+        <%= render partial: "contact/labels", locals: { contact: contact, contact_labels: contact_labels, labels: labels } %>
       </div>
-      <% if policy(contact).edit? %>
-        <div class=" flex-auto ml-1" x-data="{menu: false}" x-on:keydown.escape="menu=!menu">
-          <button id="add" x-on:click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <!-- Heroicon name: solid/plus -->
-            <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
-            </svg>
-          </button>
-          <div  x-show="menu"  id="labels"
-          @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-            <% if Label.all.order(:name).size == 0 %>
-              <div class="py-1" role="none">
-                <p @click="menu = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700  " > No label added yet</p>
-                <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
-              <% else %>
-                <% @labels = labels - contact_labels %>
-                <% if @labels.size == 0 %>
-                  <div class="py-1" role="none">
-                    <a @click="menu = false" href="/<%= current_user.account_id %>/account/labels"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
-                  <% else %>
-                    <div class="py-1" role="none">
-                      <% @labels.each do |label| %>
-                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                        <a x-on:click="menu=false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id=<%= contact.id %> data-label-id=<%= label.id %> ><%= label.name.upcase_first %></a>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
       <div class="flex mt-4 sm:mt-0  space-x-4 ml-4" >
         <% if policy(contact).edit? %>
           <% if !contact.phone.blank? %>
@@ -90,11 +57,11 @@
           </label>
           <div>
             <% archive = "<span class='icon-span'>
-                                                                                                         <!-- Heroicon name: outline/check-badge -->
-                                                                                       <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
-                                                                                         <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
-                                                                                       </svg>
-                                                                                       </span>" %>
+                                                                                                                                                      <!-- Heroicon name: outline/check-badge -->
+                                                                                                                                    <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
+                                                                                                                                      <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
+                                                                                                                                    </svg>
+                                                                                                                                    </span>" %>
             <%= link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
                                                                             controller: "confirmation",
                                                                             "confirmation-message-value": "Are you sure you want to archive this contact?",
@@ -135,12 +102,12 @@
 </div>
 <div class="inline-block flex" id="contact-relation" >
   <% restore = "<span class='icon-span'>
-                                                <!-- Heroicon name: outline/check-badge -->
-                              <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
-                                <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
-                                <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
-                              </svg>
-                              </span>" %>
+                                                               <!-- Heroicon name: outline/check-badge -->
+                                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
+                                               <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
+                                               <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
+                                             </svg>
+                                             </span>" %>
   <%= link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
                                                                     controller: "confirmation",
                                                                     "confirmation-message-value": "Are you sure you want to restore this contact?",

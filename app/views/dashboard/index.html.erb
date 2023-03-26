@@ -3,56 +3,28 @@
   <div class="grid grid-cols-1 lg:col-span-8 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full">
     <div class="h-full  border-r xl:border-gray-200">
       <div class="top-16  pt-6 h-full pb-10 ">
-        <% if @contacted.count > 0 %>
-          <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white px-6">
-              <div class="flex flex-wrap ">
-                <p class=" text-sm font-medium text-gray-900 truncate">Recently Contacted</p>
-              </div>
-              <div class=" flex   bg-white font-sans py-4   w-full">
-                <ul role="list" class="" style="grid-template-columns: repeat(10, 40px); gap: 1rem;  display: grid;" id="side-menu">
-                  <%= render partial: "contacted", collection: @contacted, as: :recent, cached: true %>
-                </ul>
-              </div>
-            </div>
-          </section>
-        <% end %>
-        <% if @favorites.count > 0 %>
-          <section aria-labelledby="participants_section">
-            <div class="overflow-hidden bg-white px-6 py-4">
-              <div class="flex items-center justify-between  ">
-                <p class="  text-sm font-medium text-gray-900 truncate"> Favourite Contacts</p>
-              </div>
-              <div class=" flex bg-white font-sans pt-4 pb-3 w-full ">
-                <ul role="list" class="" style="grid-template-columns: repeat(<%= @favorites.count %>, 40px); gap: 1rem;  display: grid;">
-                  <%= render partial: "favorite", collection: @favorites, as: :favorite, cached: true %>
-                </ul>
-                <% if @favorites.count > 10 %>
-                  <div class="flex items-center sm:mt-0 sm:ml-4 ">
-                    <%= link_to "View More...", favorites_path, class: "btn-inline-blue " %>
-                  </div>
-                <% end %>
-              </div>
-            </div>
-          </section>
-        <% end %>
+        <%= render partial: "leaderboard", locals: { title: "Recently added", leaders: @recent } %>
+        <%= render partial: "leaderboard", locals: { title: "Favourite Contacts", leaders: @favorites } %>
+        <%= render partial: "leaderboard", locals: { title: "Most Visited", leaders: @popular } %>
         <section aria-labelledby="participants_section">
-          <div class=" bg-white px-6 ">
+          <div class=" bg-white px-6 py-6">
             <div class="flex flex-wrap py-1 ">
               <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events (For next 2 months)</p>
             </div>
-            <%= render partial: "reminders", locals: { upcoming_reminders: @upcoming_reminders } %>
+            <%= turbo_frame_tag "reminders", src: reminders_path, target: "_top", loading: :lazy do %>
+              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch Reminders...</p>
+            <% end %>
           </div>
         </section>
         <section aria-labelledby="participants_section">
           <div class=" bg-white px-6 py-4">
-            <% if @tasks.count > 0 %>
-              <div class="flex flex-wrap mt-3 pb-2">
-                <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
-              </div>
-              <%= render partial: "tasks", collection: @tasks, as: :task, cached: true %>
+            <div class="flex flex-wrap ">
+              <p class="  text-sm font-medium text-gray-900 truncate">Recent Tasks </p>
             </div>
-          <% end %>
+            <%= turbo_frame_tag "tasks", src: tasks_path, target: "_top", loading: :lazy do %>
+              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch tasks...</p>
+            <% end %>
+          </div>
         </section>
       </div>
     </div>

@@ -14,10 +14,15 @@ class Contact < ApplicationRecord
   validates_uniqueness_of :email, scope: :account, :allow_blank => true, if: -> { email.present? }
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy
+
   scope :archived, -> { where(archived: true) }
   scope :untracked, -> { where(track: false) }
   scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
+  scope :popular, -> { order(activity_count: :desc) }
+  scope :favorites, -> { select { |c| c.favorite? } }
+  scope :recent, -> { order(created_at: :desc) }
+
   validate :validates
 
   def validates

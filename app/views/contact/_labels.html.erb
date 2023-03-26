@@ -1,5 +1,5 @@
-<% if labels.load.size > 0 %>
-  <% labels.uniq.each do |label| %>
+<% if contact_labels.load.size > 0 %>
+  <% contact_labels.uniq.each do |label| %>
     <span class="mb-1 inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded-full text-xs font-medium bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
       <%= label.name.upcase_first %>
       <button id="remove"  data-reflex="click->ContactLabels#remove" data-label-id=<%= label.id %> data-contact-id=<%= contact.id %> type="button" class="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center text-<%= label.color %>-400 hover:bg-<%= label.color %>-200 hover:text-<%= label.color %>-400 focus:outline-none focus:bg-<%= label.color %>-400 focus:text-white">
@@ -9,4 +9,37 @@
       </button>
     </span>
   <% end %>
+<% end %>
+<% if policy(contact).edit? %>
+  <div class=" flex-auto ml-1" x-data="{menu: false}" x-on:keydown.escape="menu=!menu" >
+    <button id="add" x-on:click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <!-- Heroicon name: solid/plus -->
+      <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+      </svg>
+    </button>
+    <div  x-show="menu"  id="labels-menu"
+          @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+      <% if Label.all.order(:name).size == 0 %>
+        <div class="py-1" role="none">
+          <p @click="menu = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700  " > No label added yet</p>
+          <a href="<%= account_labels_path %>"  class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+        <% else %>
+          <% @labels = labels - contact_labels %>
+          <% if @labels.size == 0 %>
+            <div class="py-1" role="none" id="no_labels">
+              <a @click="menu = false" href="/<%= current_user.account_id %>/account/labels"  role="menuitem" class=" block px-4 py-2 text-sm text-indigo-700 hover:bg-gray-50 hover:underline"> Add Labels</a>
+            <% else %>
+              <div class="py-1" role="none" id="labels">
+                <% @labels.each do |label| %>
+                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                  <a x-on:click="menu=false" href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->ContactLabels#change" data-contact-id="<%= contact.id %>" data-label-id="<%= label.id %>" ><%= label.name.upcase_first %></a>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>

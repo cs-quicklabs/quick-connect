@@ -5,8 +5,7 @@ class ContactLabelsReflex < ApplicationReflex
     @event = contact.events.order(created_at: :desc).first
     @call = contact.phone_calls.order(created_at: :desc).first
     contact.touch
-    morph "#contact-labels", render(partial: "contact/labels", locals: { contact: contact, labels: contact.labels })
-    morph "#labels", render(partial: "contact/title", locals: { contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
+    morph "#contact-labels", render(partial: "contact/labels", locals: { contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
   end
 
   def remove
@@ -15,7 +14,6 @@ class ContactLabelsReflex < ApplicationReflex
     @event = contact.events.order(created_at: :desc).first
     @call = contact.phone_calls.order(created_at: :desc).first
     contact.touch
-    morph "#contact-labels", render(partial: "contact/labels", locals: { contact: contact, labels: contact.labels })
-    morph "#labels", render(partial: "contact/title", locals: { contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
+    morph "#contact-labels", render(partial: "contact/labels", locals: { contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
   end
 end
