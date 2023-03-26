@@ -71,7 +71,7 @@ class ContactsController < BaseController
     respond_to do |format|
       if @contact.errors.empty?
         path = (should_add_more_contacts? ? new_contact_path : contact_about_index_path(@contact))
-        format.html { redirect_to path, notice: "Contact was successfully created." }      
+        format.html { redirect_to path, notice: "Contact was successfully created." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.update(:new, partial: "contacts/form", locals: { contact: @contact, title: "Add New Contact", subtitle: "Please provide details of new contact", batches: Batch.all.order(:name), contact_batches: [] }) }
       end

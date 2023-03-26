@@ -64,8 +64,8 @@ class User < ApplicationRecord
   def set_invitation_limit
     self.invitation_limit = 5
   end
-  
-  def upcoming_tasks 
+
+  def upcoming_tasks
     self.tasks.joins(:contact).where("contacts.archived=?", false).order(created_at: :desc).limit(10)
   end
 

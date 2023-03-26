@@ -25,5 +25,4 @@ class DashboardController < BaseController
     @upcoming_reminders = current_user.upcoming_reminders
     fresh_when @upcoming_reminders
   end
-
 end
