@@ -1,3 +1,7 @@
 <turbo-frame id="tasks">
-  <%= render partial: "dashboard/report_task", collection: @tasks, as: :task %>
+  <% if @tasks.size > 0 %>
+    <%= render partial: "dashboard/report_task", collection: @tasks, as: :task %>
+  <% else %>
+    <p class="text-xs font-normal text-gray-500 mt-2 ">No tasks found</dd>
+  <% end %>
 </turbo-frame>
