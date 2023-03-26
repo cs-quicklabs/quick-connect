@@ -79,7 +79,7 @@ gem "attribute_normalizer"
 gem "rswag-api"
 gem "rswag-ui"
 
-gem "appsignal"
+gem "newrelic_rpm", "8.16.0"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
