@@ -1,0 +1,15 @@
+<div class="block xl:col-span-6 mt-1  ">
+  <% unless text.blank? %>
+    <dt class="text-sm font-normal text-gray-900  "  style="overflow-wrap: break-word;  "data-controller="show-more" >
+      <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate" class=" -mt-4">
+        <%= highlight_hashtag(auto_link_urls_in_text(text.truncate(500).upcase_first)) %>
+      </p>
+      <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden mt-2"> <%= highlight_hashtag(auto_link_urls_in_text(text.upcase_first)) %></p>
+      <% if text.strip.length > 500 %>
+        <a class=" flex btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">Show more</a>
+      <% end %>
+    </dt>
+  <% else %>
+    <dt class="text-xs font-normal text-gray-600">-</dt>
+  <% end %>
+</div>

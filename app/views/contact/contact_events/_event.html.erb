@@ -5,30 +5,31 @@
         <div class="text-sm text-gray-900 font-medium">
           <p class="whitespace-pre-wrap"><%= contact_event.title.upcase_first %> (<%= contact_event.life_event.name.upcase_first %>)</p>
         </div>
-        <div class="mt-1 text-sm text-gray-700">
-          <p
-   x-data="{ isCollapsed: false, maxLength: 500, originalContent: '', content: '' }"
-   x-init="originalContent = $el.firstElementChild.textContent.trim(); content = originalContent.slice(0, maxLength)"
-   >
-            <span x-text="isCollapsed ? originalContent : content" style="white-space: pre-wrap; word-break: break-all;"><%= contact_event.body.upcase_first %></span>
-            <button
-      @click="isCollapsed = !isCollapsed"
-      x-show="originalContent.length > maxLength"
-              x-text="isCollapsed ? 'Show less' : 'Show more'" style="float:right;" class="btn-inline-edit text-blue-800 hover:text-blue-600 px-3"
-              ></button>
-          </div>
-          <div class="mt-2 space-x-2 text-sm flex inline-block">
-            <span class="font-normal text-gray-500"><%= display_date(contact_event.date) %></span>
-            <div class="space-x-1">
-              <% if policy([contact_event.contact, contact_event]).edit? %>
-                <%= edit_button(edit_contact_contact_event_path(contact_event.contact, contact_event)) %>
-              <% end %>
-              <% if policy([contact_event.contact, contact_event]).destroy? %>
-                <%= delete_button(contact_contact_event_path(contact_event.contact, contact_event)) %>
-              <% end %>
-            </div>
+        <div  class=" text-sm text-gray-700 -mt-3" data-controller="show-more">
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
+            <%= highlight_hashtag(auto_link_urls_in_text(contact_event.body.truncate(500).upcase_first)) %>
+          </p>
+          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
+            <%= highlight_hashtag(auto_link_urls_in_text(contact_event.body.upcase_first)) %>
+          </p>
+          <% if contact_event.body.strip.length > 500 %>
+            <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600 " data-action="click->show-more#toggle" data-target="show-more.button">
+              Show more
+            </button>
+          <% end %>
+        </div>
+        <div class="mt-2 space-x-2 text-sm flex inline-block">
+          <span class="font-normal text-gray-500"><%= display_date(contact_event.date) %></span>
+          <div class="space-x-1">
+            <% if policy([contact_event.contact, contact_event]).edit? %>
+              <%= edit_button(edit_contact_contact_event_path(contact_event.contact, contact_event)) %>
+            <% end %>
+            <% if policy([contact_event.contact, contact_event]).destroy? %>
+              <%= delete_button(contact_contact_event_path(contact_event.contact, contact_event)) %>
+            <% end %>
           </div>
         </div>
       </div>
-    <% end %>
-  </li>
+    </div>
+  <% end %>
+</li>

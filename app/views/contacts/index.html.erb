@@ -38,7 +38,7 @@
               </div>
             </div>
             <% if @contacts.count > 0 %>
-              <nav class="flex-1 overflow-y-scroll  h-[calc(100vh-6.0rem)] max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
+              <nav class="flex-1 overflow-y-scroll  h-screen  max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
                 <div class="relative px-4 h-max pb-12" >
                   <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries">
                     <%= render partial: "contact", collection: @contacts, cached: true %>

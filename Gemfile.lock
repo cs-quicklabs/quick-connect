@@ -1,16 +1,4 @@
 GIT
-  remote: https://github.com/heartcombo/devise.git
-  revision: 232c855c54cc3e471afbd48b6eda8ff164638c09
-  branch: main
-  specs:
-    devise (4.9.0)
-      bcrypt (~> 3.0)
-      orm_adapter (~> 0.1)
-      railties (>= 4.1.0)
-      responders
-      warden (~> 1.2.3)
-
-GIT
   remote: https://github.com/mimemagicrb/mimemagic.git
   revision: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
   ref: 01f92d86d15d85cfd0f20dabd025dcbd36a8a60f
@@ -101,6 +89,8 @@ GEM
       request_store (>= 1.0.5)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    appsignal (3.3.7)
+      rack
     attribute_normalizer (1.2.0)
     aws-eventstream (1.2.0)
     aws-partitions (1.734.0)
@@ -156,6 +146,12 @@ GEM
       reline (>= 0.3.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
+    devise (4.9.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
     devise-jwt (0.10.0)
       devise (~> 4.0)
       warden-jwt_auth (~> 0.6)
@@ -251,7 +247,6 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    newrelic_rpm (9.0.0)
     nio4r (2.5.8)
     nokogiri (1.14.2-x86_64-darwin)
       racc (~> 1.4)
@@ -443,12 +438,14 @@ GEM
     zeitwerk (2.6.7)
 
 PLATFORMS
+  x86_64-darwin-20
   x86_64-darwin-21
   x86_64-linux
 
 DEPENDENCIES
   activerecord-import!
   acts_as_tenant
+  appsignal
   attribute_normalizer
   aws-sdk-s3 (~> 1.119)
   bootsnap (= 1.16.0)
@@ -456,7 +453,7 @@ DEPENDENCIES
   capybara (>= 3.38)
   cssbundling-rails (= 1.1.2)
   debug (>= 1.0.0)
-  devise!
+  devise (= 4.9.0)
   devise-jwt
   devise-pwned_password
   devise_invitable (~> 2.0.7)
@@ -472,7 +469,6 @@ DEPENDENCIES
   letter_opener_web
   listen (~> 3.3)
   mimemagic!
-  newrelic_rpm
   pagy
   pay (= 6.3.1)
   pg

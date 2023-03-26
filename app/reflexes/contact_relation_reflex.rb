@@ -23,7 +23,6 @@ class ContactRelationReflex < ApplicationReflex
       :relative, relative, view_context, {}
     )
     html = render(partial: "contact/relatives/search", locals: { form: form, relation: contact, relative: relative, contact: profile })
-
-    morph "#contact-relative", "#{html}"
+    morph "#search", "#{html}"
   end
 end

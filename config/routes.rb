@@ -60,7 +60,13 @@ Rails.application.routes.draw do
     get "/preferences", to: "user#preferences", as: "user_preferences"
   end
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
+
+  #dashboard
   get :events, controller: :dashboard
+  get :tasks, controller: :dashboard
+  get :contacted, controller: :dashboard
+  get :reminders, controller: :dashboard
+
   get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
@@ -183,9 +189,8 @@ Rails.application.routes.draw do
     resources :checkouts
   end
 
-    # purchase routes
-    get "success", to: "purchase/checkouts#success", as: "success"
-    get "expired", to: "purchase/billings#expired", as: "expired"
-    post "billings", to: "purchase/billings#create", as: "billing_portal"
-  
+  # purchase routes
+  get "success", to: "purchase/checkouts#success", as: "success"
+  get "expired", to: "purchase/billings#expired", as: "expired"
+  post "billings", to: "purchase/billings#create", as: "billing_portal"
 end

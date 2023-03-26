@@ -1,0 +1,50 @@
+ <turbo-frame id="reminders">
+  <% if @upcoming_reminders.size > 0 %>
+    <div class=" w-full  ">
+      <ol class=" divide-gray-200 text-sm leading-6 text-gray-500">
+        <% reminders = @upcoming_reminders %>
+        <% if !reminders.nil? %>
+          <% reminders.each do |reminder| %>
+            <% contact = reminder.second %>
+            <% remind = reminder.first %>
+            <li class="py-1 sm:flex border-b align-middle mt-2">
+              <div class="flex flex-1 " style="width:26rem;">
+                <span class="w-72 flex">
+                  <time datetime="2022-01-18" class="  flex-none inline-flex w-36 -mb-3 whitespace-nowrap text-sm  text-gray-500 "><%= display_date(reminder.third[:reminder]) %> </time>
+                  <div class=" break-words  inline-flex">
+                    <a href="<%= contact_reminders_path(contact) %>" class=" hover:underline  font-medium text-gray-900 " target="_top">
+                      <p class=" mb-2 flex-auto ml-2 text-sm font-medium   " ><%= contact.decorate.display_name %></p>
+                    </a>
+                  </div>
+                </span>
+                <p class="flex-none  break-words text-sm text-gray-500 "><%= reminder.first["title"].upcase_first %></p>
+                <% if !reminder.first["comments"].blank? %>
+                  <!--Code Block for white tooltip starts-->
+                  <div data-controller="popper" class="flex-auto  ml-1">
+                    <button id="button" data-popper-target="element" data-action="mouseenter->popper#show mouseleave->popper#hide"  class=" px-2 rounded-xl">
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 svg-icon ">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" />
+                      </svg>
+                      <div id="tooltip" role="tooltip" data-popper-target="tooltip" class="z-10">
+                        <%= reminder.first["comments"].upcase_first %>
+                        <div id="arrow" data-popper-arrow class=""></div>
+                      </div>
+                    </button>
+                  </div>
+                <% end %>
+              </div>
+              <div class="flex justify-end space-x-2 ml-2 flex-none ">
+                <% if policy([contact, remind]).edit? %>
+                  <%= edit_button(edit_contact_reminder_path(contact, reminder.first["id"])) %>
+                  <%= delete_button(contact_reminder_path(contact, reminder.first["id"])) %>
+                <% end %>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ol>
+    </div>
+  <% else %>
+    <p class="text-xs font-normal text-gray-500 mt-2 ">No reminders added</dd>
+  <% end %>
+</turbo-frame>
