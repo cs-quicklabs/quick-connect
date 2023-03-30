@@ -16,7 +16,7 @@
       </label>
       <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%= contact.id %>">
         <option value="" > Select Activity Category</option>
-        <% Group.all.where(category: "activity").order(:name).decorate.each do |group| %>
+        <% @groups.decorate.each do |group| %>
           <li class="cursor-pointer"> <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
             <% end %>
           </select>
@@ -26,7 +26,7 @@
             Select Activity
           </label>
           <div id="activity">
-            <%= form.collection_select("activity_id", activities, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
+            <%= form.collection_select("activity_id", activities.decorate, :id, :display_name, { :prompt => "Select Activity" }, :class => "cursor-pointer form-text-field mt-1") %>
           </div>
         </div>
         <div class="flex justify-end ">
