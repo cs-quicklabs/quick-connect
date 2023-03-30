@@ -21,7 +21,7 @@ class Contact::BaseController < BaseController
   def set_details
     @labels ||= Label.all.order(:name)
     @contact_labels ||= @contact.labels
-    @event ||= @contact.events.order(created_at: :desc).first
+    @event ||= @contact.events.prevail.first
     @call ||= @contact.phone_calls.order(created_at: :desc).first
   end
 end
