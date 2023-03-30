@@ -7,7 +7,7 @@
   <td class="table-cell w-full">
     <div class="text-sm">
       <a href="<%= contact_task_path(task.contact, task) %>" class="block hover:underline" target="_top">
-        <%= task.title.upcase_first %>
+        <%= render partial: "shared/show_more", locals: { text: task.title, truncate_length: 100 } %>
       </div>
     </td>
     <td class="table-cell whitespace-nowrap">

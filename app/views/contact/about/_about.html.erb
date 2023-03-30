@@ -16,7 +16,7 @@
             </span>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.address } %>
+        <%= render partial: "shared/show_more", locals: { text: about.address,truncate_length: 500 } %>
       </div>
     <% end %>
   <% end %>
@@ -37,7 +37,7 @@
             <% end %>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.breif } %>
+        <%= render partial: "shared/show_more", locals: { text: about.breif,truncate_length: 500 } %>
       </div>
     <% end %>
   <% end %>
@@ -58,7 +58,7 @@
             </span>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.met } %>
+        <%= render partial: "shared/show_more", locals: { text: about.met ,truncate_length: 500} %>
       </div>
     <% end %>
   <% end %>
@@ -79,7 +79,7 @@
             </span>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.habit } %>
+        <%= render partial: "shared/show_more", locals: { text: about.habit,truncate_length: 500 } %>
       </div>
     <% end %>
   <% end %>
@@ -100,7 +100,7 @@
             </span>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.work } %>
+        <%= render partial: "shared/show_more", locals: { text: about.work,truncate_length: 500 } %>
       </div>
     <% end %>
   <% end %>
@@ -121,7 +121,7 @@
             </span>
           </div>
         </div>
-        <%= render partial: "shared/show_more", locals: { text: about.other } %>
+        <%= render partial: "shared/show_more", locals: { text: about.other,truncate_length: 500 } %>
       </div>
     <% end %>
   <% end %>

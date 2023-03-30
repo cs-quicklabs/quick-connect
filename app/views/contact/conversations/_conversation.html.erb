@@ -11,19 +11,7 @@
             <%= conversation.field.name.upcase_first %>
           </span>
         </div>
-        <div  class=" text-sm text-gray-700 -mt-4" data-controller="show-more">
-          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
-            <%= highlight_hashtag(auto_link_urls_in_text(conversation.body.truncate(500).upcase_first)) %>
-          </p>
-          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
-            <%= highlight_hashtag(auto_link_urls_in_text(conversation.body.upcase_first)) %>
-          </p>
-          <% if conversation.body.strip.length > 500 %>
-            <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">
-              Show more
-            </button>
-          <% end %>
-        </div>
+        <%= render partial: "shared/show_more", locals: { text: conversation.body, truncate_length: 500 } %>
         <div class="mt-2 space-x-2 text-sm inline-flex">
           <span class="font-normal text-gray-500"><%= display_date(conversation.date) %></span>
           <div class="space-x-1">

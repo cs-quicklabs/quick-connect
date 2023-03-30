@@ -9,19 +9,7 @@
           <span href="#" class="font-medium text-gray-900"><%= phone_call.user.decorate.display_name %></span>
           <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded text-xs font-medium bg-<%= phone_call.decorate.display_status_color %>-100 text-<%= phone_call.decorate.display_status_color %>-800"> <%= phone_call.decorate.display_status %></span>
         </div>
-        <div  class=" text-sm text-gray-700 -mt-3" data-controller="show-more">
-          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.truncate">
-            <%= highlight_hashtag(auto_link_urls_in_text(phone_call.body.truncate(500).upcase_first)) %>
-          </p>
-          <p style="white-space: pre-line; word-break: break-all;" data-target="show-more.full" class="hidden">
-            <%= highlight_hashtag(auto_link_urls_in_text(phone_call.body.upcase_first)) %>
-          </p>
-          <% if phone_call.body.strip.length > 500 %>
-            <button type="button"  class=" btn-inline-edit text-blue-800 hover:text-blue-600" data-action="click->show-more#toggle" data-target="show-more.button">
-              Show more
-            </button>
-          <% end %>
-        </div>
+        <%= render partial: "shared/show_more", locals: { text: phone_call.body, truncate_length: 500 } %>
         <div class="mt-2 space-x-2 text-sm flex inline-block">
           <span class="font-normal text-gray-500"><%= display_date(phone_call.date) %></span>
           <div class="space-x-1">

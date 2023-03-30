@@ -41,10 +41,10 @@ class Contact::ContactEventsController < Contact::BaseController
       if @contact_event.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:contact_events, partial: "contact/contact_events/event", locals: { contact_event: @contact_event, contact: @contact }) +
-                               turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: LifeEvent.all.order(:name).decorate })
+                               turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: LifeEvent.all.order(:name), groups: Group.all.where(category: "event").order(:name) })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @contact_event, contact: @contact, events: LifeEvent.all.order(:name).decorate }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @contact_event, contact: @contact, events: LifeEvent.all.order(:name), groups: Group.all.where(category: "event").order(:name) }) }
       end
     end
   end
