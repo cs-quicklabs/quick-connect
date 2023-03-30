@@ -40,7 +40,7 @@
             <% if @contacts.count > 0 %>
               <nav class="flex-1 overflow-y-scroll  h-screen  max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
                 <div class="relative px-4 h-max pb-12" >
-                  <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries">
+                  <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries" data-controller="show-contact">
                     <%= render partial: "contact", collection: @contacts, cached: true %>
                   </ul>
                   <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
