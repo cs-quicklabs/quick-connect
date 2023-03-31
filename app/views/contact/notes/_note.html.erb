@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(note) do %>
   <li >
     <div class="flex  space-x-3">
-      <div >
+      <div>
         <%= render partial: "shared/show_more", locals: { text: note.body, truncate_length: 100 } %>
         <div class="mt-2 space-x-2 text-sm inline-flex">
           <span class="font-normal text-gray-500"><%= display_created_at(note) %></span>

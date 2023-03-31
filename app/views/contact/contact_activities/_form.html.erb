@@ -16,7 +16,7 @@
       </label>
       <select  class="cursor-pointer form-text-field mt-1"  data-reflex="change->GroupReflex#activity"  data-contact-id="<%= contact.id %>">
         <option value="" > Select Activity Category</option>
-        <% @groups.decorate.each do |group| %>
+        <% groups.decorate.each do |group| %>
           <li class="cursor-pointer"> <option value="<%= group.id %>" data-group-id="<%= group.id %>"><%= group.display_name %>
             <% end %>
           </select>
