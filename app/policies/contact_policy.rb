@@ -21,7 +21,7 @@ class ContactPolicy < ApplicationPolicy
   end
 
   def profile?
-    return false if record.archived?
+    #return false if record.archived?
     true
   end
 

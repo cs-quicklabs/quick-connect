@@ -8,7 +8,7 @@
             <%= image_tag "male-placeholder-image.png", style: "margin-left: 0.5rem;", class: "w-10 h-10 rounded-full inline-flex" %>
           </div>
           <div class="flex-1 min-w-0 mt-2"  style="">
-            <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/<%= event.trackable.model_name.plural %>" class="bg-white cursor-pointer hover:underline " target= "_top">
+            <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" class="bg-white cursor-pointer hover:underline " target= "_top">
               <p class="text-sm font-medium text-gray-900 truncate ... w-56"><%= contact.display_name %>
               </p>
             </a>

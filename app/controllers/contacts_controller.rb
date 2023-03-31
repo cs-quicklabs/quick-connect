@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track show ]
 
   def index
     authorize :contact
@@ -80,6 +80,11 @@ class ContactsController < BaseController
 
   def profile
     authorize @contact
+    @partial = render_to_string(partial: "contacts/profile", locals: { contact: @contact, event: @contact.events.order(created_at: :desc).first, call: @contact.phone_calls.order(created_at: :desc).first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: @contact.id) })
+    respond_to do |format|
+      format.turbo_stream do render turbo_stream: turbo_stream.append("contact_details", @partial) end
+      format.html
+    end
   end
 
   def archived

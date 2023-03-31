@@ -2,16 +2,15 @@ import { Controller } from "@hotwired/stimulus"
 import StimulusReflex from 'stimulus_reflex';
 
 export default class extends Controller {
-  static targets = ['selected'];
+  static targets = ['selected', 'details','profile']
 
-  connect() {
-    StimulusReflex.register(this);
-  }
+
 
 
  toggleSelected(event) {
   event.preventDefault();
   const selected = this.selectedTargets.find((item) => item.dataset.selected === 'true');
+
 
  const item=event.target.closest('li')
  item.dataset.selected = 'true';
@@ -20,20 +19,30 @@ export default class extends Controller {
 
  if (selected)
  {
-  console.log(selected.classList)
+
   selected.dataset.selected = 'false';
   selected.classList.remove('bg-gray-50');
   selected.classList.add('bg-white');
+  const url = event.target.closest('a').href;
 
-  this.stimulate('ContactReflex#show', item.dataset.contactId);
- }
+  fetch(url, { headers: { "Accept": "text/vnd.turbo-stream.html" } })
+  .then(response => response.text())
+  .then(html => {
+    this.detailsTarget.innerHTML = html
+  })
+
+}
   else
   {
+    const url = event.target.closest('a').href;
 
-  this.stimulate('ContactReflex#show', item.dataset.contactId);
-  }
+    fetch(url, { headers: { "Accept": "text/vnd.turbo-stream.html" } })
+    .then(response => response.text())
+    .then(html => {
+      this.detailsTarget.innerHTML = html
+    })
 
 
-
+}
 }
 }

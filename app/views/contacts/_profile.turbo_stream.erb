@@ -1,0 +1,146 @@
+<% links = contact.links %>
+<% contact = contact.decorate %>
+<div class="h-full"  >
+  <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
+  <div>
+    <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+  </div>
+  <div class=" xl:px-8 md:px-6" id="contact-header"  >
+    <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5"  >
+      <div class="flex">
+        <%= image_tag "male-placeholder-image.png", class: "h-20 w-20 rounded-full ring-4 ring-white sm:h-32 sm:w-32" %>
+      </div>
+      <div class="sm:flex-1 sm:min-w-0 sm:flex sm:items-center justify-end  lg:space-x-3">
+        <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1  ">
+          <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.display_name %></h1>
+        </div>
+        <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 mr-4 ">
+          <% if !contact.links.empty? %>
+            <% contact.links.each do |link| %>
+              <label for="links" class="" >
+                <a  href="<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
+                  <!-- Heroicon name: solid/mail -->
+                  <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
+                    <span class="">
+                      <i class="<%= link.link_type %> font-medium fa-lg flex-auto  "></i>
+                    </span>
+                  </div>
+                </a>
+                <span ></span>
+              </label>
+            <% end %>
+          <% end %>
+          <% if !contact.phone.blank? %>
+            <label for="phone" class="mx-2" >
+              <a   data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms" id="phone">
+                <!-- Heroicon name: solid/mail -->
+                <span class="icon-span">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                    <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 00-1.032-.211 50.89 50.89 0 00-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 002.433 3.984L7.28 21.53A.75.75 0 016 21v-4.03a48.527 48.527 0 01-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979z" />
+                    <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 001.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0015.75 7.5z" />
+                  </svg>
+                </span>
+              </a>
+              <span ></span>
+            </label>
+          <% end %>
+          <% if !contact.email.blank? %>
+            <div>
+              <a  href="mailto:<%= contact.email %>"  title="Send Email">
+                <!-- Heroicon name: solid/mail -->
+                <span class="icon-span">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="h-5 w-5">
+                    <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
+                    <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
+                  </svg>
+                </span>
+              </a>
+            </div>
+          <% end %>
+          <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" type="button" class="inline-flex items-center rounded-md border whitespace-nowrap border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">View Profile</a>
+        </div>
+      </div>
+    </div>
+    <div class="hidden sm:block 2xl:hidden mt-4 min-w-0 flex-1 ">
+      <h1 class="text-2xl font-bold text-gray-900  "><%= contact.display_name %></h1>
+    </div>
+  </div>
+  <div class="py-2  xl:px-8 md:px-6 mx-auto flex">
+    <% if contact.intro? %>
+      <p class=" text-sm font-medium text-gray-500 " style="flex-shrink: 2 ">
+        <%= contact.intro.upcase_first %>
+      </p>
+    <% end %>
+    <% if ((!event.blank? || !call.blank?) && contact.intro?) %>
+      <p class="text-sm font-medium text-gray-500 px-1">
+        -    
+      </p>
+    <% end %>
+    <p class="text-sm font-medium text-gray-500 basis-1/2 "  style="flex-grow: 1;">
+      <% if (!event.blank? && !call.blank?) %>
+        <%= event.action_context.upcase_first %> <%=event.decorate.trackable_name%> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
+      <% elsif !event.blank? %>
+        <%= event.action_context.upcase_first %><%=event.decorate.trackable_name%> on <%= display_created_at(event) %>
+      <% elsif !call.blank? %>
+        Last phone call was on <%= display_created_at(call) %>
+      <% end %>
+    </p>
+  </div>
+  <!-- Tabs -->
+  <div class="mt-6 sm:mt-2 2xl:mt-5">
+    <div class="border-b border-gray-200">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+          <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300" -->
+          <a href="#" class="border-indigo-500 text-gray-900 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" aria-current="page"> Profile </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <!-- Description list -->
+  <div class="mt-6 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-3">
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">Phone</dt>
+        <% if !contact.phone.blank? %>
+          <dd class="mt-1 text-sm text-gray-900"><%= contact.phone %></dd>
+        <% else %>
+          <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
+        <% end %>
+      </div>
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">Email</dt>
+        <% if !contact.email.blank? %>
+          <dd class="mt-1 text-sm text-gray-900 break-words"><%= contact.display_email %></dd>
+        <% else %>
+          <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
+        <% end %>
+      </div>
+      <div class="sm:col-span-1">
+        <dt class="text-sm font-medium text-gray-500">Relation</dt>
+        <% if !contact.relation.blank? %>
+          <dd class="mt-1 text-sm text-gray-900"><%= contact.relation.name.upcase_first %></dd>
+        <% else %>
+          <dd class="text-xs font-normal text-gray-500 mt-1">-</dd>
+        <% end %>
+      </div>
+    </dl>
+  </div>
+  <!-- Team member list -->
+  <div class="mt-8 max-w-5xl mx-auto px-4 pb-12 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-2 gap-16 ">
+      <div class="grid grid-cols-1 col-span-2 ">
+        <div>
+          <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
+          <ul class="mt-1">
+            <% contact.events.order(created_at: :desc).limit(5).each do |event| %>
+              <% cache event do %>
+                <%= render partial: "contact/timeline/activity", locals: { event: event },  formats: [:html], layout: false %>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

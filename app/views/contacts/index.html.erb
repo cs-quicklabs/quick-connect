@@ -1,7 +1,7 @@
 <main class="relative z-0 flex-1 overflow-hidden focus:outline-none">
   <main class="">
     <!-- Main 3 column grid -->
-    <div class="grid items-start grid-cols-1  lg:grid-cols-4"  >
+    <div class="grid items-start grid-cols-1  lg:grid-cols-4"  data-controller="show-contact">
       <!-- Left column -->
       <div class="grid grid-cols-1 col-span-1 border-r  lg:gap-4 border-gray-200  "   >
         <section aria-labelledby="participants_section">
@@ -40,7 +40,7 @@
             <% if @contacts.count > 0 %>
               <nav class="flex-1 overflow-y-scroll  h-screen  max-content top-16 overscroll-contain min-h-full  " aria-label="Directory" data-controller="infinite-scroll" >
                 <div class="relative px-4 h-max pb-12" >
-                  <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries" data-controller="show-contact">
+                  <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries" >
                     <%= render partial: "contact", collection: @contacts, cached: true %>
                   </ul>
                   <div class="flex justify-end mt-2 mb-6 mr-2 invisible" data-infinite-scroll-target="pagination">
@@ -64,16 +64,16 @@
         </section>
       </div>
       <!-- Right column -->
-      <div class="grid grid-cols-1 lg:col-span-3">
+      <div class="grid grid-cols-1 lg:col-span-3" id="contact_details" data-target="show-contact.details">
         <section aria-labelledby="participants_section">
           <div class="overflow-hidden bg-white">
             <div class="">
             </div>
             <article class="h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
               <!-- contact header -->
-              <div id="profile" class="h-full" >
-                <% if params[:contact_id] %>
-                  <%= render partial: "profile", locals: { contact: Contact.find(params[:contact_id]), relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]) } %>
+              <div  class="h-full" >
+                <% if defined?(@contact) %>
+                  <%= render partial: "contacts/profile", locals: { contact: @contact } %>
                 <% end %>
               </div>
             </article>
