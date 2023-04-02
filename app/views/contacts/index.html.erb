@@ -64,14 +64,12 @@
         </section>
       </div>
       <!-- Right column -->
-      <div class="grid grid-cols-1 lg:col-span-3" id="contact_details" data-target="show-contact.details">
+      <div class="grid grid-cols-1 lg:col-span-3">
         <section aria-labelledby="participants_section">
-          <div class="overflow-hidden bg-white">
-            <div class="">
-            </div>
-            <article class="h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
+          <div class="overflow-hidden bg-white" id="contact_details" data-target="show-contact.details">
+            <article class="h-screen min-h-full   max-content top-16 overflow-y-scroll overscroll-contain">
               <!-- contact header -->
-              <div  class="h-full" >
+              <div  class="h-full  xl:px-8 md:px-6"  >
                 <% if defined?(@contact) %>
                   <%= render partial: "contacts/profile", locals: { contact: @contact } %>
                 <% end %>
