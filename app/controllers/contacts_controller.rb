@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track ]
 
   def index
     authorize :contact
