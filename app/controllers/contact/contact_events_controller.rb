@@ -37,14 +37,16 @@ class Contact::ContactEventsController < Contact::BaseController
   def create
     authorize [@contact, ContactEvent]
     @contact_event = AddContactEvent.call(event_params, current_user, @contact, params[:reminder]).result
+    @life_events = LifeEvent.all.order(:name)
+    @groups = Group.all.where(category: "event").order(:name)
     respond_to do |format|
       if @contact_event.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:contact_events, partial: "contact/contact_events/event", locals: { contact_event: @contact_event, contact: @contact }) +
-                               turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: LifeEvent.all.order(:name), groups: Group.all.where(category: "event").order(:name) })
+                               turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: ContactEvent.new, contact: @contact, events: @life_events, groups: @groups })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @contact_event, contact: @contact, events: LifeEvent.all.order(:name), groups: Group.all.where(category: "event").order(:name) }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactEvent.new, partial: "contact/contact_events/form", locals: { contact_event: @contact_event, contact: @contact, events: @life_events, groups: @groups }) }
       end
     end
   end

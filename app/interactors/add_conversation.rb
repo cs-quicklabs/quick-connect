@@ -25,6 +25,7 @@ class AddConversation < Patterns::Service
 
   def add_event
     contact.events.create(user: actor, action: "conversation", action_for_context: "added new conversation for", trackable: conversation, action_context: "added new conversation")
+    contact.update(touched_at: conversation.date)
   end
 
   attr_reader :conversation, :actor, :contact
