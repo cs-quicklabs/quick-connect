@@ -6,7 +6,7 @@ class Contact::ContactActivitiesController < Contact::BaseController
     @contact_activity = ContactActivity.new
     @activities = Activity.all.order(:name)
     @groups = Group.all.where(category: "activity").order(:name)
-    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact), items: LIMIT)
+    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact).order(date: :desc), items: LIMIT)
     render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@contact_activities + [@contact])
   end
 

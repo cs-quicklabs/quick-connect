@@ -6,7 +6,7 @@ class Contact::ContactEventsController < Contact::BaseController
     @contact_event = ContactEvent.new
     @life_events = LifeEvent.all.order(:name)
     @groups = Group.all.where(category: "event").order(:name)
-    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact), items: LIMIT)
+    @pagy, @contact_events = pagy_nil_safe(params, @contact.contact_events.includes(:contact).order(date: :desc), items: LIMIT)
     render_partial("contact/contact_events/event", collection: @contact_events) if stale?(@contact_events + [@contact])
   end
 
