@@ -21,7 +21,7 @@ class Api::Contact::ProfileController < Api::Contact::BaseController
     end
     @labels ||= Label.all.order(:name)
     @relations ||= Relation.all.order(:name)
-    @event = @contact.events.order(created_at: :desc).first
+    @event = @contact.last_event
     @call = @contact.phone_calls.order(created_at: :desc).first
   end
 end

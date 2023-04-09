@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   validates :action, inclusion: { in: ACTIONS }
   default_scope { order(created_at: :desc) }
   scope :follow_up, -> { where(action: ["called", "conversation", "contact_activity", "contact_event"]) }
-  scope :prevail, -> { where.not("trackable_id IS NULL") }
+  scope :sanitize, -> { where.not("trackable_id IS NULL") }
 
   def relation_events
     Event.all.where trackable_type: "relative"

@@ -80,25 +80,14 @@ class User < ApplicationRecord
 
   def follow_ups
     firsts, seconds, thirds, fourths = [], [], [], []
-    follows.each do |contact|
-      last_follow = contact.events.follow_up.prevail.order(created_at: :desc).first
+    follows = Contact.all.available.tracked.where("contacts.touched_at <= ?", Date.today - 30.days)
 
-      if last_follow.present? && last_follow.created_at <= Date.today - 30.days
-        if last_follow.created_at.between?(Date.current.prev_month.beginning_of_month, Date.current.prev_month.end_of_month)
-          firsts << last_follow
-        elsif last_follow.created_at.between?(Date.current.prev_month(2).beginning_of_month, Date.current.prev_month(2).end_of_month)
-          seconds << last_follow
-        elsif last_follow.created_at.between?(Date.current.prev_month(3).beginning_of_month, Date.current.prev_month(3).end_of_month)
-          thirds << last_follow
-        elsif last_follow.created_at <= Date.today - 100.days
-          fourths << last_follow
-        end
-      end
+    if follows.present?
+      firsts << follows.select { |f| f.touched_at.between?(Date.current.prev_month(1).beginning_of_month, Date.current.prev_month(1).end_of_month) }
+      seconds << follows.select { |f| f.touched_at.between?(Date.current.prev_month(2).beginning_of_month, Date.current.prev_month(3).end_of_month) }
+      thirds << follows.select { |f| f.touched_at.between?(Date.current.prev_month(3).beginning_of_month, Date.current.prev_month(3).end_of_month) }
+      fourths << follows.select { |f| f.touched_at.between?(Date.current.prev_month(4).beginning_of_month, Date.current.prev_month(4).end_of_month) }
     end
-    return firsts, seconds, thirds, fourths
-  end
-
-  def follows
-    Contact.all.available.tracked
+    return firsts, seconds, thirds, fourths, follows
   end
 end
