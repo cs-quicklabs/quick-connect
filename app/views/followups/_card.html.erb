@@ -8,7 +8,7 @@
             <%= image_tag "male-placeholder-image.png", style: "margin-left: 0.5rem;", class: "w-10 h-10 rounded-full inline-flex" %>
           </div>
           <div class="flex-1 min-w-0 mt-2"  style="">
-            <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/<%= event.trackable.model_name.plural %>" class="bg-white cursor-pointer hover:underline " target= "_top">
+            <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" class="bg-white cursor-pointer hover:underline " target= "_top">
               <p class="text-sm font-medium text-gray-900 truncate ... w-56"><%= contact.display_name %>
               </p>
             </a>
@@ -34,12 +34,12 @@
           <p class="text-sm font-normal text-gray-500" >Last Activity: <%= display_date(event.created_at) %> </p>
         </div>
         <% html = "<div class='flex justify-end cursor-pointer' id='untrack' style='flex-direction: column;'    >
-                                                                                                               <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 ml-8 text-gray-500' style='' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
-                                                                                                         <path stroke-linecap='round' stroke-linejoin='round' d='M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z' />
-                                                                                                       </svg>
-                                                                                                                  <p class='text-xs font-normal text-gray-500'>Do not track</p>
-                                                                                                             
-                                                                                                               </div>" %>
+                                                                                                                          <svg xmlns='http://www.w3.org/2000/svg' class='h-4 w-4 ml-8 text-gray-500' style='' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6'>
+                                                                                                                    <path stroke-linecap='round' stroke-linejoin='round' d='M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z' />
+                                                                                                                  </svg>
+                                                                                                                             <p class='text-xs font-normal text-gray-500'>Do not track</p>
+                                                                                                                        
+                                                                                                                          </div>" %>
         <%= link_to (raw(html)), untrack_contact_path(contact), class: "", data: {
                                                                   controller: "confirmation",
                                                                   "confirmation-message-value": "Are you sure you want to delete this?",

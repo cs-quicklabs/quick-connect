@@ -1,4 +1,4 @@
-<% if policy(contact).profile? %>
+ <%if policy(contact).profile? %>
   <% links = contact.links %>
   <% contact = contact.decorate %>
   <div class="h-full"  >
@@ -15,24 +15,26 @@
           <div class="sm:hidden 2xl:block mt-4 min-w-0 flex-1  ">
             <h1 class="text-2xl font-bold text-gray-900 truncate "><%= contact.display_name %></h1>
           </div>
-          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-5 mr-4 ">
-            <% if !contact.links.empty? %>
-              <% contact.links.each do |link| %>
-                <label for="links" class="" >
-                  <a  href="<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
-                    <!-- Heroicon name: solid/mail -->
-                    <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
-                      <span class="">
-                        <i class="<%= link.link_type %> font-medium fa-lg flex-auto  "></i>
-                      </span>
-                    </div>
-                  </a>
-                  <span ></span>
-                </label>
+          <div id="" class="flex flex-col justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-3 ">
+            <div class=" inline-flex space-x-2">
+              <% if !contact.links.empty? %>
+                <% contact.links.each do |link| %>
+                  <label for="links" class="" >
+                    <a  href="<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
+                      <!-- Heroicon name: solid/mail -->
+                      <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
+                        <span class="">
+                          <i class="<%= link.link_type %> font-medium fa-lg flex-auto  "></i>
+                        </span>
+                      </div>
+                    </a>
+                    <span ></span>
+                  </label>
+                <% end %>
               <% end %>
-            <% end %>
+            </div>
             <% if !contact.phone.blank? %>
-              <label for="phone" class="mx-2" >
+              <label for="phone" class="" >
                 <a   data-reflex="click->Contact#phone" data-contact-id="<%= contact.id %>"  title="Send Sms" id="phone">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
@@ -58,7 +60,7 @@
                 </a>
               </div>
             <% end %>
-            <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" type="button" class="inline-flex items-center rounded-md border whitespace-nowrap border-transparent bg-indigo-100 px-2.5 py-1.5 text-xs font-medium text-indigo-700 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">View Profile</a>
+            <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/about" type="button" class="ml-4 rounded-md inline-flex px-3 py-1 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer">View Profile</a>
           </div>
         </div>
       </div>
@@ -79,9 +81,9 @@
       <% end %>
       <p class="text-sm font-medium text-gray-500 basis-1/2 "  style="flex-grow: 1;">
         <% if (!event.blank? && !call.blank?) %>
-          <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
+          <%= event.action_context.upcase_first %> <%=event.decorate.trackable_name%> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
         <% elsif !event.blank? %>
-          <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %>
+          <%= event.action_context.upcase_first %><%=event.decorate.trackable_name%> on <%= display_created_at(event) %>
         <% elsif !call.blank? %>
           Last phone call was on <%= display_created_at(call) %>
         <% end %>
@@ -135,9 +137,9 @@
             <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
             <ul class="mt-1">
               <% contact.events.order(created_at: :desc).limit(5).each do |event| %>
-                <% if lookup_context.template_exists?(event.action, "contact/timeline", true) %>
+                <% if lookup_context.template_exists?(event.action, "contact/timeline", true,  formats: [:html]) %>
                   <% cache event do %>
-                    <%= render partial: "contact/timeline/" + event.action, locals: { event: event} %>
+                    <%= render partial:  "contact/timeline/#{event.action}", locals: { event: event},  formats: [:html], layout: false  %>
                   <% end %>
                 <% end %>
               <% end %>
@@ -147,4 +149,4 @@
       </div>
     </div>
   </div>
-<% end %>
+<%end%>

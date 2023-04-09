@@ -4,8 +4,9 @@ class Contact::ContactActivitiesController < Contact::BaseController
   def index
     authorize [@contact, ContactActivity]
     @contact_activity = ContactActivity.new
-    @activities = Activity.all.order(:name).decorate
-    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact), items: LIMIT)
+    @activities = Activity.all.order(:name)
+    @groups = Group.all.where(category: "activity").order(:name)
+    @pagy, @contact_activities = pagy_nil_safe(params, @contact.contact_activities.includes(:contact).order(date: :desc), items: LIMIT)
     render_partial("contact/contact_activities/activity", collection: @contact_activities) if stale?(@contact_activities + [@contact])
   end
 
@@ -38,14 +39,16 @@ class Contact::ContactActivitiesController < Contact::BaseController
   def create
     authorize [@contact, ContactActivity]
     @contact_activity = AddContactActivity.call(activity_params, current_user, @contact).result
+    @activities = Activity.all.order(:name)
+    @groups = Group.all.where(category: "activity").order(:name)
     respond_to do |format|
       if @contact_activity.persisted?
         format.turbo_stream {
           render turbo_stream: turbo_stream.prepend(:contact_activities, partial: "contact/contact_activities/activity", locals: { contact_activity: @contact_activity, contact: @contact }) +
-                               turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: ContactActivity.new, contact: @contact, activities: Activity.all.order(:name).decorate })
+                               turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: ContactActivity.new, contact: @contact, activities: @activities, groups: @groups })
         }
       else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: @contact_activity, contact: @contact, activities: Activity.all.order(:name).decorate }) }
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(ContactActivity.new, partial: "contact/contact_activities/form", locals: { contact_activity: @contact_activity, contact: @contact, activities: @activities, groups: @groups }) }
       end
     end
   end

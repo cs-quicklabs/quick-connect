@@ -37,3 +37,6 @@ application.register("toggle", ToggleController)
 import ShowMoreController from "./show_more_controller.js"
 application.register("show-more", ShowMoreController)
 
+import ShowContactController from "./show_contact_controller.js"
+application.register("show-contact", ShowContactController)
+

@@ -7,8 +7,8 @@
             <%= batch.name.titleize %></p>
         </a>
         <div class="flex justify-end space-x-1">
-          <%= edit_button(edit_batch_path(batch)) %>
-          <%= delete_button(batch_path(batch)) %>
+          <%= edit_button("groups/#{batch.id}/edit") %>
+          <%= delete_button("groups/#{batch.id}") %>
         </div>
       </div>
     </li>

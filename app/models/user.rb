@@ -77,4 +77,17 @@ class User < ApplicationRecord
     end
     upcoming_reminders.sort_by { |r| r.third[:reminder] }
   end
+
+  def follow_ups
+    firsts, seconds, thirds, fourths = [], [], [], []
+    follows = Contact.all.available.tracked.where("contacts.touched_at <= ?", Date.today - 30.days)
+
+    if follows.present?
+      firsts << follows.select { |f| f.touched_at.between?(Date.current.prev_month(1).beginning_of_month, Date.current.prev_month(1).end_of_month) }
+      seconds << follows.select { |f| f.touched_at.between?(Date.current.prev_month(2).beginning_of_month, Date.current.prev_month(3).end_of_month) }
+      thirds << follows.select { |f| f.touched_at.between?(Date.current.prev_month(3).beginning_of_month, Date.current.prev_month(3).end_of_month) }
+      fourths << follows.select { |f| f.touched_at.between?(Date.current.prev_month(4).beginning_of_month, Date.current.prev_month(4).end_of_month) }
+    end
+    return firsts, seconds, thirds, fourths, follows
+  end
 end

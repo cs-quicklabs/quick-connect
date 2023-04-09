@@ -53,6 +53,8 @@ Rails.application.routes.draw do
   get "/dashboard", to: "dashboard#index", as: "dashboard"
   get "followups", to: "followups#index"
   get "/contacts/profile/:id", to: "contacts#profile", as: "contact_profile"
+  get "/batches/view/:id", to: "batches#view", as: "batch_view"
+  get "/batches/profile", to: "batches#profile", as: "batch_profile"
   scope "/settings" do
     get "/profile", to: "user#profile", as: "user_profile"
     get "/password", to: "user#password", as: "setting_password"
@@ -70,7 +72,7 @@ Rails.application.routes.draw do
   get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
-    post "add", to: "batches#add", as: "addcontact"
+    get "add/:id", to: "batches#add", as: "addcontact"
     delete "remove", to: "batches#remove", as: "removecontact"
   end
   namespace :account do

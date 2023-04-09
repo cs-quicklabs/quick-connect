@@ -133,7 +133,7 @@
             <div>
               <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
               <ul class="mt-1">
-                <% contact.events.limit(7).each do |event| %>
+                <% contact.events.sanitize.limit(5).each do |event| %>
                   <% if lookup_context.template_exists?(event.action, "dashboard", true) %>
                     <% cache event do %>
                       <%= render partial: "dashboard/" + event.action, locals: { event: event } %>

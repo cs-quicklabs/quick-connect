@@ -7,7 +7,7 @@ class BatchReflex < ApplicationReflex
     contact = contacts.first
     html = render(partial: "batches/show", locals: { batch: batch, contacts: contacts })
     if contacts.size > 0
-      profile = render(partial: "batches/profile", locals: { contact: contacts.first, relatives: Relative.includes(:contact, :relation).where(first_contact_id: contact.id), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first })
+      profile = render(partial: "batches/profile", locals: { contact: contacts.first, event: contact.last_event, call: contact.phone_calls.order(created_at: :desc).first })
     else
       profile = render(partial: "batches/profile", locals: { contact: "" })
     end
@@ -17,10 +17,9 @@ class BatchReflex < ApplicationReflex
 
   def contact
     contact = Contact.find(element.dataset["contact-id"])
-    relatives = Relative.includes(:contact, :relation).where(first_contact_id: contact.id)
-    @event = contact.events.order(created_at: :desc).first
+    @event = contact.last_event
     @call = contact.phone_calls.order(created_at: :desc).first
-    html = render(partial: "batches/profile", locals: { contact: contact, relatives: relatives, event: @event, call: @call })
+    html = render(partial: "batches/profile", locals: { contact: contact, event: @event, call: @call })
     morph "#profile", "#{html}"
   end
 
@@ -28,10 +27,10 @@ class BatchReflex < ApplicationReflex
     @contact = Contact.find(element.dataset["contact-id"])
     @batch = Batch.find(element.dataset["batch-id"])
     @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-    @event = @contact.events.order(created_at: :desc).first
+    @event = @contact.events.last_event
     @call = @contact.phone_calls.order(created_at: :desc).first
     html = render(partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).where("contacts.archived=?", false).order("batches_contacts.created_at DESC").uniq, message: "Contact added successfully to group" })
-    profile = render(partial: "batches/profile", locals: { contact: @contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: @contact.id), event: @event, call: @call })
+    profile = render(partial: "batches/profile", locals: { contact: @contact, event: @event, call: @call })
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"
   end

@@ -29,7 +29,7 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.1"
 
-gem "stimulus_reflex", "= 3.5.0.pre10"
+gem "stimulus_reflex", "3.5.0.rc2"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
@@ -70,7 +70,7 @@ gem "sinatra", "3.0.5", require: nil
 
 # Payments
 gem "pay", "6.3.1"
-gem "stripe", "~> 8.3"
+gem "stripe", "~> 8.5"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
@@ -79,7 +79,7 @@ gem "attribute_normalizer"
 gem "rswag-api"
 gem "rswag-ui"
 
-gem "newrelic_rpm", "8.16.0"
+gem "newrelic_rpm", "9.1.0"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
