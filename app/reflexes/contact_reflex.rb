@@ -1,8 +1,8 @@
 class ContactReflex < ApplicationReflex
   delegate :current_user, to: :connection
 
-  def show(contact)
-    contact = Contact.find(contact)
+  def show
+    contact = Contact.find(element.dataset["contact-id"])
     contacts = Contact.for_current_account.available.order(:first_name)
     relatives = Relative.includes(:contact, :relation).where(first_contact_id: contact.id)
     @event = contact.events.order(created_at: :desc).first
