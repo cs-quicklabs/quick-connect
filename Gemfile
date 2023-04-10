@@ -15,7 +15,7 @@ gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.1.1"
+gem "puma", "6.2.1"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.1.1"
@@ -46,7 +46,7 @@ gem "image_processing", "~> 1.12"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
-gem "aws-sdk-s3", "~> 1.119"
+gem "aws-sdk-s3", "~> 1.120"
 gem "bootsnap", "1.16.0", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
@@ -58,13 +58,13 @@ gem "pg_search"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
-gem "devise", "4.9.0"
+gem "devise", "4.9.2"
 gem "devise_invitable", "~> 2.0.7"
 gem "devise-pwned_password"
 gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.0.7"
+gem "sidekiq", "7.0.8"
 gem "sidekiq-scheduler", "5.0.2"
 gem "sinatra", "3.0.5", require: nil
 
@@ -79,7 +79,7 @@ gem "attribute_normalizer"
 gem "rswag-api"
 gem "rswag-ui"
 
-gem "newrelic_rpm", "9.1.0"
+gem "newrelic_rpm", "8.16.0"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]

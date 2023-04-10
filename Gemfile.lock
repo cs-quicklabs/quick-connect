@@ -91,7 +91,7 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     attribute_normalizer (1.2.0)
     aws-eventstream (1.2.0)
-    aws-partitions (1.734.0)
+    aws-partitions (1.743.0)
     aws-sdk-core (3.171.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
@@ -100,7 +100,7 @@ GEM
     aws-sdk-kms (1.63.0)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.119.2)
+    aws-sdk-s3 (1.120.1)
       aws-sdk-core (~> 3, >= 3.165.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.4)
@@ -144,7 +144,7 @@ GEM
       reline (>= 0.3.1)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
-    devise (4.9.0)
+    devise (4.9.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 4.1.0)
@@ -245,14 +245,14 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    newrelic_rpm (9.1.0)
+    newrelic_rpm (8.16.0)
     nio4r (2.5.9)
     nokogiri (1.14.2-x86_64-darwin)
       racc (~> 1.4)
     nokogiri (1.14.2-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (6.0.2)
+    pagy (6.0.3)
     pay (6.3.1)
       rails (>= 6.0.0)
     pg (1.4.6)
@@ -260,7 +260,7 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     public_suffix (5.0.1)
-    puma (6.1.1)
+    puma (6.2.1)
       nio4r (~> 2.0)
     pwned (2.0.2)
     raabro (1.4.0)
@@ -359,7 +359,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.0.7)
+    sidekiq (7.0.8)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
@@ -445,13 +445,13 @@ DEPENDENCIES
   activerecord-import!
   acts_as_tenant
   attribute_normalizer
-  aws-sdk-s3 (~> 1.119)
+  aws-sdk-s3 (~> 1.120)
   bootsnap (= 1.16.0)
   byebug
   capybara (>= 3.38)
   cssbundling-rails (= 1.1.2)
   debug (>= 1.0.0)
-  devise (= 4.9.0)
+  devise (= 4.9.2)
   devise-jwt
   devise-pwned_password
   devise_invitable (~> 2.0.7)
@@ -467,12 +467,12 @@ DEPENDENCIES
   letter_opener_web
   listen (~> 3.3)
   mimemagic!
-  newrelic_rpm (= 9.1.0)
+  newrelic_rpm (= 8.16.0)
   pagy
   pay (= 6.3.1)
   pg
   pg_search
-  puma (= 6.1.1)
+  puma (= 6.2.1)
   rack-cors
   rack-mini-profiler (~> 3.0)
   rails (= 7.0.4.3)
@@ -484,7 +484,7 @@ DEPENDENCIES
   rswag-specs
   rswag-ui
   selenium-webdriver
-  sidekiq (= 7.0.7)
+  sidekiq (= 7.0.8)
   sidekiq-scheduler (= 5.0.2)
   sinatra (= 3.0.5)
   spring

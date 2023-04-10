@@ -6,7 +6,7 @@ class FollowupsTest < ApplicationSystemTestCase
     @account = @user.account
     ActsAsTenant.current_tenant = @account
     sign_in @user
-    @followups = Contact.all.available.tracked.joins("INNER JOIN events ON contacts.id = events.eventable_id").select("contacts.*, events.created_at as event_create, events.action as event_action, events.trackable_id as event_track, events.trackable_type as event_type").where("events.action IN (?)", ["phone_call", "conversation", "contact_activity", "contact_event"]).where("events.trackable_id IS NOT NULL").order("events.created_at DESC").uniq
+    @followups = @user.follow_ups
   end
 
   def page_url
@@ -29,21 +29,10 @@ class FollowupsTest < ApplicationSystemTestCase
     visit page_url
     take_screenshot
     assert_selector "h1", text: "Follow Ups"
-    @firsts = []
-    @seconds = []
-    @thirds = []
-    @fourths = []
-    @followups.each do |followup|
-      if Date.today >= followup.event_create.to_date && followup.event_create.to_date >= Date.today - 30.days
-        @firsts += [followup]
-      elsif Date.today - followup.event_create.to_date && followup.event_create.to_date >= Date.today - 60.days
-        @seconds += [followup]
-      elsif Date.today - 60.days > followup.event_create.to_date && followup.event_create.to_date >= Date.today - 90.days
-        @thirds += [followup]
-      else
-        @fourths += [followup]
-      end
-    end
+    @firsts = @followups.first
+    @seconds = @followups.second
+    @thirds = @followups.third
+    @fourths = @followups.fourth
     @firsts.each do |first|
       assert_selector "#firsts", text: first.decorate.display_name
     end
