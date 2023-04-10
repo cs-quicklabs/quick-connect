@@ -7,6 +7,7 @@ contact:
   user: regular
   archived: false
   relation: mother
+  touched_at: <%=Date.current.prev_month(2).beginning_of_month%>
   
 one:
   first_name: Contact
@@ -16,6 +17,7 @@ one:
   account: hansika
   user: regular
   archived: false
+  touched_at: <%=Date.current.prev_month(1).beginning_of_month%>
   
 archived:
   first_name: Contact
@@ -35,6 +37,7 @@ two:
   account: hansika
   user: regular
   archived: false  
+  touched_at: <%=Date.current.prev_month(3).beginning_of_month%>
 
 three:
   first_name: Contact
@@ -44,6 +47,7 @@ three:
   account: hansika
   user: regular
   archived: false
+  touched_at: <%=Date.current.prev_month(4).beginning_of_month%>
 
 
 four:
@@ -54,6 +58,7 @@ four:
   account: hansika
   user: regular
   archived: false
+  touched_at: <%=Date.current.prev_month(2).beginning_of_month%>
 
 five:
   first_name: Contact
@@ -63,6 +68,7 @@ five:
   account: hansika
   user: regular
   archived: false  
+  touched_at: <%=Date.current.prev_month(1).beginning_of_month%>
 
 
 untracked:
