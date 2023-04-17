@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/zdennis/activerecord-import
-  revision: 748309d1ae03fc1fe56d58e54c634a003408c706
+  revision: 75b751f659295b78840ef23074cdcde1f8e0e375
   specs:
     activerecord-import (1.4.1)
       activerecord (>= 4.2)
