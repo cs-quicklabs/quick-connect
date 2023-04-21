@@ -19,7 +19,7 @@ class JournalsController < BaseController
   def ratings
     authorize Journal, :index?
     @rating = Rating.all.where(date: Date.today).first
-    @ratings_by_date = Rating.select("DISTINCT ON (date)*").all.where("date <= ? and date > ?", Date.today, Date.today - 3.months).order(date: :desc).group_by { |r| r.date.strftime("%B") }
+    @ratings_by_date = Rating.select("DISTINCT ON (date)*").all.where("date <= ? and date > ?", Date.today, Date.today - 3.months).order(date: :desc).map { |r| [r.date, r.rating_before_type_cast] }.to_h
   end
 
   def new

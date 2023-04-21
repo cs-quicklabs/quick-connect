@@ -118,4 +118,8 @@ module ApplicationHelper
     return 29 if month == 2 && Date.gregorian_leap?(year)
     COMMON_YEAR_DAYS_IN_MONTH[month]
   end
+
+  def github_contributions_canvas(username)
+    github_contributions(username).html_safe
+  end
 end

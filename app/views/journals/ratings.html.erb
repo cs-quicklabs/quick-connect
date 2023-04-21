@@ -1,3 +1,14 @@
 <turbo-frame id="ratings">
-  <%= render "journals/ratings_form", { ratings_by_date: @ratings_by_date, rating: @rating } %>
+  <%= @ratings_by_date.to_json %>
+  <div class="calendar" data-controller="github-calendar" data-github-calendar-username="hansika" data-github-calendar-data=<%= @ratings_by_date.to_json %>>
+    <div class="calendar-graph"></div>
+    <div class="calendar-legend">
+      <span class="color-0"></span>
+      <span class="legend-text">Awesome</span>
+      <span class="color-1"></span>
+      <span class="legend-text">Normal</span>
+      <span class="color-2"></span>
+      <span class="legend-text">Bad</span>
+    </div>
+  </div>
 </turbo-frame>

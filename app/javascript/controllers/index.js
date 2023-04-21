@@ -40,3 +40,7 @@ application.register("show-more", ShowMoreController)
 import ShowContactController from "./show_contact_controller.js"
 application.register("show-contact", ShowContactController)
 
+import GitHubCalendarController from "./github_calendar_controller"
+application.register("github-calendar", GitHubCalendarController)
+
+
