@@ -14,7 +14,8 @@ class Report::ActivitiesController < Report::BaseController
     start_date = current_user.account.created_at.to_date.to_s
     end_date = Date.today.to_s
     account = current_user.account.id
-    sql = "SELECT s.tag::date AS date , count(t.id) AS count FROM  (SELECT generate_series(timestamp '#{start_date}', timestamp '#{end_date}', interval  '1 day') AS tag ) s  LEFT   JOIN events t ON t.created_at::date = s.tag AND t.account_id = #{account} GROUP  BY 1 ORDER  BY 1;"
+    table_name = "events"
+    sql = "SELECT s.tag::date AS date , count(t.id) AS count FROM  (SELECT generate_series(timestamp '#{start_date}', timestamp '#{end_date}', interval  '1 day') AS tag ) s  LEFT   JOIN #{table_name} t ON t.created_at::date = s.tag AND t.account_id = #{account} GROUP  BY 1 ORDER  BY 1;"
     result = ActiveRecord::Base.connection.execute(sql)
   end
 
