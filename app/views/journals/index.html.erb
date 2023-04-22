@@ -1,44 +1,47 @@
-<main class="relative z-0 flex-1 overflow-x-auto focus:outline-none">
-  <main class="">
-    <div class=" ">
-      <div class="grid items-start grid-cols-1  lg:grid-cols-3  ">
-        <!-- Left column -->
-        <div class="grid grid-cols-1 gap-2 lg:col-span-2 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full " data-contoller="infinite-scroll">
-          <div class="h-full border-r xl:border-gray-200">
-            <div class="flex items-center justify-between  py-6 px-6 ml-2  ">
-              <div class="flex flex-wrap items-baseline">
-                <h1 class="text-3xl font-bold leading-tight text-gray-900">Journals</h1>
-                <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @pagy.count.to_s %>)</p>
-              </div>
-              <div class="flex ">
-                <%= link_to "Add Journal", new_journal_path, class: "btn-blue" %>
-              </div>
-            </div>
-            <section aria-labelledby="participants_section">
-              <div class="overflow-hidden bg-white">
-                <div class="">
-                  <ul class=" px-6 " id="journals" data-infinite-scroll-target="entries">
-                    <%= render partial: "journal", collection: @journals, as: :journal, cached: true %>
-                  </ul>
+<div class="w-full h-screen" data-controller="graph">
+  <canvas data-graph-target="graph">
+  </canvas>
+  <main class="relative z-0 flex-1 overflow-x-auto focus:outline-none">
+    <main class="">
+      <div class=" ">
+        <div class="grid items-start grid-cols-1  lg:grid-cols-3  ">
+          <!-- Left column -->
+          <div class="grid grid-cols-1 gap-2 lg:col-span-2 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full " data-contoller="infinite-scroll">
+            <div class="h-full border-r xl:border-gray-200">
+              <div class="flex items-center justify-between  py-6 px-6 ml-2  ">
+                <div class="flex flex-wrap items-baseline">
+                  <h1 class="text-3xl font-bold leading-tight text-gray-900">Journals</h1>
+                  <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @pagy.count.to_s %>)</p>
+                </div>
+                <div class="flex ">
+                  <%= link_to "Add Journal", new_journal_path, class: "btn-blue" %>
                 </div>
               </div>
-              <div class="flex justify-end invisible" data-infinite-scroll-target="pagination">
-                <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
-              </div>
-            </section>
+              <section aria-labelledby="participants_section">
+                <div class="overflow-hidden bg-white">
+                  <div class="">
+                    <ul class=" px-6 " id="journals" data-infinite-scroll-target="entries">
+                      <%= render partial: "journal", collection: @journals, as: :journal, cached: true %>
+                    </ul>
+                  </div>
+                </div>
+                <div class="flex justify-end invisible" data-infinite-scroll-target="pagination">
+                  <%== render partial: "shared/paginator", locals: { pagy: @pagy } %>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full">
+            <div class="h-full">
+              <section aria-labelledby="add-participant-section " class="  px-6 py-6  " id="rating">
+                <div class=" bg-white " >
+                  <%= turbo_frame_tag "ratings", src: ratings_path, target: "_top", loading: :lazy do %>
+                    <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch your ratings...</p>
+                  <% end %>
+                </div>
+              </section>
+            </div>
           </div>
         </div>
-        <div class="overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full">
-          <div class="h-full">
-            <section aria-labelledby="add-participant-section " class="  px-6 py-6  " id="rating">
-              <div class=" bg-white " >
-                <%= turbo_frame_tag "ratings", src: ratings_path, target: "_top", loading: :lazy do %>
-                  <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch your ratings...</p>
-                <% end %>
-              </div>
-            </section>
-          </div>
-        </div>
-      </div>
+      </main>
     </main>
-  </main>
