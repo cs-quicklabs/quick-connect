@@ -1,4 +1,4 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 import { createPopper } from "@popperjs/core";
 
 // Connects to data-controller="popper"

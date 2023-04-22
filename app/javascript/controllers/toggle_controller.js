@@ -4,8 +4,7 @@ export default class extends Controller {
   static targets = ["show", "unhide"];
 
   toggle() {
-    
-    this.element.addEventListener("click", function() {
+    this.element.addEventListener("click", function () {
       this.showTarget.style.display = "block";
     });
   }

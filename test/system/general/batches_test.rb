@@ -59,7 +59,7 @@ class BatchesTest < ApplicationSystemTestCase
     within "turbo-frame#batch_#{@batch.id}" do
       assert text "Edit Group"
       fill_in "batch_name", with: "Bad"
-      click_on "Add"
+      click_on "Save"
     end
     assert text "Group was successfully updated"
   end
@@ -71,7 +71,7 @@ class BatchesTest < ApplicationSystemTestCase
     within "turbo-frame#batch_#{@batch.id}" do
       assert text "Edit Group"
       fill_in "batch_name", with: group.name
-      click_on "Add"
+      click_on "Save"
     end
     take_screenshot
     assert text "Edit Group"

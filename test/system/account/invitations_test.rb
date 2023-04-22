@@ -113,6 +113,7 @@ class InvitationsTest < ApplicationSystemTestCase
     sleep(1.0)
     sign_out(@user)
     doc = Nokogiri::HTML::Document.parse(ActionMailer::Base.deliveries.last.to_s)
+    binding.irb
     link = doc.css("a").first.values.first
     visit link
     fill_in "user_password", with: "password"
