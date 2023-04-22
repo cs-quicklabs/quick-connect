@@ -1,0 +1,11 @@
+.frappe-chart-container {
+  margin: 0;
+}
+
+.heatmap .graph-value {
+  fill-opacity: 0.6;
+}
+
+.heatmap .graph-value:hover {
+  fill-opacity: 1;
+}

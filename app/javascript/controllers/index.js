@@ -40,3 +40,12 @@ application.register("show-more", ShowMoreController)
 import ShowContactController from "./show_contact_controller.js"
 application.register("show-contact", ShowContactController)
 
+import ChartController from "./chart_controller.js"
+application.register("chart", ChartController)
+
+import ShowGraphController from "./show_graph_controller.js"
+application.register("show-graph", ShowGraphController)
+
+import ContributionsContoller from "./contributions_controller.js"
+application.register("contributions", ContributionsContoller)
+
