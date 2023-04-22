@@ -75,7 +75,7 @@ function getPixelRatio() {
 }
 
 const DATE_FORMAT = "yyyy-MM-dd";
-const boxWidth = 14;
+const boxWidth = 16;
 const boxMargin = 0;
 const textHeight = 15;
 const defaultFontFace = "IBM Plex Sans, sans-serif";
