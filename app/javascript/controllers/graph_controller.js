@@ -8,7 +8,7 @@ export default class extends Controller {
   connect() {
     console.log("connected");
 
-    get("/aashishdhawan.json", {
+    get("/report/activities.json", {
       responseKind: "application/json",
     })
       .then((response) => response.json)

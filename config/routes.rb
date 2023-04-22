@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
-  get "/reports", to: "reports#index", as: "reports"
+  get "/report", to: "reports#index", as: "reports"
   scope "report" do
     get "/contacts", to: "report/contacts#index", as: "contacts_addition_report"
+    get "/activities", to: "report/activities#index", as: "activities_report"
     scope "contacts" do
       get "/yearly", to: "report/contacts#yearly", as: "contacts_addition_report_yearly"
       get "/monthly", to: "report/contacts#monthly", as: "contacts_addition_report_monthly"
