@@ -2,7 +2,6 @@ class Report::ContactsController < Report::BaseController
   def index
     authorize :report
     @add_contacts_report = Contact.all.group("DATE_TRUNC('month', created_at)").count.values.map(&:to_i)
-    binding.irb
   end
 
   def weekly
