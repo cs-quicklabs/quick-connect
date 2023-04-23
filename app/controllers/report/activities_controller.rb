@@ -36,14 +36,25 @@ class Report::ActivitiesController < Report::BaseController
 
   def contributions(activities)
     max_count = activities.map { |row| row["count"] }.max
-    boundry = max_count / 4
-    boundry = 1 if boundry == 0
+
+    def intensity(max_count, count)
+      boundry = max_count / 4
+      if boundry == 0
+        boundry = 1
+      end
+      intensity = count / boundry
+      if intensity > 4
+        intensity = 4
+      end
+      intensity
+    end
+
     activities.map do |row|
       {
         date: row["date"],
         count: row["count"],
         color: "#ebedf0",
-        intensity: (row["count"] / boundry),
+        intensity: intensity(max_count, row["count"]),
       }
     end
   end
