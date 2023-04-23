@@ -3,7 +3,7 @@
     <!-- Main 2 column grid -->
     <div class="grid items-start grid-cols-1 gap-2 pl-40 pr-40 lg:grid-cols-2 lg:gap-2">
       <div class="grid grid-cols-1 gap-4 lg:col-span-1">
-        <div class="max-w-2xl mx-auto mt-8 mb-8">
+        <div class="max-w-2xl mt-8 mb-8">
           <h3 class="px-3 text-xs font-bold tracking-wider text-gray-800 uppercase" id="projects-headline">
             Contacts
           </h3>
@@ -16,6 +16,38 @@
             <a href="<%= activities_reports_path %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
               <span class="truncate">
                 Activities Report
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="max-w-2xl mb-8">
+          <h3 class="px-3 text-xs font-bold tracking-wider text-gray-800 uppercase" id="projects-headline">
+            Consistency Reports
+          </h3>
+          <div class="mt-1 space-y-1" aria-labelledby="projects-headline">
+            <a href="report/activities?type=contacts" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                New Contacts Additions Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=phone_calls" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Phone Call Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=conversations" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Conversations Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=contact_activities" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Social Activities Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=contact_events" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Life Events Consistency
               </span>
             </a>
           </div>

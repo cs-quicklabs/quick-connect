@@ -43,6 +43,7 @@ interface Options {
   data: DataStruct;
   fontFace?: string;
   footerText?: string;
+  text?: string;
 }
 
 interface DrawYearOptions extends Options {
@@ -118,7 +119,7 @@ function getContributionCount(graphEntries: GraphEntry[][]) {
 }
 
 function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
-  const { year, offsetX = 0, offsetY = 0, data, fontFace = defaultFontFace } = opts;
+  const { year, offsetX = 0, offsetY = 0, data, fontFace = defaultFontFace, text } = opts;
   const theme = getTheme(opts);
 
   const today = new Date();
@@ -159,7 +160,7 @@ function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
     ctx.textBaseline = "hanging";
     ctx.fillStyle = theme.text;
     ctx.font = `12px '${fontFace}'`;
-    ctx.fillText(`${year.year}: ${count} Activities${year.total === 1 ? "" : "s"}${thisYear === year.year ? " (so far)" : ""}`, offsetX, offsetY - 17);
+    ctx.fillText(`${year.year}: ${count} ${text}${year.total === 1 ? "" : ""}${thisYear === year.year ? " (so far)" : ""}`, offsetX, offsetY - 17);
   }
 
   for (let y = 0; y < graphEntries.length; y += 1) {
@@ -192,7 +193,7 @@ function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
 }
 
 function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) {
-  const { username, width, height, footerText, data, fontFace = defaultFontFace } = opts;
+  const { username, width, height, footerText, data, fontFace = defaultFontFace, text } = opts;
   const theme = getTheme(opts);
   ctx.fillStyle = theme.background;
   ctx.fillRect(0, 0, width, height);
@@ -219,14 +220,14 @@ function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) 
   ctx.fillStyle = theme.text;
   ctx.textBaseline = "hanging";
   ctx.font = `20px '${fontFace}'`;
-  ctx.fillText(`@${username} on GitHub`, canvasMargin, canvasMargin);
+  ctx.fillText(`${text}`.toUpperCase(), canvasMargin, canvasMargin);
 
   let totalContributions = 0;
   for (const year of data.years) {
     totalContributions += year.total;
   }
   ctx.font = `12px '${fontFace}'`;
-  ctx.fillText(`Total Contributions: ${totalContributions}`, canvasMargin, canvasMargin + 30);
+  ctx.fillText(`Total ${text}: ${totalContributions}`, canvasMargin, canvasMargin + 30);
 
   ctx.beginPath();
   ctx.moveTo(canvasMargin, 55 + 10);

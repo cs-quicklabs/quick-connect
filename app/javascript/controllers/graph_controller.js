@@ -4,24 +4,21 @@ import { drawContributions } from "../github-canvas";
 
 export default class extends Controller {
   static targets = ["graph"];
+  static values = {
+    type: String,
+  };
 
   connect() {
-    console.log("connected");
-
-    get("/report/activities.json", {
+    get("/report/activities.json?type=" + this.typeValue, {
       responseKind: "application/json",
     })
       .then((response) => response.json)
       .then((response) => {
         this.contributionData = response;
-        console.log(this.contributionData);
-        console.log(this.graphTarget);
         drawContributions(this.graphTarget, {
           data: this.contributionData,
-          username: "aashishdhawan",
           themeName: "standard",
-          footerText: "Made by @sallar - github-contributions.now.sh",
-          skipHeader: false,
+          text: this.typeValue.replace("_", " "),
         });
       });
   }
