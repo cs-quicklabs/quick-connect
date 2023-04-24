@@ -24,6 +24,7 @@ class CreateContact < Patterns::Service
   def create_contact
     contact.user = actor
     contact.account = actor.account
+    contact.touched_at = DateTime.now.utc
     contact.save!
   end
 

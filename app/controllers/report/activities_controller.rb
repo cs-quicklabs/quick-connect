@@ -38,15 +38,15 @@ class Report::ActivitiesController < Report::BaseController
     max_count = activities.map { |row| row["count"] }.max
 
     def intensity(max_count, count)
-      boundry = max_count / 4
+      boundry = max_count.to_f / 4
       if boundry == 0
         boundry = 1
       end
-      intensity = count / boundry
+      intensity = count / boundry.to_f
       if intensity > 4
         intensity = 4
       end
-      intensity
+      intensity.ceil
     end
 
     activities.map do |row|

@@ -1,11 +1,11 @@
-<main class="relative z-0 flex-1 overflow-x-auto focus:outline-none">
+<main class="relative z-0 flex-1 overflow-x-auto focus:outline-none bg-gray-50">
   <div class="min-h-full">
     <div class="flex flex-wrap items-baseline px-6 py-6 " >
       <h1 class="text-3xl font-bold leading-tight text-gray-900">Follow Ups</h1>
     </div>
     <div class="  ">
       <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:grid border-t px-1 border-gray-200" style=" grid-template-columns: repeat(4, 358px); width:1440px;">
-        <div class=" lg:block grid grid-cols-1 flex  py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  ">
+        <div class=" lg:block grid grid-cols-1  py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  ">
           <div class=" relative" >
             <div class="absolute inset-0  rounded-lg">
               <div class="flex flex-wrap items-baseline px-4 py-2">
@@ -14,7 +14,7 @@
               </div>
               <nav class="flex-1 " aria-label="Directory" >
                 <div class="relative h-full pb-44" >
-                  <ul role="list" class="grid grid-cols-1  px-4 mr-1" id="firsts">
+                  <ul role="list" class="grid grid-cols-1  px-2" id="firsts">
                     <%= render partial: "card", collection: @firsts, as: :contact, cached: true %>
                   </ul>
                 </div>
@@ -22,7 +22,7 @@
             </div>
           </div>
         </div>
-        <div class=" lg:block grid grid-cols-1 flex  py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
+        <div class=" lg:block grid grid-cols-1   py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
           <div class=" relative" >
             <div class="flex flex-wrap items-baseline px-4 py-2 ">
               <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 60 days</h3>
@@ -30,14 +30,14 @@
             </div>
             <nav class="flex-1  " style=""  aria-label="Directory" >
               <div class="relative h-full pb-44 " >
-                <ul role="list" class="grid grid-cols-1 px-4 mr-1" id="seconds">
+                <ul role="list" class="grid grid-cols-1 px-2" id="seconds">
                   <%= render partial: "card", collection: @seconds, as: :contact, cached: true %>
                 </ul>
               </div>
             </nav>
           </div>
         </div>
-        <div class=" lg:block grid grid-cols-1 flex  py-2 border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  "  >
+        <div class=" lg:block grid grid-cols-1   py-2 border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  "  >
           <div class="h-full relative">
             <div class="flex flex-wrap items-baseline px-4 py-2 ">
               <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">Last 90 days</h3>
@@ -45,7 +45,7 @@
             </div>
             <nav class="flex-1   " style="" aria-label="Directory" >
               <div class="relative  h-full pb-44 " >
-                <ul role="list" class="grid grid-cols-1  px-4 mr-1" id="thirds">
+                <ul role="list" class="grid grid-cols-1  px-2" id="thirds">
                   <%= render partial: "card", collection: @thirds, as: :contact, cached: true %>
                 </ul>
               </div>
@@ -60,7 +60,7 @@
             </div>
             <nav class="flex-1  " style="" aria-label="Directory" >
               <div class="relative  h-full pb-44" >
-                <ul role="list" class="grid grid-cols-1  px-4 mr-1" id="fourths">
+                <ul role="list" class="grid grid-cols-1  px-2" id="fourths">
                   <%= render partial: "card", collection: @fourths, as: :contact, cached: true %>
                 </ul>
               </div>
