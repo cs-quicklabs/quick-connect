@@ -220,7 +220,7 @@ function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) 
   ctx.fillStyle = theme.text;
   ctx.textBaseline = "hanging";
   ctx.font = `20px '${fontFace}'`;
-  ctx.fillText(`${text}`.toUpperCase(), canvasMargin, canvasMargin);
+  ctx.fillText(`${text}`.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' '), canvasMargin, canvasMargin);
 
   let totalContributions = 0;
   for (const year of data.years) {

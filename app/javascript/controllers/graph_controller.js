@@ -9,6 +9,7 @@ export default class extends Controller {
   };
 
   connect() {
+    console.log(this.typeValue.replace("_", " "));
     get("/report/activities.json?type=" + this.typeValue, {
       responseKind: "application/json",
     })
