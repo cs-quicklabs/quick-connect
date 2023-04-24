@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
   get "/report", to: "reports#index", as: "reports"
   scope "report" do
+    get "/events", to: "report/events#index", as: "events_reports"
     get "/contacts", to: "report/contacts#index", as: "contacts_addition_report"
     get "/activities", to: "report/activities#index", as: "activities_report"
     scope "contacts" do

@@ -13,9 +13,9 @@
                 Contacts Addition Report
               </span>
             </a>
-            <a href="report/activities?type=events" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+            <a href="<%= events_reports_path(from_date: Date.yesterday, to_date: Date.today) %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
               <span class="truncate">
-                Events Consistency Report
+                What happened yesterday?
               </span>
             </a>
           </div>
@@ -25,6 +25,11 @@
             Consistency Reports
           </h3>
           <div class="mt-1 space-y-1" aria-labelledby="projects-headline">
+            <a href="report/activities?type=events" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Events Consistency Report
+              </span>
+            </a>
             <a href="report/activities?type=contacts" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
               <span class="truncate">
                 New Contacts Additions Consistency
