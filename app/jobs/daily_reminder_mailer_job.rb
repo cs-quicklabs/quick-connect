@@ -1,6 +1,6 @@
 class DailyReminderMailerJob < ApplicationJob
   def perform
-    accounts = Account.all
+    accounts = Account.where("owner_id IS NOT NULL")
     accounts.each do |account|
       ActsAsTenant.current_tenant = account
       users = User.where(account_id: account)
