@@ -99,8 +99,10 @@ Rails.application.routes.draw do
   end
   scope "untracked" do
     get "/contacts", to: "contacts#untracked", as: "untracked_contacts"
+
     get "/contact/:id/track", to: "contacts#track", as: "track_contact"
-    get "/contact/:id", to: "contacts#untrack", as: "untrack_contact"
+    get "/contact/untrack/:id", to: "contacts#untrack", as: "untrack_contact"
+    get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   end
   get "account/billing", to: "account/billing#index", as: "billing"
 

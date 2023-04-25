@@ -57,4 +57,8 @@ class ContactPolicy < ApplicationPolicy
   def import?
     true
   end
+
+  def touched?
+    true
+  end
 end
