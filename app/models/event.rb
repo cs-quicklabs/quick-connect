@@ -8,7 +8,7 @@ class Event < ApplicationRecord
   validates :action, inclusion: { in: ACTIONS }
   default_scope { order(created_at: :desc) }
   scope :follow_up, -> { where(action: ["called", "conversation", "contact_activity", "contact_event"]) }
-  scope :sanitize, -> { where.not("trackable_id IS NULL") }
+  scope :sanitize, -> { where.not("trackable_id IS NULL OR eventable_id IS NULL") }
 
   def relation_events
     Event.all.where trackable_type: "relative"
@@ -16,5 +16,9 @@ class Event < ApplicationRecord
 
   def self.top_50_events
     Event.all.includes(:eventable, :trackable, :user, :account).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
+  end
+  def self.query(params, includes = nil)
+    return [] if params.empty?
+    EventQuery.new(self.includes(includes), params).filter
   end
 end

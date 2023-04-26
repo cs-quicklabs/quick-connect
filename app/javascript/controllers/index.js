@@ -40,5 +40,12 @@ application.register("show-more", ShowMoreController);
 import ShowContactController from "./show_contact_controller.js";
 application.register("show-contact", ShowContactController);
 
+import ChartController from "./chart_controller.js"
+application.register("chart", ChartController)
+
+import ShowGraphController from "./show_graph_controller.js"
+application.register("show-graph", ShowGraphController)
+
 import GraphController from "./graph_controller.js";
 application.register("graph", GraphController);
+

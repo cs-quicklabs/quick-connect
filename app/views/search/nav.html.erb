@@ -1,9 +1,9 @@
   <% @contacts.each do |contact| %>
-  <li role="option"  @click="isShowing = false; document.getElementById('navbar').value='<%= contact.decorate.display_name %>'" class="" id="show">
-    <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" target="_top" class=" w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ...">
+  <a  href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" target="_top" class=" ">
+    <li role="option"  class="w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ..." id="show">
       <%= contact.decorate.display_name %>
-    </a>
-  </li>
+    </li>
+  </a>
 <% end %>
 <% if @contacts.size > 0 && @batches.size > 0 %>
   <div class="my-2 mb-6 ">
@@ -18,9 +18,9 @@
   </div>
 <% end %>
 <% @batches.each do |batch| %>
-  <li role="option"  @click="isShowing = false; document.getElementById('navbar').value='<%= batch.name.upcase_first %>'" class="" id="group">
-    <a type="button" href="/<%= batch.account.id %>/groups?batch_id=<%= batch.id %>" target="_top" class="float-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ...">
+  <a  href="/<%= batch.account.id %>/groups?batch_id=<%= batch.id %>" target="_top" class="">
+    <li role="option"  class="float-left w-full block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer truncate ..." id="group">
       <%= batch.decorate.display_name %>
-    </a>
-  </li>
+    </li>
+  </a>
 <% end %>
