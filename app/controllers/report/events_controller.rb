@@ -3,8 +3,7 @@ class Report::EventsController < Report::BaseController
     authorize :report
 
     @filters = EventFilter.new(event_filter_params)
-    @event_entries = entries(Event.sanitize.includes(:trackable, :eventable).query(event_filter_params))
-    @pagy, @events = pagy_nil_safe(params, @event_entries, items: LIMIT)
+    @events = entries(Event.sanitize.includes(:trackable, :eventable).query(event_filter_params))
     render_partial("report/events/event", collection: @events, cached: false)
   end
 
