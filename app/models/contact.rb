@@ -4,8 +4,14 @@ class Contact < ApplicationRecord
   attr_accessor :relation_name
   require "activerecord-import"
   acts_as_tenant :account
+  enum touch_back_after: ["30_days", "60_days", "90_days", "more_than_100_days", "do_not_track"]
+  TOUCH_BACK_AFTER_OPTIONS = [{ id: "30_days", name: "30 days" }, { id: "60_days", name: "60 days" }, { id: "90_days", name: "90 days" }, { id: "more_than_100_days", name: "More Than 100 days" }, { id: "do_not_track", name: "Do not track" }]
   scope :for_current_account, -> { where(account: Current.account) }
   scope :favorites, -> { where(favorite: true) }
+  scope :thirty_days, -> { where(touch_back_after: 0) }
+  scope :sixty_days, -> { where("touch_back_after IN (?)", [0, 1]) }
+  scope :ninety_days, -> { where("touch_back_after IN (?)", [0, 1, 2]) }
+  scope :over_100_days, -> { where("touch_back_after IN (?)", [0, 1, 2, 3]) }
   belongs_to :user
   belongs_to :account
   normalize_attribute :first_name, :last_name, :email, :with => :strip
@@ -16,7 +22,7 @@ class Contact < ApplicationRecord
   has_many :phone_calls, dependent: :destroy
 
   scope :archived, -> { where(archived: true) }
-  scope :untracked, -> { where(track: false) }
+  scope :untracked, -> { where(track: false, touch_back_after: "do_not_track") }
   scope :tracked, -> { where(track: true) }
   scope :available, -> { where(archived: false) }
   scope :popular, -> { order(activity_count: :desc) }

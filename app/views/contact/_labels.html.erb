@@ -11,7 +11,7 @@
   <% end %>
 <% end %>
 <% if policy(contact).edit? %>
-  <div class=" flex-auto ml-1" x-data="{menu: false}" x-on:keydown.escape="menu=!menu" >
+  <div class=" flex-auto ml-1" x-data="{menu: false}" x-on:keydown.escape="menu=false" >
     <button id="add" x-on:click="menu = !menu" type="button" class="inline-flex items-center p-1 ml-2 text-white bg-indigo-600 border border-transparent rounded-full shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
       <!-- Heroicon name: solid/plus -->
       <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
