@@ -28,7 +28,7 @@
             <div class="py-1" role="none">
               <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
                 <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                <a x-on:click="menu=false"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->Contact#touch_back_after" data-contact-id=<%= contact.id %> data-touch-back-after=<%= touch[:id] %> ><%= touch[:name] %></a>
+                <a x-on:click="open=false"  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50" role="menuitem" data-reflex="click->Contact#touch_back_after" data-contact-id=<%= contact.id %> data-touch-back-after=<%= touch[:id] %> ><%= touch[:name] %></a>
               <% end %>
             </div>
           </div>
