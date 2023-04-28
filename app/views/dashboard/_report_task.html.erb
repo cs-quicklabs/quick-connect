@@ -7,8 +7,8 @@
             <% if policy([task.contact, task]).edit? %>
               <%= check_box_tag "completed", nil, task.completed, data: { reflex: "click->TaskReflex#toggle_contact_task_dasboard", id: task.id }, class: "inline-flex mr-4 cursor-pointer w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
             <% end %>
-            <span class=" inline-flex -mt-1">
-              <a href="<%= contact_task_path(task.contact, task) %>" class="block hover:underline mr-0.5" target="_top">
+            <span class="flex  -mt-1">
+              <a href="<%= contact_task_path(task.contact, task) %>" class="flex-1 block hover:underline mr-0.5" target="_top">
                 <%= task.title.upcase_first %>
               </a> (<a href="<%= contact_tasks_path(task.contact) %>" class="block hover:underline " target="_top">
                 <%= task.contact.decorate.display_name %>

@@ -1,0 +1,30 @@
+/* Material theme styles */
+.tippy-box[data-theme~='material'] {
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12), 0 1px 1px rgba(0, 0, 0, 0.14);
+    padding: 1px 2px;
+    background-color: #555252;
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 12px;
+  }
+  
+  .tippy-box[data-theme~='material'] .tippy-arrow {
+    color: #555252;
+  }
+  
+  .tippy-box[data-theme~='material'][data-placement^='top'] .tippy-arrow {
+    border-top-color: #555252;
+  }
+  
+  .tippy-box[data-theme~='material'][data-placement^='bottom'] .tippy-arrow {
+    border-bottom-color: #555252;
+  }
+  
+  .tippy-box[data-theme~='material'][data-placement^='left'] .tippy-arrow {
+    border-left-color: #555252;
+  }
+  
+  .tippy-box[data-theme~='material'][data-placement^='right'] .tippy-arrow {
+    border-right-color: #555252;
+  }
+  

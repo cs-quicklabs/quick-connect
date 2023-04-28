@@ -49,3 +49,6 @@ application.register("show-graph", ShowGraphController)
 import GraphController from "./graph_controller.js";
 application.register("graph", GraphController);
 
+import TooltipController from "./tooltip_controller.js";
+application.register("tooltip",TooltipController);
+
