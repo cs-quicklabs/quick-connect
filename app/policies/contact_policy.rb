@@ -61,4 +61,8 @@ class ContactPolicy < ApplicationPolicy
   def touched?
     true
   end
+
+  def touch_back?
+    true
+  end
 end

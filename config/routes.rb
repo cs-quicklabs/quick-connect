@@ -114,6 +114,7 @@ Rails.application.routes.draw do
 
     get "/contact/:id/track", to: "contacts#track", as: "track_contact"
     get "/contact/untrack/:id", to: "contacts#untrack", as: "untrack_contact"
+    get "/contact/touch_back/:id", to: "contacts#touch_back", as: "touch_back_contact"
     get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   end
   get "account/billing", to: "account/billing#index", as: "billing"

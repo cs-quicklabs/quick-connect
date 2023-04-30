@@ -26,7 +26,7 @@ class ContactDecorator < Draper::Decorator
       "indigo"
     elsif self.touch_back_after == "90_days"
       "green"
-    elsif self.touch_back_after == "after_90_days"
+    elsif self.touch_back_after == "more_than_100_days"
       "yellow"
     else
       "red"
@@ -34,6 +34,10 @@ class ContactDecorator < Draper::Decorator
   end
 
   def display_follow_up_after
-    self.touch_back_after.gsub("_", " ")
+    if self.touch_back_after == "do_not_track"
+      self.touch_back_after.gsub("_", " ").upcase_first
+    else
+      "Follow up after #{self.touch_back_after.gsub("_", " ").upcase_first}"
+    end
   end
 end

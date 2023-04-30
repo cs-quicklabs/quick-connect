@@ -27,10 +27,4 @@ class ContactReflex < ApplicationReflex
     html = render(partial: "account/export/export")
     morph "#export", "#{html}"
   end
-
-  def touch_back_after
-    contact = Contact.find(element.dataset["contact-id"])
-    contact.update(touch_back_after: element.dataset["touch-back-after"])
-    morph "#touch-back-after", render(partial: "contact/touch_back", locals: { contact: contact })
-  end
 end

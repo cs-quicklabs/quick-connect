@@ -52,3 +52,6 @@ application.register("graph", GraphController);
 import TooltipController from "./tooltip_controller.js";
 application.register("tooltip",TooltipController);
 
+import FollowupAfterController from "./followup_after_controller.js";
+application.register("followup-after", FollowupAfterController);
+

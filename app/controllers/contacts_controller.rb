@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track touched ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track touched touch_back ]
 
   def index
     authorize :contact
@@ -133,15 +133,25 @@ class ContactsController < BaseController
     render turbo_stream: turbo_stream.remove(@contact)
   end
 
+  def touch_back
+    authorize :contact, :touch_back?
+    UpdateTouchBack.call(@contact, current_user, params[:touch_back])
+    @partial = render_to_string(partial: "contact/touch_back", locals: { contact: @contact }, formats: [:turbo_stream])
+    respond_to do |format|
+      format.turbo_stream do render turbo_stream: turbo_stream.append("touch-back", @partial) end
+      format.html
+    end
+  end
+
   def untrack
     authorize :contact, :untrack?
-    UntrackContact.call(@contact, current_user)
+    UpdateTouchBack.call(@contact, current_user, "do_not_track")
     render turbo_stream: turbo_stream.remove(@contact)
   end
 
   def track
     authorize @contact, :track?
-    TrackContact.call(@contact, current_user)
+    UpdateTouchBack.call(@contact, current_user, "30_days")
     redirect_to followups_path, notice: "Contact has been tracked."
   end
 

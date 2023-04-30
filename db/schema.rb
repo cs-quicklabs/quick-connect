@@ -156,8 +156,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.boolean "archived", default: false
     t.date "archived_on"
     t.boolean "favorite", default: false, null: false
-    t.boolean "track", default: true, null: false
-    t.date "untrack_on"
+    t.date "followup_after_changed_on"
     t.string "intro"
     t.integer "activity_count", default: 0
     t.date "touched_at"
