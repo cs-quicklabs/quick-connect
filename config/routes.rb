@@ -29,6 +29,7 @@ Rails.application.routes.draw do
       get "/all", to: "report/contacts#all", as: "contacts_addition_report_all"
     end
     get "/activities", to: "report/activities#index", as: "activities_reports"
+    get "/ratings", to: "report/ratings#index", as: "ratings_reports"
   end
   resources :contacts do
     resources :notes, module: "contact", except: [:show]

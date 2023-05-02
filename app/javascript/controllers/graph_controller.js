@@ -5,12 +5,13 @@ import { drawContributions } from "../github-canvas";
 export default class extends Controller {
   static targets = ["graph"];
   static values = {
-    type: String,
+    url: String,
   };
 
   connect() {
-    console.log(this.typeValue.replace("_", " "));
-    get("/report/activities.json?type=" + this.typeValue, {
+    const type=this.urlValue.split("=")[1];
+  
+    get(this.urlValue, {
       responseKind: "application/json",
     })
       .then((response) => response.json)
@@ -19,7 +20,7 @@ export default class extends Controller {
         drawContributions(this.graphTarget, {
           data: this.contributionData,
           themeName: "standard",
-          text: this.typeValue.replace("_", " "),
+          text: type? type.replace("_"," ") : "ratings"
         });
       });
   }
