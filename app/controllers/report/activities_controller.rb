@@ -2,8 +2,9 @@ class Report::ActivitiesController < Report::BaseController
   def index
     authorize :report
 
-    contributions = contributions(activities)
-    years = years(activities)
+    data = activities
+    contributions = contributions(data)
+    years = years(data)
     @type = params[:type]
     respond_to do |format|
       format.html
