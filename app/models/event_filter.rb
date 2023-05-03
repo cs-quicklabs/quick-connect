@@ -6,6 +6,8 @@ class EventFilter
   KEYS = %i[
     from_date
     to_date
+    action_name
+    eventable_id
   ].freeze
 
   attr_accessor(*KEYS)
