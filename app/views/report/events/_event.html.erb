@@ -1,0 +1,17 @@
+<tr>
+  <td class="w-1/2 table-cell ">
+    <%= event.action_context %>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <%= event.decorate.trackable_name %>
+  </td>
+  <td class="table-cell whitespace-nowrap">
+    <%= event.eventable.decorate.display_name %>
+  </td>
+  <td class="table-cell  whitespace-nowrap">
+    <%= display_date(event.created_at) %>
+  </td>
+  <td class="table-cell  whitespace-nowrap">
+    <%= event.user.decorate.display_name %>
+  </td>
+</tr>

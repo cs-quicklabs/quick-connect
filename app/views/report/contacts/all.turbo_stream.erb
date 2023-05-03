@@ -1,5 +1,5 @@
 <canvas 
   data-controller="chart"
-  data-chart-data-value='{ "labels": <%=(@start_year..Date.today.year).to_a%>,"datasets":
+  data-chart-data-value='{ "labels": <%= (@start_year..Date.today.year).to_a %>,"datasets":
   [{ "label": "Add contacts Report", "backgroundColor": "transparent", "borderColor": "#3B82F6", "data": <%= @add_contacts_report %> }] }'
 ></canvas>
