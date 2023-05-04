@@ -55,3 +55,6 @@ application.register("tooltip",TooltipController);
 import FollowupAfterController from "./followup_after_controller.js";
 application.register("followup-after", FollowupAfterController);
 
+import RatingGraphController from "./rating_graph_controller.js";
+application.register("rating-graph", RatingGraphController);
+

@@ -37,24 +37,21 @@ class Report::RatingsController < Report::BaseController
   end
 
   def contributions(ratings)
-    def intensity(max_count, count)
-      boundry = max_count.to_f / 2
-      if boundry == 0
-        boundry = 1
-      end
-      intensity = count / boundry.to_f
-      if intensity > 2
-        intensity = 2
-      end
-      intensity.ceil
-    end
-
     ratings.map do |row|
       {
         date: row["date"],
-        count: row["rating"].to_i,
-        color: "#ebedf0",
-        intensity: intensity(2.0, row["rating"].to_i),
+        count: row["count"],
+        intensity: row["rating"].nil? ? 0 : 1,
+        color: case row["rating"]
+        when 0
+          "#22c55e"
+        when 1
+          "#9e9e9e"
+        when 2
+          "#e53935"
+        else
+          "#ebedf0"
+        end,
       }
     end
   end
