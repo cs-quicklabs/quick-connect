@@ -13,3 +13,4 @@ import "./trix-editor-overrides";
 import "./themes";
 import "./github-canvas";
 import "@hotwired/turbo-rails";
+import "./github-canvas-rating"

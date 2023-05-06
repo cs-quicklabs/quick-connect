@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import { get } from "@rails/request.js";
-import { drawContributions } from "../github-canvas";
+import { drawContributions } from "../github-canvas-rating";
 
 export default class extends Controller {
   static targets = ["graph"];
@@ -9,8 +9,8 @@ export default class extends Controller {
   };
 
   connect() {
-    const type = this.urlValue.split("=")[1];
-
+    const type=this.urlValue.split("=")[1];
+  
     get(this.urlValue, {
       responseKind: "application/json",
     })
@@ -20,7 +20,7 @@ export default class extends Controller {
         drawContributions(this.graphTarget, {
           data: this.contributionData,
           themeName: "standard",
-          text: type ? type.replace("_", " ") : "ratings",
+          text: type? type.replace("_"," ") : "ratings"
         });
       });
   }
