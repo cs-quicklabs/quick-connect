@@ -34,5 +34,13 @@ class EventQuery
     def to_date(param)
       where("created_at <= ?", Date.parse(param.to_s))
     end
+
+    def eventable_id(param)
+      where(eventable_id: param)
+    end
+
+    def action_name(param)
+      where(action: param)
+    end
   end
 end

@@ -12,7 +12,7 @@
   <div class="flex w-full">
     <%= render partial: "form" %>
     <% if @events.size > 0 %>
-      <div id="events" class="w-full overflow-hidden py-6 px-8">
+      <div id="events" class="w-full overflow-hidden py-10 px-8">
         <ul data-infinite-scroll-target="entries" class="list-none">
           <% @events.each do |event| %>
             <% if lookup_context.template_exists?(event.action, "dashboard", true) %>

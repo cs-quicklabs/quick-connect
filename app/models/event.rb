@@ -21,4 +21,12 @@ class Event < ApplicationRecord
     return [] if params.empty?
     EventQuery.new(self.includes(includes), params).filter
   end
+
+  ACTION_OPTIONS = [
+    ["All", ""],
+    ["Phone Calls", "called"],
+    ["Conversations", "conversation"],
+    ["Social Activities", "contact_activity"],
+    ["Life Events", "contact_event"],
+  ]
 end

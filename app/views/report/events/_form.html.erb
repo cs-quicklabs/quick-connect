@@ -10,6 +10,12 @@
             <main class="max-w-lg pt-6 pb-12 mx-auto space-y-4 lg:pb-16">
               <div>
                 <label for="date" class="block text-sm font-medium text-gray-700">
+                  Contact
+                </label>
+                <%= form.collection_select(:eventable_id, Contact.all.decorate, :id, :display_name, { :prompt => "Select Contact", :selected => (params["eventable_id"] if !params["eventable_id"].blank?) }, :class => "form-text-field mt-1") %>
+              </div>
+              <div>
+                <label for="date" class="block text-sm font-medium text-gray-700">
                   From Date
                 </label>
                 <%= form.date_field :from_date, class: "form-text-field mt-1", value: params["from_date"].blank? ? (Date.today - 6.days).to_formatted_s(:db) : params["from_date"] %>
@@ -19,6 +25,12 @@
                   To Date
                 </label>
                 <%= form.date_field :to_date, class: "form-text-field mt-1", value: params["to_date"].blank? ? Date.today.to_formatted_s(:db) : params["to_date"] %>
+              </div>
+              <div>
+                <label for="billable" class="block text-sm font-medium text-gray-700">
+                  Activity type
+                </label>
+                <%= form.select :action_name, Event::ACTION_OPTIONS, { :prompt => "Select Activity Type", :selected => (params["action_name"] if !params["action_name"].blank?) }, class: "form-text-field mt-1" %>
               </div>
               <div class="flex justify-end mt-6">
                 <%= link_to "Reset", events_reports_path, class: "btn-normal" %>
