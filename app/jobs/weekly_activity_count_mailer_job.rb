@@ -1,6 +1,6 @@
 class WeeklyActivityCountMailerJob < ApplicationJob
   def perform
-    accounts = Account.includes(:owner).where("owner_id IS NOT NULL")
+    accounts = Account.includes(:owner).all
     accounts.each do |account|
       ActsAsTenant.current_tenant = account
       if !account.owner.nil? && account.owner.email_enabled?

@@ -17,6 +17,7 @@ class Event < ApplicationRecord
   def self.top_50_events
     Event.all.includes(:eventable, :trackable, :user, :account).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
   end
+
   def self.query(params, includes = nil)
     return [] if params.empty?
     EventQuery.new(self.includes(includes), params).filter

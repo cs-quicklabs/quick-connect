@@ -5,11 +5,9 @@ export default class extends Controller {
 
   toggleSelected(event) {
     event.preventDefault();
-    const selected = this.selectedTargets.find(
-      (item) => item.dataset.selected === "true"
-    );
+    const selected = this.selectedTargets.find((item) => item.dataset.selected === "true");
 
-    const item = event.target
+    const item = event.target;
     item.dataset.selected = "true";
     item.classList.remove("bg-white");
     item.classList.add("bg-gray-50");
@@ -18,22 +16,13 @@ export default class extends Controller {
       selected.dataset.selected = "false";
       selected.classList.remove("bg-gray-50");
       selected.classList.add("bg-white");
-      const url = event.target.href
-
-      fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
-        .then((response) => response.text())
-        .then((html) => {
-          this.touchedTarget.innerHTML = html;
-        });
-
-    } else {
-      const url = event.target.href
-
-      fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
-        .then((response) => response.text())
-        .then((html) => {
-            this.touchedTarget.innerHTML = html;
-        });
     }
+    const url = event.target.href;
+
+    fetch(url, { headers: { Accept: "text/vnd.turbo-stream.html" } })
+      .then((response) => response.text())
+      .then((html) => {
+        this.touchedTarget.innerHTML = html;
+      });
   }
 }
