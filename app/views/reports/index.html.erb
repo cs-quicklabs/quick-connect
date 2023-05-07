@@ -1,0 +1,88 @@
+  <main class="pb-8">
+  <div class="px-4 sm:px-6">
+    <!-- Main 2 column grid -->
+    <div class="grid items-start grid-cols-1 gap-2 pl-40 pr-40 lg:grid-cols-2 lg:gap-2">
+      <div class="grid grid-cols-1 gap-4 lg:col-span-1">
+        <div class="max-w-2xl mt-8 mb-8">
+          <h3 class="px-3 text-xs font-bold tracking-wider text-gray-800 uppercase" id="projects-headline">
+            Contacts
+          </h3>
+          <div class="mt-1 space-y-1" aria-labelledby="projects-headline">
+            <a href="<%= contacts_addition_report_path %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Contacts Addition Report
+              </span>
+            </a>
+            <a href="<%= events_reports_path(from_date: Date.yesterday, to_date: Date.today) %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                What happened yesterday?
+              </span>
+            </a>
+            <a href="<%= events_reports_path(from_date: Date.today.prev_month, to_date: Date.today, action_name: "called") %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Phone Calls Report
+              </span>
+            </a>
+            <a href="<%= events_reports_path(from_date: Date.today.prev_month, to_date: Date.today, action_name: "conversation") %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Conversations Report
+              </span>
+            </a>
+            <a href="<%= events_reports_path(from_date: Date.today.prev_month, to_date: Date.today, action_name: "contact_activity") %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Social Activities Report
+              </span>
+            </a>
+            <a href="<%= events_reports_path(from_date: Date.today.prev_month, to_date: Date.today, action_name: "contact_event") %>" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Life Events Report
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="max-w-2xl mb-8">
+          <h3 class="px-3 text-xs font-bold tracking-wider text-gray-800 uppercase" id="projects-headline">
+            Consistency Reports
+          </h3>
+          <div class="mt-1 space-y-1" aria-labelledby="projects-headline">
+            <a href="report/activities?type=events" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Events Consistency Report
+              </span>
+            </a>
+            <a href="report/activities?type=contacts" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                New Contacts Additions Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=phone_calls" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Phone Call Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=conversations" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Conversations Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=contact_activities" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Social Activities Consistency
+              </span>
+            </a>
+            <a href="report/activities?type=contact_events" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Life Events Consistency
+              </span>
+            </a>
+            <a href="report/ratings" class="flex items-center px-3 py-1 text-sm text-gray-600 rounded-md group hover:text-gray-900 hover:bg-gray-50">
+              <span class="truncate">
+                Daily Mood Consistency Report
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

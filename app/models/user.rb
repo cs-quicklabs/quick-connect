@@ -79,20 +79,12 @@ class User < ApplicationRecord
   end
 
   def follow_ups
-    firsts, seconds, thirds, fourths = [], [], [], []
-    follows = Contact.all.available.tracked.where("contacts.touched_at <= ?", Date.today - 30.days)
+    follows = Contact.all.available.tracked.includes(:labels).where("contacts.touched_at <= ?", Date.today - 30.days)
     if follows.present?
-      follows.each do |follow|
-        if follow.touched_at.between?(Date.current.prev_month(1).beginning_of_month, Date.current.prev_month(1).end_of_month)
-          firsts << follow
-        elsif follow.touched_at.between?(Date.current.prev_month(2).beginning_of_month, Date.current.prev_month(2).end_of_month)
-          seconds << follow
-        elsif follow.touched_at.between?(Date.current.prev_month(3).beginning_of_month, Date.current.prev_month(3).end_of_month)
-          thirds << follow
-        else
-          fourths << follow
-        end
-      end
+      fourths = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
+      thirds = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - fourths
+      seconds = follows.sixty_days.where("contacts.touched_at <= ?", Date.today - 60.days) - thirds - fourths
+      firsts = follows.thirty_days.where("contacts.touched_at <= ?", Date.today - 30.days) - seconds - thirds - fourths
     end
     return firsts, seconds, thirds, fourths, follows
   end

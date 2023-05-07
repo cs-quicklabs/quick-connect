@@ -1,7 +1,7 @@
   <%= tailwind_form_with(model: label, id: dom_id(label), url: account_labels_path) do |form| %>
   <div class="space-y-6">
     <%= render "shared/form_messages", resource: label, message: local_assigns[:message] %>
-    <%= render "shared/form_header", title: "Labels", subtitle: "You can define custom label which can be applied on contacts." %>
+    <%= render "shared/form_header", title: "Contact Labels", subtitle: "You can define custom label which can be applied on contacts." %>
     <%= form.text_field :name, "Add New Label", autocomplete: "off", class: "form-text-field" %>
     <!-- Hack ends here -->
     <div class="bg-gray-400 hover:bg-gray-200"></div>

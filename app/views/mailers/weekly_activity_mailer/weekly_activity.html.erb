@@ -1,0 +1,4 @@
+<p>Dear <%= @user.decorate.display_name %>!</p>
+<p> Here is the summary of last week:</p>
+<p> New Contacts added count: <%= @added_contacts.count.to_s %></p>
+<p> Pending Follow Ups Count: <%= @pending_followups.count.to_s %></p>
