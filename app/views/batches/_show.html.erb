@@ -1,5 +1,5 @@
 <% if !batch.blank? %>
-  <div class=" border-r border-gray-200 h-full " id="show" >
+  <div class=" border-r border-gray-200 h-full " id="show" data-controller="confirmation-fetch" data-confirmation-fetch-target="replace">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
     <section aria-labelledby="participants_section"  >
       <div class="overflow-hidden bg-white h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain" >
@@ -23,7 +23,7 @@
             <% end %>
             <div class="relative px-6 h-full ">
             </div>
-            <nav class="flex-1 pt-6">
+            <nav class="flex-1 pt-6"id="batch_contacts" >
               <ul role="list" class="relative z-0 h-full pb-20" id="batch_contacts">
                 <%= render "contact", { batch: batch, contacts: contacts } %>
               </ul>

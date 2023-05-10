@@ -58,3 +58,7 @@ application.register("followup-after", FollowupAfterController);
 import RatingGraphController from "./rating_graph_controller.js";
 application.register("rating-graph", RatingGraphController);
 
+import ConfirmationFetchController from "./confirmation_fetch_controller.js";
+application.register("confirmation-fetch", ConfirmationFetchController);
+
+

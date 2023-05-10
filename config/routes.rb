@@ -85,8 +85,8 @@ Rails.application.routes.draw do
   get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
-    get "add/:id", to: "batches#add", as: "addcontact"
-    delete "remove", to: "batches#remove", as: "removecontact"
+    get "/add/:id", to: "batches#add", as: "addcontact"
+    get "/remove/:id", to: "batches#remove", as: "removecontact"
   end
   namespace :account do
     resources :relations, except: [:new, :show]
