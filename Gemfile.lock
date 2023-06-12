@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: https://github.com/zdennis/activerecord-import
-  revision: 748309d1ae03fc1fe56d58e54c634a003408c706
+  revision: e3331d52eb6c4b25335890ab89f834688762f7b2
   specs:
     activerecord-import (1.4.1)
       activerecord (>= 4.2)
@@ -189,7 +189,7 @@ GEM
       activesupport (>= 5.0)
     hiredis (0.6.3)
     htmlbeautifier (1.4.2)
-    i18n (1.12.0)
+    i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
     image_processing (1.12.2)
