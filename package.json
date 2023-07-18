@@ -17,7 +17,7 @@
     "esbuild": "0.18.13",
     "postcss": "8.4.25",
     "stimulus-chartjs": "^5.0.0",
-    "stimulus_reflex": "3.5.0-rc2",
+    "stimulus_reflex": "3.5.0-rc3",
     "tailwindcss": "3.3.3",
     "tippy.js": "6.3.7",
     "trix": "2.0.5"
