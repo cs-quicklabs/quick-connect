@@ -69,7 +69,7 @@ gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", "3.0.6", require: nil
 
 # Payments
-gem "pay", "6.3.1"
+gem "pay", "6.6.1"
 gem "stripe", "~> 8.5"
 
 gem "font-awesome-rails"
