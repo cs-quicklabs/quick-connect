@@ -18,7 +18,7 @@
               <% end %>
               <%= event.action_for_context %>
               <% if !event.eventable.nil? %>
-                <a href="<%= contact_about_index_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"> <%= " " + event.eventable.decorate.display_name %></a>
+                <a href="<%= contact_timeline_index_path(event.eventable) %>"  class="font-medium text-gray-900 hover:underline"> <%= " " + event.eventable.decorate.display_name %></a>
               <% end %>
             </p>
           </div>

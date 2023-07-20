@@ -2,41 +2,59 @@
 // Run that command whenever you add a new controller or create them with
 // ./bin/rails generate stimulus controllerName
 
-import { application } from "./application"
+import { application } from "./application";
 
-import ApplicationController from "./application_controller.js"
-application.register("application", ApplicationController)
+import ApplicationController from "./application_controller.js";
+application.register("application", ApplicationController);
 
-import ConfirmationController from "./confirmation_controller.js"
-application.register("confirmation", ConfirmationController)
+import ConfirmationController from "./confirmation_controller.js";
+application.register("confirmation", ConfirmationController);
 
-import CounterController from "./counter_controller.js"
-application.register("counter", CounterController)
+import CounterController from "./counter_controller.js";
+application.register("counter", CounterController);
 
-import DropdownController from "./dropdown_controller.js"
-application.register("dropdown", DropdownController)
+import DropdownController from "./dropdown_controller.js";
+application.register("dropdown", DropdownController);
 
-import InfiniteScrollController from "./infinite_scroll_controller.js"
-application.register("infinite-scroll", InfiniteScrollController)
+import InfiniteScrollController from "./infinite_scroll_controller.js";
+application.register("infinite-scroll", InfiniteScrollController);
 
-import ModalController from "./modal_controller.js"
-application.register("modal", ModalController)
+import ModalController from "./modal_controller.js";
+application.register("modal", ModalController);
 
-import NavSearchController from "./nav_search_controller.js"
-application.register("nav-search", NavSearchController)
+import NavSearchController from "./nav_search_controller.js";
+application.register("nav-search", NavSearchController);
 
-import SelectController from "./select_controller.js"
-application.register("select", SelectController)
+import SelectController from "./select_controller.js";
+application.register("select", SelectController);
 
-import PopperController from "./popper_controller.js"
-application.register("popper", PopperController)
+import PopperController from "./popper_controller.js";
+application.register("popper", PopperController);
 
-import ToggleController from "./toggle_controller.js"
-application.register("toggle", ToggleController)
+import ToggleController from "./toggle_controller.js";
+application.register("toggle", ToggleController);
 
-import ShowMoreController from "./show_more_controller.js"
-application.register("show-more", ShowMoreController)
+import ShowMoreController from "./show_more_controller.js";
+application.register("show-more", ShowMoreController);
 
-import ShowContactController from "./show_contact_controller.js"
-application.register("show-contact", ShowContactController)
+import ShowContactController from "./show_contact_controller.js";
+application.register("show-contact", ShowContactController);
+
+import ChartController from "./chart_controller.js"
+application.register("chart", ChartController)
+
+import ShowGraphController from "./show_graph_controller.js"
+application.register("show-graph", ShowGraphController)
+
+import GraphController from "./graph_controller.js";
+application.register("graph", GraphController);
+
+import TooltipController from "./tooltip_controller.js";
+application.register("tooltip",TooltipController);
+
+import FollowupAfterController from "./followup_after_controller.js";
+application.register("followup-after", FollowupAfterController);
+
+import RatingGraphController from "./rating_graph_controller.js";
+application.register("rating-graph", RatingGraphController);
 

@@ -5,9 +5,7 @@ export default class extends Controller {
 
   toggleSelected(event) {
     event.preventDefault();
-    const selected = this.selectedTargets.find(
-      (item) => item.dataset.selected === "true"
-    );
+    const selected = this.selectedTargets.find((item) => item.dataset.selected === "true");
 
     const item = event.target.closest("li");
     item.dataset.selected = "true";

@@ -156,11 +156,11 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.date "archived_on"
     t.bigint "relation_id"
     t.boolean "favorite", default: false, null: false
-    t.boolean "track", default: true, null: false
-    t.date "untrack_on"
+    t.date "followup_after_changed_on"
     t.string "intro"
     t.integer "activity_count", default: 0
     t.date "touched_at"
+    t.integer "touch_back_after", default: 0
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"

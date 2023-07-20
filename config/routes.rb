@@ -17,7 +17,20 @@ Rails.application.routes.draw do
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
-
+  get "/report", to: "reports#index", as: "reports"
+  scope "report" do
+    get "/events", to: "report/events#index", as: "events_reports"
+    get "/contacts", to: "report/contacts#index", as: "contacts_addition_report"
+    get "/activities", to: "report/activities#index", as: "activities_report"
+    scope "contacts" do
+      get "/yearly", to: "report/contacts#yearly", as: "contacts_addition_report_yearly"
+      get "/monthly", to: "report/contacts#monthly", as: "contacts_addition_report_monthly"
+      get "/weekly", to: "report/contacts#weekly", as: "contacts_addition_report_weekly"
+      get "/all", to: "report/contacts#all", as: "contacts_addition_report_all"
+    end
+    get "/activities", to: "report/activities#index", as: "activities_reports"
+    get "/ratings", to: "report/ratings#index", as: "ratings_reports"
+  end
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
     resources :phone_calls, module: "contact", except: [:show]
@@ -99,8 +112,11 @@ Rails.application.routes.draw do
   end
   scope "untracked" do
     get "/contacts", to: "contacts#untracked", as: "untracked_contacts"
+
     get "/contact/:id/track", to: "contacts#track", as: "track_contact"
-    get "/contact/:id", to: "contacts#untrack", as: "untrack_contact"
+    get "/contact/untrack/:id", to: "contacts#untrack", as: "untrack_contact"
+    get "/contact/touch_back/:id", to: "contacts#touch_back", as: "touch_back_contact"
+    get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   end
   get "account/billing", to: "account/billing#index", as: "billing"
 
@@ -146,6 +162,7 @@ Rails.application.routes.draw do
       get "/contact/:id/track", to: "contacts#track", as: "track_contact"
       get "/contact/:id", to: "contacts#untrack", as: "untrack_contact"
     end
+
     namespace :account do
       resources :relations, except: [:show, :new]
       resources :labels, except: [:show, :new]
@@ -157,6 +174,7 @@ Rails.application.routes.draw do
         get "/activate", to: "invitations#activate", as: "activate"
       end
     end
+
     resources :batches, except: [:new] do
       get "contacts", to: "batches#contacts", as: "contacts"
       post "add", to: "batches#add", as: "addcontact"

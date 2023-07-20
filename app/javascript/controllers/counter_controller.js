@@ -1,16 +1,15 @@
-import ApplicationController from './application_controller.js'
+import ApplicationController from "./application_controller.js";
 
 export default class extends ApplicationController {
-  static targets = [ "groups" ]
+  static targets = ["groups"];
 
   change(event) {
-    var array = []
-var checkboxes = document.querySelectorAll('input[type=checkbox]:checked')
+    var array = [];
+    var checkboxes = document.querySelectorAll("input[type=checkbox]:checked");
 
-
-for (var i = 0; i < checkboxes.length; i++) {
-  array.push("<span class='inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mb-2'>"+checkboxes[i].id+"</span>")
-}
-this.groupsTarget.innerHTML = array.join('')
+    for (var i = 0; i < checkboxes.length; i++) {
+      array.push("<span class='inline-flex items-center whitespace-nowrap px-2 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 mb-2'>" + checkboxes[i].id + "</span>");
+    }
+    this.groupsTarget.innerHTML = array.join("");
   }
 }
