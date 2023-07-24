@@ -1,5 +1,5 @@
-<%= turbo_frame_tag dom_id(invitation) do %>
   <% invitation = invitation.decorate %>
+<%= turbo_frame_tag dom_id(invitation) do %>
   <li class="flex py-4 border-b border-gray-200">
     <div class="flex items-center w-full ml-3 ">
       <p class=" text-sm font-normal text-gray-900 leading-none " style="width:50%;overflow-wrap: break-word; word-break: break-all; vertical-align: text-bottom; ">
@@ -10,17 +10,17 @@
     <div class="flex justify-end " style="width:5%;">
       <% @user = invitation.user %>
       <% if @user.permission == "true" %>
-        <%= link_to "Deactivate", " #", class: "btn-inline-delete", data: {
-                                          controller: "confirmation",
-                                          "confirmation-message-value": "Are you sure you want to deactivate user",
-                                          action: "confirmation#confirm", reflex: "click->InvitationReflex#deactivate", id: invitation.id,
-                                        } %>
+        <%= link_to "Deactivate", account_invitation_deactivate_path(invitation), class: "btn-inline-delete", data: {
+                                                                                    controller: "confirmation-fetch",
+                                                                                    "confirmation-fetch-message-value": "Are you sure you want to deactivate user",
+                                                                                    action: "confirmation-fetch#confirm", "confirmation-fetch-target": "replace",
+                                                                                  } %>
       <% else %>
-        <%= link_to "Activate", " #", class: "btn-inline-edit", data: {
-                                        controller: "confirmation",
-                                        "confirmation-message-value": "Are you sure you want to activate user",
-                                        action: "confirmation#confirm", reflex: "click->InvitationReflex#activate", id: invitation.id,
-                                      } %>
+        <%= link_to "Activate", account_invitation_activate_path(invitation), class: "btn-inline-delete", data: {
+                                                                                controller: "confirmation-fetch",
+                                                                                "confirmation-fetch-message-value": "Are you sure you want to activate user",
+                                                                                action: "confirmation-fetch#confirm", "confirmation-fetch-target": "replace",
+                                                                              } %>
       <% end %>
     </div>
   </li>

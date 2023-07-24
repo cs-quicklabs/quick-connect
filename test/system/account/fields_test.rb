@@ -14,7 +14,7 @@ class FieldsTest < ApplicationSystemTestCase
   test "can visit the index if logged in" do
     visit page_url
     take_screenshot
-    assert_selector "h1", text: "Contact Field Type"
+    assert_selector "h1", text: "Add New Conversation Type"
   end
 
   test "redirect to login if not logged in" do
@@ -84,7 +84,7 @@ class FieldsTest < ApplicationSystemTestCase
   test "should have left menu with fields selected" do
     visit page_url
     within "#menu" do
-      assert_selector ".selected", text: "Contact Field Types"
+      assert_selector ".selected", text: "Conversation Types"
     end
   end
 

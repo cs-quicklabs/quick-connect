@@ -24,7 +24,7 @@ class User < ApplicationRecord
     password_confirmation ? true : false
   end
 
-  scope :available, -> { all_users }
+  scope :available, -> { where(archived: false) }
   before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
   enum permission: [:true, :false]

@@ -17,7 +17,7 @@ class BatchReflex < ApplicationReflex
 
   def contact
     contact = Contact.find(element.dataset["contact-id"])
-    @event = contact.last_event
+    @event = contact.events.sanitize.first
     @call = contact.phone_calls.order(created_at: :desc).first
     html = render(partial: "batches/profile", locals: { contact: contact, event: @event, call: @call })
     morph "#profile", "#{html}"
@@ -27,8 +27,9 @@ class BatchReflex < ApplicationReflex
     @contact = Contact.find(element.dataset["contact-id"])
     @batch = Batch.find(element.dataset["batch-id"])
     @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-    @event = @contact.events.last_event
+    @event = @contact.events.sanitize.first
     @call = @contact.phone_calls.order(created_at: :desc).first
+
     html = render(partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).where("contacts.archived=?", false).order("batches_contacts.created_at DESC").uniq, message: "Contact added successfully to group" })
     profile = render(partial: "batches/profile", locals: { contact: @contact, event: @event, call: @call })
     morph "#show1", "#{html}"

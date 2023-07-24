@@ -9,23 +9,23 @@
         <%= render partial: "contact/labels", locals: { contact: contact, contact_labels: contact_labels, labels: labels } %>
       </div>
       <div class="flex mt-4 sm:mt-0   ml-4" >
-        <div class="relative pr-4 inline-block text-left" data-controller="dropdown followup-after" >
-          <div  data-followup-after-target="touched" id="touch-back">
-            <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
-          </div>
-          <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-            <div class="py-1" role="none">
-              <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
-                <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                <a href="<%= touch_back_contact_path(contact) + "?touch_back=#{touch[:id]}" %>"  data-selected="false"   data-followup-after-target="selected" data-title="<%= touch[:id] %>" data-action="click->followup-after#toggleSelected dropdown#toggle" 
-                  class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"><%= touch[:name] %>
-                </a>
-              <% end %>
+        <% if policy(contact).edit? %>
+          <div class="relative pr-4 inline-block text-left" data-controller="dropdown followup-after" >
+            <div  data-followup-after-target="touched" id="touch-back">
+              <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
+            </div>
+            <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+              <div class="py-1" role="none">
+                <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
+                  <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
+                  <a href="<%= touch_back_contact_path(contact) + "?touch_back=#{touch[:id]}" %>"  data-selected="false"   data-followup-after-target="selected" data-title="<%= touch[:id] %>" data-action="click->followup-after#toggleSelected dropdown#toggle" 
+                    class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"><%= touch[:name] %>
+                  </a>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="flex space-x-4 inline-block">
-          <% if policy(contact).edit? %>
+          <div class="flex space-x-4 inline-block">
             <% if !contact.phone.blank? %>
               <div >
                 <a  href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
@@ -73,41 +73,19 @@
             </label>
             <div>
               <% archive = "<span class='icon-span'>
-                                                                                                                                                                                                       <!-- Heroicon name: outline/check-badge -->
-                                                                                                                                                                                     <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
-                                                                                                                                                                                       <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
-                                                                                                                                                                                     </svg>
-                                                                                                                                                                                     </span>" %>
-              <%= link_to archive.html_safe, archive_contact_path(contact), class: "", data: {
-                                                                              controller: "confirmation",
-                                                                              "confirmation-message-value": "Are you sure you want to archive this contact?",
-                                                                              action: "confirmation#confirm",
-                                                                            }, title: "Archive" %>
+                                     <!-- Heroicon name: outline/check-badge -->
+                                                                                                                                                                                                      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
+                                                                                                                                                                                                        <path fill-rule='evenodd' d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2zm0 4.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zM10 9a.75.75 0 01.75.75v2.546l.943-1.048a.75.75 0 111.114 1.004l-2.25 2.5a.75.75 0 01-1.114 0l-2.25-2.5a.75.75 0 111.114-1.004l.943 1.048V9.75A.75.75 0 0110 9z' clip-rule='evenodd' />
+                                                                                                                                                                                                      </svg>
+                                                                                                                                                                                                      </span>" %>
+              <%= link_to archive.html_safe, "/#{contact.account.id}/archive/contact/#{contact.id}", class: "", data: {
+                                                                                                       controller: "confirmation",
+                                                                                                       "confirmation-message-value": "Are you sure you want to archive this contact?",
+                                                                                                       action: "confirmation#confirm",
+                                                                                                     }, title: "Archive" %>
             </div>
             <div class="" id="contact-favorite">
-              <ul class="flex list-none">
-                <% if !contact.favorite? %>
-                  <li id="favorite">
-                    <a title="Favourite" >
-                      <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                          <path fill="currentColor" d="M528.1 171.5L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6zM388.6 312.3l23.7 138.4L288 385.4l-124.3 65.3 23.7-138.4-100.6-98 139-20.2 62.2-126 62.2 126 139 20.2-100.6 98z"></path>
-                        </svg>
-                      </span>
-                    </a>
-                  </li>
-                <% else %>
-                  <li id="noyt-favorite">
-                    <a title="not-favourite">
-                      <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
-                        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                          <path fill="currentColor" d="M259.3 17.8L194 150.2 47.9 171.5c-26.2 3.8-36.7 36.1-17.7 54.6l105.7 103-25 145.5c-4.5 26.3 23.2 46 46.4 33.7L288 439.6l130.7 68.7c23.2 12.2 50.9-7.4 46.4-33.7l-25-145.5 105.7-103c19-18.5 8.5-50.8-17.7-54.6L382 150.2 316.7 17.8c-11.7-23.6-45.6-23.9-57.4 0z"></path>
-                        </svg>
-                      </span>
-                    </a>
-                  </li>
-                <% end %>
-              </ul>
+              <%= render partial: "contact/favorite", locals: { contact: contact } %>
             </div>
           </div>
         </div>
@@ -118,12 +96,12 @@
 </div>
 <div class="inline-block flex" id="contact-relation" >
   <% restore = "<span class='icon-span'>
-                                                                              <!-- Heroicon name: outline/check-badge -->
-                                                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
-                                                              <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
-                                                              <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
-                                                            </svg>
-                                                            </span>" %>
+                                                                                   <!-- Heroicon name: outline/check-badge -->
+                                                                 <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor' class='h-4 w-4'>
+                                                                   <path d='M2 3a1 1 0 00-1 1v1a1 1 0 001 1h16a1 1 0 001-1V4a1 1 0 00-1-1H2z' />
+                                                                   <path fill-rule='evenodd' d='M2 7.5h16l-.811 7.71a2 2 0 01-1.99 1.79H4.802a2 2 0 01-1.99-1.79L2 7.5zm5.22 1.72a.75.75 0 011.06 0L10 10.94l1.72-1.72a.75.75 0 111.06 1.06L11.06 12l1.72 1.72a.75.75 0 11-1.06 1.06L10 13.06l-1.72 1.72a.75.75 0 01-1.06-1.06L8.94 12l-1.72-1.72a.75.75 0 010-1.06z' clip-rule='evenodd' />
+                                                                 </svg>
+                                                                 </span>" %>
   <%= link_to restore.html_safe, unarchive_contact_path(contact), class: "ml-4", data: {
                                                                     controller: "confirmation",
                                                                     "confirmation-message-value": "Are you sure you want to restore this contact?",

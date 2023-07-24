@@ -28,8 +28,7 @@ class Account::InvitationsController < Account::BaseController
     if DeactivateUser.call(current_user, @invitation)
       respond_to do |format|
         format.turbo_stream {
-          render turbo_stream: turbo_stream.remove(@invitation) +
-                               turbo_stream.prepend(:invitations, partial: "account/invitations/invitation", locals: { invitation: @invitation })
+          render turbo_stream: turbo_stream.replace(@invitation, partial: "account/invitations/invitation", locals: { invitation: @invitation })
         }
       end
     end
@@ -39,8 +38,9 @@ class Account::InvitationsController < Account::BaseController
     authorize :account, :invitation?
     if ActivateUser.call(current_user, @invitation)
       respond_to do |format|
-        render turbo_stream: turbo_stream.remove(@invitation) +
-                             turbo_stream.prepend(:invitations, partial: "account/invitations/invitation", locals: { invitation: @invitation })
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(@invitation, partial: "account/invitations/invitation", locals: { invitation: @invitation })
+        }
       end
     end
   end

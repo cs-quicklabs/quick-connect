@@ -79,3 +79,9 @@ untracked:
   account: hansika
   user: regular
   archived: false
+<<<<<<< HEAD
+=======
+  touched_at: <%=Date.current.prev_month(1).beginning_of_month%>
+  touch_back_after: do_not_track
+  followup_after_changed_on: 2022-08-31
+>>>>>>> 37c83021f4853484452b9675cbdb670825b9460e
