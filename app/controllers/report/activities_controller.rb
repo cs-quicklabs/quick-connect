@@ -22,7 +22,7 @@ class Report::ActivitiesController < Report::BaseController
     else
       sql = "SELECT s.tag::date AS date , count(t.id) AS count FROM  (SELECT generate_series(timestamp '#{start_date}', timestamp '#{end_date}', interval  '1 day') AS tag ) s  LEFT   JOIN #{table_name} t ON t.date::date = s.tag AND t.user_id IN ( Select id from users where account_id = #{account}) GROUP  BY 1 ORDER  BY 1;"
     end
-    result = ActiveRecord::Base.connection.execute(sql)
+    ActiveRecord::Base.connection.execute(sql)
   end
 
   def years(activities)
