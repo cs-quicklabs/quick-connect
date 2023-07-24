@@ -29,7 +29,7 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.1"
 
-gem "stimulus_reflex", "3.5.0.rc2"
+gem "stimulus_reflex", "3.5.0.rc3"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
@@ -110,5 +110,4 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara", ">= 3.38"
   gem "selenium-webdriver"
-  gem "webdrivers"
 end
