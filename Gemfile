@@ -21,7 +21,7 @@ gem "puma", "6.2.1"
 gem "jsbundling-rails", "1.1.1"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails", "1.1.2"
+gem "cssbundling-rails", "1.2.0"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
 gem "turbo-rails", "1.4.0"
@@ -70,7 +70,7 @@ gem "sinatra", "3.0.6", require: nil
 
 # Payments
 gem "pay", "6.6.1"
-gem "stripe", "~> 8.5"
+gem "stripe", "~> 8.6"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
