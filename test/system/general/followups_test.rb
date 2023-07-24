@@ -51,7 +51,7 @@ class FollowupsTest < ApplicationSystemTestCase
     visit page_url
     take_screenshot
     assert_selector "h1", text: "Follow Ups"
-    contact = @followups.last
+    contact = @followups.last.last
     within "#contact_#{contact.id}" do
       page.accept_confirm do
         find(id: "untrack").click
@@ -72,5 +72,19 @@ class FollowupsTest < ApplicationSystemTestCase
     end
     take_screenshot
     assert_selector "p.notice", text: "Contact has been tracked."
+  end
+  test "user should be able to mark as touched to trcked contact" do
+    visit page_url
+    take_screenshot
+    assert_selector "h1", text: "Follow Ups"
+    contact = @followups.last.last
+    within "#contact_#{contact.id}" do
+      page.accept_confirm do
+        find(id: "touched").click
+      end
+      sleep(0.5)
+      take_screenshot
+    end
+    assert_no_selector "li#contact_#{contact.id}"
   end
 end
