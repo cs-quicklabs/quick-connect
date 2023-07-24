@@ -485,11 +485,7 @@ DEPENDENCIES
   sprockets-rails (= 3.4.2)
   stimulus-rails (= 1.2.1)
   stimulus_reflex (= 3.5.0.rc3)
-<<<<<<< HEAD
   stripe (~> 8.6)
-=======
-  stripe (~> 8.5)
->>>>>>> 37c83021f4853484452b9675cbdb670825b9460e
   turbo-rails (= 1.4.0)
   tzinfo-data
   valid_url
