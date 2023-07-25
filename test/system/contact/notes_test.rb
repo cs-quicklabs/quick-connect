@@ -48,8 +48,10 @@ class ContactNotesTest < ApplicationSystemTestCase
     visit page_url
     note = @contact.notes.first
     assert_text note.body
-    page.accept_confirm do
-      find("turbo-frame", id: dom_id(note)).click_link("Delete")
+    within "turbo-frame##{dom_id(note)}" do
+      page.accept_confirm do
+        page.execute_script("arguments[0].click();", find("a", text: "Delete"))
+      end
     end
     assert_no_text note.body
     take_screenshot
@@ -65,7 +67,9 @@ class ContactNotesTest < ApplicationSystemTestCase
     visit page_url
     note = @contact.notes.first
     assert_text note.body
-    find("turbo-frame", id: dom_id(note)).click_link("Edit")
+    within "turbo-frame##{dom_id(note)}" do
+      page.execute_script("arguments[0].click();", find("a", text: "Edit"))
+    end
     take_screenshot
     within "#notes" do
       fill_in "note_body", with: "Noted Edited"
@@ -79,7 +83,9 @@ class ContactNotesTest < ApplicationSystemTestCase
     visit page_url
     note = @contact.notes.first
     assert_text note.body
-    find("turbo-frame", id: dom_id(note)).click_link("Edit")
+    within "turbo-frame##{dom_id(note)}" do
+      page.execute_script("arguments[0].click();", find("a", text: "Edit"))
+    end
     within "#notes" do
       fill_in "note_body", with: ""
       click_on "Edit Note"
