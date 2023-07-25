@@ -25,6 +25,7 @@
         </div>
         <div class="">
           <%= link_to "Delete", "/#{batch.account.id}/groups/#{batch.id}/remove/#{contact.id}", data: { "confirmation-fetch-message-value": "Are you sure you want to delete this contact from group",
+                                                                                                        controller: "confirmation-fetch",
                                                                                                         action: "confirmation-fetch#confirm" }, class: "btn-inline-delete" %>
         </div>
       </div>
