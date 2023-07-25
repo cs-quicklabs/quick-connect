@@ -8,7 +8,7 @@ class SessionsController < Devise::SessionsController
       redirect_to new_user_session_path, alert: "Your account is deactivated." and return
     else
       sign_in(:user, @user)
-      flash[:alert] = "Signed in successfully."
+      flash[:notice] = "Signed in successfully."
       redirect_to after_sign_in_path_for(@user)
     end
   end

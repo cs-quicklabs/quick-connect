@@ -55,7 +55,7 @@ class OnboardingTest < ApplicationSystemTestCase
     fill_in "user_email", with: "awesome1@crownstack.com"
     fill_in "user_password", with: "Awesome@2021!"
     click_on "Log In"
-    assert_selector "p.alert", text: "Signed in successfully."
+    assert_selector "p.notice", text: "Signed in successfully."
   end
 
   test "user can not signup with invalid params" do
