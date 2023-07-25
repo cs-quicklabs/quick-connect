@@ -12,13 +12,13 @@
       <% if @user.permission == "true" %>
         <%= link_to "Deactivate", account_invitation_deactivate_path(invitation), class: "btn-inline-delete", data: {
                                                                                     controller: "confirmation-fetch",
-                                                                                    "confirmation-fetch-message-value": "Are you sure you want to deactivate user",
+                                                                                    "confirmation-fetch-message-value": "Are you sure you want to deactivate user?",
                                                                                     action: "confirmation-fetch#confirm", "confirmation-fetch-target": "replace",
                                                                                   } %>
       <% else %>
         <%= link_to "Activate", account_invitation_activate_path(invitation), class: "btn-inline-delete", data: {
                                                                                 controller: "confirmation-fetch",
-                                                                                "confirmation-fetch-message-value": "Are you sure you want to activate user",
+                                                                                "confirmation-fetch-message-value": "Are you sure you want to activate user?",
                                                                                 action: "confirmation-fetch#confirm", "confirmation-fetch-target": "replace",
                                                                               } %>
       <% end %>
