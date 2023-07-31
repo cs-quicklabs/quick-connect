@@ -202,7 +202,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
-    jsbundling-rails (1.1.1)
+    jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
     json-schema (3.0.0)
       addressable (>= 2.8)
@@ -232,7 +232,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
-    minitest (5.18.1)
+    minitest (5.19.0)
     msgpack (1.7.2)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
@@ -265,7 +265,7 @@ GEM
     pwned (2.0.2)
     raabro (1.4.0)
     racc (1.7.1)
-    rack (2.2.7)
+    rack (2.2.8)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
     rack-mini-profiler (3.1.0)
@@ -432,7 +432,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.8)
+    zeitwerk (2.6.10)
 
 PLATFORMS
   x86_64-darwin-21
@@ -458,7 +458,7 @@ DEPENDENCIES
   htmlbeautifier
   image_processing (~> 1.12)
   jbuilder (= 2.11.5)
-  jsbundling-rails (= 1.1.1)
+  jsbundling-rails (= 1.1.2)
   launchy
   letter_opener
   letter_opener_web
