@@ -64,7 +64,7 @@ gem "devise-pwned_password"
 gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.0.8"
+gem "sidekiq", "7.1.2"
 gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", "3.0.6", require: nil
 

@@ -265,7 +265,7 @@ GEM
     pwned (2.0.2)
     raabro (1.4.0)
     racc (1.7.1)
-    rack (2.2.7)
+    rack (2.2.8)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
     rack-mini-profiler (3.1.0)
@@ -361,11 +361,11 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.0.8)
+    sidekiq (7.1.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+      redis-client (>= 0.14.0)
     sidekiq-scheduler (5.0.3)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
@@ -481,7 +481,7 @@ DEPENDENCIES
   rswag-specs
   rswag-ui
   selenium-webdriver
-  sidekiq (= 7.0.8)
+  sidekiq (= 7.1.2)
   sidekiq-scheduler (= 5.0.3)
   sinatra (= 3.0.6)
   spring
