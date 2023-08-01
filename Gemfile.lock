@@ -91,8 +91,8 @@ GEM
       public_suffix (>= 2.0.2, < 6.0)
     attribute_normalizer (1.2.0)
     aws-eventstream (1.2.0)
-    aws-partitions (1.791.0)
-    aws-sdk-core (3.178.0)
+    aws-partitions (1.794.0)
+    aws-sdk-core (3.180.0)
       aws-eventstream (~> 1, >= 1.0.2)
       aws-partitions (~> 1, >= 1.651.0)
       aws-sigv4 (~> 1.5)
@@ -100,8 +100,8 @@ GEM
     aws-sdk-kms (1.71.0)
       aws-sdk-core (~> 3, >= 3.177.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.131.0)
-      aws-sdk-core (~> 3, >= 3.177.0)
+    aws-sdk-s3 (1.132.0)
+      aws-sdk-core (~> 3, >= 3.179.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.6)
     aws-sigv4 (1.6.0)
@@ -202,7 +202,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jmespath (1.6.2)
-    jsbundling-rails (1.1.1)
+    jsbundling-rails (1.1.2)
       railties (>= 6.0.0)
     json-schema (3.0.0)
       addressable (>= 2.8)
@@ -232,11 +232,11 @@ GEM
     method_source (1.0.0)
     mini_magick (4.12.0)
     mini_mime (1.1.2)
-    minitest (5.18.1)
+    minitest (5.19.0)
     msgpack (1.7.2)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
-    net-imap (0.3.6)
+    net-imap (0.3.7)
       date
       net-protocol
     net-pop (0.1.2)
@@ -253,19 +253,19 @@ GEM
       racc (~> 1.4)
     orm_adapter (0.5.0)
     pagy (6.0.4)
-    pay (6.6.1)
+    pay (6.7.1)
       rails (>= 6.0.0)
     pg (1.5.3)
     pg_search (2.3.6)
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     public_suffix (5.0.3)
-    puma (6.2.1)
+    puma (6.3.0)
       nio4r (~> 2.0)
     pwned (2.0.2)
     raabro (1.4.0)
     racc (1.7.1)
-    rack (2.2.7)
+    rack (2.2.8)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
     rack-mini-profiler (3.1.0)
@@ -316,14 +316,14 @@ GEM
     redis-client (0.14.1)
       connection_pool
     regexp_parser (2.8.1)
-    reline (0.3.6)
+    reline (0.3.7)
       io-console (~> 0.5)
     request_store (1.5.1)
       rack (>= 1.4)
     responders (3.1.0)
       actionpack (>= 5.2)
       railties (>= 5.2)
-    rexml (3.2.5)
+    rexml (3.2.6)
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -357,15 +357,15 @@ GEM
     rubyzip (2.3.2)
     rufus-scheduler (3.9.1)
       fugit (~> 1.1, >= 1.1.6)
-    selenium-webdriver (4.10.0)
+    selenium-webdriver (4.11.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.0.8)
+    sidekiq (7.1.2)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
-      redis-client (>= 0.11.0)
+      redis-client (>= 0.14.0)
     sidekiq-scheduler (5.0.3)
       rufus-scheduler (~> 3.2)
       sidekiq (>= 6, < 8)
@@ -427,12 +427,12 @@ GEM
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
     websocket (1.2.9)
-    websocket-driver (0.7.5)
+    websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.8)
+    zeitwerk (2.6.10)
 
 PLATFORMS
   x86_64-darwin-21
@@ -442,7 +442,7 @@ DEPENDENCIES
   activerecord-import!
   acts_as_tenant
   attribute_normalizer
-  aws-sdk-s3 (~> 1.120)
+  aws-sdk-s3 (~> 1.132)
   bootsnap (= 1.16.0)
   byebug
   capybara (>= 3.38)
@@ -458,7 +458,7 @@ DEPENDENCIES
   htmlbeautifier
   image_processing (~> 1.12)
   jbuilder (= 2.11.5)
-  jsbundling-rails (= 1.1.1)
+  jsbundling-rails (= 1.1.2)
   launchy
   letter_opener
   letter_opener_web
@@ -466,10 +466,10 @@ DEPENDENCIES
   mimemagic!
   newrelic_rpm (= 9.3.1)
   pagy
-  pay (= 6.6.1)
+  pay (= 6.7.1)
   pg
   pg_search
-  puma (= 6.2.1)
+  puma (= 6.3.0)
   rack-cors
   rack-mini-profiler (~> 3.0)
   rails (= 7.0.6)
@@ -481,7 +481,7 @@ DEPENDENCIES
   rswag-specs
   rswag-ui
   selenium-webdriver
-  sidekiq (= 7.0.8)
+  sidekiq (= 7.1.2)
   sidekiq-scheduler (= 5.0.3)
   sinatra (= 3.0.6)
   spring
