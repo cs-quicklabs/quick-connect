@@ -2,7 +2,7 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby version app is using, [https://www.ruby-lang.org/en/downloads/]
-ruby "3.2.0"
+ruby "3.2.2"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "7.0.6"
@@ -15,10 +15,10 @@ gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.2.1"
+gem "puma", "6.3.0"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
-gem "jsbundling-rails", "1.1.1"
+gem "jsbundling-rails", "1.1.2"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
 gem "cssbundling-rails", "1.2.0"
@@ -46,7 +46,7 @@ gem "image_processing", "~> 1.12"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
-gem "aws-sdk-s3", "~> 1.120"
+gem "aws-sdk-s3", "~> 1.132"
 gem "bootsnap", "1.16.0", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
@@ -64,12 +64,12 @@ gem "devise-pwned_password"
 gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.0.8"
+gem "sidekiq", "7.1.2"
 gem "sidekiq-scheduler", "5.0.3"
 gem "sinatra", "3.0.6", require: nil
 
 # Payments
-gem "pay", "6.6.1"
+gem "pay", "6.7.1"
 gem "stripe", "~> 8.6"
 
 gem "font-awesome-rails"
