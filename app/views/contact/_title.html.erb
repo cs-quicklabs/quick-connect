@@ -19,15 +19,25 @@
                 <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
                   <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
                   <a href="<%= touch_back_contact_path(contact) + "?touch_back=#{touch[:id]}" %>"  data-selected="false"   data-followup-after-target="selected" data-title="<%= touch[:id] %>" data-action="click->followup-after#toggleSelected dropdown#toggle" 
-                    class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-0"><%= touch[:name] %>
+                    class="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 hover:text-gray-900
+                    " role="menuitem" tabindex="-1" id="menu-item-0"><%= touch[:name] %>
                   </a>
                 <% end %>
               </div>
             </div>
           </div>
           <div class="flex space-x-4 inline-block">
+          <div>
+          <a href ="<%=update_touched_contact_path(contact) %>" title="Mark As Touched"  id="profile" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
+           <span class="icon-span">
+
+          <%=touched(4)%>
+            </span>
+              </a>
+              </div>
             <% if !contact.phone.blank? %>
               <div >
+              
                 <a  href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">

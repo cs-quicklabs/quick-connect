@@ -7,9 +7,9 @@ class BatchReflex < ApplicationReflex
     contact = contacts.first
     html = render(partial: "batches/show", locals: { batch: batch, contacts: contacts })
     if contacts.size > 0
-      profile = render(partial: "batches/profile", locals: { contact: contacts.first, event: contact.last_event, call: contact.phone_calls.order(created_at: :desc).first })
+      profile = render(partial: "batches/profile", locals: { contact: contacts.first, event: contact.last_event, call: contact.phone_calls.order(created_at: :desc).first, group_id: batch.id })
     else
-      profile = render(partial: "batches/profile", locals: { contact: "" })
+      profile = render(partial: "batches/profile", locals: { contact: "", batch: batch })
     end
     morph "#show1", "#{html}"
     morph "#profile", "#{profile}"

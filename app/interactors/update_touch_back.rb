@@ -24,7 +24,7 @@ class UpdateTouchBack < Patterns::Service
   end
 
   def add_event
-    contact.events.create(user: actor, action: "touched", action_for_context: "updated follow up after", trackable: contact, action_context: "updated follow up after for this contact")
+    contact.events.create(user: actor, action: "touched", action_for_context: "updated follow up after for", trackable: contact, action_context: "updated follow up after for this contact")
   end
 
   attr_reader :contact, :actor, :touch_back_after

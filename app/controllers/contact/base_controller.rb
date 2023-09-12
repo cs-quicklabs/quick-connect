@@ -11,7 +11,7 @@ class Contact::BaseController < BaseController
 
   def add_count
     @contact.activity_count += 1
-    @contact.save
+    @contact.save!
   end
 
   def set_contact
