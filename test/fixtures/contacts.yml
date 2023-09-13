@@ -22,7 +22,7 @@ one:
 archived:
   first_name: Contact
   last_name: Archived
-  email: contact1@gmail.com
+  email: aechived@gmail.com
   phone: 0999999997
   account: hansika
   user: regular
@@ -74,7 +74,7 @@ five:
 untracked:
   first_name: Untracked
   last_name: One
-  email: contact7@gmail.com
+  email: untracked@gmail.com
   phone: 0999999996
   account: hansika
   user: regular
