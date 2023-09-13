@@ -3,7 +3,7 @@ class Report::EventsController < Report::BaseController
     authorize :report
 
     @filters = EventFilter.new(event_filter_params)
-    @events = entries(Event.sanitize.includes(:trackable, :eventable).query(event_filter_params))
+    @events = entries(Event.all.sanitize.includes(:trackable, :eventable).query(event_filter_params))
     render_partial("report/events/event", collection: @events, cached: false)
   end
 
