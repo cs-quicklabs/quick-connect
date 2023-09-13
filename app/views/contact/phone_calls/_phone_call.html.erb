@@ -11,8 +11,8 @@
         </div>
         <%= render partial: "shared/show_more", locals: { text: phone_call.body, truncate_length: 500 } %>
         <div class="mt-2 space-x-2 text-sm flex inline-block">
-          <span class="font-normal text-gray-500"><%= display_date(phone_call.date) %></span>
-          <div class="space-x-1">
+          <span class="text-gray-500"><%= display_date(phone_call.date) %></span>
+          <div class="space-x-1 pl-4">
             <% if policy([phone_call.contact, phone_call]).edit? %>
               <%= edit_button(edit_contact_phone_call_path(@contact, phone_call)) %>
             <% end %>

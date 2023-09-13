@@ -12,9 +12,9 @@
     </td>
     <td class="table-cell whitespace-nowrap">
       <div class=" space-x-2 text-sm">
-        <span class="font-normal text-gray-500"><%= display_date(task.due_date) %></span>
+       <span class="text-gray-500"><%= display_date(task.due_date) %></span>
       </td>
-      <td class="table-cell whitespace-nowrap space-x-1">
+      <td class="table-cell whitespace-nowrap space-x-1 ">
         <% if policy([task.contact, task]).edit? %>
           <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
         <% end %>
