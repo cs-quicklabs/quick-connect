@@ -48,10 +48,10 @@
         <div id="profile" class="h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
           <% if params[:contact_id] %>
             <% contact = Contact.find(params[:contact_id]) %>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
+            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first, group_id: params[:batch_id] } %>
           <% elsif params[:batch_id] && batch.contacts.size > 0 %>
             <% contact = batch.contacts.first %>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first } %>
+            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first, group_id: params[:batch_id] } %>
           <% end %>
         </div>
       </div>

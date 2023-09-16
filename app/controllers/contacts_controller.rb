@@ -1,7 +1,7 @@
 class ContactsController < BaseController
   include Pagy::Backend
 
-  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track touched touch_back ]
+  before_action :set_contact, only: %i[ edit update destroy profile archive_contact unarchive_contact untrack track touched touch_back update_touched ]
 
   def index
     authorize :contact
@@ -125,6 +125,15 @@ class ContactsController < BaseController
 
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.untracked.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/untracked_contact", collection: @contacts, cached: false) if stale?(@contacts)
+  end
+
+  def update_touched
+    authorize :contact, :touched?
+    TouchedContact.call(@contact, current_user)
+    if request.referrer.include? "groups"
+      redirect_to batches_path(:batch_id => params[:batch_id], :contact_id => @contact.id), notice: "Contact has been touched." and return
+    end
+    redirect_to request.referrer, notice: "Contact has been touched."
   end
 
   def touched

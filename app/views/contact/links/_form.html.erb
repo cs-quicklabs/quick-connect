@@ -4,12 +4,13 @@
     <%= render "shared/form_header", title: "Add Social Profile Links", subtitle: "Select social profile links which you want to share on your profile." %>
     <div>
       <label for="date" class="text-sm font-normal text-gray-500"> Select Social Profile</label>
-      <%= form.select :link_type, options_for_select(Link::PROFILE_OPTIONS), {}, class: "form-text-field mt-1" %>
+      <%= form.select :link_type, options_for_select(Link::PROFILE_OPTIONS, link.link_type), {}, class: "form-text-field mt-1" %>
     </div>
     <div>
       <label for="date" class="text-sm font-normal text-gray-500">Add Link</label>
       <%= form.text_field :link, class: "form-text-field mt-1" %>
       <%= form.text_field :user_id, value: current_user.id, class: "hidden" %>
+        <%= form.text_field :contact_id, value: current_user.id, class: "hidden" %>
     </div>
     <div class="flex justify-end ">
       <%= form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>

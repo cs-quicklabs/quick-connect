@@ -13,8 +13,8 @@
         </div>
         <%= render partial: "shared/show_more", locals: { text: conversation.body, truncate_length: 500 } %>
         <div class="mt-2 space-x-2 text-sm inline-flex">
-          <span class="font-normal text-gray-500"><%= display_date(conversation.date) %></span>
-          <div class="space-x-1">
+         <span class="text-gray-500"><%= display_date(conversation.date) %></span>
+          <div class="space-x-1 pl-4">
             <% if policy([conversation.contact, conversation]).edit? %>
               <%= edit_button(edit_contact_conversation_path(@contact, conversation)) %>
             <% end %>

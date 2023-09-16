@@ -65,4 +65,8 @@ class ContactPolicy < ApplicationPolicy
   def touch_back?
     true
   end
+
+  def update_touched?
+    true
+  end
 end

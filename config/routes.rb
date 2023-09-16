@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => "/sidekiq"
   mount ActionCable.server => "/cable"
+
   devise_for :users, controllers: { registrations: "registrations", sessions: "sessions" }
   post "/register", to: "registrations#create"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -116,8 +117,9 @@ Rails.application.routes.draw do
     get "/contact/:id/track", to: "contacts#track", as: "track_contact"
     get "/contact/untrack/:id", to: "contacts#untrack", as: "untrack_contact"
     get "/contact/touch_back/:id", to: "contacts#touch_back", as: "touch_back_contact"
-    get "/contact/:id", to: "contacts#touched", as: "touched_contact"
   end
+  get "/contact/:id", to: "contacts#touched", as: "touched_contact"
+  get "/contact/:id/update_touched", to: "contacts#update_touched", as: "update_touched_contact"
   get "account/billing", to: "account/billing#index", as: "billing"
 
   # API namespace, for JSON requests at /api/sign_[in|out]

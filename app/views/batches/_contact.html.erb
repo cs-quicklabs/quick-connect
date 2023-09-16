@@ -6,7 +6,7 @@
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
-        <div class="cursor-pointer flex-1 min-w-0 "  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" >     
+        <div class="cursor-pointer flex-1 min-w-0 "  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" data-batch-id="<%= batch.id %>">   
           <p class="text-sm font-medium text-gray-900 hover:underline" ><%= contact.display_name %></p>
           <p class="text-sm text-gray-500 truncate">
             <% if !contact.phone.blank? %>
