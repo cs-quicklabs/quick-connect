@@ -79,7 +79,7 @@ class User < ApplicationRecord
   end
 
   def follow_ups
-    follows = Contact.all.available.tracked.includes(:labels).where("contacts.touched_at <= ?", Date.today - 30.days)
+    follows = Contact.all.available.tracked.includes(:contacts_labels).where("contacts.touched_at <= ?", Date.today - 30.days)
     if follows.present?
       fourths = follows.over_100_days.where("contacts.touched_at <= ?", Date.today - 100.days)
       thirds = follows.ninety_days.where("contacts.touched_at <= ?", Date.today - 90.days) - fourths
