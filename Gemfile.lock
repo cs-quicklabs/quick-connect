@@ -395,7 +395,7 @@ GEM
       rack (>= 2, < 4)
       railties (>= 5.2, < 8)
       redis (>= 4.0, < 6.0)
-    stripe (8.6.0)
+    stripe (8.7.0)
     thor (1.2.2)
     thread-local (1.1.0)
     thread_safe (0.3.6)
