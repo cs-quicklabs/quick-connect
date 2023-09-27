@@ -66,7 +66,7 @@ gem "devise-jwt"
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq", "7.1.3"
 gem "sidekiq-scheduler", "5.0.3"
-gem "sinatra", "3.0.6", require: nil
+gem "sinatra", "3.1.0", require: nil
 
 # Payments
 gem "pay", "6.7.1"
