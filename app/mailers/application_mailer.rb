@@ -1,4 +1,4 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "admin@kutumb.com"
+  default from: "admin@quicklabs.in"
   layout "mailer"
 end
