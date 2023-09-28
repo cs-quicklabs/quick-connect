@@ -3,6 +3,6 @@ class WeeklyActivityMailer < ApplicationMailer
     @user = params[:user]
     @added_contacts = params[:added_contacts]
     @pending_followups = params[:pending_followups]
-    mail(to: @user.email, subject: "Weekly Activities", template_path: "mailers/weekly_activity_mailer")
+    mail(to: @user.email, subject: "Quick Connect: Weekly Activities", template_path: "mailers/weekly_activity_mailer")
   end
 end
