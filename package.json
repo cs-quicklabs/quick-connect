@@ -1,5 +1,5 @@
 {
-  "name": "Quick Connect",
+  "name": "QuickConnect",
   "private": "true",
   "module": "commonjs",
   "dependencies": {
