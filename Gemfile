@@ -70,7 +70,7 @@ gem "sinatra", "3.1.0", require: nil
 
 # Payments
 gem "pay", "6.7.1"
-gem "stripe", "~> 8.6"
+gem "stripe", "~> 10.0"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
