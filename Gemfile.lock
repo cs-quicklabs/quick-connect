@@ -110,6 +110,7 @@ GEM
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
       thread_safe (~> 0.3, >= 0.3.1)
+    base64 (0.1.1)
     bcrypt (3.1.19)
     bindex (0.8.1)
     bootsnap (1.16.0)
@@ -245,7 +246,8 @@ GEM
       timeout
     net-smtp (0.3.3)
       net-protocol
-    newrelic_rpm (9.3.1)
+    newrelic_rpm (9.6.0)
+      base64
     nio4r (2.5.9)
     nokogiri (1.15.4-x86_64-darwin)
       racc (~> 1.4)
@@ -465,7 +467,7 @@ DEPENDENCIES
   letter_opener_web
   listen (~> 3.3)
   mimemagic!
-  newrelic_rpm (= 9.3.1)
+  newrelic_rpm (= 9.6.0)
   pagy
   pay (= 6.7.1)
   pg
