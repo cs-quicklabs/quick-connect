@@ -14,7 +14,7 @@
     "@tailwindcss/typography": "0.5.10",
     "autoprefixer": "10.4.16",
     "esbuild": "0.19.3",
-    "postcss": "8.4.30",
+    "postcss": "8.4.33",
     "date-fns": "^2.30.0",
     "stimulus-chartjs": "^5.0.0",
     "stimulus_reflex": "3.5.0-rc3",
