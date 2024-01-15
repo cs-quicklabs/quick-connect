@@ -47,7 +47,7 @@ gem "image_processing", "~> 1.12"
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
 gem "aws-sdk-s3", "~> 1.132"
-gem "bootsnap", "1.16.0", require: false
+gem "bootsnap", "1.17.1", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
 gem "pagy"
