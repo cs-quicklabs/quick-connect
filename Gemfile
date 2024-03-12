@@ -29,7 +29,7 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.2"
 
-gem "stimulus_reflex", "3.5.0.rc3"
+gem "stimulus_reflex", "3.5.0.rc4"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
@@ -59,7 +59,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
 gem "devise", "4.9.2"
-gem "devise_invitable", "~> 2.0.7"
+gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
 gem "devise-jwt"
 
