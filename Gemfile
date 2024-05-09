@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.8"
+gem "rails", "7.0.8.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
@@ -29,7 +29,7 @@ gem "turbo-rails", "1.4.0"
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.2"
 
-gem "stimulus_reflex", "3.5.0.rc3"
+gem "stimulus_reflex", "3.5.0.rc4"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder", "2.11.5"
