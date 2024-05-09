@@ -17,10 +17,10 @@
     "postcss": "8.4.33",
     "date-fns": "^2.30.0",
     "stimulus-chartjs": "^5.0.1",
-    "stimulus_reflex": "3.5.0-rc3",
+    "stimulus_reflex": "3.5.0-rc4",
     "tailwindcss": "3.4.1",
     "tippy.js": "6.3.7",
-    "trix": "2.0.8"
+    "trix": "2.1.1"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",

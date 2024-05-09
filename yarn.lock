@@ -826,10 +826,10 @@ stimulus-chartjs@^5.0.1:
   dependencies:
     chart.js "^4.4.1"
 
-stimulus_reflex@3.5.0-rc3:
-  version "3.5.0-rc3"
-  resolved "https://registry.npmjs.org/stimulus_reflex/-/stimulus_reflex-3.5.0-rc3.tgz"
-  integrity sha512-KSRDgGkU4aA77yw1b0W0oP7Ag+SB6Aa36BdcBJTpacU2W0bm9Fz1a0o9ynD+YAWK6AUyJ0gR20wXLvBvBGpnpg==
+stimulus_reflex@3.5.0-rc4:
+  version "3.5.0-rc4"
+  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-rc4.tgz#fb5135a810b8f5fd3c3bcb7e13c29b1f5ea81316"
+  integrity sha512-Oh+ywKP/HvCOHXvsSKqWqKcFENA+SYt8krDG/Z+2jQG0VJZ1UxLe6oEdSXCdkbjj6lDZ4BPiytPm39kQvcDqNA==
   dependencies:
     "@hotwired/stimulus" "^3"
     "@rails/actioncable" "^6 || ^7"
@@ -909,10 +909,10 @@ to-regex-range@^5.0.1:
   dependencies:
     is-number "^7.0.0"
 
-trix@2.0.8:
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/trix/-/trix-2.0.8.tgz#6fff81b9e02c4f60a181febb3f6e862fbb98f1c4"
-  integrity sha512-tPqJl+NjALVUOC8sNfRrY42K7cfp4QBb9svXxmfhxYrspF9fOOzXq+GnDa9l2ZAcfM43msnPpkJ7MrJQA3FgrA==
+trix@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/trix/-/trix-2.1.1.tgz#688f1213601316cf8b92c5e625d2f562c118c780"
+  integrity sha512-IljOMGOlRUPg1i5Pk/+x/Ia65ZY7Gw5JxxKCh/4caxG5ZaKuFJCKdn1+TF0efUYfdg+bqWenB/mAYCHjZu0zpQ==
 
 ts-interface-checker@^0.1.9:
   version "0.1.13"
