@@ -2,7 +2,9 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   config.action_controller.default_url_options = { host: "localhost", port: 3000 }
-  config.session_store :cache_store
+
+  # updated this to cookie store instead of cache store for csrf token verfication error
+  config.session_store :cookie_store, key: "_qc_session", expire_after: 2.weeks
 
   # Settings specified here will take precedence over those in config/application.rb.
 
