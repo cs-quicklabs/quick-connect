@@ -265,10 +265,10 @@ GEM
     pwned (2.0.2)
     raabro (1.4.0)
     racc (1.7.1)
-    rack (2.2.8)
+    rack (2.2.9)
     rack-cors (2.0.1)
       rack (>= 2.0.0)
-    rack-mini-profiler (3.1.1)
+    rack-mini-profiler (3.3.1)
       rack (>= 1.2.0)
     rack-protection (3.1.0)
       rack (~> 2.2, >= 2.2.4)
@@ -473,7 +473,7 @@ DEPENDENCIES
   pg_search
   puma (= 6.4.0)
   rack-cors
-  rack-mini-profiler (~> 3.0)
+  rack-mini-profiler (~> 3.3)
   rails (= 7.0.8)
   rails-patterns
   redis (= 5.2.0)
