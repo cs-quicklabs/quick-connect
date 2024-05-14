@@ -1,5 +1,5 @@
 {
-  "name": "Quick Connect",
+  "name": "QuickConnect",
   "private": "true",
   "module": "commonjs",
   "dependencies": {
@@ -48,5 +48,5 @@
     "tippy.js": "https://github.com/atomiks/tippyjs",
     "trix": "https://github.com/basecamp/trix"
   },
-  "version": "1.22.19"
+  "version": "1.22.22"
 }
