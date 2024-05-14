@@ -37,7 +37,7 @@ gem "jbuilder", "2.11.5"
 gem "rack-cors"
 
 # Use Redis adapter to run Action Cable in production
-gem "redis", "5.0.7"
+gem "redis", "5.2.0"
 gem "hiredis"
 gem "valid_url"
 
@@ -99,7 +99,7 @@ group :development do
   # Display performance information such as SQL time and flame graphs for each request in your browser.
   # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
   gem "listen", "~> 3.3"
-  gem "rack-mini-profiler", "~> 3.0"
+  gem "rack-mini-profiler", "~> 3.3"
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem "spring"
   gem "htmlbeautifier"
