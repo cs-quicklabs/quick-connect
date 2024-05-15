@@ -1,15 +1,28 @@
-<% link = pagy_link_proc(pagy) -%>
-<nav aria-label="pager" class="inline-flex border border-gray-200 rounded-sm shadow-md pagy_nav pagination" role="navigation">
-  <% if pagy.prev -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page prev hover:text-gray-900 hover:bg-gray-100"><%== link.call(pagy.prev, pagy_t("pagy.nav.prev"), 'aria-label="previous"') %></span>
-  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page prev hover:bg-gray-100 disabled"><%== pagy_t("pagy.nav.prev") %></span>
-  <% end -%>
-  <% pagy.series.each do |item| -%>
-    <% if item.is_a?(Integer) -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page hover:text-gray-900 hover:bg-gray-100"><%== link.call(item) %></span>
-    <% elsif item.is_a?(String) -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 text-blue-600 bg-gray-100 border-r border-gray-200 page current hover:text-gray-900 hover:bg-gray-100"><%= item %></span>
-    <% elsif item == :gap -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page gap hover:bg-gray-100"><%== pagy_t("pagy.nav.gap") %></span>
-    <% end -%>
-  <% end -%>
-  <% if pagy.next -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 text-gray-900 border-r border-transparent border-gray-200 page hover:text-gray-900 next hover:bg-gray-100"><%== link.call(pagy.next, pagy_t("pagy.nav.next"), 'aria-label="next"') %></span>
-  <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page next disabled hover:bg-gray-100"><%== pagy_t("pagy.nav.next") %></span>
-  <% end -%>
+<%# IMPORTANT: use '<%== ... ' instead of '<%= ... ' if you run this in rails %>
+<%# The a variable below is set to a lambda that generates the a tag %>
+<%# Usage: a_tag = a.(page_number, text, classes: nil, aria_label: nil) %>
+<% a = pagy_anchor(pagy) %>
+<nav class="pagy nav" aria-label="Pages">
+  <%# Previous page link %>
+  <% if pagy.prev %>
+    <%== a.(pagy.prev, '&lt;', aria_label: 'Previous') %>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
+  <% end %>
+  <%# Page links (series example: [1, :gap, 7, 8, "9", 10, 11, :gap, 36]) %>
+  <% pagy.series.each do |item| %>
+    <% if item.is_a?(Integer) %>
+      <%== a.(item) %>
+    <% elsif item.is_a?(String) %>
+      <a role="link" aria-disabled="true" aria-current="page" class="current"><%= item %></a>
+    <% elsif item == :gap %>
+      <a role="link" aria-disabled="true" class="gap">&hellip;</a>
+    <% end %>
+  <% end %>
+  <%# Next page link %>
+  <% if pagy.next %>
+    <a href="<%== pagy_url_for(pagy, pagy.next) %>" rel="next" aria-disabled="true" aria-label="Next">&lt;</a>
+  <% else %>
+    <a role="link" aria-disabled="true" aria-label="Next">&lt;</a>
+  <% end %>
 </nav>
