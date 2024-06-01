@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/zdennis/activerecord-import
-  revision: f41a5782b0a3f19cf42e88063aa4adbefafe4092
+  revision: 0df3ecde82d9db789ec67591080de411cf742904
   specs:
-    activerecord-import (1.6.0)
+    activerecord-import (1.7.0)
       activerecord (>= 4.2)
 
 GEM
@@ -145,7 +145,7 @@ GEM
     childprocess (5.0.0)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
-    concurrent-ruby (1.2.3)
+    concurrent-ruby (1.3.1)
     connection_pool (2.4.1)
     crass (1.0.6)
     cssbundling-rails (1.3.3)
@@ -247,7 +247,7 @@ GEM
     matrix (0.4.2)
     mini_magick (4.12.0)
     mini_mime (1.1.5)
-    minitest (5.22.3)
+    minitest (5.23.1)
     msgpack (1.7.2)
     mustermann (3.0.0)
       ruby2_keywords (~> 0.0.1)
