@@ -7,9 +7,9 @@ GIT
 
 GIT
   remote: https://github.com/zdennis/activerecord-import
-  revision: f41a5782b0a3f19cf42e88063aa4adbefafe4092
+  revision: 0df3ecde82d9db789ec67591080de411cf742904
   specs:
-    activerecord-import (1.6.0)
+    activerecord-import (1.7.0)
       activerecord (>= 4.2)
 
 GEM
