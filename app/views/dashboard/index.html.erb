@@ -23,13 +23,13 @@
     <div class="h-full  border-r xl:border-gray-200">
       <div class="top-16  pt-6 h-full pb-10 ">
         <div class="overflow-hidden bg-white px-6 pb-4">
-          <%= render partial: "leaderboard", locals: { title: "Recently added", leaders: @recent } %>
+          <%= render partial: "leaderboard", locals: { title: "Recently added contacts", leaders: @recent } %>
           <%= render partial: "leaderboard", locals: { title: "Favourite Contacts", leaders: @favorites } %>
-          <%= render partial: "leaderboard", locals: { title: "Most Visited", leaders: @popular } %>
+          <%= render partial: "leaderboard", locals: { title: "Most Visited contacts", leaders: @popular } %>
           <section aria-labelledby="participants_section">
             <div class=" bg-white  py-6">
               <div class="flex flex-wrap py-1 ">
-                <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events (For next 2 months)</p>
+                <p class="  text-sm font-medium text-gray-900 truncate"> Upcoming Events</p>
               </div>
               <%= turbo_frame_tag "reminders", src: reminders_path, target: "_top", loading: :lazy do %>
                 <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch Reminders...</p>

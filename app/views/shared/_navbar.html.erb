@@ -22,7 +22,7 @@
         <div class="flex items-center px-2 lg:px-0">
           <% if user_signed_in? %>
             <div class="hidden sm:block pl-4">
-              <div class="flex space-x-2">
+              <div class="flex space-x-1">
                 <a href=<%= dashboard_path %> class= "<%= current_page?(dashboard_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Home</a>
                 <a href=<%= contacts_path %> class= "<%= current_page?(contacts_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Contacts</a>
                 <a href=<%= batches_path %> class= "<%= current_page?(batches_path) ? "nav-selected whitespace-nowrap" : "nav-unselected whitespace-nowrap" %>">Groups</a>

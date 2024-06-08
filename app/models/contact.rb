@@ -58,6 +58,7 @@ class Contact < ApplicationRecord
 
   has_many :reminders, dependent: :destroy
   has_one :abouts, class_name: "About", dependent: :destroy
+
   def self.to_csv
     attributes = %w{id name email phone}
 

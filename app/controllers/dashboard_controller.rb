@@ -2,9 +2,10 @@ class DashboardController < BaseController
   def index
     authorize :dashboard
     contacts = current_user.contacts.available
-    @favorites = contacts.favorites.first(10)
-    @popular = contacts.popular.first(10)
-    @recent = contacts.recent.first(10)
+    @favorites = contacts.favorites.first(5)
+    @popular = contacts.popular.first(5)
+    @recent = contacts.recent.first(5)
+
     fresh_when contacts
   end
 
