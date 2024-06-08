@@ -1,12 +1,28 @@
 <div class="grid items-start grid-cols-1 overflow-x-scroll lg:grid-cols-12  ">
   <!-- Left column -->
-  <div class="grid grid-cols-1 lg:col-span-8 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full">
-    <div class="h-full  border-r xl:border-gray-200">
-      <div class="top-16  pt-6 h-full pb-10 ">
-        <div class="overflow-hidden bg-white px-6 pb-4">
+  <div class="grid grid-cols-1   overflow-y-scroll md:col-span-8 h-screen max-content top-16 overscroll-contain min-h-full border-r border-gray-200">
+    <section aria-labelledby="add-participant-section">
+      <div class=" bg-white ">
+        <div class="px-6 py-4 mb-16" >
           <div class="flex flex-wrap py-2 pb-4 ">
             <h1 class="text-3xl font-bold text-gray-900 truncate ">Hello, <%= current_user.first_name %>! </h1>
           </div>
+          <div class="flex flex-wrap">
+            <p class="pb-4 mt-1  text-sm font-medium text-gray-900 ">Timeline</p>
+          </div>
+          <div class="h-full">
+            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
+              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="grid grid-cols-1 md:col-span-4 overflow-y-scroll h-screen max-content top-16 overscroll-contain min-h-full">
+    <div class="h-full  border-r xl:border-gray-200">
+      <div class="top-16  pt-6 h-full pb-10 ">
+        <div class="overflow-hidden bg-white px-6 pb-4">
           <%= render partial: "leaderboard", locals: { title: "Recently added", leaders: @recent } %>
           <%= render partial: "leaderboard", locals: { title: "Favourite Contacts", leaders: @favorites } %>
           <%= render partial: "leaderboard", locals: { title: "Most Visited", leaders: @popular } %>
@@ -33,22 +49,6 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="grid grid-cols-1   overflow-y-scroll lg:col-span-4 h-screen max-content top-16 overscroll-contain min-h-full">
-    <section aria-labelledby="add-participant-section">
-      <div class=" bg-white ">
-        <div class="px-6 py-4 mb-16" >
-          <div class="flex flex-wrap">
-            <p class="pb-4 mt-1  text-sm font-medium text-gray-900 ">Timeline</p>
-          </div>
-          <div class="h-full">
-            <%= turbo_frame_tag "events", src: events_path, target: "_top", loading: :lazy do %>
-              <p class="pb-2 mt-1 text-sm text-gray-500 truncate">Hold on a sec while I fetch events...</p>
-            <% end %>
-          </div>
-        </div>
-      </div>
-    </section>
   </div>
 </div>
 <script>
