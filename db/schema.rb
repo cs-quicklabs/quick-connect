@@ -94,12 +94,27 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["account_id"], name: "index_batches_on_account_id"
   end
 
+  create_table "batches_collections", id: false, force: :cascade do |t|
+    t.bigint "collection_id", null: false
+    t.bigint "batch_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "batches_contacts", id: false, force: :cascade do |t|
     t.bigint "contact_id", null: false
     t.bigint "batch_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id", "batch_id"], name: "index_batches_contacts_on_contact_id_and_batch_id", unique: true
+  end
+
+  create_table "collections", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_collections_on_account_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -541,6 +556,7 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "activities", "accounts"
   add_foreign_key "activities", "groups"
   add_foreign_key "batches", "accounts"
+  add_foreign_key "collections", "accounts"
   add_foreign_key "comments", "journals"
   add_foreign_key "comments", "users"
   add_foreign_key "contact_activities", "activities"

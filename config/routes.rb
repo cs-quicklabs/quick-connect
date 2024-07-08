@@ -215,4 +215,5 @@ Rails.application.routes.draw do
   get "success", to: "purchase/checkouts#success", as: "success"
   get "expired", to: "purchase/billings#expired", as: "expired"
   post "billings", to: "purchase/billings#create", as: "billing_portal"
+  get "collections/:id/batches/:batch_id/contacts/:contact_id", to: "collections/batches/contacts#index", as: "collections_batches_contacts"
 end
