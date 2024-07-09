@@ -1,16 +1,14 @@
-<%= turbo_frame_tag dom_id(collection) do %>
-  <div id ="collections">
-    <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
-      <div class="flex  w-full  " >
-        <a  id="collection_<%= collection.id %>" class="inline-flex w-11/12 hover:underline"  data-reflex="click->collection#show" data-collection-id="<%= collection.id %>">
-          <p class=" w-11/12  text-sm font-medium text-gray-900" >
-            <%= collection.name.titleize %></p>
-        </a>
-        <div class="flex justify-end space-x-1">
-          <%= edit_button("collections/#{collection.id}/edit") %>
-          <%= delete_button("collections/#{collection.id}") %>
-        </div>
+<div id ="collections">
+  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
+    <div class="flex  w-full  " >
+      <a  id="collection_<%= collection.id %>" href="<%= collections_path(collection_id: collection.id)%>" class="inline-flex w-11/12 hover:underline" >
+        <p class=" w-11/12  text-sm font-medium text-gray-900" >
+          <%= collection.name.titleize %></p>
+      </a>
+      <div class="flex justify-end space-x-1">
+        <%= edit_button("collections/#{collection.id}/edit") %>
+        <%= delete_button("collections/#{collection.id}") %>
       </div>
-    </li>
-  </div>
-<% end %>
+    </div>
+  </li>
+</div>

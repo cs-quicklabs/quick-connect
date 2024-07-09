@@ -1,0 +1,14 @@
+<div id ="batches">
+  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
+    <div class="flex  w-full  " >
+      <a  id="batch_<%= batch.id %>" class="inline-flex w-11/12 hover:underline" href="<%= collections_path(collection_id: params[:collection_id], batch_id: batch.id)%>">
+        <p class=" w-11/12  text-sm font-medium text-gray-900" >
+          <%= batch.name.titleize %></p>
+      </a>
+      <div class="flex justify-end space-x-1">
+        <%= edit_button("batchs/#{batch.id}/edit") %>
+        <%= delete_button("batchs/#{batch.id}") %>
+      </div>
+    </div>
+  </li>
+</div>
