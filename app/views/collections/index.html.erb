@@ -14,10 +14,10 @@
                     <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @collections.count %>)</p>
                   </div>
                   <div class="mt-1 text-sm text-gray-600 pb-2">
-                    <p>You can create a group of contacts.</p>
+                    <p>Below if the list of all collections.</p>
                   </div>
                   <nav class="h-full " id="collections"  data-infinite-scroll-target="entries">
-                    <%= render partial: "collection", collection: @collections, cached: true %>
+                    <%= render partial: "collection", collection: @collections, cached: false %>
                   </nav>
                 </div>
               </div>
@@ -27,7 +27,7 @@
       </div>
     </div>
     <!-- Static sidebar for desktop -->
-    <% unless @batches.nil? %>
+    <% unless @collection.nil? and @batches.nil? %>
       <div class="grid grid-cols-1 lg:col-span-1 border-r" >
         <div class="flex-1 flex flex-col min-h-0 ">
           <div class="flex-1 flex flex-col  " >
@@ -35,14 +35,14 @@
               <div class="overflow-hidden bg-white  h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
                 <div class="px-4 sm:px-6 py-6 mb-4">
                   <div class=" flex flex-wrap items-baseline ">
-                    <h1 class="text-3xl font-bold leading-tight text-gray-900">Groups</h1>
+                    <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= @collection.name %></h1>
                     <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @batches.count %>)</p>
                   </div>
                   <div class="mt-1 text-sm text-gray-600 pb-2">
-                    <p>You can create a group of contacts.</p>
+                    <p>Below is the list of all groups in this collection.</p>
                   </div>
                   <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
-                    <%= render partial: "batch", collection: @batches, cached: true %>
+                    <%= render partial: "batch", collection: @batches, cached: false %>
                   </nav>
                 </div>
               </div>
@@ -51,7 +51,7 @@
         </div>
       </div>
     <% end %>
-    <% unless @contacts.nil? %>
+    <% unless @batch.nil? and @contacts.nil? %>
       <div class="grid grid-cols-1 lg:col-span-1">
         <div class="grid grid-cols-1 lg:col-span-1 border-r" >
           <div class="flex-1 flex flex-col min-h-0 ">
@@ -60,15 +60,15 @@
                 <div class="overflow-hidden bg-white  h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
                   <div class="px-4 sm:px-6 py-6 mb-4">
                     <div class=" flex flex-wrap items-baseline ">
-                      <h1 class="text-3xl font-bold leading-tight text-gray-900">Contacts</h1>
+                      <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= @batch.name %></h1>
                       <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @contacts.count %>)</p>
                     </div>
                     <div class="mt-1 text-sm text-gray-600 pb-2">
-                      <p>You can create a group of contacts.</p>
+                      <p>Below is the list of all contacts in this group.</p>
                     </div>
                     <nav class="h-full " id="contacts"  data-infinite-scroll-target="entries">
                       <ul role="list" class="relative z-0 divide-y divide-gray-200  " id="contacts"  data-infinite-scroll-target="entries" >
-                        <%= render partial: "contact", collection: @contacts, cached: true %>
+                        <%= render partial: "contact", collection: @contacts, cached: false %>
                       </ul>
                     </nav>
                   </div>
@@ -79,7 +79,7 @@
         </div>
       </div>
     <% end %>
-    <% unless @contact.nil? %>
+    <% unless @events.nil? %>
       <div class="grid grid-cols-1 lg:col-span-1">
         <div class="grid grid-cols-1 lg:col-span-1 border-r" >
           <div class="flex-1 flex flex-col min-h-0 ">
@@ -88,11 +88,8 @@
                 <div class="overflow-hidden bg-white  h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
                   <div class="px-4 sm:px-6 py-6 mb-4">
                     <div class=" flex flex-wrap items-baseline ">
-                      <h1 class="text-3xl font-bold leading-tight text-gray-900">Groups</h1>
+                      <h1 class="text-3xl font-bold leading-tight text-gray-900">Activities</h1>
                       <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(12)</p>
-                    </div>
-                    <div class="mt-1 text-sm text-gray-600 pb-2">
-                      <p>You can create a group of contacts.</p>
                     </div>
                     <div class="max-w-5xl mx-auto pb-12">
                       <div class="grid grid-cols-2 gap-16 ">
@@ -100,10 +97,10 @@
                           <div>
                             <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
                             <ul class="mt-1">
-                              <% @contact.events.order(created_at: :desc).limit(5).each do |event| %>
+                              <% @events.each do |event| %>
                                 <% if lookup_context.template_exists?(event.action, "contact/timeline", true,  formats: [:html]) %>
                                   <% cache event do %>
-                                    <%= render partial:  "contact/timeline/#{event.action}", locals: { event: event},  formats: [:html], layout: false  %>
+                                    <%= render partial:  "dashboard/#{event.action}", locals: { event: event},  formats: [:html], layout: false  %>
                                   <% end %>
                                 <% end %>
                               <% end %>

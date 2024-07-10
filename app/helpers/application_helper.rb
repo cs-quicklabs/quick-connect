@@ -68,6 +68,17 @@ module ApplicationHelper
     out.html_safe
   end
 
+  def remove_button(path)
+    out = link_to "Remove", path, class: "btn-inline-delete", data: {
+                                    controller: "confirmation",
+                                    "turbo-method": :delete,
+                                    "confirmation-message-value": "Are you sure you want to remove this?",
+                                    action: "confirmation#confirm",
+                                  }
+
+    out.html_safe
+  end
+
   def clear_button(path)
     out = link_to "Clear", path, class: "btn-inline-delete", data: {
                                    controller: "confirmation",
