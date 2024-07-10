@@ -21,4 +21,11 @@ class CollectionsController < BaseController
       @events = @contact.events.order(created_at: :desc).limit(5)
     end
   end
+
+  def remove_group
+    authorize :dashboard, :index?
+    BatchesCollection.where(batch_id: params[:batch_id], collection_id: params[:id]).delete_all
+
+    redirect_to collections_path(collection_id: params[:id])
+  end
 end
