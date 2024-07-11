@@ -4,7 +4,7 @@
   <div class="h-full"  >
     <div class="" id="modal1" data-controller="click-outside" data-action="keyup@document->modal#escClose click:outside->modal#close " >  </div>
     <div>
-      <img class="h-32 w-full object-cover lg:h-48" src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
+      <img class="h-16  w-full object-cover lg:h-32 " src="https://images.unsplash.com/photo-1444628838545-ac4016a5418a?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="">
     </div>
     <div class=" xl:px-8 md:px-6" id="contact-header"  >
       <div class="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5"  >
@@ -77,20 +77,6 @@
           <%= contact.intro.upcase_first %>
         </p>
       <% end %>
-      <% if ((!event.blank? || !call.blank?) && contact.intro?) %>
-        <p class="text-sm font-medium text-gray-500 px-1">
-          -    
-        </p>
-      <% end %>
-      <p class="text-sm font-medium text-gray-500 basis-1/2 "  style="flex-grow: 1;">
-        <% if (!event.blank? && !call.blank?) %>
-          <%= event.action_context.upcase_first %> <%=event.decorate.trackable_name%> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
-        <% elsif !event.blank? %>
-          <%= event.action_context.upcase_first %><%=event.decorate.trackable_name%> on <%= display_created_at(event) %>
-        <% elsif !call.blank? %>
-          Last phone call was on <%= display_created_at(call) %>
-        <% end %>
-      </p>
     </div>
     <!-- Tabs -->
     <div class="mt-6 sm:mt-2 2xl:mt-5">

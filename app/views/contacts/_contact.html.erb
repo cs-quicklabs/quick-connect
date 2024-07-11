@@ -1,8 +1,6 @@
 <% contact = contact.decorate %>
-<li  id= "<%= dom_id(contact) %>" class="hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500"
-data-selected="false"  data-show-contact-target="selected"
-    data-action="click->show-contact#toggleSelected"  data-contact-id="<%= contact.id %>">
-  <a href="<%= contact_profile_path(contact) %>" class="block ">
+<li  id= "<%= dom_id(contact) %>" class="hover:bg-gray-50 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 <%= 'bg-gray-200' if params[:id].present? && params[:id].to_i == contact.id %>">
+  <a href="<%= contacts_path(id: contact) %>" class="block ">
     <div class="relative cursor-pointer px-2  py-3 flex items-center space-x-3 " id="show"  data-contact-id="<%= contact.id %>" >
       <div class="flex-shrink-0">
         <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>

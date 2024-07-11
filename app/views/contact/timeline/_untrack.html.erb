@@ -1,5 +1,5 @@
 <li>
-  <div class="relative pb-6">
+  <div class="relative pb-4">
     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
     <div class="relative flex space-x-3">
       <div>
@@ -9,13 +9,12 @@
       </div>
       <div class="min-w-0 flex-1 pt-1.5 flex justify-between space-x-4">
         <div>
-                  <p class="text-sm text-gray-500">
-          <% if event.account.owner_id == event.user_id %>
-            You
-          <% else %>
-            <%= event.user.decorate.display_name %>
-          <% end %>
-
+          <p class="text-sm text-gray-500">
+            <% if event.account.owner_id == event.user_id %>
+              You
+            <% else %>
+              <%= event.user.decorate.display_name %>
+            <% end %>
             <%= event.action_context %>
           </p>
         </div>

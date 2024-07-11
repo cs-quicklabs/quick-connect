@@ -5,6 +5,11 @@ class ContactsController < BaseController
 
   def index
     authorize :contact
+    if params[:id].present?
+      @contact = Contact.find(params[:id])
+      @event = @contact.events.order(created_at: :desc).first
+      @call = @contact.phone_calls.order(created_at: :desc).first
+    end
     @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.includes(:links, :events).order(:first_name), items: 100)
     render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
