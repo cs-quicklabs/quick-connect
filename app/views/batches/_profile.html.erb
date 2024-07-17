@@ -17,11 +17,7 @@
               <label type="button"  class="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-gray-300 bg-gray-100 text-gray-800 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
                 <%=contact.decorate.display_follow_up_after%>
               </label>
-     
-   
-   
               <div class=" inline-flex space-x-2 ">
-
                 <% if !contact.links.empty? %>
                   <% contact.links.each do |link| %>
                     <label for="links" class="" >
@@ -39,15 +35,13 @@
                 <% end %>
               </div>
               <div>
-                 <a type="button" href ="/<%= contact.account.id %>/contact/<%= contact.id %>/update_touched?batch_id=<%=group_id %>"
+                <a type="button" href ="/<%= contact.account.id %>/contact/<%= contact.id %>/update_touched?batch_id=<%=group_id %>"
                  title="Mark As Touched" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
                     <%=touched(5)%>
                   </span>
-  
-
-              </a>
+                </a>
               </div>
               <% if !contact.phone.blank? %>
                 <div>
@@ -91,20 +85,6 @@
             <%= contact.intro.upcase_first %>
           </p>
         <% end %>
-        <% if ((!event.blank? || !call.blank?) && contact.intro?) %>
-          <p class="text-sm font-medium text-gray-500 px-1">
-            -    
-          </p>
-        <% end %>
-        <p class="text-sm font-medium text-gray-500 basis-1/2 "  style="flex-grow: 1;">
-          <% if (!event.blank? && !call.blank?) %>
-            <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %> and last phone call was on <%= display_created_at(call) %>
-          <% elsif !event.blank? %>
-            <%= event.action_for_context.upcase_first %> on <%= display_created_at(event) %>
-          <% elsif !call.blank? %>
-            Last phone call was on <%= display_created_at(call) %>
-          <% end %>
-        </p>
       </div>
       <!-- Tabs -->
       <div class="mt-6 sm:mt-2 2xl:mt-5">

@@ -17,7 +17,7 @@
                     <p>You can create a group of contacts.</p>
                   </div>
                   <div id="batches_form" class="pb-2">
-                    <%= render "form", batch: @batch %>
+                    <%= render "form", batch: Batch.new %>
                   </div>
                   <div  class="pt-6 "  data-controller="infinite-scroll">
                     <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
@@ -36,10 +36,8 @@
       <!-- Static sidebar for desktop -->
       <div class="grid grid-cols-1 lg:col-span-1" >
         <div id="show1"  >
-          <% if params[:batch_id] %>
-            <% message = "Contact added successfully to group" %>
-            <% batch = Batch.find(params[:batch_id]) %>
-            <%= render partial: "show", locals: { batch: batch, contacts: batch.contacts.includes(:batches_contacts).where("contacts.archived=?", false).order("batches_contacts.created_at DESC").uniq } %>
+          <% if params[:batch_id].present? %>
+            <%= render partial: "show", locals: { batch: @batch, contacts: @contacts } %>
           <% end %>
         </div>
       </div>
@@ -47,11 +45,7 @@
         <!-- Breadcrumb -->
         <div id="profile" class="h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
           <% if params[:contact_id] %>
-            <% contact = Contact.find(params[:contact_id]) %>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first, group_id: params[:batch_id] } %>
-          <% elsif params[:batch_id] && batch.contacts.size > 0 %>
-            <% contact = batch.contacts.first %>
-            <%= render partial: "batches/profile", locals: { contact: contact, relatives: Relative.includes(:contact, :relation).where(first_contact_id: params[:contact_id]), event: contact.events.order(created_at: :desc).first, call: contact.phone_calls.order(created_at: :desc).first, group_id: params[:batch_id] } %>
+            <%= render partial: "batches/profile", locals: { contact: @contact, group_id: @batch.id } %>
           <% end %>
         </div>
       </div>

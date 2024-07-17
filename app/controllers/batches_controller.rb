@@ -4,10 +4,16 @@ class BatchesController < BaseController
   def index
     authorize :batch
     @pagy, @batches = pagy_nil_safe(params, Batch.all.order(:name), items: 100)
-    @batch = Batch.new
-    if (params[:batch_id])
-      @batch_show = Batch.find(params[:batch_id])
+
+    if params[:batch_id].present?
+      @batch = Batch.find(params[:batch_id])
+      @contacts = @batch.contacts.includes(:batches_contacts).where("contacts.archived=?", false).order("batches_contacts.created_at DESC").uniq || []
     end
+
+    if params[:batch_id].present? && params[:contact_id].present?
+      @contact = Contact.find(params[:contact_id])
+    end
+
     render_partial("batches/batch", collection: @batches, cached: true) if stale?(@batches)
   end
 
@@ -77,32 +83,20 @@ class BatchesController < BaseController
     authorize :batch
     @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:id])
-    @batch = RemoveContactFromGroup.call(@batch, current_user, @contact).result
-    respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace(:show, partial: "batches/show", locals: { batch: @batch, contacts: @batch.contacts.includes(:batches_contacts).order("batches_contacts.created_at DESC").uniq, message: "Contact has been removed successfully from group" })
-      }
-    end
+
+    RemoveContactFromGroup.call(@batch, current_user, @contact).result
+    redirect_to batches_path(batch_id: @batch.id), notice: "Contact was successfully removed."
   end
 
   def destroy
     authorize :batch
-    @batch = DestroyGroup.call(current_user, @batch).result
-    respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.remove(@batch) +
-                             turbo_stream.replace(:show, partial: "batches/show", locals: { batch: "", contacts: [] }) +
-                             turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
-      }
-    end
+    DestroyGroup.call(current_user, @batch).result
+    redirect_to batches_path, notice: "Group was successfully destroyed."
   end
 
   private
 
   def set_batch
-    if @batch
-      return @batch
-    end
     @batch ||= Batch.find(params[:id])
   end
 

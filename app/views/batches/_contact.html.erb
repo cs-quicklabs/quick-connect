@@ -6,8 +6,10 @@
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
         </div>
-        <div class="cursor-pointer flex-1 min-w-0 "  id="show" data-reflex="click->Batch#contact" data-contact-id="<%= contact.id %>" data-batch-id="<%= batch.id %>">   
-          <p class="text-sm font-medium text-gray-900 hover:underline" ><%= contact.display_name %></p>
+        <div class="cursor-pointer flex-1 min-w-0 "  id="show">
+          <a href="<%= batches_path(batch_id: batch.id, contact_id: contact.id) %>" class="hover:underline">
+            <p class="text-sm font-medium text-gray-900 hover:underline" ><%= contact.display_name %></p>
+          </a>
           <p class="text-sm text-gray-500 truncate">
             <% if !contact.phone.blank? %>
               <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
@@ -24,9 +26,7 @@
           </p>
         </div>
         <div class="">
-          <%= link_to "Remove", "/#{batch.account.id}/groups/#{batch.id}/remove/#{contact.id}", data: { "confirmation-fetch-message-value": "Are you sure you want to delete this contact from group?",
-                                                                                                        controller: "confirmation-fetch",
-                                                                                                        action: "confirmation-fetch#confirm" }, class: "btn-inline-delete" %>
+          <%= remove_button("/#{batch.account.id}/groups/#{batch.id}/remove/#{contact.id}") %>
         </div>
       </div>
     </li>

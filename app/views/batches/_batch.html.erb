@@ -1,16 +1,14 @@
-<%= turbo_frame_tag dom_id(batch) do %>
-  <div id ="batches1">
-    <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 " data-controller="counter" >
-      <div class="flex  w-full  " >
-        <a  id="group_<%= batch.id %>" class="inline-flex w-11/12 hover:underline"  data-reflex="click->Batch#show" data-batch-id="<%= batch.id %>">
-          <p class=" w-11/12  text-sm font-medium text-gray-900" >
-            <%= batch.name.titleize %></p>
-        </a>
-        <div class="flex justify-end space-x-1">
-          <%= edit_button("groups/#{batch.id}/edit") %>
-          <%= delete_button("groups/#{batch.id}") %>
-        </div>
+<div id ="batches1">
+  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 ">
+    <div class="flex  w-full  " >
+      <a  id="group_<%= batch.id %>" class="inline-flex w-11/12 hover:underline" href="<%= batches_path(batch_id: batch.id)%>" >
+        <p class=" w-11/12  text-sm font-medium text-gray-900" >
+          <%= batch.name.titleize %></p>
+      </a>
+      <div class="flex justify-end space-x-1">
+        <%= edit_button("groups/#{batch.id}/edit") %>
+        <%= delete_button("groups/#{batch.id}") %>
       </div>
-    </li>
-  </div>
-<% end %>
+    </div>
+  </li>
+</div>
