@@ -111,6 +111,17 @@ module ApplicationHelper
     out.html_safe
   end
 
+  def confirm_post_button(path, title, message, style)
+    out = link_to title, path, class: style, data: {
+                                 controller: "confirmation",
+                                 "turbo-method": :post,
+                                 "confirmation-message-value": message,
+                                 action: "confirmation#confirm",
+                               }
+
+    out.html_safe
+  end
+
   def touched(size)
     out =
       "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-#{size} h-#{size}'>

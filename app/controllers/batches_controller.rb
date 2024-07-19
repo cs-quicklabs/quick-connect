@@ -33,12 +33,7 @@ class BatchesController < BaseController
     respond_to do |format|
       if @batch.save
         Event.create(user: current_user, action: "group", action_for_context: "created a group named", trackable: @batch)
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:batches, partial: "batches/batch", locals: { batch: @batch }) +
-                               turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: Batch.new, message: "Group was created successfully." }) +
-                               turbo_stream.replace(:show, partial: "batches/show", locals: { batch: @batch, contacts: [] }) +
-                               turbo_stream.replace(:profile1, partial: "batches/profile", locals: { contact: "" })
-        }
+        format.turbo_stream { redirect_to batches_path(batch_id: @batch.id), notice: "Group was created successfully." }
       else
         format.turbo_stream { render turbo_stream: turbo_stream.replace(Batch.new, partial: "batches/form", locals: { batch: @batch }) }
       end
@@ -65,24 +60,15 @@ class BatchesController < BaseController
   def add
     authorize :batch
     @batch = Batch.find(params[:batch_id])
-    respond_to do |format|
-      if !params[:search_id].blank?
-        @contact = Contact.find(params[:search_id])
-        @batch = AddContactToGroup.call(@batch, current_user, @contact).result
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.prepend(:batch_contacts, partial: "batches/contact", locals: { contact: @contact, batch: @batch }) +
-                               turbo_stream.replace(:search, partial: "batches/search", locals: { batch: @batch })
-        }
-      else
-        format.turbo_stream { render turbo_stream: turbo_stream.replace(:search, partial: "batches/search", locals: { message: "Please search contact to add", batch: @batch }) }
-      end
-    end
+    @contact = Contact.find(params[:id])
+    AddContactToGroup.call(@batch, current_user, @contact).result
+    redirect_to batches_path(batch_id: @batch.id, contact_id: @contact.id), notice: "Contact was successfully added."
   end
 
   def remove
     authorize :batch
-    @batch = Batch.find(params[:batch_id])
     @contact = Contact.find(params[:id])
+    @batch = Batch.find(params[:batch_id])
 
     RemoveContactFromGroup.call(@batch, current_user, @contact).result
     redirect_to batches_path(batch_id: @batch.id), notice: "Contact was successfully removed."
