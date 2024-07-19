@@ -52,16 +52,3 @@
     </div>
   </main>
 </main>
-<script type="text/javascript">
-  window.onload = function() {
-    var url = window.location.href;
-   let paramString = url.split('?')[1];
-   let queryString = new URLSearchParams(paramString);
-     for(let pair of queryString.entries()) {
-      if(!typeof pair[1]!==null) {
-            document.getElementById("group_"+pair[1]).click();
-     }
-        }
-
-  }
-</script>
