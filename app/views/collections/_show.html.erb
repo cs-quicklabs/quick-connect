@@ -1,0 +1,22 @@
+<div class="grid grid-cols-1 lg:col-span-1 border-r" >
+  <div class="flex-1 flex flex-col min-h-0 ">
+    <div class="flex-1 flex flex-col  " >
+      <nav class=" flex-1" aria-label="Sidebar">
+        <div class="overflow-hidden bg-white  h-screen min-h-full  max-content top-16 overflow-y-scroll overscroll-contain">
+          <div class="px-4 sm:px-6 py-6 mb-4">
+            <div class=" flex flex-wrap items-baseline ">
+              <h1 class="text-3xl font-bold leading-tight text-gray-900"><%= @collection.name %></h1>
+              <p class="mt-2 ml-1 text-sm text-gray-600 truncate">(<%= @batches.count %>)</p>
+            </div>
+            <div class="mt-1 text-sm text-gray-600 pb-2">
+              <p>Below is the list of all groups in this collection.</p>
+            </div>
+            <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
+              <%= render partial: "batch", collection: @batches, cached: false %>
+            </nav>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -22,10 +22,29 @@ class CollectionsController < BaseController
     end
   end
 
+  def create
+    authorize :collection
+    @collection = Collection.new(collection_params)
+    respond_to do |format|
+      if @collection.save
+        Event.create(user: current_user, action: "collection", action_for_context: "created a collection named", trackable: @collection)
+        format.turbo_stream { redirect_to collections_path(collection_id: @collection.id), notice: "Collection was created successfully." }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(Collection.new, partial: "collections/form", locals: { collection: @collection }) }
+      end
+    end
+  end
+
   def remove_group
     authorize :dashboard, :index?
     BatchesCollection.where(batch_id: params[:batch_id], collection_id: params[:id]).delete_all
 
     redirect_to collections_path(collection_id: params[:id])
+  end
+
+  private
+
+  def collection_params
+    params.require(:collection).permit(:name)
   end
 end
