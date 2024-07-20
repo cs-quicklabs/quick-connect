@@ -15,7 +15,7 @@
             </div>
             <div id="" class="flex flex-col whitespace-nowrap justify-stretch space-y-1 sm:flex-row sm:space-y-0 space-x-4 ">
               <label type="button"  class="inline-flex w-full justify-center gap-x-1.5 rounded-md  px-3 py-2 text-sm font-semibold  shadow-sm ring-1 ring-inset ring-gray-300 bg-gray-100 text-gray-800 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
-                <%=contact.decorate.display_follow_up_after%>
+                <%= contact.decorate.display_follow_up_after %>
               </label>
               <div class=" inline-flex space-x-2 ">
                 <% if !contact.links.empty? %>
@@ -35,11 +35,11 @@
                 <% end %>
               </div>
               <div>
-                <a type="button" href ="/<%= contact.account.id %>/contact/<%= contact.id %>/update_touched?batch_id=<%=group_id %>"
+                <a type="button" href ="/<%= contact.account.id %>/contact/<%= contact.id %>/update_touched?batch_id=<%= group_id %>"
                  title="Mark As Touched" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
-                    <%=touched(5)%>
+                    <%= touched(5) %>
                   </span>
                 </a>
               </div>

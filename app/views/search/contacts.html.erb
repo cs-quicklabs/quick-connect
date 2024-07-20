@@ -1,5 +1,5 @@
   <% @contacts.each do |contact| %>
-  <a href="<%= contacts_path(id: contact.id)%>">
+  <a href="<%= contacts_path(id: contact.id) %>">
     <li role="option"  @click="isShowing = false; document.getElementById('search').value='<%= contact.decorate.display_name %>'" class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900" id="show">
       <%= contact.decorate.display_name %>
     </li>

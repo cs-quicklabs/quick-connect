@@ -1,7 +1,7 @@
 <div id ="batches">
-  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 <%= params[:batch_id].present? && params[:batch_id].to_i == batch.id ? "bg-gray-100" : ""%>">
+  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 <%= params[:batch_id].present? && params[:batch_id].to_i == batch.id ? "bg-gray-100" : "" %>">
     <div class="flex  w-full  " >
-      <a  id="batch_<%= batch.id %>" class="inline-flex w-11/12 hover:underline" href="<%= collections_path(collection_id: params[:collection_id], batch_id: batch.id)%>">
+      <a  id="batch_<%= batch.id %>" class="inline-flex w-11/12 hover:underline" href="<%= collections_path(collection_id: params[:collection_id], batch_id: batch.id) %>">
         <p class=" w-11/12  text-sm font-medium text-gray-900" >
           <%= batch.name.titleize %></p>
       </a>

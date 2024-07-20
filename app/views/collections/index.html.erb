@@ -80,9 +80,9 @@
                             <h2 class="text-sm font-medium text-gray-500 pb-2">Last Activities</h2>
                             <ul class="mt-1">
                               <% @events.each do |event| %>
-                                <% if lookup_context.template_exists?(event.action, "contact/timeline", true,  formats: [:html]) %>
+                                <% if lookup_context.template_exists?(event.action, "contact/timeline", true, formats: [:html]) %>
                                   <% cache event do %>
-                                    <%= render partial:  "dashboard/#{event.action}", locals: { event: event},  formats: [:html], layout: false  %>
+                                    <%= render partial: "dashboard/#{event.action}", locals: { event: event }, formats: [:html], layout: false %>
                                   <% end %>
                                 <% end %>
                               <% end %>
@@ -98,6 +98,6 @@
           </div>
         </div>
       </div>
-    <%end %>
+    <% end %>
   </div>
 </main>

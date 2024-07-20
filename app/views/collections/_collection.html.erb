@@ -1,7 +1,7 @@
 <div id ="collections">
-  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 <%= 'bg-gray-100' if params[:collection_id].present? && params[:collection_id].to_i == collection.id %>" >
+  <li class="flex py-3 border-b border-gray-200 cursor-pointer px-2 <%= "bg-gray-100" if params[:collection_id].present? && params[:collection_id].to_i == collection.id %>" >
     <div class="flex  w-full  " >
-      <a  id="collection_<%= collection.id %>" href="<%= collections_path(collection_id: collection.id)%>" class="inline-flex w-11/12 hover:underline" >
+      <a  id="collection_<%= collection.id %>" href="<%= collections_path(collection_id: collection.id) %>" class="inline-flex w-11/12 hover:underline" >
         <p class=" w-11/12  text-sm font-medium text-gray-900" >
           <%= collection.name.titleize %></p>
       </a>

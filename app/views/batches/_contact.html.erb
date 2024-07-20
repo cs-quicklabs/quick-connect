@@ -1,7 +1,7 @@
 <% if contacts.size > 0 %>
   <% contacts.each do |contact| %>
     <% contact = contact.decorate %>
-    <li  id= "<%= dom_id(contact) %>" class="border-b border-gray-200 px-2 <%= 'bg-gray-200' if params[:contact_id].to_i == contact.id%>" style="list-style-type: none;">
+    <li  id= "<%= dom_id(contact) %>" class="border-b border-gray-200 px-2 <%= "bg-gray-200" if params[:contact_id].to_i == contact.id %>" style="list-style-type: none;">
       <div class="  justify-between  py-3 flex items-center space-x-2 " >
         <div class="flex-shrink-0">
           <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full" %>
