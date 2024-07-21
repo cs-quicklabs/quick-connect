@@ -1,4 +1,6 @@
 class CollectionsController < BaseController
+  before_action :set_collection, only: %i[ show edit update destroy ]
+
   def index
     authorize :dashboard
     @collections = Collection.all
@@ -42,7 +44,33 @@ class CollectionsController < BaseController
     redirect_to collections_path(collection_id: params[:id])
   end
 
+  def destroy
+    authorize @collection
+    DestroyCollection.call(current_user, @collection).result
+    redirect_to collections_path, notice: "Collection was successfully destroyed."
+  end
+
+  def edit
+    authorize @collection
+  end
+
+  def update
+    authorize @collection
+    respond_to do |format|
+      if @collection.update(collection_params)
+        Event.where(trackable: @collection).touch_all
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@collection, partial: "collections/collection", locals: { collection: @collection, message: nil }) }
+      else
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@collection, template: "collections/edit", locals: { collection: @collection, messages: @collection.errors.full_messages }) }
+      end
+    end
+  end
+
   private
+
+  def set_collection
+    @collection = Collection.find(params[:id])
+  end
 
   def collection_params
     params.require(:collection).permit(:name)

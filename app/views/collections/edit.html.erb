@@ -1,0 +1,26 @@
+<%= turbo_frame_tag dom_id(@collection) do %>
+  <%= form_with(model: @collection, id: dom_id(@collection), url: collection_path(@collection)) do |form| %>
+    <div class="mt-4 text-sm text-red-700">
+      <% if local_assigns[:messages] && defined?(messages) && !messages.nil? %>
+        <ul class=" space-y-1 pt-1">
+          <% messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+    <li class="flex w-full py-4 border-b border-gray-200">
+      <div class="flex-1 min-w-0 w-full " >
+        <label for="group" class="block  text-sm font-medium text-gray-700    " >Edit Collection</label>
+        <div class=" flex  ">
+          <div class="flex-1 "  >
+            <%= form.text_field :name, autocomplete: "off", class: "form-text-field mt-1" %>
+          </div>
+          <div class="flex justify-end">
+            <%= form.submit "Save", class: "btn-blue" %>
+          </div>
+        </div>
+      </div>
+    </li>
+  <% end %>
+<% end %>
