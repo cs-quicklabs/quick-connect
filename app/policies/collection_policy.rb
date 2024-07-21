@@ -14,4 +14,12 @@ class CollectionPolicy < ApplicationPolicy
   def update?
     true
   end
+
+  def add_group?
+    true
+  end
+
+  def remove_group?
+    true
+  end
 end

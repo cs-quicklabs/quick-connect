@@ -53,4 +53,16 @@ class SearchController < BaseController
 
     render layout: false
   end
+
+  def collection
+    authorize :search
+
+    like_keyword = "%#{params[:q]}%".split(/\s+/)
+    @collection = Collection.find(params[:collection_id])
+    @added = @collection.batches
+
+    @batches = Batch.where("name iLIKE ANY ( array[?] )", like_keyword).order(:name).limit(5).uniq - @added
+
+    render layout: false
+  end
 end

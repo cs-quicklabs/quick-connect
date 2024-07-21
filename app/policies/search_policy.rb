@@ -14,4 +14,8 @@ class SearchPolicy < Struct.new(:user, :search)
   def nav?
     true
   end
+
+  def collection?
+    true
+  end
 end

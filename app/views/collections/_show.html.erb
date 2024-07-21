@@ -11,12 +11,18 @@
             <div class="mt-1 text-sm text-gray-600 pb-2">
               <p>Below is the list of all groups in this collection.</p>
             </div>
-            <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
-              <%= render partial: "batch", collection: @batches, cached: false %>
-            </nav>
+            <div  class="">
+              <% if defined?(message) && !message.nil? %>
+                <%= render "search", { collection: collection, message: message } %>
+              <% else %>
+                <%= render "search", { collection: collection } %>
+              <% end %>
+              <nav class="h-full " id="batches"  data-infinite-scroll-target="entries">
+                <%= render partial: "batch", collection: @batches, cached: false %>
+              </nav>
+            </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     </div>
   </div>
-</div>

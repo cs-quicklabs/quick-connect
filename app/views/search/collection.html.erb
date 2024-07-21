@@ -1,0 +1,5 @@
+  <% @batches.each do |batch| %>
+  <li role="option" class="flex block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" id="batch-contact">
+    <%= confirm_post_button(collection_add_batch_path(collection_id: params[:collection_id].to_i, batch_id: batch.id), batch.name, "Are you sure you want to add this group to collection?", "") %>
+  </li>
+<% end %>

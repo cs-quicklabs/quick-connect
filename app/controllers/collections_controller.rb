@@ -2,7 +2,7 @@ class CollectionsController < BaseController
   before_action :set_collection, only: %i[ show edit update destroy ]
 
   def index
-    authorize :dashboard
+    authorize :collections
     @collections = Collection.all
 
     if params[:collection_id].present?
@@ -25,7 +25,7 @@ class CollectionsController < BaseController
   end
 
   def create
-    authorize :collection
+    authorize :collections
     @collection = Collection.new(collection_params)
     respond_to do |format|
       if @collection.save
@@ -37,8 +37,18 @@ class CollectionsController < BaseController
     end
   end
 
+  def add_group
+    authorize :collections
+
+    @collection = Collection.find(params[:collection_id])
+    @batch = Batch.find(params[:batch_id])
+    @collection.batches << @batch
+    redirect_to collections_path(collection_id: @collection.id, batch_id: @batch.id)
+  end
+
   def remove_group
-    authorize :dashboard, :index?
+    authorize :collections
+
     BatchesCollection.where(batch_id: params[:batch_id], collection_id: params[:id]).delete_all
 
     redirect_to collections_path(collection_id: params[:id])

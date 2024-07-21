@@ -217,6 +217,7 @@ Rails.application.routes.draw do
   post "billings", to: "purchase/billings#create", as: "billing_portal"
 
   resources :collections
-
+  get "/search/collection", to: "search#collection"
+  post "collections/:collection_id/add/:batch_id", to: "collections#add_group", as: "collection_add_batch"
   delete "/collection/:id/group/:batch_id", to: "collections#remove_group", as: "delete_collection_group"
 end
