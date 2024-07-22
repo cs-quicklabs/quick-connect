@@ -10,4 +10,8 @@ class CollectionsPolicy < ApplicationPolicy
   def remove_group?
     true
   end
+
+  def create?
+    true
+  end
 end
