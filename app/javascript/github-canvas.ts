@@ -69,10 +69,7 @@ interface Theme {
 }
 
 function getPixelRatio() {
-  if (typeof window === "undefined") {
-    return 1;
-  }
-  return window.devicePixelRatio || 1;
+  return 1;
 }
 
 const DATE_FORMAT = "yyyy-MM-dd";

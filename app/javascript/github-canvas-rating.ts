@@ -69,10 +69,7 @@ interface Theme {
 }
 
 function getPixelRatio() {
-  if (typeof window === "undefined") {
-    return 1;
-  }
-  return window.devicePixelRatio || 1;
+  return 1;
 }
 
 const DATE_FORMAT = "yyyy-MM-dd";
@@ -210,7 +207,7 @@ function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) 
   ctx.fillStyle = theme.text;
   ctx.fillText("Less", width - canvasMargin - (boxWidth + boxMargin) * themeGrades - 55, 37);
   ctx.fillText("More", width - canvasMargin - 25, 37);
-  const colors = ["#ebedf0", "#e53935","#9e9e9e", "#22c55e"]
+  const colors = ["#ebedf0", "#e53935", "#9e9e9e", "#22c55e"]
   for (let x = 0; x < 4; x += 1) {
     // @ts-ignore
     ctx.fillStyle = colors[x];
