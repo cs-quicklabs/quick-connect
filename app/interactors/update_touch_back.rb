@@ -20,6 +20,7 @@ class UpdateTouchBack < Patterns::Service
   def update_touch_back
     contact.touch_back_after = touch_back_after
     contact.followup_after_changed_on = Date.today
+    contact.touched_at = Date.today
     contact.save!
   end
 
