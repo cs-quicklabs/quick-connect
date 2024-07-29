@@ -7,88 +7,83 @@
       <div class=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 md:grid border-t px-1 border-gray-200" style=" grid-template-columns: repeat(4, 358px); width:1440px;">
         <div class=" lg:block grid grid-cols-1  py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  ">
           <div class=" relative" >
-        
             <div class="absolute inset-0  rounded-lg">
               <div class="flex flex-wrap items-baseline px-4 py-2">
                 <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 30 days</h3>
-                 <% if !@firsts.nil? %>
-                <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
-              </div>
-              <nav class="flex-1 " aria-label="Directory" >
-                <div class="relative h-full pb-44" >
-                  <ul role="list" class="grid grid-cols-1  px-2" id="firsts">
-                    <%= render partial: "card", collection: @firsts, as: :contact, cached: true %>
-                  </ul>
+                <% if !@firsts.nil? %>
+                  <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @firsts.count.to_s %>)</p>
                 </div>
-              </nav>
-               <% else %>
-            </div>
-             <% end %>
-            </div>
-            
+                <nav class="flex-1 " aria-label="Directory" >
+                  <div class="relative h-full pb-44" >
+                    <ul role="list" class="grid grid-cols-1  px-2" id="firsts">
+                      <%= render partial: "card", collection: @firsts, as: :contact, cached: false %>
+                    </ul>
+                  </div>
+                </nav>
+              <% else %>
+              </div>
+            <% end %>
           </div>
         </div>
-        <div class=" lg:block grid grid-cols-1   py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
-      
-          <div class=" relative" >
-            <div class="flex flex-wrap items-baseline px-4 py-2 ">
-              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 60 days</h3>
-                <% if !@seconds.nil? %>
+      </div>
+      <div class=" lg:block grid grid-cols-1   py-2  border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
+        <div class=" relative" >
+          <div class="flex flex-wrap items-baseline px-4 py-2 ">
+            <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 60 days</h3>
+            <% if !@seconds.nil? %>
               <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @seconds.count.to_s %>)</p>
-
             </div>
             <nav class="flex-1  " style=""  aria-label="Directory" >
               <div class="relative h-full pb-44 " >
                 <ul role="list" class="grid grid-cols-1 px-2" id="seconds">
-                  <%= render partial: "card", collection: @seconds, as: :contact, cached: true %>
+                  <%= render partial: "card", collection: @seconds, as: :contact, cached: false %>
                 </ul>
               </div>
             </nav>
-            <% else %>
-            </div>
-             <% end %>
+          <% else %>
           </div>
-         
-        </div>
-        <div class=" lg:block grid grid-cols-1   py-2 border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  "  >
-          <div class="h-full relative">
-            <div class="flex flex-wrap items-baseline px-4 py-2 ">
-              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 90 days</h3>
-             <% if !@thirds.nil? %>
-              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s %>)</p>
-            </div>
-            <nav class="flex-1   " style="" aria-label="Directory" >
-              <div class="relative  h-full pb-44 " >
-                <ul role="list" class="grid grid-cols-1  px-2" id="thirds">
-                  <%= render partial: "card", collection: @thirds, as: :contact, cached: true %>
-                </ul>
-              </div>
-            </nav>
-             <% else %>
-            </div>
-             <% end %>
-          </div>
-        </div>
-        <div class=" lg:block grid grid-cols-1 flex  py-2  border-r h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
-          <div class="relative">
-            <div class="flex flex-wrap items-baseline px-4 py-2">
-              <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 100 days</h3>
-            <% if !@fourths.nil? %>
-              <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s %>)</p>
-            </div>
-            <nav class="flex-1  " style="" aria-label="Directory" >
-              <div class="relative  h-full pb-44" >
-                <ul role="list" class="grid grid-cols-1  px-2" id="fourths">
-                  <%= render partial: "card", collection: @fourths, as: :contact, cached: true %>
-                </ul>
-              </div>
-            </nav>
-             <% else %>
-            </div>
-             <% end %>
-          </div>
-        </div>
+        <% end %>
       </div>
     </div>
+    <div class=" lg:block grid grid-cols-1   py-2 border-r  h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain  "  >
+      <div class="h-full relative">
+        <div class="flex flex-wrap items-baseline px-4 py-2 ">
+          <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 90 days</h3>
+          <% if !@thirds.nil? %>
+            <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @thirds.count.to_s %>)</p>
+          </div>
+          <nav class="flex-1   " style="" aria-label="Directory" >
+            <div class="relative  h-full pb-44 " >
+              <ul role="list" class="grid grid-cols-1  px-2" id="thirds">
+                <%= render partial: "card", collection: @thirds, as: :contact, cached: false %>
+              </ul>
+            </div>
+          </nav>
+        <% else %>
+        </div>
+      <% end %>
+    </div>
   </div>
+  <div class=" lg:block grid grid-cols-1 flex  py-2  border-r h-screen min-h-full  max-content  overflow-y-scroll overscroll-contain "  >
+    <div class="relative">
+      <div class="flex flex-wrap items-baseline px-4 py-2">
+        <h3 class="text-xs font-semibold tracking-wider text-gray-500 uppercase" id="teams-headline">More than 100 days</h3>
+        <% if !@fourths.nil? %>
+          <p class="mt-1 ml-1 text-sm text-gray-500 truncate">(<%= @fourths.count.to_s %>)</p>
+        </div>
+        <nav class="flex-1  " style="" aria-label="Directory" >
+          <div class="relative  h-full pb-44" >
+            <ul role="list" class="grid grid-cols-1  px-2" id="fourths">
+              <%= render partial: "card", collection: @fourths, as: :contact, cached: false %>
+            </ul>
+          </div>
+        </nav>
+      <% else %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+</div>
+</div>
 </main>
