@@ -24,7 +24,7 @@ gem "jsbundling-rails", "1.2.1"
 gem "cssbundling-rails", "1.3.3"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.4.0"
+gem "turbo-rails", "2.0.6"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
 gem "stimulus-rails", "1.2.2"
