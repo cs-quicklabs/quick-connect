@@ -1,3 +1,3 @@
 # README
 
-The contain code base of product Quick Connect
+This repo contains the code base of product Quick Connect
