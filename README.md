@@ -1,3 +1,3 @@
 # README
 
-The contain code base of product Quick Connet
+The contain code base of product Quick Connect
