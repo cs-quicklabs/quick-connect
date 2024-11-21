@@ -1,5 +1,5 @@
 <li>
-  <div class="relative pb-4">
+  <div class="relative pb-6">
     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
     <div class="relative flex space-x-3">
       <div>
@@ -24,6 +24,13 @@
               <% end %>
             </p>
           </div>
+                        <% unless event.trackable.nil? %>
+
+          <div class="p-2 text-xs italic font-normal text-gray-500 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-600 dark:border-gray-500 dark:text-gray-300">
+      <p class="whitespace-pre-wrap"><%= event.trackable.body %></p>
+                    <% end %>
+
+  </div>
         </div>
       </div>
     </div>
