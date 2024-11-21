@@ -1,5 +1,5 @@
 <li>
-  <div class="relative pb-4">
+  <div class="relative pb-6">
     <span class="absolute top-4 left-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
     <div class="relative flex space-x-3">
       <div>
@@ -17,7 +17,8 @@
               <% else %>
                 <%= event.user.decorate.display_name %>
               <% end %>
-              <%= event.action_for_context %>
+              <%= event.action_context %>
+              for 
               <a href="<%= contact_timeline_index_path(event.trackable) %>" class="font-medium text-gray-900 hover:underline"><%= event.trackable.name.titleize %></a>
             </p>
           </div>
