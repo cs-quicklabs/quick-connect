@@ -8,13 +8,11 @@ class ResetUser < Patterns::Service
       delete_events
       add_event
       delete_contacts
-      delete_journals
       delete_labels
       delete_fields
       delete_activities
       delete_life_events
       delete_relations
-      delete_ratings
       delete_groups
       delete_invitations
     rescue Exception => e
@@ -27,14 +25,6 @@ class ResetUser < Patterns::Service
 
   def delete_contacts
     Contact.all.destroy_all
-  end
-
-  def delete_journals
-    Journal.all.destroy_all
-  end
-
-  def delete_ratings
-    Rating.all.destroy_all
   end
 
   def delete_events

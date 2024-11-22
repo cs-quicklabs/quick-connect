@@ -34,8 +34,6 @@ class User < ApplicationRecord
   validates_presence_of :first_name, :last_name, :email
   has_many :contacts, dependent: :destroy
   has_many :events, as: :eventable, dependent: :destroy
-  has_many :journals, dependent: :destroy
-  has_many :ratings, dependent: :destroy
   has_many :events, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :phone_calls, dependent: :destroy

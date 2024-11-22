@@ -117,16 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["account_id"], name: "index_collections_on_account_id"
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "title"
-    t.bigint "user_id", null: false
-    t.bigint "journal_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["journal_id"], name: "index_comments_on_journal_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
   create_table "contact_activities", force: :cascade do |t|
     t.string "title"
     t.string "body"
@@ -287,16 +277,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
-  create_table "journals", force: :cascade do |t|
-    t.string "title"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "body", null: false
-    t.integer "account_id"
-    t.index ["user_id"], name: "index_journals_on_user_id"
-  end
-
   create_table "labels", force: :cascade do |t|
     t.string "name"
     t.string "color", default: "gray", null: false
@@ -446,16 +426,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
     t.index ["account_id"], name: "index_preferences_on_account_id"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer "rating", default: 1, null: false
-    t.bigint "user_id"
-    t.date "date", default: -> { "CURRENT_DATE" }, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "account_id"
-    t.index ["user_id"], name: "index_ratings_on_user_id"
-  end
-
   create_table "relations", force: :cascade do |t|
     t.string "name"
     t.bigint "account_id", null: false
@@ -557,8 +527,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "activities", "groups"
   add_foreign_key "batches", "accounts"
   add_foreign_key "collections", "accounts"
-  add_foreign_key "comments", "journals"
-  add_foreign_key "comments", "users"
   add_foreign_key "contact_activities", "activities"
   add_foreign_key "contact_activities", "contacts"
   add_foreign_key "contact_activities", "users"
@@ -581,7 +549,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "gifts", "users"
   add_foreign_key "invitations", "accounts"
   add_foreign_key "invitations", "users"
-  add_foreign_key "journals", "users"
   add_foreign_key "labels", "accounts"
   add_foreign_key "life_events", "accounts"
   add_foreign_key "life_events", "groups"
@@ -596,7 +563,6 @@ ActiveRecord::Schema[7.0].define(version: 202120730073156) do
   add_foreign_key "phone_calls", "contacts"
   add_foreign_key "phone_calls", "users"
   add_foreign_key "preferences", "accounts"
-  add_foreign_key "ratings", "users"
   add_foreign_key "relations", "accounts"
   add_foreign_key "relatives", "accounts"
   add_foreign_key "reminders", "accounts"

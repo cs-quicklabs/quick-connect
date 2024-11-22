@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  ACTIONS = ["created", "task", "unarchived", "event", "noted", "called", "archived", "relation", "journal", "commented", "conversation", "debt", "deleted", "gifted", "document", "contact_activity", "contact_event", "reminder", "about", "invited", "deactivated", "activated", "batch", "reminder", "about", "removed", "group", "track", "untrack", "imported", "touched", "collection", "deleted_collection"].freeze
+  ACTIONS = ["created", "task", "unarchived", "event", "noted", "called", "archived", "relation", "commented", "conversation", "debt", "deleted", "gifted", "document", "contact_activity", "contact_event", "reminder", "about", "invited", "deactivated", "activated", "batch", "reminder", "about", "removed", "group", "track", "untrack", "imported", "touched", "collection", "deleted_collection"].freeze
   acts_as_tenant :account
   belongs_to :user, optional: true
   belongs_to :trackable, polymorphic: true, optional: true

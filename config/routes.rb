@@ -27,7 +27,6 @@ Rails.application.routes.draw do
       get "/all", to: "report/contacts#all", as: "contacts_addition_report_all"
     end
     get "/activities", to: "report/activities#index", as: "activities_reports"
-    get "/ratings", to: "report/ratings#index", as: "ratings_reports"
   end
   resources :contacts do
     resources :notes, module: "contact", except: [:show]
@@ -51,8 +50,6 @@ Rails.application.routes.draw do
     resources :timeline, module: "contact", only: [:index]
   end
   get "favorites", to: "favorites#index", as: "favorites"
-  resources :journals
-  resources :journal_comments
   get "contacts/groups", to: "contacts#groups"
   post "/status", to: "status#create", as: "statuses"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -80,7 +77,6 @@ Rails.application.routes.draw do
   get :contacted, controller: :dashboard
   get :reminders, controller: :dashboard
 
-  get :ratings, controller: :journals
   resources :batches, except: [:new], path: "groups" do
     get "contacts", to: "batches#contacts", as: "contacts"
     post "/add/:id", to: "batches#add", as: "addcontact"
