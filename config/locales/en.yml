@@ -90,9 +90,6 @@ en:
       field:
         name:
           one: Field type
-      journal:
-        body:
-          one: Description
       relative:
         first_contact: 
           one: Relative
