@@ -7,14 +7,12 @@ class DestroyUser < Patterns::Service
     begin
       delete_events
       add_event
-      delete_journals
       delete_contacts
       delete_labels
       delete_fields
       delete_activities
       delete_life_events
       delete_relations
-      delete_ratings
       delete_groups
       delete_invitations
       user.destroy
@@ -28,14 +26,6 @@ class DestroyUser < Patterns::Service
 
   def delete_contacts
     Contact.all.destroy_all
-  end
-
-  def delete_journals
-    Journal.all.destroy_all
-  end
-
-  def delete_ratings
-    Rating.all.destroy_all
   end
 
   def delete_events

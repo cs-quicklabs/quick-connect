@@ -75,35 +75,26 @@ gem "stripe", "~> 8.6"
 gem "font-awesome-rails"
 gem "attribute_normalizer"
 
-# swagger documentation
-gem "rswag-api"
-gem "rswag-ui"
-
 gem "newrelic_rpm", "9.3.1"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-  gem "rswag-specs"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "byebug", platforms: %i[mri mingw x64_mingw]
-  gem "launchy"
-  gem "letter_opener"
-  gem "letter_opener_web"
-  gem "rexml"
-  # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem "web-console", ">= 4.1.0"
-  # Display performance information such as SQL time and flame graphs for each request in your browser.
-  # Can be configured to work on production as well see: https://github.com/MiniProfiler/rack-mini-profiler/blob/master/README.md
+  gem "web-console"
   gem "listen", "~> 3.3"
-  gem "rack-mini-profiler", "~> 3.0"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
-  gem "htmlbeautifier"
-  gem "rspec-rails"
+
+  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
+  gem "memory_profiler"
+  gem "rack-mini-profiler"
+  gem "stackprof"
+  gem "letter_opener"
+
+  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
+  # gem "spring"
 end
 
 group :test do
