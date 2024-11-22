@@ -75,16 +75,11 @@ gem "stripe", "~> 8.6"
 gem "font-awesome-rails"
 gem "attribute_normalizer"
 
-# swagger documentation
-gem "rswag-api"
-gem "rswag-ui"
-
 gem "newrelic_rpm", "9.3.1"
 
 group :development, :test do
   # Start debugger with binding.b [https://github.com/ruby/debug]
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-  gem "rswag-specs"
 end
 
 group :development do
