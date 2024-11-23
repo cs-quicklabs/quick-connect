@@ -23,10 +23,9 @@
             <%= contact.display_email %>
           <% end %>
         </p>
-                  <% contact.labels.each do |label| %>
-                      <span class="bg-gray-100 text-gray-800 text-xs font-medium  px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300"><%= label.name %></span>
-          <% end %>
-
+        <% contact.labels.each do |label| %>
+          <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300"><%= label.name %></span>
+        <% end %>
       </div>
     </div>
   </a>
