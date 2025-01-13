@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.8"
+gem "rails", "7.2.2.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails", "3.4.2"
@@ -15,7 +15,7 @@ gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.4.0"
+gem "puma", "6.4.3"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.2.1"
@@ -59,14 +59,14 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
 gem "devise", "4.9.2"
-gem "devise_invitable", "~> 2.0.7"
+gem "devise_invitable", "~> 2.0.9"
 gem "devise-pwned_password"
 gem "devise-jwt"
 
 # sidekiq gems, sinatra is used to build UI for /sidekiq
 gem "sidekiq", "7.1.4"
 gem "sidekiq-scheduler", "5.0.3"
-gem "sinatra", "3.1.0", require: nil
+gem "sinatra", "4.1.0", require: nil
 
 # Payments
 gem "pay", "6.7.1"
