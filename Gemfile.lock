@@ -239,7 +239,7 @@ GEM
     net-smtp (0.3.3)
       net-protocol
     newrelic_rpm (9.3.1)
-    nio4r (2.5.9)
+    nio4r (2.7.4)
     nokogiri (1.15.4)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
@@ -255,7 +255,7 @@ GEM
       activerecord (>= 5.2)
       activesupport (>= 5.2)
     public_suffix (5.0.3)
-    puma (6.4.0)
+    puma (6.6.0)
       nio4r (~> 2.0)
     pwned (2.0.2)
     raabro (1.4.0)
@@ -437,7 +437,7 @@ DEPENDENCIES
   pay (= 6.7.1)
   pg
   pg_search
-  puma (= 6.4.0)
+  puma (= 6.6.0)
   rack-cors
   rack-mini-profiler
   rails (= 7.0.8)
