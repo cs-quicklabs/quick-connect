@@ -365,6 +365,12 @@ GEM
       railties (>= 5.2, < 8)
       redis (>= 4.0, < 6.0)
     stripe (8.7.0)
+    tailwindcss-rails (4.2.3)
+      railties (>= 7.0.0)
+      tailwindcss-ruby (~> 4.0)
+    tailwindcss-ruby (4.1.7-arm64-darwin)
+    tailwindcss-ruby (4.1.7-x86_64-darwin)
+    tailwindcss-ruby (4.1.7-x86_64-linux-gnu)
     thor (1.2.2)
     thread-local (1.1.0)
     thread_safe (0.3.6)
@@ -452,6 +458,8 @@ DEPENDENCIES
   stimulus-rails (= 1.2.2)
   stimulus_reflex (= 3.5.2)
   stripe (~> 8.6)
+  tailwindcss-rails (~> 4.2)
+  tailwindcss-ruby (~> 4.1)
   turbo-rails (= 1.4.0)
   tzinfo-data
   valid_url

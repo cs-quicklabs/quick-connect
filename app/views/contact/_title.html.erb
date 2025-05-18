@@ -14,7 +14,7 @@
             <div  data-followup-after-target="touched" id="touch-back">
               <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
             </div>
-            <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
               <div class="py-1" role="none">
                 <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
                   <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
@@ -26,18 +26,18 @@
               </div>
             </div>
           </div>
-          <div class="flex space-x-4 inline-block">
-          <div>
-          <a href ="<%= update_touched_contact_path(contact) %>" title="Mark As Touched"  id="profile" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
-           <span class="icon-span">
+          <div class="flex space-x-2">
+            <div>
+              <a href ="<%= update_touched_contact_path(contact) %>" title="Mark As Touched"  id="profile" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
+                <span class="icon-span">
 
-          <%= touched(4) %>
-            </span>
+                  <%= touched(4) %>
+                </span>
               </a>
-              </div>
+            </div>
             <% if !contact.phone.blank? %>
               <div >
-              
+
                 <a  href="//api.whatsapp.com/send?phone=91<%= contact.phone %>"  title="WhatsApp" target="_blank" id="profile">
                   <!-- Heroicon name: solid/mail -->
                   <span class="icon-span">
