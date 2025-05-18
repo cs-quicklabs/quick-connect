@@ -1,15 +1,4 @@
 class TailwindFormBuilder < ActionView::Helpers::FormBuilder
-  %w[rich_text_area].each do |method_name|
-    define_method(method_name) do |name, title, *args|
-      @template.content_tag :div do
-        label(name, title, class: "block text-sm font-medium text-gray-700") +
-        (@template.content_tag :div, class: "mt-2" do
-          super(name, options.reverse_merge(class: "form-text-field"))
-        end)
-      end
-    end
-  end
-
   def flat_grouped_collection_select(field, collection, group_label_method, value_method, label_method, options = {}, html_options = {})
     hash = collection.group_by(&group_label_method).collect_hash do |group_label, group_entries|
       list_of_pairs = group_entries.collect { |entry|

@@ -41,9 +41,6 @@ gem "redis", "5.0.7"
 gem "hiredis"
 gem "valid_url"
 
-# Use Active Storage variant
-gem "image_processing", "~> 1.12"
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
 gem "aws-sdk-s3", "~> 1.132"
