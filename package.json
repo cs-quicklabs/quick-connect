@@ -22,7 +22,7 @@
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
-    "build:css": "tailwindcss -i ./app/assets/stylesheets/application.css -o ./app/assets/builds/application.css"
+    "build:css": "tailwindcss -i ./app/assets/tailwind/application.css -o ./app/assets/builds/application.css"
   },
   "engines": {
     "node": "22.1.0",
