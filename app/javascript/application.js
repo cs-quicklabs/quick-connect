@@ -3,7 +3,6 @@
 import "./controllers";
 import "./channels";
 import "./config";
-import "@rails/activestorage";
 import "@rails/actioncable";
 import "@tailwindcss/line-clamp";
 import "@tailwindcss/forms";
