@@ -190,9 +190,6 @@ GEM
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     ice_nine (0.11.2)
-    image_processing (1.12.2)
-      mini_magick (>= 4.9.5, < 5)
-      ruby-vips (>= 2.0.17, < 3)
     io-console (0.6.0)
     irb (1.7.4)
       reline (>= 0.3.6)
@@ -222,7 +219,6 @@ GEM
     matrix (0.4.2)
     memory_profiler (1.1.0)
     method_source (1.0.0)
-    mini_magick (4.12.0)
     mini_mime (1.1.5)
     mini_portile2 (2.8.6)
     minitest (5.20.0)
@@ -319,8 +315,6 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.6)
-    ruby-vips (2.1.4)
-      ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     rufus-scheduler (3.9.1)
@@ -431,7 +425,6 @@ DEPENDENCIES
   draper
   font-awesome-rails
   hiredis
-  image_processing (~> 1.12)
   jbuilder (= 2.11.5)
   jsbundling-rails (= 1.2.1)
   letter_opener
