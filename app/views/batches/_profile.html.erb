@@ -21,7 +21,7 @@
                 <% if !contact.links.empty? %>
                   <% contact.links.each do |link| %>
                     <label for="links" class="" >
-                      <a  href="https://www.<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
+                      <a  href="<%= link.link %>" data-contact-id="<%= contact.id %>" target="_blank"  title="<%= link.link_type.split("-").last.upcase_first %>" id="phone">
                         <!-- Heroicon name: solid/mail -->
                         <div class="h-9 bg-indigo-50 text-indigo-700 border-indigo-700 ring-1 ring-indigo-700 cursor-pointer rounded-full w-9 grid place-content-center">
                           <span class="">
