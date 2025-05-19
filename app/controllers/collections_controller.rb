@@ -3,16 +3,16 @@ class CollectionsController < BaseController
 
   def index
     authorize :collections
-    @collections = Collection.all
+    @collections = Collection.all.order(name: :asc)
 
     if params[:collection_id].present?
       @collection = Collection.find(params[:collection_id])
-      @batches = @collection.batches
+      @batches = @collection.batches.order(name: :asc)
     end
 
     if params[:batch_id].present?
       @batch = Batch.find(params[:batch_id])
-      @contacts = @batch.contacts
+      @contacts = @batch.contacts.order(first_name: :asc)
       unless params[:contact_id].present?
         @events = Event.where(eventable_id: @contacts.ids, eventable_type: "Contact").order(created_at: :desc)
       end
