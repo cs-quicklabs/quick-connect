@@ -50,7 +50,7 @@ import GraphController from "./graph_controller.js";
 application.register("graph", GraphController);
 
 import TooltipController from "./tooltip_controller.js";
-application.register("tooltip",TooltipController);
+application.register("tooltip", TooltipController);
 
 import FollowupAfterController from "./followup_after_controller.js";
 application.register("followup-after", FollowupAfterController);
@@ -61,4 +61,6 @@ application.register("rating-graph", RatingGraphController);
 import ConfirmationFetchController from "./confirmation_fetch_controller.js";
 application.register("confirmation-fetch", ConfirmationFetchController);
 
+import UserController from "./user_controller.js";
+application.register("user", UserController);
 

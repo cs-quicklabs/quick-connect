@@ -38,4 +38,8 @@ class UserPolicy < ApplicationPolicy
   def destroy?
     true
   end
+
+  def toggle_email_notifications?
+    true
+  end
 end

@@ -1,5 +1,5 @@
 class UserController < BaseController
-  before_action :set_user, only: [:update_password, :update, :profile, :password, :preferences, :destroy, :reset]
+  before_action :set_user, only: [:update_password, :update, :profile, :password, :preferences, :destroy, :reset, :toggle_email_notifications]
   before_action :find_user, only: [:update_permission]
   before_action :build_form, only: [:update_password, :password]
 
@@ -73,6 +73,15 @@ class UserController < BaseController
       else
         format.html { redirect_to user_profile_path, notice: "Failed to delete user." }
       end
+    end
+  end
+
+  def toggle_email_notifications
+    authorize @user
+    @user.update(email_enabled: !@user.email_enabled)
+    respond_to do |format|
+      format.html { redirect_to user_preferences_path, notice: "Email notifications have been updated.", status: 303 }
+      format.turbo_stream { render turbo_stream: turbo_stream.update(@user, partial: "user/forms/preferences", locals: { user: @user }) }
     end
   end
 
