@@ -1,4 +1,3 @@
-    
 <ul class="flex list-none">
   <% if !contact.favorite? %>
     <li id="favorite">
@@ -11,7 +10,7 @@
       </a>
     </li>
   <% else %>
-    <li id="noyt-favorite">
+    <li id="not-favorite">
       <a title="not-favourite">
         <span class='icon-span' data-reflex="click->Contact#favorite"  data-contact-id="<%= contact.id %>">
           <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="star" class=" h-4 w-4"  role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">

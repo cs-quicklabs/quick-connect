@@ -4,28 +4,21 @@
       <div>
         <div class="mt-1 text-sm text-gray-700">
           <p class="flex">
-            <% if policy([task.contact, task]).edit? %>
-              <%= check_box_tag "completed", nil, task.completed, data: { reflex: "click->TaskReflex#toggle_contact_task_dasboard", id: task.id }, class: "inline-flex mr-4 cursor-pointer w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" %>
-            <% end %>
+
             <span class="flex  -mt-1">
-              <a href="<%= contact_task_path(task.contact, task) %>" class="flex-1 block hover:underline mr-0.5" target="_top">
-                <%= task.title.upcase_first %>
-              </a> (<a href="<%= contact_tasks_path(task.contact) %>" class="block hover:underline " target="_top">
+              <a href="<%= contact_tasks_path(task.contact) %>" class="font-bold block hover:underline " target="_top">
                 <%= task.contact.decorate.display_name %>
-              </a>)
+              </a>
+              <a href="<%= contact_task_path(task.contact, task) %>" class="ml-2 flex-1 block hover:underline mr-0.5" target="_top">
+                <%= task.title.upcase_first %>
+              </a>
               <span>
+
               </p>
             </div>
-            <div class="mt-2 space-x-2 text-sm inline-flex ml-8">
-              <span class="font-normal text-gray-500"><%= display_created_at(task) %></span>
-              <div class="space-x-1">
-                <% if policy([task.contact, task]).edit? %>
-                  <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
-                <% end %>
-                <% if policy([task.contact, task]).destroy? %>
-                  <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
-                <% end %>
-              </div>
+            <div class="space-x-2 text-sm inline-flex">
+              <span class="text-xs font-normal text-gray-500">Due on <%= display_created_at(task) %></span>
+
             </div>
           </div>
         </div>
