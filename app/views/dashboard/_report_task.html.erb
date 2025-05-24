@@ -6,7 +6,7 @@
           <p class="flex">
 
             <span class="flex  -mt-1">
-              <a href="<%= contact_tasks_path(task.contact) %>" class="font-bold block hover:underline " target="_top">
+              <a href="<%= contact_tasks_path(task.contact) %>" class="text-sm text-gray-700 font-medium text-gray-900 hover:underline hover:text-indigo-700" target="_top">
                 <%= task.contact.decorate.display_name %>
               </a>
               <a href="<%= contact_task_path(task.contact, task) %>" class="ml-2 flex-1 block hover:underline mr-0.5" target="_top">
