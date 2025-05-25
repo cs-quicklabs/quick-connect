@@ -451,8 +451,7 @@ DEPENDENCIES
   stimulus-rails (= 1.2.2)
   stimulus_reflex (= 3.5.2)
   stripe (~> 8.6)
-  tailwindcss-rails (~> 4.2)
-  tailwindcss-ruby (~> 4.1)
+  tailwindcss-rails
   turbo-rails (= 1.4.0)
   tzinfo-data
   valid_url
