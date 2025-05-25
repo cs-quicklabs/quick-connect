@@ -1,5 +1,5 @@
 class Contact::TasksController < Contact::BaseController
-  before_action :set_task, only: %i[ show edit update destroy ]
+  before_action :set_task, only: %i[ show edit update destroy toggle ]
 
   def index
     authorize [@contact, Task]
@@ -35,6 +35,11 @@ class Contact::TasksController < Contact::BaseController
         format.turbo_stream { render turbo_stream: turbo_stream.replace(@task, template: "contact/tasks/edit", locals: { task: @task }) }
       end
     end
+  end
+
+  def toggle
+    authorize [@contact, @task]
+    @task.toggle!(:completed)
   end
 
   def create

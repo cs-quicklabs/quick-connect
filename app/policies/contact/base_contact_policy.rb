@@ -26,4 +26,8 @@ class Contact::BaseContactPolicy < ApplicationPolicy
   def new?
     create?
   end
+
+  def toggle?
+    update?
+  end
 end

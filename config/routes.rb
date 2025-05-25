@@ -73,6 +73,7 @@ Rails.application.routes.draw do
 
   put ":id/permission", to: "user#update_permission", as: "batch_permission"
 
+  patch "/contacts/:contact_id/tasks/:id/toggle" => "contact/tasks#toggle", as: "toggle_task"
   #dashboard
   get :events, controller: :dashboard
   get :tasks, controller: :dashboard

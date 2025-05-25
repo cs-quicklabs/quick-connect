@@ -1,5 +1,5 @@
 class Contact::BaseController < BaseController
-  before_action :set_contact, only: %i[index show edit update create destroy new]
+  before_action :set_contact, only: %i[index show edit update create destroy new toggle]
   after_action :add_count, only: %i[index]
   after_action :verify_authorized
   before_action :set_details

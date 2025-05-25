@@ -1,5 +1,4 @@
 <tr id="<%= dom_id task %>">
-
   <td class="table-cell w-full">
     <div class="text-sm">
       <a href="<%= contact_task_path(task.contact, task) %>" class="block hover:underline" target="_top">
@@ -9,29 +8,31 @@
     <td class="table-cell whitespace-nowrap">
       <div class=" space-x-2 text-sm">
         <span class="text-gray-500"><%= display_date(task.due_date) %></span>
-      </td>
-      <td class="table-cell whitespace-nowrap">
-        <div class="flex items-center space-x-2">
-          <% if task.completed? %>
-            <span class="text-gray-500">Done</span>
+      </div >
+    </td>
+    <td class="table-cell whitespace-nowrap">
+      <div class="flex items-center space-x-2">
+        <% if task.completed? %>
+          <span class="text-gray-500">Done</span>
 
-            <svg class="w-5 h-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-            </svg>
-          <% else %>
-            <span class="text-gray-500">Pending</span>
-            <svg class="w-5 h-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
-              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.721-1.36 3.486 0l6.518 11.591c.75 1.334-.213 2.985-1.742 2.985H3.48c-1.53 0-2.492-1.651-1.742-2.985L8.257 3.1zM11 14a1 1 0 11-2 0 1 1 0 012 0zm-1-2a1 1 0 01-1-1V9a1 1 0 112 0v2a1 1 0 01-1 1z" clip-rule="evenodd"/>
-            </svg>
-          <% end %>
-        </div>
-        <td class="table-cell whitespace-nowrap space-x-1 ">
-          <% if policy([task.contact, task]).edit? %>
-            <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
-          <% end %>
-          <% if policy([task.contact, task]).destroy? %>
-            <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
-          <% end %>
-        </div>
-      </td>
-    </tr>
+          <svg class="w-5 h-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+          </svg>
+        <% else %>
+          <span class="text-gray-500">Pending</span>
+          <svg class="w-5 h-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.721-1.36 3.486 0l6.518 11.591c.75 1.334-.213 2.985-1.742 2.985H3.48c-1.53 0-2.492-1.651-1.742-2.985L8.257 3.1zM11 14a1 1 0 11-2 0 1 1 0 012 0zm-1-2a1 1 0 01-1-1V9a1 1 0 112 0v2a1 1 0 01-1 1z" clip-rule="evenodd"/>
+          </svg>
+        <% end %>
+      </div>
+    </td>
+    <td class="table-cell whitespace-nowrap space-x-1 ">
+      <% if policy([task.contact, task]).edit? %>
+        <%= edit_button(edit_contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
+      <% end %>
+      <% if policy([task.contact, task]).destroy? %>
+        <%= delete_button(contact_task_path(task.contact, task, script_name: "/#{task.contact.account.id}")) %>
+      <% end %>
+    </div>
+  </td>
+</tr>

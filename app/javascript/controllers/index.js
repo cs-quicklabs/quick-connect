@@ -64,3 +64,5 @@ application.register("confirmation-fetch", ConfirmationFetchController);
 import UserController from "./user_controller.js";
 application.register("user", UserController);
 
+import TaskController from "./task_controller.js";
+application.register("task", TaskController);
