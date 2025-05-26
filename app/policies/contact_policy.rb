@@ -69,4 +69,8 @@ class ContactPolicy < ApplicationPolicy
   def update_touched?
     true
   end
+
+  def toggle_favorite?
+    true
+  end
 end

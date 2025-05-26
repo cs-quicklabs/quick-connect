@@ -30,4 +30,8 @@ class Contact::BaseContactPolicy < ApplicationPolicy
   def toggle?
     update?
   end
+
+  def toggle_favorite?
+    update?
+  end
 end

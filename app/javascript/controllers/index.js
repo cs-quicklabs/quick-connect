@@ -66,3 +66,6 @@ application.register("user", UserController);
 
 import TaskController from "./task_controller.js";
 application.register("task", TaskController);
+
+import ContactController from "./contact_controller.js";
+application.register("contact", ContactController);

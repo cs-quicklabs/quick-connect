@@ -8,11 +8,8 @@ export default class extends Controller {
         event.preventDefault()
 
         let element = document.querySelector("meta[name='current-account']");
-
         let current_account = element.getAttribute("content");
         let url = `/${current_account}/settings/preferences/toggle_email_notifications`
-
-
 
         fetch(url, {
             method: "PATCH",
