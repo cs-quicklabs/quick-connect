@@ -3,7 +3,7 @@
     <%= render "shared/settings_menu" %>
     <main class="max-w-xl px-4 pb-12 lg:col-span-6 lg:gap-x-4">
       <%= render "shared/form_header", title: "Personal Preferences", subtitle: "Setup your personal preferences." %>
-      <ul class="mt-2 divide-y divide-gray-200" data-controller="user" id="<%= dom_id(@user)%>">
+      <ul class="mt-2 divide-y divide-gray-200" data-controller="user" id="<%= dom_id(@user) %>">
 
         <%= render "user/forms/preferences", object: @user %>
       </ul>

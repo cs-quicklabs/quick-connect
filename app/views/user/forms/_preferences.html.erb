@@ -4,11 +4,11 @@
       data-action="click->user#toggle"
   >
   <%= check_box_tag(
-            "email_enabled",
-            nil,
-            @user.email_enabled,
-            class: "cursor-pointer mr-4 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
-          ) %>
+        "email_enabled",
+        nil,
+        @user.email_enabled,
+        class: "cursor-pointer mr-4 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500",
+      ) %>
   <div class="flex flex-col">
     <p class="text-sm font-medium text-gray-800" id="privacy-option-1-label">
       Enable email notifications
