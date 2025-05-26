@@ -16,9 +16,4 @@ class ContactLabelsReflex < ApplicationReflex
     contact.touch
     morph "#contact-labels", render(partial: "contact/labels", locals: { contact_labels: contact.labels, contact: contact, event: @event, call: @call, labels: Label.all })
   end
-
-  def export
-    html = render(partial: "account/export/export")
-    morph "#export", "#{html}"
-  end
 end
