@@ -6,26 +6,33 @@ export default class extends Controller {
     add_label(event) {
         event.preventDefault()
         const contactId = event.currentTarget.dataset.contactId
-        const labelId = event.currentTarget.dataset.labelId
+        const labelId = event.currentTarget.dataset.id
 
-        fetch(`/contacts/${contactId}/labels`, {
+        let element = document.querySelector("meta[name='current-account']");
+        let current_account = element.getAttribute("content");
+
+        fetch(`/${current_account}/contacts/${contactId}/labels`, {
             method: "POST",
             headers: {
                 "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/vnd.turbo-stream.html"
+                "Accept": "text/html"
             },
-            body: new URLSearchParams({ label_id: labelId })
+            body: new URLSearchParams({ id: labelId })
         })
             .then(response => response.text())
-            .then(html => { this.labelsTarget.innerHTML = html })
+            .then(html => { localtion.reload() })
     }
 
     remove_label(event) {
         event.preventDefault()
         const contactId = event.currentTarget.dataset.contactId
-        const labelId = event.currentTarget.dataset.labelId
+        const labelId = event.currentTarget.dataset.id
 
-        fetch(`/contacts/${contactId}/labels/${labelId}`, {
+        let element = document.querySelector("meta[name='current-account']");
+        let current_account = element.getAttribute("content");
+
+
+        fetch(`/${current_account}/contacts/${contactId}/labels/${labelId}`, {
             method: "DELETE",
             headers: {
                 "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
@@ -33,7 +40,7 @@ export default class extends Controller {
             }
         })
             .then(response => response.text())
-            .then(html => { this.labelsTarget.innerHTML = html })
+            .then(html => { location.reload() })
     }
 
     toggle_favorite(event) {
@@ -54,84 +61,4 @@ export default class extends Controller {
             .then(response => response.text())
             .then(html => { this.favoriteTarget.innerHTML = html })
     }
-
-
-    export(event) {
-        event.preventDefault()
-        const contactId = event.currentTarget.dataset.contactId
-
-        fetch(`/contacts/${contactId}/export`, {
-            method: "GET",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/csv"
-            }
-        })
-            .then(response => response.blob())
-            .then(blob => {
-                const url = window.URL.createObjectURL(blob)
-                const a = document.createElement("a")
-                a.href = url
-                a.download = `contact_${contactId}.csv`
-                document.body.appendChild(a)
-                a.click()
-                a.remove()
-            })
-    }
-
-    add_relation(event) {
-        event.preventDefault()
-        const contactId = event.currentTarget.dataset.contactId
-        const relationType = event.currentTarget.dataset.relationType
-        const relatedContactId = event.currentTarget.dataset.relatedContactId
-        const formData = new URLSearchParams({
-            relation_type: relationType,
-            related_contact_id: relatedContactId
-        })
-        fetch(`/contacts/${contactId}/relations`, {
-            method: "POST",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/vnd.turbo-stream.html"
-            },
-            body: formData
-        })
-            .then(response => response.text())
-            .then(html => { this.labelsTarget.innerHTML = html })
-    }
-
-    remove_relation(event) {
-        event.preventDefault()
-        const contactId = event.currentTarget.dataset.contactId
-        const relationId = event.currentTarget.dataset.relationId
-
-        fetch(`/contacts/${contactId}/relations/${relationId}`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/vnd.turbo-stream.html"
-            }
-        })
-            .then(response => response.text())
-            .then(html => { this.labelsTarget.innerHTML = html })
-    }
-
-    change_relation(event) {
-        event.preventDefault()
-        const contactId = event.currentTarget.dataset.contactId
-        const relationId = event.currentTarget.dataset.relationId
-        const newRelationType = event.currentTarget.value
-
-        fetch(`/contacts/${contactId}/relations/${relationId}`, {
-            method: "PATCH",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/vnd.turbo-stream.html"
-            },
-            body: new URLSearchParams({ relation_type: newRelationType })
-        })
-            .then(response => response.text())
-            .then(html => { this.labelsTarget.innerHTML = html })
-    }
-
 }

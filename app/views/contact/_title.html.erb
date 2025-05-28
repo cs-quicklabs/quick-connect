@@ -5,7 +5,7 @@
       <%= contact.display_name %>
     </h1>
     <div class="flex mt-2 z-10 "   >
-      <div  class="inline-flex "id="contact-labels" >
+      <div  class="inline-flex "id="contact_labels" data-controller="contact" data-contact-labels-target="labels">
         <%= render partial: "contact/labels", locals: { contact: contact, contact_labels: contact_labels, labels: labels } %>
       </div>
       <div class="flex mt-4 sm:mt-0   ml-4" >

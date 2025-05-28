@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     resources :about, module: "contact", except: [:show]
     resources :documents, module: "contact", except: [:show]
     resources :links, module: "contact", except: [:show, :new, :index], as: "social"
+    resources :labels, module: "contact", controller: "contact_labels", only: [:create, :destroy]
+
     collection do
       get :form
       post :import
