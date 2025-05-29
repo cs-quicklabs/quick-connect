@@ -39,7 +39,6 @@ gem "valid_url"
 gem "acts_as_tenant"
 gem "bootsnap", require: false
 gem "draper"
-gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
 gem "rails-patterns"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
