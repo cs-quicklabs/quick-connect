@@ -16,7 +16,6 @@
     "postcss": "8.4.30",
     "date-fns": "^2.30.0",
     "stimulus-chartjs": "^5.0.0",
-    "stimulus_reflex": "3.5.2",
     "tailwindcss": "4.1.7",
     "tippy.js": "6.3.7"
   },
@@ -41,7 +40,6 @@
     "autoprefixer": "https://github.com/postcss/autoprefixer",
     "esbuild": "https://github.com/evanw/esbuild",
     "postcss": "https://github.com/postcss/postcss",
-    "stimulus_reflex": "https://github.com/stimulusreflex/stimulus_reflex",
     "tailwindcss": "https://github.com/tailwindlabs/tailwindcss",
     "tippy.js": "https://github.com/atomiks/tippyjs"
   },
