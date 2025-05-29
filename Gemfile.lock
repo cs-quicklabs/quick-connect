@@ -235,7 +235,7 @@ GEM
     nokogiri (1.18.8-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
-    pagy (9.3.4)
+    pagy (8.4.0)
     pay (6.7.1)
       rails (>= 6.0.0)
     pg (1.5.9)
@@ -421,7 +421,7 @@ DEPENDENCIES
   memory_profiler
   mimemagic!
   newrelic_rpm (= 9.3.1)
-  pagy
+  pagy (= 8.4.0)
   pay (= 6.7.1)
   pg
   pg_search
