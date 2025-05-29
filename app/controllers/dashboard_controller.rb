@@ -1,4 +1,6 @@
 class DashboardController < BaseController
+  before_action :set_user, only: %i[index]
+
   def index
     authorize :dashboard
     contacts = current_user.contacts.available

@@ -3,8 +3,8 @@ class Reminder < ApplicationRecord
   validates_presence_of :title, :reminder_type, :reminder_date, :remind_after
   belongs_to :user
   belongs_to :contact
-  enum reminder_type: [:once, :multiple]
-  enum status: [:week, :month, :year], _prefix: true
+  enum :reminder_type, [:once, :multiple]
+  enum :status, [:week, :month, :year], prefix: true
   scope :once, -> { where(reminder_type: "once") }
   scope :multiple, -> { where(reminder_type: "multiple") }
   has_many :events, class_name: "Event", foreign_key: "trackable", dependent: :destroy

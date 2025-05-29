@@ -4,8 +4,6 @@
 
 import { application } from "./application";
 
-import ApplicationController from "./application_controller.js";
-application.register("application", ApplicationController);
 
 import ConfirmationController from "./confirmation_controller.js";
 application.register("confirmation", ConfirmationController);

@@ -1,8 +1,6 @@
 // Entry point for the build script in your package.json
 
 import "./controllers";
-import "./channels";
-import "./config";
 import "@rails/actioncable";
 import "@tailwindcss/line-clamp";
 import "@tailwindcss/forms";

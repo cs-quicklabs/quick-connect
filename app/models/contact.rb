@@ -4,7 +4,7 @@ class Contact < ApplicationRecord
   attr_accessor :relation_name
   require "activerecord-import"
   acts_as_tenant :account
-  enum touch_back_after: ["30_days", "60_days", "90_days", "100_days", "do_not_track"]
+  enum :touch_back_after, ["30_days", "60_days", "90_days", "100_days", "do_not_track"]
   TOUCH_BACK_AFTER_OPTIONS = [{ id: "30_days", name: "30 days" }, { id: "60_days", name: "60 days" }, { id: "90_days", name: "90 days" }, { id: "100_days", name: "100 days" }, { id: "do_not_track", name: "Do not track" }]
   scope :for_current_account, -> { where(account: Current.account) }
   scope :favorites, -> { where(favorite: true) }

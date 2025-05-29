@@ -5,17 +5,17 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "7.0.8"
+gem "rails", "8.0.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails", "3.4.2"
+gem "sprockets-rails"
 
 # Use postgresql as the database for Active Record
 gem "pg"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
-gem "puma", "6.4.0"
+gem "puma"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 gem "jsbundling-rails", "1.2.1"
@@ -24,25 +24,20 @@ gem "jsbundling-rails", "1.2.1"
 gem "cssbundling-rails", "1.3.3"
 
 # Hotwire's SPA-like page accelerator [https://github.com/hotwired/turbo-rails]
-gem "turbo-rails", "1.4.0"
+gem "turbo-rails"
 
 # Hotwire's modest JavaScript framework [https://github.com/hotwired/stimulus-rails]
-gem "stimulus-rails", "1.2.2"
+gem "stimulus-rails"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder", "2.11.5"
+gem "jbuilder"
 
 gem "rack-cors"
-
-# Use Redis adapter to run Action Cable in production
-gem "redis", "5.0.7"
-gem "hiredis"
 gem "valid_url"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "acts_as_tenant"
-gem "aws-sdk-s3", "~> 1.132"
-gem "bootsnap", "1.16.0", require: false
+gem "bootsnap", require: false
 gem "draper"
 gem "mimemagic", github: "mimemagicrb/mimemagic", ref: "01f92d86d15d85cfd0f20dabd025dcbd36a8a60f"
 gem "pagy"
@@ -53,15 +48,10 @@ gem "pg_search"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
-gem "devise", "4.9.2"
+gem "devise"
 gem "devise_invitable", "~> 2.0.7"
 gem "devise-pwned_password"
 gem "devise-jwt"
-
-# sidekiq gems, sinatra is used to build UI for /sidekiq
-gem "sidekiq", "7.1.4"
-gem "sidekiq-scheduler", "5.0.3"
-gem "sinatra", "3.1.0", require: nil
 
 # Payments
 gem "pay", "6.7.1"
@@ -99,3 +89,9 @@ group :test do
 end
 
 gem "tailwindcss-rails"
+
+# Database-backed Active Job backend [https://github.com/basecamp/solid_queue]
+gem "solid_queue"
+
+# A database-backed ActiveSupport::Cache::Store [https://github.com/rails/solid_cache]
+gem "solid_cache"

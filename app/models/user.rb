@@ -27,8 +27,8 @@ class User < ApplicationRecord
   scope :available, -> { where(archived: false) }
   before_create :set_invitation_limit
   scope :for_current_account, -> { where(account: Current.account) }
-  enum permission: [:true, :false]
-  enum admin: [:false, :true], _prefix: :true
+  enum :permission, [:true, :false]
+  enum :admin, [:false, :true], prefix: :true
   belongs_to :account, optional: true
   validates :email, uniqueness: true
   validates_presence_of :first_name, :last_name, :email
