@@ -4,7 +4,6 @@
     <title>Quick Connect</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= action_cable_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <% if user_signed_in? %>
       <meta name="current-account", content="<%= Current.account.id %>">
@@ -18,6 +17,8 @@
     <script src="https://kit.fontawesome.com/db0a2349c3.js" crossorigin="anonymous"></script>
     <%= stylesheet_link_tag "tippy", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/tippy.js/6.3.7/tippy.min.css", "data-turbo-track": "reload" %>
+    <%= turbo_refreshes_with method: :morph, scroll: :preserve %>
+
     <%= favicon_link_tag "logo.png" %>
   </head>
   <body>
