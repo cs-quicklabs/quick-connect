@@ -1,0 +1,9 @@
+production:
+  send_daily_reminders_job:
+    class: DailyReminderMailerJob
+    schedule: at 12am every day
+  
+  send_weekly_reminders_job:
+    class: WeeklyActivityCountMailerJob
+    schedule: at 12am every Monday
+  
