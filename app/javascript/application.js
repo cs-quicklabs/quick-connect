@@ -7,3 +7,4 @@ import "./themes";
 import "./github-canvas";
 import "@hotwired/turbo-rails";
 import "./github-canvas-rating"
+import "@hotwired/turbo-rails"

@@ -4,7 +4,7 @@
   "module": "commonjs",
   "dependencies": {
     "@hotwired/stimulus": "3.2.2",
-    "@hotwired/turbo-rails": "7.3.0",
+    "@hotwired/turbo-rails": "^8.0.13",
     "@kanety/stimulus-multi-select": "^1.0.0",
     "@popperjs/core": "^2.11.7",
     "@rails/request.js": "0.0.9",
@@ -12,9 +12,9 @@
     "@tailwindcss/line-clamp": "0.4.4",
     "@tailwindcss/typography": "0.5.10",
     "autoprefixer": "10.4.16",
+    "date-fns": "^2.30.0",
     "esbuild": "0.19.3",
     "postcss": "8.4.30",
-    "date-fns": "^2.30.0",
     "stimulus-chartjs": "^5.0.0",
     "tailwindcss": "4.1.7",
     "tippy.js": "6.3.7"
