@@ -3,6 +3,12 @@ class SessionsController < Devise::SessionsController
 
   def create
     @user ||= User.find_by(email: params[:user][:email].downcase)
+
+    if @user.nil?
+      flash[:alert] = "Invalid email or password."
+      redirect_to new_user_session_path and return
+    end
+
     if @user && @user.permission == "false"
       sign_out(@user)
       redirect_to new_user_session_path, alert: "Your account is deactivated." and return
