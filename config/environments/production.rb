@@ -86,6 +86,8 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = false
 
   config.action_mailer.default_url_options = { :host => "connect.quicklabs.in" }
+
+  config.default_url_options = { host: "connect.quicklabs.in" }
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
   config.action_mailer.delivery_method = :smtp
@@ -98,8 +100,6 @@ Rails.application.configure do
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter = :solid_queue
-
-  config.default_url_options = { host: "connect.quicklabs.in" }
 
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
