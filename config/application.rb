@@ -24,5 +24,6 @@ module Kutumb
     config.autoload_paths << "#{Rails.root}/lib"
     config.autoload_paths << "#{Rails.root}/interactors"
     config.autoload_paths << "#{Rails.root}/presenters"
+    config.solid_queue.silence_polling = true
   end
 end
