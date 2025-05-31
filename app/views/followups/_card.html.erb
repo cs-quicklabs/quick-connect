@@ -1,6 +1,6 @@
 <%= turbo_frame_tag dom_id(contact) do %>
   <% contact = contact.decorate %>
-  <li class="my-1 col-span-1 bg-white rounded-lg  border border-gray-200 divide-gray-200 shadow-sm ">
+  <li class="my-1 col-span-1 bg-white rounded-lg  border border-gray-200 divide-gray-200 shadow-sm " data-turbo-prefetch="false">
     <div class="flex w-full items-center justify-between space-x-6 p-3 ">
       <div class="flex-1 space-y-1">
         <div class="flex items-center space-x-3">
@@ -9,7 +9,7 @@
               <div class="flex-shrink-0">
                 <%= image_tag "male-placeholder-image.png", style: "margin-left: 0.5rem;", class: "w-10 h-10 rounded-full inline-flex" %>
               </div>
-              <div class="min-w-0 flex-1 -mt-5">
+              <div class="min-w-0 flex-1">
                 <a type="button" href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" class="bg-white cursor-pointer hover:underline " target= "_top">
                   <span class="absolute inset-0" aria-hidden="true"></span>
                   <p class="text-sm font-medium text-gray-900 whitespace-nowrap"><%= contact.display_name %>
@@ -54,13 +54,15 @@
           </div>
           <div>
             <div class="-mt-px flex pb-1 ">
-              <p class="text-sm font-normal text-gray-500 ml-3" >Last Activity: <%= display_date(contact.touched_at) %> </p>
+              <p class="text-sm font-normal text-gray-500 ml-3 text-xs" >Last Activity: <%= display_date(contact.touched_at) %> </p>
             </div>
-            <div class="-mt-px flex p-1 ">
-              <div  class="inline-flex "id="contact-labels" >
-                <%= render partial: "labels", locals: { contact_labels: contact.labels } %>
+            <% if contact.labels.size > 0 %>
+              <div class="-mt-px flex p-1 ">
+                <div  class="inline-flex "id="contact-labels" >
+                  <%= render partial: "labels", locals: { contact_labels: contact.labels } %>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
       </div>

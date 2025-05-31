@@ -26,7 +26,10 @@
 
           </p>
           <% contact.labels.each do |label| %>
-            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded dark:bg-purple-900 dark:text-purple-300"><%= label.name %></span>
+            <span class="inline-flex items-center rounded-sm me-2 px-2.5 py-0.5 text-xs font-medium  bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
+              <%= label.name.upcase_first %>
+            </span>
+
           <% end %>
         </div>
         <div class="">
