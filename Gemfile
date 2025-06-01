@@ -59,13 +59,6 @@ gem "stripe", "~> 8.6"
 gem "font-awesome-rails"
 gem "attribute_normalizer"
 
-gem "newrelic_rpm", "9.3.1"
-
-group :development, :test do
-  # Start debugger with binding.b [https://github.com/ruby/debug]
-  gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
-end
-
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
@@ -76,6 +69,8 @@ group :development do
   gem "rack-mini-profiler"
   gem "stackprof"
   gem "letter_opener"
+
+  gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
 
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
