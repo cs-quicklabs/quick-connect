@@ -105,7 +105,6 @@ Rails.application.configure do
   # Enable DNS rebinding protection and other `Host` header attacks.
   config.hosts = [
     "connect.quicklabs.in",     # Allow requests from example.com
-    "kutumb-production-web.onrender.com",
     "quick-connect-web.onrender.com",
   ]
 
