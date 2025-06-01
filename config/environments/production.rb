@@ -106,6 +106,7 @@ Rails.application.configure do
   config.hosts = [
     "connect.quicklabs.in",     # Allow requests from example.com
     "kutumb-production-web.onrender.com",
+    "quick-connect-web.onrender.com",
   ]
 
   # Skip DNS rebinding protection for the default health check endpoint.
