@@ -10,9 +10,9 @@
           <span class="inline-flex items-center ml-2 px-2 py-0.5 rounded text-xs font-medium bg-<%= phone_call.decorate.display_status_color %>-100 text-<%= phone_call.decorate.display_status_color %>-800"> <%= phone_call.decorate.display_status %></span>
         </div>
         <%= render partial: "shared/show_more", locals: { text: phone_call.body, truncate_length: 500 } %>
-        <div class="mt-2 space-x-2 text-sm flex inline-block">
+        <div class="mt-2 space-x-2 text-sm flex flex-row">
           <span class="text-gray-500"><%= display_date(phone_call.date) %></span>
-          <div class="space-x-1 pl-4">
+          <div class="space-x-1">
             <% if policy([phone_call.contact, phone_call]).edit? %>
               <%= edit_button(edit_contact_phone_call_path(@contact, phone_call)) %>
             <% end %>
