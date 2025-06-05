@@ -1,6 +1,6 @@
 <% link = pagy_anchor(pagy) -%>
 <nav aria-label="pager" class="inline-flex border border-gray-200 rounded-sm shadow-md pagy_nav pagination" role="navigation">
-  <% if pagy.prev -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page prev hover:text-gray-900 hover:bg-gray-100"><%== link.(pagy.prev, '&lt;', aria_label: 'Previous') %></span>
+  <% if pagy.prev -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 page prev hover:text-gray-900 hover:bg-gray-100"><%== link.(pagy.prev, "&lt;", aria_label: "Previous") %></span>
   <% else -%>  <span class="px-3 py-2 text-sm font-medium leading-tight text-gray-700 border-r border-gray-200 cursor-not-allowed page prev hover:bg-gray-100 disabled">    <a role="link" aria-disabled="true" aria-label="Previous">&lt;</a>
     </span>
   <% end -%>
