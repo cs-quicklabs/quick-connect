@@ -8,20 +8,18 @@ class Contact::ContactLabelsController < Contact::BaseController
     @contact.labels << @label unless @contact.labels.include?(@label)
     @contact.touched_at = Time.current
     @contact.save!
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          :contact_labels,
-          partial: "contact/labels",
-          locals: { contact: @contact, contact_labels: @contact.labels, labels: Label.all.order(:name) },
-        )
-      end
-    end
+    render_response
   end
 
   def destroy
     authorize [@contact]
     @contact.labels.destroy(@label)
+    render_response
+  end
+
+  private
+
+  def render_response
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
@@ -32,8 +30,6 @@ class Contact::ContactLabelsController < Contact::BaseController
       end
     end
   end
-
-  private
 
   def set_label
     @label ||= Label.find(params[:id])
