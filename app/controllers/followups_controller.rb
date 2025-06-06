@@ -6,5 +6,7 @@ class FollowupsController < BaseController
     @seconds = follow_ups.second
     @thirds = follow_ups.third
     @fourths = follow_ups.fourth
+
+    fresh_when follow_ups
   end
 end
