@@ -4,14 +4,36 @@
     <div class="flex w-full items-center justify-between space-x-6 p-3 ">
       <div class="flex-1 space-y-1">
         <div class="flex items-center space-x-3">
-          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-1">
             <div class="relative flex items-center space-x-3 ">
               <div class="flex-shrink-0">
                 <%= image_tag "male-placeholder-image.png", style: "margin-left: 0.5rem;", class: "w-10 h-10 rounded-full inline-flex" %>
               </div>
               <div class="min-w-0 flex-1">
-                <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" class="bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900 whitespace-nowrap" target= "_top">
-                  <%= contact.display_name %></a>
+                <div class="flex items-center space-x-2">
+                  <a href="/<%= contact.account.id %>/contacts/<%= contact.id %>/timeline" class="w-full bg-white cursor-pointer hover:underline text-sm font-medium text-gray-900 whitespace-nowrap" target= "_top">
+                    <%= contact.display_name %></a>
+                  <div class="space-x-1 lign-top flex" data-turbo-prefetch="false">
+                    <a href ="<%= touched_contact_path(contact) %>" title="Mark As Touched"  id="touched" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
+                      <span class="text-green-500">
+
+                        <%= touched(5) %>
+                      </span>
+                    </a>
+
+                    <% html = "<span class=' cursor-pointer' id='untrack' style='flex-direction: column;'   >
+                                                                                                                                                                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-5 h-5 text-red-500 '>
+                                                                                                                                                                     <path stroke-linecap='round' stroke-linejoin='round' d='M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
+                                                                                                                                                                </svg>                                                                                                                                                                          
+                                                                                                                                                            </span>" %>
+                    <%= link_to (raw(html)), untrack_contact_path(contact), class: "", data: {
+                                                                      controller: "confirmation tooltip",
+                                                                      "confirmation-message-value": "Are you sure you want to untrack this contact? Marking this as untrack means it will not show up in follow up list again",
+                                                                      action: "confirmation#confirm",
+                                                                      "tooltip-content": "Do Not Track",
+                                                                    } %>
+                  </div>
+                </div>
                 <p class="mt-1  text-sm text-gray-500 inline-flex space-x-1">
                   <% if !contact.phone.blank? %>
                     <svg xmlns="http://www.w3.org/2000/svg" class="inline-flex" style="width: .8rem;height:.8rem" viewBox="0 0 20 20" fill="currentColor">
@@ -29,26 +51,7 @@
               </div>
             </div>
           </div>
-          <div class="space-x-1 -mt-2 align-top flex" data-turbo-prefetch="false">
-            <a href ="<%= touched_contact_path(contact) %>" title="Mark As Touched"  id="touched" data-controller="confirmation tooltip" data-confirmation-message-value="Are you sure you want to mark as touched to this contact? Marking this as touched means you took a followup with this contact today." data-action="confirmation#confirm" data-tooltip-content="Mark As Touched" class="cursor-pointer">
-              <span class="text-green-500">
 
-                <%= touched(6) %>
-              </span>
-            </a>
-
-            <% html = "<span class=' cursor-pointer' id='untrack' style='flex-direction: column;'   >
-                                                                                                                                                                <svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' class='w-6 h-6 text-red-500 '>
-                                                                                                                                                                     <path stroke-linecap='round' stroke-linejoin='round' d='M9.75 9.75l4.5 4.5m0-4.5l-4.5 4.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z' />
-                                                                                                                                                                </svg>                                                                                                                                                                          
-                                                                                                                                                            </span>" %>
-            <%= link_to (raw(html)), untrack_contact_path(contact), class: "", data: {
-                                                                      controller: "confirmation tooltip",
-                                                                      "confirmation-message-value": "Are you sure you want to untrack this contact? Marking this as untrack means it will not show up in follow up list again",
-                                                                      action: "confirmation#confirm",
-                                                                      "tooltip-content": "Do Not Track",
-                                                                    } %>
-          </div>
         </div>
         <div>
           <div class="-mt-px flex pb-1 ">
