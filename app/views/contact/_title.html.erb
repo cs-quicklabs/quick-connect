@@ -14,7 +14,7 @@
             <div  data-followup-after-target="touched" id="touch-back">
               <%= render partial: "contact/touch_back", locals: { contact: contact }, formats: [:turbo_stream] %>
             </div>
-            <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded bg-white shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
               <div class="py-1" role="none">
                 <% Contact::TOUCH_BACK_AFTER_OPTIONS.each do |touch| %>
                   <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->

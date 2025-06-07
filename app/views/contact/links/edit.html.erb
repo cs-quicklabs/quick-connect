@@ -8,7 +8,7 @@
         <%= form.text_field :user_id, value: current_user.id, class: "hidden" %>
       </div>
       <div class="flex justify-end ">
-        <%= form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
+        <%= form.button "Save", class: "border-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600  sm:ml-3 cursor-pointer; " %>
         <%= link_to "Cancel", contact_about_index_path(@contact), class: "ml-3 btn-normal " %>
       </div>
     </main>

@@ -22,7 +22,7 @@
       </svg>
     </button>
     <div  x-show="menu"  id="labels-menu"
-          @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded-md shadow-lg hide focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          @click.away="menu = false" class="absolute  z-10 w-56 mt-2 origin-top-right bg-white rounded shadow-lg hide focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
       <% if Label.all.order(:name).size == 0 %>
         <div class="py-1" role="none">
           <p @click="menu = false" role="menuitem" class="block px-4 py-2 text-sm text-gray-700  " > No label added yet</p>
