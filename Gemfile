@@ -5,7 +5,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.3.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "8.0.1"
+gem "rails", "8.0.2"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -47,7 +47,7 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems
 gem "devise"
-gem "devise_invitable", "~> 2.0.7"
+gem "devise_invitable"
 gem "devise-pwned_password"
 gem "devise-jwt"
 

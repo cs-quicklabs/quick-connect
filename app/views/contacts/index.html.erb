@@ -19,7 +19,7 @@
               <div class=" flex space-x-4 pt-6">
                 <div class="flex-1 min-w-0 " x-data="{ isShowing: true}" data-behavior="autocomplete" data-controller="nav-search" data-nav-search-url-value="/search/contacts" >
                   <label for="search" class="sr-only">Search</label>
-                  <div class="relative rounded-md shadow-sm"   >
+                  <div class="relative rounded shadow-sm"   >
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                       <!-- Heroicon name: solid/search -->
                       <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -29,7 +29,7 @@
                     <input type="search" name="search" id="search" class="block w-full  pl-10 form-text-field " placeholder="Search" data-nav-search-target="input" @keyup="isShowing = true" >
                   </div>
                   <div class="relative"  x-show="isShowing" >
-                    <div  class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                    <div  class="absolute left-0 z-10 block w-full mt-2 origin-top-right bg-white rounded shadow-lg  focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                       <ul data-nav-search-target="results" >
                       </ul>
                     </div>

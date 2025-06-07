@@ -41,10 +41,10 @@
                     <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                   </svg>
                 </div>
-                <input id="navbar" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded-md focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contacts or groups" type="search" data-nav-search-target="input">
+                <input id="navbar" name="search" class="block w-full py-1 pl-10 pr-3 leading-5 text-gray-300 placeholder-gray-400 bg-gray-700 border border-transparent rounded focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm" placeholder="Search Contacts or groups" type="search" data-nav-search-target="input">
               </div>
               <div class="relative ">
-                <div class="absolute  left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded-md shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                <div class="absolute  left-0 z-20 block w-full mt-2 origin-top-right bg-white rounded shadow-lg ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                   <ul data-nav-search-target="results" >
                   </ul>
                 </div>
@@ -67,8 +67,8 @@
                       <%= image_tag "male-placeholder-image.png", class: "w-8 h-8 rounded-full" %>
                     </button>
                   </div>
-                  <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg">
-                    <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg w-60 " role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                  <div x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="absolute right-0 w-48 mt-2 origin-top-right rounded shadow-lg">
+                    <div class="absolute right-0 py-1 mt-2 origin-top-right bg-white rounded shadow-lg w-60 " role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                       <div class= "px-4 py-3">
                         <p class="text-sm">Signed in as</p>
                         <p class="text-xs text-gray-400 truncate font-small max-w-auto"><%= current_user.decorate.display_email %></p>

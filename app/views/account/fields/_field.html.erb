@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(field) do %>
   <li class="flex py-2 border-b border-gray-200">
     <div class="flex items-center w-full ml-4">
-      <p class="ml-3  font-light text-gray-600"> <i class="<%= field.icon %> w-18 h-18"></i></p>
+      <p class="ml-3  font-light text-gray-600"> <i class="<%= field.icon %>"></i></p>
       <% if field.icon.nil? %>
         <p class="ml-4"><% end %>
         <p class="w-full ml-2 text-sm font-normal text-gray-900 ">

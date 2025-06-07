@@ -1,7 +1,7 @@
 production:
   send_daily_reminders_job:
     class: DailyReminderMailerJob
-    schedule: at 12am every day
+    schedule: every day at midnight
 
   send_weekly_reminders_job:
     class: WeeklyActivityCountMailerJob

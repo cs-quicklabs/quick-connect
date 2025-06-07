@@ -1,9 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
+import { FetchRequest } from "@rails/request.js"
 
 export default class extends Controller {
     static targets = ["labels", "favorite"]
 
-    add_label(event) {
+    async add_label(event) {
         event.preventDefault()
         const contactId = event.currentTarget.dataset.contactId
         const labelId = event.currentTarget.dataset.id
@@ -11,19 +12,12 @@ export default class extends Controller {
         let element = document.querySelector("meta[name='current-account']");
         let current_account = element.getAttribute("content");
 
-        fetch(`/${current_account}/contacts/${contactId}/labels`, {
-            method: "POST",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/html"
-            },
-            body: new URLSearchParams({ id: labelId })
-        })
-            .then(response => response.text())
-            .then(html => { localtion.reload() })
+        const request = new FetchRequest('post', `/${current_account}/contacts/${contactId}/labels`, { body: JSON.stringify({ id: labelId }), responseKind: 'turbo-stream' })
+        const response = await request.perform()
+
     }
 
-    remove_label(event) {
+    async remove_label(event) {
         event.preventDefault()
         const contactId = event.currentTarget.dataset.contactId
         const labelId = event.currentTarget.dataset.id
@@ -31,16 +25,9 @@ export default class extends Controller {
         let element = document.querySelector("meta[name='current-account']");
         let current_account = element.getAttribute("content");
 
+        const request = new FetchRequest('DELETE', `/${current_account}/contacts/${contactId}/labels/${labelId}`, { responseKind: 'turbo-stream' })
+        const response = await request.perform()
 
-        fetch(`/${current_account}/contacts/${contactId}/labels/${labelId}`, {
-            method: "DELETE",
-            headers: {
-                "X-CSRF-Token": document.querySelector("[name='csrf-token']").content,
-                "Accept": "text/vnd.turbo-stream.html"
-            }
-        })
-            .then(response => response.text())
-            .then(html => { location.reload() })
     }
 
     toggle_favorite(event) {

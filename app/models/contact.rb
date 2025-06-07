@@ -9,9 +9,9 @@ class Contact < ApplicationRecord
   scope :for_current_account, -> { where(account: Current.account) }
   scope :favorites, -> { where(favorite: true) }
   scope :thirty_days, -> { where(touch_back_after: 0) }
-  scope :sixty_days, -> { where("touch_back_after IN (?)", [0, 1]) }
-  scope :ninety_days, -> { where("touch_back_after IN (?)", [0, 1, 2]) }
-  scope :over_100_days, -> { where("touch_back_after IN (?)", [0, 1, 2, 3]) }
+  scope :sixty_days, -> { where(touch_back_after: 1) }
+  scope :ninety_days, -> { where(touch_back_after: 2) }
+  scope :over_100_days, -> { where(touch_back_after: 3) }
   belongs_to :user
   belongs_to :account
   normalize_attribute :first_name, :last_name, :email, :with => :strip

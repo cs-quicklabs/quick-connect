@@ -9,7 +9,7 @@
               First Name
             </label>
             <div class="mt-1">
-              <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_field :first_name, autofocus: true, autocomplete: "off", class: "form-text-field" %>
             </div>
           </div>
           <div class="ml-2">
@@ -17,7 +17,7 @@
               Last Name
             </label>
             <div class="mt-1">
-              <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              <%= f.text_field :last_name, autofocus: true, autocomplete: "off", class: "form-text-field" %>
             </div>
           </div>
         </div>
@@ -26,7 +26,7 @@
             Email Address
           </label>
           <div class="mt-1">
-            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "off", class: "form-text-field" %>
           </div>
         </div>
         <div>
@@ -36,7 +36,7 @@
           <em>(6 characters minimum)</em>
           <div class="mt-1 flex w-full"  x-data="{ show: true }">
             <div class="mt-1 flex-auto w-full" >
-              <input :type="show ? 'password' : 'text'" name="user[password]" id="user_password" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+              <input :type="show ? 'password' : 'text'" name="user[password]" id="user_password" class="form-text-field"  />
             </div>
             <i :class="show ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show = !show" :class="{'hidden': !show, 'block':show }" id="togglePassword" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
@@ -47,13 +47,13 @@
           </label>
           <div class="mt-1 flex w-full"   x-data="{ show_confirmation: true }">
             <div class="mt-1 flex-auto w-full" >
-              <input :type="show_confirmation? 'password' : 'text'" name="user[password_confirmation]" id="user_password_confirmation" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"  />
+              <input :type="show_confirmation? 'password' : 'text'" name="user[password_confirmation]" id="user_password_confirmation" class="form-text-field"  />
             </div>
             <i :class="show_confirmation ? 'cursor-pointer fa-regular fa-eye-slash' : 'cursor-pointer fa fa-eye'"  @click="show_confirmation = !show_confirmation"  id="togglePasswordConfirmation" style="margin-left:-30px; margin-top:12px" ></i>
           </div>
         </div>
         <div class="actions mt-6">
-          <%= f.submit "Sign Up", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+          <%= f.submit "Sign Up", class: "cursor-pointer w-full flex justify-center py-2 px-4 border border-transparent rounded shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
         </div>
       <% end %>
       <div class="text-sm text-center pt-4 ">

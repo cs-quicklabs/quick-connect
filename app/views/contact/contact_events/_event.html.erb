@@ -1,12 +1,12 @@
 <li class="">
   <%= turbo_frame_tag dom_id(contact_event) do %>
-    <div class="flex mt-6 space-x-3">
+    <div class="flex mt-6 space-x-2">
       <div>
         <div class="text-sm text-gray-900 font-medium">
           <p class="whitespace-pre"><%= contact_event.title.upcase_first %> (<%= contact_event.life_event.name.upcase_first %>)</p>
         </div>
         <%= render partial: "shared/show_more", locals: { text: contact_event.body, truncate_length: 500 } %>
-        <div class="mt-2 space-x-2 text-sm flex inline-block">
+        <div class="mt-2 space-x-2 text-sm flex flex-row">
           <span class="text-gray-500"><%= display_date(contact_event.date) %></span>
           <div class="space-x-1 pl-4">
             <% if policy([contact_event.contact, contact_event]).edit? %>
