@@ -11,11 +11,11 @@ class Event < ApplicationRecord
   scope :sanitize, -> { where.not("trackable_id IS NULL OR eventable_id IS NULL") }
 
   def relation_events
-    Event.all.where trackable_type: "relative"
+    Event.where trackable_type: "relative"
   end
 
   def self.top_50_events
-    Event.all.includes(:eventable, :trackable, :user, :account).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
+    Event.includes(:eventable, :trackable, :user, :account).where("user_id IS NOT NULL").order(created_at: :desc).limit(50).decorate
   end
 
   def self.query(params, includes = nil)

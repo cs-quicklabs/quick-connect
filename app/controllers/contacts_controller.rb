@@ -10,7 +10,7 @@ class ContactsController < BaseController
       @event = @contact.events.order(created_at: :desc).first
       @call = @contact.phone_calls.order(created_at: :desc).first
     end
-    @pagy, @contacts = pagy_nil_safe(params, Contact.all.available.includes(:links, :events).order(:first_name), items: 100)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.available.includes(:links, :events).order(:first_name), items: 100)
     render_partial("contacts/contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 
@@ -95,7 +95,7 @@ class ContactsController < BaseController
   def archived
     authorize :contact, :index?
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.all.archived.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.archived.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/archived_contact", collection: @contacts, cached: true) if stale?(@contacts)
   end
 
@@ -128,7 +128,7 @@ class ContactsController < BaseController
   def untracked
     authorize :contact, :index?
 
-    @pagy, @contacts = pagy_nil_safe(params, Contact.all.untracked.order(archived_on: :desc), items: LIMIT)
+    @pagy, @contacts = pagy_nil_safe(params, Contact.untracked.order(archived_on: :desc), items: LIMIT)
     render_partial("contacts/untracked_contact", collection: @contacts, cached: false) if stale?(@contacts)
   end
 
