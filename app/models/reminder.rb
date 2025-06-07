@@ -33,9 +33,8 @@ class Reminder < ApplicationRecord
         break
       else
         num += 1
+        break if num > max_iterations
       end
-
-      break if num >= max_iterations
     end
     return todays
   end
@@ -63,8 +62,8 @@ class Reminder < ApplicationRecord
         break
       else
         num += 1
+        break if num > max_iterations
       end
-      break if num >= max_iterations
     end
     return upcomings
   end
