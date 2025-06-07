@@ -1,10 +1,8 @@
 class DailyReminderMailerJob < ApplicationJob
   def perform
-    accounts = Account.all
-    accounts.each do |account|
+    Account.find_each do |account|
       ActsAsTenant.current_tenant = account
-      users = User.where(account_id: account)
-      users.each do |user|
+      User.where(account_id: account).find_each do |user|
         if !user.nil? and user.email_enabled
           reminder_for_user = user.reminders
           todays_reminders = []
