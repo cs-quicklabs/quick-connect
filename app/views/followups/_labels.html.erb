@@ -1,7 +1,7 @@
 <% if contact_labels.load.size > 0 %>
   <% contact_labels.uniq.each do |label| %>
 
-    <span class="inline-flex items-center rounded-sm px-1.5 py-0.5 text-xs font-medium  bg-<%= label.color %>-100 text-<%= label.color %>-800 ml-2">
+    <span class="inline-flex items-center rounded-sm px-1.5 py-0.5 text-xs font-medium  bg-<%= label.color %>-100 text-<%= label.color %>-800">
       <%= label.name.upcase_first %>
     </span>
   <% end %>

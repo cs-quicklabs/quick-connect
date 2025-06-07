@@ -1,13 +1,13 @@
 <%= turbo_frame_tag dom_id(contact) do %>
   <% contact = contact.decorate %>
-  <li class="my-1 col-span-1 bg-white rounded-lg  border border-gray-200 divide-gray-200 shadow-sm " >
+  <li class="my-1 col-span-1 bg-white rounded  border border-gray-200 divide-gray-200 shadow-xs" >
     <div class="flex w-full items-center justify-between space-x-6 p-3 ">
       <div class="flex-1 space-y-1">
         <div class="flex items-center space-x-3">
           <div class="grid grid-cols-1 gap-4 w-full">
             <div class="relative flex items-center space-x-3 ">
               <div class="flex-shrink-0">
-                <%= image_tag "male-placeholder-image.png", style: "margin-left: 0.5rem;", class: "w-10 h-10 rounded-full inline-flex" %>
+                <%= image_tag "male-placeholder-image.png", class: "w-10 h-10 rounded-full inline-flex" %>
               </div>
               <div class="min-w-0 flex-1">
                 <div class="flex items-center space-x-2">
@@ -45,7 +45,7 @@
                       <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                       <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
                     </svg>
-                    <span class="text-sm text-gray-500  inline-flex  -mt-1 break-all w-44">  <%= contact.display_email %>  </span>
+                    <span class="text-sm text-gray-500  inline-flex  -mt-1 break-all">  <%= contact.display_email %>  </span>
                   <% end %>
                 </p>
               </div>
@@ -54,12 +54,12 @@
 
         </div>
         <div>
-          <div class="-mt-px flex pb-1 ">
-            <p class="text-sm font-normal text-gray-500 ml-3 text-xs" >Last Activity: <%= display_date(contact.touched_at) %> </p>
+          <div class="-mt-px flex">
+            <p class="text-sm font-normal text-gray-500 text-xs" >Last Activity: <%= display_date(contact.touched_at) %> </p>
           </div>
           <% if contact.labels.size > 0 %>
-            <div class="-mt-px flex p-1 ">
-              <div  class="inline-flex "id="contact-labels" >
+            <div class="-mt-px flex mt-1">
+              <div  class="inline-flex space-x-1"id="contact-labels" >
                 <%= render partial: "labels", locals: { contact_labels: contact.labels } %>
               </div>
             </div>
