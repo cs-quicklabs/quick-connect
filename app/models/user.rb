@@ -2,20 +2,12 @@ class User < ApplicationRecord
   pay_customer
 
   # Include default devise modules.
-  include Devise::JWT::RevocationStrategies::JTIMatcher
   require "securerandom"
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
-  devise :jwt_authenticatable, jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
   validates :jti, presence: true, on: :update
-
-  def generate_jwt
-    JWT.encode({ id: id,
-                 exp: 2.days.from_now.to_i },
-               Rails.application.credentials.secret_key_base, true, { :algorithm => "HS256" })
-  end
 
   normalize_attribute :first_name, :last_name, :email, :with => :strip
   validates_confirmation_of :password, if: :password_confirmation_given?, on: :update

@@ -19,7 +19,6 @@ class ApplicationController < ActionController::Base
   rescue_from ActsAsTenant::Errors::NoTenantSet, with: :user_not_authorized
   rescue_from ActiveRecord::DeleteRestrictionError, with: :show_referenced_alert
   rescue_from Pagy::OverflowError, with: :record_not_found
-  before_action :set_current_user, if: :json_request?
   before_action :set_redirect_path, unless: :user_signed_in?
 
   etag {
@@ -168,21 +167,6 @@ class ApplicationController < ActionController::Base
                     error: "Login invalid or expired"
       }
       format.json { head 401 }
-    end
-  end
-
-  # So we can use Pundit policies for api_users
-  def set_current_user
-    if header = request.headers["Authorization"]
-      header = header.split(" ").last
-      begin
-        jwt_payload = JWT.decode(header, Rails.application.credentials.secret_key_base, true, { :algorithm => "HS256" }).first
-        @api_user ||= User.includes(:invited_by).find(jwt_payload["sub"])
-      rescue ActiveRecord::RecordNotFound => e
-        render json: { success: false, message: "Record no found" }
-      rescue JWT::DecodeError => e
-        render json: { success: false, message: "unauthorized" }
-      end
     end
   end
 

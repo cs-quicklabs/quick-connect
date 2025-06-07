@@ -49,7 +49,6 @@ gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "devise"
 gem "devise_invitable"
 gem "devise-pwned_password"
-gem "devise-jwt"
 
 # Payments
 gem "pagy", "8.4.0"
