@@ -12,14 +12,6 @@ Rails.application.routes.draw do
   get "/report", to: "reports#index", as: "reports"
   scope "report" do
     get "/events", to: "report/events#index", as: "events_reports"
-    get "/contacts", to: "report/contacts#index", as: "contacts_addition_report"
-    get "/activities", to: "report/activities#index", as: "activities_report"
-    scope "contacts" do
-      get "/yearly", to: "report/contacts#yearly", as: "contacts_addition_report_yearly"
-      get "/monthly", to: "report/contacts#monthly", as: "contacts_addition_report_monthly"
-      get "/weekly", to: "report/contacts#weekly", as: "contacts_addition_report_weekly"
-      get "/all", to: "report/contacts#all", as: "contacts_addition_report_all"
-    end
     get "/activities", to: "report/activities#index", as: "activities_reports"
   end
   resources :contacts do
