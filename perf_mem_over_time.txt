@@ -1,0 +1,27 @@
+Booting: production
+DERAILED_BENCHMARKING_ACTIVE is true. Attempting to monkey-patch ActionDispatch::HostAuthorization.
+ActionDispatch::HostAuthorization successfully patched for benchmarking.
+[BenchmarkTestController] Auth/Authz actions skipped for DERAILED_BENCHMARKING_ACTIVE=true
+Database 'kutumb_development' already exists
+Method: GET
+Endpoint: "/"
+PID: 34025
+Couldn't call app. Bad request to /! Resulted in 302 status.
+
+
+***RESPONSE BODY***
+
+
+[HostAuthPatch] Benchmarking active, bypassing HostAuthorization logic.
+137.66796875
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] Started GET "/" for  at 2025-06-07 16:18:47 +0000
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] Active for path:
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] Account ID 1 not found. Attempting to create on-the-fly.
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] On-the-fly Account ID 1 created successfully.
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] Using Account ID: 1. Name: Benchmark Account OnTheFly. Expired: false
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] User benchmark_user_1@example.com not found for Account ID 1. Attempting to create on-the-fly.
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] On-the-fly User ID 1 for Account ID 1 created and reloaded.
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] Context Set: Current.account ID: 1, Current.user ID: 1, User's Account ID: 1, Tenant ID: 1
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] [AccountMiddleware-Benchmark] Modified ENV for generic path: SCRIPT_NAME=/1, PATH_INFO=/, REQUEST_PATH=/1/, REQUEST_URI=/1/
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] Processing by DashboardController#index as HTML
+[7a7a71c5-e1e3-41e8-a949-05f90fd44550] Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)

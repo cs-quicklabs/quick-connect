@@ -1,0 +1,22 @@
+Booting: production
+DERAILED_BENCHMARKING_ACTIVE is true. Attempting to monkey-patch ActionDispatch::HostAuthorization.
+ActionDispatch::HostAuthorization successfully patched for benchmarking.
+[BenchmarkTestController] Auth/Authz actions skipped for DERAILED_BENCHMARKING_ACTIVE=true
+Database 'kutumb_development' already exists
+Couldn't call app. Bad request to /! Resulted in 302 status.
+
+
+***RESPONSE BODY***
+
+
+Method: GET
+Endpoint: "/"
+[HostAuthPatch] Benchmarking active, bypassing HostAuthorization logic.
+[eea9e321-89ed-41c2-a815-7a38d6010772] Started GET "/" for  at 2025-06-07 16:18:56 +0000
+[eea9e321-89ed-41c2-a815-7a38d6010772] [AccountMiddleware-Benchmark] Active for path:
+[eea9e321-89ed-41c2-a815-7a38d6010772] [AccountMiddleware-Benchmark] Using Account ID: 1. Name: Benchmark Account OnTheFly. Expired: false
+[eea9e321-89ed-41c2-a815-7a38d6010772] [AccountMiddleware-Benchmark] Found existing User ID 1 with email benchmark_user_1@example.com for Account ID 1.
+[eea9e321-89ed-41c2-a815-7a38d6010772] [AccountMiddleware-Benchmark] Context Set: Current.account ID: 1, Current.user ID: 1, User's Account ID: 1, Tenant ID: 1
+[eea9e321-89ed-41c2-a815-7a38d6010772] [AccountMiddleware-Benchmark] Modified ENV for generic path: SCRIPT_NAME=/1, PATH_INFO=/, REQUEST_PATH=/1/, REQUEST_URI=/1/
+[eea9e321-89ed-41c2-a815-7a38d6010772] Processing by DashboardController#index as HTML
+[eea9e321-89ed-41c2-a815-7a38d6010772] Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms (0 queries, 0 cached) | GC: 0.0ms)

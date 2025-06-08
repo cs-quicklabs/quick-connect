@@ -1,0 +1,6 @@
+rake aborted!
+Don't know how to build task 'derailed:mem' (See the list of available tasks with `rake --tasks`)
+/home/jules/.rvm/gems/ruby-3.3.0/gems/rake-13.3.0/exe/rake:27:in `<top (required)>'
+/home/jules/.rvm/gems/ruby-3.3.0/bin/ruby_executable_hooks:22:in `eval'
+/home/jules/.rvm/gems/ruby-3.3.0/bin/ruby_executable_hooks:22:in `<main>'
+(See full trace by running task with --trace)

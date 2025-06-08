@@ -1,0 +1,2 @@
+ERROR: "derailed exec" was called with arguments ["perf:mem_over_time", "/benchmark_test_endpoint"]
+Usage: "derailed exec"

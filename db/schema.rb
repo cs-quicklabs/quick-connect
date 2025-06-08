@@ -33,8 +33,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_31_055216) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id"
     t.boolean "expired", default: false, null: false
+    t.integer "owner_id"
   end
 
   create_table "activities", force: :cascade do |t|
@@ -587,16 +587,16 @@ ActiveRecord::Schema[8.0].define(version: 2025_05_31_055216) do
     t.datetime "updated_at", null: false
     t.integer "permission", default: 0, null: false
     t.string "invitation_token"
-    t.datetime "invitation_created_at"
-    t.datetime "invitation_sent_at"
-    t.datetime "invitation_accepted_at"
+    t.datetime "invitation_created_at", precision: nil
+    t.datetime "invitation_sent_at", precision: nil
+    t.datetime "invitation_accepted_at", precision: nil
     t.integer "invitation_limit"
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.bigint "account_id"
