@@ -103,10 +103,7 @@ Rails.application.configure do
   config.active_job.queue_adapter = :solid_queue
 
   # Enable DNS rebinding protection and other `Host` header attacks.
-  config.hosts = [
-    "connect.quicklabs.in",     # Allow requests from example.com
-    "quick-connect-web.onrender.com",
-  ]
+  config.hosts.clear
 
   # Skip DNS rebinding protection for the default health check endpoint.
   config.host_authorization = { exclude: ->(request) { request.path == "/up" } }

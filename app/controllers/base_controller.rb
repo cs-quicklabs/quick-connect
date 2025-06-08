@@ -1,8 +1,8 @@
 class BaseController < ApplicationController
   protect_from_forgery with: :exception
   before_action :set_user, only: %i[ index show edit update destroy create new contacts events deactivate activate add remove ]
-  before_action :authenticate_user!
-  before_action :authenticate_account!, if: :http_request?
+  #before_action :authenticate_user!
+  #before_action :authenticate_account!, if: :http_request?
   after_action :verify_authorized
 
   include Pagy::Backend

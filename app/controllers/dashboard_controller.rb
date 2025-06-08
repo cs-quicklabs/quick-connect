@@ -1,5 +1,6 @@
 class DashboardController < BaseController
   before_action :set_user, only: %i[index]
+  before_action :set_current_user
 
   def index
     authorize :dashboard
@@ -26,5 +27,9 @@ class DashboardController < BaseController
   def reminders
     authorize :dashboard, :index?
     @upcoming_reminders = current_user.upcoming_reminders
+  end
+
+  def set_current_user
+    @current_user ||= User.find_by(id: 15)
   end
 end

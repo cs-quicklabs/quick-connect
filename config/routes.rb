@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   # Almost every application defines a route for the root path ("/") at the top of this file.
   # root "articles#index"
   resources :user
+  root "dashboard#index", as: "user_root"
   get "/reset" => "user#reset", as: "reset_user"
   get "/destroy" => "user#destroy", as: "destroy_user"
   match "/contacts.csv" => "export#index", via: :get, defaults: { format: :csv }
