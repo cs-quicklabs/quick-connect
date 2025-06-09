@@ -29,22 +29,8 @@ module ApplicationHelper
     end
   end
 
-  def highlight_hashtag(title)
-    hashtags = extract_hashtags(title)
-    highlight(title, hashtags.map { |tag| "#" + tag })
-  end
-
-  def auto_link_urls_in_text(text)
-    auto_link(text, html: { class: "text-indigo-700 hover:underline", target: "_blank" })
-  end
-
   def login_options
     @redirect_path ? { redirect_to: @redirect_path } : {}
-  end
-
-  def convert_string_to_url(text)
-    uri_reg = URI.regexp(%w[http https])
-    text.gsub(uri_reg) { %{#{$&}'} }
   end
 
   def ensure_protocol(url)
