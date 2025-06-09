@@ -89,3 +89,5 @@ gem "solid_queue"
 
 # A database-backed ActiveSupport::Cache::Store [https://github.com/rails/solid_cache]
 gem "solid_cache"
+
+gem "skylight"
