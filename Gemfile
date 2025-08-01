@@ -51,7 +51,7 @@ gem "devise_invitable"
 gem "devise-pwned_password"
 
 # Payments
-gem "pagy", "8.4.0"
+gem "pagy", "9.3.5"
 gem "pay", "6.7.1"
 gem "stripe", "~> 8.6"
 
