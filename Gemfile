@@ -53,7 +53,7 @@ gem "devise-pwned_password"
 # Payments
 gem "pagy", "8.4.0"
 gem "pay", "6.7.1"
-gem "stripe", "~> 8.6"
+gem "stripe", "~> 15.4"
 
 gem "font-awesome-rails"
 gem "attribute_normalizer"
