@@ -14,7 +14,7 @@
     "date-fns": "^2.30.0",
     "esbuild": "0.19.3",
     "postcss": "8.4.30",
-    "tailwindcss": "4.1.7",
+    "tailwindcss": "4.1.13",
     "tippy.js": "6.3.7"
   },
   "scripts": {
