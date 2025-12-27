@@ -2,10 +2,10 @@ source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 # ruby version app is using, [https://www.ruby-lang.org/en/downloads/]
-ruby "3.3.0"
+ruby "4.0.0"
 
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
-gem "rails", "8.0.2"
+gem "rails", "8.1.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -68,6 +68,7 @@ group :development do
   gem "rack-mini-profiler", require: false
   gem "stackprof"
   gem "letter_opener"
+  gem "csv"
 
   gem "debug", ">= 1.0.0", platforms: %i[ mri mingw x64_mingw ]
 
