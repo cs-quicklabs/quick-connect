@@ -10,8 +10,7 @@ gem "rails", "8.1.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
-gem "pg"
+gem "sqlite3"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
@@ -42,7 +41,6 @@ gem "draper"
 gem "rails-patterns"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "pg_search"
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 
 # devise gems

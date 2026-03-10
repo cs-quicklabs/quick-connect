@@ -11,19 +11,16 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "pg_catalog.plpgsql"
-
   create_table "abouts", force: :cascade do |t|
     t.string "address", default: ""
     t.string "breif", default: ""
-    t.bigint "contact_id", null: false
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.string "habit", default: ""
     t.string "met", default: ""
     t.string "other", default: ""
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.string "work", default: ""
     t.index ["contact_id"], name: "index_abouts_on_contact_id"
     t.index ["user_id"], name: "index_abouts_on_user_id"
@@ -38,10 +35,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "activities", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.boolean "default", default: false, null: false
-    t.bigint "group_id", null: false
+    t.integer "group_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_activities_on_account_id"
@@ -49,7 +46,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "batches", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
@@ -57,22 +54,22 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "batches_collections", id: false, force: :cascade do |t|
-    t.bigint "batch_id", null: false
-    t.bigint "collection_id", null: false
+    t.integer "batch_id", null: false
+    t.integer "collection_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "batches_contacts", id: false, force: :cascade do |t|
-    t.bigint "batch_id", null: false
-    t.bigint "contact_id", null: false
+    t.integer "batch_id", null: false
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["contact_id", "batch_id"], name: "index_batches_contacts_on_contact_id_and_batch_id", unique: true
   end
 
   create_table "collections", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
@@ -80,14 +77,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "contact_activities", force: :cascade do |t|
-    t.bigint "activity_id", null: false
+    t.integer "activity_id", null: false
     t.string "body"
-    t.bigint "contact_id", null: false
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
     t.string "title"
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["activity_id"], name: "index_contact_activities_on_activity_id"
     t.index ["contact_id"], name: "index_contact_activities_on_contact_id"
     t.index ["user_id"], name: "index_contact_activities_on_user_id"
@@ -95,13 +92,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "contact_events", force: :cascade do |t|
     t.string "body"
-    t.bigint "contact_id", null: false
+    t.integer "contact_id", null: false
     t.datetime "created_at", null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
-    t.bigint "life_event_id", null: false
+    t.integer "life_event_id", null: false
     t.string "title"
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.index ["contact_id"], name: "index_contact_events_on_contact_id"
     t.index ["life_event_id"], name: "index_contact_events_on_life_event_id"
     t.index ["user_id"], name: "index_contact_events_on_user_id"
@@ -109,7 +106,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "contacts", force: :cascade do |t|
     t.string "about", default: ""
-    t.bigint "account_id"
+    t.integer "account_id"
     t.integer "activity_count", default: 0
     t.string "address", default: ""
     t.boolean "archived", default: false
@@ -123,11 +120,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.string "intro"
     t.string "last_name", default: "", null: false
     t.string "phone", default: ""
-    t.bigint "relation_id"
+    t.integer "relation_id"
     t.integer "touch_back_after", default: 0
     t.date "touched_at"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_contacts_on_account_id"
     t.index ["first_name"], name: "index_contacts_on_first_name"
     t.index ["relation_id"], name: "index_contacts_on_relation_id"
@@ -135,18 +132,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "contacts_labels", id: false, force: :cascade do |t|
-    t.bigint "contact_id", null: false
-    t.bigint "label_id", null: false
+    t.integer "contact_id", null: false
+    t.integer "label_id", null: false
   end
 
   create_table "conversations", force: :cascade do |t|
     t.text "body"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
-    t.bigint "field_id"
+    t.integer "field_id"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_conversations_on_contact_id"
     t.index ["field_id"], name: "index_conversations_on_field_id"
     t.index ["user_id"], name: "index_conversations_on_user_id"
@@ -154,31 +151,31 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "debts", force: :cascade do |t|
     t.string "amount"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.datetime "due_date"
     t.string "owed_by", default: "user"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_debts_on_contact_id"
     t.index ["user_id"], name: "index_debts_on_user_id"
   end
 
   create_table "documents", force: :cascade do |t|
     t.string "comments"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.string "filename"
     t.string "link"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_documents_on_contact_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "events", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "action"
     t.string "action_context"
     t.string "action_for_context"
@@ -193,7 +190,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "fields", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.boolean "default", default: false, null: false
     t.string "icon"
@@ -206,13 +203,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "gifts", force: :cascade do |t|
     t.text "body"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.datetime "date"
     t.string "name"
     t.string "status", default: "received"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_gifts_on_contact_id"
     t.index ["user_id"], name: "index_gifts_on_user_id"
   end
@@ -225,7 +222,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "invitations", force: :cascade do |t|
-    t.bigint "account_id"
+    t.integer "account_id"
     t.datetime "created_at", null: false
     t.string "email"
     t.string "first_name"
@@ -234,13 +231,13 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.datetime "sent_at"
     t.string "token"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_invitations_on_account_id"
     t.index ["user_id"], name: "index_invitations_on_user_id"
   end
 
   create_table "labels", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.string "color", default: "gray", null: false
     t.datetime "created_at", null: false
     t.string "name"
@@ -249,10 +246,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "life_events", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.boolean "default", default: false, null: false
-    t.bigint "group_id", null: false
+    t.integer "group_id", null: false
     t.string "name"
     t.datetime "updated_at", null: false
     t.index ["account_id"], name: "index_life_events_on_account_id"
@@ -260,21 +257,21 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "links", force: :cascade do |t|
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.string "link"
     t.string "link_type"
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_links_on_contact_id"
     t.index ["user_id"], name: "index_links_on_user_id"
   end
 
   create_table "notes", force: :cascade do |t|
     t.text "body"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.string "title", default: ""
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_notes_on_contact_id"
     t.index ["user_id"], name: "index_notes_on_user_id"
   end
@@ -285,11 +282,11 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.integer "application_fee_amount"
     t.datetime "created_at", null: false
     t.string "currency"
-    t.bigint "customer_id", null: false
-    t.jsonb "data"
-    t.jsonb "metadata"
+    t.integer "customer_id", null: false
+    t.json "data"
+    t.json "metadata"
     t.string "processor_id", null: false
-    t.bigint "subscription_id"
+    t.integer "subscription_id"
     t.datetime "updated_at", null: false
     t.index ["customer_id", "processor_id"], name: "index_pay_charges_on_customer_id_and_processor_id", unique: true
     t.index ["subscription_id"], name: "index_pay_charges_on_subscription_id"
@@ -297,10 +294,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "pay_customers", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.jsonb "data"
+    t.json "data"
     t.boolean "default"
     t.datetime "deleted_at", precision: nil
-    t.bigint "owner_id"
+    t.integer "owner_id"
     t.string "owner_type"
     t.string "processor", null: false
     t.string "processor_id"
@@ -311,9 +308,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "pay_merchants", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.jsonb "data"
+    t.json "data"
     t.boolean "default"
-    t.bigint "owner_id"
+    t.integer "owner_id"
     t.string "owner_type"
     t.string "processor", null: false
     t.string "processor_id"
@@ -323,8 +320,8 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "pay_payment_methods", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.bigint "customer_id", null: false
-    t.jsonb "data"
+    t.integer "customer_id", null: false
+    t.json "data"
     t.boolean "default"
     t.string "processor_id", null: false
     t.string "type"
@@ -337,10 +334,10 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.datetime "created_at", null: false
     t.datetime "current_period_end"
     t.datetime "current_period_start"
-    t.bigint "customer_id", null: false
-    t.jsonb "data"
+    t.integer "customer_id", null: false
+    t.json "data"
     t.datetime "ends_at", precision: nil
-    t.jsonb "metadata"
+    t.json "metadata"
     t.boolean "metered"
     t.string "name", null: false
     t.string "pause_behavior"
@@ -359,7 +356,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "pay_webhooks", force: :cascade do |t|
     t.datetime "created_at", null: false
-    t.jsonb "event"
+    t.json "event"
     t.string "event_type"
     t.string "processor"
     t.datetime "updated_at", null: false
@@ -367,18 +364,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
 
   create_table "phone_calls", force: :cascade do |t|
     t.text "body"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.date "date", default: -> { "CURRENT_DATE" }, null: false
     t.string "status", default: "contact", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_phone_calls_on_contact_id"
     t.index ["user_id"], name: "index_phone_calls_on_user_id"
   end
 
   create_table "preferences", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.string "key"
     t.string "message"
@@ -389,7 +386,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "relations", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.datetime "created_at", null: false
     t.boolean "default", default: false, null: false
     t.string "name"
@@ -398,7 +395,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "relatives", force: :cascade do |t|
-    t.bigint "account_id", null: false
+    t.integer "account_id", null: false
     t.integer "contact_id"
     t.datetime "created_at", null: false
     t.integer "first_contact_id"
@@ -409,9 +406,9 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   end
 
   create_table "reminders", force: :cascade do |t|
-    t.bigint "account_id"
+    t.integer "account_id"
     t.string "comments"
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.integer "remind_after"
     t.date "reminder_date"
@@ -419,18 +416,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.integer "status"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_reminders_on_account_id"
     t.index ["contact_id"], name: "index_reminders_on_contact_id"
     t.index ["user_id"], name: "index_reminders_on_user_id"
   end
 
   create_table "solid_cache_entries", force: :cascade do |t|
-    t.integer "byte_size", null: false
+    t.integer "byte_size", limit: 4, null: false
     t.datetime "created_at", null: false
-    t.binary "key", null: false
-    t.bigint "key_hash", null: false
-    t.binary "value", null: false
+    t.binary "key", limit: 1024, null: false
+    t.integer "key_hash", limit: 8, null: false
+    t.binary "value", limit: 536870912, null: false
     t.index ["byte_size"], name: "index_solid_cache_entries_on_byte_size"
     t.index ["key_hash", "byte_size"], name: "index_solid_cache_entries_on_key_hash_and_byte_size"
     t.index ["key_hash"], name: "index_solid_cache_entries_on_key_hash", unique: true
@@ -560,18 +557,18 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
   create_table "tasks", force: :cascade do |t|
     t.text "body"
     t.boolean "completed", default: false
-    t.bigint "contact_id"
+    t.integer "contact_id"
     t.datetime "created_at", null: false
     t.datetime "due_date"
     t.string "title"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["contact_id"], name: "index_tasks_on_contact_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
-    t.bigint "account_id"
+    t.integer "account_id"
     t.integer "admin", default: 0, null: false
     t.datetime "confirmation_sent_at"
     t.string "confirmation_token"
@@ -589,7 +586,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.datetime "invitation_sent_at", precision: nil
     t.string "invitation_token"
     t.integer "invitations_count", default: 0
-    t.bigint "invited_by_id"
+    t.integer "invited_by_id"
     t.string "invited_by_type"
     t.string "jti", null: false
     t.string "last_name", default: "", null: false
@@ -602,7 +599,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_05_31_055216) do
     t.integer "sign_in_count", default: 0, null: false
     t.string "unconfirmed_email"
     t.datetime "updated_at", null: false
-    t.bigint "user_id"
+    t.integer "user_id"
     t.index ["account_id"], name: "index_users_on_account_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_users_on_invitation_token", unique: true
