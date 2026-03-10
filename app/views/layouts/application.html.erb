@@ -11,7 +11,7 @@
     <% end %>
     <meta name="turbo-cache-control" content="no-cache">
     <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_importmap_tags %>
     <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "tippy", "data-turbo-track": "reload" %>

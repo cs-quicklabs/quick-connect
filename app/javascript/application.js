@@ -1,10 +1,4 @@
-// Entry point for the build script in your package.json
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 
-import "./controllers";
-import "@tailwindcss/line-clamp";
-import "@tailwindcss/forms";
-import "./themes";
-import "./github-canvas";
-import "@hotwired/turbo-rails";
-import "./github-canvas-rating"
 import "@hotwired/turbo-rails"
+import "controllers"

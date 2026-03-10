@@ -1,5 +1,4 @@
 web: bin/rails server
-js: yarn build --watch
 css: bin/rails tailwindcss:watch
 queue: bin/rails solid_queue:start
 

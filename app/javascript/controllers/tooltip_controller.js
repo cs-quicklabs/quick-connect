@@ -1,8 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
 import tippy from "tippy.js";
-import 'tippy.js/themes/light.css';
-import 'tippy.js/dist/svg-arrow.css';
-import 'tippy.js/animations/scale.css';
 
 export default class extends Controller {
   connect() {

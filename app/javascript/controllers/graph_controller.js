@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus";
 import { get } from "@rails/request.js";
-import { drawContributions } from "../github-canvas";
+import { drawContributions } from "github-canvas";
 
 export default class extends Controller {
   static targets = ["graph"];

@@ -1,72 +1,5 @@
-import addWeeks from "date-fns/addWeeks";
-import format from "date-fns/format";
-import getMonth from "date-fns/getMonth";
-import isAfter from "date-fns/isAfter";
-import isBefore from "date-fns/isBefore";
-import parseISO from "date-fns/parseISO";
-import setDay from "date-fns/setDay";
-import startOfWeek from "date-fns/startOfWeek";
-import { themes } from "./themes";
-
-interface DataStructYear {
-  year: string;
-  total: number;
-  range: {
-    start: string;
-    end: string;
-  };
-}
-
-interface DataStructContribution {
-  date: string;
-  count: number;
-  color: string;
-  intensity: number;
-}
-
-interface DataStruct {
-  years: DataStructYear[];
-  contributions: DataStructContribution[];
-}
-
-interface GraphEntry {
-  date: string;
-  info?: DataStructContribution;
-}
-
-interface Options {
-  themeName?: keyof typeof themes;
-  customTheme?: Theme;
-  skipHeader?: boolean;
-  skipAxisLabel?: boolean;
-  username: string;
-  data: DataStruct;
-  fontFace?: string;
-  footerText?: string;
-  text?: string;
-}
-
-interface DrawYearOptions extends Options {
-  year: DataStructYear;
-  offsetX?: number;
-  offsetY?: number;
-}
-
-interface DrawMetadataOptions extends Options {
-  width: number;
-  height: number;
-}
-
-interface Theme {
-  background: string;
-  text: string;
-  meta: string;
-  grade4: string;
-  grade3: string;
-  grade2: string;
-  grade1: string;
-  grade0: string;
-}
+import { addWeeks, format, getMonth, isAfter, isBefore, parseISO, setDay, startOfWeek } from "date-fns";
+import { themes } from "themes";
 
 function getPixelRatio() {
   return 1;
@@ -82,7 +15,7 @@ const canvasMargin = 20;
 const yearHeight = textHeight + (boxWidth + boxMargin) * 8 + canvasMargin;
 const scaleFactor = getPixelRatio();
 
-function getTheme(opts: Options): Theme {
+function getTheme(opts) {
   const { themeName, customTheme } = opts;
   if (customTheme) {
     return {
@@ -100,11 +33,11 @@ function getTheme(opts: Options): Theme {
   return themes[name] ?? themes.standard;
 }
 
-function getDateInfo(data: DataStruct, date: string) {
+function getDateInfo(data, date) {
   return data.contributions.find((contrib) => contrib.date === date);
 }
 
-function getContributionCount(graphEntries: GraphEntry[][]) {
+function getContributionCount(graphEntries) {
   return graphEntries.reduce((rowTotal, row) => {
     return (
       rowTotal +
@@ -115,7 +48,7 @@ function getContributionCount(graphEntries: GraphEntry[][]) {
   }, 0);
 }
 
-function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
+function drawYear(ctx, opts) {
   const { year, offsetX = 0, offsetY = 0, data, fontFace = defaultFontFace, text } = opts;
   const theme = getTheme(opts);
 
@@ -126,8 +59,8 @@ function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
   const firstDate = startOfWeek(firstRealDate);
 
   let nextDate = firstDate;
-  const firstRowDates: GraphEntry[] = [];
-  const graphEntries: GraphEntry[][] = [];
+  const firstRowDates = [];
+  const graphEntries = [];
 
   while (isBefore(nextDate, lastDate)) {
     const date = format(nextDate, DATE_FORMAT);
@@ -167,7 +100,6 @@ function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
       if (isAfter(cellDate, lastDate) || !day.info) {
         continue;
       }
-      // @ts-ignore
       const color = theme[`grade${day.info.intensity}`];
       ctx.fillStyle = color;
       ctx.fillRect(offsetX + (boxWidth + boxMargin) * x, offsetY + textHeight + (boxWidth + boxMargin) * y, 10, 10);
@@ -189,7 +121,7 @@ function drawYear(ctx: CanvasRenderingContext2D, opts: DrawYearOptions) {
   }
 }
 
-function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) {
+function drawMetaData(ctx, opts) {
   const { username, width, height, footerText, data, fontFace = defaultFontFace, text } = opts;
   const theme = getTheme(opts);
   ctx.fillStyle = theme.background;
@@ -208,7 +140,6 @@ function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) 
   ctx.fillText("Less", width - canvasMargin - (boxWidth + boxMargin) * themeGrades - 55, 37);
   ctx.fillText("More", width - canvasMargin - 25, 37);
   for (let x = 0; x < 5; x += 1) {
-    // @ts-ignore
     ctx.fillStyle = theme[`grade${x}`];
     ctx.fillRect(width - canvasMargin - (boxWidth + boxMargin) * themeGrades - 27, textHeight + boxWidth, 10, 10);
     themeGrades -= 1;
@@ -233,7 +164,7 @@ function drawMetaData(ctx: CanvasRenderingContext2D, opts: DrawMetadataOptions) 
   ctx.stroke();
 }
 
-export function drawContributions(canvas: HTMLCanvasElement, opts: Options) {
+export function drawContributions(canvas, opts) {
   const { data } = opts;
   let headerOffset = 0;
   if (!opts.skipHeader) {
@@ -275,4 +206,4 @@ export function drawContributions(canvas: HTMLCanvasElement, opts: Options) {
   });
 }
 
-export { themes } from "./themes";
+export { themes } from "themes";
