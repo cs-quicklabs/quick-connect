@@ -22,7 +22,7 @@ class SignUp < Patterns::Service
       create_account
       create_user
       seed_database
-      set_stripe_subscription_trial
+      #set_stripe_subscription_trial
     end
   end
 
