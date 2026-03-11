@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./buttons.css";
+@import "./btn.css";
 
 /* Custom theme colors */
 @theme {
