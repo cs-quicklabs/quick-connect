@@ -3,8 +3,7 @@
     <%= render "shared/form_messages", resource: note, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Note", subtitle: "A note can be added to a contact which can help you remember important things. " %>
     <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
-    <div class="flex justify-end">
-      <%= form.submit "Add Note", class: "btn-blue" %>
-    </div>
+
+    <div class="flex justify-end"><%= form.submit "Add Note", class: "btn-primary" %></div>
   </main>
 <% end %>

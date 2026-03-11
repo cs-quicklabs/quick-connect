@@ -4,30 +4,31 @@
     <%= render "shared/form_header", title: "Edit Debt", subtitle: "Edit debt for #{@debt.contact.decorate.display_name}" %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_field :amount, "Amount", class: "form-text-field" %>
-    <div class="w-full ">
-      <label for="owned_by" class="block text-sm font-medium text-gray-700">
-        Owed by
-      </label>
+
+    <div class="w-full">
+      <label for="owned_by" class="block text-sm font-medium text-gray-700"> Owed by </label>
+
       <div class="block max-w-lg space-x-8">
         <div class="inline-flex space-x-2">
           <%= form.radio_button :owed_by, "you", class: "mt-1 cursor-pointer ", :checked => true %>
           <%= form.label :owed_by_you, "You", class: " cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 ">
+
+        <div class="inline-flex space-x-2 pl-4">
           <%= form.radio_button :owed_by, "contact", class: " mt-1 cursor-pointer" %>
           <%= form.label :owed_by_contact, @contact.decorate.display_name, class: " break-words w-60 cursor-pointer text-sm font-medium text-gray-700" %>
         </div>
       </div>
     </div>
+
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        Due Date
-      </label>
+      <label for="date" class="block text-sm font-medium text-gray-700"> Due Date </label>
       <%= form.date_field :due_date, class: "cursor-pointer form-text-field mt-1" %>
     </div>
+
     <div class="flex justify-end">
-      <%= link_to "Cancel", "javascript:history.back()", class: "btn-normal" %>
-      <%= form.submit "Edit Debt", class: "btn-blue" %>
+      <%= link_to "Cancel", "javascript:history.back()", class: "btn-secondary" %>
+      <%= form.submit "Edit Debt", class: "btn-primary" %>
     </div>
   </main>
 <% end %>

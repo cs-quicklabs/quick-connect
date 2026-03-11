@@ -4,15 +4,15 @@
     <%= render "shared/form_header", title: "Edit Task", subtitle: "Edit task for #{@task.contact.decorate.display_name}" %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
+
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        Due Date
-      </label>
+      <label for="date" class="block text-sm font-medium text-gray-700"> Due Date </label>
       <%= form.date_field :due_date, class: "cursor-pointer form-text-field mt-1" %>
     </div>
+
     <div class="flex justify-end">
-      <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
-      <%= form.submit "Edit Task", class: "btn-blue" %>
+      <%= link_to "Back", "javascript:history.back()", class: "btn-secondary" %>
+      <%= form.submit "Edit Task", class: "btn-primary" %>
     </div>
   </main>
 <% end %>

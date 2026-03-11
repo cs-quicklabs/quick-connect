@@ -2,30 +2,33 @@
   <main class="max-w-lg px-4 pt-6 pb-12 mx-auto space-y-6 lg:pb-16">
     <%= render "shared/form_messages", resource: phone_call, message: local_assigns[:message] %>
     <%= render "shared/form_header", title: "Add New Phone Call", subtitle: "A Phone Call can be added to a contact which can help you remember important calls. " %>
+
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        The phone call happened on 
-      </label>
+      <label for="date" class="block text-sm font-medium text-gray-700"> The phone call happened on </label>
       <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db), max: Date.today %>
     </div>
-    <div class="w-full ">
-      <label for="status" class="block text-sm font-medium text-gray-700">
-        Who called?
-      </label>
+
+    <div class="w-full">
+      <label for="status" class="block text-sm font-medium text-gray-700"> Who called? </label>
+
       <div class="block max-w-lg space-x-2 flex">
         <div class="inline-flex space-x-2 whitespace-nowrap">
           <%= form.radio_button :status, "user", class: " cursor-pointer flex-auto mt-1 ", :checked => true %>
           <%= form.label :status_user, "You called", class: " cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
         </div>
-        <div class="inline-flex space-x-2 pl-4 whitespace-nowrap" style="word-break: break-all; overflow-wrap: break-word; ">
+
+        <div
+          class="inline-flex space-x-2 pl-4 whitespace-nowrap"
+          style="word-break: break-all; overflow-wrap: break-word; "
+        >
           <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => false %>
           <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none", style: "width: 19rem;" %>
         </div>
       </div>
     </div>
+
     <%= form.text_area :body, "Description", class: "resize-y form-text-field h-24" %>
-    <div class="flex justify-end">
-      <%= form.submit "Add Phone Call", class: "btn-blue" %>
-    </div>
+
+    <div class="flex justify-end"><%= form.submit "Add Phone Call", class: "btn-primary" %></div>
   </main>
 <% end %>

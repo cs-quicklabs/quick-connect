@@ -7,9 +7,10 @@
         <%= form.text_field :filename, "Filename", autocomplete: "off" %>
         <%= form.text_field :link, "Link", autocomplete: "off" %>
         <%= form.text_area :comments, "Comments(optional)", class: "form-text-field h-32", autocomplete: "off" %>
+
         <div class="flex justify-end">
-          <%= link_to "Back", "javascript:history.back()", class: "btn-normal" %>
-          <%= form.submit "Edit Document", class: "btn-blue" %>
+          <%= link_to "Back", "javascript:history.back()", class: "btn-secondary" %>
+          <%= form.submit "Edit Document", class: "btn-primary" %>
         </div>
       </main>
     <% end %>

@@ -4,14 +4,12 @@
     <%= render "shared/form_header", title: "Add New Task", subtitle: "A task can be added to a contact which can help you remember important things. " %>
     <%= form.text_field :title, "Title", autocomplete: "off" %>
     <%= form.text_area :body, "Description(optional)", class: "form-text-field h-24" %>
+
     <div>
-      <label for="date" class="block text-sm font-medium text-gray-700">
-        Due Date
-      </label>
+      <label for="date" class="block text-sm font-medium text-gray-700"> Due Date </label>
       <%= form.date_field :due_date, class: " cursor-pointer form-text-field mt-1", value: Date.today.to_formatted_s(:db) %>
     </div>
-    <div class="flex justify-end">
-      <%= form.submit "Add Task", class: "btn-blue" %>
-    </div>
+
+    <div class="flex justify-end"><%= form.submit "Add Task", class: "btn-primary" %></div>
   </main>
 <% end %>

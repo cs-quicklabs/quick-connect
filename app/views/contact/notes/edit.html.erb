@@ -2,13 +2,12 @@
   <%= tailwind_form_with(model: @note, id: dom_id(@note), url: contact_note_path(@contact, @note)) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @note, message: local_assigns[:message] %>
-      <label for="name" class="block mt-1 text-sm font-bold text-gray-700">
-        <%= "Edit Note" %>
-      </label>
+      <label for="name" class="block mt-1 text-sm font-bold text-gray-700"><%= "Edit Note" %></label>
       <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
+
       <div class="flex justify-end">
-        <%= link_to "Cancel", contact_notes_path(@contact), class: "ml-3 btn-normal " %>
-        <%= form.submit "Edit Note", class: "btn-blue" %>
+        <%= link_to "Cancel", contact_notes_path(@contact), class: "ml-3 btn-secondary " %>
+        <%= form.submit "Edit Note", class: "btn-primary" %>
       </div>
     </main>
   <% end %>

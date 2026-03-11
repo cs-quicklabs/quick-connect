@@ -1,35 +1,35 @@
-  <turbo-frame id="<%= dom_id @phone_call %>">
+<turbo-frame id="<%= dom_id @phone_call %>">
   <%= form_with(model: @phone_call, id: dom_id(@phone_call), url: contact_phone_call_path(@contact, @phone_call), data: { turbo_frame: dom_id(@phone_call) }) do |form| %>
     <main class="w-full mx-auto space-y-3 py-4">
       <%= render "shared/form_messages", resource: @phone_call, message: local_assigns[:message] %>
-      <label for="name" class="block mt-2 text-sm font-bold text-gray-700">
-        <%= "Edit Phone Call" %>
-      </label>
+      <label for="name" class="block mt-2 text-sm font-bold text-gray-700"><%= "Edit Phone Call" %></label>
+
       <div>
-        <label for="date" class="block text-sm font-medium text-gray-700">
-          The phone call happened on 
-        </label>
+        <label for="date" class="block text-sm font-medium text-gray-700"> The phone call happened on </label>
         <%= form.date_field :date, class: "cursor-pointer form-text-field mt-1 ", max: Date.today %>
       </div>
-      <div class="w-full ">
-        <label for="status" class="block text-sm font-medium text-gray-700">
-          Who called?
-        </label>
+
+      <div class="w-full">
+        <label for="status" class="block text-sm font-medium text-gray-700"> Who called? </label>
+
         <div class="block max-w-lg space-x-8">
           <div class="inline-flex space-x-2">
             <%= form.radio_button :status, "user", class: "mt-1 cursor-pointer flex-auto", :checked => @phone_call.status == "user" %>
             <%= form.label :status_user, "You called", class: "  cursor-pointer text-sm font-medium text-gray-700 flex-none" %>
           </div>
-          <div class="inline-flex space-x-2 pl-4 ">
+
+          <div class="inline-flex space-x-2 pl-4">
             <%= form.radio_button :status, "contact", class: " mt-1 cursor-pointer flex-auto", :checked => @phone_call.status == "contact" %>
             <%= form.label :status_contact, @contact.first_name.upcase_first + " called", class: "break-words  cursor-pointer text-sm font-medium text-gray-700 flex-auto", style: "width: 19rem;" %>
           </div>
         </div>
       </div>
+
       <%= form.text_area :body, class: "resize-y form-text-field h-24" %>
+
       <div class="flex justify-end">
-        <%= link_to "Cancel", contact_phone_calls_path(@contact), class: "ml-3 btn-normal " %>
-        <%= form.submit "Edit Phone Call", class: "btn-blue" %>
+        <%= link_to "Cancel", contact_phone_calls_path(@contact), class: "ml-3 btn-secondary " %>
+        <%= form.submit "Edit Phone Call", class: "btn-primary" %>
       </div>
     </main>
   <% end %>
