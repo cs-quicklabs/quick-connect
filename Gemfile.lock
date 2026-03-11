@@ -332,8 +332,6 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 4.0)
       websocket (~> 1.0)
-    skylight (7.0.0)
-      activesupport (>= 7.1.0)
     solid_cache (1.0.10)
       activejob (>= 7.2)
       activerecord (>= 7.2)
@@ -362,7 +360,6 @@ GEM
     tailwindcss-rails (4.4.0)
       railties (>= 7.0.0)
       tailwindcss-ruby (~> 4.0)
-    tailwindcss-ruby (4.1.18)
     tailwindcss-ruby (4.1.18-arm64-darwin)
     thor (1.4.0)
     thread_safe (0.3.6)
@@ -428,7 +425,6 @@ DEPENDENCIES
   rails (= 8.1.1)
   rails-patterns
   selenium-webdriver
-  skylight
   solid_cache
   solid_queue
   sprockets-rails
@@ -559,7 +555,6 @@ CHECKSUMS
   rubyzip (3.2.2) sha256=c0ed99385f0625415c8f05bcae33fe649ed2952894a95ff8b08f26ca57ea5b3c
   securerandom (0.4.1) sha256=cc5193d414a4341b6e225f0cb4446aceca8e50d5e1888743fac16987638ea0b1
   selenium-webdriver (4.39.0) sha256=984a1e63d39472eaf286bac3c6f1822fa7eea6eed9c07a66ce7b3bc5417ba826
-  skylight (7.0.0) sha256=afbbe711b13493eb2db795b1b533b02f9f247e0a07e6b31ae0169ef977dcbbd0
   solid_cache (1.0.10) sha256=bc05a2fb3ac78a6f43cbb5946679cf9db67dd30d22939ededc385cb93e120d41
   solid_queue (1.2.4) sha256=bb60f9552a969ac377d87601b0ff6a088f5e6f20b0cbbe3844a59d022cac0e4b
   sprockets (4.2.2) sha256=761e5a49f1c288704763f73139763564c845a8f856d52fba013458f8af1b59b1
@@ -570,7 +565,6 @@ CHECKSUMS
   stringio (3.2.0) sha256=c37cb2e58b4ffbd33fe5cd948c05934af997b36e0b6ca6fdf43afa234cf222e1
   stripe (8.7.0) sha256=632e179ea15f06573fe3d9d9a9be62089c786596db716c4bfdd282ecd1878f13
   tailwindcss-rails (4.4.0) sha256=efa2961351a52acebe616e645a81a30bb4f27fde46cc06ce7688d1cd1131e916
-  tailwindcss-ruby (4.1.18) sha256=b62fad5b00494e92987ee319dfb5c5ad272f0ed93649963d62f08d2ba0f03fa7
   tailwindcss-ruby (4.1.18-arm64-darwin) sha256=f940531d5a030c566d3d616004235bcd4c361abdd328f7d6c7e3a953a32e0155
   thor (1.4.0) sha256=8763e822ccb0f1d7bee88cde131b19a65606657b847cc7b7b4b82e772bcd8a3d
   thread_safe (0.3.6) sha256=9ed7072821b51c57e8d6b7011a8e282e25aeea3a4065eab326e43f66f063b05a
