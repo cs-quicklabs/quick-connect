@@ -11,9 +11,6 @@ application.register("confirmation", ConfirmationController);
 import CounterController from "./counter_controller.js";
 application.register("counter", CounterController);
 
-import DropdownController from "./dropdown_controller.js";
-application.register("dropdown", DropdownController);
-
 import InfiniteScrollController from "./infinite_scroll_controller.js";
 application.register("infinite-scroll", InfiniteScrollController);
 

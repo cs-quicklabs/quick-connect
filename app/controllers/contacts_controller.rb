@@ -153,7 +153,7 @@ class ContactsController < BaseController
     @partial = render_to_string(partial: "contact/touch_back", locals: { contact: @contact }, formats: [:turbo_stream])
     respond_to do |format|
       format.turbo_stream do render turbo_stream: turbo_stream.append("touch-back", @partial) end
-      format.html
+      format.html {redirect_to request.referrer, notice: "Contact has been updated."}
     end
   end
 

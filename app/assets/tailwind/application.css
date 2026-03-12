@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/forms";
+
 @import "./theme.css";
 @import "./btn.css";
 
