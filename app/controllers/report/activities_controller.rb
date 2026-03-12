@@ -1,4 +1,13 @@
 class Report::ActivitiesController < Report::BaseController
+  ACTIVITY_DATE_COLUMNS = {
+    "contacts" => :created_at,
+    "events" => :created_at,
+    "phone_calls" => :date,
+    "conversations" => :date,
+    "contact_activities" => :date,
+    "contact_events" => :date,
+  }.freeze
+
   def index
     authorize :report
 
@@ -13,16 +22,32 @@ class Report::ActivitiesController < Report::BaseController
   end
 
   def activities
-    start_date = current_user.account.created_at.to_date.to_s
-    end_date = Date.today.to_s
-    account = current_user.account.id
-    table_name = params[:type]
-    if table_name == "contacts" or table_name == "events"
-      sql = "SELECT s.tag::date AS date , count(t.id) AS count FROM  (SELECT generate_series(timestamp '#{start_date}', timestamp '#{end_date}', interval  '1 day') AS tag ) s  LEFT   JOIN #{table_name} t ON t.created_at::date = s.tag AND t.user_id IN ( Select id from users where account_id = #{account}) GROUP  BY 1 ORDER  BY 1;"
-    else
-      sql = "SELECT s.tag::date AS date , count(t.id) AS count FROM  (SELECT generate_series(timestamp '#{start_date}', timestamp '#{end_date}', interval  '1 day') AS tag ) s  LEFT   JOIN #{table_name} t ON t.date::date = s.tag AND t.user_id IN ( Select id from users where account_id = #{account}) GROUP  BY 1 ORDER  BY 1;"
+    start_date = current_user.account.created_at.to_date
+    end_date = Date.current
+    table_name = params[:type].to_s
+    date_column = ACTIVITY_DATE_COLUMNS[table_name]
+    return [] if date_column.blank?
+
+    model = table_name.classify.safe_constantize
+    return [] unless model
+
+    user_ids = User.where(account_id: current_user.account.id).select(:id)
+    relation = model.where(user_id: user_ids)
+
+    relation = if date_column == :created_at
+                 relation.where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+               else
+                 relation.where(date: start_date..end_date)
+               end
+
+    grouped_counts = relation.group(Arel.sql("DATE(#{model.table_name}.#{date_column})")).count
+
+    (start_date..end_date).map do |date|
+      {
+        "date" => date.to_s,
+        "count" => grouped_counts[date.to_s] || grouped_counts[date] || 0,
+      }
     end
-    ActiveRecord::Base.connection.execute(sql)
   end
 
   def years(activities)

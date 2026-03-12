@@ -8,9 +8,11 @@
     </div>
   </div>
 </div>
+
 <div class="flex w-full overflow-hidden bg-white">
   <div class="flex w-full">
     <%= render partial: "form" %>
+
     <% if @events.size > 0 %>
       <div id="events" class="w-full overflow-hidden py-10 px-8">
         <ul data-infinite-scroll-target="entries" class="list-none">

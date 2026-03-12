@@ -1,5 +1,9 @@
-  <% @contacts.each do |contact| %>
-  <li role="option" class="flex block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline" id="batch-contact">
+<% @contacts.each do |contact| %>
+  <li
+    role="option"
+    class="flex block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 hover:underline"
+    id="batch-contact"
+  >
     <%= confirm_post_button(batch_addcontact_path(batch_id: params[:batch_id].to_i, id: contact.id), contact.decorate.display_name, "Are you sure you want to add this contact to group?", "") %>
   </li>
 <% end %>

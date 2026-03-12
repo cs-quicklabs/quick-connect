@@ -4,8 +4,12 @@
       <%= display_title(@type) %> Consistency Report
     </h3>
   </div>
-  <div class="flex justify-center" data-controller="graph" data-graph-url-value=<%= activities_reports_path(format: :json, type: @type) %>>
-    <canvas data-graph-target="graph">
-    </canvas>
+
+  <div
+    class="flex justify-center"
+    data-controller="graph"
+    data-graph-url-value="<%= activities_reports_path(format: :json, type: @type) %>"
+  >
+    <canvas data-graph-target="graph"></canvas>
   </div>
 </main>
