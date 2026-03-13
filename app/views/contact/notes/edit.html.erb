@@ -5,7 +5,7 @@
       <label for="name" class="block mt-1 text-sm font-bold text-gray-700"><%= "Edit Note" %></label>
       <%= form.text_area :body, "Description", class: "form-text-field h-24" %>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end space-x-2">
         <%= link_to "Cancel", contact_notes_path(@contact), class: "ml-3 btn-secondary " %>
         <%= form.submit "Edit Note", class: "btn-primary" %>
       </div>
