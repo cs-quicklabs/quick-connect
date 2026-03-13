@@ -12,7 +12,7 @@
         <%= form.text_field :user_id, value: current_user.id, class: "hidden" %>
       </div>
 
-      <div class="flex justify-end">
+      <div class="flex justify-end space-x-2">
         <%= form.button "Save", class: "btn-primary" %>
         <%= link_to "Cancel", contact_about_index_path(@contact), class: "ml-3 btn-secondary " %>
       </div>

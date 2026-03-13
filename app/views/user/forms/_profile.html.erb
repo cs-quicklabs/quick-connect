@@ -6,7 +6,7 @@
       <%= form.text_field :first_name, "First Name", :value => (form.object.first_name ? form.object.first_name.titlecase : "") %>
       <%= form.text_field :last_name, "Last Name", :value => (form.object.last_name ? form.object.last_name.titlecase : "") %>
 
-      <div class="flex justify-end"><%= form.submit "Save", class: "btn-primary" %></div>
+      <div class="flex justify-end space-x-2"><%= form.submit "Save", class: "btn-primary" %></div>
     </div>
   </div>
 <% end %>

@@ -8,7 +8,7 @@
         <%= form.text_field :link, "Link", autocomplete: "off" %>
         <%= form.text_area :comments, "Comments(optional)", class: "form-text-field h-32", autocomplete: "off" %>
 
-        <div class="flex justify-end">
+        <div class="flex justify-end space-x-2">
           <%= link_to "Back", "javascript:history.back()", class: "btn-secondary" %>
           <%= form.submit "Edit Document", class: "btn-primary" %>
         </div>
