@@ -3,6 +3,8 @@
 pin "application"
 pin "@hotwired/stimulus", to: "stimulus.min.js"
 pin "@hotwired/turbo-rails", to: "turbo.min.js"
+pin "@hotwired/stimulus-loading", to: "stimulus-loading.js"
+
 pin "@popperjs/core", to: "https://ga.jspm.io/npm:@popperjs/core@2.11.8/lib/index.js"
 pin "@rails/request.js", to: "https://ga.jspm.io/npm:@rails/request.js@0.0.13/src/index.js"
 pin "date-fns", to: "https://ga.jspm.io/npm:date-fns@4.1.0/index.js"
