@@ -1,11 +1,16 @@
-   <main class="max-w-lg px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16 " >
+   <main class="max-w-xl px-4 pt-10 pb-12 mx-auto space-y-6 lg:pb-16 " >
   <%= render "shared/form_messages", resource: contact, message: local_assigns[:message] %>
   <%= render "shared/form_header", title: title, subtitle: subtitle %>
   <%= tailwind_form_with(model: contact, id: dom_id(contact), class: "space-y-6") do |form| %>
-    <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
-    <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
+    <div class="grid grid-cols-2 gap-4">
+      <%= form.text_field :first_name, "First Name", autocomplete: "off" %>
+      <%= form.text_field :last_name, "Last Name", autocomplete: "off" %>
+    </div>
+        <div class="grid grid-cols-2 gap-4">
+
     <%= form.text_field :email, "Email", autocomplete: "off" %>
     <%= form.text_field :phone, "Phone", autocomplete: "off" %>
+        </div>
     <div class="">
       <label for="group" class="block  text-sm font-medium text-gray-700">
         Select Relation
@@ -60,7 +65,7 @@
                     <% else %>
                       <input id="<%= batch.display_name %>"  name="groups[]" type="checkbox" value="<%= batch.id %>" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" data-action="counter#change">
                     <% end %>
-                    <%= batch.name.titleize %>
+                    <%= batch.name %>
                   </li>
                 <% end %>
               <% end %>
