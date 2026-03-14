@@ -72,7 +72,4 @@ Rails.application.configure do
   config.default_url_options = { host: "localhost:3000" }
 
   config.active_job.queue_adapter = :solid_queue
-
-  # Suppress logger output for asset requests.
-  config.assets.quiet = true
 end

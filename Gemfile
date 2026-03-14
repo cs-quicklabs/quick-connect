@@ -7,8 +7,8 @@ ruby "4.0.0"
 # Bundle edge Rails instead: gem 'rails', [https://github.com/rails/rails]
 gem "rails", "8.1.1"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+# The asset pipeline for Rails [https://github.com/rails/propshaft]
+gem "propshaft"
 
 gem "sqlite3"
 gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
