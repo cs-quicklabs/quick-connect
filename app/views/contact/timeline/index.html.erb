@@ -1,5 +1,6 @@
 <main class="relative z-0 flex-1 overflow-x-auto focus:outline-none h-screen">
   <%= render partial: "contact/title", locals: { contact: @contact, labels: @labels, event: @event, call: @call, contact_labels: @contact_labels } %>
+
   <main class="pb-8">
     <div class="px-4 sm:px-6">
       <!-- Main 3 column grid -->
@@ -8,24 +9,29 @@
         <div class="grid grid-cols-1 gap-4 lg:col-span-2">
           <section aria-labelledby="participants_section">
             <h2 class="sr-only" id="section-1-title">Timeline</h2>
+
             <div class="overflow-hidden bg-white">
               <div class="p-4">
                 <div class="flex flex-wrap">
                   <p class="pb-2 mt-1 text-sm font-medium text-gray-900 truncate"><%= "Contact Timeline" %></p>
                 </div>
+
                 <div class="h-full relative" style="min-height: 12rem" data-controller="infinite-scroll">
                   <ul data-infinite-scroll-target="entries">
                     <% @events.each do |event| %>
                       <%= render partial: "contact/timeline/activity", locals: { event: event } %>
                     <% end %>
                   </ul>
+
                   <div class="flex justify-end invisible mt-2 mb-6 mr-2" data-infinite-scroll-target="pagination">
                     <%= render partial: "shared/paginator", locals: { pagy: @pagy } %>
                   </div>
                 </div>
-              </section>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
-      </main>
-    </main>
+      </div>
+    </div>
+  </main>
+</main>
