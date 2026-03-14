@@ -5,5 +5,5 @@ class LifeEvent < ApplicationRecord
   validates_uniqueness_to_tenant :name, :case_sensitive => false
   scope :for_current_account, -> { where(account: Current.account) }
 
-  normalize_attribute :name, :with => :strip
+  normalizes :name, with: ->(value) { value&.strip }
 end

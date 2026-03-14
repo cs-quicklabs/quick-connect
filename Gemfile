@@ -50,7 +50,6 @@ gem "pay", "6.7.1"
 gem "stripe", "~> 8.6"
 
 gem "font-awesome-rails"
-gem "attribute_normalizer"
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]

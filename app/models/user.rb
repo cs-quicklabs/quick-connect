@@ -9,7 +9,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable, :timeoutable, timeout_in: 5.days, invite_for: 2.weeks
   validates :jti, presence: true, on: :update
 
-  normalize_attribute :first_name, :last_name, :email, :with => :strip
+  normalizes :first_name, :last_name, :email, with: ->(value) { value&.strip }
   validates_confirmation_of :password, if: :password_confirmation_given?, on: :update
 
   def password_confirmation_given?
@@ -36,7 +36,6 @@ class User < ApplicationRecord
   has_many :debts, dependent: :destroy
   has_many :conversations, dependent: :destroy
   has_many :gifts, dependent: :destroy
-  normalize_attribute :first_name, :last_name, :email, :with => :strip
   belongs_to :invited_by, :class_name => "User", optional: true
   has_many :reminders, dependent: :destroy
 

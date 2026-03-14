@@ -6,5 +6,5 @@ class Field < ApplicationRecord
   validates_uniqueness_to_tenant :name, :case_sensitive => false
   scope :for_current_account, -> { where(account: Current.account) }
   has_many :conversations, dependent: :restrict_with_exception
-  normalize_attribute :name, :protocol, :icon, :with => :strip
+  normalizes :name, :protocol, :icon, with: ->(value) { value&.strip }
 end

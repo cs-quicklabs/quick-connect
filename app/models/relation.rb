@@ -6,5 +6,5 @@ class Relation < ApplicationRecord
   has_one :contact, class_name: "Contact", foreign_key: "relation"
   has_many :contacts, through: :relatives, dependent: :restrict_with_exception
   scope :for_current_account, -> { where(account: Current.account) }
-  normalize_attribute :name, :with => :strip
+  normalizes :name, with: ->(value) { value&.strip }
 end
