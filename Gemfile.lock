@@ -150,9 +150,6 @@ GEM
       railties (>= 7.0)
       responders
       warden (~> 1.2.3)
-    devise-pwned_password (0.2.0)
-      devise (>= 4, < 6)
-      pwned (~> 2.4)
     devise_invitable (2.0.11)
       actionmailer (>= 5.0)
       devise (>= 4.6)
@@ -262,7 +259,6 @@ GEM
     public_suffix (7.0.5)
     puma (7.2.0)
       nio4r (~> 2.0)
-    pwned (2.4.1)
     raabro (1.4.0)
     racc (1.8.1)
     rack (3.2.5)
@@ -410,7 +406,6 @@ DEPENDENCIES
   debug (>= 1.0.0)
   derailed_benchmarks
   devise
-  devise-pwned_password
   devise_invitable
   draper
   font-awesome-rails
@@ -478,7 +473,6 @@ CHECKSUMS
   derailed_benchmarks (2.2.1) sha256=654280664fded41c9cd8fc27fc0fcfaf096023afab90eb4ac1185ba70c5d4439
   descendants_tracker (0.0.4) sha256=e9c41dd4cfbb85829a9301ea7e7c48c2a03b26f09319db230e6479ccdc780897
   devise (5.0.2) sha256=254330c9290e612ad9681e8a18c96aa21fb95bc391af936b84480965444bb0b6
-  devise-pwned_password (0.2.0) sha256=190f2456a20c53319549bda16c3b731ee3781d9d02717279211f0e51dea18f8a
   devise_invitable (2.0.11) sha256=780014f74b8848218d93a297300590120f1742984396acf3d6799ab49b9a6a3f
   draper (4.0.6) sha256=e96990bffd4d98806913972f5ae2e6a7e8a5fb5433f17b80fbed7ba99d3c9236
   drb (2.2.3) sha256=0b00d6fdb50995fe4a45dea13663493c841112e4068656854646f418fda13373
@@ -531,7 +525,6 @@ CHECKSUMS
   psych (5.3.1) sha256=eb7a57cef10c9d70173ff74e739d843ac3b2c019a003de48447b2963d81b1974
   public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
   puma (7.2.0) sha256=bf8ef4ab514a4e6d4554cb4326b2004eba5036ae05cf765cfe51aba9706a72a8
-  pwned (2.4.1) sha256=e375b45e1cd78aded2c923737f75e09e64bc66582142c144bd85f4ce1fa0955d
   raabro (1.4.0) sha256=d4fa9ff5172391edb92b242eed8be802d1934b1464061ae5e70d80962c5da882
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.5) sha256=4cbd0974c0b79f7a139b4812004a62e4c60b145cba76422e288ee670601ed6d3

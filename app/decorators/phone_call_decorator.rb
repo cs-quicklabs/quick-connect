@@ -12,9 +12,9 @@ class PhoneCallDecorator < Draper::Decorator
 
   def display_status_color
     if self.status == "contact"
-      "green"
+      "border border-green-200 bg-green-100 text-green-800"
     else
-      "red"
+      "border border-red-200 bg-red-100 text-red-800"
     end
   end
 end
