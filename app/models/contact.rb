@@ -2,7 +2,6 @@ class Contact < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   attr_accessor :relation_name
-  require "activerecord-import"
   acts_as_tenant :account
   enum :touch_back_after, ["30_days", "60_days", "90_days", "100_days", "do_not_track"]
   TOUCH_BACK_AFTER_OPTIONS = [{ id: "30_days", name: "30 days" }, { id: "60_days", name: "60 days" }, { id: "90_days", name: "90 days" }, { id: "100_days", name: "100 days" }, { id: "do_not_track", name: "Do not track" }]
@@ -14,7 +13,7 @@ class Contact < ApplicationRecord
   scope :over_100_days, -> { where(touch_back_after: 3) }
   belongs_to :user
   belongs_to :account
-  normalize_attribute :first_name, :last_name, :email, :with => :strip
+  normalizes :first_name, :last_name, :email, with: ->(value) { value&.strip }
   validates_presence_of :first_name, :last_name
   validates_uniqueness_of :phone, scope: :account, :allow_blank => true, if: -> { phone.present? }
   validates_uniqueness_of :email, scope: :account, :allow_blank => true, if: -> { email.present? }
@@ -48,7 +47,6 @@ class Contact < ApplicationRecord
   has_many :conversations, dependent: :destroy
   has_many :debts, dependent: :destroy
   has_many :gifts, dependent: :destroy
-  normalize_attribute :first_name, :last_name, :email, :with => :strip
   has_and_belongs_to_many :labels, dependent: :destroy
   has_many :documents, dependent: :destroy
   has_many :contact_activities, dependent: :destroy

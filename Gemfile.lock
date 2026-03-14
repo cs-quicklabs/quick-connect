@@ -90,7 +90,6 @@ GEM
       rails (>= 6.0)
     addressable (2.8.9)
       public_suffix (>= 2.0.2, < 8.0)
-    attribute_normalizer (1.2.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -399,7 +398,6 @@ PLATFORMS
 DEPENDENCIES
   activerecord-import!
   acts_as_tenant
-  attribute_normalizer
   bootsnap
   capybara (>= 3.38)
   csv
@@ -452,7 +450,6 @@ CHECKSUMS
   activesupport (8.1.1) sha256=5e92534e8d0c8b8b5e6b16789c69dbea65c1d7b752269f71a39422e9546cea67
   acts_as_tenant (1.0.1) sha256=6944e4d64533337938a8817a6b4ff9b11189c9dcc0b1333bb89f3821a4c14c53
   addressable (2.8.9) sha256=cc154fcbe689711808a43601dee7b980238ce54368d23e127421753e46895485
-  attribute_normalizer (1.2.0) sha256=580df3f316d7f0a2cc068fd655377f4769848643328d0c6c6c685ea98ac181c4
   axiom-types (0.1.1) sha256=c1ff113f3de516fa195b2db7e0a9a95fd1b08475a502ff660d04507a09980383
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bcrypt (3.1.21) sha256=5964613d750a42c7ee5dc61f7b9336fb6caca429ba4ac9f2011609946e4a2dcf

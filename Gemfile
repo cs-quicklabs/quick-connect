@@ -11,7 +11,6 @@ gem "rails", "8.1.1"
 gem "propshaft"
 
 gem "sqlite3"
-gem "activerecord-import", git: "https://github.com/zdennis/activerecord-import"
 
 # Use Puma as the app server [https://github.com/puma/puma]
 gem "puma"
